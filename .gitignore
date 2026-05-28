@@ -2,3 +2,6 @@
 Thumbs.db
 *.swp
 node_modules/
+.claude/
+BUILDSPEC.md
+PATCHSPEC-01-monorepo.md
