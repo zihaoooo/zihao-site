@@ -4,36 +4,30 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 body { font-family: 'DM Sans', sans-serif; background: #fff; color: #1a1a1a; }
 
-/* Topbar */
-#topbar {
-  position: fixed; top: 0; left: 0; right: 0; height: 44px;
-  background: #1a1a1a; display: flex; align-items: center;
-  padding: 0 20px; gap: 14px; z-index: 200;
-}
-#nav-toggle {
-  width: 32px; height: 32px; background: none; border: none;
-  cursor: pointer; display: flex; flex-direction: column;
-  justify-content: center; gap: 5px;
-}
-#nav-toggle span { display: block; width: 20px; height: 2px; background: #fff; }
-.topbar-title {
-  font-family: 'DM Mono', monospace; font-size: 11px; color: #fff;
-  letter-spacing: 0.1em; text-transform: uppercase;
-}
-
-/* Side panel */
+/* Side panel — always visible */
 #sidepanel {
   position: fixed; top: 0; left: 0; bottom: 0; width: 260px;
-  background: #f5f3f0; border-right: 1px solid #e0e0e0; z-index: 300;
-  transform: translateX(-260px); transition: transform 0.2s ease;
-  overflow-y: auto; padding-top: 44px;
+  background: #f5f3f0; border-right: 1px solid #e0e0e0;
+  z-index: 100; overflow-y: auto;
 }
-#sidepanel.open { transform: translateX(0); }
-.panel-overlay {
-  display: none; position: fixed; inset: 0;
-  background: rgba(0,0,0,0.2); z-index: 250;
+
+.panel-brand {
+  padding: 24px 20px 18px;
+  border-bottom: 1px solid #e0e0e0;
+  margin-bottom: 4px;
+  text-decoration: none;
+  display: block;
 }
-.panel-overlay.visible { display: block; }
+.panel-brand:hover { background: #ede9e4; }
+.panel-brand-title {
+  display: block; font-family: 'DM Mono', monospace; font-size: 11px;
+  font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase;
+  color: #1a1a1a;
+}
+.panel-brand-sub {
+  display: block; font-size: 11px; color: #888;
+  margin-top: 5px; line-height: 1.4;
+}
 
 /* Panel sections */
 .panel-section { padding: 16px 0 8px; border-top: 1px solid #e0e0e0; }
@@ -58,7 +52,7 @@ body { font-family: 'DM Sans', sans-serif; background: #fff; color: #1a1a1a; }
 }
 
 /* Main content */
-#main-content { padding-top: 44px; min-height: 100vh; }
+#main-content { margin-left: 260px; min-height: 100vh; }
 .page-inner { max-width: 900px; margin: 0 auto; padding: 40px 32px; }
 .page-inner.narrow { max-width: 720px; }
 
