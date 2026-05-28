@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rhino 3D — Navigation &amp; UI — LAAR 61400</title>
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <link rel="stylesheet" href="/assets/css/workflow-shared.css">
+  <link rel="stylesheet" href="/assets/css/shortcuts-shared.css">
+</head>
+<body>
+
+  <header id="topbar">
+    <button id="nav-toggle" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+    <span class="topbar-title">LAAR 61400</span>
+  </header>
+
+  <div class="panel-overlay"></div>
+
+  <nav id="sidepanel">
+    <div class="panel-section">
+      <span class="panel-section-label">Course</span>
+      <a class="panel-link" href="/index.html">Syllabus</a>
+    </div>
+    <div class="panel-section">
+      <span class="panel-section-label">Workflows</span>
+      <a class="panel-link" href="/workflows/wf01-autocad.html"><span class="panel-link-num">01</span>AutoCAD Site Drafting</a>
+      <a class="panel-link" href="/workflows/wf02-sketch-portfolio.html"><span class="panel-link-num">02</span>Hand Sketch → Portfolio</a>
+      <a class="panel-link" href="/workflows/wf03-urban-context.html"><span class="panel-link-num">03</span>Urban Context Mapping</a>
+      <a class="panel-link placeholder"><span class="panel-link-num">04</span>—</a>
+      <a class="panel-link placeholder"><span class="panel-link-num">05</span>—</a>
+      <a class="panel-link placeholder"><span class="panel-link-num">06</span>—</a>
+      <a class="panel-link placeholder"><span class="panel-link-num">07</span>—</a>
+    </div>
+    <div class="panel-section">
+      <span class="panel-section-label">Shortcuts &amp; Reference</span>
+      <a class="panel-link" href="/shortcuts/adobe.html">Adobe Ps / Ai / Id</a>
+      <a class="panel-link" href="/shortcuts/autocad.html">AutoCAD</a>
+      <a class="panel-link" href="/shortcuts/rhino-pipeline.html">Rhino — Pipeline</a>
+      <a class="panel-link active" href="/shortcuts/rhino-ui.html">Rhino — Navigation &amp; UI</a>
+    </div>
+  </nav>
+
+  <main id="main-content">
+    <div class="page-inner">
+
+      <div class="sc-wrap">
+
+        <div class="sc-header">
+          <div class="sc-header-left">
+            <span class="sc-icon sc-icon-rh">Rh</span>
+            <div class="sc-header-text">
+              <div class="sc-title">Rhino 3D</div>
+              <div class="sc-subtitle">Navigation &amp; UI</div>
+            </div>
+          </div>
+          <span class="sc-course-tag">LAAR 61400</span>
+        </div>
+
+<style>
+  .rh-nav { font-family: 'Helvetica Neue', Arial, sans-serif; font-size: 14px; color: #1a1a1a; padding: 24px; box-sizing: border-box; }
+  .rh-nav h1 { font-size: 18px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+  .rh-nav .rh-icon { display: inline-flex; align-items: center; justify-content: center; width: 32px; height: 32px; border-radius: 5px; font-size: 12px; font-weight: 700; background: #801010; color: #fff; flex-shrink: 0; }
+  .rh-nav .rh-sub { font-size: 12px; color: #999; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 20px; }
+  .rh-nav .rh-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: #aaa; margin-bottom: 12px; padding-top: 18px; border-top: 1px solid #e0e0e0; }
+  .rh-nav .rh-label:first-of-type { padding-top: 0; border-top: none; }
+  .rh-mouse-row { display: grid; grid-template-columns: 150px 1fr; gap: 28px; align-items: start; margin-bottom: 4px; }
+  .rh-mouse-diagram { flex-shrink: 0; }
+  .rh-mouse-legend { display: grid; grid-template-columns: 1fr; gap: 10px; }
+  .rh-mouse-item { display: flex; align-items: flex-start; gap: 10px; }
+  .rh-mouse-dot { width: 11px; height: 11px; border-radius: 50%; flex-shrink: 0; margin-top: 3px; }
+  .rh-mouse-text { font-size: 13px; line-height: 1.6; color: #333; }
+  .rh-mouse-text strong { font-weight: 700; color: #1a1a1a; }
+  .rh-vp-row { display: grid; grid-template-columns: 180px 1fr; gap: 28px; align-items: start; margin-bottom: 4px; }
+  .rh-vp-notes { display: grid; grid-template-columns: 1fr; gap: 8px; }
+  .rh-vp-item { font-size: 13px; line-height: 1.6; color: #555; }
+  .rh-vp-item strong { color: #1a1a1a; }
+  .rh-toggles { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 4px; }
+  .rh-toggle { border: 1px solid #ddd; border-radius: 4px; padding: 8px 12px; line-height: 1.5; background: #fafafa; }
+  .rh-toggle .rh-toggle-key { display: block; font-family: 'SF Mono', Consolas, monospace; font-size: 11px; font-weight: 700; color: #801010; margin-bottom: 3px; }
+  .rh-toggle .rh-toggle-name { display: block; font-weight: 700; font-size: 13px; color: #1a1a1a; }
+  .rh-toggle .rh-toggle-desc { display: block; font-size: 12px; color: #777; }
+  .rh-modes { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; margin-bottom: 4px; }
+  .rh-mode { border: 1px solid #e0e0e0; border-radius: 4px; padding: 10px 8px; text-align: center; }
+  .rh-mode-dot { width: 32px; height: 32px; border-radius: 50%; margin: 0 auto 8px; }
+  .rh-mode-name { font-size: 12px; font-weight: 700; color: #1a1a1a; display: block; }
+  .rh-mode-desc { font-size: 11px; color: #888; display: block; margin-top: 3px; line-height: 1.4; }
+  .rh-panels-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0 24px; }
+  .rh-panel-section { margin-bottom: 12px; }
+  .rh-panel-title { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: #444; border-bottom: 1px solid #e0e0e0; padding-bottom: 5px; margin-bottom: 8px; }
+  .rh-panel-section table { width: 100%; border-collapse: collapse; }
+  .rh-panel-section td { padding: 4px 0; font-size: 13px; line-height: 1.5; vertical-align: top; }
+  .rh-panel-section td:first-child { color: #555; width: 55%; }
+  .rh-panel-section td:last-child { text-align: right; }
+  kbd { display: inline-block; background: #f3f3f3; border: 1px solid #ddd; border-radius: 3px; padding: 2px 6px; font-family: 'SF Mono', Consolas, monospace; font-size: 11px; white-space: nowrap; }
+  .rh-tip { background: #f7f5f2; border-left: 3px solid #801010; padding: 12px 16px; font-size: 13px; line-height: 1.7; color: #444; border-radius: 0 4px 4px 0; }
+  .rh-tip strong { color: #1a1a1a; }
+  .rh-tip code { font-family: 'SF Mono', Consolas, monospace; font-size: 12px; background: #ede9e4; border-radius: 3px; padding: 0 4px; }
+  .rh-nav .rh-footer { margin-top: 20px; border-top: 1px solid #e0e0e0; padding-top: 8px; font-size: 11px; color: #aaa; }
+  @media (max-width: 700px) {
+    .rh-modes { grid-template-columns: repeat(3, 1fr); }
+    .rh-panels-grid { grid-template-columns: repeat(2, 1fr); }
+    .rh-mouse-row { grid-template-columns: 130px 1fr; }
+    .rh-vp-row { grid-template-columns: 150px 1fr; }
+  }
+  @media (max-width: 480px) {
+    .rh-nav { padding: 16px; }
+    .rh-nav h1 { font-size: 16px; }
+    .rh-mouse-row { grid-template-columns: 1fr; }
+    .rh-vp-row { grid-template-columns: 1fr; }
+    .rh-modes { grid-template-columns: repeat(2, 1fr); }
+    .rh-panels-grid { grid-template-columns: 1fr; }
+    .rh-toggles .rh-toggle { flex: 1 1 40%; }
+    .rh-nav details { margin-bottom: 2px; }
+    .rh-nav summary { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: #444; border-bottom: 1px solid #e0e0e0; padding: 10px 0 8px; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center; }
+    .rh-nav summary::-webkit-details-marker { display: none; }
+    .rh-nav summary::after { content: '+'; font-size: 16px; color: #bbb; }
+    .rh-nav details[open] summary::after { content: '−'; }
+    .rh-nav .rh-label { font-size: 0; border: none; padding: 0; margin: 0; }
+  }
+</style>
+
+<div class="rh-nav">
+
+  <h1><span class="rh-icon">Rh</span> Rhino 3D — Navigation &amp; UI</h1>
+  <div class="rh-sub">Interface orientation for new users</div>
+
+  <div class="rh-label">Mouse Controls</div>
+  <details open>
+    <summary style="display:none">Mouse Controls</summary>
+    <div class="rh-mouse-row">
+      <svg class="rh-mouse-diagram" viewBox="0 0 120 170" width="120" xmlns="http://www.w3.org/2000/svg">
+        <rect x="20" y="40" width="80" height="110" rx="40" fill="#f0eeeb" stroke="#ccc" stroke-width="1.5"/>
+        <line x1="60" y1="40" x2="60" y2="95" stroke="#ccc" stroke-width="1"/>
+        <path d="M20,80 Q20,40 60,40 L60,95 Q40,95 20,95 Z" fill="#e8e4df" stroke="#ccc" stroke-width="1"/>
+        <path d="M100,80 Q100,40 60,40 L60,95 Q80,95 100,95 Z" fill="#e8e4df" stroke="#ccc" stroke-width="1"/>
+        <rect x="52" y="55" width="16" height="26" rx="8" fill="#ccc" stroke="#bbb" stroke-width="1"/>
+        <text x="37" y="76" font-family="'Helvetica Neue', Arial, sans-serif" font-size="9" fill="#801010" font-weight="700" text-anchor="middle">L</text>
+        <text x="83" y="76" font-family="'Helvetica Neue', Arial, sans-serif" font-size="9" fill="#801010" font-weight="700" text-anchor="middle">R</text>
+        <text x="60" y="72" font-family="'Helvetica Neue', Arial, sans-serif" font-size="7.5" fill="#666" text-anchor="middle">scroll</text>
+        <line x1="37" y1="80" x2="10" y2="110" stroke="#ddd" stroke-width="0.8"/>
+        <line x1="83" y1="80" x2="110" y2="110" stroke="#ddd" stroke-width="0.8"/>
+        <line x1="60" y1="95" x2="60" y2="130" stroke="#ddd" stroke-width="0.8"/>
+        <circle cx="10" cy="110" r="3" fill="#801010"/>
+        <circle cx="110" cy="110" r="3" fill="#444"/>
+        <circle cx="60" cy="130" r="3" fill="#555"/>
+      </svg>
+      <div class="rh-mouse-legend">
+        <div class="rh-mouse-item">
+          <div class="rh-mouse-dot" style="background:#801010"></div>
+          <div class="rh-mouse-text"><strong>Left click</strong> — Select object<br>
+          <strong>Left drag</strong> — Window select (L→R solid, R→L crossing)</div>
+        </div>
+        <div class="rh-mouse-item">
+          <div class="rh-mouse-dot" style="background:#444"></div>
+          <div class="rh-mouse-text"><strong>Right click</strong> — Confirm / repeat last command<br>
+          <strong>Right drag</strong> — Rotate view (Perspective only)</div>
+        </div>
+        <div class="rh-mouse-item">
+          <div class="rh-mouse-dot" style="background:#555"></div>
+          <div class="rh-mouse-text"><strong>Middle drag</strong> — Pan view (all viewports)<br>
+          <strong>Scroll wheel</strong> — Zoom in / out</div>
+        </div>
+        <div class="rh-mouse-item">
+          <div class="rh-mouse-dot" style="background:#aaa"></div>
+          <div class="rh-mouse-text"><strong>Shift + Right drag</strong> — Pan (alternate)<br>
+          <strong>Ctrl + Right drag</strong> — Rotate (alternate)</div>
+        </div>
+      </div>
+    </div>
+  </details>
+
+  <div class="rh-label">Viewport Layout</div>
+  <details open>
+    <summary style="display:none">Viewport Layout</summary>
+    <div class="rh-vp-row">
+      <svg viewBox="0 0 150 110" width="150" xmlns="http://www.w3.org/2000/svg">
+        <rect width="150" height="110" rx="4" fill="#f0eeeb" stroke="#ccc" stroke-width="1"/>
+        <rect x="4" y="18" width="68" height="42" rx="2" fill="#e2dfd9" stroke="#bbb" stroke-width="0.8"/>
+        <rect x="78" y="18" width="68" height="42" rx="2" fill="#e2dfd9" stroke="#bbb" stroke-width="0.8"/>
+        <rect x="4" y="64" width="68" height="42" rx="2" fill="#e2dfd9" stroke="#bbb" stroke-width="0.8"/>
+        <rect x="78" y="64" width="68" height="42" rx="2" fill="#ddd8cf" stroke="#801010" stroke-width="1.2"/>
+        <text x="38" y="13" font-family="'Helvetica Neue', Arial, sans-serif" font-size="7" fill="#888" text-anchor="middle">Top</text>
+        <text x="112" y="13" font-family="'Helvetica Neue', Arial, sans-serif" font-size="7" fill="#888" text-anchor="middle">Front</text>
+        <text x="38" y="60" font-family="'Helvetica Neue', Arial, sans-serif" font-size="7" fill="#888" text-anchor="middle">Right</text>
+        <text x="112" y="60" font-family="'Helvetica Neue', Arial, sans-serif" font-size="7" fill="#801010" font-weight="700" text-anchor="middle">Perspective ★</text>
+        <line x1="8" y1="30" x2="68" y2="30" stroke="#ccc" stroke-width="0.5"/>
+        <line x1="8" y1="39" x2="68" y2="39" stroke="#ccc" stroke-width="0.5"/>
+        <line x1="8" y1="48" x2="68" y2="48" stroke="#ccc" stroke-width="0.5"/>
+        <line x1="25" y1="22" x2="25" y2="56" stroke="#ccc" stroke-width="0.5"/>
+        <line x1="38" y1="22" x2="38" y2="56" stroke="#ccc" stroke-width="0.5"/>
+        <line x1="51" y1="22" x2="51" y2="56" stroke="#ccc" stroke-width="0.5"/>
+        <line x1="90" y1="98" x2="100" y2="98" stroke="#e05" stroke-width="1.2"/>
+        <line x1="90" y1="98" x2="90" y2="88" stroke="#0a5" stroke-width="1.2"/>
+        <line x1="90" y1="98" x2="84" y2="104" stroke="#08f" stroke-width="1.2"/>
+        <text x="103" y="100" font-size="6" fill="#e05" font-family="'Helvetica Neue',Arial,sans-serif">X</text>
+        <text x="90" y="85" font-size="6" fill="#0a5" font-family="'Helvetica Neue',Arial,sans-serif">Y</text>
+        <text x="78" y="106" font-size="6" fill="#08f" font-family="'Helvetica Neue',Arial,sans-serif">Z</text>
+      </svg>
+      <div class="rh-vp-notes">
+        <div class="rh-vp-item"><strong>Double-click</strong> any viewport title to maximize it. Double-click again to restore 4-view.</div>
+        <div class="rh-vp-item"><strong>Right-click</strong> the viewport title to change display mode (Wireframe, Shaded, Rendered…).</div>
+        <div class="rh-vp-item"><strong>Top / Front / Right</strong> are parallel projections — no perspective distortion. Use for precise drawing.</div>
+        <div class="rh-vp-item"><strong>Perspective</strong> is the only viewport where Right-drag rotates the view.</div>
+        <div class="rh-vp-item">Named views: type <kbd>NamedView</kbd> to save and restore camera positions.</div>
+      </div>
+    </div>
+  </details>
+
+  <div class="rh-label">Status Bar Toggles — click to turn on/off, right-click to configure</div>
+  <details open>
+    <summary style="display:none">Status Bar Toggles</summary>
+    <div class="rh-toggles">
+      <div class="rh-toggle"><span class="rh-toggle-key">F9</span><span class="rh-toggle-name">Grid Snap</span><span class="rh-toggle-desc">Snaps cursor to grid intersections</span></div>
+      <div class="rh-toggle"><span class="rh-toggle-key">F3</span><span class="rh-toggle-name">OSnap</span><span class="rh-toggle-desc">Snap to endpoints, midpoints, centers — right-click to pick which</span></div>
+      <div class="rh-toggle"><span class="rh-toggle-key">F8</span><span class="rh-toggle-name">Ortho</span><span class="rh-toggle-desc">Constrains drawing to 90° increments</span></div>
+      <div class="rh-toggle"><span class="rh-toggle-key">F10</span><span class="rh-toggle-name">Planar</span><span class="rh-toggle-desc">Locks drawing to the current construction plane</span></div>
+      <div class="rh-toggle"><span class="rh-toggle-key">F11</span><span class="rh-toggle-name">SmartTrack</span><span class="rh-toggle-desc">Temporary tracking lines from key points</span></div>
+      <div class="rh-toggle"><span class="rh-toggle-key">F2</span><span class="rh-toggle-name">Command History</span><span class="rh-toggle-desc">Opens full command history window</span></div>
+    </div>
+  </details>
+
+  <div class="rh-label">Display Modes — right-click viewport title to switch</div>
+  <details open>
+    <summary style="display:none">Display Modes</summary>
+    <div class="rh-modes">
+      <div class="rh-mode"><div class="rh-mode-dot" style="background: linear-gradient(135deg, #e0ddd8 50%, #c8c4be 50%); border: 1.5px solid #bbb;"></div><span class="rh-mode-name">Wireframe</span><span class="rh-mode-desc">Edges only. Fastest. Use for modeling.</span></div>
+      <div class="rh-mode"><div class="rh-mode-dot" style="background: linear-gradient(135deg, #a8b8c8 50%, #7890a8 50%); border: 1.5px solid #bbb;"></div><span class="rh-mode-name">Shaded</span><span class="rh-mode-desc">Solid surfaces with basic lighting.</span></div>
+      <div class="rh-mode"><div class="rh-mode-dot" style="background: linear-gradient(135deg, #d0c8b8 50%, #a89878 50%); border: 1.5px solid #bbb;"></div><span class="rh-mode-name">Rendered</span><span class="rh-mode-desc">Materials and lights visible. Slower.</span></div>
+      <div class="rh-mode"><div class="rh-mode-dot" style="background: linear-gradient(135deg, #d8e8d8 50%, #b0c8b0 50%); border: 1.5px solid #bbb;"></div><span class="rh-mode-name">Ghosted</span><span class="rh-mode-desc">Transparent surfaces. See through objects.</span></div>
+      <div class="rh-mode"><div class="rh-mode-dot" style="background: linear-gradient(135deg, #f0e8d8 50%, #d8c8a8 50%); border: 1.5px solid #bbb;"></div><span class="rh-mode-name">X-Ray</span><span class="rh-mode-desc">All edges visible through surfaces.</span></div>
+    </div>
+  </details>
+
+  <div class="rh-label">Command Line &amp; Key Panels</div>
+  <details open>
+    <summary style="display:none">Command Line &amp; Key Panels</summary>
+    <div class="rh-panels-grid">
+      <div class="rh-panel-section">
+        <div class="rh-panel-title">Command Line (top bar)</div>
+        <table>
+          <tr><td>Type any command name</td><td>→ press <kbd>Enter</kbd></td></tr>
+          <tr><td>Repeat last command</td><td><kbd>Right-click</kbd> or <kbd>Enter</kbd></td></tr>
+          <tr><td>Cancel current command</td><td><kbd>Esc</kbd></td></tr>
+          <tr><td>Command options</td><td>Click underlined letters in prompt</td></tr>
+          <tr><td>Undo / Redo</td><td><kbd>Ctrl Z</kbd> / <kbd>Ctrl Y</kbd></td></tr>
+        </table>
+      </div>
+      <div class="rh-panel-section">
+        <div class="rh-panel-title">Layers Panel</div>
+        <table>
+          <tr><td>Open Layers</td><td>Type <kbd>Layer</kbd></td></tr>
+          <tr><td>Set current layer</td><td>Click layer name</td></tr>
+          <tr><td>Toggle visibility</td><td>Click the lightbulb icon</td></tr>
+          <tr><td>Lock a layer</td><td>Click the padlock icon</td></tr>
+          <tr><td>Change obj. layer</td><td>Select obj. → Properties panel</td></tr>
+        </table>
+      </div>
+      <div class="rh-panel-section">
+        <div class="rh-panel-title">Properties Panel</div>
+        <table>
+          <tr><td>Open Properties</td><td><kbd>Ctrl Shift O</kbd></td></tr>
+          <tr><td>Change layer</td><td>Layer dropdown in Properties</td></tr>
+          <tr><td>Change display color</td><td>Color swatch in Properties</td></tr>
+          <tr><td>Object name</td><td>Name field at top</td></tr>
+          <tr><td>Show control points</td><td>Select obj. → <kbd>F10</kbd></td></tr>
+        </table>
+      </div>
+    </div>
+  </details>
+
+  <div class="rh-label">Coordinate Input — type directly at the command prompt</div>
+  <details open>
+    <summary style="display:none">Coordinate Input</summary>
+    <div class="rh-tip">
+      <strong>Absolute:</strong> type <code>x,y,z</code> e.g. <code>0,0,0</code> &nbsp;·&nbsp;
+      <strong>Relative:</strong> type <code>r x,y,z</code> e.g. <code>r 5,0,0</code> (5 units in X from last point) &nbsp;·&nbsp;
+      <strong>Distance + direction:</strong> move cursor in direction, type a number and press Enter — Rhino draws that exact distance along the cursor's direction. &nbsp;·&nbsp;
+      <strong>Angle constraint:</strong> type <code>&lt; 45</code> to constrain to 45°.
+    </div>
+  </details>
+
+  <div class="rh-footer">Rhino 3D — Windows version. Mac controls are largely identical; substitute Cmd for Ctrl where applicable.</div>
+
+</div>
+
+        <div class="sc-footer">
+          <span>LAAR 61400 — Representation &amp; Computation I</span>
+          <span>Shortcuts &amp; Reference</span>
+        </div>
+
+      </div><!-- /sc-wrap -->
+
+    </div>
+  </main>
+
+  <script src="/assets/js/nav.js"></script>
+</body>
+</html>

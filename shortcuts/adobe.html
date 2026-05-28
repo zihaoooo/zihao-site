@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Adobe Shortcuts — LAAR 61400</title>
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <link rel="stylesheet" href="/assets/css/workflow-shared.css">
+  <link rel="stylesheet" href="/assets/css/shortcuts-shared.css">
+</head>
+<body>
+
+  <!-- Topbar -->
+  <header id="topbar">
+    <button id="nav-toggle" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+    <span class="topbar-title">LAAR 61400</span>
+  </header>
+
+  <!-- Panel overlay -->
+  <div class="panel-overlay"></div>
+
+  <!-- Side panel -->
+  <nav id="sidepanel">
+    <div class="panel-section">
+      <span class="panel-section-label">Course</span>
+      <a class="panel-link" href="/index.html">Syllabus</a>
+    </div>
+    <div class="panel-section">
+      <span class="panel-section-label">Workflows</span>
+      <a class="panel-link" href="/workflows/wf01-autocad.html">
+        <span class="panel-link-num">01</span>AutoCAD Site Drafting
+      </a>
+      <a class="panel-link" href="/workflows/wf02-sketch-portfolio.html">
+        <span class="panel-link-num">02</span>Hand Sketch → Portfolio
+      </a>
+      <a class="panel-link" href="/workflows/wf03-urban-context.html">
+        <span class="panel-link-num">03</span>Urban Context Mapping
+      </a>
+      <a class="panel-link placeholder"><span class="panel-link-num">04</span>—</a>
+      <a class="panel-link placeholder"><span class="panel-link-num">05</span>—</a>
+      <a class="panel-link placeholder"><span class="panel-link-num">06</span>—</a>
+      <a class="panel-link placeholder"><span class="panel-link-num">07</span>—</a>
+    </div>
+    <div class="panel-section">
+      <span class="panel-section-label">Shortcuts &amp; Reference</span>
+      <a class="panel-link active" href="/shortcuts/adobe.html">Adobe Ps / Ai / Id</a>
+      <a class="panel-link" href="/shortcuts/autocad.html">AutoCAD</a>
+      <a class="panel-link" href="/shortcuts/rhino-pipeline.html">Rhino — Pipeline</a>
+      <a class="panel-link" href="/shortcuts/rhino-ui.html">Rhino — Navigation &amp; UI</a>
+    </div>
+  </nav>
+
+  <!-- Main content -->
+  <main id="main-content">
+    <div class="page-inner">
+
+      <div class="sc-wrap">
+
+        <div class="sc-header">
+          <div class="sc-header-left">
+            <span class="sc-icon sc-icon-ps">Ps</span>
+            <span class="sc-icon sc-icon-ai">Ai</span>
+            <span class="sc-icon sc-icon-id">Id</span>
+            <div class="sc-header-text">
+              <div class="sc-title">Adobe Creative Cloud</div>
+              <div class="sc-subtitle">Keyboard Shortcuts — Windows</div>
+            </div>
+          </div>
+          <span class="sc-course-tag">LAAR 61400</span>
+        </div>
+
+<style>
+  .ac-wrap { font-family: 'Helvetica Neue', Arial, sans-serif; font-size: 12px; color: #1a1a1a; padding: 20px; box-sizing: border-box; }
+  .ac-wrap h1 { font-size: 15px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 10px; display: flex; align-items: center; gap: 6px; }
+  .ac-wrap .ac-note { font-size: 10px; color: #666; margin-bottom: 20px; border-left: 2px solid #ccc; padding-left: 10px; line-height: 1.6; }
+  .ac-wrap .ac-section-label { font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: #aaa; margin-bottom: 10px; }
+  .ac-wrap .ac-divider-strong { border: none; border-top: 2px solid #1a1a1a; margin: 0 0 18px; }
+  .ac-wrap .ac-section { margin-bottom: 16px; }
+  .ac-wrap .ac-section-title { font-size: 9.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; border-bottom: 1px solid #e0e0e0; padding-bottom: 4px; margin-bottom: 7px; color: #444; }
+  .ac-wrap .ac-app-header { display: flex; align-items: center; gap: 8px; margin-bottom: 12px; padding-top: 10px; border-top: 2px solid #1a1a1a; }
+  .ac-wrap .ac-icon { display: inline-flex; align-items: center; justify-content: center; width: 26px; height: 26px; border-radius: 5px; font-size: 11px; font-weight: 700; flex-shrink: 0; }
+  .ac-wrap .ac-icon-ps { background: #001E36; color: #31A8FF; }
+  .ac-wrap .ac-icon-ai { background: #FF9A00; color: #1a1a1a; }
+  .ac-wrap .ac-icon-id { background: #49021F; color: #FF3366; }
+  .ac-wrap .ac-app-title { font-size: 10px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #888; }
+  .ac-wrap table { width: 100%; border-collapse: collapse; }
+  .ac-wrap td { padding: 4px 0; vertical-align: top; line-height: 1.5; font-size: 12px; }
+  .ac-wrap td:first-child { color: #555; }
+  .ac-wrap td:last-child { text-align: right; white-space: nowrap; }
+  .ac-wrap kbd { display: inline-block; background: #f3f3f3; border: 1px solid #ddd; border-radius: 3px; padding: 1px 5px; font-family: 'SF Mono', 'Consolas', monospace; font-size: 10px; white-space: nowrap; }
+  .ac-wrap .ac-footer { margin-top: 20px; border-top: 1px solid #e0e0e0; padding-top: 8px; font-size: 9px; color: #aaa; }
+  .ac-universal-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0 20px; margin-bottom: 28px; }
+  .ac-app-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  @media (max-width: 700px) {
+    .ac-universal-grid { grid-template-columns: repeat(2, 1fr); gap: 0 16px; }
+    .ac-app-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
+  }
+  @media (max-width: 480px) {
+    .ac-wrap { padding: 16px; }
+    .ac-wrap h1 { font-size: 14px; }
+    .ac-wrap td { font-size: 13px; padding: 5px 0; }
+    .ac-wrap kbd { font-size: 11px; padding: 2px 6px; }
+    .ac-universal-grid { grid-template-columns: 1fr; }
+    .ac-app-grid { grid-template-columns: 1fr; }
+    .ac-wrap details { margin-bottom: 2px; }
+    .ac-wrap summary { font-size: 9.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: #444; border-bottom: 1px solid #e0e0e0; padding: 8px 0 6px; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center; }
+    .ac-wrap summary::-webkit-details-marker { display: none; }
+    .ac-wrap summary::after { content: '+'; font-size: 14px; color: #bbb; }
+    .ac-wrap details[open] summary::after { content: '−'; }
+    .ac-wrap details table { margin-top: 6px; margin-bottom: 8px; }
+    .ac-wrap .ac-section { margin-bottom: 0; }
+    .ac-wrap .ac-section-title { display: none; }
+  }
+</style>
+
+<div class="ac-wrap">
+
+<h1>
+  <span class="ac-icon ac-icon-ps">Ps</span>
+  <span class="ac-icon ac-icon-ai">Ai</span>
+  <span class="ac-icon ac-icon-id">Id</span>
+  Adobe Shortcuts
+</h1>
+<p class="ac-note">All shortcuts shown use <strong>Ctrl</strong> (Windows). On macOS, substitute <strong>Cmd</strong> for Ctrl and <strong>Option</strong> for Alt.</p>
+
+<div class="ac-section-label">Universal — All Three Apps</div>
+<div class="ac-universal-grid">
+  <div class="ac-section">
+    <div class="ac-section-title">File</div>
+    <details open><summary>File</summary>
+      <table>
+        <tr><td>New / Open / Save</td><td><kbd>Ctrl N</kbd> / <kbd>O</kbd> / <kbd>S</kbd></td></tr>
+        <tr><td>Save As</td><td><kbd>Ctrl Shift S</kbd></td></tr>
+        <tr><td>Print</td><td><kbd>Ctrl P</kbd></td></tr>
+      </table>
+    </details>
+  </div>
+  <div class="ac-section">
+    <div class="ac-section-title">View</div>
+    <details open><summary>View</summary>
+      <table>
+        <tr><td>Zoom In / Out</td><td><kbd>Ctrl +</kbd> / <kbd>-</kbd></td></tr>
+        <tr><td>Fit on Screen</td><td><kbd>Ctrl 0</kbd></td></tr>
+        <tr><td>Pan</td><td><kbd>Space</kbd> + drag</td></tr>
+        <tr><td>Show/Hide Guides</td><td><kbd>Ctrl ;</kbd></td></tr>
+        <tr><td>Show/Hide Rulers</td><td><kbd>Ctrl R</kbd></td></tr>
+      </table>
+    </details>
+  </div>
+  <div class="ac-section">
+    <div class="ac-section-title">Edit</div>
+    <details open><summary>Edit</summary>
+      <table>
+        <tr><td>Undo / Redo</td><td><kbd>Ctrl Z</kbd> / <kbd>Ctrl Shift Z</kbd></td></tr>
+        <tr><td>Cut / Copy / Paste</td><td><kbd>Ctrl X</kbd> / <kbd>C</kbd> / <kbd>V</kbd></td></tr>
+        <tr><td>Select All</td><td><kbd>Ctrl A</kbd></td></tr>
+        <tr><td>Find / Replace</td><td><kbd>Ctrl F</kbd></td></tr>
+      </table>
+    </details>
+  </div>
+  <div class="ac-section">
+    <div class="ac-section-title">Objects &amp; Type</div>
+    <details open><summary>Objects &amp; Type</summary>
+      <table>
+        <tr><td>Group / Ungroup</td><td><kbd>Ctrl G</kbd> / <kbd>Ctrl Shift G</kbd></td></tr>
+        <tr><td>Bring Fwd / Send Back</td><td><kbd>Ctrl ]</kbd> / <kbd>Ctrl [</kbd></td></tr>
+        <tr><td>Font size +/–</td><td><kbd>Ctrl Shift .</kbd> / <kbd>,</kbd></td></tr>
+        <tr><td>Leading +/–</td><td><kbd>Alt ↓</kbd> / <kbd>↑</kbd></td></tr>
+        <tr><td>Tracking +/–</td><td><kbd>Alt →</kbd> / <kbd>←</kbd></td></tr>
+        <tr><td>Align L / C / R</td><td><kbd>Ctrl Shift L/E/R</kbd></td></tr>
+      </table>
+    </details>
+  </div>
+</div>
+
+<hr class="ac-divider-strong">
+
+<div class="ac-section-label">App-Specific</div>
+<div class="ac-app-grid">
+
+  <div>
+    <div class="ac-app-header">
+      <span class="ac-icon ac-icon-ps">Ps</span>
+      <span class="ac-app-title">Photoshop</span>
+    </div>
+    <div class="ac-section">
+      <div class="ac-section-title">Tools</div>
+      <details open><summary>Tools</summary>
+        <table>
+          <tr><td>Move / Crop</td><td><kbd>V</kbd> / <kbd>C</kbd></td></tr>
+          <tr><td>Marquee / Lasso</td><td><kbd>M</kbd> / <kbd>L</kbd></td></tr>
+          <tr><td>Quick Select / Wand</td><td><kbd>W</kbd></td></tr>
+          <tr><td>Brush / Eraser</td><td><kbd>B</kbd> / <kbd>E</kbd></td></tr>
+          <tr><td>Clone Stamp / Heal</td><td><kbd>S</kbd> / <kbd>J</kbd></td></tr>
+          <tr><td>Pen / Type</td><td><kbd>P</kbd> / <kbd>T</kbd></td></tr>
+          <tr><td>Eyedropper</td><td><kbd>I</kbd></td></tr>
+          <tr><td>Brush size –/+</td><td><kbd>[</kbd> / <kbd>]</kbd></td></tr>
+          <tr><td>Swap FG/BG / Default</td><td><kbd>X</kbd> / <kbd>D</kbd></td></tr>
+        </table>
+      </details>
+    </div>
+    <div class="ac-section">
+      <div class="ac-section-title">Selections</div>
+      <details><summary>Selections</summary>
+        <table>
+          <tr><td>Deselect / Inverse</td><td><kbd>Ctrl D</kbd> / <kbd>Ctrl Shift I</kbd></td></tr>
+          <tr><td>Free Transform</td><td><kbd>Ctrl T</kbd></td></tr>
+          <tr><td>Add / Subtract</td><td><kbd>Shift</kbd> / <kbd>Alt</kbd> + drag</td></tr>
+        </table>
+      </details>
+    </div>
+    <div class="ac-section">
+      <div class="ac-section-title">Layers</div>
+      <details><summary>Layers</summary>
+        <table>
+          <tr><td>New / Duplicate</td><td><kbd>Ctrl Shift N</kbd> / <kbd>Ctrl J</kbd></td></tr>
+          <tr><td>Merge Down / Visible</td><td><kbd>Ctrl E</kbd> / <kbd>Ctrl Shift E</kbd></td></tr>
+          <tr><td>Clip to below</td><td><kbd>Ctrl Alt G</kbd></td></tr>
+        </table>
+      </details>
+    </div>
+    <div class="ac-section">
+      <div class="ac-section-title">Adjustments</div>
+      <details><summary>Adjustments</summary>
+        <table>
+          <tr><td>Levels / Curves</td><td><kbd>Ctrl L</kbd> / <kbd>Ctrl M</kbd></td></tr>
+          <tr><td>Hue/Saturation</td><td><kbd>Ctrl U</kbd></td></tr>
+          <tr><td>Desaturate / Invert</td><td><kbd>Ctrl Shift U</kbd> / <kbd>Ctrl I</kbd></td></tr>
+          <tr><td>Opacity</td><td><kbd>0–9</kbd></td></tr>
+        </table>
+      </details>
+    </div>
+  </div>
+
+  <div>
+    <div class="ac-app-header">
+      <span class="ac-icon ac-icon-ai">Ai</span>
+      <span class="ac-app-title">Illustrator</span>
+    </div>
+    <div class="ac-section">
+      <div class="ac-section-title">Tools</div>
+      <details open><summary>Tools</summary>
+        <table>
+          <tr><td>Selection / Direct Sel.</td><td><kbd>V</kbd> / <kbd>A</kbd></td></tr>
+          <tr><td>Pen / Pencil</td><td><kbd>P</kbd> / <kbd>N</kbd></td></tr>
+          <tr><td>Type</td><td><kbd>T</kbd></td></tr>
+          <tr><td>Rectangle / Ellipse</td><td><kbd>M</kbd> / <kbd>L</kbd></td></tr>
+          <tr><td>Line</td><td><kbd>\</kbd></td></tr>
+          <tr><td>Rotate / Scale</td><td><kbd>R</kbd> / <kbd>S</kbd></td></tr>
+          <tr><td>Eyedropper</td><td><kbd>I</kbd></td></tr>
+          <tr><td>Swap Fill/Stroke / Default</td><td><kbd>Shift X</kbd> / <kbd>D</kbd></td></tr>
+        </table>
+      </details>
+    </div>
+    <div class="ac-section">
+      <div class="ac-section-title">Objects</div>
+      <details><summary>Objects</summary>
+        <table>
+          <tr><td>Lock / Unlock all</td><td><kbd>Ctrl 2</kbd> / <kbd>Ctrl Alt 2</kbd></td></tr>
+          <tr><td>Hide / Show all</td><td><kbd>Ctrl 3</kbd> / <kbd>Ctrl Alt 3</kbd></td></tr>
+          <tr><td>Transform Again</td><td><kbd>Ctrl D</kbd></td></tr>
+          <tr><td>Join Paths</td><td><kbd>Ctrl J</kbd></td></tr>
+          <tr><td>Make Clipping Mask</td><td><kbd>Ctrl 7</kbd></td></tr>
+          <tr><td>Make Compound Path</td><td><kbd>Ctrl 8</kbd></td></tr>
+        </table>
+      </details>
+    </div>
+    <div class="ac-section">
+      <div class="ac-section-title">View &amp; Type</div>
+      <details><summary>View &amp; Type</summary>
+        <table>
+          <tr><td>Outline / Preview</td><td><kbd>Ctrl Y</kbd></td></tr>
+          <tr><td>Create Outlines</td><td><kbd>Ctrl Shift O</kbd></td></tr>
+          <tr><td>Place</td><td><kbd>Ctrl Shift P</kbd></td></tr>
+        </table>
+      </details>
+    </div>
+  </div>
+
+  <div>
+    <div class="ac-app-header">
+      <span class="ac-icon ac-icon-id">Id</span>
+      <span class="ac-app-title">InDesign</span>
+    </div>
+    <div class="ac-section">
+      <div class="ac-section-title">File</div>
+      <details open><summary>File</summary>
+        <table>
+          <tr><td>Place (import)</td><td><kbd>Ctrl D</kbd></td></tr>
+          <tr><td>Export (PDF)</td><td><kbd>Ctrl E</kbd></td></tr>
+          <tr><td>Package</td><td><kbd>Ctrl Alt Shift P</kbd></td></tr>
+        </table>
+      </details>
+    </div>
+    <div class="ac-section">
+      <div class="ac-section-title">Tools &amp; View</div>
+      <details><summary>Tools &amp; View</summary>
+        <table>
+          <tr><td>Selection / Direct Sel.</td><td><kbd>V</kbd> / <kbd>A</kbd></td></tr>
+          <tr><td>Type</td><td><kbd>T</kbd></td></tr>
+          <tr><td>Rectangle Frame</td><td><kbd>F</kbd></td></tr>
+          <tr><td>Preview (hide frames)</td><td><kbd>W</kbd></td></tr>
+          <tr><td>Show Hidden Chars</td><td><kbd>Ctrl Alt I</kbd></td></tr>
+        </table>
+      </details>
+    </div>
+    <div class="ac-section">
+      <div class="ac-section-title">Frames</div>
+      <details><summary>Frames</summary>
+        <table>
+          <tr><td>Fit content to frame</td><td><kbd>Ctrl Alt E</kbd></td></tr>
+          <tr><td>Fit frame to content</td><td><kbd>Ctrl Alt C</kbd></td></tr>
+          <tr><td>Fit proportionally</td><td><kbd>Ctrl Alt Shift E</kbd></td></tr>
+          <tr><td>Paste in Place</td><td><kbd>Ctrl Alt Shift V</kbd></td></tr>
+          <tr><td>Paste Into frame</td><td><kbd>Ctrl Alt V</kbd></td></tr>
+          <tr><td>Step &amp; Repeat</td><td><kbd>Ctrl Alt U</kbd></td></tr>
+        </table>
+      </details>
+    </div>
+    <div class="ac-section">
+      <div class="ac-section-title">Panels</div>
+      <details><summary>Panels</summary>
+        <table>
+          <tr><td>Paragraph Styles</td><td><kbd>F11</kbd></td></tr>
+          <tr><td>Character Styles</td><td><kbd>Ctrl F11</kbd></td></tr>
+          <tr><td>Layers / Pages</td><td><kbd>F7</kbd> / <kbd>F12</kbd></td></tr>
+          <tr><td>Go to Page</td><td><kbd>Ctrl J</kbd></td></tr>
+          <tr><td>Links</td><td><kbd>Ctrl Shift D</kbd></td></tr>
+        </table>
+      </details>
+    </div>
+  </div>
+
+</div>
+
+<div class="ac-footer">Ctrl (Windows) — substitute Cmd on macOS</div>
+
+</div>
+
+        <div class="sc-footer">
+          <span>LAAR 61400 — Representation &amp; Computation I</span>
+          <span>Shortcuts &amp; Reference</span>
+        </div>
+
+      </div><!-- /sc-wrap -->
+
+    </div>
+  </main>
+
+  <script src="/assets/js/nav.js"></script>
+</body>
+</html>

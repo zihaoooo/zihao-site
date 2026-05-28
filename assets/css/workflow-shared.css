@@ -1,0 +1,316 @@
+/* ============================================
+   LAAR 61400 — Workflow Shared Stylesheet
+   Namespace: wf-
+   Cargo-compatible: scoped classes, no globals
+   ============================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;700&display=swap');
+
+/* ── Wrapper ── */
+.wf-wrap {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  color: #1a1a1a;
+  padding: 28px;
+  box-sizing: border-box;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+/* ── Header ── */
+.wf-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  margin-bottom: 28px;
+  padding-bottom: 20px;
+  border-bottom: 2px solid #1a1a1a;
+}
+.wf-index {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  font-weight: 500;
+  color: #fff;
+  background: #1a1a1a;
+  padding: 3px 8px;
+  border-radius: 3px;
+  letter-spacing: 0.08em;
+  white-space: nowrap;
+  margin-top: 3px;
+  flex-shrink: 0;
+}
+.wf-title {
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  margin: 0 0 4px;
+  line-height: 1.1;
+}
+.wf-subtitle {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  color: #888;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+/* ── Outcome bar ── */
+.wf-outcome {
+  background: #f5f3f0;
+  border-left: 3px solid #1a1a1a;
+  padding: 11px 14px;
+  font-size: 12px;
+  line-height: 1.6;
+  color: #333;
+  margin-bottom: 28px;
+  border-radius: 0 4px 4px 0;
+}
+.wf-outcome strong {
+  font-weight: 700;
+  color: #1a1a1a;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-size: 10px;
+  display: block;
+  margin-bottom: 3px;
+}
+
+/* ── Pipeline strip ── */
+.wf-pipeline {
+  display: flex;
+  align-items: center;
+  margin-bottom: 32px;
+  overflow-x: auto;
+  padding-bottom: 4px;
+  flex-wrap: nowrap;
+}
+.wf-pipe-step {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+.wf-pipe-node {
+  background: #1a1a1a;
+  color: #fff;
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  padding: 6px 12px;
+  border-radius: 3px;
+  white-space: nowrap;
+}
+.wf-pipe-node.wf-pipe-tool {
+  background: #fff;
+  color: #1a1a1a;
+  border: 1px solid #ddd;
+}
+.wf-pipe-arrow {
+  font-size: 14px;
+  color: #bbb;
+  padding: 0 6px;
+  font-family: 'DM Mono', monospace;
+}
+
+/* ── Steps grid ── */
+.wf-steps {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+/* ── Step card ── */
+.wf-step {
+  border: 1px solid #e8e8e8;
+  border-radius: 6px;
+  overflow: hidden;
+}
+.wf-step-head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  background: #f9f8f7;
+  border-bottom: 1px solid #e8e8e8;
+}
+.wf-step-num {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  font-weight: 500;
+  color: #aaa;
+  flex-shrink: 0;
+}
+.wf-step-label {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: #1a1a1a;
+  line-height: 1.3;
+}
+.wf-step-body {
+  padding: 12px 14px;
+}
+
+/* ── Full-width step ── */
+.wf-step.wf-full {
+  grid-column: 1 / -1;
+}
+.wf-step.wf-full .wf-steps-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+.wf-step.wf-full .wf-step-body {
+  border-right: 1px solid #e8e8e8;
+}
+.wf-step.wf-full .wf-step-body:last-child {
+  border-right: none;
+}
+
+/* ── Text styles ── */
+.wf-step-desc {
+  font-size: 12px;
+  line-height: 1.6;
+  color: #444;
+  margin-bottom: 10px;
+}
+.wf-step-desc:last-child { margin-bottom: 0; }
+.wf-step-desc strong, .wf-tips strong,
+.wf-step-desc b, .wf-tips b {
+  font-weight: 600;
+  font-size: inherit;
+  color: #1a1a1a;
+}
+.wf-step-desc em, .wf-tips em {
+  font-style: italic;
+  font-size: inherit;
+}
+.wf-note {
+  font-size: 11px;
+  line-height: 1.6;
+  color: #888;
+  font-style: italic;
+  margin-top: 6px;
+}
+
+/* ── Tips list ── */
+.wf-tips {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.wf-tips li {
+  font-size: 11.5px;
+  line-height: 1.5;
+  color: #555;
+  padding-left: 14px;
+  position: relative;
+}
+.wf-tips li::before {
+  content: '›';
+  position: absolute;
+  left: 0;
+  color: #bbb;
+  font-size: 13px;
+  line-height: 1.4;
+}
+.wf-tips kbd {
+  display: inline-block;
+  background: #f3f3f3;
+  border: 1px solid #ddd;
+  border-radius: 3px;
+  padding: 0 5px;
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  white-space: nowrap;
+  color: #1a1a1a;
+}
+
+/* ── Tool badges ── */
+.wf-badge {
+  margin-left: auto;
+  font-family: 'DM Mono', monospace;
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  padding: 2px 7px;
+  border-radius: 20px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.wf-badge-cad     { background: #fde8e8; color: #c0000a; }
+.wf-badge-ai      { background: #fff0e0; color: #cc5500; }
+.wf-badge-ps      { background: #e8f0fe; color: #1a56cc; }
+.wf-badge-id      { background: #fce8f0; color: #b5004a; }
+.wf-badge-rh      { background: #f0e8e8; color: #801010; }
+.wf-badge-gh      { background: #e8f5e8; color: #2a6a2a; }
+.wf-badge-osm     { background: #e8f4ea; color: #2a7a3a; }
+.wf-badge-ge      { background: #fef3e2; color: #a06020; }
+.wf-badge-neutral { background: #f0f0f0; color: #555; }
+
+/* ── CTB color chart ── */
+.wf-ctb {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+  font-size: 11.5px;
+}
+.wf-ctb th {
+  font-size: 9px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #888;
+  padding: 4px 8px;
+  border-bottom: 2px solid #1a1a1a;
+  text-align: left;
+}
+.wf-ctb td {
+  padding: 5px 8px;
+  border-bottom: 1px solid #f0f0f0;
+  vertical-align: middle;
+  color: #444;
+  white-space: nowrap;
+}
+.wf-ctb tr:last-child td { border-bottom: none; }
+.wf-ctb .wf-swatch {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  border-radius: 2px;
+  vertical-align: middle;
+  margin-right: 6px;
+  border: 1px solid rgba(0,0,0,0.1);
+}
+.wf-ctb .wf-use { font-size: 11px; color: #888; }
+
+/* ── Footer ── */
+.wf-footer {
+  margin-top: 24px;
+  border-top: 1px solid #e0e0e0;
+  padding-top: 10px;
+  font-size: 10px;
+  color: #aaa;
+  font-family: 'DM Mono', monospace;
+  display: flex;
+  justify-content: space-between;
+}
+
+/* ── Tablet ── */
+@media (max-width: 680px) {
+  .wf-steps { grid-template-columns: 1fr; }
+  .wf-step.wf-full .wf-steps-row { grid-template-columns: 1fr; }
+  .wf-step.wf-full .wf-step-body { border-right: none; border-bottom: 1px solid #e8e8e8; }
+  .wf-step.wf-full .wf-step-body:last-child { border-bottom: none; }
+}
+
+/* ── Phone ── */
+@media (max-width: 420px) {
+  .wf-wrap { padding: 16px; }
+  .wf-title { font-size: 15px; }
+  .wf-pipeline { gap: 0; }
+}

@@ -1,0 +1,219 @@
+<div class="wf-wrap">
+
+  <!-- Header -->
+  <div class="wf-header">
+    <div class="wf-index">WF 01</div>
+    <div class="wf-header-text">
+      <div class="wf-title">Site Plan and Section in AutoCAD</div>
+      <div class="wf-subtitle">Image Reference → Drafting → Layout → Plot</div>
+    </div>
+  </div>
+
+  <!-- Outcome -->
+  <div class="wf-outcome">
+    <strong>Target Outcome</strong><span>A drafted site plan with at least one section, interpreted from a precedent design drawing, organized by layer with CTB-based lineweights, scaled and annotated in Layout mode, exported as PDF. &nbsp;<br><br>
+<a href="wf1-project-list-for-cad" rel="history">Choose your case study project here.</a> </span>
+  </div>
+
+  <!-- Pipeline -->
+  <div class="wf-pipeline">
+    <div class="wf-pipe-step"><div class="wf-pipe-node">Precedent JPEG</div><div class="wf-pipe-arrow">→</div></div>
+    <div class="wf-pipe-step"><div class="wf-pipe-node wf-pipe-tool">Image Attach</div><div class="wf-pipe-arrow">→</div></div>
+    <div class="wf-pipe-step"><div class="wf-pipe-node">Draft Plan + Section</div><div class="wf-pipe-arrow">→</div></div>
+    <div class="wf-pipe-step"><div class="wf-pipe-node wf-pipe-tool">CTB Lineweights</div><div class="wf-pipe-arrow">→</div></div>
+    <div class="wf-pipe-step"><div class="wf-pipe-node">Layout Mode</div><div class="wf-pipe-arrow">→</div></div>
+    <div class="wf-pipe-step"><div class="wf-pipe-node wf-pipe-tool">PDF</div></div>
+  </div>
+
+  <!-- Steps -->
+  <div class="wf-steps">
+
+    <!-- Step 0 -->
+    <div class="wf-step wf-full">
+      <div class="wf-step-head">
+        <span class="wf-step-num">00</span>
+        <span class="wf-step-label">Drawing Setup</span>
+        <span class="wf-badge wf-badge-cad">AutoCAD</span>
+      </div>
+      <div class="wf-steps-row">
+        <div class="wf-step-body">
+          <div class="wf-step-desc">Before anything else, set up the drawing environment. Everything you draw should be at true real-world scale in feet.</div>
+          <ul class="wf-tips">
+            <li><kbd>UNITS</kbd> — set to Architectural. AutoCAD displays feet and inches natively (e.g. 1'-6"). 1 unit = 1 inch in model space.</li><li>Draw everything at true scale — a 30ft path = 360 units (type 30’ or 360")</li>
+          </ul>
+        </div>
+        <div class="wf-step-body">
+          <div class="wf-step-desc">Set up your CTB files before drafting. Maintain two: one for site plans, one for sections and details.</div>
+          <ul class="wf-tips">
+            <li><kbd>STYLESMANAGER</kbd> — create <strong>site-plan.ctb</strong> (max 0.50mm) and <strong>section.ctb</strong> (max 1.00mm). Or type "Plot" and create a new one in the top-right dropdown menu.&nbsp;</li>
+            <li>Scale affects how lineweights read on paper — a 1mm line at 1"=30' reads very differently from 1"=5'</li>
+            <li>Switch CTB files in the Plot dialog depending on what you are printing</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Step 1 -->
+    <div class="wf-step">
+      <div class="wf-step-head">
+        <span class="wf-step-num">01</span>
+        <span class="wf-step-label">Set Up Layers</span>
+        <span class="wf-badge wf-badge-cad">AutoCAD</span>
+      </div>
+      <div class="wf-step-body">
+        <div class="wf-step-desc">Open the Layer Manager <kbd>LA</kbd> and define your layer structure. Assign each layer a name, ACI color, and linetype. All objects draw on their designated layer — never on layer 0.</div>
+        <ul class="wf-tips">
+          <li>Suggested layers: <strong>REF-IMAGE, PLAN-CUT, PLAN-BEYOND, SECTION-CUT, SECTION-BEYOND, ANNO, TITLEBLOCK</strong></li>
+          <li>Color drives lineweight via CTB — see Step 05</li>
+          <li>Lock the REF-IMAGE layer immediately after attaching</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Step 2 -->
+    <div class="wf-step">
+      <div class="wf-step-head">
+        <span class="wf-step-num">02</span>
+        <span class="wf-step-label">Attach the Reference Image</span>
+        <span class="wf-badge wf-badge-cad">AutoCAD</span>
+      </div>
+      <div class="wf-step-body">
+        <div class="wf-step-desc">Find a published design drawing of a precedent landscape project. Attach it as an image underlay and scale it to real-world dimensions.</div>
+        <ul class="wf-tips">
+          <li><kbd>IMAGEATTACH</kbd> to bring in the JPEG. Place at 0,0.</li>
+          <li>Scale using a known dimension — find a scale bar or labeled dimension and use <kbd>SCALE</kbd> with reference length to match real units</li>
+          <li>Place on the REF-IMAGE layer, lock it, and fade via Properties to reduce visual noise while tracing</li>
+          <li>This is an act of <strong>interpretation</strong> — your CAD drawing is your reading of the design, not a copy</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Step 3 -->
+    <div class="wf-step">
+      <div class="wf-step-head">
+        <span class="wf-step-num">03</span>
+        <span class="wf-step-label">Draft the Site Plan</span>
+        <span class="wf-badge wf-badge-cad">AutoCAD</span>
+      </div>
+      <div class="wf-step-body">
+        <div class="wf-step-desc">Trace over the reference image on your own layers. Make decisions as you draw — what is cut, what is beyond, where is the elevation change. The drawing reflects your interpretation.</div>
+        <ul class="wf-tips">
+          <li>Use <kbd>F3</kbd> OSnap and <kbd>F8</kbd> Ortho to keep lines precise and clean</li>
+          <li>Switch layers constantly — cut lines, beyond lines, and annotations each on their own layer</li>
+          <li>Use <kbd>H</kbd> Hatch for paving patterns, planting beds, and ground texture</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Step 4 -->
+    <div class="wf-step">
+      <div class="wf-step-head">
+        <span class="wf-step-num">04</span>
+        <span class="wf-step-label">Cut the Section</span>
+        <span class="wf-badge wf-badge-cad">AutoCAD</span>
+      </div>
+      <div class="wf-step-body">
+        <div class="wf-step-desc">Draw a section cut line on the plan. If the cut is not orthogonal, rotate the UCS to align with it before projecting geometry. This keeps the section upright and avoids diagonal drawing.</div>
+        <ul class="wf-tips">
+          <li>Mark the cut line with a DASHDOT or PHANTOM linetype on its own layer</li>
+          <li>To rotate: <kbd>UCS</kbd> → <kbd>OB</kbd> (Object) or <kbd>3P</kbd> (3 Points) to align to the cut line. Your crosshair rotates with it. Click the “Top” button in the top-right corner to rotate the canvas.&nbsp;</li>
+          <li>Project key points along the new X axis using <kbd>XLINE</kbd> construction lines, then draw the section vertically</li>
+          <li>Reset when done: <kbd>UCS</kbd> → <kbd>W</kbd> to return to World coordinates</li>
+          <li>Cut elements on SECTION-CUT, elements beyond on SECTION-BEYOND</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Step 5 — full width, two CTB tables -->
+    <div class="wf-step wf-full">
+      <div class="wf-step-head">
+        <span class="wf-step-num">05</span>
+        <span class="wf-step-label">CTB Lineweight Tables</span>
+        <span class="wf-badge wf-badge-cad">AutoCAD</span>
+      </div>
+      <div class="wf-steps-row">
+        <div class="wf-step-body">
+          <div class="wf-step-desc"><strong>site-plan.ctb</strong> — moderate weights for small-scale site work</div>
+          <table class="wf-ctb">
+            <thead><tr><th>Color</th><th>ACI</th><th>Weight</th><th>Typical Use</th></tr></thead>
+            <tbody>
+              <tr><td><span class="wf-swatch" style="background:#ff0000;"></span>Red</td><td>1</td><td>0.50mm</td><td class="wf-use">Heavy plan cut</td></tr>
+              <tr><td><span class="wf-swatch" style="background:#ffff00; border-color:#ccc;"></span>Yellow</td><td>2</td><td>0.35mm</td><td class="wf-use">Medium-heavy edges</td></tr>
+              <tr><td><span class="wf-swatch" style="background:#00aa00;"></span>Green</td><td>3</td><td>0.25mm</td><td class="wf-use">Walls beyond</td></tr>
+              <tr><td><span class="wf-swatch" style="background:#00cccc;"></span>Cyan</td><td>4</td><td>0.18mm</td><td class="wf-use">Paving, paths</td></tr>
+              <tr><td><span class="wf-swatch" style="background:#0000ff;"></span>Blue</td><td>5</td><td>0.13mm</td><td class="wf-use">Light lines, vegetation</td></tr>
+              <tr><td><span class="wf-swatch" style="background:#cc00cc;"></span>Magenta</td><td>6</td><td>0.09mm</td><td class="wf-use">Hatch, texture</td></tr>
+              <tr><td><span class="wf-swatch" style="background:#888888;"></span>White/Black</td><td>7</td><td>0.05mm</td><td class="wf-use">Hairline, dimensions, notes</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="wf-step-body">
+          <div class="wf-step-desc"><strong>section.ctb</strong> — heavier weights for sections and large-scale details</div>
+          <table class="wf-ctb">
+            <thead><tr><th>Color</th><th>ACI</th><th>Weight</th><th>Typical Use</th></tr></thead>
+            <tbody>
+              <tr><td><span class="wf-swatch" style="background:#ff0000;"></span>Red</td><td>1</td><td>1.00mm</td><td class="wf-use">Section cut, earth/structure</td></tr>
+              <tr><td><span class="wf-swatch" style="background:#ffff00; border-color:#ccc;"></span>Yellow</td><td>2</td><td>0.70mm</td><td class="wf-use">Heavy cut, major walls</td></tr>
+              <tr><td><span class="wf-swatch" style="background:#00aa00;"></span>Green</td><td>3</td><td>0.50mm</td><td class="wf-use">Medium-heavy, walls beyond</td></tr>
+              <tr><td><span class="wf-swatch" style="background:#00cccc;"></span>Cyan</td><td>4</td><td>0.35mm</td><td class="wf-use">Medium, paving</td></tr>
+              <tr><td><span class="wf-swatch" style="background:#0000ff;"></span>Blue</td><td>5</td><td>0.25mm</td><td class="wf-use">Light lines, vegetation</td></tr>
+              <tr><td><span class="wf-swatch" style="background:#cc00cc;"></span>Magenta</td><td>6</td><td>0.13mm</td><td class="wf-use">Hatch, texture</td></tr>
+              <tr><td><span class="wf-swatch" style="background:#888888;"></span>White/Black</td><td>7</td><td>0.05mm</td><td class="wf-use">Hairline, dimensions, notes</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- Step 6 -->
+    <div class="wf-step">
+      <div class="wf-step-head">
+        <span class="wf-step-num">06</span>
+        <span class="wf-step-label">Set Up Layout Mode</span>
+        <span class="wf-badge wf-badge-cad">AutoCAD</span>
+      </div>
+      <div class="wf-step-body">
+        <div class="wf-step-desc">Switch to a Layout tab (paper space). Create a viewport, set the scale precisely, and lock it. Add title block, scale notation, and north arrow in paper space.</div>
+        <ul class="wf-tips">
+          <li>Double-click inside the viewport to enter model space. Set scale from the viewport scale dropdown in the status bar.&nbsp;</li><li>You need to setup custom scales.&nbsp;
+
+Go to the viewport scale dropdown → Custom… to add your scales.
+
+1” = 20’ means 1 inch on paper = 240 inches in model (20’ = 240”).&nbsp;</li>
+          
+          <li>Double-click outside to return to paper space, then lock the viewport via Properties</li>
+          <li>Draw title block and annotations in paper space — they stay fixed regardless of viewport zoom</li>
+          <li>Use a second viewport for the section at its own scale</li><li>
+
+Pro tip: verify your scale after setting it — draw a 20' line in model space and measure it in the Layout viewport. It should read exactly 1" on paper.
+&nbsp;<br></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Step 7 -->
+    <div class="wf-step">
+      <div class="wf-step-head">
+        <span class="wf-step-num">07</span>
+        <span class="wf-step-label">Plot to PDF</span>
+        <span class="wf-badge wf-badge-cad">AutoCAD</span>
+      </div>
+      <div class="wf-step-body">
+        <div class="wf-step-desc">Plot from the Layout tab. Assign your CTB file in the plot dialog. Always preview before committing.</div>
+        <ul class="wf-tips">
+          <li><kbd>Ctrl P</kbd> → select <strong>site-plan.ctb</strong> or <strong>section.ctb</strong> depending on content</li>
+          <li>Printer: DWG to PDF or any installed PDF printer</li>
+          <li>Check <strong>Plot with Plot Styles</strong> and <strong>Plot Object Lineweights</strong></li>
+          <li>Always preview — lineweights and scale read differently on paper than on screen</li>
+        </ul>
+      </div>
+    </div>
+
+  </div><!-- /steps -->
+
+  <!-- Footer -->
+  <div class="wf-footer">
+    <span>LAAR 61400 — Representation &amp; Computation I</span><span>Workflow — AutoCAD</span>
+  </div>
+
+</div>

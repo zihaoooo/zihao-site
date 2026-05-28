@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AutoCAD Shortcuts — LAAR 61400</title>
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <link rel="stylesheet" href="/assets/css/workflow-shared.css">
+  <link rel="stylesheet" href="/assets/css/shortcuts-shared.css">
+</head>
+<body>
+
+  <header id="topbar">
+    <button id="nav-toggle" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+    <span class="topbar-title">LAAR 61400</span>
+  </header>
+
+  <div class="panel-overlay"></div>
+
+  <nav id="sidepanel">
+    <div class="panel-section">
+      <span class="panel-section-label">Course</span>
+      <a class="panel-link" href="/index.html">Syllabus</a>
+    </div>
+    <div class="panel-section">
+      <span class="panel-section-label">Workflows</span>
+      <a class="panel-link" href="/workflows/wf01-autocad.html"><span class="panel-link-num">01</span>AutoCAD Site Drafting</a>
+      <a class="panel-link" href="/workflows/wf02-sketch-portfolio.html"><span class="panel-link-num">02</span>Hand Sketch → Portfolio</a>
+      <a class="panel-link" href="/workflows/wf03-urban-context.html"><span class="panel-link-num">03</span>Urban Context Mapping</a>
+      <a class="panel-link placeholder"><span class="panel-link-num">04</span>—</a>
+      <a class="panel-link placeholder"><span class="panel-link-num">05</span>—</a>
+      <a class="panel-link placeholder"><span class="panel-link-num">06</span>—</a>
+      <a class="panel-link placeholder"><span class="panel-link-num">07</span>—</a>
+    </div>
+    <div class="panel-section">
+      <span class="panel-section-label">Shortcuts &amp; Reference</span>
+      <a class="panel-link" href="/shortcuts/adobe.html">Adobe Ps / Ai / Id</a>
+      <a class="panel-link active" href="/shortcuts/autocad.html">AutoCAD</a>
+      <a class="panel-link" href="/shortcuts/rhino-pipeline.html">Rhino — Pipeline</a>
+      <a class="panel-link" href="/shortcuts/rhino-ui.html">Rhino — Navigation &amp; UI</a>
+    </div>
+  </nav>
+
+  <main id="main-content">
+    <div class="page-inner">
+
+      <div class="sc-wrap">
+
+        <div class="sc-header">
+          <div class="sc-header-left">
+            <span class="sc-icon sc-icon-cad">CAD</span>
+            <div class="sc-header-text">
+              <div class="sc-title">AutoCAD</div>
+              <div class="sc-subtitle">Command Aliases &amp; Shortcuts</div>
+            </div>
+          </div>
+          <span class="sc-course-tag">LAAR 61400</span>
+        </div>
+
+<style>
+  .cad-wrap { font-family: 'Helvetica Neue', Arial, sans-serif; font-size: 12px; color: #1a1a1a; padding: 20px; box-sizing: border-box; }
+  .cad-wrap h1 { font-size: 15px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
+  .cad-wrap .cad-icon { display: inline-flex; align-items: center; justify-content: center; width: 28px; height: 28px; border-radius: 5px; font-size: 10px; font-weight: 700; background: #E51937; color: #fff; flex-shrink: 0; }
+  .cad-wrap .cad-note { font-size: 10px; color: #666; margin-bottom: 20px; border-left: 2px solid #ccc; padding-left: 10px; line-height: 1.6; }
+  .cad-wrap .cad-section-label { font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: #aaa; margin-bottom: 10px; }
+  .cad-wrap .cad-divider-strong { border: none; border-top: 2px solid #1a1a1a; margin: 0 0 18px; }
+  .cad-wrap .cad-section { margin-bottom: 16px; }
+  .cad-wrap .cad-section-title { font-size: 9.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; border-bottom: 1px solid #e0e0e0; padding-bottom: 4px; margin-bottom: 7px; color: #444; }
+  .cad-wrap .cad-col-title { font-size: 10px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #888; margin-bottom: 12px; padding-top: 10px; border-top: 2px solid #1a1a1a; }
+  .cad-wrap table { width: 100%; border-collapse: collapse; }
+  .cad-wrap td { padding: 4px 0; vertical-align: top; line-height: 1.5; font-size: 12px; }
+  .cad-wrap td:first-child { color: #555; }
+  .cad-wrap td:last-child { text-align: right; white-space: nowrap; }
+  .cad-wrap kbd { display: inline-block; background: #f3f3f3; border: 1px solid #ddd; border-radius: 3px; padding: 1px 5px; font-family: 'SF Mono', 'Consolas', monospace; font-size: 10px; white-space: nowrap; }
+  .cad-wrap .cad-footer { margin-top: 20px; border-top: 1px solid #e0e0e0; padding-top: 8px; font-size: 9px; color: #aaa; line-height: 1.6; }
+  .cad-universal-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0 20px; margin-bottom: 28px; }
+  .cad-app-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  @media (max-width: 700px) {
+    .cad-universal-grid { grid-template-columns: repeat(2, 1fr); gap: 0 16px; }
+    .cad-app-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
+  }
+  @media (max-width: 480px) {
+    .cad-wrap { padding: 16px; }
+    .cad-wrap h1 { font-size: 14px; }
+    .cad-wrap td { font-size: 13px; padding: 5px 0; }
+    .cad-wrap kbd { font-size: 11px; padding: 2px 6px; }
+    .cad-universal-grid { grid-template-columns: 1fr; }
+    .cad-app-grid { grid-template-columns: 1fr; }
+    .cad-wrap td:first-child { width: 58%; }
+    .cad-wrap details { margin-bottom: 2px; }
+    .cad-wrap summary { font-size: 9.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: #444; border-bottom: 1px solid #e0e0e0; padding: 8px 0 6px; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center; margin-bottom: 0; }
+    .cad-wrap summary::-webkit-details-marker { display: none; }
+    .cad-wrap summary::after { content: '+'; font-size: 14px; color: #bbb; }
+    .cad-wrap details[open] summary::after { content: '−'; }
+    .cad-wrap details table { margin-top: 6px; margin-bottom: 8px; }
+    .cad-wrap .cad-section { margin-bottom: 0; }
+    .cad-wrap .cad-section-title { display: none; }
+  }
+</style>
+
+<div class="cad-wrap">
+
+<h1><span class="cad-icon">CAD</span> AutoCAD Shortcuts</h1>
+<p class="cad-note">Type commands at the command line and press <strong>Enter</strong> or <strong>Space</strong> to execute. Press <strong>Esc</strong> to cancel. Press <strong>Enter</strong> again to repeat the last command.</p>
+
+<div class="cad-section-label">General — Always Available</div>
+<div class="cad-universal-grid">
+  <div class="cad-section">
+    <div class="cad-section-title">File</div>
+    <details open><summary>File</summary>
+      <table>
+        <tr><td>New / Open</td><td><kbd>Ctrl N</kbd> / <kbd>O</kbd></td></tr>
+        <tr><td>Save / Save As</td><td><kbd>Ctrl S</kbd> / <kbd>Shift S</kbd></td></tr>
+        <tr><td>Plot / Print</td><td><kbd>Ctrl P</kbd></td></tr>
+        <tr><td>Close drawing</td><td><kbd>Ctrl W</kbd></td></tr>
+      </table>
+    </details>
+  </div>
+  <div class="cad-section">
+    <div class="cad-section-title">View &amp; Navigation</div>
+    <details open><summary>View &amp; Navigation</summary>
+      <table>
+        <tr><td>Zoom Extents</td><td><kbd>Z</kbd> → <kbd>E</kbd></td></tr>
+        <tr><td>Zoom Window</td><td><kbd>Z</kbd> → <kbd>W</kbd></td></tr>
+        <tr><td>Zoom Previous</td><td><kbd>Z</kbd> → <kbd>P</kbd></td></tr>
+        <tr><td>Pan</td><td><kbd>P</kbd> / mid-drag</td></tr>
+        <tr><td>Zoom scroll</td><td>Mouse wheel</td></tr>
+        <tr><td>Regen</td><td><kbd>RE</kbd></td></tr>
+      </table>
+    </details>
+  </div>
+  <div class="cad-section">
+    <div class="cad-section-title">Edit</div>
+    <details open><summary>Edit</summary>
+      <table>
+        <tr><td>Undo / Redo</td><td><kbd>Ctrl Z</kbd> / <kbd>Y</kbd></td></tr>
+        <tr><td>Cut / Copy / Paste</td><td><kbd>Ctrl X/C/V</kbd></td></tr>
+        <tr><td>Select All</td><td><kbd>Ctrl A</kbd></td></tr>
+        <tr><td>Properties</td><td><kbd>Ctrl 1</kbd></td></tr>
+        <tr><td>Match Properties</td><td><kbd>MA</kbd></td></tr>
+      </table>
+    </details>
+  </div>
+  <div class="cad-section">
+    <div class="cad-section-title">Function Key Toggles</div>
+    <details open><summary>Function Key Toggles</summary>
+      <table>
+        <tr><td>Object Snap</td><td><kbd>F3</kbd></td></tr>
+        <tr><td>Grid on/off</td><td><kbd>F7</kbd></td></tr>
+        <tr><td>Ortho on/off</td><td><kbd>F8</kbd></td></tr>
+        <tr><td>Snap on/off</td><td><kbd>F9</kbd></td></tr>
+        <tr><td>Polar tracking</td><td><kbd>F10</kbd></td></tr>
+        <tr><td>Dynamic Input</td><td><kbd>F12</kbd></td></tr>
+      </table>
+    </details>
+  </div>
+</div>
+
+<hr class="cad-divider-strong">
+
+<div class="cad-section-label">Command Aliases — Type at Command Line, press Enter</div>
+<div class="cad-app-grid">
+  <div>
+    <div class="cad-col-title">Draw</div>
+    <div class="cad-section">
+      <div class="cad-section-title">Basic Geometry</div>
+      <details open><summary>Basic Geometry</summary>
+        <table>
+          <tr><td>Line</td><td><kbd>L</kbd></td></tr>
+          <tr><td>Polyline</td><td><kbd>PL</kbd></td></tr>
+          <tr><td>Circle</td><td><kbd>C</kbd></td></tr>
+          <tr><td>Arc</td><td><kbd>A</kbd></td></tr>
+          <tr><td>Rectangle</td><td><kbd>REC</kbd></td></tr>
+          <tr><td>Polygon</td><td><kbd>POL</kbd></td></tr>
+          <tr><td>Ellipse</td><td><kbd>EL</kbd></td></tr>
+          <tr><td>Spline</td><td><kbd>SPL</kbd></td></tr>
+          <tr><td>Hatch</td><td><kbd>H</kbd></td></tr>
+        </table>
+      </details>
+    </div>
+    <div class="cad-section">
+      <div class="cad-section-title">Annotation</div>
+      <details><summary>Annotation</summary>
+        <table>
+          <tr><td>Single-line Text</td><td><kbd>DT</kbd></td></tr>
+          <tr><td>Multiline Text</td><td><kbd>MT</kbd></td></tr>
+          <tr><td>Dimension (linear)</td><td><kbd>DLI</kbd></td></tr>
+          <tr><td>Dimension (aligned)</td><td><kbd>DAL</kbd></td></tr>
+          <tr><td>Dimension (angular)</td><td><kbd>DAN</kbd></td></tr>
+          <tr><td>Dimension (radius)</td><td><kbd>DRA</kbd></td></tr>
+          <tr><td>Leader</td><td><kbd>LE</kbd></td></tr>
+          <tr><td>Dimension Style</td><td><kbd>D</kbd></td></tr>
+        </table>
+      </details>
+    </div>
+  </div>
+  <div>
+    <div class="cad-col-title">Modify</div>
+    <div class="cad-section">
+      <div class="cad-section-title">Transform</div>
+      <details open><summary>Transform</summary>
+        <table>
+          <tr><td>Move</td><td><kbd>M</kbd></td></tr>
+          <tr><td>Copy</td><td><kbd>CO</kbd></td></tr>
+          <tr><td>Rotate</td><td><kbd>RO</kbd></td></tr>
+          <tr><td>Scale</td><td><kbd>SC</kbd></td></tr>
+          <tr><td>Mirror</td><td><kbd>MI</kbd></td></tr>
+          <tr><td>Array</td><td><kbd>AR</kbd></td></tr>
+          <tr><td>Stretch</td><td><kbd>S</kbd></td></tr>
+          <tr><td>Align</td><td><kbd>AL</kbd></td></tr>
+        </table>
+      </details>
+    </div>
+    <div class="cad-section">
+      <div class="cad-section-title">Edit Geometry</div>
+      <details><summary>Edit Geometry</summary>
+        <table>
+          <tr><td>Trim</td><td><kbd>TR</kbd></td></tr>
+          <tr><td>Extend</td><td><kbd>EX</kbd></td></tr>
+          <tr><td>Offset</td><td><kbd>O</kbd></td></tr>
+          <tr><td>Fillet</td><td><kbd>F</kbd></td></tr>
+          <tr><td>Chamfer</td><td><kbd>CHA</kbd></td></tr>
+          <tr><td>Break</td><td><kbd>BR</kbd></td></tr>
+          <tr><td>Join</td><td><kbd>J</kbd></td></tr>
+          <tr><td>Explode</td><td><kbd>X</kbd></td></tr>
+          <tr><td>Erase</td><td><kbd>E</kbd></td></tr>
+          <tr><td>Edit polyline</td><td><kbd>PE</kbd></td></tr>
+        </table>
+      </details>
+    </div>
+  </div>
+  <div>
+    <div class="cad-col-title">Manage</div>
+    <div class="cad-section">
+      <div class="cad-section-title">Layers</div>
+      <details open><summary>Layers</summary>
+        <table>
+          <tr><td>Layer Manager</td><td><kbd>LA</kbd></td></tr>
+          <tr><td>Layer Isolate</td><td><kbd>LAYISO</kbd></td></tr>
+          <tr><td>Layer Unisolate</td><td><kbd>LAYUNISO</kbd></td></tr>
+          <tr><td>Layer Freeze</td><td><kbd>LAYFRZ</kbd></td></tr>
+          <tr><td>Layer Off</td><td><kbd>LAYOFF</kbd></td></tr>
+          <tr><td>Turn all layers on</td><td><kbd>LAYON</kbd></td></tr>
+          <tr><td>Change obj. layer</td><td><kbd>LAYMCH</kbd></td></tr>
+        </table>
+      </details>
+    </div>
+    <div class="cad-section">
+      <div class="cad-section-title">Blocks &amp; References</div>
+      <details><summary>Blocks &amp; References</summary>
+        <table>
+          <tr><td>Block (create)</td><td><kbd>B</kbd></td></tr>
+          <tr><td>Insert block</td><td><kbd>I</kbd></td></tr>
+          <tr><td>Write block</td><td><kbd>W</kbd></td></tr>
+          <tr><td>Xref Manager</td><td><kbd>XR</kbd></td></tr>
+          <tr><td>Attach Xref</td><td><kbd>XA</kbd></td></tr>
+        </table>
+      </details>
+    </div>
+    <div class="cad-section">
+      <div class="cad-section-title">Utilities</div>
+      <details><summary>Utilities</summary>
+        <table>
+          <tr><td>Measure distance</td><td><kbd>MEA</kbd></td></tr>
+          <tr><td>List properties</td><td><kbd>LI</kbd></td></tr>
+          <tr><td>Linetype Manager</td><td><kbd>LT</kbd></td></tr>
+          <tr><td>Lineweight</td><td><kbd>LW</kbd></td></tr>
+          <tr><td>Purge unused</td><td><kbd>PU</kbd></td></tr>
+        </table>
+      </details>
+    </div>
+  </div>
+</div>
+
+<div class="cad-footer">Press <strong>Enter</strong> or <strong>Space</strong> to confirm. Press <strong>Enter</strong> again to repeat last command. <strong>Esc</strong> to cancel.</div>
+
+</div>
+
+        <div class="sc-footer">
+          <span>LAAR 61400 — Representation &amp; Computation I</span>
+          <span>Shortcuts &amp; Reference</span>
+        </div>
+
+      </div><!-- /sc-wrap -->
+
+    </div>
+  </main>
+
+  <script src="/assets/js/nav.js"></script>
+</body>
+</html>

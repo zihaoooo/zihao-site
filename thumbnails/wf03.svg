@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 200" width="320" height="200">
+  <rect width="320" height="200" fill="#1a1a1a"/>
+
+  <!-- Urban grid pattern -->
+  <!-- Horizontal streets -->
+  <rect x="0" y="44" width="320" height="4" fill="#242424"/>
+  <rect x="0" y="80" width="320" height="8" fill="#242424"/>
+  <rect x="0" y="116" width="320" height="4" fill="#242424"/>
+  <!-- Vertical streets -->
+  <rect x="52" y="30" width="6" height="110" fill="#242424"/>
+  <rect x="116" y="30" width="10" height="110" fill="#242424"/>
+  <rect x="194" y="30" width="6" height="110" fill="#242424"/>
+  <rect x="258" y="30" width="8" height="110" fill="#242424"/>
+
+  <!-- Building blocks -->
+  <rect x="20" y="48" width="30" height="28" fill="#2c2c2c"/>
+  <rect x="60" y="48" width="52" height="28" fill="#2c2c2c"/>
+  <rect x="128" y="48" width="62" height="28" fill="#2c2c2c"/>
+  <rect x="202" y="48" width="52" height="28" fill="#2c2c2c"/>
+  <rect x="20" y="88" width="28" height="24" fill="#2c2c2c"/>
+  <rect x="60" y="88" width="52" height="24" fill="#2c2c2c"/>
+  <rect x="128" y="88" width="62" height="24" fill="#2c2c2c"/>
+  <rect x="202" y="88" width="52" height="24" fill="#2c2c2c"/>
+
+  <!-- Site highlight -->
+  <rect x="116" y="44" width="72" height="72" fill="none" stroke="#FF9A00" stroke-width="1.5"/>
+  <rect x="128" y="48" width="56" height="24" fill="#FF9A00" opacity="0.15"/>
+  <rect x="128" y="88" width="56" height="24" fill="#FF9A00" opacity="0.15"/>
+
+  <!-- Accent bar -->
+  <rect x="0" y="152" width="320" height="3" fill="#FF9A00"/>
+
+  <!-- Pipeline text -->
+  <text x="160" y="145" font-family="'DM Mono', 'Courier New', monospace" font-size="8" fill="#666" text-anchor="middle" letter-spacing="0.1em">OSM → GOOGLE EARTH → Ai</text>
+
+  <!-- WF badge -->
+  <rect x="24" y="162" width="38" height="16" rx="2" fill="#FF9A00"/>
+  <text x="43" y="174" font-family="'DM Mono', 'Courier New', monospace" font-size="9" fill="#1a1a1a" text-anchor="middle" font-weight="700">WF 03</text>
+
+  <!-- Title -->
+  <text x="24" y="193" font-family="'DM Mono', 'Courier New', monospace" font-size="10" fill="#888" letter-spacing="0.08em" text-anchor="start">URBAN CONTEXT MAPPING</text>
+</svg>

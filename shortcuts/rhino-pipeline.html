@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rhino 3D — Modeling Pipeline — LAAR 61400</title>
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <link rel="stylesheet" href="/assets/css/workflow-shared.css">
+  <link rel="stylesheet" href="/assets/css/shortcuts-shared.css">
+</head>
+<body>
+
+  <header id="topbar">
+    <button id="nav-toggle" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+    <span class="topbar-title">LAAR 61400</span>
+  </header>
+
+  <div class="panel-overlay"></div>
+
+  <nav id="sidepanel">
+    <div class="panel-section">
+      <span class="panel-section-label">Course</span>
+      <a class="panel-link" href="/index.html">Syllabus</a>
+    </div>
+    <div class="panel-section">
+      <span class="panel-section-label">Workflows</span>
+      <a class="panel-link" href="/workflows/wf01-autocad.html"><span class="panel-link-num">01</span>AutoCAD Site Drafting</a>
+      <a class="panel-link" href="/workflows/wf02-sketch-portfolio.html"><span class="panel-link-num">02</span>Hand Sketch → Portfolio</a>
+      <a class="panel-link" href="/workflows/wf03-urban-context.html"><span class="panel-link-num">03</span>Urban Context Mapping</a>
+      <a class="panel-link placeholder"><span class="panel-link-num">04</span>—</a>
+      <a class="panel-link placeholder"><span class="panel-link-num">05</span>—</a>
+      <a class="panel-link placeholder"><span class="panel-link-num">06</span>—</a>
+      <a class="panel-link placeholder"><span class="panel-link-num">07</span>—</a>
+    </div>
+    <div class="panel-section">
+      <span class="panel-section-label">Shortcuts &amp; Reference</span>
+      <a class="panel-link" href="/shortcuts/adobe.html">Adobe Ps / Ai / Id</a>
+      <a class="panel-link" href="/shortcuts/autocad.html">AutoCAD</a>
+      <a class="panel-link active" href="/shortcuts/rhino-pipeline.html">Rhino — Pipeline</a>
+      <a class="panel-link" href="/shortcuts/rhino-ui.html">Rhino — Navigation &amp; UI</a>
+    </div>
+  </nav>
+
+  <main id="main-content">
+    <div class="page-inner">
+
+      <div class="sc-wrap">
+
+        <div class="sc-header">
+          <div class="sc-header-left">
+            <span class="sc-icon sc-icon-rh">Rh</span>
+            <div class="sc-header-text">
+              <div class="sc-title">Rhino 3D</div>
+              <div class="sc-subtitle">Modeling Pipeline</div>
+            </div>
+          </div>
+          <span class="sc-course-tag">LAAR 61400</span>
+        </div>
+
+<style>
+  .rh-pipe { font-family: 'Helvetica Neue', Arial, sans-serif; font-size: 14px; color: #1a1a1a; padding: 24px; box-sizing: border-box; }
+  .rh-pipe h1 { font-size: 18px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+  .rh-pipe .rh-icon { display: inline-flex; align-items: center; justify-content: center; width: 32px; height: 32px; border-radius: 5px; font-size: 12px; font-weight: 700; background: #801010; color: #fff; flex-shrink: 0; }
+  .rh-pipe .rh-sub { font-size: 12px; color: #999; letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 24px; }
+  .rh-pipe .rh-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: #aaa; margin-bottom: 14px; padding-top: 20px; border-top: 1px solid #e0e0e0; }
+  .rh-pipe .rh-divider { border: none; border-top: 2px solid #1a1a1a; margin: 0 0 20px; }
+  .rh-pipeline-wrap { width: 100%; overflow-x: auto; margin-bottom: 4px; }
+  .rh-pipeline-wrap svg { display: block; min-width: 560px; }
+  .rh-cmd-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0 24px; }
+  .rh-cmd-col { }
+  .rh-cmd-col-title { font-size: 12px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #fff; padding: 6px 10px; border-radius: 4px; margin-bottom: 12px; }
+  .rh-cmd-section { margin-bottom: 14px; }
+  .rh-cmd-section-title { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: #555; border-bottom: 1px solid #e8e8e8; padding-bottom: 4px; margin-bottom: 7px; }
+  .rh-pipe table { width: 100%; border-collapse: collapse; }
+  .rh-pipe td { padding: 4px 0; font-size: 13px; line-height: 1.5; vertical-align: top; }
+  .rh-pipe td:first-child { color: #555; }
+  .rh-pipe td:last-child { text-align: right; white-space: nowrap; }
+  kbd { display: inline-block; background: #f3f3f3; border: 1px solid #ddd; border-radius: 3px; padding: 2px 6px; font-family: 'SF Mono', Consolas, monospace; font-size: 11px; white-space: nowrap; }
+  .rh-tips { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-bottom: 4px; }
+  .rh-tip { background: #f7f5f2; border-left: 3px solid #801010; padding: 10px 14px; font-size: 13px; line-height: 1.6; color: #444; border-radius: 0 4px 4px 0; }
+  .rh-tip strong { color: #1a1a1a; display: block; margin-bottom: 2px; }
+  .rh-pipe .rh-footer { margin-top: 20px; border-top: 1px solid #e0e0e0; padding-top: 8px; font-size: 11px; color: #aaa; }
+  @media (max-width: 720px) {
+    .rh-cmd-grid { grid-template-columns: repeat(2, 1fr); gap: 0 16px; }
+    .rh-tips { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 480px) {
+    .rh-pipe { padding: 16px; }
+    .rh-pipe h1 { font-size: 16px; }
+    .rh-cmd-grid { grid-template-columns: 1fr; }
+    .rh-tips { grid-template-columns: 1fr; }
+    .rh-pipe details { margin-bottom: 2px; }
+    .rh-pipe summary { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: #444; border-bottom: 1px solid #e0e0e0; padding: 10px 0 8px; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center; }
+    .rh-pipe summary::-webkit-details-marker { display: none; }
+    .rh-pipe summary::after { content: '+'; font-size: 16px; color: #bbb; }
+    .rh-pipe details[open] summary::after { content: '−'; }
+    .rh-pipe details table { margin-top: 6px; margin-bottom: 8px; }
+    .rh-cmd-section { margin-bottom: 0; }
+    .rh-cmd-section-title { display: none; }
+    .rh-pipe .rh-label { font-size: 0; border: none; padding: 0; margin: 0; }
+  }
+</style>
+
+<div class="rh-pipe">
+
+<h1><span class="rh-icon">Rh</span> Rhino 3D — Modeling Pipeline</h1>
+<div class="rh-sub">Landscape Architecture Workflow</div>
+
+<div class="rh-label">The Modeling Pipeline</div>
+<div class="rh-pipeline-wrap">
+<svg viewBox="0 0 720 230" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:720px;">
+  <rect x="10" y="10" width="148" height="210" rx="6" fill="#f5f0eb" stroke="#ddd" stroke-width="1"/>
+  <rect x="188" y="10" width="148" height="210" rx="6" fill="#eef2f0" stroke="#ddd" stroke-width="1"/>
+  <rect x="366" y="10" width="148" height="210" rx="6" fill="#edf0f5" stroke="#ddd" stroke-width="1"/>
+  <rect x="544" y="10" width="166" height="210" rx="6" fill="#f5f0f0" stroke="#ddd" stroke-width="1"/>
+  <path d="M158 115 L184 115" stroke="#bbb" stroke-width="2" marker-end="url(#arr)"/>
+  <path d="M336 115 L362 115" stroke="#bbb" stroke-width="2" marker-end="url(#arr)"/>
+  <path d="M514 115 L540 115" stroke="#bbb" stroke-width="2" marker-end="url(#arr)"/>
+  <defs>
+    <marker id="arr" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 Z" fill="#bbb"/>
+    </marker>
+  </defs>
+  <rect x="10" y="10" width="148" height="34" rx="6" fill="#8B5E3C"/>
+  <text x="84" y="32" font-family="'Helvetica Neue',Arial,sans-serif" font-size="13" font-weight="700" fill="#fff" text-anchor="middle" letter-spacing="1">CURVE</text>
+  <path d="M30 100 Q50 60 84 90 Q118 120 138 80" stroke="#8B5E3C" stroke-width="2" fill="none" stroke-linecap="round"/>
+  <text x="84" y="142" font-family="'Helvetica Neue',Arial,sans-serif" font-size="10.5" fill="#555" text-anchor="middle">Line / Polyline</text>
+  <text x="84" y="158" font-family="'Helvetica Neue',Arial,sans-serif" font-size="10.5" fill="#555" text-anchor="middle">InterpCrv</text>
+  <text x="84" y="174" font-family="'Helvetica Neue',Arial,sans-serif" font-size="10.5" fill="#555" text-anchor="middle">Contour (from topo)</text>
+  <text x="84" y="190" font-family="'Helvetica Neue',Arial,sans-serif" font-size="10.5" fill="#555" text-anchor="middle">Offset / Rebuild</text>
+  <text x="84" y="206" font-family="'Helvetica Neue',Arial,sans-serif" font-size="10.5" fill="#555" text-anchor="middle">Project / Pull</text>
+  <rect x="188" y="10" width="148" height="34" rx="6" fill="#4A7C6F"/>
+  <text x="262" y="32" font-family="'Helvetica Neue',Arial,sans-serif" font-size="13" font-weight="700" fill="#fff" text-anchor="middle" letter-spacing="1">SURFACE</text>
+  <polyline points="198,105 220,85 240,100 262,70 284,95 306,80 326,100" stroke="#4A7C6F" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  <polyline points="198,115 220,95 240,110 262,80 284,105 306,90 326,110" stroke="#4A7C6F" stroke-width="1" fill="none" stroke-opacity="0.4" stroke-linecap="round"/>
+  <text x="262" y="142" font-family="'Helvetica Neue',Arial,sans-serif" font-size="10.5" fill="#555" text-anchor="middle">Patch (terrain)</text>
+  <text x="262" y="158" font-family="'Helvetica Neue',Arial,sans-serif" font-size="10.5" fill="#555" text-anchor="middle">Loft / Sweep1</text>
+  <text x="262" y="174" font-family="'Helvetica Neue',Arial,sans-serif" font-size="10.5" fill="#555" text-anchor="middle">Drape</text>
+  <text x="262" y="190" font-family="'Helvetica Neue',Arial,sans-serif" font-size="10.5" fill="#555" text-anchor="middle">NetworkSrf</text>
+  <text x="262" y="206" font-family="'Helvetica Neue',Arial,sans-serif" font-size="10.5" fill="#555" text-anchor="middle">OffsetSrf / MoveUVN</text>
+  <rect x="366" y="10" width="148" height="34" rx="6" fill="#3A5A8A"/>
+  <text x="440" y="32" font-family="'Helvetica Neue',Arial,sans-serif" font-size="13" font-weight="700" fill="#fff" text-anchor="middle" letter-spacing="1">SOLID / FORM</text>
+  <polygon points="420,65 460,65 460,105 420,105" fill="none" stroke="#3A5A8A" stroke-width="1.5"/>
+  <polygon points="420,65 440,55 480,55 460,65" fill="none" stroke="#3A5A8A" stroke-width="1.5"/>
+  <polygon points="460,65 480,55 480,95 460,105" fill="none" stroke="#3A5A8A" stroke-width="1.5"/>
+  <text x="440" y="142" font-family="'Helvetica Neue',Arial,sans-serif" font-size="10.5" fill="#555" text-anchor="middle">ExtrudeCrv / Srf</text>
+  <text x="440" y="158" font-family="'Helvetic Neue',Arial,sans-serif" font-size="10.5" fill="#555" text-anchor="middle">BooleanUnion / Diff</text>
+  <text x="440" y="174" font-family="'Helvetica Neue',Arial,sans-serif" font-size="10.5" fill="#555" text-anchor="middle">Cap / Shell</text>
+  <text x="440" y="190" font-family="'Helvetica Neue',Arial,sans-serif" font-size="10.5" fill="#555" text-anchor="middle">Join / Explode</text>
+  <text x="440" y="206" font-family="'Helvetica Neue',Arial,sans-serif" font-size="10.5" fill="#555" text-anchor="middle">FilletEdge</text>
+  <rect x="544" y="10" width="166" height="34" rx="6" fill="#801010"/>
+  <text x="627" y="32" font-family="'Helvetica Neue',Arial,sans-serif" font-size="13" font-weight="700" fill="#fff" text-anchor="middle" letter-spacing="1">OUTPUT</text>
+  <rect x="590" y="58" width="52" height="60" rx="3" fill="none" stroke="#801010" stroke-width="1.5"/>
+  <line x1="596" y1="72" x2="636" y2="72" stroke="#801010" stroke-width="1" opacity="0.5"/>
+  <line x1="596" y1="80" x2="636" y2="80" stroke="#801010" stroke-width="1" opacity="0.5"/>
+  <line x1="596" y1="88" x2="620" y2="88" stroke="#801010" stroke-width="1" opacity="0.5"/>
+  <text x="627" y="142" font-family="'Helvetica Neue',Arial,sans-serif" font-size="10.5" fill="#555" text-anchor="middle">Make2D (line drawing)</text>
+  <text x="627" y="158" font-family="'Helvetica Neue',Arial,sans-serif" font-size="10.5" fill="#555" text-anchor="middle">Section / Contour</text>
+  <text x="627" y="174" font-family="'Helvetica Neue',Arial,sans-serif" font-size="10.5" fill="#555" text-anchor="middle">Layout (sheets)</text>
+  <text x="627" y="190" font-family="'Helvetica Neue',Arial,sans-serif" font-size="10.5" fill="#555" text-anchor="middle">Render</text>
+  <text x="627" y="206" font-family="'Helvetica Neue',Arial,sans-serif" font-size="10.5" fill="#555" text-anchor="middle">Export (.dwg / .obj)</text>
+</svg>
+</div>
+
+<hr class="rh-divider">
+
+<div class="rh-label">Landscape Architecture — Key Commands</div>
+<div class="rh-cmd-grid">
+  <div class="rh-cmd-col">
+    <div class="rh-cmd-col-title" style="background:#8B5E3C;">Terrain &amp; Curves</div>
+    <div class="rh-cmd-section">
+      <div class="rh-cmd-section-title">Build Topography</div>
+      <details open><summary>Build Topography</summary>
+        <table>
+          <tr><td>Contours from topo image</td><td><kbd>HeightField</kbd></td></tr>
+          <tr><td>Surface from contours</td><td><kbd>Patch</kbd></td></tr>
+          <tr><td>Drape surface over pts</td><td><kbd>Drape</kbd></td></tr>
+          <tr><td>Contours from surface</td><td><kbd>Contour</kbd></td></tr>
+          <tr><td>Project curve to srf</td><td><kbd>Project</kbd></td></tr>
+          <tr><td>Pull curve to srf</td><td><kbd>Pull</kbd></td></tr>
+        </table>
+      </details>
+    </div>
+    <div class="rh-cmd-section">
+      <div class="rh-cmd-section-title">Curve Tools</div>
+      <details><summary>Curve Tools</summary>
+        <table>
+          <tr><td>Draw through points</td><td><kbd>InterpCrv</kbd></td></tr>
+          <tr><td>Offset a curve</td><td><kbd>Offset</kbd></td></tr>
+          <tr><td>Smooth a curve</td><td><kbd>Smooth</kbd></td></tr>
+          <tr><td>Rebuild curve</td><td><kbd>Rebuild</kbd></td></tr>
+          <tr><td>Join curves</td><td><kbd>Join</kbd></td></tr>
+          <tr><td>Trim / Extend</td><td><kbd>Trim</kbd> / <kbd>Extend</kbd></td></tr>
+        </table>
+      </details>
+    </div>
+  </div>
+  <div class="rh-cmd-col">
+    <div class="rh-cmd-col-title" style="background:#4A7C6F;">Surface &amp; Grading</div>
+    <div class="rh-cmd-section">
+      <div class="rh-cmd-section-title">Create Surfaces</div>
+      <details open><summary>Create Surfaces</summary>
+        <table>
+          <tr><td>Loft between curves</td><td><kbd>Loft</kbd></td></tr>
+          <tr><td>Sweep along 1 path</td><td><kbd>Sweep1</kbd></td></tr>
+          <tr><td>Surface from network</td><td><kbd>NetworkSrf</kbd></td></tr>
+          <tr><td>Extrude curve</td><td><kbd>ExtrudeCrv</kbd></td></tr>
+          <tr><td>Offset surface</td><td><kbd>OffsetSrf</kbd></td></tr>
+        </table>
+      </details>
+    </div>
+    <div class="rh-cmd-section">
+      <div class="rh-cmd-section-title">Edit &amp; Grade</div>
+      <details><summary>Edit &amp; Grade</summary>
+        <table>
+          <tr><td>Move control points</td><td><kbd>F10</kbd> → drag pts</td></tr>
+          <tr><td>Push/pull surface pts</td><td><kbd>MoveUVN</kbd></td></tr>
+          <tr><td>Smooth surface region</td><td><kbd>SoftEditSrf</kbd></td></tr>
+          <tr><td>Flow surface to srf</td><td><kbd>FlowAlongSrf</kbd></td></tr>
+          <tr><td>Trim surface</td><td><kbd>Trim</kbd></td></tr>
+        </table>
+      </details>
+    </div>
+  </div>
+  <div class="rh-cmd-col">
+    <div class="rh-cmd-col-title" style="background:#3A5A8A;">Site Elements</div>
+    <div class="rh-cmd-section">
+      <div class="rh-cmd-section-title">Build Elements</div>
+      <details open><summary>Build Elements</summary>
+        <table>
+          <tr><td>Wall / ramp / path</td><td><kbd>ExtrudeCrv</kbd></td></tr>
+          <tr><td>Steps / seating</td><td><kbd>ArrayLinear</kbd></td></tr>
+          <tr><td>Circular array</td><td><kbd>ArrayPolar</kbd></td></tr>
+          <tr><td>Pipe / column</td><td><kbd>Pipe</kbd></td></tr>
+          <tr><td>Duplicate element</td><td><kbd>Orient</kbd> / <kbd>Copy</kbd></td></tr>
+        </table>
+      </details>
+    </div>
+    <div class="rh-cmd-section">
+      <div class="rh-cmd-section-title">Boolean &amp; Combine</div>
+      <details><summary>Boolean &amp; Combine</summary>
+        <table>
+          <tr><td>Merge solids</td><td><kbd>BooleanUnion</kbd></td></tr>
+          <tr><td>Cut one from another</td><td><kbd>BooleanDifference</kbd></td></tr>
+          <tr><td>Shared volume</td><td><kbd>BooleanIntersection</kbd></td></tr>
+          <tr><td>Close open surface</td><td><kbd>Cap</kbd></td></tr>
+          <tr><td>Join surfaces</td><td><kbd>Join</kbd></td></tr>
+        </table>
+      </details>
+    </div>
+  </div>
+  <div class="rh-cmd-col">
+    <div class="rh-cmd-col-title" style="background:#801010;">Output &amp; Drawing</div>
+    <div class="rh-cmd-section">
+      <div class="rh-cmd-section-title">2D Drawing &amp; Sections</div>
+      <details open><summary>2D Drawing &amp; Sections</summary>
+        <table>
+          <tr><td>Flatten 3D to lines</td><td><kbd>Make2D</kbd></td></tr>
+          <tr><td>Cut a section</td><td><kbd>Section</kbd></td></tr>
+          <tr><td>Contours / levels</td><td><kbd>Contour</kbd></td></tr>
+          <tr><td>Silhouette curves</td><td><kbd>Silhouette</kbd></td></tr>
+          <tr><td>Intersection curves</td><td><kbd>Intersect</kbd></td></tr>
+        </table>
+      </details>
+    </div>
+    <div class="rh-cmd-section">
+      <div class="rh-cmd-section-title">Layout &amp; Export</div>
+      <details><summary>Layout &amp; Export</summary>
+        <table>
+          <tr><td>Set up print sheet</td><td><kbd>Layout</kbd></td></tr>
+          <tr><td>Render viewport</td><td><kbd>Render</kbd></td></tr>
+          <tr><td>Export to AutoCAD</td><td><kbd>Export</kbd> → .dwg</td></tr>
+          <tr><td>Export mesh</td><td><kbd>Export</kbd> → .obj</td></tr>
+          <tr><td>Analysis: area/vol</td><td><kbd>Area</kbd> / <kbd>Volume</kbd></td></tr>
+        </table>
+      </details>
+    </div>
+  </div>
+</div>
+
+<hr class="rh-divider">
+
+<div class="rh-label">Key Workflow Tips</div>
+<div class="rh-tips">
+  <div class="rh-tip">
+    <strong>Terrain from contours</strong>
+    Import contour lines from AutoCAD (.dwg) → use <kbd>Patch</kbd> or <kbd>Drape</kbd> to generate a surface. Then run <kbd>Contour</kbd> back on the surface to verify accuracy.
+  </div>
+  <div class="rh-tip">
+    <strong>Sections &amp; Make2D</strong>
+    Use <kbd>Section</kbd> to cut through your model, then <kbd>Make2D</kbd> to flatten everything into linework. Export as .dwg to refine in AutoCAD or Illustrator.
+  </div>
+  <div class="rh-tip">
+    <strong>Surface vs Solid</strong>
+    Most landscape work stays as surfaces — terrain, paths, walls. Only close surfaces into solids (using <kbd>Cap</kbd> or <kbd>Join</kbd>) when you need Boolean operations or volume calculations.
+  </div>
+  <div class="rh-tip">
+    <strong>Control point editing</strong>
+    Press <kbd>F10</kbd> to show control points on any curve or surface. Drag points to reshape organically. Press <kbd>F11</kbd> to hide. Use <kbd>Rebuild</kbd> to simplify a complex curve before editing.
+  </div>
+</div>
+
+<div class="rh-pipe rh-footer">Rhino 3D — commands typed at the command line, press Enter to execute. Right-click repeats last command.</div>
+
+</div>
+
+        <div class="sc-footer">
+          <span>LAAR 61400 — Representation &amp; Computation I</span>
+          <span>Shortcuts &amp; Reference</span>
+        </div>
+
+      </div><!-- /sc-wrap -->
+
+    </div>
+  </main>
+
+  <script src="/assets/js/nav.js"></script>
+</body>
+</html>
