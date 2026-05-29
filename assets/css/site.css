@@ -116,6 +116,19 @@ body {
   margin: 32px 0;
 }
 
+/* ── Body text ── */
+.site-body {
+  max-width: 580px;
+}
+.site-body p {
+  font-size: 14px;
+  line-height: 1.8;
+  color: #333;
+  margin-bottom: 20px;
+}
+.site-body p:last-child { margin-bottom: 0; }
+.site-body em { font-style: italic; }
+
 /* ── Course card grid (teaching/index.html) ── */
 .course-grid {
   display: grid;
