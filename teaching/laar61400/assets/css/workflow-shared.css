@@ -251,6 +251,8 @@
 .wf-badge-osm     { background: #e8f4ea; color: #2a7a3a; }
 .wf-badge-ge      { background: #fef3e2; color: #a06020; }
 .wf-badge-neutral { background: #f0f0f0; color: #555; }
+.wf-badge-chat    { background: #f3ece4; color: #9a6a3c; }
+.wf-badge-code    { background: #ebdcc9; color: #7a4a1e; }
 
 /* ── CTB color chart ── */
 .wf-ctb {
