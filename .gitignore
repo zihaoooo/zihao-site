@@ -5,3 +5,4 @@ node_modules/
 .claude/
 BUILDSPEC.md
 PATCHSPEC-01-monorepo.md
+_local/
