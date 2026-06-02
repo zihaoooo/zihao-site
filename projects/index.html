@@ -13,7 +13,20 @@
       margin-top: 28px;
     }
 
-    .project-card { display: block; }
+    .project-card {
+      display: block;
+      text-decoration: none;
+    }
+
+    a.project-card:hover .project-thumb {
+      opacity: 0.85;
+      transition: opacity 0.15s;
+    }
+
+    a.project-card:hover .project-title {
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
 
     .project-thumb {
       width: 100%;
@@ -60,11 +73,11 @@
       <hr class="site-rule">
 
       <div class="project-grid">
-        <div class="project-card">
-          <img class="project-thumb" src="/assets/img/placeholder.svg" alt="">
-          <div class="project-title">Project Title</div>
-          <div class="project-meta">Year &middot; Category</div>
-        </div>
+        <a class="project-card" href="/projects/elua/">
+          <img class="project-thumb" src="/assets/img/projects/elua/Hero.jpg" alt="Ecological Laboratory for Urban Agriculture">
+          <div class="project-title">Ecological Laboratory for Urban Agriculture</div>
+          <div class="project-meta">2022&ndash;present &middot; Research</div>
+        </a>
         <div class="project-card">
           <img class="project-thumb" src="/assets/img/placeholder.svg" alt="">
           <div class="project-title">Project Title</div>
