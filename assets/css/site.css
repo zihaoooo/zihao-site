@@ -238,3 +238,81 @@ body {
 
   .course-grid { grid-template-columns: 1fr; }
 }
+
+/* ============================================
+   Lightbox
+   ============================================ */
+#lb {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.93);
+  z-index: 9000;
+  display: none;
+  align-items: center;
+  justify-content: center;
+}
+
+#lb.lb-visible { display: flex; }
+
+.lb-img {
+  max-width: 90vw;
+  max-height: 88vh;
+  object-fit: contain;
+  display: block;
+  user-select: none;
+}
+
+.lb-close {
+  position: fixed;
+  top: 20px;
+  right: 28px;
+  font-size: 36px;
+  line-height: 1;
+  color: #fff;
+  background: none;
+  border: none;
+  cursor: pointer;
+  opacity: 0.6;
+  transition: opacity 0.15s;
+  padding: 4px 8px;
+}
+
+.lb-prev,
+.lb-next {
+  position: fixed;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 56px;
+  line-height: 1;
+  color: #fff;
+  background: none;
+  border: none;
+  cursor: pointer;
+  opacity: 0.4;
+  transition: opacity 0.15s;
+  padding: 0 20px;
+  user-select: none;
+}
+
+.lb-prev { left: 0; }
+.lb-next { right: 0; }
+
+.lb-close:hover,
+.lb-prev:hover,
+.lb-next:hover { opacity: 1; }
+
+.lb-counter {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #fff;
+  opacity: 0.45;
+  font-size: 11px;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  letter-spacing: 0.08em;
+  pointer-events: none;
+}
+
+/* Cursor hint on clickable images */
+.lb-trigger { cursor: zoom-in; }

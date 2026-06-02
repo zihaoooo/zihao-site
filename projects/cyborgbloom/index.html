@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cyborg Bloom &mdash; Zihao Zhang</title>
+  <link rel="stylesheet" href="/assets/css/site.css">
+  <style>
+
+    .project-hero {
+      width: 100%;
+      display: block;
+      margin-bottom: 40px;
+    }
+
+    .project-title {
+      font-size: 22px;
+      font-weight: 700;
+      line-height: 1.2;
+      margin-bottom: 6px;
+    }
+
+    .project-year {
+      font-size: 11px;
+      color: #aaa;
+      letter-spacing: 0.08em;
+      margin-bottom: 32px;
+    }
+
+    .project-meta-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0 32px;
+      margin-bottom: 36px;
+      padding-bottom: 32px;
+      border-bottom: 1px solid #e0e0e0;
+    }
+
+    .project-meta-label {
+      font-size: 9px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: #aaa;
+      margin-bottom: 8px;
+      display: block;
+    }
+
+    .project-meta-list {
+      list-style: none;
+      font-size: 12px;
+      line-height: 1.9;
+      color: #333;
+    }
+
+    .project-description {
+      font-size: 14px;
+      line-height: 1.85;
+      color: #333;
+      max-width: 580px;
+      margin-bottom: 40px;
+    }
+
+    .project-description p { margin-bottom: 20px; }
+    .project-description p:last-child { margin-bottom: 0; }
+
+    .project-section-label {
+      font-size: 9px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: #aaa;
+      margin: 48px 0 16px;
+      display: block;
+    }
+
+    /* ── Media ── */
+    #site-main { max-width: 100%; }
+
+    .media-full { width: 100%; display: block; margin: 24px 0; }
+    .media-full img { width: 100%; display: block; }
+
+    .media-2up { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin: 24px 0; }
+    .media-2up img { width: 100%; display: block; }
+
+    .media-3up { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; margin: 24px 0; }
+    .media-3up img { width: 100%; display: block; }
+
+    /* Justified gallery row */
+    .gallery-row { display: flex; gap: 6px; margin-bottom: 6px; width: 100%; overflow: hidden; }
+    .gallery-row img { width: 0; min-width: 0; height: auto; display: block; }
+
+    .project-back {
+      display: inline-block;
+      font-size: 12px;
+      color: #aaa;
+      text-decoration: none;
+      margin-bottom: 32px;
+      letter-spacing: 0.03em;
+    }
+    .project-back:hover { color: #1a1a1a; }
+
+    @media (max-width: 700px) {
+      .project-meta-grid { grid-template-columns: 1fr; gap: 24px 0; }
+      .media-2up, .media-3up { grid-template-columns: 1fr; }
+    }
+
+  </style>
+</head>
+<body>
+
+  <div id="site-wrap">
+
+    <nav id="site-nav">
+      <a class="site-nav-name" href="/">Zihao Zhang</a>
+      <p class="site-nav-meta">Associate Professor<br>Landscape Architecture<br>City College of New York</p>
+      <div class="site-nav-links">
+        <a class="site-nav-link active" href="/projects/">Projects</a>
+        <a class="site-nav-link" href="/publications/">Publications</a>
+        <a class="site-nav-link" href="/teaching/">Teaching</a>
+      </div>
+    </nav>
+
+    <main id="site-main">
+
+      <a class="project-back" href="/projects/">&larr; Projects</a>
+
+      <!-- Hero -->
+      <img class="project-hero" src="/assets/img/projects/CyborgBloom/hero.jpg" alt="Cyborg Bloom installation">
+
+      <!-- Title -->
+      <h1 class="project-title">Cyborg Bloom</h1>
+      <p class="project-year">2017</p>
+
+      <!-- Meta -->
+      <div class="project-meta-grid">
+        <div>
+          <span class="project-meta-label">Type</span>
+          <ul class="project-meta-list">
+            <li>Digital Art Installation</li>
+          </ul>
+        </div>
+        <div>
+          <span class="project-meta-label">Funding</span>
+          <ul class="project-meta-list">
+            <li>UVA Digital Art Fellowship</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Description -->
+      <div class="project-description">
+        <p>Cyborg Bloom is a cybernetic machine that challenges the illusory boundary between ecology and technology. Temperature, humidity, light, and infrared sensors produce data that determines the LED rings' behavior.</p>
+        <p>The machine consists of two kinds of feedback mechanisms. First, sunlight, temperature, and moisture decide baseline behaviors. Second, a feedback mechanism exists between LED light and luminosity sensors. When LED pulses, the changing ambient light feeds back to light sensors, adjusting LEDs' behavior. The positive feedback loop between the machines drives the machines to produce emergent behaviors.</p>
+      </div>
+
+      <hr class="site-rule">
+
+      <!-- Installation -->
+      <span class="project-section-label">Installation</span>
+
+      <!-- Rendering full width -->
+      <div class="media-full">
+        <img src="/assets/img/projects/CyborgBloom/install_01.jpg" alt="Forest rendering">
+      </div>
+
+      <!-- Two installation photos + wobble video justified -->
+      <div class="gallery-row">
+        <img src="/assets/img/projects/CyborgBloom/install_02.jpg" alt="Installation in window" style="flex: 1.5">
+        <img src="/assets/img/projects/CyborgBloom/install_03.jpg" alt="Installation detail" style="flex: 1.5">
+      </div>
+
+      <!-- Wobble video — autoplay loop muted = GIF equivalent -->
+      <div class="media-full">
+        <video src="/assets/img/projects/CyborgBloom/wobble.mp4" autoplay loop muted playsinline style="width:100%; display:block;"></video>
+      </div>
+
+      <!-- Detail shots -->
+      <div class="media-2up">
+        <img src="/assets/img/projects/CyborgBloom/detail_01.jpg" alt="Technology detail">
+        <img src="/assets/img/projects/CyborgBloom/detail_02.jpg" alt="Data visualization">
+      </div>
+
+      <hr class="site-rule">
+
+      <!-- Process -->
+      <span class="project-section-label">Process</span>
+
+      <div class="media-3up">
+        <img src="/assets/img/projects/CyborgBloom/doc_01.jpg" alt="Sketches and iterations">
+        <img src="/assets/img/projects/CyborgBloom/doc_02.jpg" alt="Process documentation">
+        <img src="/assets/img/projects/CyborgBloom/doc_03.jpg" alt="Process documentation">
+      </div>
+
+    </main>
+  </div>
+
+  <script src="/assets/js/lightbox.js"></script>
+</body>
+</html>
