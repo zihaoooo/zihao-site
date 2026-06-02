@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ELUA &mdash; Zihao Zhang</title>
+  <link rel="stylesheet" href="/assets/css/site.css">
+  <style>
+
+    /* ── Hero ── */
+    .project-hero {
+      width: 100%;
+      display: block;
+      margin-bottom: 40px;
+    }
+
+    /* ── Project header ── */
+    .project-title {
+      font-size: 22px;
+      font-weight: 700;
+      line-height: 1.2;
+      margin-bottom: 6px;
+    }
+
+    .project-year {
+      font-size: 11px;
+      color: #aaa;
+      letter-spacing: 0.08em;
+      margin-bottom: 32px;
+    }
+
+    /* ── Two-column meta block ── */
+    .project-meta-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0 32px;
+      margin-bottom: 36px;
+      padding-bottom: 32px;
+      border-bottom: 1px solid #e0e0e0;
+    }
+
+    .project-meta-label {
+      font-size: 9px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: #aaa;
+      margin-bottom: 8px;
+      display: block;
+    }
+
+    .project-meta-list {
+      list-style: none;
+      font-size: 12px;
+      line-height: 1.9;
+      color: #333;
+    }
+
+    .project-meta-list .role {
+      font-size: 10px;
+      color: #aaa;
+    }
+
+    /* ── Body text ── */
+    .project-description {
+      font-size: 14px;
+      line-height: 1.85;
+      color: #333;
+      max-width: 580px;
+      margin-bottom: 40px;
+    }
+
+    .project-description p { margin-bottom: 20px; }
+    .project-description p:last-child { margin-bottom: 0; }
+
+    /* ── Section label ── */
+    .project-section-label {
+      font-size: 9px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: #aaa;
+      margin: 48px 0 16px;
+      display: block;
+    }
+
+    /* ── Media: full width ── */
+    .media-full {
+      width: 100%;
+      display: block;
+      margin: 24px 0;
+    }
+
+    .media-full img {
+      width: 100%;
+      display: block;
+    }
+
+    /* ── Media: 2-up ── */
+    .media-2up {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      margin: 24px 0;
+    }
+
+    .media-2up img {
+      width: 100%;
+      display: block;
+    }
+
+    /* ── Media: 3-up ── */
+    .media-3up {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 8px;
+      margin: 24px 0;
+    }
+
+    .media-3up img {
+      width: 100%;
+      display: block;
+    }
+
+    /* ── Video embed ── */
+    .media-video {
+      margin: 24px 0;
+    }
+
+    .media-video iframe {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      display: block;
+      border: none;
+    }
+
+    .media-2up-video {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      margin: 24px 0;
+    }
+
+    .media-2up-video iframe {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      display: block;
+      border: none;
+    }
+
+    /* ── Acknowledgements ── */
+    .ack-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0 32px;
+      margin-bottom: 40px;
+    }
+
+    .ack-group-label {
+      font-size: 9px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: #aaa;
+      margin-bottom: 10px;
+      display: block;
+    }
+
+    .ack-list {
+      list-style: none;
+      font-size: 12px;
+      line-height: 1.9;
+      color: #555;
+    }
+
+    .ack-list .role {
+      font-size: 10px;
+      color: #aaa;
+    }
+
+    /* ── Back link ── */
+    .project-back {
+      display: inline-block;
+      font-size: 12px;
+      color: #aaa;
+      text-decoration: none;
+      margin-bottom: 32px;
+      letter-spacing: 0.03em;
+    }
+
+    .project-back:hover { color: #1a1a1a; }
+
+    /* ── 4-up grid ── */
+    .media-4up {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+      gap: 8px;
+      margin: 24px 0;
+    }
+
+    .media-4up img {
+      width: 100%;
+      display: block;
+    }
+
+    /* ── Widen main for project pages ── */
+    #site-main {
+      max-width: 100%;
+    }
+
+    /* ── Justified gallery row ── */
+    .gallery-row {
+      display: flex;
+      gap: 6px;
+      margin-bottom: 6px;
+      width: 100%;
+      overflow: hidden;
+    }
+
+    .gallery-row img {
+      width: 0;        /* grow from 0 so flex-grow controls width */
+      min-width: 0;
+      height: auto;    /* height follows intrinsic aspect ratio */
+      display: block;
+      /* flex-grow set inline per image to match aspect ratio */
+    }
+
+    /* ── Mobile ── */
+    @media (max-width: 700px) {
+      .project-meta-grid,
+      .ack-grid { grid-template-columns: 1fr; gap: 24px 0; }
+      .media-2up,
+      .media-3up,
+      .media-2up-video { grid-template-columns: 1fr; }
+      /* .media-4up intentionally NOT collapsed — stays as a row */
+    }
+
+  </style>
+</head>
+<body>
+
+  <div id="site-wrap">
+
+    <nav id="site-nav">
+      <a class="site-nav-name" href="/">Zihao Zhang</a>
+      <p class="site-nav-meta">Associate Professor<br>Landscape Architecture<br>City College of New York</p>
+      <div class="site-nav-links">
+        <a class="site-nav-link active" href="/projects/">Projects</a>
+        <a class="site-nav-link" href="/publications/">Publications</a>
+        <a class="site-nav-link" href="/teaching/">Teaching</a>
+        <a class="site-nav-link" href="/#contact">Contact</a>
+      </div>
+    </nav>
+
+    <main id="site-main">
+
+      <a class="project-back" href="/projects/">&larr; Projects</a>
+
+      <!-- Hero -->
+      <img class="project-hero" src="/assets/img/projects/elua/Hero.jpg" alt="Ecological Laboratory for Urban Agriculture">
+
+      <!-- Title -->
+      <h1 class="project-title">Ecological Laboratory for Urban Agriculture</h1>
+      <p class="project-year">2022&ndash;present</p>
+
+      <!-- Meta -->
+      <div class="project-meta-grid">
+        <div>
+          <span class="project-meta-label">Team Lead</span>
+          <ul class="project-meta-list">
+            <li>Zihao Zhang <span class="role">— Landscape Architecture, CCNY</span></li>
+          </ul>
+        </div>
+        <div>
+          <span class="project-meta-label">Collaborators</span>
+          <ul class="project-meta-list">
+            <li>Susan L. Epstein <span class="role">— Robotics, Hunter College</span></li>
+            <li>Christian Volkmann <span class="role">— Architecture, CCNY</span></li>
+            <li>Zhigang Zhu <span class="role">— Computer Vision, CCNY</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Description -->
+      <div class="project-description">
+        <p>This interdisciplinary research designs, tests, and evaluates innovative models for community-based, robot-assisted urban rooftop agriculture as part of a smart connected urban food garden and community. The Solar RoofPod and Harlem Garden for Urban Food at City College will become pilot laboratories for deep collaborations among experts in architectural and landscape design, artificial intelligence, robotics, and urban ecology.</p>
+        <p>To ameliorate dysfunction in the urban food system and food insecurity in US cities, our proposed research seeks innovative solutions that integrate sensing networks, machine learning, and robot-assisted systems for a new type of urban agricultural practice. Outcomes will provide theoretical advancement in urban ecology and smart cities research with a conceptual framework that posits intelligent machines as an integral part of society, urban ecosystems, and biophysical environments.</p>
+        <p>This research has substantial potential impacts on increasing urban food security, biodiversity, and the ability to adapt to climate change. The project also builds collaborations with community partners and high schools, motivating the next generation of scientists and urban farmers through STEM curriculum development and community outreach.</p>
+        <p>This project was partly funded by a 2022 CUNY Interdisciplinary Research Grant, a CCNY College-wide Research Vision Award, and a 2023 PSC-CUNY Award.</p>
+      </div>
+
+      <!-- Featured overview video -->
+      <div class="media-video">
+        <iframe src="https://www.youtube.com/embed/1Kz1bkFubsc" title="ELUA — Project Overview" allowfullscreen loading="lazy"></iframe>
+      </div>
+
+      <hr class="site-rule">
+
+      <!-- Concept & framework diagrams -->
+      <span class="project-section-label">Concept &amp; Framework</span>
+
+      <div class="media-full">
+        <img src="/assets/img/projects/elua/diagram_01.jpg" alt="Technical framework">
+      </div>
+
+      <div class="media-full">
+        <img src="/assets/img/projects/elua/diagram_02.jpg" alt="Concept diagram">
+      </div>
+
+      <div class="media-full">
+        <img src="/assets/img/projects/elua/diagram_03.png" alt="Rooftop garden isometric">
+      </div>
+
+      <hr class="site-rule">
+
+      <!-- Construction -->
+      <span class="project-section-label">Construction</span>
+
+      <div class="media-video">
+        <iframe src="https://www.youtube.com/embed/EH2hRRIARS4" title="ELUA — Construction" allowfullscreen loading="lazy"></iframe>
+      </div>
+
+      <div class="media-2up">
+        <img src="/assets/img/projects/elua/before.jpg" alt="Before">
+        <img src="/assets/img/projects/elua/after.jpg" alt="After">
+      </div>
+
+      <div class="gallery-row">
+        <img src="/assets/img/projects/elua/construction_02.png" alt="Construction" style="flex: 1.7778">
+        <img src="/assets/img/projects/elua/construction_03.jpg" alt="Construction detail" style="flex: 1">
+      </div>
+
+      <hr class="site-rule">
+
+      <!-- Robot in action -->
+      <span class="project-section-label">Robot in Action</span>
+
+      <div class="media-video">
+        <iframe src="https://www.youtube.com/embed/VTec_SXO5Lk" title="ELUA — Robot in Action" allowfullscreen loading="lazy"></iframe>
+      </div>
+
+      <div class="media-4up">
+        <img src="/assets/img/projects/elua/robot_01.gif" alt="Robot picking up seeds">
+        <img src="/assets/img/projects/elua/robot_02.gif" alt="Robot planting seeds">
+        <img src="/assets/img/projects/elua/robot_03.gif" alt="Robot in operation">
+        <img src="/assets/img/projects/elua/robot_04.jpg" alt="Seeds">
+      </div>
+
+      <hr class="site-rule">
+
+      <!-- Experiments -->
+      <span class="project-section-label">Experiments</span>
+
+      <div class="media-2up">
+        <img src="/assets/img/projects/elua/experiment_04.png" alt="Experiment">
+        <img src="/assets/img/projects/elua/experiment_05.png" alt="Experiment">
+      </div>
+
+      <div class="media-2up">
+        <img src="/assets/img/projects/elua/experiment_01.png" alt="Experiment">
+        <img src="/assets/img/projects/elua/experiment_02.png" alt="Experiment">
+      </div>
+
+      <div class="media-full">
+        <img src="/assets/img/projects/elua/experiment_03.jpg" alt="Experiment">
+      </div>
+
+      <hr class="site-rule">
+
+      <!-- Field documentation -->
+      <span class="project-section-label">Field Documentation</span>
+
+      <!-- Row 1: landscape + portrait + tall portrait → same row height -->
+      <div class="gallery-row">
+        <img src="/assets/img/projects/elua/field_01.jpg" alt="Field documentation" style="flex: 1.3263">
+        <img src="/assets/img/projects/elua/field_04.jpg" alt="Field documentation" style="flex: 0.7529">
+        <img src="/assets/img/projects/elua/field_06.jpg" alt="Field documentation" style="flex: 0.5625">
+      </div>
+      <div class="gallery-row">
+        <img src="/assets/img/projects/elua/field_05.jpg" alt="Field documentation" style="flex: 1.3263">
+        <img src="/assets/img/projects/elua/field_07.jpg" alt="Field documentation" style="flex: 0.7529">
+        <img src="/assets/img/projects/elua/field_08.jpg" alt="Field documentation" style="flex: 0.5625">
+      </div>
+      <div class="gallery-row">
+        <img src="/assets/img/projects/elua/field_09.jpg" alt="Field documentation" style="flex: 0.5625">
+        <img src="/assets/img/projects/elua/field_10.jpg" alt="Field documentation" style="flex: 0.7529">
+        <img src="/assets/img/projects/elua/field_11.png" alt="Field documentation" style="flex: 1.7778">
+      </div>
+
+      <hr class="site-rule">
+
+      <!-- Acknowledgements -->
+      <span class="project-section-label">Acknowledgements</span>
+
+      <div class="ack-grid">
+        <div>
+          <span class="ack-group-label">Lab Assistants &amp; Alums</span>
+          <ul class="ack-list">
+            <li>George McCracken <span class="role">— Landscape Architecture, CCNY</span></li>
+            <li>Casey Breen <span class="role">— Landscape Architecture, CCNY</span></li>
+            <li>Gael Oriol <span class="role">— Landscape Architecture, CCNY</span></li>
+            <li>Sophia Xia <span class="role">— Computer Science, Hunter College</span></li>
+            <li>Albi Arapi <span class="role">— Computer Science, CCNY</span></li>
+            <li>Donald Lushi <span class="role">— Computer Science, CCNY</span></li>
+            <li>Kevin Lin <span class="role">— Computer Science, Hunter College</span></li>
+            <li>Rachel Ng <span class="role">— Computer Science, Hunter College</span></li>
+            <li>Ghazanfar Shahbaz <span class="role">— Computer Science, Hunter College</span></li>
+            <li>Katlin Labatt-Simon <span class="role">— Architecture, CCNY</span></li>
+            <li>Nicole Girdo <span class="role">— Architecture, CCNY</span></li>
+            <li>Aparna Ramanathan Ramesh <span class="role">— Architecture, CCNY</span></li>
+            <li>Griffin Pollak <span class="role">— Landscape Architecture, CCNY</span></li>
+            <li>Gongqi Chen <span class="role">— PhD Student in Data Science</span></li>
+          </ul>
+        </div>
+        <div>
+          <span class="ack-group-label">Partners &amp; Friends</span>
+          <ul class="ack-list">
+            <li>Ian Marvy</li>
+            <li>Margrethe Horlyck-Romanovsky</li>
+            <li>GrowNYC</li>
+            <li>Big Reuse</li>
+            <li>NYC Clean Soil Bank</li>
+          </ul>
+        </div>
+      </div>
+
+    </main>
+  </div>
+
+</body>
+</html>
