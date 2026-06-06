@@ -116,7 +116,7 @@
     /* ── Full-bleed flower collage: outside site-wrap, overlays video above ── */
     .flower-bleed {
       width: 100%;
-      margin-top: -220px;
+      margin-top: -280px;
       position: relative;
       z-index: 10;
     }
@@ -245,5 +245,21 @@
   </div>
 
   <script src="/assets/js/lightbox.js"></script>
+  <script>
+    (function () {
+      var flower = document.querySelector('.flower-bleed');
+      var base = -280;
+      var maxReveal = 320;
+
+      function update() {
+        var distFromBottom = document.body.scrollHeight - window.scrollY - window.innerHeight;
+        var reveal = Math.max(0, Math.min(maxReveal, window.innerHeight - distFromBottom));
+        flower.style.marginTop = (base + reveal) + 'px';
+      }
+
+      window.addEventListener('scroll', update, { passive: true });
+      update();
+    })();
+  </script>
 </body>
 </html>
