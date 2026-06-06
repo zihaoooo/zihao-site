@@ -7,6 +7,11 @@
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
+/* ── Global link style ── */
+a { color: #b94030; text-decoration: none; }
+a:hover { color: #8a2e22; }
+.wf-wrap a { color: inherit; }
+
 body {
   font-family: 'DM Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-size: 16px;
@@ -157,11 +162,7 @@ body {
   margin-bottom: 20px;
 }
 .site-body-zh p:last-child { margin-bottom: 0; }
-.site-body-zh a { color: #1a1a1a; text-decoration: none; border-bottom: 1px solid #ccc; }
-.site-body-zh a:hover { border-bottom-color: #1a1a1a; }
 .site-body em { font-style: italic; }
-.site-body a { color: #1a1a1a; text-decoration: none; border-bottom: 1px solid #ccc; }
-.site-body a:hover { border-bottom-color: #1a1a1a; }
 
 /* ── Course card grid (teaching/index.html) ── */
 .course-grid {
