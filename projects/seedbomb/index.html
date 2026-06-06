@@ -248,16 +248,15 @@
   <script>
     (function () {
       var flower = document.querySelector('.flower-bleed');
-      var video = document.querySelector('video');
-      if (!flower || !video) return;
+      if (!flower) return;
 
       function update() {
         var vh = window.innerHeight;
-        var imgHeight = flower.querySelector('img').offsetHeight;
-        var base = -imgHeight * 0.5;
-        var maxReveal = imgHeight * 0.4;
-        var videoBottom = video.getBoundingClientRect().bottom;
-        var progress = Math.max(0, Math.min(1, (vh - videoBottom) / (vh * 0.7)));
+        var scrollY = window.scrollY;
+        var distFromBottom = document.body.scrollHeight - scrollY - vh;
+        var base = -vh * 0.5;
+        var maxReveal = vh * 0.35;
+        var progress = Math.max(0, Math.min(1, 1 - distFromBottom / (vh * 0.7)));
         flower.style.marginTop = (base + progress * maxReveal) + 'px';
       }
 
