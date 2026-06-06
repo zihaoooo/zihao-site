@@ -113,10 +113,12 @@
     .gallery-row { display: flex; gap: 6px; margin-bottom: 6px; width: 100%; overflow: hidden; }
     .gallery-row img { width: 0; min-width: 0; height: auto; display: block; }
 
-    /* ── Full-bleed flower collage: outside site-wrap, true full width ── */
+    /* ── Full-bleed flower collage: outside site-wrap, overlays video above ── */
     .flower-bleed {
       width: 100%;
-      margin-top: 0;
+      margin-top: -220px;
+      position: relative;
+      z-index: 10;
     }
 
     .project-back {
