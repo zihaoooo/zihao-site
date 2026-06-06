@@ -11,6 +11,24 @@
 a { color: #b94030; text-decoration: none; }
 a:hover { color: #8a2e22; }
 .wf-wrap a { color: inherit; }
+.project-meta-list a { color: inherit; }
+.project-meta-list a:hover { color: #b94030; }
+
+.ose-tag {
+  display: inline-block;
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #aaa;
+  border: 1px solid #ccc;
+  padding: 1px 6px;
+  border-radius: 2px;
+  margin-left: 8px;
+  vertical-align: middle;
+  position: relative;
+  top: -1px;
+}
 
 body {
   font-family: 'DM Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
@@ -99,6 +117,7 @@ body {
   grid-column: 2;
   padding: 0 60px 80px 60px;
   max-width: 720px;
+  min-width: 0;
 }
 
 /* ── Section label ── */
@@ -349,3 +368,115 @@ body {
 
 /* Cursor hint on clickable images */
 .lb-trigger { cursor: zoom-in; }
+
+/* ============================================
+   Project pages (shared across all project pages)
+   ============================================ */
+
+.project-hero {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  display: block;
+  margin-bottom: 40px;
+}
+
+.project-title {
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 6px;
+}
+
+.project-year {
+  font-size: 11px;
+  color: #aaa;
+  letter-spacing: 0.08em;
+  margin-bottom: 32px;
+}
+
+.project-meta-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0 32px;
+  margin-bottom: 36px;
+  padding-bottom: 32px;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.project-meta-label {
+  font-size: 9px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: #aaa;
+  margin-bottom: 8px;
+  display: block;
+}
+
+.project-meta-list {
+  list-style: none;
+  font-size: 12px;
+  line-height: 1.9;
+  color: #333;
+}
+
+.project-meta-list .role {
+  font-size: 10px;
+  color: #aaa;
+}
+
+.project-description {
+  font-size: 14px;
+  line-height: 1.85;
+  color: #333;
+  max-width: 580px;
+  margin-bottom: 40px;
+}
+
+.project-description p { margin-bottom: 20px; }
+.project-description p:last-child { margin-bottom: 0; }
+
+.project-section-label {
+  font-size: 9px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: #aaa;
+  margin: 48px 0 16px;
+  display: block;
+}
+
+.project-back {
+  display: inline-block;
+  font-size: 12px;
+  color: #aaa;
+  text-decoration: none;
+  margin-bottom: 32px;
+  letter-spacing: 0.03em;
+}
+.project-back:hover { color: #1a1a1a; }
+
+/* ── Media grids ── */
+.media-full { width: 100%; display: block; margin: 24px 0; }
+.media-full img,
+.media-full video { width: 100%; display: block; }
+
+.media-2up { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin: 24px 0; }
+.media-2up img { width: 100%; display: block; }
+
+.media-3up { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; margin: 24px 0; }
+.media-3up img { width: 100%; display: block; }
+
+.media-4up { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 8px; margin: 24px 0; }
+.media-4up img { width: 100%; display: block; }
+
+.gallery-row { display: flex; gap: 6px; margin-bottom: 6px; width: 100%; overflow: hidden; }
+.gallery-row img { width: 0; min-width: 0; height: auto; display: block; }
+
+@media (max-width: 700px) {
+  .project-meta-grid { grid-template-columns: 1fr; gap: 24px 0; }
+  .media-2up,
+  .media-3up { grid-template-columns: 1fr; }
+  /* .media-4up intentionally not collapsed — stays as a row */
+}
