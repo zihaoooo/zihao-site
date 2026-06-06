@@ -25,7 +25,27 @@ zihao-site/
 - About page: complete
 - Publications: complete (verify 2025 book chapter forthcoming status)
 - Teaching: LAAR 61400 built; other courses not added yet
-- Projects: all 6 entries are placeholders — main open task
+- Projects: 4 of 6 built; 2 remaining placeholders
+  - ELUA: complete
+  - Cyborg Bloom: complete
+  - Flushing: complete
+  - Seed Bomb: complete
+  - Hydroponics: images in `assets/img/projects/Hydroponics/` — page not yet built
+  - 6th project: TBD
+
+## Project page conventions
+- Year + type inline: `<p class="project-year">2024–Ongoing · Land-Based Practice<span class="ose-tag">OSE</span></p>`
+- OSE tag (black pill) on all Office of Speculative Ecologies projects (Flushing, Seed Bomb, etc.)
+- Collaborators: single-column grid, people only (not orgs), org links in role description
+- `#site-main { max-width: 100%; }` on all project pages (full-width media)
+- Justified gallery rows: `.gallery-row` flex + `style="flex: <aspect-ratio>"` per img
+- Global link style: `a { color: #b94030; text-decoration: none; }` — brick red, no underline
+- Teaching workflow pages use `.wf-wrap` which overrides link color to inherit
+
+## Seed Bomb page — special design notes
+- `projects/seedbomb/index.html`
+- Full-bleed wildflower PNG (`assets/img/projects/Seed Bomb/flowercolalge_bottom.png`) placed **outside `#site-wrap`** as last element before `</body>`, with `margin-top: -280px; position: relative; z-index: 10` — intentionally crosses the nav sidebar (subversive design)
+- JS parallax: flowers slide down as video scrolls off screen, anchored to `video.getBoundingClientRect().bottom` relative to viewport height
 
 ## CV system (`_local/cv/`)
 Three live Markdown files:
