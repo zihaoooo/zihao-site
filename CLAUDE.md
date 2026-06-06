@@ -25,19 +25,22 @@ zihao-site/
 - About page: complete
 - Publications: complete (verify 2025 book chapter forthcoming status)
 - Teaching: LAAR 61400 built; other courses not added yet
-- Projects: 4 of 6 built; 2 remaining placeholders
+- Projects: 5 of 6 built; 1 remaining placeholder
   - ELUA: complete
   - Cyborg Bloom: complete
   - Flushing: complete
   - Seed Bomb: complete
-  - Hydroponics: images in `assets/img/projects/Hydroponics/` — page not yet built
-  - 6th project: TBD
+  - Hydroponics: complete (`projects/hydroponics/`) — masonry gallery, lightbox
+  - 6th project: TBD (two stray images in `assets/img/projects/` — `care 02.jpg`, `street trees.jpg` — may be for this)
 
 ## Project page conventions
 - Year + type inline: `<p class="project-year">2024–Ongoing · Land-Based Practice<span class="ose-tag">OSE</span></p>`
 - OSE tag (black pill) on all Office of Speculative Ecologies projects (Flushing, Seed Bomb, etc.)
 - Collaborators: single-column grid, people only (not orgs), org links in role description
 - `#site-main { max-width: 100%; }` on all project pages (full-width media)
+- Hero image: `width: 100%; aspect-ratio: 16/9; object-fit: cover;` — proportional crop at any width, no vh-based height
+- OSE tag also appears on project cards in `projects/index.html` (not just on individual project pages)
+- Projects index grid: 3 columns desktop, 1 column mobile (`@media max-width: 700px`)
 - Justified gallery rows: `.gallery-row` flex + `style="flex: <aspect-ratio>"` per img
 - Masonry gallery: `columns: 2; gap: 8px` on `.gallery`, `width: 100%; margin-bottom: 8px` on imgs — no cropping, natural proportions
 - Lightbox: add `<script src="/assets/js/lightbox.js"></script>` before `</body>` — auto-applies to all `img` in `#site-main`; CSS already in `site.css`. See `projects/seedbomb/` or `projects/flushing/` as templates.
