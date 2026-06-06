@@ -25,27 +25,31 @@ zihao-site/
 - About page: complete
 - Publications: complete (verify 2025 book chapter forthcoming status)
 - Teaching: LAAR 61400 built; other courses not added yet
-- Projects: 5 of 6 built; 1 remaining placeholder
+- Projects: 6 of 6 built; 2 remaining placeholders in index
   - ELUA: complete
   - Cyborg Bloom: complete
   - Flushing: complete
   - Seed Bomb: complete
   - Hydroponics: complete (`projects/hydroponics/`) — masonry gallery, lightbox
-  - 6th project: TBD (two stray images in `assets/img/projects/` — `care 02.jpg`, `street trees.jpg` — may be for this)
+  - Harlem Schist: complete (`projects/harlemschist/`) — OSE, maps, care images
 
 ## Project page conventions
 - Year + type inline: `<p class="project-year">2024–Ongoing · Land-Based Practice<span class="ose-tag">OSE</span></p>`
-- OSE tag (black pill) on all Office of Speculative Ecologies projects (Flushing, Seed Bomb, etc.)
+- OSE tag: light outlined pill (border: 1px solid #ccc; color: #aaa) — defined globally in site.css
+- OSE projects: Flushing, Seed Bomb, Harlem Schist (and future OSE work)
 - Collaborators: single-column grid, people only (not orgs), org links in role description
-- `#site-main { max-width: 100%; }` on all project pages (full-width media)
-- Hero image: `width: 100%; aspect-ratio: 16/9; object-fit: cover;` — proportional crop at any width, no vh-based height
-- OSE tag also appears on project cards in `projects/index.html` (not just on individual project pages)
-- Projects index grid: 3 columns desktop, 1 column mobile (`@media max-width: 700px`)
+- `#site-main { max-width: 100%; }` on all project pages (full-width media) — keep per-page, not global (would break about/publications)
+- Hero image: `width: 100%; aspect-ratio: 16/9; object-fit: cover;` — defined in site.css globally
+- OSE tag also appears on project cards in `projects/index.html`
+- Projects index grid: 3 columns desktop, 1 column mobile (`@media max-width: 700px`); `#site-main { max-width: 100%; }` also on index
 - Justified gallery rows: `.gallery-row` flex + `style="flex: <aspect-ratio>"` per img
 - Masonry gallery: `columns: 2; gap: 8px` on `.gallery`, `width: 100%; margin-bottom: 8px` on imgs — no cropping, natural proportions
 - Lightbox: add `<script src="/assets/js/lightbox.js"></script>` before `</body>` — auto-applies to all `img` in `#site-main`; CSS already in `site.css`. See `projects/seedbomb/` or `projects/flushing/` as templates.
 - Global link style: `a { color: #b94030; text-decoration: none; }` — brick red, no underline
+- Collaborator list links (`project-meta-list a`): inherit color (no red), turn red on hover — defined globally in site.css
 - Teaching workflow pages use `.wf-wrap` which overrides link color to inherit
+- Shurui Zhang: always link to https://www.design.upenn.edu/people/shurui-zhang, role = "OSE and McHarg Fellow"
+- All shared project page CSS (hero, meta grid, media grids, gallery-row, back link) lives in site.css — individual pages only need `#site-main { max-width: 100%; }` plus truly page-specific styles
 
 ## Image optimization
 - Target max dimension: **2000px** (not 1600px — too aggressive)
