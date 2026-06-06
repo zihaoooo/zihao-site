@@ -456,6 +456,7 @@ body {
   letter-spacing: 0.03em;
 }
 .project-back:hover { color: #1a1a1a; }
+.project-presentation { font-size: 12px; color: #aaa; margin-top: 32px; }
 
 /* ── Media grids ── */
 .media-full { width: 100%; display: block; margin: 24px 0; }

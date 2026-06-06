@@ -1,83 +1,65 @@
 # zihao-site — Claude Code Context
 
-## Who I am
-Zihao Zhang — Associate Professor, Landscape Architecture, CCNY Spitzer School of Architecture.
-- Website: https://zihaozhang.cc (GitHub Pages, published from repo root)
-- Email: 2012zhangzihao@gmail.com
+## Who
+Zihao Zhang — Associate Professor, Landscape Architecture, CCNY Spitzer School of Architecture. Website: https://zihaozhang.cc (GitHub Pages, repo root). Email: 2012zhangzihao@gmail.com
 
 ## Repo layout
 ```
 zihao-site/
-├── _local/              ← gitignored; never pushed
-│   ├── cv/              ← master.md, external_cv.md, ccny_cv.md (live docs), .docx (reference only)
-│   ├── build-docs/      ← BUILDSPEC.md, workflow docs
-│   └── .claude/skills/  ← user skills (cv-pdf, etc.)
-├── assets/
-├── projects/            ← 6 placeholder entries — next priority
+├── _local/              ← gitignored; never pushed (cv/, build-docs/, .claude/skills/)
+├── assets/css/site.css  ← all shared styles; classes prefixed site- / project-
+├── projects/            ← 7 of 8 built; 1 placeholder remaining
 ├── publications/
-├── teaching/
-│   └── laar61400/       ← LAAR 61400 Fall 2026 lecture module
+├── teaching/laar61400/
 ├── index.html           ← About page
 └── CNAME
 ```
 
 ## Current status
-- About page: complete
-- Publications: complete (verify 2025 book chapter forthcoming status)
+- About, Publications: complete
 - Teaching: LAAR 61400 built; other courses not added yet
-- Projects: 6 of 6 built; 2 remaining placeholders in index
-  - ELUA: complete
-  - Cyborg Bloom: complete
-  - Flushing: complete
-  - Seed Bomb: complete
-  - Hydroponics: complete (`projects/hydroponics/`) — masonry gallery, lightbox
-  - Harlem Schist: complete (`projects/harlemschist/`) — OSE, maps, care images
+- Projects: ELUA, Cyborg Bloom, Flushing, Seed Bomb, Hydroponics, Harlem Schist, East Harlem Polder (`projects/eastharlem/`) — complete. 1 placeholder remaining.
 
-## Project page conventions
-- Year + type inline: `<p class="project-year">2024–Ongoing · Land-Based Practice<span class="ose-tag">OSE</span></p>`
-- OSE tag: light outlined pill (border: 1px solid #ccc; color: #aaa) — defined globally in site.css
-- OSE projects: Flushing, Seed Bomb, Harlem Schist (and future OSE work)
-- Collaborators: single-column grid, people only (not orgs), org links in role description
-- `#site-main { max-width: 100%; }` on all project pages (full-width media) — keep per-page, not global (would break about/publications)
-- Hero image: `width: 100%; aspect-ratio: 16/9; object-fit: cover;` — defined in site.css globally
-- OSE tag also appears on project cards in `projects/index.html`
-- Projects index grid: 3 columns desktop, 1 column mobile (`@media max-width: 700px`); `#site-main { max-width: 100%; }` also on index
-- Justified gallery rows: `.gallery-row` flex + `style="flex: <aspect-ratio>"` per img
-- Masonry gallery: `columns: 2; gap: 8px` on `.gallery`, `width: 100%; margin-bottom: 8px` on imgs — no cropping, natural proportions
-- Lightbox: add `<script src="/assets/js/lightbox.js"></script>` before `</body>` — auto-applies to all `img` in `#site-main`; CSS already in `site.css`. See `projects/seedbomb/` or `projects/flushing/` as templates.
-- Global link style: `a { color: #b94030; text-decoration: none; }` — brick red, no underline
-- Collaborator list links (`project-meta-list a`): inherit color (no red), turn red on hover — defined globally in site.css
-- Teaching workflow pages use `.wf-wrap` which overrides link color to inherit
+## Project page structure (follow exactly)
+1. `<a class="project-back" href="/projects/">← Projects</a>` — top of `<main>`, before hero
+2. Hero: `<img class="project-hero" ...>` — 16:9, defined in site.css
+3. `.project-header`: title, subtitle, `.project-year` (includes OSE pill if applicable)
+4. `.project-meta-grid` with `style="grid-template-columns: 1fr;"` — collaborators + any extra sections (Presentation etc.) as separate `<div style="margin-top:20px">` blocks inside
+5. `<div class="project-description">` — **text paragraphs only**; has max-width: 580px so never put images inside
+6. Images, gallery rows, video — directly in `<main>`, outside `.project-description`
+7. Local `<style>#site-main { max-width: 100%; }</style>` on every project page
+
+All shared CSS (hero, meta grid, gallery-row, back link, etc.) is in site.css — no need to redeclare.
+
+## OSE projects
+Flushing, Seed Bomb, Harlem Schist, East Harlem Polder. Add `<span class="ose-tag">OSE</span>` to `.project-year` on the page and `.project-meta` on the index card.
+
+## Collaborators
+- Single-column meta grid; people only (not orgs); `<span class="role">` for role text
 - Shurui Zhang: always link to https://www.design.upenn.edu/people/shurui-zhang, role = "OSE and McHarg Fellow"
-- All shared project page CSS (hero, meta grid, media grids, gallery-row, back link) lives in site.css — individual pages only need `#site-main { max-width: 100%; }` plus truly page-specific styles
 
-## Image optimization
-- Target max dimension: **2000px** (not 1600px — too aggressive)
-- Resize JPGs only; **never convert PNG → JPG** (Zihao handles that himself)
-- Resize in-place at JPEG quality 85
+## Media
+- Gallery rows: `.gallery-row` flex + `style="flex: <aspect-ratio>"` per img
+- Masonry: `columns: 2; gap: 8px` on `.gallery`; `width: 100%; margin-bottom: 8px` on imgs
+- Lightbox: `<script src="/assets/js/lightbox.js"></script>` before `</body>` — auto-applies to all imgs in `#site-main`
+- Video: `<video autoplay loop muted playsinline style="width:100%;display:block;">` — convert GIFs to MP4 rather than embedding GIF
+- Image optimization: max 2000px, JPEG q85; never convert PNG→JPG (Zihao does that)
 
-## Seed Bomb page — special design notes
-- `projects/seedbomb/index.html`
-- Full-bleed wildflower PNG (`assets/img/projects/Seed Bomb/flowercolalge_bottom.png`) placed **outside `#site-wrap`** as last element before `</body>`, with `margin-top: -25vh; position: relative; z-index: 10` — intentionally crosses the nav sidebar (subversive design)
-- JS parallax: flowers slide up as user approaches page bottom; trigger anchored to distance from page bottom (`scrollHeight - scrollY - vh`), not video position. `base = -vh * 0.5`, `maxReveal = vh * 0.35`, trigger window `vh * 0.7`. Keep `base + maxReveal` negative to avoid circular scrollHeight dependency.
+## CSS gotchas
+- Never put `*/` inside a CSS comment — closes comment early, silently drops all rules after
 
-## CV system (`_local/cv/`)
-Three live Markdown files:
-- `master.md` — single source of truth
-- `external_cv.md` — streamlined external version
-- `ccny_cv.md` — rigid CCNY promotion/tenure format
+## Seed Bomb special
+Full-bleed wildflower PNG outside `#site-wrap`, `margin-top: -25vh; position: relative; z-index: 10`. Parallax: distance-from-bottom trigger; `base = -vh*0.5`, `maxReveal = vh*0.35`, trigger window `vh*0.7`; keep `base + maxReveal` negative.
 
-Update all three simultaneously when adding new entries. PDFs generated via `_local/.claude/skills/cv-pdf/SKILL.md`.
-
-### Key CV facts (don't get these wrong)
-- Director, MLA Program: **2024–2026** (not "present")
-- Interim Director, MLA Program: **2023–2024**
-- ASLA-NY Climate Action Committee co-chair: **2023–2025**
-- DOE Climate Lighthouse grant (~$1M, 2024–2027): Zihao is **Co-PI**
-- PSC-CUNY grants go under **"Awards"**, not "Grants"
-- Rejected applications have a **dedicated subsection**
+## CV (`_local/cv/`)
+Three files: `master.md` (source of truth), `external_cv.md`, `ccny_cv.md`. Update all three simultaneously. PDFs via `_local/.claude/skills/cv-pdf/SKILL.md`.
+- Director MLA: 2024–2026 (not "present"); Interim Director: 2023–2024
+- ASLA-NY Climate Action co-chair: 2023–2025
+- DOE Climate Lighthouse (~$1M, 2024–2027): Co-PI
+- PSC-CUNY grants → "Awards", not "Grants"
+- Rejected applications have a dedicated subsection
 
 ## Workflow
-- All web edits pushed to GitHub via Claude Code
-- `_local/` is gitignored — never commit or push anything from there
-- Site HTML is hand-authored (no static site generator)
+- HTML is hand-authored; no static site generator
+- `_local/` is gitignored — never commit anything from there
+- Find-and-replace across HTML: use `sed` via Bash, not PowerShell (`Get-Content`/`Set-Content` double-encodes UTF-8)
