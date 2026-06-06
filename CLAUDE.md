@@ -39,6 +39,8 @@ zihao-site/
 - Collaborators: single-column grid, people only (not orgs), org links in role description
 - `#site-main { max-width: 100%; }` on all project pages (full-width media)
 - Justified gallery rows: `.gallery-row` flex + `style="flex: <aspect-ratio>"` per img
+- Masonry gallery: `columns: 2; gap: 8px` on `.gallery`, `width: 100%; margin-bottom: 8px` on imgs — no cropping, natural proportions
+- Lightbox: add `<script src="/assets/js/lightbox.js"></script>` before `</body>` — auto-applies to all `img` in `#site-main`; CSS already in `site.css`. See `projects/seedbomb/` or `projects/flushing/` as templates.
 - Global link style: `a { color: #b94030; text-decoration: none; }` — brick red, no underline
 - Teaching workflow pages use `.wf-wrap` which overrides link color to inherit
 
