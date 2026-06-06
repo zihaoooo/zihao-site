@@ -248,13 +248,17 @@
   <script>
     (function () {
       var flower = document.querySelector('.flower-bleed');
+      var video = document.querySelector('video');
+      if (!flower || !video) return;
+
       var base = -280;
-      var maxReveal = 320;
+      var maxReveal = 300;
 
       function update() {
-        var distFromBottom = document.body.scrollHeight - window.scrollY - window.innerHeight;
-        var reveal = Math.max(0, Math.min(maxReveal, window.innerHeight - distFromBottom));
-        flower.style.marginTop = (base + reveal) + 'px';
+        var vh = window.innerHeight;
+        var videoBottom = video.getBoundingClientRect().bottom;
+        var progress = Math.max(0, Math.min(1, (vh - videoBottom) / vh));
+        flower.style.marginTop = (base + progress * maxReveal) + 'px';
       }
 
       window.addEventListener('scroll', update, { passive: true });
