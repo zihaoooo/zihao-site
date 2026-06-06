@@ -44,8 +44,8 @@ zihao-site/
 
 ## Seed Bomb page — special design notes
 - `projects/seedbomb/index.html`
-- Full-bleed wildflower PNG (`assets/img/projects/Seed Bomb/flowercolalge_bottom.png`) placed **outside `#site-wrap`** as last element before `</body>`, with `margin-top: -280px; position: relative; z-index: 10` — intentionally crosses the nav sidebar (subversive design)
-- JS parallax: flowers slide down as video scrolls off screen, anchored to `video.getBoundingClientRect().bottom` relative to viewport height
+- Full-bleed wildflower PNG (`assets/img/projects/Seed Bomb/flowercolalge_bottom.png`) placed **outside `#site-wrap`** as last element before `</body>`, with `margin-top: -25vh; position: relative; z-index: 10` — intentionally crosses the nav sidebar (subversive design)
+- JS parallax: flowers slide up as user approaches page bottom; trigger anchored to distance from page bottom (`scrollHeight - scrollY - vh`), not video position. `base = -vh * 0.5`, `maxReveal = vh * 0.35`, trigger window `vh * 0.7`. Keep `base + maxReveal` negative to avoid circular scrollHeight dependency.
 
 ## CV system (`_local/cv/`)
 Three live Markdown files:
