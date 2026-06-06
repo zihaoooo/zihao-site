@@ -18,7 +18,7 @@ zihao-site/
 ## Current status
 - About, Publications: complete
 - Teaching: LAAR 61400 built; other courses not added yet
-- Projects: ELUA, Cyborg Bloom, Flushing, Seed Bomb, Hydroponics, Harlem Schist, East Harlem Polder (`projects/eastharlem/`) — complete. 1 placeholder remaining.
+- Projects: ELUA, Cyborg Bloom, Flushing, Seed Bomb, Hydroponics, Harlem Schist, East Harlem Polder, Other Natures (`projects/othernatures/`), Shroom Drone (`projects/shroomdrone/`) — all 9 complete.
 
 ## Project page structure (follow exactly)
 1. `<a class="project-back" href="/projects/">← Projects</a>` — top of `<main>`, before hero
@@ -43,7 +43,8 @@ Flushing, Seed Bomb, Harlem Schist, East Harlem Polder. Add `<span class="ose-ta
 - Masonry: `columns: 2; gap: 8px` on `.gallery`; `width: 100%; margin-bottom: 8px` on imgs
 - Lightbox: `<script src="/assets/js/lightbox.js"></script>` before `</body>` — auto-applies to all imgs in `#site-main`
 - Video: `<video autoplay loop muted playsinline style="width:100%;display:block;">` — convert GIFs to MP4 rather than embedding GIF
-- Image optimization: max 2000px, JPEG q85; never convert PNG→JPG (Zihao does that)
+- Image optimization: max 2000px, JPEG q85; never convert PNG→JPG (Zihao does that); use ffmpeg (Python unavailable)
+- Zoom crop on thumbnails/heroes: wrap img in `<div style="overflow:hidden;aspect-ratio:...">` and apply `transform:scale()` + `transform-origin` + `object-position` on the img inside. Use when default crop shows wrong part of a portrait image.
 
 ## CSS gotchas
 - Never put `*/` inside a CSS comment — closes comment early, silently drops all rules after
