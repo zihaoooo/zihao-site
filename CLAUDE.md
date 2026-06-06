@@ -44,6 +44,11 @@ zihao-site/
 - Global link style: `a { color: #b94030; text-decoration: none; }` — brick red, no underline
 - Teaching workflow pages use `.wf-wrap` which overrides link color to inherit
 
+## Image optimization
+- Target max dimension: **2000px** (not 1600px — too aggressive)
+- Resize JPGs only; **never convert PNG → JPG** (Zihao handles that himself)
+- Resize in-place at JPEG quality 85
+
 ## Seed Bomb page — special design notes
 - `projects/seedbomb/index.html`
 - Full-bleed wildflower PNG (`assets/img/projects/Seed Bomb/flowercolalge_bottom.png`) placed **outside `#site-wrap`** as last element before `</body>`, with `margin-top: -25vh; position: relative; z-index: 10` — intentionally crosses the nav sidebar (subversive design)
