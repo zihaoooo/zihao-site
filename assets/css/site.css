@@ -3,7 +3,7 @@
    Namespace: site-
    ============================================ */
 
-@import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;700&family=DM+Serif+Display&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;700&family=DM+Serif+Display&family=Noto+Serif+SC:wght@300&display=swap');
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -46,7 +46,17 @@ body {
   text-decoration: none;
   color: #1a1a1a;
   line-height: 1.3;
-  margin-bottom: 32px;
+  margin-bottom: 4px;
+}
+
+.site-nav-zh {
+  font-family: 'Noto Serif SC', serif;
+  font-size: 13px;
+  font-weight: 300;
+  color: #aaa;
+  display: block;
+  margin-bottom: 28px;
+  text-align: right;
 }
 
 .site-nav-meta {
@@ -131,6 +141,24 @@ body {
   margin-bottom: 20px;
 }
 .site-body p:last-child { margin-bottom: 0; }
+
+.site-body-zh {
+  margin-top: 40px;
+  padding-top: 32px;
+  border-top: 1px solid #e0e0e0;
+  max-width: 580px;
+}
+.site-body-zh p {
+  font-family: 'Noto Serif SC', serif;
+  font-size: 15px;
+  font-weight: 300;
+  line-height: 2;
+  color: #333;
+  margin-bottom: 20px;
+}
+.site-body-zh p:last-child { margin-bottom: 0; }
+.site-body-zh a { color: #1a1a1a; text-decoration: none; border-bottom: 1px solid #ccc; }
+.site-body-zh a:hover { border-bottom-color: #1a1a1a; }
 .site-body em { font-style: italic; }
 .site-body a { color: #1a1a1a; text-decoration: none; border-bottom: 1px solid #ccc; }
 .site-body a:hover { border-bottom-color: #1a1a1a; }
