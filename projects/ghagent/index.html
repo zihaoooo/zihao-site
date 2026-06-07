@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GH Agent &mdash; Zihao Zhang</title>
+  <link rel="stylesheet" href="/assets/css/site.css">
+  <style>
+    #site-main { max-width: 100%; }
+
+    /* ── Steps ── */
+    .gha-steps { margin: 0 0 40px; }
+
+    .gha-step {
+      display: grid;
+      grid-template-columns: 40px 1fr;
+      gap: 0 16px;
+    }
+
+    .gha-num-col {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .gha-num {
+      width: 28px;
+      height: 28px;
+      border: 1px solid #e0e0e0;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      color: #aaa;
+      flex-shrink: 0;
+    }
+
+    .gha-vline {
+      flex: 1;
+      width: 1px;
+      background: #e0e0e0;
+      margin: 5px 0;
+    }
+
+    .gha-step:last-child .gha-vline { display: none; }
+
+    .gha-step-body {
+      padding-bottom: 28px;
+      padding-top: 4px;
+    }
+
+    .gha-step:last-child .gha-step-body { padding-bottom: 0; }
+
+    .gha-step-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: #1a1a1a;
+      margin-bottom: 6px;
+      line-height: 1.3;
+    }
+
+    .gha-step-desc {
+      font-size: 13px;
+      line-height: 1.8;
+      color: #555;
+      margin: 0 0 10px;
+    }
+
+    .gha-step-desc strong { color: #333; font-weight: 600; }
+
+    .gha-step-desc a { color: #b94030; }
+    .gha-step-desc a:hover { color: #8a2e22; }
+
+    .gha-tag {
+      display: inline-block;
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      padding: 2px 8px;
+      border: 1px solid #e0e0e0;
+      border-radius: 3px;
+      color: #888;
+      letter-spacing: 0.04em;
+      text-decoration: none;
+    }
+
+    .gha-tag-green {
+      color: #166534;
+      border-color: #bbf7d0;
+      background: #f0fdf4;
+    }
+
+    .gha-warning {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      background: #fffbeb;
+      border: 1px solid #fde68a;
+      border-radius: 4px;
+      padding: 8px 12px;
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      color: #92400e;
+      line-height: 1.6;
+      margin-top: 4px;
+    }
+
+    /* ── Download button (step 0) ── */
+    .gha-download-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #1a1a1a;
+      color: #fff;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      text-decoration: none;
+      padding: 11px 20px;
+      border-radius: 3px;
+      margin-bottom: 2px;
+    }
+    .gha-download-btn:hover {
+      background: #333;
+      color: #fff;
+      text-decoration: none;
+    }
+
+    /* ── Download row ── */
+    .gha-download {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      padding: 20px 0;
+      border-top: 1px solid #e0e0e0;
+      border-bottom: 1px solid #e0e0e0;
+      margin-bottom: 40px;
+      flex-wrap: wrap;
+    }
+
+    .gha-download-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #1a1a1a;
+      color: #fff;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      text-decoration: none;
+      padding: 10px 20px;
+      border-radius: 3px;
+    }
+
+    .gha-download-btn:hover {
+      background: #333;
+      color: #fff;
+      text-decoration: none;
+    }
+
+    .gha-download-meta {
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      color: #aaa;
+      line-height: 1.7;
+    }
+
+    /* ── Compat tags ── */
+    .gha-compat {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+      margin-top: 32px;
+    }
+
+    .gha-compat-tag {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      padding: 3px 9px;
+      border: 1px solid #e0e0e0;
+      border-radius: 3px;
+      color: #888;
+      letter-spacing: 0.04em;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="site-wrap">
+
+    <nav id="site-nav">
+      <a class="site-nav-name" href="/">Zihao Zhang</a>
+      <span class="site-nav-zh">张子豪</span>
+      <p class="site-nav-meta">Associate Professor<br>Landscape Architecture<br>City College of New York</p>
+      <div class="site-nav-links">
+        <details class="site-nav-projects" open>
+          <summary class="active"><a href="/projects/">Projects</a></summary>
+          <div class="site-nav-sublinks">
+            <a class="site-nav-sublink" href="/projects/elua/">ELUA</a>
+            <a class="site-nav-sublink" href="/projects/cyborgbloom/">Cyborg Bloom</a>
+            <a class="site-nav-sublink" href="/projects/flushing/">Flushing</a>
+            <a class="site-nav-sublink" href="/projects/seedbomb/">Seed Bomb</a>
+            <a class="site-nav-sublink" href="/projects/hydroponics/">Hydroponic</a>
+            <a class="site-nav-sublink" href="/projects/harlemschist/">Harlem Schist</a>
+            <a class="site-nav-sublink" href="/projects/eastharlem/">East Harlem Polder</a>
+            <a class="site-nav-sublink" href="/projects/shroomdrone/">Shroom Drone</a>
+            <a class="site-nav-sublink" href="/projects/othernatures/">Other Natures</a>
+            <a class="site-nav-sublink active" href="/projects/ghagent/">GH Agent</a>
+          </div>
+        </details>
+        <a class="site-nav-link" href="/publications/">Publications</a>
+        <a class="site-nav-link" href="/teaching/">Teaching</a>
+      </div>
+    </nav>
+
+    <main id="site-main">
+
+      <a class="project-back" href="/projects/">&larr; Projects</a>
+
+      <img class="project-hero" src="/assets/img/projects/GHAgent/gh-agent-hero.svg" alt="GH Agent">
+
+      <div class="project-header">
+        <h1 class="project-title">GH Agent</h1>
+        <p class="project-subtitle">Canvas-Aware AI for Grasshopper 3D</p>
+        <p class="project-year">2025 &middot; Developer Tool</p>
+      </div>
+
+      <div class="project-description">
+        <p>Parametric design workflows in Grasshopper are powerful but opaque. A canvas can hold dozens of interdependent components — and when something breaks, or when you're trying to learn a new technique, there is no contextual help available without leaving the application entirely.</p>
+
+        <p>GH Agent is an MCP connector that bridges Claude Desktop with Grasshopper 3D. It reads the live canvas state — nodes, connections, error messages — and makes it available to Claude as context. The AI assistant can then respond to specific questions about your diagram, suggest fixes, add components, or write scripts, all from a conversation in Claude Desktop.</p>
+
+        <p>The tool is designed primarily for design students and educators, and is free to use. It runs locally as a Grasshopper component and requires no API configuration.</p>
+      </div>
+
+      <span class="project-section-label">Getting started</span>
+
+      <div class="gha-steps">
+
+        <div class="gha-step">
+          <div class="gha-num-col">
+            <div class="gha-num">0</div>
+            <div class="gha-vline"></div>
+          </div>
+          <div class="gha-step-body">
+            <div class="gha-step-title">Download GH Agent</div>
+            <p class="gha-step-desc">Free Windows installer &mdash; no admin rights, no terminal required.</p>
+            <a class="gha-download-btn" href="/assets/img/projects/GHAgent/GHAgent_Setup_v0.1.exe" download>
+              <svg fill="none" height="14" viewBox="0 0 14 14" width="14" style="flex-shrink:0"><path d="M7 1v8M4 7l3 3 3-3M2 11h10" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/></svg>
+              GHAgent_Setup_v0.1.exe
+            </a>
+            <p style="font-family:'DM Mono',monospace;font-size:10px;color:#aaa;letter-spacing:0.04em;margin-top:10px;margin-bottom:0;">FREE &middot; WINDOWS &middot; REQUIRES RHINO 8 + CLAUDE DESKTOP</p>
+          </div>
+        </div>
+
+        <div class="gha-step">
+          <div class="gha-num-col">
+            <div class="gha-num">1</div>
+            <div class="gha-vline"></div>
+          </div>
+          <div class="gha-step-body">
+            <div class="gha-step-title">Install Claude Desktop</div>
+            <p class="gha-step-desc">Download and install Claude Desktop from <a href="https://claude.ai/download" target="_blank">claude.ai/download</a>. Create a free Anthropic account or log in if you already have one.</p>
+            <span class="gha-tag">One time</span>
+          </div>
+        </div>
+
+        <div class="gha-step">
+          <div class="gha-num-col">
+            <div class="gha-num">2</div>
+            <div class="gha-vline"></div>
+          </div>
+          <div class="gha-step-body">
+            <div class="gha-step-title">Update Rhino to the latest version</div>
+            <p class="gha-step-desc">Make sure you&rsquo;re on the most current Rhino 8 release. GH Agent relies on up-to-date SDK components &mdash; older builds may cause compatibility warnings or silent failures. In Rhino, go to <strong>Help &rarr; Check for Updates</strong>.</p>
+            <div class="gha-warning"><svg fill="none" height="13" style="flex-shrink:0;margin-top:2px" viewBox="0 0 14 14" width="13"><path d="M7 1L13 12H1L7 1Z" stroke="#92400e" stroke-linejoin="round" stroke-width="1.2"></path><path d="M7 5.5v3" stroke="#92400e" stroke-linecap="round" stroke-width="1.2"></path><circle cx="7" cy="10" fill="#92400e" r="0.6"></circle></svg><span>Rhino 8.30 or later is strongly recommended.</span></div>
+          </div>
+        </div>
+
+        <div class="gha-step">
+          <div class="gha-num-col">
+            <div class="gha-num">3</div>
+            <div class="gha-vline"></div>
+          </div>
+          <div class="gha-step-body">
+            <div class="gha-step-title">Run the installer</div>
+            <p class="gha-step-desc">Download and run <strong>GHAgent_Setup.exe</strong>. The wizard installs everything &mdash; no admin rights, no terminal. It checks for Python 3 and Rhino 8, installs dependencies, and configures Claude Desktop automatically.</p>
+            <span class="gha-tag">~2 minutes</span>
+          </div>
+        </div>
+
+        <div class="gha-step">
+          <div class="gha-num-col">
+            <div class="gha-num">4</div>
+            <div class="gha-vline"></div>
+          </div>
+          <div class="gha-step-body">
+            <div class="gha-step-title">Restart Rhino</div>
+            <p class="gha-step-desc">Close and reopen Rhino 8 so Grasshopper picks up the new plugin from your Libraries folder.</p>
+            <span class="gha-tag">Required</span>
+          </div>
+        </div>
+
+        <div class="gha-step">
+          <div class="gha-num-col">
+            <div class="gha-num">5</div>
+            <div class="gha-vline"></div>
+          </div>
+          <div class="gha-step-body">
+            <div class="gha-step-title">Drop the component on your canvas</div>
+            <p class="gha-step-desc">Open Grasshopper, search <strong>&ldquo;GH Agent&rdquo;</strong>, and drop the component anywhere on your canvas. A green status dot confirms it&rsquo;s running and syncing.</p>
+            <span class="gha-tag gha-tag-green">Leave it there</span>
+          </div>
+        </div>
+
+        <div class="gha-step">
+          <div class="gha-num-col">
+            <div class="gha-num">6</div>
+            <div class="gha-vline"></div>
+          </div>
+          <div class="gha-step-body">
+            <div class="gha-step-title">Start chatting</div>
+            <p class="gha-step-desc">Open Claude Desktop and describe what you&rsquo;re trying to build. Claude can read your canvas, diagnose errors, add components, and write scripts &mdash; all from a conversation.</p>
+            <span class="gha-tag gha-tag-green">You&rsquo;re live</span>
+          </div>
+        </div>
+
+        <div class="gha-step">
+          <div class="gha-num-col">
+            <div class="gha-num">+</div>
+          </div>
+          <div class="gha-step-body">
+            <div class="gha-step-title">Contribute</div>
+            <p class="gha-step-desc">GH Agent is open source. Whether you&rsquo;re a designer, developer, or researcher — bug reports, new tools, and ideas are all welcome. The project is especially looking for contributors who work with Grasshopper daily and can help shape what AI assistance should feel like inside a parametric workflow.</p>
+            <a class="gha-tag" href="https://github.com/2012zhangzihao/gh-agent" target="_blank">&rarr; View on GitHub</a>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="gha-compat">
+        <span class="gha-compat-tag">Rhino 8</span>
+        <span class="gha-compat-tag">Windows</span>
+        <span class="gha-compat-tag">Claude Desktop</span>
+        <span class="gha-compat-tag">Python 3.9+</span>
+        <span class="gha-compat-tag">Free for students &amp; educators</span>
+      </div>
+
+    </main>
+
+  </div>
+
+  <script src="/assets/js/site.js"></script>
+</body>
+</html>

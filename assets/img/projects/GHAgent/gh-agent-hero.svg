@@ -1,0 +1,254 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" width="1200" height="675">
+  <defs>
+    <!-- dot grid -->
+    <pattern id="dots" x="0" y="0" width="24" height="24" patternUnits="userSpaceOnUse">
+      <circle cx="12" cy="12" r="0.7" fill="#2e2e2e"/>
+    </pattern>
+    <!-- soft glow for GH Agent -->
+    <radialGradient id="agentGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#16a34a" stop-opacity="0.12"/>
+      <stop offset="100%" stop-color="#16a34a" stop-opacity="0"/>
+    </radialGradient>
+    <!-- ghost line gradient -->
+    <linearGradient id="ghostGrad1" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#22c55e" stop-opacity="0"/>
+      <stop offset="100%" stop-color="#22c55e" stop-opacity="0.4"/>
+    </linearGradient>
+    <linearGradient id="ghostGrad2" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#22c55e" stop-opacity="0"/>
+      <stop offset="100%" stop-color="#22c55e" stop-opacity="0.3"/>
+    </linearGradient>
+    <linearGradient id="ghostGrad3" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#22c55e" stop-opacity="0"/>
+      <stop offset="100%" stop-color="#22c55e" stop-opacity="0.5"/>
+    </linearGradient>
+  </defs>
+
+  <!-- ── Background ── -->
+  <rect width="1200" height="675" fill="#1a1a1a"/>
+  <rect width="1200" height="675" fill="url(#dots)"/>
+
+  <!-- ── GH Agent ambient glow ── -->
+  <ellipse cx="880" cy="295" rx="270" ry="200" fill="url(#agentGlow)"/>
+
+  <!-- ═══════════════════════════════════════════
+       WIRES — drawn under nodes
+  ═══════════════════════════════════════════ -->
+
+  <!-- Standard wires (grey bezier) -->
+  <g stroke="#3e3e3e" stroke-width="1.5" fill="none" stroke-linecap="round">
+    <!-- N1 → N2 -->
+    <path d="M 193,122 C 244,122 244,116 295,116"/>
+    <!-- N2 → N3 -->
+    <path d="M 391,122 C 451,122 451,122 510,122"/>
+    <!-- N1 → N4 (down-right S-curve) -->
+    <path d="M 193,122 C 228,122 228,277 200,277"/>
+    <!-- N2 → N5 (down-right S-curve) -->
+    <path d="M 391,122 C 435,122 435,277 400,277"/>
+    <!-- N4 → N5 -->
+    <path d="M 300,277 C 350,277 350,277 400,277"/>
+    <!-- N5 → N6 -->
+    <path d="M 478,277 C 534,277 534,277 590,277"/>
+    <!-- N3 → N6 (down-left, across) -->
+    <path d="M 610,122 C 645,122 618,277 590,277"/>
+    <!-- N7 → N4 (up-right) -->
+    <path d="M 118,422 C 162,422 162,269 200,269"/>
+    <!-- N6 → N8 (up-right) -->
+    <path d="M 678,269 C 710,269 710,177 700,177"/>
+  </g>
+
+  <!-- Ghost wires from GH Agent (green dashed — drawn behind nodes) -->
+  <g fill="none" stroke-linecap="round" stroke-dasharray="7 5">
+    <!-- to N1 far left area -->
+    <path d="M 760,292 C 640,292 560,122 193,122" stroke="url(#ghostGrad1)" stroke-width="1.5"/>
+    <!-- to N2 area -->
+    <path d="M 760,292 C 680,292 580,122 391,122" stroke="url(#ghostGrad2)" stroke-width="1.5"/>
+    <!-- to N6 area -->
+    <path d="M 760,292 C 745,292 730,269 678,269" stroke="url(#ghostGrad3)" stroke-width="2"/>
+  </g>
+
+  <!-- ═══════════════════════════════════════════
+       COMPONENT NODES
+       Node: rect + category strip + name text + ports
+  ═══════════════════════════════════════════ -->
+
+  <!-- ── N1 "Divide Curve" (85,105) 108×34 orange ── -->
+  <g transform="translate(85,105)">
+    <rect width="108" height="34" rx="2.5" fill="#242424" stroke="#363636" stroke-width="1"/>
+    <rect width="108" height="3" rx="1.5" fill="#d97706"/>
+    <rect y="1.5" width="108" height="1.5" fill="#d97706"/>
+    <text x="54" y="22" text-anchor="middle" fill="#b0b0b0" font-size="10.5" font-family="'Courier New',monospace">Divide Curve</text>
+    <circle cx="0" cy="11" r="4" fill="#242424" stroke="#505050" stroke-width="1.5"/>
+    <circle cx="0" cy="23" r="4" fill="#242424" stroke="#505050" stroke-width="1.5"/>
+    <circle cx="108" cy="11" r="4" fill="#242424" stroke="#505050" stroke-width="1.5"/>
+    <circle cx="108" cy="17" r="4" fill="#242424" stroke="#505050" stroke-width="1.5"/>
+    <circle cx="108" cy="23" r="4" fill="#242424" stroke="#505050" stroke-width="1.5"/>
+  </g>
+
+  <!-- ── N2 "Mesh Join" (295,105) 96×34 teal ── -->
+  <g transform="translate(295,105)">
+    <rect width="96" height="34" rx="2.5" fill="#242424" stroke="#363636" stroke-width="1"/>
+    <rect width="96" height="3" rx="1.5" fill="#0d9488"/>
+    <rect y="1.5" width="96" height="1.5" fill="#0d9488"/>
+    <text x="48" y="22" text-anchor="middle" fill="#b0b0b0" font-size="10.5" font-family="'Courier New',monospace">Mesh Join</text>
+    <circle cx="0" cy="11" r="4" fill="#242424" stroke="#505050" stroke-width="1.5"/>
+    <circle cx="0" cy="23" r="4" fill="#242424" stroke="#505050" stroke-width="1.5"/>
+    <circle cx="96" cy="17" r="4" fill="#242424" stroke="#505050" stroke-width="1.5"/>
+  </g>
+
+  <!-- ── N3 "Deconstruct Brep" (510,105) 100×34 teal ── -->
+  <g transform="translate(510,105)">
+    <rect width="100" height="34" rx="2.5" fill="#242424" stroke="#363636" stroke-width="1"/>
+    <rect width="100" height="3" rx="1.5" fill="#0d9488"/>
+    <rect y="1.5" width="100" height="1.5" fill="#0d9488"/>
+    <text x="50" y="22" text-anchor="middle" fill="#b0b0b0" font-size="10.5" font-family="'Courier New',monospace">Deconstruct</text>
+    <circle cx="0" cy="17" r="4" fill="#242424" stroke="#505050" stroke-width="1.5"/>
+    <circle cx="100" cy="11" r="4" fill="#242424" stroke="#505050" stroke-width="1.5"/>
+    <circle cx="100" cy="17" r="4" fill="#242424" stroke="#505050" stroke-width="1.5"/>
+    <circle cx="100" cy="23" r="4" fill="#242424" stroke="#505050" stroke-width="1.5"/>
+  </g>
+
+  <!-- ── N7 "Loft" (40,405) 78×34 orange ── -->
+  <g transform="translate(40,405)">
+    <rect width="78" height="34" rx="2.5" fill="#242424" stroke="#363636" stroke-width="1"/>
+    <rect width="78" height="3" rx="1.5" fill="#d97706"/>
+    <rect y="1.5" width="78" height="1.5" fill="#d97706"/>
+    <text x="39" y="22" text-anchor="middle" fill="#b0b0b0" font-size="10.5" font-family="'Courier New',monospace">Loft</text>
+    <circle cx="0" cy="11" r="4" fill="#242424" stroke="#505050" stroke-width="1.5"/>
+    <circle cx="0" cy="23" r="4" fill="#242424" stroke="#505050" stroke-width="1.5"/>
+    <circle cx="78" cy="17" r="4" fill="#242424" stroke="#505050" stroke-width="1.5"/>
+  </g>
+
+  <!-- ── N4 "Offset Srf" (200,260) 100×34 orange ── -->
+  <g transform="translate(200,260)">
+    <rect width="100" height="34" rx="2.5" fill="#242424" stroke="#363636" stroke-width="1"/>
+    <rect width="100" height="3" rx="1.5" fill="#d97706"/>
+    <rect y="1.5" width="100" height="1.5" fill="#d97706"/>
+    <text x="50" y="22" text-anchor="middle" fill="#b0b0b0" font-size="10.5" font-family="'Courier New',monospace">Offset Srf</text>
+    <circle cx="0" cy="9" r="4" fill="#242424" stroke="#505050" stroke-width="1.5"/>
+    <circle cx="0" cy="17" r="4" fill="#242424" stroke="#505050" stroke-width="1.5"/>
+    <circle cx="0" cy="25" r="4" fill="#242424" stroke="#505050" stroke-width="1.5"/>
+    <circle cx="100" cy="17" r="4" fill="#242424" stroke="#505050" stroke-width="1.5"/>
+  </g>
+
+  <!-- ── N5 "Area" (400,260) 78×34 orange ── -->
+  <g transform="translate(400,260)">
+    <rect width="78" height="34" rx="2.5" fill="#242424" stroke="#363636" stroke-width="1"/>
+    <rect width="78" height="3" rx="1.5" fill="#d97706"/>
+    <rect y="1.5" width="78" height="1.5" fill="#d97706"/>
+    <text x="39" y="22" text-anchor="middle" fill="#b0b0b0" font-size="10.5" font-family="'Courier New',monospace">Area</text>
+    <circle cx="0" cy="17" r="4" fill="#242424" stroke="#505050" stroke-width="1.5"/>
+    <circle cx="78" cy="11" r="4" fill="#242424" stroke="#505050" stroke-width="1.5"/>
+    <circle cx="78" cy="23" r="4" fill="#242424" stroke="#505050" stroke-width="1.5"/>
+  </g>
+
+  <!-- ── N6 "Sort List" (590,260) 88×34 grey ── -->
+  <g transform="translate(590,260)">
+    <rect width="88" height="34" rx="2.5" fill="#242424" stroke="#363636" stroke-width="1"/>
+    <rect width="88" height="3" rx="1.5" fill="#525252"/>
+    <rect y="1.5" width="88" height="1.5" fill="#525252"/>
+    <text x="44" y="22" text-anchor="middle" fill="#b0b0b0" font-size="10.5" font-family="'Courier New',monospace">Sort List</text>
+    <circle cx="0" cy="11" r="4" fill="#242424" stroke="#505050" stroke-width="1.5"/>
+    <circle cx="0" cy="23" r="4" fill="#242424" stroke="#505050" stroke-width="1.5"/>
+    <circle cx="88" cy="11" r="4" fill="#242424" stroke="#505050" stroke-width="1.5"/>
+    <circle cx="88" cy="23" r="4" fill="#242424" stroke="#505050" stroke-width="1.5"/>
+  </g>
+
+  <!-- ── N8 "Panel" (700,160) 85×34 yellow — output panel ── -->
+  <g transform="translate(700,160)">
+    <rect width="85" height="34" rx="2.5" fill="#1e1a0e" stroke="#3a3000" stroke-width="1"/>
+    <rect width="85" height="3" rx="1.5" fill="#a16207"/>
+    <rect y="1.5" width="85" height="1.5" fill="#a16207"/>
+    <text x="42.5" y="22" text-anchor="middle" fill="#8a7a50" font-size="10.5" font-family="'Courier New',monospace">Panel</text>
+    <circle cx="0" cy="17" r="4" fill="#1e1a0e" stroke="#555" stroke-width="1.5"/>
+    <!-- Panel output area - inner lines suggesting data -->
+    <line x1="8" y1="28" x2="40" y2="28" stroke="#3a3000" stroke-width="0.5" opacity="0.5"/>
+    <line x1="8" y1="32" x2="55" y2="32" stroke="#3a3000" stroke-width="0.5" opacity="0.5"/>
+  </g>
+
+  <!-- Ghost wire endpoint dots (green circles on touched nodes) -->
+  <circle cx="193" cy="122" r="3" fill="#22c55e" opacity="0.5"/>
+  <circle cx="391" cy="122" r="3" fill="#22c55e" opacity="0.4"/>
+  <circle cx="678" cy="269" r="3" fill="#22c55e" opacity="0.6"/>
+
+  <!-- ═══════════════════════════════════════════
+       GH AGENT NODE (760, 258) 225×68
+  ═══════════════════════════════════════════ -->
+
+  <!-- outer glow rings -->
+  <rect x="748" y="246" width="249" height="92" rx="8" fill="none" stroke="#16a34a" stroke-width="1" opacity="0.08"/>
+  <rect x="754" y="252" width="237" height="80" rx="6" fill="none" stroke="#16a34a" stroke-width="1" opacity="0.12"/>
+
+  <!-- main body -->
+  <rect x="760" y="258" width="225" height="68" rx="4" fill="#0c1a10" stroke="#16a34a" stroke-width="1.5"/>
+
+  <!-- left accent bar -->
+  <rect x="760" y="258" width="5" height="68" rx="2.5" fill="#16a34a"/>
+  <rect x="762" y="258" width="3" height="68" fill="#16a34a"/>
+
+  <!-- name text -->
+  <text x="882" y="284" text-anchor="middle" fill="#4ade80" font-size="13" font-family="'Courier New',monospace" letter-spacing="4" font-weight="bold">GH AGENT</text>
+
+  <!-- status line -->
+  <circle cx="787" cy="302" r="3.5" fill="#22c55e"/>
+  <text x="799" y="307" fill="#4ade80" font-size="9" font-family="'Courier New',monospace" letter-spacing="1.5" opacity="0.75">CONNECTED  ·  SYNCING</text>
+
+  <!-- input port -->
+  <circle cx="760" cy="292" r="5.5" fill="#0c1a10" stroke="#22c55e" stroke-width="1.5"/>
+
+  <!-- ═══════════════════════════════════════════
+       CLAUDE DESKTOP CARD (right side)
+  ═══════════════════════════════════════════ -->
+
+  <!-- connecting wire: GH Agent right → Claude card left -->
+  <path d="M 985,292 C 1003,292 1003,285 1025,285" stroke="#16a34a" stroke-width="1.5" fill="none" stroke-linecap="round" opacity="0.4"/>
+
+  <!-- Claude card -->
+  <rect x="1025" y="230" width="148" height="110" rx="6" fill="#0f0f0f" stroke="#2a2a2a" stroke-width="1"/>
+  <!-- Card header -->
+  <rect x="1025" y="230" width="148" height="24" rx="6" fill="#161616"/>
+  <rect x="1025" y="242" width="148" height="12" fill="#161616"/>
+  <!-- header dots -->
+  <circle cx="1039" cy="242" r="3.5" fill="#333"/>
+  <circle cx="1051" cy="242" r="3.5" fill="#333"/>
+  <circle cx="1063" cy="242" r="3.5" fill="#333"/>
+  <text x="1155" y="246" text-anchor="end" fill="#444" font-size="8.5" font-family="'Courier New',monospace" letter-spacing="1">CLAUDE DESKTOP</text>
+
+  <!-- chat lines -->
+  <rect x="1044" y="264" width="54" height="7" rx="3.5" fill="#222"/>
+  <rect x="1044" y="276" width="76" height="7" rx="3.5" fill="#222"/>
+  <rect x="1044" y="288" width="62" height="7" rx="3.5" fill="#222"/>
+  <!-- AI response bubble -->
+  <rect x="1038" y="304" width="106" height="20" rx="4" fill="#1a2e1c" stroke="#1e4024" stroke-width="1"/>
+  <rect x="1044" y="310" width="68" height="6" rx="3" fill="#1e4a20" opacity="0.7"/>
+  <rect x="1044" y="319" width="48" height="5" rx="2.5" fill="#1e4a20" opacity="0.5"/>
+
+  <!-- ═══════════════════════════════════════════
+       ADDITIONAL AMBIENT NODES (faded, background texture)
+  ═══════════════════════════════════════════ -->
+
+  <!-- Far-left faded nodes for depth -->
+  <g opacity="0.25">
+    <rect x="40" y="155" width="88" height="30" rx="2" fill="#1e1e1e" stroke="#2a2a2a" stroke-width="1"/>
+    <text x="84" y="174" text-anchor="middle" fill="#666" font-size="9.5" font-family="'Courier New',monospace">Number Slider</text>
+
+    <rect x="40" y="540" width="78" height="30" rx="2" fill="#1e1e1e" stroke="#2a2a2a" stroke-width="1"/>
+    <text x="79" y="559" text-anchor="middle" fill="#666" font-size="9.5" font-family="'Courier New',monospace">Point</text>
+
+    <rect x="290" y="490" width="92" height="30" rx="2" fill="#1e1e1e" stroke="#2a2a2a" stroke-width="1"/>
+    <text x="336" y="509" text-anchor="middle" fill="#666" font-size="9.5" font-family="'Courier New',monospace">Curve | Param</text>
+
+    <rect x="510" y="400" width="88" height="30" rx="2" fill="#1e1e1e" stroke="#2a2a2a" stroke-width="1"/>
+    <text x="554" y="419" text-anchor="middle" fill="#666" font-size="9.5" font-family="'Courier New',monospace">Merge</text>
+
+    <path d="M 40,185 C 80,185 80,155 85,170" stroke="#2a2a2a" stroke-width="1" fill="none"/>
+    <path d="M 118,422 C 145,490 160,510 290,505" stroke="#2a2a2a" stroke-width="1" fill="none"/>
+  </g>
+
+  <!-- ═══════════════════════════════════════════
+       BRANDING
+  ═══════════════════════════════════════════ -->
+  <text x="1175" y="46" text-anchor="end" fill="#2e2e2e" font-size="9.5" font-family="'Courier New',monospace" letter-spacing="3">GH AGENT</text>
+  <text x="1175" y="61" text-anchor="end" fill="#242424" font-size="8.5" font-family="'Courier New',monospace" letter-spacing="2">AI FOR GRASSHOPPER 3D</text>
+
+</svg>
