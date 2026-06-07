@@ -353,6 +353,13 @@
   </g>
   <ellipse class="cls-39" cx="951.8" cy="279.5" rx="160" ry="130"/>
   <path class="cls-22" d="M1049.88,227.84h32.72v33.81h-32.7v33.01h-16.21v31.84h-16.49v-31.84h-16.21v31.84h-16.49v-31.84h-65.4v31.84h-16.48v-31.84h-16.22v31.84h-16.49v-31.84h-16.21v-33.02h-32.7v-33.79h32.7v-64.85h196.18v64.84ZM886.4,227.84h16.22v-31.03h-16.22v31.03ZM1000.96,227.84h16.24v-31.03h-16.24v31.03Z"/>
+  <!-- Blink animation: eyelid rects cover each eye hole in icon body color -->
+  <rect x="886.4" y="196.81" width="16.22" height="0" fill="#d97757">
+    <animate attributeName="height" values="0;31.03;0;0" keyTimes="0;0.04;0.08;1" dur="5s" begin="2s" repeatCount="indefinite"/>
+  </rect>
+  <rect x="1000.96" y="196.81" width="16.24" height="0" fill="#d97757">
+    <animate attributeName="height" values="0;31.03;0;0" keyTimes="0;0.04;0.08;1" dur="5s" begin="2s" repeatCount="indefinite"/>
+  </rect>
   <text class="cls-32" transform="translate(917.84 350.5)"><tspan x="0" y="0">CLAUDE</tspan></text>
   <text class="cls-30" transform="translate(921.22 367.5)"><tspan x="0" y="0">DESKTOP</tspan></text>
   <text class="cls-35" transform="translate(907.44 385)"><tspan x="0" y="0">● CONNECTED</tspan></text>

@@ -25,6 +25,12 @@
       transition: opacity 0.15s;
     }
 
+    /* Cards that wrap image in a div instead of using .project-thumb directly */
+    a.project-card:hover > div:first-child {
+      opacity: 0.85;
+      transition: opacity 0.15s;
+    }
+
     a.project-card:hover .project-title {
       text-decoration: underline;
       text-underline-offset: 3px;
