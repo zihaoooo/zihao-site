@@ -18,7 +18,7 @@ zihao-site/
 ## Current status
 - About, Publications: complete
 - Teaching: LAAR 61400 built; other courses not added yet
-- Projects: ELUA, Cyborg Bloom, Flushing, Seed Bomb, Hydroponics, Harlem Schist, East Harlem Polder, Other Natures (`projects/othernatures/`), Shroom Drone (`projects/shroomdrone/`) — all 9 complete.
+- Projects: ELUA, Cyborg Bloom, Flushing, Seed Bomb, Hydroponics, Harlem Schist, East Harlem Polder, Other Natures (`projects/othernatures/`), Shroom Drone (`projects/shroomdrone/`), GH Agent (`projects/ghagent/`) — all 10 complete.
 
 ## Project page structure (follow exactly)
 1. `<a class="project-back" href="/projects/">← Projects</a>` — top of `<main>`, before hero
