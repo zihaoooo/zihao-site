@@ -1,0 +1,286 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" width="1200" height="675">
+  <defs>
+    <!-- Grid dot pattern -->
+    <pattern id="dots" x="0" y="0" width="28" height="28" patternUnits="userSpaceOnUse">
+      <circle cx="14" cy="14" r="1.1" fill="#1c1c48"/>
+    </pattern>
+    <!-- Scan line overlay -->
+    <pattern id="scan" x="0" y="0" width="1" height="4" patternUnits="userSpaceOnUse">
+      <rect width="1" height="1" fill="#000" opacity="0.08"/>
+    </pattern>
+
+    <!-- Ambient glows -->
+    <radialGradient id="glowCyan" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#00e5ff" stop-opacity="0.12"/>
+      <stop offset="100%" stop-color="#00e5ff" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glowMagenta" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#f000d0" stop-opacity="0.18"/>
+      <stop offset="100%" stop-color="#f000d0" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glowPurple" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#7700ff" stop-opacity="0.10"/>
+      <stop offset="100%" stop-color="#7700ff" stop-opacity="0"/>
+    </radialGradient>
+
+    <!-- Ghost wire gradients -->
+    <linearGradient id="ghost1" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#f000d0" stop-opacity="0"/>
+      <stop offset="100%" stop-color="#f000d0" stop-opacity="0.55"/>
+    </linearGradient>
+    <linearGradient id="ghost2" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#00e5ff" stop-opacity="0"/>
+      <stop offset="100%" stop-color="#00e5ff" stop-opacity="0.45"/>
+    </linearGradient>
+    <linearGradient id="ghost3" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#f000d0" stop-opacity="0"/>
+      <stop offset="100%" stop-color="#f000d0" stop-opacity="0.7"/>
+    </linearGradient>
+  </defs>
+
+  <!-- ── Background ── -->
+  <rect width="1200" height="675" fill="#080812"/>
+  <rect width="1200" height="675" fill="url(#dots)"/>
+  <rect width="1200" height="675" fill="url(#scan)"/>
+
+  <!-- ── Ambient glows ── -->
+  <ellipse cx="200" cy="200" rx="320" ry="220" fill="url(#glowCyan)"/>
+  <ellipse cx="880" cy="295" rx="280" ry="200" fill="url(#glowMagenta)"/>
+  <ellipse cx="500" cy="530" rx="260" ry="180" fill="url(#glowPurple)"/>
+
+  <!-- ── Subtle horizon line ── -->
+  <line x1="0" y1="400" x2="1200" y2="400" stroke="#1a1a50" stroke-width="0.5" opacity="0.4"/>
+
+  <!-- ═══════════════════════════════════════════
+       WIRES
+  ═══════════════════════════════════════════ -->
+
+  <!-- Base wires: dark blue-purple -->
+  <g stroke="#2a2a6a" stroke-width="1.5" fill="none" stroke-linecap="round">
+    <path d="M 193,127 C 244,127 244,120 295,120"/>
+    <path d="M 391,127 C 451,127 451,127 510,127"/>
+    <path d="M 193,127 C 228,127 228,282 200,282"/>
+    <path d="M 391,127 C 435,127 435,282 400,282"/>
+    <path d="M 300,282 C 350,282 350,282 400,282"/>
+    <path d="M 478,282 C 534,282 534,282 590,282"/>
+    <path d="M 610,127 C 645,127 618,282 590,282"/>
+    <path d="M 118,427 C 162,427 162,271 200,271"/>
+    <path d="M 678,282 C 710,282 710,182 700,182"/>
+    <path d="M 118,427 C 125,427 125,510 133,510"/>
+    <path d="M 213,510 C 253,510 253,510 293,510"/>
+    <path d="M 405,510 C 445,510 445,510 480,510"/>
+    <path d="M 250,304 C 260,380 275,440 293,497"/>
+    <path d="M 576,510 C 620,510 630,510 658,510"/>
+  </g>
+
+  <!-- Neon accent wires -->
+  <g fill="none" stroke-linecap="round">
+    <path d="M 193,127 C 244,127 244,120 295,120" stroke="#00e5ff" stroke-width="1" opacity="0.35"/>
+    <path d="M 300,282 C 350,282 350,282 400,282" stroke="#f000d0" stroke-width="1" opacity="0.35"/>
+    <path d="M 478,282 C 534,282 534,282 590,282" stroke="#f5e100" stroke-width="1" opacity="0.25"/>
+  </g>
+
+  <!-- Ghost wires from GH Agent — neon dashed -->
+  <g fill="none" stroke-linecap="round" stroke-dasharray="7 5">
+    <path d="M 760,295 C 640,295 560,127 193,127" stroke="url(#ghost1)" stroke-width="1.8"/>
+    <path d="M 760,295 C 680,295 580,127 391,127" stroke="url(#ghost2)" stroke-width="1.8"/>
+    <path d="M 760,295 C 745,295 730,282 678,282" stroke="url(#ghost3)" stroke-width="2.2"/>
+  </g>
+
+  <!-- Ghost wire endpoint dots -->
+  <circle cx="193" cy="127" r="3.5" fill="#f000d0" opacity="0.7"/>
+  <circle cx="391" cy="127" r="3.5" fill="#00e5ff" opacity="0.6"/>
+  <circle cx="678" cy="282" r="3.5" fill="#f000d0" opacity="0.9"/>
+
+  <!-- ═══════════════════════════════════════════
+       NODES — TOP + MIDDLE ROWS
+  ═══════════════════════════════════════════ -->
+
+  <!-- N1 "Divide Curve" (85,105) 108x44 — CYAN -->
+  <g transform="translate(85,105)">
+    <rect width="108" height="44" rx="2.5" fill="#0c0c22" stroke="#00e5ff" stroke-width="0.8"/>
+    <rect width="108" height="3" rx="1.5" fill="#00e5ff"/>
+    <text x="54" y="27" text-anchor="middle" fill="#b8b8e0" font-size="14" font-family="'Courier New',monospace">Divide Curve</text>
+    <circle cx="0" cy="15" r="4.5" fill="#0c0c22" stroke="#00e5ff" stroke-width="1.5" opacity="0.8"/>
+    <circle cx="0" cy="29" r="4.5" fill="#0c0c22" stroke="#00e5ff" stroke-width="1.5" opacity="0.8"/>
+    <circle cx="108" cy="12" r="4.5" fill="#0c0c22" stroke="#00e5ff" stroke-width="1.5" opacity="0.8"/>
+    <circle cx="108" cy="22" r="4.5" fill="#0c0c22" stroke="#00e5ff" stroke-width="1.5" opacity="0.8"/>
+    <circle cx="108" cy="32" r="4.5" fill="#0c0c22" stroke="#00e5ff" stroke-width="1.5" opacity="0.8"/>
+  </g>
+
+  <!-- N2 "Mesh Join" (295,105) 96x44 — MAGENTA -->
+  <g transform="translate(295,105)">
+    <rect width="96" height="44" rx="2.5" fill="#0c0c22" stroke="#f000d0" stroke-width="0.8"/>
+    <rect width="96" height="3" rx="1.5" fill="#f000d0"/>
+    <text x="48" y="27" text-anchor="middle" fill="#b8b8e0" font-size="14" font-family="'Courier New',monospace">Mesh Join</text>
+    <circle cx="0" cy="15" r="4.5" fill="#0c0c22" stroke="#f000d0" stroke-width="1.5" opacity="0.8"/>
+    <circle cx="0" cy="29" r="4.5" fill="#0c0c22" stroke="#f000d0" stroke-width="1.5" opacity="0.8"/>
+    <circle cx="96" cy="22" r="4.5" fill="#0c0c22" stroke="#f000d0" stroke-width="1.5" opacity="0.8"/>
+  </g>
+
+  <!-- N3 "Deconstruct" (510,105) 110x44 — PURPLE -->
+  <g transform="translate(510,105)">
+    <rect width="110" height="44" rx="2.5" fill="#0c0c22" stroke="#9900ff" stroke-width="0.8"/>
+    <rect width="110" height="3" rx="1.5" fill="#9900ff"/>
+    <text x="55" y="27" text-anchor="middle" fill="#b8b8e0" font-size="14" font-family="'Courier New',monospace">Deconstruct</text>
+    <circle cx="0" cy="22" r="4.5" fill="#0c0c22" stroke="#9900ff" stroke-width="1.5" opacity="0.8"/>
+    <circle cx="110" cy="12" r="4.5" fill="#0c0c22" stroke="#9900ff" stroke-width="1.5" opacity="0.8"/>
+    <circle cx="110" cy="22" r="4.5" fill="#0c0c22" stroke="#9900ff" stroke-width="1.5" opacity="0.8"/>
+    <circle cx="110" cy="32" r="4.5" fill="#0c0c22" stroke="#9900ff" stroke-width="1.5" opacity="0.8"/>
+  </g>
+
+  <!-- N7 "Loft" (40,405) 78x44 — ORANGE-RED -->
+  <g transform="translate(40,405)">
+    <rect width="78" height="44" rx="2.5" fill="#0c0c22" stroke="#ff4400" stroke-width="0.8"/>
+    <rect width="78" height="3" rx="1.5" fill="#ff4400"/>
+    <text x="39" y="27" text-anchor="middle" fill="#b8b8e0" font-size="14" font-family="'Courier New',monospace">Loft</text>
+    <circle cx="0" cy="15" r="4.5" fill="#0c0c22" stroke="#ff4400" stroke-width="1.5" opacity="0.8"/>
+    <circle cx="0" cy="29" r="4.5" fill="#0c0c22" stroke="#ff4400" stroke-width="1.5" opacity="0.8"/>
+    <circle cx="78" cy="22" r="4.5" fill="#0c0c22" stroke="#ff4400" stroke-width="1.5" opacity="0.8"/>
+  </g>
+
+  <!-- N4 "Offset Srf" (200,260) 100x44 — CYAN -->
+  <g transform="translate(200,260)">
+    <rect width="100" height="44" rx="2.5" fill="#0c0c22" stroke="#00e5ff" stroke-width="0.8"/>
+    <rect width="100" height="3" rx="1.5" fill="#00e5ff"/>
+    <text x="50" y="27" text-anchor="middle" fill="#b8b8e0" font-size="14" font-family="'Courier New',monospace">Offset Srf</text>
+    <circle cx="0" cy="11" r="4.5" fill="#0c0c22" stroke="#00e5ff" stroke-width="1.5" opacity="0.8"/>
+    <circle cx="0" cy="22" r="4.5" fill="#0c0c22" stroke="#00e5ff" stroke-width="1.5" opacity="0.8"/>
+    <circle cx="0" cy="33" r="4.5" fill="#0c0c22" stroke="#00e5ff" stroke-width="1.5" opacity="0.8"/>
+    <circle cx="100" cy="22" r="4.5" fill="#0c0c22" stroke="#00e5ff" stroke-width="1.5" opacity="0.8"/>
+  </g>
+
+  <!-- N5 "Area" (400,260) 78x44 — YELLOW -->
+  <g transform="translate(400,260)">
+    <rect width="78" height="44" rx="2.5" fill="#0c0c22" stroke="#f5e100" stroke-width="0.8"/>
+    <rect width="78" height="3" rx="1.5" fill="#f5e100"/>
+    <text x="39" y="27" text-anchor="middle" fill="#b8b8e0" font-size="14" font-family="'Courier New',monospace">Area</text>
+    <circle cx="0" cy="22" r="4.5" fill="#0c0c22" stroke="#f5e100" stroke-width="1.5" opacity="0.8"/>
+    <circle cx="78" cy="15" r="4.5" fill="#0c0c22" stroke="#f5e100" stroke-width="1.5" opacity="0.8"/>
+    <circle cx="78" cy="29" r="4.5" fill="#0c0c22" stroke="#f5e100" stroke-width="1.5" opacity="0.8"/>
+  </g>
+
+  <!-- N6 "Sort List" (590,260) 88x44 — MAGENTA -->
+  <g transform="translate(590,260)">
+    <rect width="88" height="44" rx="2.5" fill="#0c0c22" stroke="#f000d0" stroke-width="0.8"/>
+    <rect width="88" height="3" rx="1.5" fill="#f000d0"/>
+    <text x="44" y="27" text-anchor="middle" fill="#b8b8e0" font-size="14" font-family="'Courier New',monospace">Sort List</text>
+    <circle cx="0" cy="15" r="4.5" fill="#0c0c22" stroke="#f000d0" stroke-width="1.5" opacity="0.8"/>
+    <circle cx="0" cy="29" r="4.5" fill="#0c0c22" stroke="#f000d0" stroke-width="1.5" opacity="0.8"/>
+    <circle cx="88" cy="15" r="4.5" fill="#0c0c22" stroke="#f000d0" stroke-width="1.5" opacity="0.8"/>
+    <circle cx="88" cy="29" r="4.5" fill="#0c0c22" stroke="#f000d0" stroke-width="1.5" opacity="0.8"/>
+  </g>
+
+  <!-- N8 "Panel" (700,155) 88x44 — YELLOW -->
+  <g transform="translate(700,155)">
+    <rect width="88" height="44" rx="2.5" fill="#13100a" stroke="#f5e100" stroke-width="0.8" opacity="0.8"/>
+    <rect width="88" height="3" rx="1.5" fill="#f5e100"/>
+    <text x="44" y="27" text-anchor="middle" fill="#8a8060" font-size="14" font-family="'Courier New',monospace">Panel</text>
+    <circle cx="0" cy="22" r="4.5" fill="#13100a" stroke="#f5e100" stroke-width="1.5" opacity="0.6"/>
+  </g>
+
+  <!-- ═══════════════════════════════════════════
+       BOTTOM NODE ROW — opacity 0.55
+  ═══════════════════════════════════════════ -->
+
+  <g opacity="0.55">
+    <!-- NB1 "Brep" (133,488) — CYAN -->
+    <g transform="translate(133,488)">
+      <rect width="80" height="44" rx="2.5" fill="#0c0c22" stroke="#00e5ff" stroke-width="0.8"/>
+      <rect width="80" height="3" rx="1.5" fill="#00e5ff"/>
+      <text x="40" y="27" text-anchor="middle" fill="#b8b8e0" font-size="14" font-family="'Courier New',monospace">Brep</text>
+      <circle cx="0" cy="22" r="4.5" fill="#0c0c22" stroke="#00e5ff" stroke-width="1.5"/>
+      <circle cx="80" cy="22" r="4.5" fill="#0c0c22" stroke="#00e5ff" stroke-width="1.5"/>
+    </g>
+
+    <!-- NB2 "Cull Pattern" (293,488) — MAGENTA -->
+    <g transform="translate(293,488)">
+      <rect width="112" height="44" rx="2.5" fill="#0c0c22" stroke="#f000d0" stroke-width="0.8"/>
+      <rect width="112" height="3" rx="1.5" fill="#f000d0"/>
+      <text x="56" y="27" text-anchor="middle" fill="#b8b8e0" font-size="14" font-family="'Courier New',monospace">Cull Pattern</text>
+      <circle cx="0" cy="15" r="4.5" fill="#0c0c22" stroke="#f000d0" stroke-width="1.5"/>
+      <circle cx="0" cy="29" r="4.5" fill="#0c0c22" stroke="#f000d0" stroke-width="1.5"/>
+      <circle cx="112" cy="22" r="4.5" fill="#0c0c22" stroke="#f000d0" stroke-width="1.5"/>
+    </g>
+
+    <!-- NB3 "Voronoi" (480,488) — PURPLE -->
+    <g transform="translate(480,488)">
+      <rect width="96" height="44" rx="2.5" fill="#0c0c22" stroke="#9900ff" stroke-width="0.8"/>
+      <rect width="96" height="3" rx="1.5" fill="#9900ff"/>
+      <text x="48" y="27" text-anchor="middle" fill="#b8b8e0" font-size="14" font-family="'Courier New',monospace">Voronoi</text>
+      <circle cx="0" cy="22" r="4.5" fill="#0c0c22" stroke="#9900ff" stroke-width="1.5"/>
+      <circle cx="96" cy="22" r="4.5" fill="#0c0c22" stroke="#9900ff" stroke-width="1.5"/>
+    </g>
+
+    <!-- NB4 "Graph Mapper" (658,488) — NEON GREEN -->
+    <g transform="translate(658,488)">
+      <rect width="118" height="44" rx="2.5" fill="#0c0c22" stroke="#00ff88" stroke-width="0.8"/>
+      <rect width="118" height="3" rx="1.5" fill="#00ff88"/>
+      <text x="59" y="27" text-anchor="middle" fill="#b8b8e0" font-size="14" font-family="'Courier New',monospace">Graph Mapper</text>
+      <circle cx="0" cy="22" r="4.5" fill="#0c0c22" stroke="#00ff88" stroke-width="1.5"/>
+      <circle cx="118" cy="22" r="4.5" fill="#0c0c22" stroke="#00ff88" stroke-width="1.5"/>
+    </g>
+  </g>
+
+  <!-- Very faded bottom row -->
+  <g opacity="0.16">
+    <rect x="133" y="585" width="96" height="40" rx="2" fill="#0c0c22" stroke="#00e5ff" stroke-width="0.5"/>
+    <text x="181" y="609" text-anchor="middle" fill="#6060aa" font-size="13" font-family="'Courier New',monospace">Dispatch</text>
+    <rect x="315" y="585" width="112" height="40" rx="2" fill="#0c0c22" stroke="#f000d0" stroke-width="0.5"/>
+    <text x="371" y="609" text-anchor="middle" fill="#6060aa" font-size="13" font-family="'Courier New',monospace">Interpolate</text>
+    <rect x="520" y="585" width="96" height="40" rx="2" fill="#0c0c22" stroke="#9900ff" stroke-width="0.5"/>
+    <text x="568" y="609" text-anchor="middle" fill="#6060aa" font-size="13" font-family="'Courier New',monospace">Remap</text>
+    <path d="M 229,605 C 271,605 271,605 315,605" stroke="#2a2a6a" stroke-width="1" fill="none"/>
+    <path d="M 427,605 C 472,605 472,605 520,605" stroke="#2a2a6a" stroke-width="1" fill="none"/>
+    <path d="M 173,532 C 165,558 158,572 181,585" stroke="#2a2a6a" stroke-width="1" fill="none"/>
+    <path d="M 349,532 C 351,558 358,572 371,585" stroke="#2a2a6a" stroke-width="1" fill="none"/>
+    <path d="M 528,532 C 538,558 548,572 568,585" stroke="#2a2a6a" stroke-width="1" fill="none"/>
+  </g>
+
+  <!-- ═══════════════════════════════════════════
+       GH AGENT NODE (760,252) — MAGENTA NEON
+  ═══════════════════════════════════════════ -->
+
+  <!-- Outer glow rings -->
+  <rect x="742" y="234" width="261" height="116" rx="10" fill="none" stroke="#f000d0" stroke-width="1" opacity="0.06"/>
+  <rect x="750" y="242" width="245" height="100" rx="7" fill="none" stroke="#f000d0" stroke-width="1" opacity="0.10"/>
+  <!-- Main node -->
+  <rect x="760" y="252" width="225" height="80" rx="4" fill="#0e0018" stroke="#f000d0" stroke-width="1.8"/>
+  <!-- Left neon bar -->
+  <rect x="760" y="252" width="5" height="80" rx="2.5" fill="#f000d0"/>
+  <rect x="762" y="252" width="3" height="80" fill="#f000d0"/>
+
+  <text x="882" y="283" text-anchor="middle" fill="#ff66e8" font-size="18" font-family="'Courier New',monospace" letter-spacing="5" font-weight="bold">GH AGENT</text>
+  <!-- Status dot: cyan -->
+  <circle cx="787" cy="308" r="4.5" fill="#00e5ff"/>
+  <circle cx="787" cy="308" r="8" fill="#00e5ff" opacity="0.15"/>
+  <text x="801" y="313" fill="#00e5ff" font-size="12" font-family="'Courier New',monospace" letter-spacing="1.5" opacity="0.85">CONNECTED  ·  SYNCING</text>
+  <!-- Input port -->
+  <circle cx="760" cy="292" r="6" fill="#0e0018" stroke="#f000d0" stroke-width="1.5"/>
+
+  <!-- ═══════════════════════════════════════════
+       CLAUDE DESKTOP CARD
+  ═══════════════════════════════════════════ -->
+
+  <path d="M 985,292 C 1003,292 1003,285 1025,285" stroke="#f000d0" stroke-width="1.5" fill="none" stroke-linecap="round" opacity="0.45"/>
+  <rect x="1025" y="230" width="148" height="115" rx="6" fill="#0a0a1e" stroke="#2a2a6a" stroke-width="1"/>
+  <rect x="1025" y="230" width="148" height="26" rx="6" fill="#0f0f28"/>
+  <rect x="1025" y="244" width="148" height="12" fill="#0f0f28"/>
+  <circle cx="1039" cy="243" r="3.5" fill="#ff4466" opacity="0.7"/>
+  <circle cx="1051" cy="243" r="3.5" fill="#f5e100" opacity="0.7"/>
+  <circle cx="1063" cy="243" r="3.5" fill="#00ff88" opacity="0.7"/>
+  <text x="1155" y="248" text-anchor="end" fill="#30306a" font-size="11" font-family="'Courier New',monospace" letter-spacing="0.5">CLAUDE DESKTOP</text>
+  <rect x="1044" y="268" width="54" height="7" rx="3.5" fill="#1a1a40"/>
+  <rect x="1044" y="280" width="76" height="7" rx="3.5" fill="#1a1a40"/>
+  <rect x="1044" y="292" width="62" height="7" rx="3.5" fill="#1a1a40"/>
+  <rect x="1038" y="310" width="106" height="22" rx="4" fill="#001020" stroke="#00e5ff" stroke-width="0.8" opacity="0.7"/>
+  <rect x="1044" y="316" width="68" height="5" rx="2.5" fill="#00e5ff" opacity="0.25"/>
+  <rect x="1044" y="324" width="40" height="4" rx="2" fill="#f000d0" opacity="0.2"/>
+
+  <!-- ═══════════════════════════════════════════
+       BRANDING
+  ═══════════════════════════════════════════ -->
+  <text x="1175" y="50" text-anchor="end" fill="#00e5ff" font-size="15" font-family="'Courier New',monospace" letter-spacing="4" font-weight="bold" opacity="0.7">GH AGENT</text>
+  <text x="1175" y="68" text-anchor="end" fill="#f000d0" font-size="12" font-family="'Courier New',monospace" letter-spacing="2" opacity="0.5">AI FOR GRASSHOPPER 3D</text>
+
+</svg>
