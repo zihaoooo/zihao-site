@@ -326,6 +326,12 @@ body {
     flex-direction: row;
     flex-wrap: wrap;
     gap: 16px;
+    width: 100%;
+  }
+
+  .site-nav-projects,
+  .site-nav-link {
+    width: 100%;
   }
 
   #site-main {
