@@ -91,14 +91,12 @@
         <span class="wf-step-label">Set Up Your Machine</span>
       </div>
       <div class="wf-step-body">
-        <div class="wf-step-desc"><strong>One-time setup.</strong> This step is the only tedious part, and you do it once. Everything after is repeatable. A brand-new Windows laptop has none of these installed, so work through them in order.</div>
+        <div class="wf-step-desc">One-time installs. Work through them in order.</div>
         <ul class="wf-tips">
-          <li><strong>Claude Desktop</strong> — download from claude.com/download. This is the app you'll work in; it includes Claude Code built in. Using the Code tab requires a paid Claude plan (Pro or above).</li>
-          <li><strong>GitHub account</strong> — sign up free at github.com. This is where your site files live online and where your site is hosted.</li>
-          <li><strong>Git for Windows</strong> — download from git-scm.com. The first time you open the Code tab, Claude Desktop will prompt you to install Git if it's missing. Run the installer and click Next through every screen, leaving all defaults. You won't use Git directly — Claude Code does.</li>
-          <li><strong>Python</strong> — download from python.org. This lets your computer run a local preview server. On the download page, get the latest Windows installer; during install, leave the defaults. (If typing a command later opens the Microsoft Store, the install didn't register — re-run the installer.)</li>
+          <li><strong>Claude Desktop</strong> — claude.com/download. Includes Claude Code. Requires a paid plan (Pro or above).</li>
+          <li><strong>GitHub account</strong> — github.com. Free. This is where your site lives.</li>
+          <li><strong>Git for Windows</strong> — git-scm.com. Click Next through the installer; leave all defaults.</li>
         </ul>
-        <div class="wf-note">Don't worry about understanding every tool yet. Install them, and the workflow below will show you what each one is for.</div>
       </div>
     </div>
 
@@ -106,24 +104,21 @@
     <div class="wf-step">
       <div class="wf-step-head">
         <span class="wf-step-num">01</span>
-        <span class="wf-step-label">Plan Your Site</span>
+        <span class="wf-step-label">Gather Your Material</span>
       </div>
       <div class="wf-step-body">
-        <div class="wf-step-desc"><strong>Gather your material before you build.</strong> A simple portfolio needs three things:</div>
         <ul class="wf-tips">
           <li>A short <strong>about</strong> text — who you are, what you do.</li>
-          <li>Your <strong>resume</strong> — the file you already have.</li>
-          <li>A few <strong>project images</strong> — three to six is plenty to start.</li>
+          <li>Your <strong>resume</strong> file.</li>
+          <li>A few <strong>project images</strong> — three to six to start.</li>
         </ul>
-        <div class="wf-step-desc">Decide the simplest possible structure: a home/about page, and a projects section. You can always add more later.</div>
-        <div class="wf-step-desc"><strong>Prepare your images for the web.</strong> Designers tend to work at print resolution, which is far too heavy for a website — it makes pages slow without looking any better on screen. Aim for:</div>
+        <div class="wf-step-desc"><strong>Resize images before you build.</strong> Print-resolution exports are far too heavy for the web.</div>
         <ul class="wf-tips">
-          <li><strong>Large/feature images:</strong> 1600–2000 px on the long edge.</li>
-          <li><strong>Gallery/inline images:</strong> 1000–1200 px on the long edge.</li>
-          <li><strong>File size:</strong> under ~300–500 KB each. A 12 MB export is about 30× too big.</li>
-          <li><strong>Format:</strong> JPG for photos and renders; PNG only when you need a transparent background.</li>
+          <li><strong>Feature images:</strong> 1600–2000 px on the long edge, under 500 KB.</li>
+          <li><strong>Gallery images:</strong> 1000–1200 px, under 300 KB.</li>
+          <li><strong>Format:</strong> JPG for photos and renders; PNG only for transparent backgrounds.</li>
         </ul>
-        <div class="wf-note">If your exports are too big, don't resize them by hand — in Step 3 you can ask Claude Code to resize them all for you.</div>
+        <div class="wf-note">Too-large exports? Ask Claude Code to batch-resize them in Step 3.</div>
       </div>
     </div>
 
@@ -135,10 +130,9 @@
         <span class="wf-badge wf-badge-chat">CHAT</span>
       </div>
       <div class="wf-step-body">
-        <div class="wf-step-desc"><strong>Chat is for deciding what you want.</strong> Open a normal Claude chat (not the Code tab) and talk through your site: what pages, what sections, what goes where, what style you like. Work with Claude until you have a clear plan.</div>
-        <div class="wf-step-desc">Then have Claude write it all into a single file called <strong>BUILDSPEC.md</strong> — a plain description of the site you want built.</div>
-        <div class="wf-step-desc"><strong>Save BUILDSPEC.md into a new folder on your computer</strong> — this folder will become your website. Making the folder yourself, and putting the spec inside it, is how you'll understand what's actually happening: everything for your site lives in one place.</div>
-        <div class="wf-note">Nothing has been built yet. Chat is for thinking and planning — figuring out <em>what</em> you want before anything is made.</div>
+        <div class="wf-step-desc">Open a Claude chat (not the Code tab) and talk through your site — pages, sections, style. When you have a clear plan, ask Claude to write it into a file called <strong>BUILDSPEC.md</strong>.</div>
+        <div class="wf-step-desc">Create a new folder on your computer and save <strong>BUILDSPEC.md</strong> inside it. This folder becomes your website.</div>
+        <div class="wf-note">Chat is for planning — nothing is built yet.</div>
       </div>
     </div>
 
@@ -150,10 +144,8 @@
         <span class="wf-badge wf-badge-code">CODE</span>
       </div>
       <div class="wf-step-body">
-        <div class="wf-step-desc"><strong>Code is for doing it — on your actual files.</strong> Open Claude Desktop, click the <strong>Code</strong> tab, choose <strong>Local</strong>, and select the folder you just made. Claude Code can now see your folder, your spec, and your images.</div>
-        <div class="wf-step-desc">Tell it to read <strong>BUILDSPEC.md</strong> and build the site. It writes the real HTML and CSS files into your folder. To change anything, just describe it in plain language — "make the header bigger," "use a darker background" — and it edits the files for you. This is where directing the agent matters: you say what you want, it does the work.</div>
-        <div class="wf-step-desc">If your project images are too large, ask Claude Code to resize them to web sizes here.</div>
-        <div class="wf-note">The spec is the bridge: you decided <em>what</em> in Chat, and Code does the <em>how</em> against your real files.</div>
+        <div class="wf-step-desc">Open Claude Desktop → <strong>Code</strong> tab → <strong>Local</strong> → select your folder. Tell it to read <strong>BUILDSPEC.md</strong> and build the site.</div>
+        <div class="wf-step-desc">Iterate in plain language: <em>"make the header bigger," "use a darker background."</em> Code edits the real files in your folder.</div>
       </div>
     </div>
 
@@ -161,16 +153,12 @@
     <div class="wf-step">
       <div class="wf-step-head">
         <span class="wf-step-num">04</span>
-        <span class="wf-step-label">Preview with a Local Server</span>
+        <span class="wf-step-label">Preview Locally</span>
         <span class="wf-badge wf-badge-neutral">localhost</span>
       </div>
       <div class="wf-step-body">
-        <div class="wf-step-desc"><strong>See your site before it goes public.</strong> There are two ways, and it's worth knowing both.</div>
-        <ul class="wf-tips">
-          <li><strong>Quick way:</strong> ask Claude Code to preview the site, and it shows you a live preview right in the app.</li>
-          <li><strong>Proper way:</strong> ask Claude Code to start a local server. It runs <kbd>py -m http.server 8000</kbd> in your folder, and you open <kbd>localhost:8000</kbd> in your own browser.</li>
-        </ul>
-        <div class="wf-step-desc">The proper way shows you what a website really is: a folder of files, <em>served</em> at an address. When you close the server, the site stops — because nothing is hosting it yet. That's exactly the problem the next step solves.</div>
+        <div class="wf-step-desc">Claude Code runs a live preview inside the app. You can also open <kbd>localhost:3000</kbd> in your browser for a full-size view.</div>
+        <div class="wf-step-desc">The preview only works while Claude Code is running — your files aren't hosted anywhere yet. Step 5 fixes that.</div>
       </div>
     </div>
 
@@ -182,8 +170,10 @@
         <span class="wf-badge wf-badge-neutral">GitHub</span>
       </div>
       <div class="wf-step-body">
-        <div class="wf-step-desc"><strong>Put your files online.</strong> Ask Claude Code to save your work and upload it to GitHub. It handles everything — taking a snapshot of your files, creating the online repository, and pushing the files up. You'll see it happen; you don't type any commands yourself.</div>
-        <div class="wf-step-desc">Then, in your repository on github.com, open <strong>Settings → Pages</strong> and turn on GitHub Pages (deploy from the <kbd>main</kbd> branch, root folder). One toggle.</div>
+        <div class="wf-step-desc"><strong>Create an empty repository on GitHub.</strong> Click <strong>+</strong> → <strong>New repository</strong>, name it <kbd>my-portfolio</kbd>, leave all defaults, click <strong>Create repository</strong>. Don't add any files.</div>
+        <div class="wf-step-desc"><strong>Push from Claude Code.</strong> Copy the repo URL (e.g. <kbd>https://github.com/yourname/my-portfolio.git</kbd>) and type:</div>
+        <div style="background:#f0ede8; border-left:3px solid #c8a97a; border-radius:0 4px 4px 0; padding:10px 14px; margin:8px 0; font-family:monospace; font-size:13px;">Commit all my files and push to https://github.com/yourname/my-portfolio.git</div>
+        <div class="wf-step-desc"><strong>Enable GitHub Pages.</strong> In your repo on github.com: <strong>Settings → Pages</strong> → deploy from <kbd>main</kbd> branch, root folder.</div>
       </div>
     </div>
 
@@ -194,9 +184,8 @@
         <span class="wf-step-label">Your Site Is Live</span>
       </div>
       <div class="wf-step-body">
-        <div class="wf-step-desc"><strong>You now have a public web address</strong> — something like <strong>yourname.github.io</strong>. Anyone can visit it.</div>
-        <div class="wf-step-desc">This is the same thing as your local preview from Step 4 — a folder of files served at an address — except now it's served from the cloud, at a public URL, all the time.</div>
-        <div class="wf-step-desc"><strong>To update your site later:</strong> change something with Claude Code, ask it to push the update, and your live site refreshes. That's the whole loop.</div>
+        <div class="wf-step-desc">Your site is now public at <strong>yourname.github.io</strong> — the same files as your local preview, but hosted in the cloud permanently.</div>
+        <div class="wf-step-desc"><strong>To update:</strong> make changes in Claude Code, then ask it to commit and push. Your live site refreshes.</div>
       </div>
     </div>
 
