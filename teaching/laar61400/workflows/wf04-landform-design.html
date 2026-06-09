@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WF 04 Rhino Landform Modeling — LAAR 61400</title>
+  <link rel="stylesheet" href="/teaching/laar61400/assets/css/main.css">
+  <link rel="stylesheet" href="/teaching/laar61400/assets/css/workflow-shared.css">
+</head>
+<body>
+
+  <!-- Side panel -->
+  <nav id="sidepanel">
+    <a class="panel-brand" href="/teaching/laar61400/index.html">
+      <span class="panel-brand-title">LAAR 61400</span>
+      <span class="panel-brand-sub">Representation + Computation</span>
+    </a>
+    <div class="panel-section">
+      <span class="panel-section-label">Course</span>
+      <a class="panel-link" href="/teaching/laar61400/index.html">Syllabus</a>
+    </div>
+    <div class="panel-section">
+      <span class="panel-section-label">Workflows</span>
+      <a class="panel-link" href="/teaching/laar61400/workflows/wf01-autocad.html">
+        <span class="panel-link-num">01</span>AutoCAD Site Drafting
+      </a>
+      <a class="panel-link" href="/teaching/laar61400/workflows/wf02-sketch-portfolio.html">
+        <span class="panel-link-num">02</span>Hand Sketch → Hybrid Drawing
+      </a>
+      <a class="panel-link" href="/teaching/laar61400/workflows/wf03-urban-context.html">
+        <span class="panel-link-num">03</span>Urban Context Mapping
+      </a>
+      <a class="panel-link active" href="/teaching/laar61400/workflows/wf04-landform-design.html">
+        <span class="panel-link-num">04</span>Rhino Landform Modeling
+      </a>
+      <a class="panel-link placeholder"><span class="panel-link-num">05</span>—</a>
+      <a class="panel-link placeholder"><span class="panel-link-num">06</span>—</a>
+      <a class="panel-link" href="/teaching/laar61400/workflows/wf07-claude-code-site.html">
+        <span class="panel-link-num">07</span>Website with Claude Code
+      </a>
+    </div>
+    <div class="panel-section">
+      <span class="panel-section-label">Shortcuts &amp; Reference</span>
+      <a class="panel-link" href="/teaching/laar61400/shortcuts/adobe.html">Adobe Ps / Ai / Id</a>
+      <a class="panel-link" href="/teaching/laar61400/shortcuts/autocad.html">AutoCAD</a>
+      <a class="panel-link" href="/teaching/laar61400/shortcuts/rhino-pipeline.html">Rhino — Pipeline</a>
+      <a class="panel-link" href="/teaching/laar61400/shortcuts/rhino-ui.html">Rhino — Navigation &amp; UI</a>
+    </div>
+  </nav>
+
+  <!-- Main content -->
+  <main id="main-content">
+    <div class="page-inner">
+
+<div class="wf-wrap">
+
+  <!-- Header -->
+  <div class="wf-header">
+    <div class="wf-index">WF 04</div>
+    <div class="wf-header-text">
+      <div class="wf-title">Rhino Landform Modeling</div>
+      <div class="wf-subtitle">Rhino + Grasshopper → Contour Plan</div>
+    </div>
+  </div>
+
+  <!-- Spec + outcome -->
+  <div class="wf-spec">
+    <div class="wf-spec-item"><span class="wf-spec-label">Weeks</span><span class="wf-spec-value">7 – 8</span></div>
+    <div class="wf-spec-item"><span class="wf-spec-label">Scale</span><span class="wf-spec-value">1" = 20'</span></div>
+    <div class="wf-spec-item"><span class="wf-spec-label">Sheet</span><span class="wf-spec-value">11" × 17"</span></div>
+  </div>
+  <div class="wf-outcome">
+    <strong>Assignment</strong><span>Design a landform composition that creates three distinct spatial experiences on a 180 × 300 ft site with a 10 ft slope across the long axis. Each space should interact with water in a different way — directing flow, collecting it, or deflecting it — so that the movement of water across the site is legible in the contour plan.</span>
+  </div>
+
+  <!-- Pipeline strip -->
+  <div class="wf-pipeline">
+    <div class="wf-pipe-step"><div class="wf-pipe-node" style="background:#f0e8e8;color:#801010;">Rhino</div><div class="wf-pipe-arrow">→</div></div>
+    <div class="wf-pipe-step"><div class="wf-pipe-node" style="background:#e8f5e8;color:#2a6a2a;">Grasshopper</div><div class="wf-pipe-arrow">→</div></div>
+    <div class="wf-pipe-step"><div class="wf-pipe-node wf-pipe-tool">Bake</div><div class="wf-pipe-arrow">→</div></div>
+    <div class="wf-pipe-step"><div class="wf-pipe-node wf-pipe-tool">Make2D</div><div class="wf-pipe-arrow">→</div></div>
+    <div class="wf-pipe-step"><div class="wf-pipe-node wf-pipe-tool">Contour Plan PDF</div></div>
+  </div>
+
+  <!-- Steps grid -->
+  <div class="wf-steps">
+
+    <!-- Week 7 label -->
+    <div class="wf-step wf-full" style="background:none;border:none;padding:0;margin-top:4px;">
+      <div style="font-size:9px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#aaa;font-family:'DM Mono',monospace;padding:0 0 2px 0;">Week 7 — Site Setup + First Landform</div>
+    </div>
+
+    <!-- Steps 00 & 01 -->
+    <div class="wf-step wf-full">
+      <div class="wf-step-head">
+        <span class="wf-step-num">00–01</span>
+        <span class="wf-step-label">File Setup + Base Slope</span>
+        <span class="wf-badge wf-badge-rh">Rhino</span>
+      </div>
+      <div class="wf-steps-row">
+        <div class="wf-step-body">
+          <div class="wf-step-desc"><strong>File setup</strong> — <kbd>DocumentProperties</kbd> → Units → <strong>Feet</strong>. Save as <kbd>wf04-landform.3dm</kbd>.</div>
+        </div>
+        <div class="wf-step-body">
+          <div class="wf-step-desc"><strong>Build the base slope</strong> — <kbd>Rectangle</kbd> → <kbd>0,0</kbd> to <kbd>300,180</kbd>. <kbd>PlanarSrf</kbd> from the rectangle. Press <kbd>F10</kbd> to show control points. <kbd>Ctrl+Shift+click</kbd> one short edge to sub-object select it. <strong>Gumball Z</strong> → type <kbd>10</kbd> → Enter. <kbd>F11</kbd> to hide points.</div>
+          <div class="wf-note">Sub-object selection (Ctrl+Shift+click) selects faces, edges, or vertices without exploding the object. Use it whenever you need to move part of a surface.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Step 02 -->
+    <div class="wf-step">
+      <div class="wf-step-head">
+        <span class="wf-step-num">02</span>
+        <span class="wf-step-label">Reference Surface + Contour Preview</span>
+        <span class="wf-badge wf-badge-gh">Grasshopper</span>
+      </div>
+      <div class="wf-step-body">
+        <div class="wf-step-desc">Open Grasshopper (<kbd>Grasshopper</kbd> command). Wire up a live contour preview of your base slope:</div>
+        <ul class="wf-tips">
+          <li><strong>Surface</strong> param → Set One Surface → click the base slope</li>
+          <li><strong>Contour</strong> component → wire Surface → <kbd>S</kbd></li>
+          <li><strong>Number Slider</strong> (0.5–5) → wire → <kbd>N</kbd> (contour interval)</li>
+        </ul>
+        <div class="wf-note">Parallel evenly-spaced contours confirm the slope is reading correctly. This is your base terrain.</div>
+      </div>
+    </div>
+
+    <!-- Step 03 -->
+    <div class="wf-step">
+      <div class="wf-step-head">
+        <span class="wf-step-num">03</span>
+        <span class="wf-step-label">Draw a Plan Footprint</span>
+        <span class="wf-badge wf-badge-rh">Rhino</span>
+      </div>
+      <div class="wf-step-body">
+        <div class="wf-step-desc">In the Top viewport, draw a closed curve — <kbd>InterpCrv</kbd>, <kbd>Ellipse</kbd>, or freehand. Draw flat at Z = 0.</div>
+        <div class="wf-note">This curve is the <strong>breakline</strong>: where the landform begins and the base field ends. Its shape, size, and placement directly determine how the landform reads in section and how water moves across the site.</div>
+      </div>
+    </div>
+
+    <!-- Step 04 -->
+    <div class="wf-step wf-full">
+      <div class="wf-step-head">
+        <span class="wf-step-num">04</span>
+        <span class="wf-step-label">Project → Trim → Patch → Join</span>
+        <span class="wf-badge wf-badge-gh">Grasshopper</span>
+      </div>
+      <div class="wf-steps-row">
+        <div class="wf-step-body">
+          <div class="wf-step-desc"><strong>Project</strong> the footprint onto the base slope:</div>
+          <ul class="wf-tips">
+            <li><strong>Curve</strong> param → Set One Curve → footprint curve</li>
+            <li><strong>Project</strong> component → Curve, Surface, Direction (Unit Z vector)</li>
+          </ul>
+          <div class="wf-step-desc" style="margin-top:10px;"><strong>Trim</strong> the base surface:</div>
+          <ul class="wf-tips">
+            <li><strong>Trim</strong> (or <strong>Brep | Curve</strong>) → base surface + projected curve → surface with hole</li>
+          </ul>
+        </div>
+        <div class="wf-step-body">
+          <div class="wf-step-desc"><strong>Patch</strong> the landform surface:</div>
+          <ul class="wf-tips">
+            <li><strong>Patch</strong> component → projected curve as boundary</li>
+            <li>Add a <strong>Point</strong> param → set a point inside the footprint → controls peak or valley</li>
+            <li><strong>Number Slider</strong> (−10 to +10) → move point Z → positive = mound, negative = bowl/swale</li>
+            <li>Patch <strong>Flexibility</strong> input: try 3–5 for organic forms</li>
+          </ul>
+          <div class="wf-step-desc" style="margin-top:10px;"><strong>Join:</strong></div>
+          <ul class="wf-tips">
+            <li><strong>Join Breps</strong> → trimmed base + Patch surface. Edges are coincident — Join succeeds cleanly.</li>
+            <li>Wire joined surface to <strong>Contour</strong> → contours read across the full site</li>
+          </ul>
+        </div>
+      </div>
+      <div class="wf-note" style="padding:0 14px 14px;">End of Week 7. Before next session: sketch two more landform operations on paper. Think about where water flows and where a hard edge is needed.</div>
+    </div>
+
+    <!-- Week 8 label -->
+    <div class="wf-step wf-full" style="background:none;border:none;padding:0;margin-top:4px;">
+      <div style="font-size:9px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#aaa;font-family:'DM Mono',monospace;padding:0 0 2px 0;">Week 8 — Full Site + Deliverable</div>
+    </div>
+
+    <!-- Step 05 -->
+    <div class="wf-step">
+      <div class="wf-step-head">
+        <span class="wf-step-num">05</span>
+        <span class="wf-step-label">Add More Smooth Landforms</span>
+        <span class="wf-badge wf-badge-gh">Grasshopper</span>
+      </div>
+      <div class="wf-step-body">
+        <div class="wf-step-desc">Repeat the Step 03–04 loop for each additional Patch landform. Each is a separate GH branch.</div>
+        <ul class="wf-tips">
+          <li>Right-click the canvas → Group each branch and label it</li>
+          <li>Collect all joined surfaces into a final <strong>Join Breps</strong></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Step 06 -->
+    <div class="wf-step">
+      <div class="wf-step-head">
+        <span class="wf-step-num">06</span>
+        <span class="wf-step-label">Build a Hard Edge Condition</span>
+        <span class="wf-badge wf-badge-gh">Grasshopper</span>
+      </div>
+      <div class="wf-step-body">
+        <div class="wf-step-desc">In Rhino Top viewport, draw two curves: the <strong>top edge</strong> and <strong>bottom edge</strong> of the retaining wall. In Grasshopper:</div>
+        <ul class="wf-tips">
+          <li>Reference both curves</li>
+          <li><strong>Move</strong> each to its correct elevation (top grade / bottom grade)</li>
+          <li><strong>Loft</strong> → top curve + bottom curve → wall face surface</li>
+          <li>Trim grade surfaces to meet the wall edges → Join all</li>
+        </ul>
+        <div class="wf-note">In the contour plan, contours <em>overlap</em> at the wall face — the same elevation appears on both the upper and lower grade. That overlap is how a retaining wall reads in a contour drawing.</div>
+      </div>
+    </div>
+
+    <!-- Step 07 -->
+    <div class="wf-step">
+      <div class="wf-step-head">
+        <span class="wf-step-num">07</span>
+        <span class="wf-step-label">Read the Contours</span>
+        <span class="wf-badge wf-badge-gh">Grasshopper</span>
+      </div>
+      <div class="wf-step-body">
+        <div class="wf-step-desc">Before baking, read the contour output as a design drawing:</div>
+        <ul class="wf-tips">
+          <li>Contours that <strong>V upstream</strong> → valley or drainage path</li>
+          <li>Contours that <strong>V downstream</strong> → ridge</li>
+          <li>Are landform transitions reading as a continuous field or unintended hard edges?</li>
+          <li>Is the retaining wall placed where the grade change is legible and intentional?</li>
+        </ul>
+        <div class="wf-note">Adjust footprint curves and height sliders until the plan reads as a coherent designed landscape.</div>
+      </div>
+    </div>
+
+    <!-- Step 08 -->
+    <div class="wf-step">
+      <div class="wf-step-head">
+        <span class="wf-step-num">08</span>
+        <span class="wf-step-label">Bake + Produce the Contour Plan</span>
+        <span class="wf-badge wf-badge-rh">Rhino</span>
+      </div>
+      <div class="wf-step-body">
+        <div class="wf-step-desc">Bake the finished geometry and produce a print-ready layout:</div>
+        <ul class="wf-tips">
+          <li>Right-click Contour output → <strong>Bake</strong> → layer <kbd>CONTOURS-DESIGN</kbd></li>
+          <li><kbd>Make2D</kbd> → Top viewport → flat linework</li>
+          <li><kbd>Layout</kbd> → 1" = 20' (1:240) on 11 × 17</li>
+          <li>Add: north arrow, scale bar, contour interval note, title block</li>
+          <li>Plot to PDF</li>
+        </ul>
+      </div>
+    </div>
+
+  </div><!-- /steps -->
+
+  <!-- Concept block -->
+  <div class="wf-step wf-full" style="margin-top:24px;">
+    <div class="wf-step-head">
+      <span class="wf-step-label" style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;">Two Kinds of Surfaces</span>
+    </div>
+    <div class="wf-steps-row">
+      <div class="wf-step-body">
+        <div class="wf-step-desc"><strong>Smooth field</strong> — continuous transition across the ground. Footprint curve → <kbd>Patch</kbd>. Reads in plan as flowing, spaced contours.</div>
+      </div>
+      <div class="wf-step-body">
+        <div class="wf-step-desc"><strong>Hard edge</strong> — abrupt grade change. Two edge curves → <kbd>Loft</kbd>. Reads in plan as overlapping contours at the wall face.</div>
+      </div>
+    </div>
+    <div class="wf-note" style="padding:0 14px 14px;"><strong>The plan curve is always the breakline.</strong> Drawing a footprint in Top view is a design decision — the shape, size, and placement of that curve determines how the landform reads in section and how water moves across the site.</div>
+  </div>
+
+  <!-- Footer -->
+  <div class="wf-footer">
+    <span>LAAR 61400 — Representation &amp; Computation I</span><span>Workflow 04 of 07</span>
+  </div>
+
+</div>
+
+    </div>
+  </main>
+
+  <script src="/teaching/laar61400/assets/js/nav.js"></script>
+</body>
+</html>

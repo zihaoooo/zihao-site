@@ -20,6 +20,15 @@ zihao-site/
 - Teaching: LAAR 61400 built; other courses not added yet
 - Projects: ELUA, Cyborg Bloom, Flushing, Seed Bomb, Hydroponics, Harlem Schist, East Harlem Polder, Other Natures (`projects/othernatures/`), Shroom Drone (`projects/shroomdrone/`), GH Agent (`projects/ghagent/`) — all 10 complete.
 
+## LAAR 61400 workflows
+- WF01 (`wf01-autocad.html`): AutoCAD Site Drafting — complete
+- WF02 (`wf02-sketch-portfolio.html`): Hand Sketch → Hybrid Drawing — complete
+- WF03 (`wf03-urban-context.html`): Urban Context Mapping — complete
+- WF04 (`wf04-landform-design.html`): Rhino Landform Modeling — complete (Weeks 7–8; Rhino + Grasshopper; Patch/Loft; contour plan at 1"=20')
+- WF05, WF06: placeholder stubs only (`wf05.html`, `wf06.html`)
+- WF07 (`wf07-claude-code-site.html`): Website with Claude Code — complete
+- Old `wf04.html` is a dead placeholder stub — can be deleted when convenient
+
 ## Project page structure (follow exactly)
 1. `<a class="project-back" href="/projects/">← Projects</a>` — top of `<main>`, before hero
 2. Hero: `<img class="project-hero" ...>` — 16:9, defined in site.css
