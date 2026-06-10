@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WF 05 Grasshopper Parametric: Meadow — LAAR 61400</title>
+  <link rel="stylesheet" href="/teaching/laar61400/assets/css/main.css">
+  <link rel="stylesheet" href="/teaching/laar61400/assets/css/workflow-shared.css">
+</head>
+<body>
+
+  <!-- Side panel -->
+  <nav id="sidepanel">
+    <a class="panel-brand" href="/teaching/laar61400/index.html">
+      <span class="panel-brand-title">LAAR 61400</span>
+      <span class="panel-brand-sub">Representation + Computation</span>
+    </a>
+    <div class="panel-section">
+      <span class="panel-section-label">Course</span>
+      <a class="panel-link" href="/teaching/laar61400/index.html">Syllabus</a>
+    </div>
+    <div class="panel-section">
+      <span class="panel-section-label">Workflows</span>
+      <a class="panel-link" href="/teaching/laar61400/workflows/wf01-autocad.html">
+        <span class="panel-link-num">01</span>AutoCAD Site Drafting
+      </a>
+      <a class="panel-link" href="/teaching/laar61400/workflows/wf02-sketch-portfolio.html">
+        <span class="panel-link-num">02</span>Hand Sketch → Hybrid Drawing
+      </a>
+      <a class="panel-link" href="/teaching/laar61400/workflows/wf03-urban-context.html">
+        <span class="panel-link-num">03</span>Urban Context Mapping
+      </a>
+      <a class="panel-link" href="/teaching/laar61400/workflows/wf04-landform-design.html">
+        <span class="panel-link-num">04</span>Rhino Landform Modeling
+      </a>
+      <a class="panel-link active" href="/teaching/laar61400/workflows/wf05-meadow-parametric.html">
+        <span class="panel-link-num">05</span>Grasshopper Parametric: Meadow
+      </a>
+      <a class="panel-link" href="/teaching/laar61400/workflows/wf06-slope-analysis.html">
+        <span class="panel-link-num">06</span>Slope Analysis
+      </a>
+      <a class="panel-link" href="/teaching/laar61400/workflows/wf07-claude-code-site.html">
+        <span class="panel-link-num">07</span>Website with Claude Code
+      </a>
+    </div>
+    <div class="panel-section">
+      <span class="panel-section-label">Shortcuts &amp; Reference</span>
+      <a class="panel-link" href="/teaching/laar61400/shortcuts/adobe.html">Adobe Ps / Ai / Id</a>
+      <a class="panel-link" href="/teaching/laar61400/shortcuts/autocad.html">AutoCAD</a>
+      <a class="panel-link" href="/teaching/laar61400/shortcuts/rhino-pipeline.html">Rhino — Pipeline</a>
+      <a class="panel-link" href="/teaching/laar61400/shortcuts/rhino-ui.html">Rhino — Navigation &amp; UI</a>
+    </div>
+  </nav>
+
+  <!-- Main content -->
+  <main id="main-content">
+    <div class="page-inner">
+
+<div class="wf-wrap">
+
+  <!-- Header -->
+  <div class="wf-header">
+    <div class="wf-index">WF 05</div>
+    <div class="wf-header-text">
+      <div class="wf-title">Grasshopper Parametric: Meadow</div>
+      <div class="wf-subtitle">Rhino + Grasshopper → Ellipsoid Field</div>
+    </div>
+  </div>
+
+  <!-- Spec strip -->
+  <div class="wf-spec">
+    <div class="wf-spec-item"><span class="wf-spec-label">Weeks</span><span class="wf-spec-value">9 – 10</span></div>
+    <div class="wf-spec-item"><span class="wf-spec-label">Site</span><span class="wf-spec-value">100 × 150 ft</span></div>
+    <div class="wf-spec-item"><span class="wf-spec-label">Logic</span><span class="wf-spec-value">Dispatch · Remap</span></div>
+  </div>
+
+  <!-- Outcome -->
+  <div class="wf-outcome">
+    <strong>Assignment</strong><span>One Grasshopper definition that encodes two landscape rules on the same meadow — a mown path (Dispatch) and water-collecting bowls (Remap) — submitted as Week 9 and Week 10 viewport screenshots plus one slider study showing how a parameter changes the spatial outcome.</span>
+  </div>
+
+  <!-- Pipeline strip -->
+  <div class="wf-pipeline">
+    <div class="wf-pipe-step"><div class="wf-pipe-node" style="background:#f0e8e8;color:#801010;">Rhino</div><div class="wf-pipe-arrow">→</div></div>
+    <div class="wf-pipe-step"><div class="wf-pipe-node" style="background:#e8f5e8;color:#2a6a2a;">Populate 2D</div><div class="wf-pipe-arrow">→</div></div>
+    <div class="wf-pipe-step"><div class="wf-pipe-node wf-pipe-tool">Rule</div><div class="wf-pipe-arrow">→</div></div>
+    <div class="wf-pipe-step"><div class="wf-pipe-node">Ellipsoid Field</div></div>
+  </div>
+
+  <!-- Intro -->
+  <div style="background:#f5f3f0; border-radius:4px; padding:16px 18px; margin-bottom:28px;">
+    <div class="wf-step-desc">A flat meadow. Two parametric rules encode two landscape conditions — a mown path, and water-collecting bowls. The same field, two rules, two spatial readings.</div>
+    <div class="wf-step-desc">This workflow introduces the core logic of parametric design: <strong>write the rule first, then build it in nodes.</strong></div>
+  </div>
+
+  <!-- Steps grid -->
+  <div class="wf-steps">
+
+    <!-- Week 9 label -->
+    <div class="wf-step wf-full" style="background:none;border:none;padding:0;margin-top:4px;">
+      <div style="font-size:9px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#aaa;font-family:'DM Mono',monospace;padding:0 0 2px 0;">Week 9 — Mowing Path</div>
+    </div>
+
+    <!-- Pseudocode 9 -->
+    <div class="wf-step wf-full">
+      <div class="wf-step-head">
+        <span class="wf-step-num">A</span>
+        <span class="wf-step-label">Pseudocode First</span>
+        <span class="wf-badge wf-badge-neutral">On paper — no computers</span>
+      </div>
+      <div class="wf-step-body">
+        <div class="wf-step-desc">Before opening Grasshopper, write this rule on paper:</div>
+        <pre class="wf-code">FOR EACH plant in meadow:
+  IF distance to path &lt; mowing width
+    THEN height = mowed (short)
+  ELSE height = unmowed (tall, random)</pre>
+        <div class="wf-step-desc">Identify: what is the input, what is the condition, what are the two outputs.</div>
+      </div>
+    </div>
+
+    <!-- Step 01 -->
+    <div class="wf-step">
+      <div class="wf-step-head">
+        <span class="wf-step-num">01</span>
+        <span class="wf-step-label">Set Up the Meadow</span>
+        <span class="wf-badge wf-badge-rh">Rhino</span>
+        <span class="wf-badge wf-badge-gh" style="margin-left:4px;">GH</span>
+      </div>
+      <div class="wf-step-body">
+        <div class="wf-step-desc">In Rhino, draw a rectangle for the site boundary — e.g. 100 × 150 ft. In Grasshopper:</div>
+        <ul class="wf-tips">
+          <li><strong>Populate 2D</strong> → the rectangle as region</li>
+          <li><strong>Count</strong> slider → start at 200</li>
+          <li><strong>Seed</strong> slider → controls the random distribution</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Step 02 -->
+    <div class="wf-step">
+      <div class="wf-step-head">
+        <span class="wf-step-num">02</span>
+        <span class="wf-step-label">Random Heights (Unmowed)</span>
+        <span class="wf-badge wf-badge-gh">GH</span>
+      </div>
+      <div class="wf-step-body">
+        <div class="wf-step-desc">Give every plant a random unmowed height:</div>
+        <ul class="wf-tips">
+          <li><strong>Random</strong> → domain 2.0 to 6.0 (grass height range)</li>
+          <li><strong>Line SDL</strong> → start = Populate 2D points, direction = unit Z, length = Random</li>
+        </ul>
+        <div class="wf-note">You now have a meadow — a field of vertical lines of varying height.</div>
+      </div>
+    </div>
+
+    <!-- Step 03 -->
+    <div class="wf-step">
+      <div class="wf-step-head">
+        <span class="wf-step-num">03</span>
+        <span class="wf-step-label">Draw + Measure the Path</span>
+        <span class="wf-badge wf-badge-rh">Rhino</span>
+        <span class="wf-badge wf-badge-gh" style="margin-left:4px;">GH</span>
+      </div>
+      <div class="wf-step-body">
+        <div class="wf-step-desc">In Rhino, draw a curve across the site — polyline or arc. Reference it into GH with a <strong>Curve</strong> parameter, then measure how far each plant sits from it:</div>
+        <ul class="wf-tips">
+          <li><strong>Curve Closest Point</strong> → Populate 2D points + path curve</li>
+          <li><strong>Distance</strong> → original points to their closest points on the curve</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Step 04 -->
+    <div class="wf-step">
+      <div class="wf-step-head">
+        <span class="wf-step-num">04</span>
+        <span class="wf-step-label">Apply the Rule — Dispatch</span>
+        <span class="wf-badge wf-badge-gh">GH</span>
+      </div>
+      <div class="wf-step-body">
+        <div class="wf-step-desc">Split the meadow into mown and unmown by the threshold:</div>
+        <ul class="wf-tips">
+          <li><strong>Larger Than</strong> → A = distance, B = mowing width slider (start at 8.0)</li>
+          <li><strong>Dispatch</strong> → data = Line SDL lengths, pattern = Larger Than</li>
+          <li>List A (beyond threshold) → keep the unmowed random heights</li>
+          <li>List B (within threshold) → replace with a short fixed height slider (0.5)</li>
+          <li>Rebuild a <strong>Line SDL</strong> for each branch</li>
+        </ul>
+        <div class="wf-note">Toggle the mowing width. The mown strip widens and narrows. Move the path curve in Rhino — the mown zone follows live. <strong>End of Week 9.</strong></div>
+      </div>
+    </div>
+
+    <!-- Week 10 label -->
+    <div class="wf-step wf-full" style="background:none;border:none;padding:0;margin-top:4px;">
+      <div style="font-size:9px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#aaa;font-family:'DM Mono',monospace;padding:0 0 2px 0;">Week 10 — Water Bowls</div>
+    </div>
+
+    <!-- Pseudocode 10 -->
+    <div class="wf-step wf-full">
+      <div class="wf-step-head">
+        <span class="wf-step-num">B</span>
+        <span class="wf-step-label">Pseudocode First</span>
+        <span class="wf-badge wf-badge-neutral">On paper — no computers</span>
+      </div>
+      <div class="wf-step-body">
+        <pre class="wf-code">FOR EACH plant in meadow:
+  height = remap(distance to nearest bowl, 0 → max, tall → short)</pre>
+        <div class="wf-step-desc">Close to a bowl = tall (wet, lush). Far from a bowl = short (dry).</div>
+      </div>
+    </div>
+
+    <!-- Step 05 -->
+    <div class="wf-step">
+      <div class="wf-step-head">
+        <span class="wf-step-num">05</span>
+        <span class="wf-step-label">Place Bowl Attractors</span>
+        <span class="wf-badge wf-badge-rh">Rhino</span>
+        <span class="wf-badge wf-badge-gh" style="margin-left:4px;">GH</span>
+      </div>
+      <div class="wf-step-body">
+        <div class="wf-step-desc">In Rhino, place 2–4 point objects on the site — these are the bowl locations. Reference them into GH with a <strong>Point</strong> parameter. Then find the nearest bowl for each plant:</div>
+        <ul class="wf-tips">
+          <li><strong>Pull Point</strong> → input points = Populate 2D points, geometry = bowl attractors</li>
+          <li><strong>Distance</strong> → each plant to its pulled (nearest) bowl point</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Step 06 -->
+    <div class="wf-step">
+      <div class="wf-step-head">
+        <span class="wf-step-num">06</span>
+        <span class="wf-step-label">Remap to Height</span>
+        <span class="wf-badge wf-badge-gh">GH</span>
+      </div>
+      <div class="wf-step-body">
+        <div class="wf-step-desc">Turn distance into a continuous height gradient:</div>
+        <ul class="wf-tips">
+          <li><strong>Bounds</strong> → on the distance list to get the real min/max</li>
+          <li><strong>Remap Numbers</strong> → values = distances, source = Bounds, target = 1.0 (close, tall) to 0.2 (far, short)</li>
+        </ul>
+        <div class="wf-note">Flip the target range so close = tall. This is the gradient — proximity drives lushness.</div>
+      </div>
+    </div>
+
+    <!-- Step 07 -->
+    <div class="wf-step">
+      <div class="wf-step-head">
+        <span class="wf-step-num">07</span>
+        <span class="wf-step-label">Construct the Ellipsoid</span>
+        <span class="wf-badge wf-badge-gh">GH</span>
+      </div>
+      <div class="wf-step-body">
+        <div class="wf-step-desc">Draw each plant as a vertically stretched sphere:</div>
+        <ul class="wf-tips">
+          <li><strong>Sphere</strong> → center = Populate 2D points, radius = remapped height</li>
+          <li><strong>Scale NU</strong> → geometry = sphere, X = 1.0, Y = 1.0, Z = remapped height</li>
+          <li>Add a <strong>Z Scale</strong> slider to tune the vertical exaggeration</li>
+        </ul>
+        <div class="wf-note">Taller and rounder near bowls; short and disc-like further away. One value, two readings.</div>
+      </div>
+    </div>
+
+    <!-- Step 08 -->
+    <div class="wf-step">
+      <div class="wf-step-head">
+        <span class="wf-step-num">08</span>
+        <span class="wf-step-label">Preview + Adjust</span>
+        <span class="wf-badge wf-badge-rh">Rhino</span>
+      </div>
+      <div class="wf-step-body">
+        <ul class="wf-tips">
+          <li>Move a bowl point in Rhino — the tall cluster shifts live</li>
+          <li>Add or remove bowl points — each makes a new zone of lush growth</li>
+          <li>Adjust the Remap target domain to change the height contrast</li>
+        </ul>
+      </div>
+    </div>
+
+  </div><!-- /steps -->
+
+  <!-- Key concepts block -->
+  <div class="wf-step wf-full" style="margin-top:24px;">
+    <div class="wf-step-head">
+      <span class="wf-step-label" style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;">Key Concepts</span>
+    </div>
+    <div class="wf-steps-row">
+      <div class="wf-step-body">
+        <div class="wf-step-desc"><strong>Populate 2D vs. grid</strong> — Populate 2D distributes points organically within a boundary. The Seed slider changes the distribution without changing the count. It reads as a natural meadow, not a tile pattern.</div>
+        <div class="wf-step-desc" style="margin-top:10px;"><strong>Dispatch vs. Remap</strong> — Dispatch encodes a binary rule (mow / no mow). Remap encodes a continuous gradient (tall near water, short away). Most landscape conditions are gradients; the binary is the readable edge.</div>
+      </div>
+      <div class="wf-step-body">
+        <div class="wf-step-desc"><strong>Pull Point</strong> — works like Closest Point: for each input point, finds the nearest geometry in a set and returns its location. Used here to measure proximity to the nearest bowl across multiple attractors.</div>
+        <div class="wf-step-desc" style="margin-top:10px;"><strong>Ellipsoid from Scale NU</strong> — a sphere scaled non-uniformly in Z. The same remap value drives both radius and Z scale, so plants near bowls are taller and rounder; plants far away are short and flat.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Pseudocode → Node reference -->
+  <div class="wf-step wf-full" style="margin-top:16px;">
+    <div class="wf-step-head">
+      <span class="wf-step-label" style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;">Pseudocode → Node Reference</span>
+    </div>
+    <div class="wf-step-body">
+      <table class="wf-table">
+        <thead><tr><th>Pseudocode</th><th>GH component</th></tr></thead>
+        <tbody>
+          <tr><td>for each plant in meadow</td><td><kbd>Populate 2D</kbd></td></tr>
+          <tr><td>distance to path</td><td><kbd>Curve Closest Point</kbd> + <kbd>Distance</kbd></td></tr>
+          <tr><td>if / else</td><td><kbd>Larger Than</kbd> + <kbd>Dispatch</kbd></td></tr>
+          <tr><td>distance to nearest bowl</td><td><kbd>Pull Point</kbd> + <kbd>Distance</kbd></td></tr>
+          <tr><td>remap to height</td><td><kbd>Remap Numbers</kbd></td></tr>
+          <tr><td>draw plant</td><td><kbd>Sphere</kbd> + <kbd>Scale NU</kbd></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Tips -->
+  <div style="background:#f5f3f0; border-left:3px solid #1a1a1a; border-radius:0 4px 4px 0; padding:14px; margin-top:16px;">
+    <div style="font-weight:700; text-transform:uppercase; letter-spacing:0.05em; font-size:10px; color:#1a1a1a; margin-bottom:8px;">Tips</div>
+    <ul class="wf-tips">
+      <li>Write the rule on paper before touching a node. The pseudocode is the design.</li>
+      <li>Dispatch is the readable edge; Remap is the gradient. Know which one the condition wants.</li>
+      <li>Set hints and watch the preview live — drag a slider and read the change before moving on.</li>
+      <li>Label your slider values in the screenshots. The deliverable is the relationship, not the picture.</li>
+    </ul>
+  </div>
+
+  <!-- Footer -->
+  <div class="wf-footer">
+    <span>LAAR 61400 — Representation &amp; Computation I</span><span>Workflow 05 of 07</span>
+  </div>
+
+</div>
+
+    </div>
+  </main>
+
+  <script src="/teaching/laar61400/assets/js/nav.js"></script>
+</body>
+</html>

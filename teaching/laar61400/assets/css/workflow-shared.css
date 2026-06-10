@@ -258,6 +258,56 @@
   color: #1a1a1a;
 }
 
+/* ── Pseudocode block ── */
+.wf-code {
+  background: #1a1a1a;
+  color: #e8e8e8;
+  border-radius: 4px;
+  padding: 12px 14px;
+  margin: 8px 0;
+  font-family: 'DM Mono', monospace;
+  font-size: 12px;
+  line-height: 1.6;
+  white-space: pre;
+  overflow-x: auto;
+}
+
+/* ── Reference table ── */
+.wf-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+.wf-table th {
+  text-align: left;
+  font-family: 'DM Mono', monospace;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #999;
+  padding: 6px 10px;
+  border-bottom: 1px solid #e0e0e0;
+}
+.wf-table td {
+  padding: 7px 10px;
+  border-bottom: 1px solid #f0f0f0;
+  vertical-align: top;
+  color: #333;
+}
+.wf-table tr:last-child td { border-bottom: none; }
+.wf-table kbd {
+  display: inline-block;
+  background: #f3f3f3;
+  border: 1px solid #ddd;
+  border-radius: 3px;
+  padding: 0 5px;
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  white-space: nowrap;
+  color: #1a1a1a;
+}
+
 /* ── Tool badges ── */
 .wf-badge {
   margin-left: auto;
