@@ -21,14 +21,19 @@ zihao-site/
 - Projects: ELUA, Cyborg Bloom, Flushing, Seed Bomb, Hydroponics, Harlem Schist, East Harlem Polder, Other Natures (`projects/othernatures/`), Shroom Drone (`projects/shroomdrone/`), GH Agent (`projects/ghagent/`) — all 10 complete.
 
 ## LAAR 61400 workflows
-- WF01 (`wf01-autocad.html`): AutoCAD Site Drafting — complete
-- WF02 (`wf02-sketch-portfolio.html`): Hand Sketch → Hybrid Drawing — complete
-- WF03 (`wf03-urban-context.html`): Urban Context Mapping — complete
+- WF01 (`wf01-autocad.html`): AutoCAD Site Drafting — complete (Weeks 2–3)
+- WF02 (`wf02-sketch-portfolio.html`): Hand Sketch → Hybrid Drawing — complete (Week 4)
+- WF03 (`wf03-urban-context.html`): Urban Context Mapping — complete (Week 5)
 - WF04 (`wf04-landform-design.html`): Rhino Landform Modeling — complete (Weeks 7–8; Rhino + Grasshopper; Patch/Loft; contour plan at 1"=20')
 - WF05: placeholder stub only (`wf05.html`)
 - WF06 (`wf06-slope-analysis.html`): Slope Analysis with Python + Claude — complete (Week 11; Rhino + Grasshopper Python; interview-Claude-for-buildspec pedagogy; markdown source `wf06-slope-analysis.md`)
-- WF07 (`wf07-claude-code-site.html`): Website with Claude Code — complete
+- WF07 (`wf07-claude-code-site.html`): Website with Claude Code — complete (Weeks 12–13)
 - Old `wf04.html` and `wf06.html` stubs deleted
+
+## WF page conventions
+- Spec strip (`.wf-spec`): first chip is always Week/Weeks, derived from syllabus schedule in `teaching/laar61400/index.html`
+- Assignment box (`.wf-outcome`): single `<strong>Assignment</strong>` label, one sentence, product-framed, format folded in. No separate Deliverable section.
+- `.wf-outcome > strong` is `display:block` in `workflow-shared.css` — scope to `>` to avoid breaking `<strong>` inside `.wf-tips` list items
 
 ## Project page structure (follow exactly)
 1. `<a class="project-back" href="/projects/">← Projects</a>` — top of `<main>`, before hero
