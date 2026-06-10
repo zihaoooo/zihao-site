@@ -279,6 +279,32 @@
 .wf-badge-chat    { background: #f3ece4; color: #9a6a3c; }
 .wf-badge-code    { background: #ebdcc9; color: #7a4a1e; }
 
+/* ── Alert / critical notice ── */
+.wf-alert {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  background: #fff0f0;
+  border: 1px solid #e8a0a0;
+  border-left: 3px solid #c0000a;
+  border-radius: 0 4px 4px 0;
+  padding: 10px 14px;
+  margin: 10px 0;
+}
+.wf-alert-icon {
+  font-size: 15px;
+  line-height: 1.4;
+  flex-shrink: 0;
+}
+.wf-alert-body {
+  font-size: 13px;
+  line-height: 1.5;
+  color: #1a1a1a;
+}
+.wf-alert-body strong {
+  color: #c0000a;
+}
+
 /* ── CTB color chart ── */
 .wf-ctb {
   width: 100%;

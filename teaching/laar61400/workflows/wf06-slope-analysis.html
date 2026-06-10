@@ -147,14 +147,19 @@
             </tr>
           </thead>
           <tbody>
-            <tr><td style="padding:4px 8px; font-family:monospace;">surface</td><td style="padding:4px 8px;">Surface</td></tr>
-            <tr><td style="padding:4px 8px; font-family:monospace;">boundary</td><td style="padding:4px 8px;">Curve</td></tr>
-            <tr><td style="padding:4px 8px; font-family:monospace;">u_count</td><td style="padding:4px 8px;">int</td></tr>
-            <tr><td style="padding:4px 8px; font-family:monospace;">v_count</td><td style="padding:4px 8px;">int</td></tr>
-            <tr style="border-top:1px solid #ddd;"><td style="padding:4px 8px; font-family:monospace; font-weight:600;">colored_mesh</td><td style="padding:4px 8px; color:#666;">output</td></tr>
+            <tr><td colspan="2" style="padding:6px 8px 2px; font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:0.06em; color:#888;">Inputs</td></tr>
+            <tr><td style="padding:3px 8px; font-family:monospace;">surface</td><td style="padding:3px 8px;">Surface</td></tr>
+            <tr><td style="padding:3px 8px; font-family:monospace;">boundary</td><td style="padding:3px 8px;">Curve</td></tr>
+            <tr><td style="padding:3px 8px; font-family:monospace;">u_count</td><td style="padding:3px 8px;">int</td></tr>
+            <tr><td style="padding:3px 8px 6px; font-family:monospace;">v_count</td><td style="padding:3px 8px 6px;">int</td></tr>
+            <tr style="border-top:1px solid #ddd;"><td colspan="2" style="padding:6px 8px 2px; font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:0.06em; color:#888;">Output</td></tr>
+            <tr><td style="padding:3px 8px; font-family:monospace;">colored_mesh</td><td style="padding:3px 8px;">Mesh</td></tr>
           </tbody>
         </table>
-        <div class="wf-step-desc"><strong>Right-click each input to set the type hint.</strong> This step is required — without it, Grasshopper passes GUIDs instead of geometry and the script will error immediately.</div>
+        <div class="wf-alert">
+          <span class="wf-alert-icon">⚠</span>
+          <div class="wf-alert-body"><strong>Right-click each input and set the type hint.</strong> Without this, Grasshopper passes GUIDs instead of geometry and the script will error immediately.</div>
+        </div>
         <div class="wf-step-desc">Connect: <code style="background:#f0ede8; padding:1px 5px; border-radius:3px; font-size:12px;">surface</code> from Patch, <code style="background:#f0ede8; padding:1px 5px; border-radius:3px; font-size:12px;">boundary</code> from your site boundary curve, <code style="background:#f0ede8; padding:1px 5px; border-radius:3px; font-size:12px;">u_count</code> and <code style="background:#f0ede8; padding:1px 5px; border-radius:3px; font-size:12px;">v_count</code> from integer sliders (try 30).</div>
       </div>
     </div>
