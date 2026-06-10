@@ -1,8 +1,14 @@
+# local-only working files — never push
+_local/
+
+# Claude Code — not website content
+.claude/
+CLAUDE.md
+
+# OS
 .DS_Store
 Thumbs.db
+
+# Editor
+.vscode/
 *.swp
-node_modules/
-.claude/
-BUILDSPEC.md
-PATCHSPEC-01-monorepo.md
-_local/
