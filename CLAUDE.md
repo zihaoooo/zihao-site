@@ -25,9 +25,10 @@ zihao-site/
 - WF02 (`wf02-sketch-portfolio.html`): Hand Sketch → Hybrid Drawing — complete
 - WF03 (`wf03-urban-context.html`): Urban Context Mapping — complete
 - WF04 (`wf04-landform-design.html`): Rhino Landform Modeling — complete (Weeks 7–8; Rhino + Grasshopper; Patch/Loft; contour plan at 1"=20')
-- WF05, WF06: placeholder stubs only (`wf05.html`, `wf06.html`)
+- WF05: placeholder stub only (`wf05.html`)
+- WF06 (`wf06-slope-analysis.html`): Slope Analysis with Python + Claude — complete (Week 11; Rhino + Grasshopper Python; interview-Claude-for-buildspec pedagogy; markdown source `wf06-slope-analysis.md`)
 - WF07 (`wf07-claude-code-site.html`): Website with Claude Code — complete
-- Old `wf04.html` is a dead placeholder stub — can be deleted when convenient
+- Old `wf04.html` and `wf06.html` stubs deleted
 
 ## Project page structure (follow exactly)
 1. `<a class="project-back" href="/projects/">← Projects</a>` — top of `<main>`, before hero
