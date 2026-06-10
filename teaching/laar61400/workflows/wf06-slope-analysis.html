@@ -69,12 +69,11 @@
   <div class="wf-spec">
     <div class="wf-spec-item"><span class="wf-spec-label">Week</span><span class="wf-spec-value">11</span></div>
     <div class="wf-spec-item"><span class="wf-spec-label">Surface</span><span class="wf-spec-value">WF04 Patch</span></div>
-    <div class="wf-spec-item"><span class="wf-spec-label">Scale cap</span><span class="wf-spec-value">60°</span></div>
   </div>
 
   <!-- Outcome -->
   <div class="wf-outcome">
-    <strong>Assignment</strong><span>A slope analysis mesh overlaid on your WF04 terrain surface, colored green-to-red by slope angle (flat = green, steep = red, capped at 60°), clipped to the site boundary. You will not write the script from scratch — you will specify what you want precisely enough that Claude can write it for you, and understand what it produced well enough to debug it.</span>
+    <strong>Assignment</strong><span>A Grasshopper Python script that performs one surface analysis on your WF04 terrain — slope, aspect, flow direction, wet/dry index, or similar. You write the spec; Claude writes the code.</span>
   </div>
 
   <!-- Pipeline strip -->
@@ -88,8 +87,8 @@
 
   <!-- Intro -->
   <div style="background:#f5f3f0; border-radius:4px; padding:16px 18px; margin-bottom:28px;">
-    <div class="wf-step-desc">A surface is not just a shape — it is a function. Every point on it has a position, a normal vector, and a slope. In this workflow, you will write a Python script for Grasshopper that queries your WF04 Patch surface mathematically and colors it by slope.</div>
-    <div class="wf-step-desc">The central skill is <strong>converting intention into specification</strong>: knowing what you want at a geometric level before you ask for it. The students who get bad scripts back aren't unlucky — they under-specified the geometry.</div>
+    <div class="wf-step-desc">A surface is a function. Every point has a position, a normal vector, and a slope. You will write a Grasshopper Python script that queries your WF04 Patch surface and colors it by slope — not from scratch, but by specifying what you want precisely enough that Claude can write it.</div>
+    <div class="wf-step-desc">The central skill is <strong>converting intention into specification</strong>. Students who get bad scripts back under-specified the geometry.</div>
   </div>
 
   <!-- Steps grid -->
@@ -103,12 +102,12 @@
         <span class="wf-badge wf-badge-neutral">In class — no computers</span>
       </div>
       <div class="wf-step-body">
-        <div class="wf-step-desc">Before writing any prompt, you need a mental model of what "slope" means mathematically on a surface. Work through these questions — you need to be able to answer them in plain English before Stage 2.</div>
+        <div class="wf-step-desc">Answer these in plain English before opening Claude.</div>
         <ul class="wf-tips">
-          <li><strong>How do you locate a point on a surface?</strong> UV parameters — two numbers that address any point in the surface domain.</li>
-          <li><strong>How do you ask a surface which way it faces at a point?</strong> The normal vector — perpendicular to the surface at that UV location.</li>
-          <li><strong>How do you measure slope from a normal?</strong> The angle between the normal vector and world Z. Flat = 0°, vertical = 90°.</li>
-          <li><strong>What counts as steep in landscape terms?</strong> A slope a person can walk. A slope a wheelchair can navigate. A slope that sheds water. These are design thresholds, not arbitrary numbers.</li>
+          <li><strong>How do you locate a point on a surface?</strong> UV parameters — two numbers addressing any point in the surface domain.</li>
+          <li><strong>How do you ask a surface which way it faces?</strong> The normal vector — perpendicular to the surface at that UV location.</li>
+          <li><strong>How do you measure slope from a normal?</strong> Angle between the normal and world Z. Flat = 0°, vertical = 90°.</li>
+          <li><strong>What counts as steep in landscape terms?</strong> Walkable. Wheelchair-accessible. Water-shedding. Design thresholds, not arbitrary numbers.</li>
         </ul>
       </div>
     </div>
@@ -123,10 +122,10 @@
       <div class="wf-step-body">
         <div class="wf-step-desc">Open a new Claude chat. Paste this starter prompt exactly:</div>
         <div style="background:#f3ece4; border-left:3px solid #c8a97a; border-radius:0 4px 4px 0; padding:10px 14px; margin:8px 0; font-size:13px; font-style:italic; color:#5a3a1a;">I'm a landscape architecture student working in Rhino 8 Grasshopper. I want to write a Python script that analyzes my surface. Before writing any code or spec, interview me one question at a time to understand exactly what I need. Do not write code yet. Do not move to the next question until I answer.</div>
-        <div class="wf-step-desc">Claude will ask you questions. Answer each one. If you answer in visual terms (<em>"I want it to look like…"</em>), push yourself to convert to geometric terms (<em>"the script needs to measure…"</em>).</div>
-        <div class="wf-step-desc">When the interview feels complete, ask:</div>
-        <div style="background:#f3ece4; border-left:3px solid #c8a97a; border-radius:0 4px 4px 0; padding:10px 14px; margin:8px 0; font-size:13px; font-style:italic; color:#5a3a1a;">Based on our conversation, write a buildspec — not code. List: the Grasshopper Python component inputs with type hints, outputs, what gets computed, the color scale and its landscape meaning, and any known edge cases.</div>
-        <div class="wf-note">Review the spec carefully. Can you verify every line against what you actually want? If not, go back to the interview. The buildspec is a deliverable — treat it that way.</div>
+        <div class="wf-step-desc">Answer each question. Push visual answers (<em>"I want it to look like…"</em>) toward geometric ones (<em>"the script needs to measure…"</em>).</div>
+        <div class="wf-step-desc">After the last question, Claude summarizes the spec — inputs, outputs, color scale, edge cases. Review it. Confirm and ask Claude to write the script. Everything stays in one conversation.</div>
+        <div class="wf-note">The spec is a deliverable — copy it out of the chat when you're done.</div>
+        <div class="wf-step-desc" style="margin-top:10px;"><strong>Example:</strong> <a href="https://claude.ai/share/0125963a-9a47-40e8-9ca9-0377d8305d66" target="_blank" rel="noopener" style="color:#9a6a3c;">Sample interview + spec chat</a></div>
       </div>
     </div>
 
@@ -138,29 +137,16 @@
         <span class="wf-badge wf-badge-gh">GH</span>
       </div>
       <div class="wf-step-body">
-        <div class="wf-step-desc">Add a <strong>Python 3 Script</strong> component to your canvas. Add these inputs and one output:</div>
-        <table style="width:100%; border-collapse:collapse; font-size:13px; margin:10px 0;">
-          <thead>
-            <tr style="border-bottom:1px solid #ddd;">
-              <th style="text-align:left; padding:4px 8px; font-weight:600;">Name</th>
-              <th style="text-align:left; padding:4px 8px; font-weight:600;">Type hint</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr><td colspan="2" style="padding:6px 8px 2px; font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:0.06em; color:#888;">Inputs</td></tr>
-            <tr><td style="padding:3px 8px; font-family:monospace;">surface</td><td style="padding:3px 8px;">Surface</td></tr>
-            <tr><td style="padding:3px 8px; font-family:monospace;">boundary</td><td style="padding:3px 8px;">Curve</td></tr>
-            <tr><td style="padding:3px 8px; font-family:monospace;">u_count</td><td style="padding:3px 8px;">int</td></tr>
-            <tr><td style="padding:3px 8px 6px; font-family:monospace;">v_count</td><td style="padding:3px 8px 6px;">int</td></tr>
-            <tr style="border-top:1px solid #ddd;"><td colspan="2" style="padding:6px 8px 2px; font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:0.06em; color:#888;">Output</td></tr>
-            <tr><td style="padding:3px 8px; font-family:monospace;">colored_mesh</td><td style="padding:3px 8px;">Mesh</td></tr>
-          </tbody>
-        </table>
+        <div class="wf-step-desc">Add a <strong>Python 3 Script</strong> component. Use the input and output names from your Stage 2 spec — Claude's script will list them as comments at the top.</div>
+        <ul class="wf-tips">
+          <li><strong>Inputs</strong> — one per geometry or parameter the script needs</li>
+          <li><strong>Output</strong> — one per result</li>
+        </ul>
         <div class="wf-alert">
           <span class="wf-alert-icon">⚠</span>
-          <div class="wf-alert-body"><strong>Right-click each input and set the type hint.</strong> Without this, Grasshopper passes GUIDs instead of geometry and the script will error immediately.</div>
+          <div class="wf-alert-body"><strong>Right-click each input and set the type hint.</strong> Without this, Grasshopper passes GUIDs instead of geometry and the script errors immediately. Outputs don't need a type hint.</div>
         </div>
-        <div class="wf-step-desc">Connect: <code style="background:#f0ede8; padding:1px 5px; border-radius:3px; font-size:12px;">surface</code> from Patch, <code style="background:#f0ede8; padding:1px 5px; border-radius:3px; font-size:12px;">boundary</code> from your site boundary curve, <code style="background:#f0ede8; padding:1px 5px; border-radius:3px; font-size:12px;">u_count</code> and <code style="background:#f0ede8; padding:1px 5px; border-radius:3px; font-size:12px;">v_count</code> from integer sliders (try 30).</div>
+        <div class="wf-step-desc">Wire inputs to geometry and parameters already on your canvas.</div>
       </div>
     </div>
 
@@ -173,17 +159,16 @@
         <span class="wf-badge wf-badge-gh" style="margin-left:4px;">GH</span>
       </div>
       <div class="wf-step-body">
-        <div class="wf-step-desc">Ask Claude to write the script from your buildspec. Paste it into the Python component and hit Run.</div>
+        <div class="wf-step-desc">Ask Claude to write the script. Paste it into the Python component and hit Run. The loop — run, error, fix — is normal.</div>
         <ul class="wf-tips">
-          <li>If it errors: copy the <strong>full error message</strong> and paste it back to Claude.</li>
-          <li>If the output looks wrong: take a screenshot and describe what you see.</li>
+          <li>Errors: copy the <strong>full error message</strong> and paste it back to Claude.</li>
+          <li>Wrong output: screenshot and describe what you see.</li>
         </ul>
-        <div class="wf-step-desc">Repeat until it works. This loop — run, error, fix — is normal. It is not a sign the script is bad; it is how scripting works.</div>
         <div style="margin-top:12px; font-weight:700; font-size:11px; text-transform:uppercase; letter-spacing:0.06em; color:#555;">Common issues</div>
         <ul class="wf-tips" style="margin-top:6px;">
-          <li><strong>Script errors immediately</strong> → type hints not set on all inputs</li>
-          <li><strong>Colors look flipped</strong> → describe this to Claude; it will fix the normal direction</li>
-          <li><strong>Mesh doesn't appear</strong> → make sure viewport is in Shaded mode and <code style="background:#f0ede8; padding:1px 5px; border-radius:3px; font-size:12px;">colored_mesh</code> is wired to a Mesh parameter</li>
+          <li><strong>Errors immediately</strong> → type hints not set on inputs</li>
+          <li><strong>Colors flipped</strong> → tell Claude; it will fix the normal direction</li>
+          <li><strong>Mesh doesn't appear</strong> → viewport must be in Shaded mode; output wired to a Mesh parameter</li>
         </ul>
       </div>
     </div>
@@ -193,23 +178,22 @@
   <!-- Deliverable -->
   <div style="background:#f5f3f0; border-left:3px solid #1a1a1a; border-radius:0 4px 4px 0; padding:14px; margin-top:28px;">
     <div style="font-weight:700; text-transform:uppercase; letter-spacing:0.05em; font-size:10px; color:#1a1a1a; margin-bottom:8px;">Deliverable</div>
-    <div class="wf-step-desc">A slope analysis mesh rendered in the Rhino viewport, plus:</div>
     <ul class="wf-tips">
-      <li>The <strong>buildspec</strong> you produced in Stage 2</li>
-      <li>The final <strong>working script</strong></li>
-      <li>Two viewport screenshots: <strong>perspective view</strong> and <strong>top / plan view</strong></li>
+      <li>The <strong>spec</strong> from Stage 2</li>
+      <li>The final <strong>working script</strong> — download as a <kbd>.py</kbd> file from the Claude chat</li>
+      <li>Isometric viewport screenshot — use <kbd>Print Screen to File</kbd> in Rhino</li>
     </ul>
-    <div class="wf-step-desc" style="margin-top:8px;">The buildspec is as important as the script. It is evidence that you understood the geometry before you asked for the code.</div>
+    <div class="wf-step-desc" style="margin-top:8px;">The spec is as important as the script — it shows you understood the geometry before asking for the code.</div>
   </div>
 
   <!-- Tips -->
   <div style="background:#f5f3f0; border-left:3px solid #1a1a1a; border-radius:0 4px 4px 0; padding:14px; margin-top:16px;">
     <div style="font-weight:700; text-transform:uppercase; letter-spacing:0.05em; font-size:10px; color:#1a1a1a; margin-bottom:8px;">Tips</div>
     <ul class="wf-tips">
-      <li>The interview only works if you slow down. Students who rush to the prompt skip the thinking.</li>
-      <li>"AI is dumb" is usually a diagnosis of the brief, not the model. A vague prompt gets a generic script.</li>
-      <li>The buildspec should describe <em>what must be true when it works</em>, not <em>how the code should do it</em>. Specifying the algorithm caps Claude at your level of knowledge — which for a first script is the wrong cap.</li>
-      <li>Patch always extends slightly beyond your boundary curve. Your spec should tell Claude to exclude faces outside the boundary — you don't need to know how to fix it, only that the problem exists.</li>
+      <li>Slow down in the interview. Rushing past it skips the thinking.</li>
+      <li>A vague prompt gets a generic script. The model isn't the problem.</li>
+      <li>Describe <em>what must be true when it works</em>, not how the code should work.</li>
+      <li>Patch extends beyond your boundary. Tell Claude to exclude faces outside it — you don't need to know how, just that the problem exists.</li>
     </ul>
   </div>
 
