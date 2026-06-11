@@ -181,13 +181,12 @@
       <div class="wf-step-body">
         <div class="wf-step-desc">Split the meadow into mown and unmown by the threshold:</div>
         <ul class="wf-tips">
-          <li><strong>Larger Than</strong> → A = distance, B = mowing width slider (start at 8.0)</li>
-          <li><strong>Dispatch</strong> → data = Line SDL lengths, pattern = Larger Than</li>
-          <li>List A (beyond threshold) → keep the unmowed random heights</li>
-          <li>List B (within threshold) → replace with a short fixed height slider (0.5)</li>
-          <li>Rebuild a <strong>Line SDL</strong> for each branch</li>
+          <li><strong>Larger Than</strong> → A = distance to path, B = mowing width slider (start at 8.0)</li>
+          <li><strong>Dispatch</strong> (heights) → data = random heights, pattern = Larger Than → List A = unmowed, List B = mowed</li>
+          <li><strong>Dispatch</strong> (points) → data = Populate 2D points, same pattern → List A = unmowed points, List B = mowed points</li>
+          <li>List B heights → replace with a short fixed height slider (0.5); rebuild a <strong>Line SDL</strong> for the mowed branch</li>
         </ul>
-        <div class="wf-note">Toggle the mowing width. The mown strip widens and narrows. Move the path curve in Rhino — the mown zone follows live. <strong>End of Week 9.</strong></div>
+        <div class="wf-note">Both height and point lists are dispatched with the same pattern — the two lists stay in sync. List A points carry forward into Week 10. <strong>End of Week 9.</strong></div>
       </div>
     </div>
 
@@ -241,10 +240,10 @@
         <span class="wf-badge wf-badge-gh" style="margin-left:4px;">GH</span>
       </div>
       <div class="wf-step-body">
-        <div class="wf-step-desc">In Rhino, place 2–4 point objects on the site — these are the wet area locations. Reference them into GH with a <strong>Point</strong> parameter. Then find the nearest wet area for each plant:</div>
+        <div class="wf-step-desc">In Rhino, place 2–4 point objects on the site — these are the wet area locations. Reference them into GH with a <strong>Point</strong> parameter. Then find the nearest wet area for each unmowed plant:</div>
         <ul class="wf-tips">
-          <li><strong>Pull Point</strong> → input points = Populate 2D points, geometry = wet area attractors</li>
-          <li><strong>Distance</strong> → each plant to its pulled (nearest) wet area point</li>
+          <li><strong>Pull Point</strong> → input points = List A points (unmowed, from Step 04 Dispatch), geometry = wet area attractors</li>
+          <li><strong>Distance</strong> → each unmowed plant to its pulled (nearest) wet area point</li>
         </ul>
       </div>
     </div>
@@ -257,14 +256,15 @@
         <span class="wf-badge wf-badge-gh">GH</span>
       </div>
       <div class="wf-step-body">
-        <div class="wf-step-desc">Turn distance into a continuous height gradient:</div>
+        <div class="wf-step-desc">Turn distance into a height gradient, capped at a maximum influence radius:</div>
         <ul class="wf-tips">
-          <li><strong>Bounds</strong> → on the distance list to get the real min/max</li>
-          <li>Two sliders: <strong>Height Near</strong> (default 1.0) and <strong>Height Far</strong> (default 0.2)</li>
-          <li><strong>Construct Domain</strong> → A = Height Near, B = Height Far → outputs the target domain</li>
-          <li><strong>Remap Numbers</strong> → values = distances, source = Bounds, target = Construct Domain</li>
+          <li>Three sliders: <strong>Max Radius</strong> (default 15 ft), <strong>Height Near</strong> (default 1.0), <strong>Height Far</strong> (default 0.2)</li>
+          <li><strong>Minimum</strong> → A = distances (from Distance), B = Max Radius slider → output = capped distances (GH broadcasts the single slider value across the whole list)</li>
+          <li><strong>Construct Domain</strong> (source) → A = 0, B = Max Radius → fixed source domain</li>
+          <li><strong>Construct Domain</strong> (target) → A = Height Near, B = Height Far → target domain</li>
+          <li><strong>Remap Numbers</strong> → values = output from Minimum, source = source domain, target = target domain</li>
         </ul>
-        <div class="wf-note">A &gt; B flips the gradient so close = tall. Slide either value to adjust height contrast live.</div>
+        <div class="wf-note">Plants inside the radius get a gradient; plants outside all map to exactly Height Far. Moving a wet-area point creates a visible zone with a clear edge between lush and dry.</div>
       </div>
     </div>
 
@@ -299,6 +299,28 @@
         </ul>
       </div>
     </div>
+
+    <!-- Examples (expandable) — Week 10 -->
+    <details class="wf-step wf-full wf-examples">
+      <summary class="wf-step-head">
+        <span class="wf-step-num">▸</span>
+        <span class="wf-step-label">Hint</span>
+        <span class="wf-badge wf-badge-gh">Week 10</span>
+      </summary>
+      <div class="wf-step-body">
+        <div class="wf-example-grid">
+          <figure>
+            <img src="/teaching/laar61400/assets/img/WF05/example-mow-water.png" alt="Rhino viewport showing the meadow with mown path and wet-area attractor points — taller plants near the wet areas">
+            <figcaption>Viewport — mown path plus wet-area gradient; plants taller near the attractor points</figcaption>
+          </figure>
+          <figure>
+            <img src="/teaching/laar61400/assets/img/WF05/example-mow-water-gh.png" alt="Grasshopper definition for the combined mowing-path and wet-area rules">
+            <figcaption>Grasshopper definition — the full mow + wet-area rule</figcaption>
+          </figure>
+        </div>
+        <a class="wf-download" href="/teaching/laar61400/assets/img/WF05/WF05_mow_water.gh" download>↓ Download example definition — WF05_mow_water.gh</a>
+      </div>
+    </details>
 
   </div><!-- /steps -->
 
