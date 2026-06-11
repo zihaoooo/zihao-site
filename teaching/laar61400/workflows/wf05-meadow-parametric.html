@@ -63,7 +63,7 @@
     <div class="wf-index">WF 05</div>
     <div class="wf-header-text">
       <div class="wf-title">Attractor Fields</div>
-      <div class="wf-subtitle">Grasshopper · Dispatch &amp; Remap → Ellipsoid Field</div>
+      <div class="wf-subtitle">Grasshopper · Dispatch &amp; Remap → Line Field</div>
     </div>
   </div>
 
@@ -76,7 +76,7 @@
 
   <!-- Outcome -->
   <div class="wf-outcome">
-    <strong>Assignment</strong><span>One Grasshopper definition that encodes two landscape rules on the same meadow — a mown path (Dispatch) and water-collecting bowls (Remap) — submitted as Week 9 and Week 10 viewport screenshots plus one slider study showing how a parameter changes the spatial outcome.</span>
+    <strong>Assignment</strong><span>One Grasshopper definition that encodes two landscape rules on the same meadow — a mown path (Dispatch) and wet areas (Remap) — submitted as Week 9 and Week 10 viewport screenshots plus one slider study showing how a parameter changes the spatial outcome.</span>
   </div>
 
   <!-- Pipeline strip -->
@@ -84,12 +84,12 @@
     <div class="wf-pipe-step"><div class="wf-pipe-node" style="background:#f0e8e8;color:#801010;">Rhino</div><div class="wf-pipe-arrow">→</div></div>
     <div class="wf-pipe-step"><div class="wf-pipe-node" style="background:#e8f5e8;color:#2a6a2a;">Populate 2D</div><div class="wf-pipe-arrow">→</div></div>
     <div class="wf-pipe-step"><div class="wf-pipe-node wf-pipe-tool">Rule</div><div class="wf-pipe-arrow">→</div></div>
-    <div class="wf-pipe-step"><div class="wf-pipe-node">Ellipsoid Field</div></div>
+    <div class="wf-pipe-step"><div class="wf-pipe-node">Line Field</div></div>
   </div>
 
   <!-- Intro -->
   <div style="background:#f5f3f0; border-radius:4px; padding:16px 18px; margin-bottom:28px;">
-    <div class="wf-step-desc">A flat meadow. Two parametric rules encode two landscape conditions — a mown path, and water-collecting bowls. The same field, two rules, two spatial readings.</div>
+    <div class="wf-step-desc">A flat meadow. Two parametric rules encode two landscape conditions — a mown path, and wet areas. The same field, two rules, two spatial readings.</div>
     <div class="wf-step-desc">This workflow introduces the core logic of parametric design: <strong>write the rule first, then build it in nodes.</strong></div>
   </div>
 
@@ -167,7 +167,7 @@
           <li><strong>Pull Point</strong> → input points = Populate 2D points, geometry = path curve</li>
           <li>Use the <strong>Distance</strong> output directly — one component does both</li>
         </ul>
-        <div class="wf-note">Same component as the Week 10 bowls — Pull Point pulls to any geometry (curve here, points there) and returns the distance.</div>
+        <div class="wf-note">Same component as the Week 10 wet areas — Pull Point pulls to any geometry (curve here, points there) and returns the distance.</div>
       </div>
     </div>
 
@@ -215,7 +215,7 @@
 
     <!-- Week 10 label -->
     <div class="wf-step wf-full" style="background:none;border:none;padding:0;margin-top:4px;">
-      <div style="font-size:9px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#aaa;font-family:'DM Mono',monospace;padding:0 0 2px 0;">Week 10 — Water Bowls</div>
+      <div style="font-size:9px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#aaa;font-family:'DM Mono',monospace;padding:0 0 2px 0;">Week 10 — Wet Areas</div>
     </div>
 
     <!-- Pseudocode 10 -->
@@ -227,8 +227,8 @@
       </div>
       <div class="wf-step-body">
         <pre class="wf-code">FOR EACH plant in meadow:
-  height = remap(distance to nearest bowl, 0 → max, tall → short)</pre>
-        <div class="wf-step-desc">Close to a bowl = tall (wet, lush). Far from a bowl = short (dry).</div>
+  height = remap(distance to nearest wet area, 0 → max, tall → short)</pre>
+        <div class="wf-step-desc">Close to a wet area = tall (wet, lush). Far from a wet area = short (dry).</div>
       </div>
     </div>
 
@@ -236,15 +236,15 @@
     <div class="wf-step">
       <div class="wf-step-head">
         <span class="wf-step-num">05</span>
-        <span class="wf-step-label">Place Bowl Attractors</span>
+        <span class="wf-step-label">Place Wet-Area Attractors</span>
         <span class="wf-badge wf-badge-rh">Rhino</span>
         <span class="wf-badge wf-badge-gh" style="margin-left:4px;">GH</span>
       </div>
       <div class="wf-step-body">
-        <div class="wf-step-desc">In Rhino, place 2–4 point objects on the site — these are the bowl locations. Reference them into GH with a <strong>Point</strong> parameter. Then find the nearest bowl for each plant:</div>
+        <div class="wf-step-desc">In Rhino, place 2–4 point objects on the site — these are the wet area locations. Reference them into GH with a <strong>Point</strong> parameter. Then find the nearest wet area for each plant:</div>
         <ul class="wf-tips">
-          <li><strong>Pull Point</strong> → input points = Populate 2D points, geometry = bowl attractors</li>
-          <li><strong>Distance</strong> → each plant to its pulled (nearest) bowl point</li>
+          <li><strong>Pull Point</strong> → input points = Populate 2D points, geometry = wet area attractors</li>
+          <li><strong>Distance</strong> → each plant to its pulled (nearest) wet area point</li>
         </ul>
       </div>
     </div>
@@ -260,9 +260,11 @@
         <div class="wf-step-desc">Turn distance into a continuous height gradient:</div>
         <ul class="wf-tips">
           <li><strong>Bounds</strong> → on the distance list to get the real min/max</li>
-          <li><strong>Remap Numbers</strong> → values = distances, source = Bounds, target = 1.0 (close, tall) to 0.2 (far, short)</li>
+          <li>Two sliders: <strong>Height Near</strong> (default 1.0) and <strong>Height Far</strong> (default 0.2)</li>
+          <li><strong>Construct Domain</strong> → A = Height Near, B = Height Far → outputs the target domain</li>
+          <li><strong>Remap Numbers</strong> → values = distances, source = Bounds, target = Construct Domain</li>
         </ul>
-        <div class="wf-note">Flip the target range so close = tall. This is the gradient — proximity drives lushness.</div>
+        <div class="wf-note">A &gt; B flips the gradient so close = tall. Slide either value to adjust height contrast live.</div>
       </div>
     </div>
 
@@ -270,17 +272,15 @@
     <div class="wf-step">
       <div class="wf-step-head">
         <span class="wf-step-num">07</span>
-        <span class="wf-step-label">Construct the Ellipsoid</span>
+        <span class="wf-step-label">Draw Plant Heights</span>
         <span class="wf-badge wf-badge-gh">GH</span>
       </div>
       <div class="wf-step-body">
-        <div class="wf-step-desc">Draw each plant as a vertically stretched sphere:</div>
+        <div class="wf-step-desc">Same as Week 9 — draw each plant as a vertical line, length = remapped height:</div>
         <ul class="wf-tips">
-          <li><strong>Sphere</strong> → center = Populate 2D points, radius = remapped height</li>
-          <li><strong>Scale NU</strong> → geometry = sphere, X = 1.0, Y = 1.0, Z = remapped height</li>
-          <li>Add a <strong>Z Scale</strong> slider to tune the vertical exaggeration</li>
+          <li><strong>Line SDL</strong> → start = Populate 2D points, direction = unit Z, length = remapped height</li>
         </ul>
-        <div class="wf-note">Taller and rounder near bowls; short and disc-like further away. One value, two readings.</div>
+        <div class="wf-note">Tall lines near wet areas, short lines further away. The gradient reads immediately in the viewport.</div>
       </div>
     </div>
 
@@ -293,9 +293,9 @@
       </div>
       <div class="wf-step-body">
         <ul class="wf-tips">
-          <li>Move a bowl point in Rhino — the tall cluster shifts live</li>
-          <li>Add or remove bowl points — each makes a new zone of lush growth</li>
-          <li>Adjust the Remap target domain to change the height contrast</li>
+          <li>Move a wet area point in Rhino — the tall cluster shifts live</li>
+          <li>Add or remove wet area points — each makes a new zone of lush growth</li>
+          <li>Slide <strong>Height Near</strong> or <strong>Height Far</strong> to change the height contrast live</li>
         </ul>
       </div>
     </div>
@@ -313,8 +313,8 @@
         <div class="wf-step-desc" style="margin-top:10px;"><strong>Dispatch vs. Remap</strong> — Dispatch encodes a binary rule (mow / no mow). Remap encodes a continuous gradient (tall near water, short away). Most landscape conditions are gradients; the binary is the readable edge.</div>
       </div>
       <div class="wf-step-body">
-        <div class="wf-step-desc"><strong>Pull Point</strong> — works like Closest Point: for each input point, finds the nearest geometry in a set and returns its location. Used here to measure proximity to the nearest bowl across multiple attractors.</div>
-        <div class="wf-step-desc" style="margin-top:10px;"><strong>Ellipsoid from Scale NU</strong> — a sphere scaled non-uniformly in Z. The same remap value drives both radius and Z scale, so plants near bowls are taller and rounder; plants far away are short and flat.</div>
+        <div class="wf-step-desc"><strong>Pull Point</strong> — works like Closest Point: for each input point, finds the nearest geometry in a set and returns its location. Used here to measure proximity to the nearest wet area across multiple attractors.</div>
+        <div class="wf-step-desc" style="margin-top:10px;"><strong>Line SDL</strong> — the same component used in Week 9. Start point, direction, length. Swapping the length input from Random to a Remap value is the only change — the drawing logic stays identical.</div>
       </div>
     </div>
   </div>
@@ -331,9 +331,9 @@
           <tr><td>for each plant in meadow</td><td><kbd>Populate 2D</kbd></td></tr>
           <tr><td>distance to path</td><td><kbd>Pull Point</kbd></td></tr>
           <tr><td>if / else</td><td><kbd>Larger Than</kbd> + <kbd>Dispatch</kbd></td></tr>
-          <tr><td>distance to nearest bowl</td><td><kbd>Pull Point</kbd> + <kbd>Distance</kbd></td></tr>
+          <tr><td>distance to nearest wet area</td><td><kbd>Pull Point</kbd> + <kbd>Distance</kbd></td></tr>
           <tr><td>remap to height</td><td><kbd>Remap Numbers</kbd></td></tr>
-          <tr><td>draw plant</td><td><kbd>Sphere</kbd> + <kbd>Scale NU</kbd></td></tr>
+          <tr><td>draw plant</td><td><kbd>Line SDL</kbd></td></tr>
         </tbody>
       </table>
     </div>
