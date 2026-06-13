@@ -154,6 +154,8 @@
           <li>&ldquo;University of Utah,&rdquo; in <em>Computer Graphics and Computer Animation: A Retrospective Overview</em> (Ohio State University). <a href="https://ohiostate.pressbooks.pub/graphicshistory/chapter/4-3-university-of-utah/" target="_blank" rel="noopener">ohiostate.pressbooks.pub</a></li>
           <li>&ldquo;Non-uniform rational B-spline&rdquo; (history of B-splines, Riesenfeld, Versprille, and the Boeing naming). <a href="https://handwiki.org/wiki/Non-uniform_rational_B-spline" target="_blank" rel="noopener">handwiki.org</a></li>
           <li>&ldquo;Elaine Cohen&rdquo; (University of Utah geometric-design group; 2009 Pierre Bézier Award with Richard Riesenfeld). <em>Wikipedia.</em> <a href="https://en.wikipedia.org/wiki/Elaine_Cohen" target="_blank" rel="noopener">en.wikipedia.org</a></li>
+          <li>&ldquo;Solid Modeling Solutions&rdquo; (Boeing TIGER geometry group under Robert Blomgren; commercialization via Applied Geometry). <em>Wikipedia.</em> <a href="https://en.wikipedia.org/wiki/Solid_Modeling_Solutions" target="_blank" rel="noopener">en.wikipedia.org</a></li>
+          <li>&ldquo;The History of Rhino&rdquo; (Michael Gibson / Sculptura, the AGLib license, Dale Lear and openNURBS). <em>McNeel Wiki.</em> <a href="https://wiki.mcneel.com/rhino/rhinohistory" target="_blank" rel="noopener">wiki.mcneel.com</a></li>
         </ol>
       </div>
 
@@ -163,7 +165,10 @@
 <div id="tip" role="tooltip" aria-hidden="true"></div>
 <script src="/teaching/laar61400/assets/js/nav.js"></script>
 <script>
-(function(){
+function buildChart(){
+  const svg = document.getElementById('chart');
+  while(svg.firstChild) svg.removeChild(svg.firstChild);
+
   // ── dimensions — fit container, no scroll ───────────────────────────────
   const PROLOGUE_W = 130;
   const BOOM_START = 1982;
@@ -290,10 +295,18 @@
       meta:'1969 · Dangermond · consulting firm',
       b:'Founded not as a software company but as a land-use consulting firm — applying computer mapping on minicomputers for planning clients. No product to buy. ARC/INFO, the first commercial GIS, arrives thirteen years later in 1982.',
       alignToBar: 'ARC/INFO → ArcGIS', lineage: true },
-    { n:'Riesenfeld · Utah', yr:1974, frac:0.88, labelLeft:true,
-      meta:'~1974 · Univ. of Utah · spline research',
-      b:'The mathematics behind Rhino started in a research lab, not a product. B-splines for design came from Riesenfeld\'s 1973 Syracuse thesis; Versprille\'s generalized them to be non-uniform and rational. Riesenfeld carried the work to the University of Utah, where he and Elaine Cohen built the geometric-design lab and advanced the spline methods (knot insertion, subdivision). A Utah student took it to Boeing, who implemented it, abbreviated it &ldquo;NURBS,&rdquo; and pushed it as an industry standard. The math sat in labs for two decades before reaching the desktop in Rhino (1998).',
+    { n:'B-Spline', yr:1974, frac:0.84, labelLeft:true,
+      meta:'~1974 · Univ. of Utah · B-spline research',
+      b:'The academic foundation. B-splines for design came from Riesenfeld\'s 1973 Syracuse thesis; he carried the work to the University of Utah and, with Elaine Cohen, built the geometric-design lab — advancing the spline methods (knot insertion, the Oslo subdivision algorithm) that later surface modeling rests on. Research, not a product.',
       alignToBar: 'Rhino', lineage: true },
+    { n:'NURBS', yr:1980, frac:0.99,
+      meta:'1979–80 · Boeing TIGER · R. Blomgren',
+      b:'Where the math became a standard. Versprille\'s 1975 thesis had generalized B-splines to non-uniform and rational form; Boeing\'s TIGER CAD group (lead engineer Robert Blomgren) implemented them, abbreviated the result &ldquo;NURBS,&rdquo; and pushed it as an industry standard.',
+      alignToBar: 'Rhino', lineage: true },
+    { n:'AGLib', yr:1994, boomYear:1994, labelLeft:true,
+      meta:'Applied Geometry 1984 · AGLib licensed to McNeel 1994',
+      b:'How NURBS reached Rhino. Boeing\'s work was commercialized as Applied Geometry — the AGLib kernel. Robert McNeel &amp; Associates licensed AGLib in 1994; intern Michael Gibson\'s Sculptura modeler had become Rhinoceros (1993), and Dale Lear built McNeel\'s own kernel, later released as openNURBS.',
+      alignToBar: 'Rhino' },
   ];
 
   // ── layout pass ──────────────────────────────────────────────────────────
@@ -323,7 +336,6 @@
 
   const H = y + 36;
 
-  const svg = document.getElementById('chart');
   svg.setAttribute('viewBox', `0 0 ${W} ${H}`);
   svg.setAttribute('width', W);
   svg.setAttribute('height', H);
@@ -485,7 +497,7 @@
   // ── lineage connector ────────────────────────────────────────────────────
   const lineageByTarget = {};
   prologueItems.forEach(pi => {
-    if(pi.lineage && pi.alignToBar && barYByName[pi.alignToBar] != null){
+    if(pi.lineage && pi.alignToBar && pi.boomYear == null && barYByName[pi.alignToBar] != null){
       (lineageByTarget[pi.alignToBar] = lineageByTarget[pi.alignToBar] || []).push(xPrologue(pi.frac));
     }
   });
@@ -508,7 +520,7 @@
 
   // ── prologue dots + labels ───────────────────────────────────────────────
   prologueItems.forEach(pi => {
-    const px = xPrologue(pi.frac);
+    const px = pi.boomYear != null ? xBoom(pi.boomYear) : xPrologue(pi.frac);
     let py;
     if(pi.alignToBar && barYByName[pi.alignToBar] != null){
       py = barYByName[pi.alignToBar];
@@ -524,10 +536,12 @@
       fill:'var(--paper)', stroke:accent, 'stroke-width':1.8}));
     const lx = pi.labelLeft ? px - 8 : px + 8;
     const anchor = pi.labelLeft ? 'end' : 'start';
-    const nm = ce('text',{x:lx, y:py - 3, fill:accent, 'text-anchor':anchor,
+    const nameY = pi.labelBelow ? py + 14 : py - 3;
+    const yrY   = pi.labelBelow ? py + 25 : py + 9;
+    const nm = ce('text',{x:lx, y:nameY, fill:accent, 'text-anchor':anchor,
       'font-family':'"DM Sans",sans-serif', 'font-size':'12', 'font-weight':'500'});
     nm.textContent = pi.n; g.appendChild(nm);
-    const yr = ce('text',{x:lx, y:py + 9, fill:accent, opacity:.85, 'text-anchor':anchor,
+    const yr = ce('text',{x:lx, y:yrY, fill:accent, opacity:.85, 'text-anchor':anchor,
       'font-family':'"DM Mono",ui-monospace,monospace',
       'font-size':'10', 'letter-spacing':'.04em'});
     yr.textContent = pi.yr; g.appendChild(yr);
@@ -565,6 +579,10 @@
     place(r.left+cx*sc, r.top+cy*sc);
   }
   function hide(){ tip.classList.remove('on'); tip.setAttribute('aria-hidden','true'); }
+}
+buildChart();
+(function(){
+  let t; window.addEventListener('resize', ()=>{ clearTimeout(t); t=setTimeout(buildChart, 120); });
 })();
 </script>
 </body>
