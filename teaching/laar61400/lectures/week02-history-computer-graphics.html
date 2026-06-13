@@ -34,6 +34,13 @@
     @media (max-width:768px){ .hint{display:block;} }
     .foot{margin-top:24px;font-size:12px;color:var(--mute);line-height:1.7;max-width:72ch;}
     .foot strong{color:#4a463f;font-weight:600;}
+    .refs{margin:14px 0 0;padding-left:22px;max-width:72ch;
+      font-size:11.5px;color:var(--mute);line-height:1.65;}
+    .refs li{margin-bottom:8px;}
+    .refs em{font-style:italic;}
+    .refs a{color:#4a463f;text-decoration:none;border-bottom:1px solid #d9d3ca;
+      word-break:break-word;}
+    .refs a:hover{border-bottom-color:#4a463f;}
     .timeline-section-label{
       font-family:"DM Mono",ui-monospace,monospace;font-size:9px;font-weight:700;
       text-transform:uppercase;letter-spacing:.12em;color:#aaa;
@@ -139,6 +146,15 @@
           <br><br>
           <strong>The right edge is a question, not a tool.</strong> Agentic AI is drawn as the grey zone every bar dissolves into — not as a bar of its own. It does not sit in one category; it washes across all of them at once. Is it a tool on this chart, or something else?
         </p>
+
+        <span class="timeline-section-label">References</span>
+        <ol class="refs">
+          <li>Carl Steinitz, &ldquo;Beginnings of Geodesign: A Personal Historical Perspective,&rdquo; <em>ArcNews</em> (Esri), Summer 2013. <a href="https://www.esri.com/about/newsroom/arcnews/beginnings-of-geodesign-a-personal-historical-perspective" target="_blank" rel="noopener">esri.com</a></li>
+          <li>A. Krista Sykes, &ldquo;A New Way of Seeing: The Laboratory for Computer Graphics and Spatial Analysis,&rdquo; <em>Harvard GSD News</em>, Nov.&nbsp;13,&nbsp;2024. <a href="https://www.gsd.harvard.edu/2024/11/a-new-way-of-seeing-the-laboratory-for-computer-graphics-and-spatial-analysis/" target="_blank" rel="noopener">gsd.harvard.edu</a></li>
+          <li>&ldquo;University of Utah,&rdquo; in <em>Computer Graphics and Computer Animation: A Retrospective Overview</em> (Ohio State University). <a href="https://ohiostate.pressbooks.pub/graphicshistory/chapter/4-3-university-of-utah/" target="_blank" rel="noopener">ohiostate.pressbooks.pub</a></li>
+          <li>&ldquo;Non-uniform rational B-spline&rdquo; (history of B-splines, Riesenfeld, Versprille, and the Boeing naming). <a href="https://handwiki.org/wiki/Non-uniform_rational_B-spline" target="_blank" rel="noopener">handwiki.org</a></li>
+          <li>&ldquo;Elaine Cohen&rdquo; (University of Utah geometric-design group; 2009 Pierre Bézier Award with Richard Riesenfeld). <em>Wikipedia.</em> <a href="https://en.wikipedia.org/wiki/Elaine_Cohen" target="_blank" rel="noopener">en.wikipedia.org</a></li>
+        </ol>
       </div>
 
     </div>
@@ -274,6 +290,10 @@
       meta:'1969 · Dangermond · consulting firm',
       b:'Founded not as a software company but as a land-use consulting firm — applying computer mapping on minicomputers for planning clients. No product to buy. ARC/INFO, the first commercial GIS, arrives thirteen years later in 1982.',
       alignToBar: 'ARC/INFO → ArcGIS', lineage: true },
+    { n:'Riesenfeld · Utah', yr:1974, frac:0.88, labelLeft:true,
+      meta:'~1974 · Univ. of Utah · spline research',
+      b:'The mathematics behind Rhino started in a research lab, not a product. B-splines for design came from Riesenfeld\'s 1973 Syracuse thesis; Versprille\'s generalized them to be non-uniform and rational. Riesenfeld carried the work to the University of Utah, where he and Elaine Cohen built the geometric-design lab and advanced the spline methods (knot insertion, subdivision). A Utah student took it to Boeing, who implemented it, abbreviated it &ldquo;NURBS,&rdquo; and pushed it as an industry standard. The math sat in labs for two decades before reaching the desktop in Rhino (1998).',
+      alignToBar: 'Rhino', lineage: true },
   ];
 
   // ── layout pass ──────────────────────────────────────────────────────────
@@ -375,6 +395,8 @@
 
   // ── main layout draw ─────────────────────────────────────────────────────
   const barYByName = {};
+  const barStartXByName = {};   // bar's left edge — lineage connectors terminate here
+  const barColorByName = {};    // bar's group color — used to tint its lineage line
 
   layout.forEach(it => {
     if(it.t === 'strip'){
@@ -416,6 +438,8 @@
       const x0 = xBoom(it.tl.s);
       const x1 = xBoom(it.tl.e == null ? NOW : it.tl.e);
       const barW = Math.max(3, x1 - x0);
+      barStartXByName[it.tl.n] = x0;
+      barColorByName[it.tl.n] = it.g.color;
 
       const g = ce('g',{class:'bar-g', tabindex:0, role:'button', 'aria-label':it.tl.n,
         style:'cursor:pointer'});
@@ -474,9 +498,10 @@
         stroke:'var(--prologue)', 'stroke-width':1.2, opacity:.7
       }), svg.firstChild);
     }
+    const endX = barStartXByName[target] != null ? barStartXByName[target] : xBoom(1982);
     svg.insertBefore(ce('line',{
-      x1:pts[pts.length-1], y1:by, x2:xBoom(1982), y2:by,
-      stroke:'var(--map)', 'stroke-width':1.2,
+      x1:pts[pts.length-1], y1:by, x2:endX, y2:by,
+      stroke:barColorByName[target] || 'var(--map)', 'stroke-width':1.2,
       'stroke-dasharray':'3 3', opacity:.6
     }), svg.firstChild);
   });
@@ -497,10 +522,12 @@
     const g = ce('g',{tabindex:0, role:'button', style:'cursor:pointer'});
     g.appendChild(ce('circle',{cx:px, cy:py, r:4,
       fill:'var(--paper)', stroke:accent, 'stroke-width':1.8}));
-    const nm = ce('text',{x:px+8, y:py - 3, fill:accent,
+    const lx = pi.labelLeft ? px - 8 : px + 8;
+    const anchor = pi.labelLeft ? 'end' : 'start';
+    const nm = ce('text',{x:lx, y:py - 3, fill:accent, 'text-anchor':anchor,
       'font-family':'"DM Sans",sans-serif', 'font-size':'12', 'font-weight':'500'});
     nm.textContent = pi.n; g.appendChild(nm);
-    const yr = ce('text',{x:px+8, y:py + 9, fill:accent, opacity:.85,
+    const yr = ce('text',{x:lx, y:py + 9, fill:accent, opacity:.85, 'text-anchor':anchor,
       'font-family':'"DM Mono",ui-monospace,monospace',
       'font-size':'10', 'letter-spacing':'.04em'});
     yr.textContent = pi.yr; g.appendChild(yr);
