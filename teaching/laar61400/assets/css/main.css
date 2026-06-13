@@ -45,7 +45,8 @@ body { font-family: 'DM Sans', sans-serif; background: #fff; color: #1a1a1a; }
 .panel-section.collapsed .panel-section-label::after { transform: rotate(-90deg); }
 .panel-section.collapsed .panel-link { display: none; }
 .panel-link {
-  display: block; padding: 7px 20px; font-size: 13px;
+  display: flex; gap: 8px; align-items: baseline;
+  padding: 7px 20px; font-size: 13px;
   color: #555; text-decoration: none;
 }
 .panel-link:hover { background: #ede9e4; }
@@ -53,10 +54,12 @@ body { font-family: 'DM Sans', sans-serif; background: #fff; color: #1a1a1a; }
   color: #1a1a1a; border-left: 2px solid #1a1a1a; padding-left: 18px;
 }
 .panel-link.placeholder { color: #bbb; cursor: default; pointer-events: none; }
-.panel-link-num {
+.panel-link-num, .panel-link-wk {
   font-family: 'DM Mono', monospace; font-size: 10px;
-  color: #aaa; margin-right: 8px;
+  flex: 0 0 auto;
 }
+.panel-link-num { color: #aaa; }
+.panel-link-wk { color: #999; }
 
 /* Main content */
 #main-content { margin-left: 260px; min-height: 100vh; }
