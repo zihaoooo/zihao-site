@@ -139,6 +139,12 @@ body { font-family: 'DM Sans', sans-serif; background: #fff; color: #1a1a1a; }
   white-space: nowrap;
 }
 .schedule-table .week-topic { font-weight: 600; color: #1a1a1a; }
+.schedule-table .lecture-link {
+  display: inline-block; margin-top: 6px;
+  font-family: 'DM Mono', monospace; font-size: 10px;
+  color: #801010; text-decoration: none; letter-spacing: 0.01em;
+}
+.schedule-table .lecture-link:hover { text-decoration: underline; }
 .schedule-table .part-header td {
   background: #f5f3f0; font-family: 'DM Mono', monospace;
   font-size: 9px; font-weight: 700; text-transform: uppercase;
