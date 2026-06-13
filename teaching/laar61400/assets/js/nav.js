@@ -8,18 +8,27 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
+  // ── Collapsible nav sections ──
+  document.querySelectorAll('.panel-section-label').forEach(label => {
+    const section = label.parentElement;
+    const key = 'nav-collapsed-' + label.textContent.trim();
+    if (localStorage.getItem(key) === '1') section.classList.add('collapsed');
+    label.addEventListener('click', () => {
+      const collapsed = section.classList.toggle('collapsed');
+      localStorage.setItem(key, collapsed ? '1' : '0');
+    });
+  });
+
   // ── Mobile hamburger ──
   const sidepanel = document.getElementById('sidepanel');
   if (!sidepanel) return;
 
-  // Inject toggle button
   const toggle = document.createElement('button');
   toggle.id = 'nav-toggle';
   toggle.setAttribute('aria-label', 'Open navigation');
   toggle.innerHTML = '<span></span><span></span><span></span>';
   document.body.appendChild(toggle);
 
-  // Inject overlay
   const overlay = document.createElement('div');
   overlay.id = 'nav-overlay';
   document.body.appendChild(overlay);
@@ -42,7 +51,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   overlay.addEventListener('click', closeNav);
 
-  // Close sidebar when a nav link is tapped on mobile
   sidepanel.querySelectorAll('.panel-link').forEach(link => {
     link.addEventListener('click', () => {
       if (window.innerWidth <= 768) closeNav();
