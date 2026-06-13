@@ -25,11 +25,13 @@
     .bar-key{width:24px;height:10px;border-radius:3px;flex:0 0 auto;}
     .legend .lab{font-family:"DM Mono",ui-monospace,monospace;font-size:10.5px;letter-spacing:.03em;}
     .legend .note{color:var(--mute);}
-    .scroll{overflow-x:hidden;overflow-y:hidden;margin-top:10px;
+    .scroll{overflow-x:auto;overflow-y:hidden;-webkit-overflow-scrolling:touch;
+      margin-top:10px;
       border:1px solid var(--line);border-radius:10px;background:var(--paper);}
     svg{display:block;}
     .hint{font-family:"DM Mono",ui-monospace,monospace;font-size:10px;
-      letter-spacing:.05em;color:var(--mute);margin-top:5px;}
+      letter-spacing:.05em;color:var(--mute);margin-top:5px;display:none;}
+    @media (max-width:768px){ .hint{display:block;} }
     .foot{margin-top:24px;font-size:12px;color:var(--mute);line-height:1.7;max-width:72ch;}
     .foot strong{color:#4a463f;font-weight:600;}
     .timeline-section-label{
@@ -128,6 +130,7 @@
         </div>
 
         <div class="scroll"><svg id="chart" xmlns="http://www.w3.org/2000/svg"></svg></div>
+        <p class="hint">Scroll the timeline horizontally &rarr;</p>
 
         <p class="foot">
           <strong>Computational representation did not begin with the PC.</strong> Sketchpad (1963), SYMAP (1963), and Esri's founding consulting work (1969) predate commercial software by two decades — but they lived in labs and on minicomputers, inaccessible to practitioners. The 1982 line is when the ecosystem actually opens: IBM PC, AutoCAD, and ARC/INFO all arrive the same year.
@@ -155,7 +158,10 @@
   const AI_ZONE_W  = 72;
 
   const scrollEl = document.querySelector('.scroll');
-  const W = scrollEl.clientWidth || 800;
+  // Floor the chart width so the fixed pre-PC / Agentic-AI bands don't crowd
+  // out the 1982–2026 boom zone on narrow screens; .scroll pans horizontally.
+  const MIN_W = 620;
+  const W = Math.max(scrollEl.clientWidth || 800, MIN_W);
   const BOOM_W = W - LEFT_PAD - RIGHT_PAD - PROLOGUE_W - AI_ZONE_W;
   const PXY    = BOOM_W / (BOOM_END - BOOM_START);
 
