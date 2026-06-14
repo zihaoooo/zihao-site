@@ -209,6 +209,7 @@ body {
   line-height: 1.8;
   color: #333;
   margin-bottom: 20px;
+  text-wrap: pretty;
 }
 .site-body p:last-child { margin-bottom: 0; }
 
@@ -225,6 +226,7 @@ body {
   line-height: 2;
   color: #333;
   margin-bottom: 20px;
+  text-wrap: pretty;
 }
 .site-body-zh p:last-child { margin-bottom: 0; }
 .site-body em { font-style: italic; }
