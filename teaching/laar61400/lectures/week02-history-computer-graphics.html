@@ -154,6 +154,7 @@
           <li>Carl Steinitz, &ldquo;Beginnings of Geodesign: A Personal Historical Perspective,&rdquo; <em>ArcNews</em> (Esri), Summer 2013. <a href="https://www.esri.com/about/newsroom/arcnews/beginnings-of-geodesign-a-personal-historical-perspective" target="_blank" rel="noopener">esri.com</a></li>
           <li>A. Krista Sykes, &ldquo;A New Way of Seeing: The Laboratory for Computer Graphics and Spatial Analysis,&rdquo; <em>Harvard GSD News</em>, Nov.&nbsp;13,&nbsp;2024. <a href="https://www.gsd.harvard.edu/2024/11/a-new-way-of-seeing-the-laboratory-for-computer-graphics-and-spatial-analysis/" target="_blank" rel="noopener">gsd.harvard.edu</a></li>
           <li>&ldquo;University of Utah,&rdquo; in <em>Computer Graphics and Computer Animation: A Retrospective Overview</em> (Ohio State University). <a href="https://ohiostate.pressbooks.pub/graphicshistory/chapter/4-3-university-of-utah/" target="_blank" rel="noopener">ohiostate.pressbooks.pub</a></li>
+          <li>&ldquo;B-spline&rdquo; (Schoenberg coined the term in 1967; the Cox&ndash;de Boor recurrence, 1971&ndash;72). <em>Wikipedia.</em> <a href="https://en.wikipedia.org/wiki/B-spline" target="_blank" rel="noopener">en.wikipedia.org</a></li>
           <li>&ldquo;Non-uniform rational B-spline&rdquo; (history of B-splines, Riesenfeld, Versprille, and the Boeing naming). <a href="https://handwiki.org/wiki/Non-uniform_rational_B-spline" target="_blank" rel="noopener">handwiki.org</a></li>
           <li>&ldquo;Elaine Cohen&rdquo; (University of Utah geometric-design group; 2009 Pierre Bézier Award with Richard Riesenfeld). <em>Wikipedia.</em> <a href="https://en.wikipedia.org/wiki/Elaine_Cohen" target="_blank" rel="noopener">en.wikipedia.org</a></li>
           <li>&ldquo;Solid Modeling Solutions&rdquo; (Boeing TIGER geometry group under Robert Blomgren; commercialization via Applied Geometry). <em>Wikipedia.</em> <a href="https://en.wikipedia.org/wiki/Solid_Modeling_Solutions" target="_blank" rel="noopener">en.wikipedia.org</a></li>
@@ -328,7 +329,7 @@ function buildChart(){
       alignToBar: 'ARC/INFO → ArcGIS', lineage: true },
     { n:'B-Spline', yr:1974, frac:0.84, labelLeft:true,
       meta:'~1974 · Univ. of Utah · B-spline research',
-      b:'The academic foundation. B-splines for design came from Riesenfeld\'s 1973 Syracuse thesis; he carried the work to the University of Utah and, with Elaine Cohen, built the geometric-design lab — advancing the spline methods (knot insertion, the Oslo subdivision algorithm) that later surface modeling rests on. Research, not a product.',
+      b:'The academic foundation. The B-spline math predates this — Schoenberg coined the name in 1967, and the Cox&ndash;de Boor recurrence (1971&ndash;72) made it computable. Riesenfeld\'s 1973 Syracuse thesis brought B-splines to free-form design, showing they generalize the B&eacute;zier curve; he carried the work to the University of Utah where, with Elaine Cohen, he built the geometric-design lab — advancing knot insertion and the Oslo subdivision algorithm that later surface modeling rests on. Research, not a product.',
       alignToBar: 'Rhino', lineage: true },
     { n:'NURBS', yr:1980, frac:0.99,
       meta:'1979–80 · Boeing TIGER · R. Blomgren',
@@ -590,13 +591,13 @@ function buildChart(){
   const tip = document.getElementById('tip');
   // tooltip name → reference number(s) in the References list below
   const CITE = {
-    'Sketchpad':'34','SYMAP':'2','Esri':'1','B-Spline':'3,5','NURBS':'4,6','AGLib':'7',
-    'AutoCAD':'8','MicroStation':'16','Vectorworks':'9','Land F/X':'17','Civil 3D':'35',
-    'ARC/INFO → ArcGIS':'1','QGIS':'20','OpenStreetMap':'21','Google Earth':'13','Grasshopper':'11',
-    'Rhino':'7','3ds Max':'18','SketchUp':'19','Revit':'10','Blender':'14',
-    'Illustrator':'22','Photoshop':'12','InDesign':'23','V-Ray':'24','Lumion':'25','Enscape':'26','D5 Render':'27',
-    'Premiere':'28','After Effects':'29','RealFlow':'30',
-    'HTML / CSS / JS':'31,32','Unreal Engine':'33','Unity':'15','Web maps / portfolio':'36'
+    'Sketchpad':'35','SYMAP':'2','Esri':'1','B-Spline':'3,4,6','NURBS':'5,7','AGLib':'8',
+    'AutoCAD':'9','MicroStation':'17','Vectorworks':'10','Land F/X':'18','Civil 3D':'36',
+    'ARC/INFO → ArcGIS':'1','QGIS':'21','OpenStreetMap':'22','Google Earth':'14','Grasshopper':'12',
+    'Rhino':'8','3ds Max':'19','SketchUp':'20','Revit':'11','Blender':'15',
+    'Illustrator':'23','Photoshop':'13','InDesign':'24','V-Ray':'25','Lumion':'26','Enscape':'27','D5 Render':'28',
+    'Premiere':'29','After Effects':'30','RealFlow':'31',
+    'HTML / CSS / JS':'32,33','Unreal Engine':'34','Unity':'16','Web maps / portfolio':'37'
   };
   function fill(d){
     const tag = d.group
