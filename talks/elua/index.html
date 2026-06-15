@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ELUA — Ecological Laboratory for Urban Agriculture</title>
+<style>
+  *, html, body { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 100vw; height: 100vh; overflow: hidden; background: #000; font-family: sans-serif; }
+
+  #viewer { width: 100vw; height: 100vh; position: relative; }
+
+  .slide { display: none; width: 100%; height: 100%; }
+  .slide.active { display: flex; align-items: center; justify-content: center; }
+
+  .slide img { max-width: 100%; max-height: 100%; object-fit: contain; display: block; }
+  .slide iframe { width: 100%; height: 100%; border: none; }
+
+  #controls {
+    position: fixed; bottom: 16px; left: 50%; transform: translateX(-50%);
+    display: flex; align-items: center; gap: 12px;
+    background: rgba(0,0,0,0.55); padding: 6px 14px; border-radius: 999px;
+    opacity: 0; transition: opacity 0.2s; z-index: 100;
+  }
+  #viewer:hover #controls { opacity: 1; }
+  #controls button {
+    background: none; border: none; color: #fff; font-size: 18px;
+    cursor: pointer; padding: 2px 6px; line-height: 1;
+  }
+  #controls button:hover { color: #a89ff5; }
+  #counter { color: rgba(255,255,255,0.7); font-size: 12px; min-width: 50px; text-align: center; }
+</style>
+</head>
+<body>
+<div id="viewer">
+
+  <!-- 01 -->
+  <div class="slide active" data-notes="">
+    <img src="slides/slide_01.webp" alt="Slide 1">
+  </div>
+
+  <!-- 02 -->
+  <div class="slide" data-notes="A little background about our lab. The COVID-19 pandemic, the resultant supply-chain breakdown, and climate change have exacerbated the dysfunction of current urban food systems and exposed serious, complex food insecurity in US cities.">
+    <img src="slides/slide_02.webp" alt="Slide 2">
+  </div>
+
+  <!-- 03 -->
+  <div class="slide" data-notes="The pandemic reveals the long-term dysfunction of present-day urban food systems that rely heavily on large farm operation and long-distance distribution.">
+    <img src="slides/slide_03.webp" alt="Slide 3">
+  </div>
+
+  <!-- 04 -->
+  <div class="slide" data-notes="How can we transition from this dysfunctional urban food system to a new type of decentralized, local, and resilient food system?">
+    <img src="slides/slide_04.webp" alt="Slide 4">
+  </div>
+
+  <!-- 05 -->
+  <div class="slide" data-notes="This is where our project comes in.">
+    <img src="slides/slide_05.webp" alt="Slide 5">
+  </div>
+
+  <!-- 06 -->
+  <div class="slide" data-notes="We propose to expand the current rooftop garden with a FarmBot and conduct a series of experimental farming.">
+    <img src="slides/slide_06.webp" alt="Slide 6">
+  </div>
+
+  <!-- 11 — YouTube -->
+  <div class="slide" data-notes="DIY">
+    <iframe src="https://www.youtube.com/embed/VTec_SXO5Lk" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+  </div>
+
+  <!-- 08 -->
+  <div class="slide" data-notes="This is also another great way to teach our students coding, and see how the robot interacts with the natural environment.">
+    <img src="slides/slide_08.webp" alt="Slide 8">
+  </div>
+
+  <!-- 09 -->
+  <div class="slide" data-notes="">
+    <img src="slides/slide_09.webp" alt="Slide 9">
+  </div>
+
+  <!-- 10 -->
+  <div class="slide" data-notes="">
+    <img src="slides/slide_10.webp" alt="Slide 10">
+  </div>
+
+  <!-- 16 -->
+  <div class="slide" data-notes="">
+    <img src="slides/slide_11.webp" alt="Slide 16">
+  </div>
+
+  <!-- 17 — Parametric -->
+  <div class="slide" data-notes="">
+    <img src="slides/slide_12.webp" alt="Slide 12">
+  </div>
+
+  <!-- 13 -->
+  <div class="slide" data-notes="Within the school">
+    <img src="slides/slide_13.webp" alt="Slide 13">
+  </div>
+
+  <!-- 12 -->
+  <div class="slide" data-notes="With the lab, I got connected with other groups within the university, and we started to collaborate on different projects.">
+    <img src="slides/slide_14.webp" alt="Slide 12">
+  </div>
+
+  <!-- 07 — YouTube -->
+  <div class="slide" data-notes="This is another site of our lab — indoor, outside the landscape studios — where students can also interact with the robot garden.">
+    <iframe src="https://www.youtube.com/embed/EH2hRRIARS4" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+  </div>
+
+  <!-- 15 -->
+  <div class="slide" data-notes="">
+    <img src="slides/slide_16.webp" alt="Slide 15">
+  </div>
+
+  <!-- 14 -->
+  <div class="slide" data-notes="">
+    <img src="slides/slide_17.webp" alt="Slide 14">
+  </div>
+
+  <!-- 19 — Before / After -->
+  <div class="slide" data-notes="">
+    <img src="slides/slide_18.webp" alt="Slide 18">
+  </div>
+
+  <!-- 18 -->
+  <div class="slide" data-notes="">
+    <img src="slides/slide_19.webp" alt="Slide 18">
+  </div>
+
+  <!-- 20 — Harvest 1 (2x2) -->
+  <div class="slide" data-notes="">
+    <img src="slides/slide_20.webp" alt="Slide 20">
+  </div>
+
+  <!-- 21 — Harvest 2 (3-col) -->
+  <div class="slide" data-notes="">
+    <img src="slides/slide_21.webp" alt="Slide 21">
+  </div>
+
+  <!-- 22 -->
+  <div class="slide" data-notes="So if we treat this garden as a game, then can an AI agent come up with the best strategy to grow food?">
+    <img src="slides/slide_22.webp" alt="Slide 22">
+  </div>
+
+  <!-- 23 -->
+  <div class="slide" data-notes="This is actually based on another paper I wrote about how AI agents can learn to play the game of farming.">
+    <img src="slides/slide_23.webp" alt="Slide 23">
+  </div>
+
+  <!-- 24 -->
+  <div class="slide" data-notes="">
+    <img src="slides/slide_24.webp" alt="Slide 24">
+  </div>
+
+</div>
+
+<div id="controls">
+  <button id="prev-btn">&#8592;</button>
+  <span id="counter">1 / 24</span>
+  <button id="next-btn">&#8594;</button>
+  <button id="fs-btn" title="Fullscreen (F)">&#x26F6;</button>
+  <button id="presenter-btn" title="Presenter view (S)">&#9654; Notes</button>
+</div>
+
+<script>
+  const slides = Array.from(document.querySelectorAll('.slide'));
+  const total = slides.length;
+  const counter = document.getElementById('counter');
+  const channel = new BroadcastChannel('lecture_slides');
+  let current = 0;
+  let presenterWin = null;
+
+  counter.textContent = '1 / ' + total;
+
+  function getSlideThumb(i) {
+    const img = slides[i].querySelector('img');
+    const iframe = slides[i].querySelector('iframe');
+    if (img) return { type: 'img', src: img.src };
+    if (iframe) {
+      const m = iframe.src.match(/embed\/([^?]+)/);
+      return { type: 'youtube', id: m ? m[1] : '' };
+    }
+    return { type: 'blank' };
+  }
+
+  function broadcast(idx) {
+    const next = (idx + 1) % total;
+    channel.postMessage({
+      current: idx, total,
+      notes: slides[idx].dataset.notes || '',
+      currentThumb: getSlideThumb(idx),
+      nextThumb: getSlideThumb(next)
+    });
+  }
+
+  function goTo(n) {
+    slides[current].classList.remove('active');
+    const iframe = slides[current].querySelector('iframe');
+    if (iframe) iframe.src = iframe.src;
+    current = (n + total) % total;
+    slides[current].classList.add('active');
+    counter.textContent = (current + 1) + ' / ' + total;
+    broadcast(current);
+  }
+
+  document.getElementById('prev-btn').onclick = () => goTo(current - 1);
+  document.getElementById('next-btn').onclick = () => goTo(current + 1);
+  document.getElementById('fs-btn').onclick = () => {
+    if (!document.fullscreenElement) document.documentElement.requestFullscreen();
+    else document.exitFullscreen();
+  };
+  document.getElementById('presenter-btn').onclick = openPresenter;
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown' || e.key === ' ') goTo(current + 1);
+    if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') goTo(current - 1);
+    if (e.key === 'f' || e.key === 'F') document.getElementById('fs-btn').click();
+    if (e.key === 's' || e.key === 'S') openPresenter();
+  });
+
+  document.getElementById('viewer').addEventListener('click', e => {
+    if (e.target.closest('#controls') || e.target.tagName === 'IFRAME') return;
+    e.clientX > window.innerWidth / 2 ? goTo(current + 1) : goTo(current - 1);
+  });
+
+  channel.onmessage = e => {
+    if (e.data.action === 'prev') goTo(current - 1);
+    if (e.data.action === 'next') goTo(current + 1);
+  };
+
+  function openPresenter() {
+    if (presenterWin && !presenterWin.closed) { presenterWin.focus(); return; }
+    presenterWin = window.open('', 'presenter',
+      'width=1000,height=620,menubar=no,toolbar=no,location=no,status=no');
+    presenterWin.document.write(presenterHTML());
+    presenterWin.document.close();
+    setTimeout(() => broadcast(current), 300);
+  }
+
+  function presenterHTML() {
+    return `<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Presenter Notes</title>
+<style>
+  *, html, body { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: #1a1a1a; color: #fff; font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+         display: grid; grid-template-rows: auto 1fr auto; height: 100vh; overflow: hidden; }
+  #top-bar { display: flex; align-items: center; justify-content: space-between;
+             background: #111; padding: 8px 16px; border-bottom: 1px solid #333; }
+  #slide-counter { font-size: 13px; color: #aaa; }
+  #timer { font-size: 20px; font-weight: 600; letter-spacing: 0.05em; color: #a89ff5; font-variant-numeric: tabular-nums; }
+  #timer-controls { display: flex; gap: 6px; }
+  #timer-controls button { background: #333; border: none; color: #ccc; padding: 3px 10px;
+                           border-radius: 4px; cursor: pointer; font-size: 12px; }
+  #timer-controls button:hover { background: #444; }
+  #main { display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr auto; gap: 12px; padding: 12px; overflow: hidden; }
+  .preview-box { background: #000; border-radius: 6px; overflow: hidden; position: relative; aspect-ratio: 16/9; }
+  .preview-box img { width: 100%; height: 100%; object-fit: contain; }
+  .preview-box iframe { width: 100%; height: 100%; border: none; pointer-events: none; }
+  .preview-label { position: absolute; top: 6px; left: 8px; font-size: 10px; font-weight: 600;
+                   text-transform: uppercase; letter-spacing: 0.08em; color: rgba(255,255,255,0.5); }
+  #current-box { border: 2px solid #534AB7; }
+  #notes-area { grid-column: 1 / -1; background: #252525; border-radius: 6px; padding: 14px 16px;
+                font-size: 15px; line-height: 1.6; color: #ddd; overflow-y: auto; min-height: 80px; max-height: 140px; }
+  #notes-area.empty { color: #666; font-style: italic; }
+  #nav { display: flex; justify-content: center; gap: 12px; padding: 8px 16px 12px; }
+  #nav button { background: #333; border: none; color: #fff; padding: 6px 20px;
+                border-radius: 6px; cursor: pointer; font-size: 14px; }
+  #nav button:hover { background: #534AB7; }
+</style>
+</head>
+<body>
+<div id="top-bar">
+  <span id="slide-counter">-- / --</span>
+  <div id="timer">00:00</div>
+  <div id="timer-controls">
+    <button id="t-start">Start</button>
+    <button id="t-reset">Reset</button>
+  </div>
+</div>
+<div id="main">
+  <div class="preview-box" id="current-box">
+    <span class="preview-label">Current</span>
+    <div id="current-content"></div>
+  </div>
+  <div class="preview-box" id="next-box">
+    <span class="preview-label">Next</span>
+    <div id="next-content"></div>
+  </div>
+  <div id="notes-area" class="empty">No notes</div>
+</div>
+<div id="nav">
+  <button id="p-prev">&#8592; Prev</button>
+  <button id="p-next">Next &#8594;</button>
+</div>
+<script>
+  const ch = new BroadcastChannel('lecture_slides');
+  function renderThumb(container, thumb) {
+    container.innerHTML = '';
+    if (!thumb) return;
+    if (thumb.type === 'img') {
+      const img = document.createElement('img');
+      img.src = thumb.src;
+      container.appendChild(img);
+    } else if (thumb.type === 'youtube') {
+      const iframe = document.createElement('iframe');
+      iframe.src = 'https://www.youtube.com/embed/' + thumb.id + '?controls=0';
+      iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+      container.appendChild(iframe);
+    }
+  }
+  ch.onmessage = e => {
+    const d = e.data;
+    document.getElementById('slide-counter').textContent = (d.current + 1) + ' / ' + d.total;
+    renderThumb(document.getElementById('current-content'), d.currentThumb);
+    renderThumb(document.getElementById('next-content'), d.nextThumb);
+    const notes = document.getElementById('notes-area');
+    if (d.notes) { notes.textContent = d.notes; notes.classList.remove('empty'); }
+    else { notes.textContent = 'No notes'; notes.classList.add('empty'); }
+  };
+  document.getElementById('p-prev').onclick = () => ch.postMessage({ action: 'prev' });
+  document.getElementById('p-next').onclick = () => ch.postMessage({ action: 'next' });
+  let elapsed = 0, running = false, interval = null;
+  const fmt = s => String(Math.floor(s/60)).padStart(2,'0') + ':' + String(s%60).padStart(2,'0');
+  document.getElementById('t-start').onclick = () => {
+    if (running) { clearInterval(interval); running = false; document.getElementById('t-start').textContent = 'Start'; }
+    else { interval = setInterval(() => { elapsed++; document.getElementById('timer').textContent = fmt(elapsed); }, 1000);
+           running = true; document.getElementById('t-start').textContent = 'Pause'; }
+  };
+  document.getElementById('t-reset').onclick = () => {
+    clearInterval(interval); running = false; elapsed = 0;
+    document.getElementById('timer').textContent = '00:00';
+    document.getElementById('t-start').textContent = 'Start';
+  };
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight' || e.key === ' ') ch.postMessage({ action: 'next' });
+    if (e.key === 'ArrowLeft') ch.postMessage({ action: 'prev' });
+  });
+<\/script>
+</body>
+</html>`;
+  }
+</script>
+
+</body>
+</html>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           

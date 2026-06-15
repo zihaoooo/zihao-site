@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cybernetics</title>
+<style>
+  *, html, body { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 100vw; height: 100vh; overflow: hidden; background: #000; font-family: sans-serif; }
+
+  #viewer { width: 100vw; height: 100vh; position: relative; }
+
+  .slide { display: none; width: 100%; height: 100%; }
+  .slide.active { display: flex; align-items: center; justify-content: center; }
+
+  .slide img { max-width: 100%; max-height: 100%; object-fit: contain; display: block; }
+  .slide iframe { width: 100%; height: 100%; border: none; }
+
+  #controls {
+    position: fixed; bottom: 16px; left: 50%; transform: translateX(-50%);
+    display: flex; align-items: center; gap: 12px;
+    background: rgba(0,0,0,0.55); padding: 6px 14px; border-radius: 999px;
+    opacity: 0; transition: opacity 0.2s; z-index: 100;
+  }
+  #viewer:hover #controls { opacity: 1; }
+  #controls button {
+    background: none; border: none; color: #fff; font-size: 18px;
+    cursor: pointer; padding: 2px 6px; line-height: 1;
+  }
+  #controls button:hover { color: #a89ff5; }
+  #counter { color: rgba(255,255,255,0.7); font-size: 12px; min-width: 50px; text-align: center; }
+</style>
+</head>
+<body>
+<div id="viewer">
+
+  <!-- Slide 1: Wiener 1948 — what is cybernetics -->
+  <div class="slide active" data-notes="Norbert Wiener's 1948 book first publicly used the term cybernetics to refer to recursive processes and self-regulation behavior found in machines and animals. As plainly stated by the title, Wiener envisioned cybernetics to be a study of Control and Communication across different entities.">
+    <img src="slides/slide_01.webp" alt="Slide 1">
+  </div>
+
+  <!-- Slide 2: Black box — communication at center of control -->
+  <div class="slide" data-notes="Cybernetics positions communication — the exchange of information — at the center of control. Before cybernetics, you needed to understand the internal structure of a machine to control it. Cybernetics turns the system into a black box: by measuring its input and output — the exchange of information, i.e. communication — we can start to control the system.">
+    <img src="slides/slide_02.webp" alt="Slide 2">
+  </div>
+
+  <!-- Slide 3: All modern machines are cybernetic -->
+  <div class="slide" data-notes="This underpins all modern machines, including the most advanced machine learning algorithms such as AlphaGo. By measuring the output with sensors, we feed the signal into a controller to compute control laws and deploy them with actuators to change system dynamics. This is why sensing, modeling, and actuating are regarded as fundamental processes in feedback mechanisms — and why mainstream technological development has focused on advancing these three fronts.">
+    <img src="slides/slide_03.webp" alt="Slide 3">
+  </div>
+
+  <!-- Slide 4: Smart city as cybernetic project -->
+  <div class="slide" data-notes="In the past decade, the smart city has become the most ambitious cybernetic project, mobilizing different social sectors to develop technologies that could make cities 'smarter.' Sensors, platforms, crowd-sourced data, machine learning algorithms, AI — myriads of new tools are being developed every day to experiment with feedback loops between urban systems. But what counts as 'smart'? It is often narrowly defined as more efficient and more connected.">
+    <img src="slides/slide_04.webp" alt="Slide 4">
+  </div>
+
+  <!-- Slide 5: Yuk Hui — cybernetics as universal thinking -->
+  <div class="slide" data-notes="This is why Yuk Hui acutely points out: 'We are more than ever in an epoch of cybernetics, since cybernetics was not a discipline parallel to other disciplines such as philosophy and psychology, but rather it aimed to be a universal discipline, able to unite all other disciplines — a universal mode of thinking par excellence.' Cybernetics is not just a technology; it is a worldview.">
+    <img src="slides/slide_05.webp" alt="Slide 5">
+  </div>
+
+  <!-- Slide 6: Sougwen Chung drawing duets -->
+  <div class="slide" data-notes="Here is an example that challenges the standard cybernetic assumption. Artist Sougwen Chung's drawing duets pair the artist with a robotic arm that mimics her gestures via an overhead camera. The robot tracks her linework perfectly in digital simulation — but the movement is dramatically altered when translated to the physical robotic arm. There is no perfect communication, no real control. And yet something interesting emerges.">
+    <img src="slides/slide_06.webp" alt="Slide 6">
+  </div>
+
+  <!-- Slide 7: OOO — uncontrollable and non-communicative -->
+  <div class="slide" data-notes="The feedback loop in standard cybernetics always presumes things are accessible, communicative, and thus controllable. But in Sougwen's case, you can read the recursive mechanism differently. If we take Object-Oriented Ontology's lens — starting from the premise that things are withdrawn and non-communicative, and thus uncontrollable — what does cybernetics mean? This is the generative question.">
+    <img src="slides/slide_07.webp" alt="Slide 7">
+  </div>
+
+  <!-- Slide 8: Alternative framework — Coding, Choreographing, Attuning -->
+  <div class="slide" data-notes="By collecting a range of emerging cybernetic practices across art, science, engineering, and design, we can map out an alternative interpretation of cybernetic thinking centered on uncontrollability and non-communication. Instead of sensing, modeling, and actuating — three alternative terms: Coding, Choreographing, and Attuning.">
+    <img src="slides/slide_08.webp" alt="Slide 8">
+  </div>
+
+  <!-- Slide 9: Reinterpreting sensing — tele-present wind -->
+  <div class="slide" data-notes="First, reinterpreting sensing. David Bowen's 'tele-present wind': an accelerometer on a dried plant stalk outdoors captures wind movement; the signal is transmitted to tilting devices in a gallery, each made of a dried plant stalk. The exact movement is replicated inside. Rather than sensing as data extraction for control, here sensing is about attunement — registering the world as it is, not as we want to manage it.">
+    <img src="slides/slide_09.webp" alt="Slide 9">
+  </div>
+
+  <!-- Slide 10: Choreographing — AI agents and emergent ecologies -->
+  <div class="slide" data-notes="Our relationship with a model is changing. We render our intention through objective functions that will never be comprehensive. Choreographing describes this better than controlling: the designer sets conditions in motion rather than dictating outcomes. Think of possibilities like AI agents that cause flooding to promote emergent ecologies — design as score, not blueprint.">
+    <img src="slides/slide_10.webp" alt="Slide 10">
+  </div>
+
+  <!-- Slide 11: Halprin RSVP cycles -->
+  <div class="slide" data-notes="The term choreograph is gaining traction among landscape architects, inseparable from Lawrence Halprin's theory. In the 1970s, Halprin introduced RSVP cycles: S stands for Score — a series of instructions for setting things in motion, akin to musical scores. He writes: 'Scores communicate but do not control.' This apparent wordplay on Wiener's book title suggests Halprin found in recursive thinking a design philosophy grounded in openness rather than optimization.">
+    <img src="slides/slide_11.webp" alt="Slide 11">
+  </div>
+
+  <!-- Slide 12: Cellular automaton -->
+  <div class="slide" data-notes="A more technical example: cellular automaton — a classic algorithm from early cybernetics. Each cell in a grid follows rules of transformation. By adjusting these rules you can produce an ecosystem of digital species. It demonstrates another mode of cybernetic thinking: rule-setting rather than outcome-controlling. The behavior is emergent, not prescribed.">
+    <img src="slides/slide_12.webp" alt="Slide 12">
+  </div>
+
+  <!-- Slide 13: Closing — alternative cybernetics -->
+  <div class="slide" data-notes="Mainstream cybernetics is about control through communication — through the exchange of information, one reaches controlled stability. But in Sougwen's drawing duet, the artist and robot are not in good communication, and there is no control. Yet the underlying thinking is deeply cybernetic: recursive causality and self-regulation, found in both human and machine. An alternative cybernetics starts not from control, but from co-becoming.">
+    <img src="slides/slide_13.webp" alt="Slide 13">
+  </div>
+
+</div>
+
+<div id="controls">
+  <button id="prev-btn">&#8592;</button>
+  <span id="counter">1 / 13</span>
+  <button id="next-btn">&#8594;</button>
+  <button id="fs-btn" title="Fullscreen (F)">&#x26F6;</button>
+  <button id="presenter-btn" title="Presenter view (S)">&#9654; Notes</button>
+</div>
+
+<script>
+  const slides = Array.from(document.querySelectorAll('.slide'));
+  const total = slides.length;
+  const counter = document.getElementById('counter');
+  const channel = new BroadcastChannel('lecture_slides');
+  let current = 0;
+  let presenterWin = null;
+
+  counter.textContent = '1 / ' + total;
+
+  function getSlideThumb(i) {
+    const img = slides[i].querySelector('img');
+    const iframe = slides[i].querySelector('iframe');
+    if (img) return { type: 'img', src: img.src };
+    if (iframe) {
+      const m = iframe.src.match(/embed\/([^?]+)/);
+      return { type: 'youtube', id: m ? m[1] : '' };
+    }
+    return { type: 'blank' };
+  }
+
+  function broadcast(idx) {
+    const next = (idx + 1) % total;
+    channel.postMessage({
+      current: idx, total,
+      notes: slides[idx].dataset.notes || '',
+      currentThumb: getSlideThumb(idx),
+      nextThumb: getSlideThumb(next)
+    });
+  }
+
+  function goTo(n) {
+    slides[current].classList.remove('active');
+    const iframe = slides[current].querySelector('iframe');
+    if (iframe) iframe.src = iframe.src;
+    current = (n + total) % total;
+    slides[current].classList.add('active');
+    counter.textContent = (current + 1) + ' / ' + total;
+    broadcast(current);
+  }
+
+  document.getElementById('prev-btn').onclick = () => goTo(current - 1);
+  document.getElementById('next-btn').onclick = () => goTo(current + 1);
+  document.getElementById('fs-btn').onclick = () => {
+    if (!document.fullscreenElement) document.documentElement.requestFullscreen();
+    else document.exitFullscreen();
+  };
+  document.getElementById('presenter-btn').onclick = openPresenter;
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown' || e.key === ' ') goTo(current + 1);
+    if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') goTo(current - 1);
+    if (e.key === 'f' || e.key === 'F') document.getElementById('fs-btn').click();
+    if (e.key === 's' || e.key === 'S') openPresenter();
+  });
+
+  document.getElementById('viewer').addEventListener('click', e => {
+    if (e.target.closest('#controls') || e.target.tagName === 'IFRAME') return;
+    e.clientX > window.innerWidth / 2 ? goTo(current + 1) : goTo(current - 1);
+  });
+
+  channel.onmessage = e => {
+    if (e.data.action === 'prev') goTo(current - 1);
+    if (e.data.action === 'next') goTo(current + 1);
+  };
+
+  function openPresenter() {
+    if (presenterWin && !presenterWin.closed) { presenterWin.focus(); return; }
+    presenterWin = window.open('', 'presenter',
+      'width=1000,height=620,menubar=no,toolbar=no,location=no,status=no');
+    presenterWin.document.write(presenterHTML());
+    presenterWin.document.close();
+    setTimeout(() => broadcast(current), 300);
+  }
+
+  function presenterHTML() {
+    return `<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Presenter Notes</title>
+<style>
+  *, html, body { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: #1a1a1a; color: #fff; font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+         display: grid; grid-template-rows: auto 1fr auto; height: 100vh; overflow: hidden; }
+
+  #top-bar { display: flex; align-items: center; justify-content: space-between;
+             background: #111; padding: 8px 16px; border-bottom: 1px solid #333; }
+  #slide-counter { font-size: 13px; color: #aaa; }
+  #timer { font-size: 20px; font-weight: 600; letter-spacing: 0.05em; color: #a89ff5; font-variant-numeric: tabular-nums; }
+  #timer-controls { display: flex; gap: 6px; }
+  #timer-controls button { background: #333; border: none; color: #ccc; padding: 3px 10px;
+                           border-radius: 4px; cursor: pointer; font-size: 12px; }
+  #timer-controls button:hover { background: #444; }
+
+  #main { display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr auto; gap: 12px; padding: 12px; overflow: hidden; }
+
+  .preview-box { background: #000; border-radius: 6px; overflow: hidden; position: relative; aspect-ratio: 16/9; }
+  .preview-box img { width: 100%; height: 100%; object-fit: contain; }
+  .preview-box iframe { width: 100%; height: 100%; border: none; pointer-events: none; }
+  .preview-label { position: absolute; top: 6px; left: 8px; font-size: 10px; font-weight: 600;
+                   text-transform: uppercase; letter-spacing: 0.08em; color: rgba(255,255,255,0.5); }
+  #current-box { border: 2px solid #534AB7; }
+
+  #notes-area { grid-column: 1 / -1; background: #252525; border-radius: 6px; padding: 14px 16px;
+                font-size: 15px; line-height: 1.6; color: #ddd; overflow-y: auto; min-height: 80px; max-height: 140px; }
+  #notes-area.empty { color: #666; font-style: italic; }
+
+  #nav { display: flex; justify-content: center; gap: 12px; padding: 8px 16px 12px; }
+  #nav button { background: #333; border: none; color: #fff; padding: 6px 20px;
+                border-radius: 6px; cursor: pointer; font-size: 14px; }
+  #nav button:hover { background: #534AB7; }
+</style>
+</head>
+<body>
+
+<div id="top-bar">
+  <span id="slide-counter">— / —</span>
+  <div id="timer">00:00</div>
+  <div id="timer-controls">
+    <button id="t-start">Start</button>
+    <button id="t-reset">Reset</button>
+  </div>
+</div>
+
+<div id="main">
+  <div class="preview-box" id="current-box">
+    <span class="preview-label">Current</span>
+    <div id="current-content"></div>
+  </div>
+  <div class="preview-box" id="next-box">
+    <span class="preview-label">Next</span>
+    <div id="next-content"></div>
+  </div>
+  <div id="notes-area" class="empty">No notes</div>
+</div>
+
+<div id="nav">
+  <button id="p-prev">&#8592; Prev</button>
+  <button id="p-next">Next &#8594;</button>
+</div>
+
+<script>
+  const ch = new BroadcastChannel('lecture_slides');
+
+  function renderThumb(container, thumb) {
+    container.innerHTML = '';
+    if (!thumb) return;
+    if (thumb.type === 'img') {
+      const img = document.createElement('img');
+      img.src = thumb.src;
+      container.appendChild(img);
+    } else if (thumb.type === 'youtube') {
+      const iframe = document.createElement('iframe');
+      iframe.src = 'https://www.youtube.com/embed/' + thumb.id + '?controls=0';
+      iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+      container.appendChild(iframe);
+    }
+  }
+
+  ch.onmessage = e => {
+    const d = e.data;
+    document.getElementById('slide-counter').textContent = (d.current + 1) + ' / ' + d.total;
+    renderThumb(document.getElementById('current-content'), d.currentThumb);
+    renderThumb(document.getElementById('next-content'), d.nextThumb);
+    const notes = document.getElementById('notes-area');
+    if (d.notes) { notes.textContent = d.notes; notes.classList.remove('empty'); }
+    else { notes.textContent = 'No notes'; notes.classList.add('empty'); }
+  };
+
+  document.getElementById('p-prev').onclick = () => ch.postMessage({ action: 'prev' });
+  document.getElementById('p-next').onclick = () => ch.postMessage({ action: 'next' });
+
+  let elapsed = 0, running = false, interval = null;
+  const fmt = s => String(Math.floor(s/60)).padStart(2,'0') + ':' + String(s%60).padStart(2,'0');
+
+  document.getElementById('t-start').onclick = () => {
+    if (running) { clearInterval(interval); running = false; document.getElementById('t-start').textContent = 'Start'; }
+    else { interval = setInterval(() => { elapsed++; document.getElementById('timer').textContent = fmt(elapsed); }, 1000);
+           running = true; document.getElementById('t-start').textContent = 'Pause'; }
+  };
+  document.getElementById('t-reset').onclick = () => {
+    clearInterval(interval); running = false; elapsed = 0;
+    document.getElementById('timer').textContent = '00:00';
+    document.getElementById('t-start').textContent = 'Start';
+  };
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight' || e.key === ' ') ch.postMessage({ action: 'next' });
+    if (e.key === 'ArrowLeft') ch.postMessage({ action: 'prev' });
+  });
+<\/script>
+</body>
+</html>`;
+  }
+</script>
+
+</body>
+</html>
