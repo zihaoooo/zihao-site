@@ -6,6 +6,7 @@
   <title>Week 02 Lecture: History of Computer Graphics — LAAR 61400</title>
   <link rel="stylesheet" href="/teaching/laar61400/assets/css/main.css">
   <link rel="stylesheet" href="/teaching/laar61400/assets/css/workflow-shared.css">
+  <link rel="stylesheet" href="/teaching/_shared/deck.css">
   <style>
     /* timeline color tokens */
     :root{
@@ -61,80 +62,6 @@
     #tip .t-cite{font-size:8.5px;font-weight:600;color:#c98a3c;margin-left:3px;
       font-family:"DM Mono",ui-monospace,monospace;vertical-align:super;line-height:0;}
 
-    /* ── slide deck (carousel) ── */
-    .deck{margin-top:10px;}
-    .deck-stage{position:relative;aspect-ratio:16/9;width:100%;
-      background:var(--paper);border:1px solid var(--line);border-radius:10px;overflow:hidden;}
-    .slide{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
-      opacity:0;visibility:hidden;transition:opacity .25s ease;}
-    .slide.on{opacity:1;visibility:visible;}
-    .slide>img{max-width:100%;max-height:100%;width:auto;height:auto;object-fit:contain;display:block;}
-    .slide iframe{width:100%;height:100%;border:0;}
-    /* split (two images) */
-    .slide .split{display:flex;width:100%;height:100%;gap:1px;background:var(--line);}
-    .slide .split figure{flex:1;margin:0;position:relative;display:flex;align-items:center;
-      justify-content:center;background:var(--paper);overflow:hidden;}
-    .slide .split img{max-width:100%;max-height:100%;object-fit:contain;}
-    .slide .split figcaption{position:absolute;left:8px;bottom:7px;
-      font-family:"DM Mono",ui-monospace,monospace;font-size:9.5px;letter-spacing:.04em;
-      color:#4a463f;background:rgba(251,250,248,.82);padding:2px 6px;border-radius:3px;}
-    /* title slide */
-    .slide--title{flex-direction:column;text-align:center;gap:14px;background:var(--ink);}
-    .slide--title .tt{font-family:"DM Sans",sans-serif;font-weight:700;
-      font-size:clamp(20px,4.4vw,46px);color:#fbfaf8;letter-spacing:-.01em;line-height:1.1;}
-    .slide--title .ts{font-family:"DM Mono",ui-monospace,monospace;font-size:11px;
-      letter-spacing:.14em;text-transform:uppercase;color:#b0a898;}
-    /* placeholder slide (image still to source) */
-    .slide .ph{display:flex;flex-direction:column;align-items:center;justify-content:center;
-      gap:9px;width:calc(100% - 28px);height:calc(100% - 28px);
-      border:1.5px dashed #cfc8bd;border-radius:8px;text-align:center;padding:18px;}
-    .slide .ph .ph-tag{font-family:"DM Mono",ui-monospace,monospace;font-size:9px;
-      letter-spacing:.14em;text-transform:uppercase;color:#bbb;}
-    .slide .ph .ph-desc{font-family:"DM Sans",sans-serif;font-size:13px;
-      color:#8a847c;max-width:48ch;line-height:1.5;}
-    /* control bar */
-    .deck-bar{display:flex;align-items:center;gap:14px;margin-top:12px;}
-    .deck-btn{appearance:none;border:1px solid var(--line);background:var(--paper);
-      width:34px;height:34px;border-radius:8px;cursor:pointer;color:#4a463f;font-size:16px;
-      line-height:1;display:flex;align-items:center;justify-content:center;flex:0 0 auto;
-      transition:border-color .12s,background .12s;}
-    .deck-btn:hover{border-color:#bbb;background:#fff;}
-    .deck-btn:disabled{opacity:.32;cursor:default;}
-    .deck-count{font-family:"DM Mono",ui-monospace,monospace;font-size:11px;letter-spacing:.06em;
-      color:var(--mute);flex:0 0 auto;min-width:54px;text-align:center;}
-    .deck-meta{flex:1;min-width:0;}
-    .deck-era{font-family:"DM Mono",ui-monospace,monospace;font-size:9px;font-weight:700;
-      letter-spacing:.14em;text-transform:uppercase;color:#b0a898;display:block;margin-bottom:2px;}
-    .deck-cap{font-family:"DM Sans",sans-serif;font-size:13.5px;color:#4a463f;
-      font-style:italic;line-height:1.45;}
-    .deck-hint{font-family:"DM Mono",ui-monospace,monospace;font-size:10px;letter-spacing:.05em;
-      color:var(--mute);margin-top:6px;}
-    .deck-fs{margin-left:auto;flex:0 0 auto;font-size:14px;}
-    /* fullscreen present mode — dark backdrop, 16:9 stage scaled to fit, controls below */
-    .deck:fullscreen{background:#0e0e0e;display:flex;flex-direction:column;
-      align-items:center;justify-content:center;gap:12px;width:100vw;height:100vh;}
-    .deck:fullscreen .deck-stage{aspect-ratio:16/9;height:auto;
-      width:min(100vw, calc((100vh - 76px) * 16 / 9));
-      max-height:calc(100vh - 76px);border:0;border-radius:0;}
-    .deck:fullscreen .deck-hint{display:none;}
-    .deck:fullscreen .deck-bar{width:min(100vw, calc((100vh - 76px) * 16 / 9));
-      padding:0 4px;margin-top:0;}
-    .deck:fullscreen .deck-btn{background:#1c1c1c;border-color:#3a3a3a;color:#e4ded5;}
-    .deck:fullscreen .deck-btn:hover{background:#262626;border-color:#555;}
-    .deck:fullscreen .deck-count{color:#b8b0a6;}
-    .deck:fullscreen .deck-cap{color:#e4ded5;}
-    /* text buttons + notes disclosure */
-    .deck-btn--text{width:auto;padding:0 12px;font-family:"DM Mono",ui-monospace,monospace;
-      font-size:10px;letter-spacing:.08em;text-transform:uppercase;}
-    .deck-notes{margin-top:9px;padding:11px 14px;border:1px solid var(--line);border-radius:8px;
-      background:var(--paper);font-family:"DM Sans",sans-serif;font-size:13px;line-height:1.55;
-      color:#4a463f;max-width:82ch;}
-    .deck-notes[hidden]{display:none;}
-    .deck-notes .nn-empty{color:var(--mute);font-style:italic;}
-    /* never project notes / second-window controls */
-    .deck:fullscreen .deck-notes,
-    .deck:fullscreen #deck-notes-toggle,
-    .deck:fullscreen #deck-present{display:none;}
   </style>
 </head>
 <body>
@@ -195,145 +122,392 @@
           <div class="deck-stage" id="deck-stage">
 
             <!-- 1 · Title -->
-            <div class="slide slide--title" data-era="Frame" data-cap="CAD → NURBS → parametricism · and the agentic-AI question.">
+            <div class="slide slide--title" data-cap="">
               <div class="tt">A History of<br>Representational Tools</div>
               <div class="ts">LAAR 61400 · Week 02</div>
             </div>
 
-            <!-- 2 · Eliot / Manning -->
-            <div class="slide" data-era="Era 1 · Computation without computers" data-cap="The method predates McHarg by decades." data-notes="Left: Charles Eliot — Sudbury Valley survey, 1890s. Right: Warren Manning — Billerica Town Forest, 1912. Overlay / suitability analysis is being done by hand here, decades before McHarg's Design with Nature popularizes it.">
-              <div class="split">
-                <figure><img src="/teaching/laar61400/assets/img/Week02/02-eliot.jpg" alt="Charles Eliot — Sudbury Valley survey map"></figure>
-                <figure><img src="/teaching/laar61400/assets/img/Week02/02-manning.jpg" alt="Warren Manning — Billerica Town Forest map"></figure>
-              </div>
+            <!-- 2 · Overlay Method — Eliot / Manning -->
+            <div class="slide auto" data-cap="Overlay Method" data-credit="Left: Charles Eliot — Sudbury Valley survey, 1890s. Right: Warren Manning — Billerica Town Forest, 1912." data-notes="Overlay already a known practice in the field, before McHarg's Design with Nature popularizes it.">
+              <figure><img src="/teaching/laar61400/assets/img/Week02/02-eliot.jpg" alt="Charles Eliot — Sudbury Valley survey map"></figure>
+              <figure><img src="/teaching/laar61400/assets/img/Week02/02-manning.jpg" alt="Warren Manning — Billerica Town Forest map"></figure>
             </div>
 
             <!-- 3 · Tyrwhitt sieve -->
-            <div class="slide" data-era="Era 1 · Computation without computers" data-cap="&ldquo;Sieving&rdquo; as published method, 1950.">
+            <div class="slide single" data-cap="Jaqueline Tyrwhitt and Sieve Method, 1950s." data-credit="Jaqueline Tyrwhitt, 1950. Image extracted from Hein, C., &amp; van Mil, Y. (2020). Mapping as Gap-Finder: Geddes, Tyrwhitt, and the Comparative Spatial Analysis of Port City Regions. Urban Planning, 5(2), 152-166. https://doi.org/10.17645/up.v5i2.2803" data-notes="Mary Jaqueline Tyrwhitt (25 May 1905 – 21 February 1983) was a British town planner, journalist, editor and educator. In 1955, she moved to the Harvard GSD, where she taught for many years until her retirement.">
               <img src="/teaching/laar61400/assets/img/Week02/03-tyrwhitt.jpeg" alt="Jacqueline Tyrwhitt — sieve-map method, 1950">
             </div>
 
             <!-- 4 · McHarg overlay -->
-            <div class="slide" data-era="Era 1 · Computation without computers" data-cap="Popularized, not invented.">
+            <div class="slide single" data-cap="McHarg's Layered Cake Staten Island Study, 1960s" data-credit="Ian McHarg, Design with Nature, 1969" data-notes="Computational thinking has always been part of the profession of landscape architecture. It is wrong to separate technique from a way of thinking based on where this thinking takes place. For McHarg, computational thinking happens on layers of mylar.">
               <img src="/teaching/laar61400/assets/img/Week02/04-mcharg.jpg" alt="Ian McHarg — Design with Nature layer-cake overlay diagram">
             </div>
 
-            <!-- 5 · SYMAP close-up -->
-            <div class="slide" data-era="Era 1 · Computation without computers" data-cap="Harvard, 1963. The first computer maps were ASCII art.">
-              <img src="/teaching/laar61400/assets/img/Week02/05-symap-closeup.jpg" alt="SYMAP line-printer map, close-up of overstruck-character texture">
-            </div>
-
-            <!-- 6 · Sketchpad (1963 demo video) -->
-            <div class="slide" data-era="Era 1 · Computation without computers" data-cap="Direct manipulation. The machine draws back." data-notes="Ivan Sutherland's Sketchpad, 1963 MIT PhD, running on Lincoln Lab's TX-2. Light pen on the screen; the machine maintains constraints — the first direct-manipulation interface. Clip cued to 4:07. A research demo: it sat in a lab nearly twenty years before drafting actually went digital.">
+            <!-- 5 · Sketchpad (1963 demo video) -->
+            <div class="slide" data-cap="Sketchpad, or &ldquo;Robot Draftsman&rdquo;, 1963" data-notes="The year 1963 was a pivotal turning point in computing, marking the transition from the second generation (transistor-based) to the dawn of the third generation (integrated circuits). Sutherland's Sketchpad, 1963 MIT PhD on Lincoln Lab's TX-2. Light pen; the machine maintains constraints — first direct-manipulation interface. Clip cued to 4:07. Sat in a lab ~20 yrs before drafting went digital.">
               <iframe src="https://www.youtube.com/embed/6orsmFndx_o?start=247" title="Ivan Sutherland — Sketchpad demo, 1963"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             </div>
 
-            <!-- 7 · B-spline (Utah) — image to source -->
-            <div class="slide" data-era="Era 1 · Computation without computers" data-cap="The math that will become Rhino. University of Utah, early 1970s." data-notes="Attribution matters: the University of Utah geometry group (Riesenfeld, Cohen, and others) — not Riesenfeld alone. Schoenberg named B-splines in 1967; Utah turned them into a design tool. Twenty years later that work becomes the NURBS surface on your screen in Rhino.">
-              <div class="ph"><span class="ph-tag">Image to source</span><span class="ph-desc">B-spline curve diagram · University of Utah geometry group (Riesenfeld, Cohen, et al.). Schoenberg named B-splines in 1967; Utah turned them into a design tool.</span></div>
+            <!-- 6 · SYMAP, 1963 -->
+            <div class="slide single" data-cap="SYMAP, 1963" data-credit="https://www.gsd.harvard.edu/2024/11/a-new-way-of-seeing-the-laboratory-for-computer-graphics-and-spatial-analysis/" data-notes="SYMAP (short for Synagraphic Mapping System) developed by Howard T. Fisher.">
+              <img src="/teaching/laar61400/assets/img/Week02/05-symap-closeup.jpg" alt="SYMAP line-printer map, 1963">
             </div>
 
-            <!-- 8 · SYMAP in use -->
-            <div class="slide" data-era="Era 1 · Computation without computers" data-cap="Institutional access — a technician runs it, not the designer." data-notes="Left: an operator running SYMAP at a mainframe console. Right: the punchcards that held the program. The designer doesn't touch the machine — computation is mediated by a technician and an institution.">
-              <div class="split">
-                <figure><img src="/teaching/laar61400/assets/img/Week02/08-symap-in-use.jpg" alt="Operator running SYMAP at a mainframe console"></figure>
-                <figure><img src="/teaching/laar61400/assets/img/Week02/09-symap-punchcard.jpg" alt="SYMAP punchcard"></figure>
+            <!-- 7 · Laboratory for Computer Graphics, est. 1965 -->
+            <div class="slide auto" data-cap="Laboratory for Computer Graphics (LCG), est. 1965 Harvard GSD." data-credit="Left: SYMAP at a mainframe console. Right: the punch cards that held the program." data-notes="SYMAP used basic line printers to generate gray-scale shading, contour lines, and symbols on paper. Ford Foundation grant &ldquo;for research and training in the use of computers to make maps of social and economic features of cities.&rdquo;">
+              <figure><img src="/teaching/laar61400/assets/img/Week02/08-symap-in-use.jpg" alt="Operator running SYMAP at a mainframe console"></figure>
+              <figure><img src="/teaching/laar61400/assets/img/Week02/09-symap-punchcard.jpg" alt="SYMAP punchcard"></figure>
+            </div>
+
+            <!-- 8 · SYMAP and LCG Legacy -->
+            <div class="slide sq" data-cap="SYMAP and LCG Legacy" data-credit="Lab alumni: Carl Steinitz — Geodesign (left); Jack and Laura Dangermond — ESRI and ArcGIS (right)." data-notes="Carl Steinitz established the field of geodesign. Jack and Laura Dangermond founded ESRI later. Jack worth $15.5B as of 6/16/26, #198 in the world today.">
+              <figure class="c2-5"><img src="/teaching/laar61400/assets/img/Week02/08-steinitz.jpg" alt="Carl Steinitz"></figure>
+              <figure class="c8-11"><img src="/teaching/laar61400/assets/img/Week02/08-dangermonds.jpg" alt="Jack and Laura Dangermond"></figure>
+            </div>
+
+            <!-- 9 · B-spline / NURBS / Rhino (drawn) -->
+            <div class="slide two-3-3" data-cap="B-Spline, NURBS and Rhino" data-credit="B-spline = basis spline; NURBS = Non-Uniform Rational B-Splines" data-notes="Research → standard → product. The B-spline math (Schoenberg 1967; Cox–de Boor 1971–72) becomes free-form design at Utah (Riesenfeld &amp; Cohen, ~1974), is generalized to NURBS at Boeing (Blomgren, 1979–80), commercialized as the AGLib kernel (1984), licensed by McNeel (1994), and shipped as Rhino 1.0 (1998) — which later hosts Grasshopper (Rutten, 2007).">
+                <figure><svg viewBox="0 0 340 380" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;display:block">
+<text x="18" y="22" font-family="DM Mono,monospace" font-size="7.5" letter-spacing="1.2" fill="#8a847c">B-SPLINE CURVE</text>
+<polyline points="40,150 92,52 165,118 250,44 302,140" fill="none" stroke="#c9c2b6" stroke-width="1.2" stroke-dasharray="4 3"/>
+<path d="M40,150 C 78,72 124,100 165,112 C 206,124 256,72 302,140" fill="none" stroke="#9a3b3b" stroke-width="2.6" stroke-linecap="round"/>
+<circle cx="40" cy="150" r="4" fill="#fff" stroke="#9a3b3b" stroke-width="1.6"/>
+<text x="46" y="145" font-family="DM Mono,monospace" font-size="6.5" fill="#8a847c">P0</text>
+<circle cx="92" cy="52" r="4" fill="#fff" stroke="#9a3b3b" stroke-width="1.6"/>
+<text x="98" y="47" font-family="DM Mono,monospace" font-size="6.5" fill="#8a847c">P1</text>
+<circle cx="165" cy="118" r="4" fill="#fff" stroke="#9a3b3b" stroke-width="1.6"/>
+<text x="171" y="113" font-family="DM Mono,monospace" font-size="6.5" fill="#8a847c">P2</text>
+<circle cx="250" cy="44" r="4" fill="#fff" stroke="#9a3b3b" stroke-width="1.6"/>
+<text x="256" y="39" font-family="DM Mono,monospace" font-size="6.5" fill="#8a847c">P3</text>
+<circle cx="302" cy="140" r="4" fill="#fff" stroke="#9a3b3b" stroke-width="1.6"/>
+<text x="308" y="135" font-family="DM Mono,monospace" font-size="6.5" fill="#8a847c">P4</text>
+<text x="18" y="176" font-family="DM Sans,sans-serif" font-size="7.5" fill="#8a847c">control polygon (dashed) + smooth curve</text>
+<line x1="16" y1="190" x2="324" y2="190" stroke="#e0dbd3" stroke-width="1"/>
+<text x="18" y="210" font-family="DM Mono,monospace" font-size="7.5" letter-spacing="1.2" fill="#8a847c">NURBS SURFACE</text>
+<polyline points="170.0,300.0 165.7,298.0 161.3,296.0 157.0,294.0 152.7,292.0 148.3,290.1 144.0,288.1 139.7,286.1 135.4,284.2 131.0,282.3 126.7,280.3 122.4,278.3 118.0,276.4 113.7,274.3 109.4,272.3 105.0,270.3 100.7,268.2 96.4,266.1 92.1,264.1 87.7,262.1 83.4,260.0 79.1,258.0 74.7,256.0 70.4,254.0 66.1,252.0" fill="none" stroke="#9a3b3b" stroke-width="1.1" stroke-opacity="0.55"/>
+<polyline points="187.3,292.0 183.0,290.1 178.7,288.2 174.3,286.3 170.0,284.6 165.7,283.0 161.3,281.6 157.0,280.4 152.7,279.3 148.3,278.2 144.0,277.0 139.7,275.5 135.4,273.7 131.0,271.5 126.7,269.0 122.4,266.2 118.0,263.3 113.7,260.4 109.4,257.6 105.0,255.0 100.7,252.6 96.4,250.3 92.1,248.2 87.7,246.1 83.4,244.0" fill="none" stroke="#9a3b3b" stroke-width="1.1" stroke-opacity="0.55"/>
+<polyline points="204.6,284.2 200.3,282.5 196.0,280.9 191.7,279.8 187.3,279.3 183.0,279.5 178.7,280.7 174.3,282.7 170.0,285.4 165.7,288.2 161.3,290.4 157.0,291.3 152.7,290.3 148.3,287.3 144.0,282.4 139.7,276.2 135.4,269.4 131.0,262.7 126.7,256.7 122.4,251.5 118.0,247.3 113.7,243.8 109.4,240.9 105.0,238.5 100.7,236.2" fill="none" stroke="#9a3b3b" stroke-width="1.1" stroke-opacity="0.55"/>
+<polyline points="222.0,276.4 217.6,274.8 213.3,273.6 209.0,273.2 204.6,273.7 200.3,275.6 196.0,279.1 191.7,284.2 187.3,290.3 183.0,296.6 178.7,302.0 174.3,305.0 170.0,304.8 165.7,301.0 161.3,294.0 157.0,284.6 152.7,274.3 148.3,264.2 144.0,255.1 139.7,247.6 135.4,241.7 131.0,237.2 126.7,233.6 122.4,230.8 118.0,228.4" fill="none" stroke="#9a3b3b" stroke-width="1.1" stroke-opacity="0.55"/>
+<polyline points="239.3,268.2 234.9,266.5 230.6,264.9 226.3,263.8 222.0,263.3 217.6,263.5 213.3,264.7 209.0,266.7 204.6,269.4 200.3,272.2 196.0,274.4 191.7,275.3 187.3,274.3 183.0,271.3 178.7,266.4 174.3,260.2 170.0,253.4 165.7,246.7 161.3,240.7 157.0,235.5 152.7,231.3 148.3,227.8 144.0,224.9 139.7,222.5 135.4,220.2" fill="none" stroke="#9a3b3b" stroke-width="1.1" stroke-opacity="0.55"/>
+<polyline points="256.6,260.0 252.3,258.1 247.9,256.2 243.6,254.3 239.3,252.6 234.9,251.0 230.6,249.6 226.3,248.4 222.0,247.3 217.6,246.2 213.3,245.0 209.0,243.5 204.6,241.7 200.3,239.5 196.0,237.0 191.7,234.2 187.3,231.3 183.0,228.4 178.7,225.6 174.3,223.0 170.0,220.6 165.7,218.3 161.3,216.2 157.0,214.1 152.7,212.0" fill="none" stroke="#9a3b3b" stroke-width="1.1" stroke-opacity="0.55"/>
+<polyline points="273.9,252.0 269.6,250.0 265.3,248.0 260.9,246.0 256.6,244.0 252.3,242.1 247.9,240.1 243.6,238.1 239.3,236.2 234.9,234.3 230.6,232.3 226.3,230.3 222.0,228.4 217.6,226.3 213.3,224.3 209.0,222.3 204.6,220.2 200.3,218.1 196.0,216.1 191.7,214.1 187.3,212.0 183.0,210.0 178.7,208.0 174.3,206.0 170.0,204.0" fill="none" stroke="#9a3b3b" stroke-width="1.1" stroke-opacity="0.55"/>
+<polyline points="170.0,300.0 174.3,298.0 178.7,296.0 183.0,294.0 187.3,292.0 191.7,290.1 196.0,288.1 200.3,286.1 204.6,284.2 209.0,282.3 213.3,280.3 217.6,278.3 222.0,276.4 226.3,274.3 230.6,272.3 234.9,270.3 239.3,268.2 243.6,266.1 247.9,264.1 252.3,262.1 256.6,260.0 260.9,258.0 265.3,256.0 269.6,254.0 273.9,252.0" fill="none" stroke="#9a3b3b" stroke-width="1.1" stroke-opacity="0.55"/>
+<polyline points="152.7,292.0 157.0,290.1 161.3,288.2 165.7,286.3 170.0,284.6 174.3,283.0 178.7,281.6 183.0,280.4 187.3,279.3 191.7,278.2 196.0,277.0 200.3,275.5 204.6,273.7 209.0,271.5 213.3,269.0 217.6,266.2 222.0,263.3 226.3,260.4 230.6,257.6 234.9,255.0 239.3,252.6 243.6,250.3 247.9,248.2 252.3,246.1 256.6,244.0" fill="none" stroke="#9a3b3b" stroke-width="1.1" stroke-opacity="0.55"/>
+<polyline points="135.4,284.2 139.7,282.5 144.0,280.9 148.3,279.8 152.7,279.3 157.0,279.5 161.3,280.7 165.7,282.7 170.0,285.4 174.3,288.2 178.7,290.4 183.0,291.3 187.3,290.3 191.7,287.3 196.0,282.4 200.3,276.2 204.6,269.4 209.0,262.7 213.3,256.7 217.6,251.5 222.0,247.3 226.3,243.8 230.6,240.9 234.9,238.5 239.3,236.2" fill="none" stroke="#9a3b3b" stroke-width="1.1" stroke-opacity="0.55"/>
+<polyline points="118.0,276.4 122.4,274.8 126.7,273.6 131.0,273.2 135.4,273.7 139.7,275.6 144.0,279.1 148.3,284.2 152.7,290.3 157.0,296.6 161.3,302.0 165.7,305.0 170.0,304.8 174.3,301.0 178.7,294.0 183.0,284.6 187.3,274.3 191.7,264.2 196.0,255.1 200.3,247.6 204.6,241.7 209.0,237.2 213.3,233.6 217.6,230.8 222.0,228.4" fill="none" stroke="#9a3b3b" stroke-width="1.1" stroke-opacity="0.55"/>
+<polyline points="100.7,268.2 105.0,266.5 109.4,264.9 113.7,263.8 118.0,263.3 122.4,263.5 126.7,264.7 131.0,266.7 135.4,269.4 139.7,272.2 144.0,274.4 148.3,275.3 152.7,274.3 157.0,271.3 161.3,266.4 165.7,260.2 170.0,253.4 174.3,246.7 178.7,240.7 183.0,235.5 187.3,231.3 191.7,227.8 196.0,224.9 200.3,222.5 204.6,220.2" fill="none" stroke="#9a3b3b" stroke-width="1.1" stroke-opacity="0.55"/>
+<polyline points="83.4,260.0 87.7,258.1 92.1,256.2 96.4,254.3 100.7,252.6 105.0,251.0 109.4,249.6 113.7,248.4 118.0,247.3 122.4,246.2 126.7,245.0 131.0,243.5 135.4,241.7 139.7,239.5 144.0,237.0 148.3,234.2 152.7,231.3 157.0,228.4 161.3,225.6 165.7,223.0 170.0,220.6 174.3,218.3 178.7,216.2 183.0,214.1 187.3,212.0" fill="none" stroke="#9a3b3b" stroke-width="1.1" stroke-opacity="0.55"/>
+<polyline points="66.1,252.0 70.4,250.0 74.7,248.0 79.1,246.0 83.4,244.0 87.7,242.1 92.1,240.1 96.4,238.1 100.7,236.2 105.0,234.3 109.4,232.3 113.7,230.3 118.0,228.4 122.4,226.3 126.7,224.3 131.0,222.3 135.4,220.2 139.7,218.1 144.0,216.1 148.3,214.1 152.7,212.0 157.0,210.0 161.3,208.0 165.7,206.0 170.0,204.0" fill="none" stroke="#9a3b3b" stroke-width="1.1" stroke-opacity="0.55"/>
+<circle cx="170.0" cy="300.0" r="1.6" fill="#b87333"/>
+<circle cx="152.7" cy="292.0" r="1.6" fill="#b87333"/>
+<circle cx="135.4" cy="284.2" r="1.6" fill="#b87333"/>
+<circle cx="118.0" cy="276.4" r="1.6" fill="#b87333"/>
+<circle cx="100.7" cy="268.2" r="1.6" fill="#b87333"/>
+<circle cx="83.4" cy="260.0" r="1.6" fill="#b87333"/>
+<circle cx="66.1" cy="252.0" r="1.6" fill="#b87333"/>
+<circle cx="187.3" cy="292.0" r="1.6" fill="#b87333"/>
+<circle cx="170.0" cy="284.6" r="1.6" fill="#b87333"/>
+<circle cx="152.7" cy="279.3" r="1.6" fill="#b87333"/>
+<circle cx="135.4" cy="273.7" r="1.6" fill="#b87333"/>
+<circle cx="118.0" cy="263.3" r="1.6" fill="#b87333"/>
+<circle cx="100.7" cy="252.6" r="1.6" fill="#b87333"/>
+<circle cx="83.4" cy="244.0" r="1.6" fill="#b87333"/>
+<circle cx="204.6" cy="284.2" r="1.6" fill="#b87333"/>
+<circle cx="187.3" cy="279.3" r="1.6" fill="#b87333"/>
+<circle cx="170.0" cy="285.4" r="1.6" fill="#b87333"/>
+<circle cx="152.7" cy="290.3" r="1.6" fill="#b87333"/>
+<circle cx="135.4" cy="269.4" r="1.6" fill="#b87333"/>
+<circle cx="118.0" cy="247.3" r="1.6" fill="#b87333"/>
+<circle cx="100.7" cy="236.2" r="1.6" fill="#b87333"/>
+<circle cx="222.0" cy="276.4" r="1.6" fill="#b87333"/>
+<circle cx="204.6" cy="273.7" r="1.6" fill="#b87333"/>
+<circle cx="187.3" cy="290.3" r="1.6" fill="#b87333"/>
+<circle cx="170.0" cy="304.8" r="1.6" fill="#b87333"/>
+<circle cx="152.7" cy="274.3" r="1.6" fill="#b87333"/>
+<circle cx="135.4" cy="241.7" r="1.6" fill="#b87333"/>
+<circle cx="118.0" cy="228.4" r="1.6" fill="#b87333"/>
+<circle cx="239.3" cy="268.2" r="1.6" fill="#b87333"/>
+<circle cx="222.0" cy="263.3" r="1.6" fill="#b87333"/>
+<circle cx="204.6" cy="269.4" r="1.6" fill="#b87333"/>
+<circle cx="187.3" cy="274.3" r="1.6" fill="#b87333"/>
+<circle cx="170.0" cy="253.4" r="1.6" fill="#b87333"/>
+<circle cx="152.7" cy="231.3" r="1.6" fill="#b87333"/>
+<circle cx="135.4" cy="220.2" r="1.6" fill="#b87333"/>
+<circle cx="256.6" cy="260.0" r="1.6" fill="#b87333"/>
+<circle cx="239.3" cy="252.6" r="1.6" fill="#b87333"/>
+<circle cx="222.0" cy="247.3" r="1.6" fill="#b87333"/>
+<circle cx="204.6" cy="241.7" r="1.6" fill="#b87333"/>
+<circle cx="187.3" cy="231.3" r="1.6" fill="#b87333"/>
+<circle cx="170.0" cy="220.6" r="1.6" fill="#b87333"/>
+<circle cx="152.7" cy="212.0" r="1.6" fill="#b87333"/>
+<circle cx="273.9" cy="252.0" r="1.6" fill="#b87333"/>
+<circle cx="256.6" cy="244.0" r="1.6" fill="#b87333"/>
+<circle cx="239.3" cy="236.2" r="1.6" fill="#b87333"/>
+<circle cx="222.0" cy="228.4" r="1.6" fill="#b87333"/>
+<circle cx="204.6" cy="220.2" r="1.6" fill="#b87333"/>
+<circle cx="187.3" cy="212.0" r="1.6" fill="#b87333"/>
+<circle cx="170.0" cy="204.0" r="1.6" fill="#b87333"/>
+</svg>
+                </figure>
+                <figure><svg viewBox="0 0 340 380" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;display:block">
+<text x="20" y="20" font-family="DM Mono,monospace" font-size="6.5" letter-spacing="0.9" fill="#8a847c">FROM B-SPLINE TO GRASSHOPPER</text>
+<line x1="70" y1="58" x2="70" y2="360" stroke="#e0dbd3" stroke-width="2"/>
+<text x="62" y="60.0" text-anchor="end" font-family="DM Mono,monospace" font-size="6" font-weight="700" fill="#1a1a1a">1967</text>
+<circle cx="70" cy="58" r="2.8" fill="#8a847c" stroke="#fff" stroke-width="1"/>
+<text x="79" y="57.5" font-family="DM Sans,sans-serif" font-size="6.8" font-weight="600" fill="#1a1a1a">“B-spline” named</text>
+<text x="79" y="66" font-family="DM Sans,sans-serif" font-size="5.8" fill="#8a847c">Schoenberg coins the term</text>
+<text x="62" y="97.8" text-anchor="end" font-family="DM Mono,monospace" font-size="6" font-weight="700" fill="#1a1a1a">1972</text>
+<circle cx="70" cy="96" r="2.8" fill="#8a847c" stroke="#fff" stroke-width="1"/>
+<text x="79" y="95.2" font-family="DM Sans,sans-serif" font-size="6.8" font-weight="600" fill="#1a1a1a">Cox–de Boor recurrence</text>
+<text x="79" y="104" font-family="DM Sans,sans-serif" font-size="5.8" fill="#8a847c">makes B-splines computable</text>
+<text x="62" y="135.5" text-anchor="end" font-family="DM Mono,monospace" font-size="6" font-weight="700" fill="#1a1a1a">1973</text>
+<circle cx="70" cy="134" r="2.8" fill="#8a847c" stroke="#fff" stroke-width="1"/>
+<text x="79" y="133.0" font-family="DM Sans,sans-serif" font-size="6.8" font-weight="600" fill="#1a1a1a">Riesenfeld thesis → Utah</text>
+<text x="79" y="142" font-family="DM Sans,sans-serif" font-size="5.8" fill="#8a847c">with Elaine Cohen · geometry lab</text>
+<text x="62" y="173.2" text-anchor="end" font-family="DM Mono,monospace" font-size="6" font-weight="700" fill="#1a1a1a">1975</text>
+<circle cx="70" cy="171" r="2.8" fill="#8a847c" stroke="#fff" stroke-width="1"/>
+<text x="79" y="170.8" font-family="DM Sans,sans-serif" font-size="6.8" font-weight="600" fill="#1a1a1a">Versprille thesis</text>
+<text x="79" y="179" font-family="DM Sans,sans-serif" font-size="5.8" fill="#8a847c">non-uniform + rational form</text>
+<text x="62" y="211.0" text-anchor="end" font-family="DM Mono,monospace" font-size="6" font-weight="700" fill="#1a1a1a">1980</text>
+<circle cx="70" cy="209" r="2.8" fill="#b87333" stroke="#fff" stroke-width="1"/>
+<text x="79" y="208.5" font-family="DM Sans,sans-serif" font-size="6.8" font-weight="600" fill="#1a1a1a">NURBS named</text>
+<text x="79" y="217" font-family="DM Sans,sans-serif" font-size="5.8" fill="#8a847c">Boeing TIGER · R. Blomgren</text>
+<text x="62" y="248.8" text-anchor="end" font-family="DM Mono,monospace" font-size="6" font-weight="700" fill="#1a1a1a">1984</text>
+<circle cx="70" cy="247" r="2.8" fill="#b87333" stroke="#fff" stroke-width="1"/>
+<text x="79" y="246.2" font-family="DM Sans,sans-serif" font-size="6.8" font-weight="600" fill="#1a1a1a">AGLib kernel</text>
+<text x="79" y="255" font-family="DM Sans,sans-serif" font-size="5.8" fill="#8a847c">Applied Geometry (Blomgren)</text>
+<text x="62" y="286.5" text-anchor="end" font-family="DM Mono,monospace" font-size="6" font-weight="700" fill="#1a1a1a">1994</text>
+<circle cx="70" cy="284" r="2.8" fill="#9a3b3b" stroke="#fff" stroke-width="1"/>
+<text x="79" y="284.0" font-family="DM Sans,sans-serif" font-size="6.8" font-weight="600" fill="#1a1a1a">McNeel licenses AGLib</text>
+<text x="79" y="292" font-family="DM Sans,sans-serif" font-size="5.8" fill="#8a847c">Sculptura plug-in · M. Gibson</text>
+<text x="62" y="324.2" text-anchor="end" font-family="DM Mono,monospace" font-size="6" font-weight="700" fill="#1a1a1a">1998</text>
+<circle cx="70" cy="322" r="2.8" fill="#9a3b3b" stroke="#fff" stroke-width="1"/>
+<text x="79" y="321.8" font-family="DM Sans,sans-serif" font-size="6.8" font-weight="600" fill="#1a1a1a">Rhino 1.0</text>
+<text x="79" y="330" font-family="DM Sans,sans-serif" font-size="5.8" fill="#8a847c">Robert McNeel &amp; Assoc.</text>
+<text x="62" y="362.0" text-anchor="end" font-family="DM Mono,monospace" font-size="6" font-weight="700" fill="#1a1a1a">2007</text>
+<circle cx="70" cy="360" r="2.8" fill="#9a3b3b" stroke="#fff" stroke-width="1"/>
+<text x="79" y="359.5" font-family="DM Sans,sans-serif" font-size="6.8" font-weight="600" fill="#1a1a1a">Grasshopper</text>
+<text x="79" y="368" font-family="DM Sans,sans-serif" font-size="5.8" fill="#8a847c">David Rutten · visual programming</text>
+</svg>
+                </figure>
+            </div>
+
+            <!-- 10 · NURBS vs Mesh -->
+            <div class="slide two-3-3" data-cap="NURBS vs Mesh" data-credit="NURBS &mdash; mathematically defined curves, like vector; Meshes &mdash; connected points and polygons, like raster." data-notes="NURBS &mdash; mathematically defined curves, precise engineering (plane and car), more computable, parametric modeling. Meshes &mdash; connected points and polygons, fast, like raster, video-game rendering, character modeling, like sculpting.">
+                <figure><svg viewBox="0 0 340 380" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;display:block">
+<text x="20" y="22" font-family="DM Mono,monospace" font-size="7.5" letter-spacing="1.2" fill="#8a847c">NURBS SURFACE</text>
+<g transform="translate(0,-60)">
+<polyline points="170.0,300.0 165.7,298.0 161.3,296.0 157.0,294.0 152.7,292.0 148.3,290.1 144.0,288.1 139.7,286.1 135.4,284.2 131.0,282.3 126.7,280.3 122.4,278.3 118.0,276.4 113.7,274.3 109.4,272.3 105.0,270.3 100.7,268.2 96.4,266.1 92.1,264.1 87.7,262.1 83.4,260.0 79.1,258.0 74.7,256.0 70.4,254.0 66.1,252.0" fill="none" stroke="#9a3b3b" stroke-width="1.1" stroke-opacity="0.55"/>
+<polyline points="187.3,292.0 183.0,290.1 178.7,288.2 174.3,286.3 170.0,284.6 165.7,283.0 161.3,281.6 157.0,280.4 152.7,279.3 148.3,278.2 144.0,277.0 139.7,275.5 135.4,273.7 131.0,271.5 126.7,269.0 122.4,266.2 118.0,263.3 113.7,260.4 109.4,257.6 105.0,255.0 100.7,252.6 96.4,250.3 92.1,248.2 87.7,246.1 83.4,244.0" fill="none" stroke="#9a3b3b" stroke-width="1.1" stroke-opacity="0.55"/>
+<polyline points="204.6,284.2 200.3,282.5 196.0,280.9 191.7,279.8 187.3,279.3 183.0,279.5 178.7,280.7 174.3,282.7 170.0,285.4 165.7,288.2 161.3,290.4 157.0,291.3 152.7,290.3 148.3,287.3 144.0,282.4 139.7,276.2 135.4,269.4 131.0,262.7 126.7,256.7 122.4,251.5 118.0,247.3 113.7,243.8 109.4,240.9 105.0,238.5 100.7,236.2" fill="none" stroke="#9a3b3b" stroke-width="1.1" stroke-opacity="0.55"/>
+<polyline points="222.0,276.4 217.6,274.8 213.3,273.6 209.0,273.2 204.6,273.7 200.3,275.6 196.0,279.1 191.7,284.2 187.3,290.3 183.0,296.6 178.7,302.0 174.3,305.0 170.0,304.8 165.7,301.0 161.3,294.0 157.0,284.6 152.7,274.3 148.3,264.2 144.0,255.1 139.7,247.6 135.4,241.7 131.0,237.2 126.7,233.6 122.4,230.8 118.0,228.4" fill="none" stroke="#9a3b3b" stroke-width="1.1" stroke-opacity="0.55"/>
+<polyline points="239.3,268.2 234.9,266.5 230.6,264.9 226.3,263.8 222.0,263.3 217.6,263.5 213.3,264.7 209.0,266.7 204.6,269.4 200.3,272.2 196.0,274.4 191.7,275.3 187.3,274.3 183.0,271.3 178.7,266.4 174.3,260.2 170.0,253.4 165.7,246.7 161.3,240.7 157.0,235.5 152.7,231.3 148.3,227.8 144.0,224.9 139.7,222.5 135.4,220.2" fill="none" stroke="#9a3b3b" stroke-width="1.1" stroke-opacity="0.55"/>
+<polyline points="256.6,260.0 252.3,258.1 247.9,256.2 243.6,254.3 239.3,252.6 234.9,251.0 230.6,249.6 226.3,248.4 222.0,247.3 217.6,246.2 213.3,245.0 209.0,243.5 204.6,241.7 200.3,239.5 196.0,237.0 191.7,234.2 187.3,231.3 183.0,228.4 178.7,225.6 174.3,223.0 170.0,220.6 165.7,218.3 161.3,216.2 157.0,214.1 152.7,212.0" fill="none" stroke="#9a3b3b" stroke-width="1.1" stroke-opacity="0.55"/>
+<polyline points="273.9,252.0 269.6,250.0 265.3,248.0 260.9,246.0 256.6,244.0 252.3,242.1 247.9,240.1 243.6,238.1 239.3,236.2 234.9,234.3 230.6,232.3 226.3,230.3 222.0,228.4 217.6,226.3 213.3,224.3 209.0,222.3 204.6,220.2 200.3,218.1 196.0,216.1 191.7,214.1 187.3,212.0 183.0,210.0 178.7,208.0 174.3,206.0 170.0,204.0" fill="none" stroke="#9a3b3b" stroke-width="1.1" stroke-opacity="0.55"/>
+<polyline points="170.0,300.0 174.3,298.0 178.7,296.0 183.0,294.0 187.3,292.0 191.7,290.1 196.0,288.1 200.3,286.1 204.6,284.2 209.0,282.3 213.3,280.3 217.6,278.3 222.0,276.4 226.3,274.3 230.6,272.3 234.9,270.3 239.3,268.2 243.6,266.1 247.9,264.1 252.3,262.1 256.6,260.0 260.9,258.0 265.3,256.0 269.6,254.0 273.9,252.0" fill="none" stroke="#9a3b3b" stroke-width="1.1" stroke-opacity="0.55"/>
+<polyline points="152.7,292.0 157.0,290.1 161.3,288.2 165.7,286.3 170.0,284.6 174.3,283.0 178.7,281.6 183.0,280.4 187.3,279.3 191.7,278.2 196.0,277.0 200.3,275.5 204.6,273.7 209.0,271.5 213.3,269.0 217.6,266.2 222.0,263.3 226.3,260.4 230.6,257.6 234.9,255.0 239.3,252.6 243.6,250.3 247.9,248.2 252.3,246.1 256.6,244.0" fill="none" stroke="#9a3b3b" stroke-width="1.1" stroke-opacity="0.55"/>
+<polyline points="135.4,284.2 139.7,282.5 144.0,280.9 148.3,279.8 152.7,279.3 157.0,279.5 161.3,280.7 165.7,282.7 170.0,285.4 174.3,288.2 178.7,290.4 183.0,291.3 187.3,290.3 191.7,287.3 196.0,282.4 200.3,276.2 204.6,269.4 209.0,262.7 213.3,256.7 217.6,251.5 222.0,247.3 226.3,243.8 230.6,240.9 234.9,238.5 239.3,236.2" fill="none" stroke="#9a3b3b" stroke-width="1.1" stroke-opacity="0.55"/>
+<polyline points="118.0,276.4 122.4,274.8 126.7,273.6 131.0,273.2 135.4,273.7 139.7,275.6 144.0,279.1 148.3,284.2 152.7,290.3 157.0,296.6 161.3,302.0 165.7,305.0 170.0,304.8 174.3,301.0 178.7,294.0 183.0,284.6 187.3,274.3 191.7,264.2 196.0,255.1 200.3,247.6 204.6,241.7 209.0,237.2 213.3,233.6 217.6,230.8 222.0,228.4" fill="none" stroke="#9a3b3b" stroke-width="1.1" stroke-opacity="0.55"/>
+<polyline points="100.7,268.2 105.0,266.5 109.4,264.9 113.7,263.8 118.0,263.3 122.4,263.5 126.7,264.7 131.0,266.7 135.4,269.4 139.7,272.2 144.0,274.4 148.3,275.3 152.7,274.3 157.0,271.3 161.3,266.4 165.7,260.2 170.0,253.4 174.3,246.7 178.7,240.7 183.0,235.5 187.3,231.3 191.7,227.8 196.0,224.9 200.3,222.5 204.6,220.2" fill="none" stroke="#9a3b3b" stroke-width="1.1" stroke-opacity="0.55"/>
+<polyline points="83.4,260.0 87.7,258.1 92.1,256.2 96.4,254.3 100.7,252.6 105.0,251.0 109.4,249.6 113.7,248.4 118.0,247.3 122.4,246.2 126.7,245.0 131.0,243.5 135.4,241.7 139.7,239.5 144.0,237.0 148.3,234.2 152.7,231.3 157.0,228.4 161.3,225.6 165.7,223.0 170.0,220.6 174.3,218.3 178.7,216.2 183.0,214.1 187.3,212.0" fill="none" stroke="#9a3b3b" stroke-width="1.1" stroke-opacity="0.55"/>
+<polyline points="66.1,252.0 70.4,250.0 74.7,248.0 79.1,246.0 83.4,244.0 87.7,242.1 92.1,240.1 96.4,238.1 100.7,236.2 105.0,234.3 109.4,232.3 113.7,230.3 118.0,228.4 122.4,226.3 126.7,224.3 131.0,222.3 135.4,220.2 139.7,218.1 144.0,216.1 148.3,214.1 152.7,212.0 157.0,210.0 161.3,208.0 165.7,206.0 170.0,204.0" fill="none" stroke="#9a3b3b" stroke-width="1.1" stroke-opacity="0.55"/>
+<text x="20" y="345" font-family="DM Sans,sans-serif" font-size="9" fill="#8a847c">smooth, mathematically defined &mdash; resolution-independent</text>
+</g>
+</svg>
+                </figure>
+                <figure><img src="/teaching/laar61400/assets/img/Week02/10-lowpoly-mesh.jpg" alt="Low-poly mesh model with visible polygon facets"></figure>
+            </div>
+
+            <!-- 11 · First PC, 1982 -->
+            <div class="slide hero-l" data-era="Era 2 · The personal computer" data-cap="First PC, 1982" data-credit="Left: Sketchpad. Top right: IBM PC. Bottom right: a man using AutoCAD, 1987.">
+              <figure><img src="/teaching/laar61400/assets/img/Week02/11-sketchpad.jpg" alt="Sketchpad"></figure>
+              <figure><img src="/teaching/laar61400/assets/img/Week02/11-ibm-pc.jpg" alt="IBM PC, 1982"></figure>
+              <figure><img src="/teaching/laar61400/assets/img/Week02/11-autocad-1987.jpg" alt="Man using AutoCAD on a PC, 1987"></figure>
+            </div>
+
+            <!-- 12 · Drafters and Computers -->
+            <div class="slide auto" data-era="Era 2 · The personal computer" data-cap="Drafters and Computers" data-credit="Left: an architecture office, pre-1980s. Right: computers at NASA / JPL-Caltech.">
+              <figure><img src="/teaching/laar61400/assets/img/Week02/12-office.webp" alt="Architecture office before the 1980s"></figure>
+              <figure><img src="/teaching/laar61400/assets/img/Week02/12-computers.webp" alt="Computers at NASA / JPL-Caltech"></figure>
+            </div>
+
+            <!-- 13 · CAD Plans to Real Spaces -->
+            <div class="slide auto" data-era="Era 2 · The personal computer" data-cap="CAD Plans to Real Spaces" data-credit="Left: Martha Schwartz, Jacob Javits Plaza, New York, 1997. Right: James Corner Field Operations, Philadelphia Navy Yards Central Green, 2015." data-notes="How tools could define what kind of forms we can imagine and make.">
+              <figure><img src="/teaching/laar61400/assets/img/Week02/13-schwartz-javits.jpg" alt="Martha Schwartz, Jacob Javits Plaza, New York, 1997"></figure>
+              <figure><img src="/teaching/laar61400/assets/img/Week02/13-field-operations.jpg" alt="James Corner Field Operations, Philadelphia Navy Yards Central Green, 2015"></figure>
+            </div>
+
+            <!-- 14 · Mapping and Collage, 1990s -->
+            <div class="slide auto" data-era="Era 2 · The personal computer" data-cap="Mapping and Collage, 1990s" data-credit="James Corner and Alex MacLean, Taking Measures Across the American Landscape, 1996." data-notes="Still layering, but now with a narrative and multimedia.">
+              <figure><img src="/teaching/laar61400/assets/img/Week02/14-corner-left.jpg" alt="James Corner and Alex MacLean, Taking Measures Across the American Landscape, 1996"></figure>
+              <figure><img src="/teaching/laar61400/assets/img/Week02/14-corner-right.jpg" alt="James Corner and Alex MacLean, Taking Measures Across the American Landscape, 1996"></figure>
+            </div>
+
+            <!-- 15 · Digital Drawing, 2010s -->
+            <div class="slide auto" data-era="Era 2 · The personal computer" data-cap="Digital Drawing, 2010s" data-credit="Left to right: Bradley Cantrell, Digital Drawing for Landscape Architecture, 2010; Diana Balmori, Drawing and Reinventing Landscape, 2014; Nadia Amoroso, Representing Landscapes: Digital, 2015." data-notes="Textbooks, tutorials, experiments, and reflections.">
+              <figure><img src="/teaching/laar61400/assets/img/Week02/15-cantrell.jpg" alt="Bradley Cantrell, Digital Drawing for Landscape Architecture, 2010"></figure>
+              <figure><img src="/teaching/laar61400/assets/img/Week02/15-balmori.jpg" alt="Diana Balmori, Drawing and Reinventing Landscape, 2014"></figure>
+              <figure><img src="/teaching/laar61400/assets/img/Week02/15-amoroso.jpg" alt="Nadia Amoroso, Representing Landscapes: Digital, 2015"></figure>
+            </div>
+
+            <!-- 16 · NURBS and Smooth Surfaces -->
+            <div class="slide grid-4" data-era="Era 3 · The software imagination" data-cap="NURBS and Smooth Surfaces" data-credit="Top: Zaha Hadid (1950&ndash;2016). Bottom: Z+T Studio." data-notes="A new representational possibility: the surface that varies without stepping.">
+              <figure><img src="/teaching/laar61400/assets/img/Week02/16-hadid-a.jpg" alt="Zaha Hadid"></figure>
+              <figure><img src="/teaching/laar61400/assets/img/Week02/16-hadid-b.jpg" alt="Zaha Hadid"></figure>
+              <figure><img src="/teaching/laar61400/assets/img/Week02/16-zt-a.jpg" alt="Z+T Studio"></figure>
+              <figure><img src="/teaching/laar61400/assets/img/Week02/16-zt-b.jpg" alt="Z+T Studio"></figure>
+            </div>
+
+            <!-- 17 · Parametric Construction -->
+            <div class="slide auto-rows" data-era="Era 3 · The software imagination" data-cap="Parametric Construction" data-credit="Z+T Studio &mdash; http://www.ztsla.com/artStudio/show/9.html" data-notes="New forms are possible, but how do you build them? 3D printing and robotic arms are also possibilities.">
+              <div class="row"><figure><img src="/teaching/laar61400/assets/img/Week02/17-top.jpg" alt="Z+T Studio, parametric construction"></figure></div>
+              <div class="row"><figure><img src="/teaching/laar61400/assets/img/Week02/17-bottom.jpg" alt="Z+T Studio, parametric construction"></figure></div>
+            </div>
+
+            <!-- 18 · Robotic Construction -->
+            <div class="slide auto-rows" data-era="Era 3 · The software imagination" data-cap="Robotic Construction" data-credit="Philip F. Yuan, Chi She, Shanghai, China, 2017." data-notes="3D printing and robotic arms are also possibilities.">
+              <div class="row">
+                <figure><img src="/teaching/laar61400/assets/img/Week02/18-a.jpg" alt="Philip Yuan, Chi She, robotic construction"></figure>
+                <figure><img src="/teaching/laar61400/assets/img/Week02/18-b.jpg" alt="Philip Yuan, Chi She, robotic construction"></figure>
+              </div>
+              <div class="row">
+                <figure><img src="/teaching/laar61400/assets/img/Week02/18-c.jpg" alt="Philip Yuan, Chi She, robotic construction"></figure>
+                <figure><img src="/teaching/laar61400/assets/img/Week02/18-d.jpg" alt="Philip Yuan, Chi She, robotic construction"></figure>
               </div>
             </div>
 
-            <!-- 9 · Era 1 punchline — image to source -->
-            <div class="slide" data-era="Era 1 · Computation without computers" data-cap="Same era. Four kinds of computation. None on your desk yet.">
-              <div class="ph"><span class="ph-tag">Composite to build</span><span class="ph-desc">Four-way: McHarg overlay · SYMAP · Sketchpad · B-spline curve — one frame, same era.</span></div>
+            <!-- 19 · Parametric Analysis -->
+            <div class="slide hero-r" data-era="Era 3 · The software imagination" data-cap="Parametric Analysis" data-credit="Fletcher Studio, South Park, 2017 &mdash; https://www.fletcher.studio/blog/2017/5/26/the-parametric-park" data-notes="Design can be rational? Constructed objectivity? The designer set the rule; the software found the form.">
+              <figure><img src="/teaching/laar61400/assets/img/Week02/19-right.webp" alt="Fletcher Studio, South Park"></figure>
+              <figure><img src="/teaching/laar61400/assets/img/Week02/19-left-top.webp" alt="Fletcher Studio, South Park parametric analysis"></figure>
+              <figure><img src="/teaching/laar61400/assets/img/Week02/19-left-bottom.webp" alt="Fletcher Studio, South Park parametric analysis"></figure>
             </div>
 
-            <!-- 10 · AutoCAD 1982 -->
-            <div class="slide" data-era="Era 2 · The personal computer" data-cap="80% of a $25k workstation. One fifth the price.">
-              <div class="ph"><span class="ph-tag">Image to source</span><span class="ph-desc">AutoCAD 1.0 interface (1982) or contemporary IBM PC advertisement.</span></div>
+            <!-- 20 · Relational Modeling -->
+            <div class="slide hero-l" data-era="Era 3 · The software imagination" data-cap="Relational Modeling" data-credit="Plasma Studio and Groundlab, Xi&rsquo;an Expo Flow Garden." data-notes="Voronoi-diagramming approach. Grasshopper was used.">
+              <figure><img src="/teaching/laar61400/assets/img/Week02/20-left.jpg" alt="Plasma Studio and Groundlab, Xi'an Expo Flow Garden"></figure>
+              <figure><img src="/teaching/laar61400/assets/img/Week02/20-right-top.jpg" alt="Xi'an Expo Flow Garden detail"></figure>
+              <figure><img src="/teaching/laar61400/assets/img/Week02/20-right-bottom.jpg" alt="Xi'an Expo Flow Garden detail"></figure>
             </div>
 
-            <!-- 11 · The drafter disappears -->
-            <div class="slide" data-era="Era 2 · The personal computer" data-cap="The drafter&rsquo;s job quietly disappears.">
-              <div class="ph"><span class="ph-tag">Image to source</span><span class="ph-desc">Side by side: a pre-CAD drafting room and an empty drawing board.</span></div>
+            <!-- 21 · Parametrism as New Aesthetic? -->
+            <div class="slide auto-rows" data-era="Era 3 · The software imagination" data-cap="Parametrism as New Aesthetic?" data-credit="Heatherwick Studio, MNLA, Arup, Little Island, 2021.">
+              <div class="row">
+                <figure><img src="/teaching/laar61400/assets/img/Week02/21-a.webp" alt="Little Island, New York, 2021"></figure>
+                <figure><img src="/teaching/laar61400/assets/img/Week02/21-b.webp" alt="Little Island, New York, 2021"></figure>
+              </div>
+              <div class="row">
+                <figure><img src="/teaching/laar61400/assets/img/Week02/21-d.jpg" alt="Little Island, New York, 2021"></figure>
+                <figure><img src="/teaching/laar61400/assets/img/Week02/21-c.png" alt="Little Island, New York, 2021"></figure>
+              </div>
             </div>
 
-            <!-- 12 · The CAD aesthetic -->
-            <div class="slide" data-era="Era 2 · The personal computer" data-cap="The tool leaves its fingerprint.">
-              <div class="ph"><span class="ph-tag">Image to source</span><span class="ph-desc">A CTB-era landscape plan, full bleed — the look the plotter pen-table produced.</span></div>
+            <!-- 22 · Parametric Thinking -->
+            <div class="slide single" data-era="Era 3 · The software imagination" data-cap="Parametric Thinking" data-credit="Field Operations and Diller Scofidio + Renfro, The High Line, 2009." data-notes="Parametric thinking is in today's practice: catalogs and typologies, and variables as a design method.">
+              <img src="/teaching/laar61400/assets/img/Week02/22-highline.jpg" alt="Field Operations and Diller Scofidio + Renfro, The High Line, 2009">
             </div>
 
-            <!-- 13 · Photoshop layers -->
-            <div class="slide" data-era="Era 2 · The personal computer" data-cap="The same logic as McHarg&rsquo;s light table, now for images.">
-              <div class="ph"><span class="ph-tag">Image to source</span><span class="ph-desc">Layers palette open over a hybrid landscape drawing.</span></div>
+            <!-- 23 · Sensing and Responsive Landscapes -->
+            <div class="slide single" data-era="Closing" data-cap="Sensing and Responsive Landscapes" data-credit="Bradley Cantrell.">
+              <img src="/teaching/laar61400/assets/img/Week02/23-cantrell.webp" alt="Bradley Cantrell — sensing and responsive landscapes">
             </div>
 
-            <!-- 14 · GIS on the desk -->
-            <div class="slide" data-era="Era 2 · The personal computer" data-cap="The overlay is now digital, interactive, and scalable.">
-              <div class="ph"><span class="ph-tag">Image to source</span><span class="ph-desc">ArcGIS interface, or Google Earth in an office context.</span></div>
+            <!-- 24 · Towards Sentience™ -->
+            <div class="slide" data-era="Closing" data-cap="Towards Sentience&trade;" data-credit="Leif Estrada &mdash; https://towardssentience.com">
+              <iframe src="https://player.vimeo.com/video/222119754" title="Leif Estrada — Towards Sentience"
+                allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
             </div>
 
-            <!-- 15 · Era 2 punchline -->
-            <div class="slide" data-era="Era 2 · The personal computer" data-cap="Access produces aesthetics.">
-              <div class="ph"><span class="ph-tag">Composite to build</span><span class="ph-desc">Triptych of the same site: hand drawing · CAD plan · Photoshop composite.</span></div>
+            <!-- 25 · Typical Design Workflow (drawn) -->
+            <div class="slide" data-era="Closing" data-cap="Typical Design Workflow" data-notes="In a way, all you need to learn is AutoCAD.">
+              <svg viewBox="0 0 960 540" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;display:block;background:var(--paper);" font-family="DM Sans, sans-serif">
+                <text x="36" y="42" font-family="DM Mono, monospace" font-size="12" letter-spacing="2" fill="#8a847c">TYPICAL DESIGN WORKFLOW &mdash; TOOLS PER PHASE</text>
+
+                <!-- Phase 1 -->
+                <g>
+                  <rect x="36" y="68" width="200" height="384" rx="10" fill="#fbfaf8" stroke="#e3ddd2"/>
+                  <circle cx="136" cy="100" r="15" fill="#2e2a24"/><text x="136" y="105" text-anchor="middle" font-family="DM Mono, monospace" font-size="13" fill="#fbfaf8">1</text>
+                  <text x="136" y="140" text-anchor="middle" font-size="15" font-weight="600" fill="#2e2a24">Site Research</text>
+                  <text x="136" y="159" text-anchor="middle" font-size="15" font-weight="600" fill="#2e2a24">&amp; Analysis</text>
+                  <line x1="56" y1="176" x2="216" y2="176" stroke="#e3ddd2"/>
+                  <g transform="translate(52,196)"><rect width="168" height="30" rx="6" fill="#f5f2ec" stroke="#e3ddd2"/><text x="84" y="20" text-anchor="middle" font-size="14" fill="#4a463f">GIS</text></g>
+                  <g transform="translate(52,236)"><rect width="168" height="30" rx="6" fill="#f5f2ec" stroke="#e3ddd2"/><text x="84" y="20" text-anchor="middle" font-size="14" fill="#4a463f">Photoshop</text></g>
+                  <g transform="translate(52,276)"><rect width="168" height="30" rx="6" fill="#f5f2ec" stroke="#e3ddd2"/><text x="84" y="20" text-anchor="middle" font-size="14" fill="#4a463f">Illustrator</text></g>
+                </g>
+
+                <!-- Phase 2 -->
+                <g>
+                  <rect x="265" y="68" width="200" height="384" rx="10" fill="#fbfaf8" stroke="#e3ddd2"/>
+                  <circle cx="365" cy="100" r="15" fill="#2e2a24"/><text x="365" y="105" text-anchor="middle" font-family="DM Mono, monospace" font-size="13" fill="#fbfaf8">2</text>
+                  <text x="365" y="140" text-anchor="middle" font-size="15" font-weight="600" fill="#2e2a24">Conceptual</text>
+                  <text x="365" y="159" text-anchor="middle" font-size="15" font-weight="600" fill="#2e2a24">Design</text>
+                  <line x1="285" y1="176" x2="445" y2="176" stroke="#e3ddd2"/>
+                  <g transform="translate(281,196)"><rect width="168" height="30" rx="6" fill="#f5f2ec" stroke="#e3ddd2"/><text x="84" y="20" text-anchor="middle" font-size="14" fill="#4a463f">Rhino</text></g>
+                  <g transform="translate(281,234)"><rect width="168" height="30" rx="6" fill="#f4e6e4" stroke="#9a3b3b"/><text x="84" y="20" text-anchor="middle" font-size="14" font-weight="600" fill="#9a3b3b">CAD</text></g>
+                  <g transform="translate(281,272)"><rect width="168" height="30" rx="6" fill="#f5f2ec" stroke="#e3ddd2"/><text x="84" y="20" text-anchor="middle" font-size="14" fill="#4a463f">Rendering</text></g>
+                  <g transform="translate(281,310)"><rect width="168" height="30" rx="6" fill="#f5f2ec" stroke="#e3ddd2"/><text x="84" y="20" text-anchor="middle" font-size="14" fill="#4a463f">Photoshop</text></g>
+                  <g transform="translate(281,348)"><rect width="168" height="30" rx="6" fill="#f5f2ec" stroke="#e3ddd2"/><text x="84" y="20" text-anchor="middle" font-size="14" fill="#4a463f">Trace paper</text></g>
+                </g>
+
+                <!-- Phase 3 -->
+                <g>
+                  <rect x="494" y="68" width="200" height="384" rx="10" fill="#fbfaf8" stroke="#e3ddd2"/>
+                  <circle cx="594" cy="100" r="15" fill="#2e2a24"/><text x="594" y="105" text-anchor="middle" font-family="DM Mono, monospace" font-size="13" fill="#fbfaf8">3</text>
+                  <text x="594" y="140" text-anchor="middle" font-size="15" font-weight="600" fill="#2e2a24">Design</text>
+                  <text x="594" y="159" text-anchor="middle" font-size="15" font-weight="600" fill="#2e2a24">Development</text>
+                  <line x1="514" y1="176" x2="674" y2="176" stroke="#e3ddd2"/>
+                  <g transform="translate(510,272)"><rect width="168" height="30" rx="6" fill="#f4e6e4" stroke="#9a3b3b"/><text x="84" y="20" text-anchor="middle" font-size="14" font-weight="600" fill="#9a3b3b">CAD</text></g>
+                </g>
+
+                <!-- Phase 4 -->
+                <g>
+                  <rect x="723" y="68" width="200" height="384" rx="10" fill="#fbfaf8" stroke="#e3ddd2"/>
+                  <circle cx="823" cy="100" r="15" fill="#2e2a24"/><text x="823" y="105" text-anchor="middle" font-family="DM Mono, monospace" font-size="13" fill="#fbfaf8">4</text>
+                  <text x="823" y="140" text-anchor="middle" font-size="15" font-weight="600" fill="#2e2a24">Construction</text>
+                  <text x="823" y="159" text-anchor="middle" font-size="15" font-weight="600" fill="#2e2a24">Documentation</text>
+                  <line x1="743" y1="176" x2="903" y2="176" stroke="#e3ddd2"/>
+                  <g transform="translate(739,272)"><rect width="168" height="30" rx="6" fill="#f4e6e4" stroke="#9a3b3b"/><text x="84" y="20" text-anchor="middle" font-size="14" font-weight="600" fill="#9a3b3b">CAD</text></g>
+                </g>
+
+                <!-- flow arrows -->
+                <g fill="none" stroke="#bdb6aa" stroke-width="2">
+                  <path d="M244 260 l13 0 M252 254 l8 6 -8 6"/>
+                  <path d="M473 260 l13 0 M481 254 l8 6 -8 6"/>
+                  <path d="M702 260 l13 0 M710 254 l8 6 -8 6"/>
+                </g>
+
+                <!-- AutoCAD rail -->
+                <path d="M281 476 l0 8 642 0 0 -8" fill="none" stroke="#9a3b3b" stroke-width="1.5"/>
+                <text x="602" y="503" text-anchor="middle" font-family="DM Mono, monospace" font-size="12" letter-spacing="1" fill="#9a3b3b">AutoCAD carries the rest of the way</text>
+                <text x="602" y="526" text-anchor="middle" font-size="13" font-style="italic" fill="#8a847c">In a way, all you need to learn is AutoCAD.</text>
+              </svg>
             </div>
 
-            <!-- 16 · Rhino / NURBS -->
-            <div class="slide" data-era="Era 3 · The software imagination" data-cap="A new representational possibility: the surface that varies without stepping.">
-              <div class="ph"><span class="ph-tag">Image to source</span><span class="ph-desc">Rhino viewport — a continuously varying topographic NURBS surface.</span></div>
+            <!-- 26 · Generative AI -->
+            <div class="slide auto" data-era="Closing" data-cap="Generative AI" data-credit="ChatGPT-generated design board from one prompt &mdash; the illusion of &ldquo;one prompt, job done.&rdquo;" data-notes="AI is not a faster pencil.">
+              <figure><img src="/teaching/laar61400/assets/img/Week02/26-left.jpg" alt="ChatGPT-generated design board"></figure>
+              <figure><img src="/teaching/laar61400/assets/img/Week02/26-right.jpg" alt="ChatGPT-generated design board"></figure>
             </div>
 
-            <!-- 17 · South Park — analog -->
-            <div class="slide" data-era="Era 3 · The software imagination" data-cap="The design begins analog.">
-              <div class="ph"><span class="ph-tag">Image to source</span><span class="ph-desc">Fletcher Studio hand diagram — circulation, entry points, desire lines.</span></div>
-            </div>
-
-            <!-- 18 · South Park — Grasshopper -->
-            <div class="slide" data-era="Era 3 · The software imagination" data-cap="The path thickens at nodes. The designer set the rule; the software found the form.">
-              <div class="ph"><span class="ph-tag">Image to source</span><span class="ph-desc">Side by side: attractor definition (GH canvas) and the generated path geometry.</span></div>
-            </div>
-
-            <!-- 19 · South Park — built -->
-            <div class="slide" data-era="Era 3 · The software imagination" data-cap="">
-              <div class="ph"><span class="ph-tag">Image to source</span><span class="ph-desc">Aerial or plan of the completed park.</span></div>
-            </div>
-
-            <!-- 20 · Xi'an Expo -->
-            <div class="slide" data-era="Era 3 · The software imagination" data-cap="37 hectares. A root system. Parametric tools made it buildable.">
-              <div class="ph"><span class="ph-tag">Image to source</span><span class="ph-desc">Xi&rsquo;an Expo (Plasma Studio + AA Groundlab) — full-bleed aerial or masterplan.</span></div>
-            </div>
-
-            <!-- 21 · Era 3 punchline -->
-            <div class="slide" data-era="Era 3 · The software imagination" data-cap="The tool generates what the designer didn&rsquo;t imagine.">
-              <div class="ph"><span class="ph-tag">Composite to build</span><span class="ph-desc">South Park attractor + Xi&rsquo;an plan, small, set against a Grasshopper canvas.</span></div>
-            </div>
-
-            <!-- 22 · Radiation, not replacement -->
-            <div class="slide" data-era="Closing" data-cap="The desk gets more crowded. Not simpler.">
-              <div class="ph"><span class="ph-tag">Composite to build</span><span class="ph-desc">Drawing board · CAD screen · Grasshopper canvas · chatbox — all visible at once.</span></div>
-            </div>
-
-            <!-- 23 · The open question -->
-            <div class="slide" data-era="Closing" data-cap="Agentic AI. No lane yet. Era 4?">
-              <div class="ph"><span class="ph-tag">Image to source</span><span class="ph-desc">A chatbot interface, or an agentic-AI graphic.</span></div>
-            </div>
-
-            <!-- 24 · Leave it open -->
-            <div class="slide" data-era="Closing" data-cap="&ldquo;The rest of this course is you learning enough to judge.&rdquo;">
-              <div class="ph"><span class="ph-tag">Image to source</span><span class="ph-desc">A hand on trace paper over a screen, or a student at the drawing board.</span></div>
+            <!-- 27 · Agentic AI -->
+            <div class="slide" data-era="Closing" data-cap="Agentic AI" data-credit="NVIDIA RTX Spark." data-notes="Learning enough to judge.">
+              <iframe src="https://www.youtube.com/embed/a6fUvL9gYAQ" title="NVIDIA — Agentic AI"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             </div>
 
           </div>
           <div class="deck-bar">
             <button class="deck-btn" id="deck-prev" aria-label="Previous slide">&lsaquo;</button>
-            <div class="deck-count" id="deck-count">1 / 24</div>
+            <div class="deck-count"><input id="deck-jump" type="text" inputmode="numeric" aria-label="Jump to slide" value="1"><span id="deck-total"> / 27</span></div>
             <button class="deck-btn" id="deck-next" aria-label="Next slide">&rsaquo;</button>
-            <div class="deck-meta"><span class="deck-era" id="deck-era"></span><span class="deck-cap" id="deck-cap"></span></div>
+            <div class="deck-meta"><span class="deck-cap" id="deck-cap"></span><span id="deck-credit"></span></div>
             <button class="deck-btn" id="deck-notes-toggle" aria-expanded="false" aria-controls="deck-notes" aria-label="Toggle speaker notes" title="Speaker notes"><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="2" y="2" width="12" height="12" rx="1.5"/><line x1="4.5" y1="5.5" x2="11.5" y2="5.5"/><line x1="4.5" y1="8" x2="11.5" y2="8"/><line x1="4.5" y1="10.5" x2="8.5" y2="10.5"/></svg></button>
             <button class="deck-btn" id="deck-present" aria-label="Open Presenter View" title="Presenter View (synced second window)"><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="2" width="9" height="7" rx="1.2"/><path d="M3 11h5M5.5 9v2"/><rect x="11" y="5" width="4" height="4" rx="1" stroke-dasharray="1.8 1.2"/></svg></button>
             <button class="deck-btn deck-fs" id="deck-fs" aria-label="Present full screen" title="Present (full screen)">&#x26F6;</button>
           </div>
           <div class="deck-notes" id="deck-notes" hidden></div>
-          <p class="deck-hint">Hover the deck for &larr; &rarr; keys, or use the buttons. <strong>Notes</strong> shows speaking notes; <strong>Presenter</strong> opens a synced second window (notes + next slide + timer); <strong>&#x26F6;</strong> presents full screen. 16 of 24 images still to source.</p>
+          <p class="deck-hint">Hover the deck for &larr; &rarr; keys, or use the buttons. <strong>Notes</strong> shows speaking notes; <strong>Presenter</strong> opens a synced second window (notes + next slide + timer); <strong>&#x26F6;</strong> presents full screen. 13 of 25 images still to source.</p>
         </div>
 
         <!-- ── Timeline ── -->
@@ -848,9 +1022,10 @@ buildChart();
   const slides = [...deck.querySelectorAll('.slide')];
   const prev  = document.getElementById('deck-prev');
   const next  = document.getElementById('deck-next');
-  const count = document.getElementById('deck-count');
-  const capEl = document.getElementById('deck-cap');
-  const eraEl = document.getElementById('deck-era');
+  const jump  = document.getElementById('deck-jump');
+  const total = document.getElementById('deck-total');
+  const capEl    = document.getElementById('deck-cap');
+  const creditEl = document.getElementById('deck-credit');
   const notesEl = document.getElementById('deck-notes');
   const notesToggle = document.getElementById('deck-notes-toggle');
   const presentBtn = document.getElementById('deck-present');
@@ -858,10 +1033,11 @@ buildChart();
   try { bc = new BroadcastChannel('laar61400-w02-deck'); } catch(e){}
   function render(){
     slides.forEach((s,n)=>s.classList.toggle('on', n===i));
-    count.textContent = (i+1) + ' / ' + slides.length;
+    if(jump !== document.activeElement) jump.value = (i+1);
+    total.textContent = ' / ' + slides.length;
     const s = slides[i];
-    capEl.innerHTML = s.getAttribute('data-cap') || '';
-    eraEl.textContent = s.getAttribute('data-era') || '';
+    capEl.innerHTML    = s.getAttribute('data-cap') || '';
+    creditEl.textContent = s.getAttribute('data-credit') || '';
     const note = (s.getAttribute('data-notes') || '').trim();
     notesEl.innerHTML = note ? note : '<span class="nn-empty">No notes for this slide yet.</span>';
     prev.disabled = (i === 0);
@@ -869,8 +1045,20 @@ buildChart();
     if(bc) bc.postMessage({ type:'idx', i:i });
   }
   function go(d){ i = Math.min(slides.length-1, Math.max(0, i+d)); render(); }
+  function goTo(n){ i = Math.min(slides.length-1, Math.max(0, n)); render(); }
   prev.addEventListener('click', ()=>go(-1));
   next.addEventListener('click', ()=>go(1));
+  function commitJump(){
+    const n = parseInt(jump.value, 10);
+    if(!isNaN(n)) goTo(n-1);
+    jump.value = (i+1); // echo back the clamped/valid slide number
+  }
+  jump.addEventListener('keydown', e=>{
+    if(e.key === 'Enter'){ commitJump(); jump.blur(); }
+    e.stopPropagation(); // don't let ←/→ in the field drive the deck
+  });
+  jump.addEventListener('change', commitJump);
+  jump.addEventListener('focus', ()=>jump.select());
   deck.addEventListener('mouseenter', ()=>hot=true);
   deck.addEventListener('mouseleave', ()=>hot=false);
 
@@ -932,9 +1120,42 @@ buildChart();
   .pv-stage{aspect-ratio:16/9;width:100%;background:#1a1a1a;border:1px solid #333;border-radius:6px;
     overflow:hidden;display:flex;align-items:center;justify-content:center;}
   .pv-stage img{max-width:100%;max-height:100%;object-fit:contain;}
-  .pv-stage .split{display:flex;width:100%;height:100%;gap:1px;background:#333;}
-  .pv-stage .split figure{flex:1;margin:0;display:flex;align-items:center;justify-content:center;
-    background:#1a1a1a;overflow:hidden;}
+  /* mirror of /teaching/_shared/deck.css layout system, scoped + dark */
+  .pv-stage .pv-deck{display:flex;align-items:center;justify-content:center;width:100%;height:100%;}
+  .pv-stage .pv-deck.single>img{max-width:100%;max-height:100%;object-fit:contain;}
+  .pv-stage .pv-deck.slide--title{flex-direction:column;gap:6px;}
+  .pv-stage .pv-deck.two-3-3,.pv-stage .pv-deck.grid-4{display:grid;gap:2px;background:#333;}
+  .pv-stage .pv-deck figure{margin:0;min-width:0;min-height:0;display:flex;align-items:center;
+    justify-content:center;background:#1a1a1a;overflow:hidden;}
+  .pv-stage .pv-deck figure img{width:100%;height:100%;object-fit:cover;}
+  .pv-stage .pv-deck.sq{display:grid;grid-template-columns:repeat(12,1fr);align-items:center;gap:2px;}
+  .pv-stage .pv-deck.sq figure{width:100%;aspect-ratio:1;overflow:hidden;margin:0;}
+  .pv-stage .pv-deck.sq figure img{width:100%;height:100%;object-fit:cover;}
+  .pv-stage .c1-4{grid-column:1/5;} .pv-stage .c5-8{grid-column:5/9;} .pv-stage .c9-12{grid-column:9/13;}
+  .pv-stage .c1-6{grid-column:1/7;} .pv-stage .c7-12{grid-column:7/13;}
+  .pv-stage .c2-5{grid-column:2/6;} .pv-stage .c8-11{grid-column:8/12;}
+  .pv-stage .c2-6{grid-column:2/7;} .pv-stage .c7-11{grid-column:7/12;}
+  .pv-stage .c3-6{grid-column:3/7;} .pv-stage .c7-10{grid-column:7/11;}
+  .pv-stage .pv-deck.hero-l,.pv-stage .pv-deck.hero-r{display:grid;grid-template-columns:2fr 1fr;
+    grid-template-rows:1fr 1fr;gap:2px;width:100%;height:100%;}
+  .pv-stage .pv-deck.hero-l figure:nth-child(1){grid-column:1;grid-row:1/3;}
+  .pv-stage .pv-deck.hero-l figure:nth-child(2){grid-column:2;grid-row:1;}
+  .pv-stage .pv-deck.hero-l figure:nth-child(3){grid-column:2;grid-row:2;}
+  .pv-stage .pv-deck.hero-r{grid-template-columns:1fr 2fr;}
+  .pv-stage .pv-deck.hero-r figure:nth-child(1){grid-column:2;grid-row:1/3;}
+  .pv-stage .pv-deck.hero-r figure:nth-child(2){grid-column:1;grid-row:1;}
+  .pv-stage .pv-deck.hero-r figure:nth-child(3){grid-column:1;grid-row:2;}
+  .pv-stage .pv-deck.hero-l figure,.pv-stage .pv-deck.hero-r figure{margin:0;overflow:hidden;}
+  .pv-stage .pv-deck.hero-l figure img,.pv-stage .pv-deck.hero-r figure img{width:100%;height:100%;object-fit:cover;}
+  .pv-stage .pv-deck.auto-rows{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;height:100%;}
+  .pv-stage .pv-deck.auto-rows .row{display:flex;align-items:center;justify-content:center;gap:2px;flex:1;min-height:0;}
+  .pv-stage .pv-deck.auto-rows figure{height:100%;flex:0 1 auto;margin:0;}
+  .pv-stage .pv-deck.auto-rows figure img{height:100%;width:auto;max-width:100%;object-fit:contain;}
+  .pv-stage .pv-deck.auto{display:flex;align-items:center;justify-content:center;gap:2px;}
+  .pv-stage .pv-deck.auto figure{height:100%;flex:0 1 auto;}
+  .pv-stage .pv-deck.auto figure img{height:100%;width:auto;max-width:100%;object-fit:contain;}
+  .pv-stage .pv-deck.two-3-3{grid-template-columns:3fr 3fr;}
+  .pv-stage .pv-deck.grid-4{grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;}
   .pv-stage .ph{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;
     width:calc(100% - 16px);height:calc(100% - 16px);border:1.5px dashed #555;border-radius:6px;
     text-align:center;padding:10px;}
@@ -982,7 +1203,8 @@ buildChart();
   var slides = [].slice.call(op.document.querySelectorAll('#deck-stage .slide')).map(function(s){
     return { era:s.getAttribute('data-era')||'', cap:s.getAttribute('data-cap')||'',
       notes:(s.getAttribute('data-notes')||'').trim(),
-      html: s.querySelector('iframe') ? '<div class="pv-vid">&#9654; video slide</div>' : s.innerHTML };
+      html: s.querySelector('iframe') ? '<div class="pv-vid">&#9654; video slide</div>'
+        : '<div class="pv-deck '+s.className.replace(/\bslide\b/g,'').replace(/\bon\b/g,'').trim()+'">'+s.innerHTML+'</div>' };
   });
   var total = slides.length, cur = 0;
   var bc = null; try{ bc = new BroadcastChannel('laar61400-w02-deck'); }catch(e){}
@@ -1019,7 +1241,75 @@ buildChart();
     w.document.open(); w.document.write(PRESENTER_DOC); w.document.close();
   });
 
+  // ── justified "fit-to-box" layout for .auto slides (equal height, no crop, PPT-style) ──
+  const stage = document.getElementById('deck-stage');
+  function layoutAuto(){
+    if(!stage) return;
+    const W = stage.clientWidth, H = stage.clientHeight;
+    if(!W || !H) return;
+    const FILL_W = 1.00;  // full-bleed left/right → width-bound groups align with the 12-col content edge
+    const FILL_H = 0.90;  // breathing margin top/bottom
+    deck.querySelectorAll('.slide.auto').forEach(s=>{
+      const figs = [...s.querySelectorAll(':scope > figure')];
+      if(!figs.length) return;
+      const gap = parseFloat(getComputedStyle(s).columnGap) || 0;
+      let sumA = 0;
+      const ars = figs.map(fig=>{
+        const im = fig.querySelector('img');
+        const a = (im && im.naturalWidth && im.naturalHeight) ? im.naturalWidth/im.naturalHeight : 1;
+        sumA += a; return a;
+      });
+      const n = figs.length;
+      const hByW = (FILL_W*W - (n-1)*gap) / sumA;  // tallest row that fits the width budget
+      const hByH = FILL_H*H;                        // tallest row that fits the height budget
+      const h = Math.max(0, Math.min(hByW, hByH));
+      figs.forEach((fig,k)=>{ fig.style.height = h+'px'; fig.style.width = (ars[k]*h)+'px'; });
+    });
+    // hero + stack: hero whole at its aspect; two images stacked beside it; composite fit to box
+    const arOf = fig => { const im = fig.querySelector('img');
+      return (im && im.naturalWidth && im.naturalHeight) ? im.naturalWidth/im.naturalHeight : 1; };
+    deck.querySelectorAll('.slide.hero-l, .slide.hero-r').forEach(s=>{
+      const figs = [...s.querySelectorAll(':scope > figure')];
+      if(figs.length < 3) return;
+      const gap = parseFloat(getComputedStyle(s).rowGap) || 0;
+      const arHero = arOf(figs[0]);
+      const maxArS = Math.max(arOf(figs[1]), arOf(figs[2]));
+      // composite width(H) = arHero*H + gap + maxArS*(H-gap)/2  →  k*H + c
+      const k = arHero + maxArS/2, c = gap*(1 - maxArS/2);
+      const hByW = (FILL_W*W - c) / k;     // fit width budget
+      const hByH = FILL_H*H;                // fit height budget
+      const Ht = Math.max(0, Math.min(hByW, hByH));
+      const heroW = arHero*Ht, sH = (Ht-gap)/2, stackW = maxArS*sH;
+      figs[0].style.width = heroW+'px'; figs[0].style.height = Ht+'px';
+      [figs[1],figs[2]].forEach(f=>{ f.style.width = stackW+'px'; f.style.height = sH+'px'; });
+    });
+    // auto-rows: each .row justified to box width; rows stacked, whole block scaled to 90% height
+    deck.querySelectorAll('.slide.auto-rows').forEach(s=>{
+      const rows = [...s.querySelectorAll(':scope > .row')];
+      if(!rows.length) return;
+      const rowGap = parseFloat(getComputedStyle(s).rowGap) || 0;
+      const data = rows.map(r=>{
+        const figs = [...r.querySelectorAll(':scope > figure')];
+        const colGap = parseFloat(getComputedStyle(r).columnGap) || 0;
+        let sumA = 0; const ars = figs.map(f=>{ const a = arOf(f); sumA += a; return a; });
+        const hFill = (FILL_W*W - (figs.length-1)*colGap) / sumA;  // row height to fill the width
+        return { figs, ars, hFill };
+      });
+      const totalH = data.reduce((t,d)=>t+d.hFill, 0) + (rows.length-1)*rowGap;
+      const scale = totalH > FILL_H*H ? (FILL_H*H)/totalH : 1;     // shrink if too tall
+      data.forEach(d=>{ const h = d.hFill*scale;
+        d.figs.forEach((f,k)=>{ f.style.height = h+'px'; f.style.width = (d.ars[k]*h)+'px'; }); });
+    });
+  }
+  deck.querySelectorAll('.slide.auto img, .slide.hero-l img, .slide.hero-r img, .slide.auto-rows img').forEach(im=>{
+    if(!im.complete) im.addEventListener('load', layoutAuto, {once:true});
+  });
+  let _lt; window.addEventListener('resize', ()=>{ clearTimeout(_lt); _lt=setTimeout(layoutAuto, 80); });
+  document.addEventListener('fullscreenchange', ()=>setTimeout(layoutAuto, 60));
+  document.addEventListener('webkitfullscreenchange', ()=>setTimeout(layoutAuto, 60));
+
   render();
+  layoutAuto();
 })();
 </script>
 </body>

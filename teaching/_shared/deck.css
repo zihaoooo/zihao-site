@@ -1,0 +1,181 @@
+/* ============================================================
+   Teaching deck — shared layout system (factory standard)
+   Source of truth: course-prep/style/site-rules.md
+   Linked from each lecture page: <link rel="stylesheet" href="/teaching/_shared/deck.css">
+
+   MODEL
+   - The stage is a 16:9 carousel of .slide elements.
+   - Every image slide is a 6-COLUMN grid. Templates set the column
+     (and where needed, row) structure. 6 = LCM of 1/2/3, so splits
+     divide cleanly: 3-3, 4-2, 2-2-2, etc.
+   - FIT is an ORTHOGONAL axis, set per slide or per cell:
+       .fill  (default)  object-fit:cover  → image fills the cell, cropped.
+                                              Tops/bottoms align (equal cells).
+       .fit              whole image shown, scaled to EQUAL HEIGHT
+                         (height:100%; width:auto) → in a 3-3 split both
+                         images share top AND bottom edges. Width varies.
+   - Naming is self-describing: the shorthand you say IS the class.
+       "2 images, 4-2, right one whole"
+         → <div class="slide two-4-2"> … <figure class="fit"> on the right cell
+   ============================================================ */
+
+:root{ --deck-gutter:6px; }
+
+/* ── stage + carousel mechanics ── */
+.deck{margin-top:10px;}
+.deck-stage{position:relative;aspect-ratio:16/9;width:100%;
+  background:var(--paper);border:1px solid var(--line);border-radius:10px;overflow:hidden;}
+.slide{position:absolute;inset:0;display:grid;place-items:center;
+  opacity:0;visibility:hidden;transition:opacity .25s ease;}
+.slide.on{opacity:1;visibility:visible;}
+.slide iframe{width:100%;height:100%;border:0;grid-area:1/1/-1/-1;}
+/* ── single: one image, whole + contained, centered, full stage ──
+   The definite 1fr×1fr track is required so the img's max-height:100% binds; without it
+   the grid row is content-sized (indefinite) and a tall image overflows and gets clipped.
+   (Bare `.slide > img` with no `single` class still falls back to the contain rule below,
+   but only `single` guarantees no clipping — always tag single-image slides `single`.) */
+.slide.single{grid-template-rows:minmax(0,1fr);grid-template-columns:minmax(0,1fr);}
+.slide.single>img,.slide>img{max-width:100%;max-height:100%;width:auto;height:auto;object-fit:contain;display:block;}
+
+/* ── grid cells ── */
+.slide figure{margin:0;min-width:0;min-height:0;position:relative;overflow:hidden;
+  display:flex;align-items:center;justify-content:center;background:var(--paper);}
+.slide figure img{display:block;width:100%;height:100%;object-fit:cover;} /* default = fill (cover) */
+
+/* ── bleed/cover grid family (full-stage cells, image cover-cropped) ──
+   Use when images are uniform enough that an edge-to-edge crop reads clean (≈16:9 sets, 2×2). */
+.slide.two-3-3,.slide.grid-4{place-items:stretch;gap:var(--deck-gutter);background:var(--paper);}
+.slide.two-3-3 {grid-template-columns:3fr 3fr;}                             /* two equal columns */
+.slide.grid-4  {grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;}  /* 2×2 */
+
+/* ── 12-col explicit-placement family (CSS, no JS) ──
+   The page spine is a 12-column grid (the design standard — divides into halves/thirds/quarters).
+   `sq` makes each figure a square frame (image cover-cropped); place each figure with a
+   c{start}-{end} span (1-indexed, inclusive). Add new c-classes below as slides need them.
+   Use this family when you want CONTROL (uniform framing, exact margins); use `auto` when you
+   want the layout to follow the images. */
+.slide.sq{display:grid;grid-template-columns:repeat(12,1fr);align-items:center;
+  gap:var(--deck-gutter);background:var(--paper);}
+/* width:100% forces the cell to fill its grid track even when the image is itself square
+   (an exactly-square image would otherwise shrink-wrap the figure to its natural pixel size). */
+.slide.sq figure{margin:0;width:100%;aspect-ratio:1;overflow:hidden;background:var(--paper);}
+.slide.sq figure img{width:100%;height:100%;object-fit:cover;display:block;}
+/* column-span utilities (1-indexed, inclusive over 12 cols) */
+.slide .c1-4{grid-column:1/5;}  .slide .c5-8{grid-column:5/9;}  .slide .c9-12{grid-column:9/13;}
+.slide .c1-6{grid-column:1/7;}  .slide .c7-12{grid-column:7/13;}
+.slide .c2-5{grid-column:2/6;}  .slide .c8-11{grid-column:8/12;}
+.slide .c2-6{grid-column:2/7;}  .slide .c7-11{grid-column:7/12;}
+.slide .c3-6{grid-column:3/7;}  .slide .c7-10{grid-column:7/11;}
+
+/* auto = justified "fit-to-box" row (PPT-style): images at equal height, widths follow
+   their own aspect ratio, the whole group scaled to ~98% of width OR height (whichever binds
+   first), centered. No crop, tops/bottoms aligned. JS (layoutAuto) sets each figure's px size
+   from the image's natural aspect ratio; this CSS just provides the flex row + cell fill. */
+.slide.auto{display:flex;align-items:center;justify-content:center;
+  gap:var(--deck-gutter);background:var(--paper);}
+.slide.auto figure{margin:0;flex:0 0 auto;overflow:hidden;background:var(--paper);}
+.slide.auto figure img{width:100%;height:100%;object-fit:cover;display:block;}
+
+/* hero + stack (image-aware, JS-sized like auto): a hero image kept WHOLE at its true aspect,
+   with two images stacked beside it; the whole composite is scaled to fit the box (100% W /
+   90% H). hero-l = hero on the left, hero-r = hero on the right. First <figure> is the hero;
+   the next two are the stack. JS (layoutAuto) sets the px sizes from the natural aspect ratios. */
+.slide.hero-l,.slide.hero-r{display:grid;grid-template-columns:auto auto;grid-auto-rows:auto;
+  gap:var(--deck-gutter);justify-content:center;align-content:center;background:var(--paper);}
+.slide.hero-l figure:nth-child(1){grid-column:1;grid-row:1/3;}
+.slide.hero-l figure:nth-child(2){grid-column:2;grid-row:1;}
+.slide.hero-l figure:nth-child(3){grid-column:2;grid-row:2;}
+.slide.hero-r figure:nth-child(1){grid-column:2;grid-row:1/3;}
+.slide.hero-r figure:nth-child(2){grid-column:1;grid-row:1;}
+.slide.hero-r figure:nth-child(3){grid-column:1;grid-row:2;}
+.slide.hero-l figure,.slide.hero-r figure{margin:0;overflow:hidden;background:var(--paper);}
+/* cover, not contain: the two stack figures are forced to equal width (the wider image's aspect),
+   so the narrower one would letterbox (side gaps) under contain. The hero figure is sized to its
+   own exact aspect, so cover is a no-op there — only the stack crops slightly. */
+.slide.hero-l figure img,.slide.hero-r figure img{width:100%;height:100%;object-fit:cover;display:block;}
+
+/* auto-rows = multi-row justified gallery (image-aware): each .row is justified to the box
+   width (images share that row's height, widths by aspect); rows stack and the whole block is
+   scaled to fit 90% height. No crop. Wrap each row's figures in a <div class="row">. */
+.slide.auto-rows{display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:var(--deck-gutter);background:var(--paper);}
+.slide.auto-rows .row{display:flex;align-items:center;justify-content:center;gap:var(--deck-gutter);}
+.slide.auto-rows figure{margin:0;flex:0 0 auto;overflow:hidden;background:var(--paper);}
+.slide.auto-rows figure img{width:100%;height:100%;object-fit:cover;display:block;}
+
+/* optional caption chip, bottom-left of a cell (used sparingly) */
+.slide figure figcaption{position:absolute;left:8px;bottom:7px;
+  font-family:"DM Mono",ui-monospace,monospace;font-size:9.5px;letter-spacing:.04em;
+  color:#4a463f;background:rgba(251,250,248,.82);padding:2px 6px;border-radius:3px;}
+
+/* ── title slide ── */
+.slide--title{flex-direction:column;text-align:center;gap:14px;background:var(--ink);
+  display:flex;align-items:center;justify-content:center;}
+.slide--title .tt{font-family:"DM Sans",sans-serif;font-weight:700;
+  font-size:clamp(20px,4.4vw,46px);color:#fbfaf8;letter-spacing:-.01em;line-height:1.1;}
+.slide--title .ts{font-family:"DM Mono",ui-monospace,monospace;font-size:11px;
+  letter-spacing:.14em;text-transform:uppercase;color:#b0a898;}
+
+/* ── placeholder slide (image still to source) ── */
+.slide .ph{display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:9px;width:calc(100% - 28px);height:calc(100% - 28px);
+  border:1.5px dashed #cfc8bd;border-radius:8px;text-align:center;padding:18px;}
+.slide .ph .ph-tag{font-family:"DM Mono",ui-monospace,monospace;font-size:9px;
+  letter-spacing:.14em;text-transform:uppercase;color:#bbb;}
+.slide .ph .ph-desc{font-family:"DM Sans",sans-serif;font-size:13px;
+  color:#8a847c;max-width:48ch;line-height:1.5;}
+
+/* ── control bar ── */
+.deck-bar{display:flex;align-items:center;gap:14px;margin-top:12px;}
+.deck-btn{appearance:none;border:1px solid var(--line);background:var(--paper);
+  width:34px;height:34px;border-radius:8px;cursor:pointer;color:#4a463f;font-size:16px;
+  line-height:1;display:flex;align-items:center;justify-content:center;flex:0 0 auto;
+  transition:border-color .12s,background .12s;}
+.deck-btn:hover{border-color:#bbb;background:#fff;}
+.deck-btn:disabled{opacity:.32;cursor:default;}
+.deck-count{font-family:"DM Mono",ui-monospace,monospace;font-size:11px;letter-spacing:.06em;
+  color:var(--mute);flex:0 0 auto;min-width:54px;text-align:center;
+  display:flex;align-items:baseline;justify-content:center;}
+#deck-jump{font:inherit;color:#2e2a24;width:2.2em;text-align:right;padding:1px 3px;
+  border:1px solid transparent;border-radius:4px;background:transparent;-moz-appearance:textfield;}
+#deck-jump:hover{border-color:var(--line);}
+#deck-jump:focus{outline:none;border-color:#bbb;background:#fff;}
+.deck:fullscreen #deck-jump{color:#e4ded5;}
+.deck:fullscreen #deck-jump:focus{background:#1c1c1c;border-color:#555;}
+.deck-meta{flex:1;min-width:0;}
+.deck-cap{font-family:"DM Sans",sans-serif;font-size:13.5px;color:#2e2a24;
+  font-weight:500;line-height:1.4;display:block;}
+#deck-credit{font-family:"DM Sans",sans-serif;font-size:10.5px;color:#8a8273;
+  line-height:1.35;display:none;margin-top:2px;}
+#deck-credit:not(:empty){display:block;}
+.deck:fullscreen #deck-credit{color:#9a948a;}
+.deck-hint{font-family:"DM Mono",ui-monospace,monospace;font-size:10px;letter-spacing:.05em;
+  color:var(--mute);margin-top:6px;}
+.deck-fs{margin-left:auto;flex:0 0 auto;font-size:14px;}
+
+/* ── fullscreen present mode ── */
+.deck:fullscreen{background:#0e0e0e;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;gap:12px;width:100vw;height:100vh;}
+.deck:fullscreen .deck-stage{aspect-ratio:16/9;height:auto;
+  width:min(100vw, calc((100vh - 76px) * 16 / 9));
+  max-height:calc(100vh - 76px);border:0;border-radius:0;}
+.deck:fullscreen .deck-hint{display:none;}
+.deck:fullscreen .deck-bar{width:min(100vw, calc((100vh - 76px) * 16 / 9));
+  padding:0 4px;margin-top:0;}
+.deck:fullscreen .deck-btn{background:#1c1c1c;border-color:#3a3a3a;color:#e4ded5;}
+.deck:fullscreen .deck-btn:hover{background:#262626;border-color:#555;}
+.deck:fullscreen .deck-count{color:#b8b0a6;}
+.deck:fullscreen .deck-cap{color:#e4ded5;}
+
+/* ── text buttons + notes disclosure ── */
+.deck-btn--text{width:auto;padding:0 12px;font-family:"DM Mono",ui-monospace,monospace;
+  font-size:10px;letter-spacing:.08em;text-transform:uppercase;}
+.deck-notes{margin-top:9px;padding:11px 14px;border:1px solid var(--line);border-radius:8px;
+  background:var(--paper);font-family:"DM Sans",sans-serif;font-size:13px;line-height:1.55;
+  color:#4a463f;max-width:82ch;}
+.deck-notes[hidden]{display:none;}
+.deck-notes .nn-empty{color:var(--mute);font-style:italic;}
+/* never project notes / second-window controls */
+.deck:fullscreen .deck-notes,
+.deck:fullscreen #deck-notes-toggle,
+.deck:fullscreen #deck-present{display:none;}
