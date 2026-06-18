@@ -6,6 +6,63 @@
   <title>Week 01 Lecture: Drawing as Thinking Tool — LAAR 61400</title>
   <link rel="stylesheet" href="/teaching/laar61400/assets/css/main.css">
   <link rel="stylesheet" href="/teaching/laar61400/assets/css/workflow-shared.css">
+  <link rel="stylesheet" href="/teaching/_shared/deck.css">
+  <style>
+    /* timeline color tokens */
+    :root{
+      --draft:#5b6c7a;
+      --map:#5a7d52;
+      --model:#9a3b3b;
+      --comm:#b87333;
+      --prologue:#b0a898;
+      --ink:#1a1a1a;
+      --paper:#fbfaf8;
+      --line:#e0dbd3;
+      --mute:#8a847c;
+    }
+    .legend{display:flex;flex-wrap:wrap;gap:12px 22px;margin:22px 0 4px;
+      font-size:12px;color:#4a463f;align-items:center;}
+    .legend .item{display:flex;align-items:center;gap:7px;}
+    .bar-key{width:24px;height:10px;border-radius:3px;flex:0 0 auto;}
+    .legend .lab{font-family:"DM Mono",ui-monospace,monospace;font-size:10.5px;letter-spacing:.03em;}
+    .legend .note{color:var(--mute);}
+    .scroll{overflow-x:auto;overflow-y:hidden;-webkit-overflow-scrolling:touch;
+      margin-top:10px;
+      border:1px solid var(--line);border-radius:10px;background:var(--paper);}
+    svg{display:block;}
+    .hint{font-family:"DM Mono",ui-monospace,monospace;font-size:10px;
+      letter-spacing:.05em;color:var(--mute);margin-top:5px;display:none;}
+    @media (max-width:768px){ .hint{display:block;} }
+    .foot{margin-top:24px;font-size:12px;color:var(--mute);line-height:1.7;max-width:72ch;}
+    .foot strong{color:#4a463f;font-weight:600;}
+    .refs{margin:14px 0 0;padding-left:22px;max-width:72ch;
+      font-size:11.5px;color:var(--mute);line-height:1.65;}
+    .refs li{margin-bottom:8px;}
+    .refs em{font-style:italic;}
+    .refs a{color:#4a463f;text-decoration:none;border-bottom:1px solid #d9d3ca;
+      word-break:break-word;}
+    .refs a:hover{border-bottom-color:#4a463f;}
+    .timeline-section-label{
+      font-family:"DM Mono",ui-monospace,monospace;font-size:9px;font-weight:700;
+      text-transform:uppercase;letter-spacing:.12em;color:#aaa;
+      display:block;border-top:1px solid #e0e0e0;padding-top:20px;margin:32px 0 14px;}
+
+    /* tooltip */
+    #tip{position:fixed;z-index:50;max-width:290px;pointer-events:none;
+      background:#1a1a1a;color:#f5f3f0;padding:11px 13px;border-radius:8px;
+      font-size:12.5px;line-height:1.5;opacity:0;transform:translateY(4px);
+      transition:opacity .12s ease,transform .12s ease;box-shadow:0 8px 28px rgba(0,0,0,.22);}
+    #tip.on{opacity:1;transform:translateY(0);}
+    #tip .t-name{font-weight:600;font-size:13px;margin-bottom:1px;}
+    #tip .t-meta{font-family:"DM Mono",ui-monospace,monospace;font-size:10px;
+      letter-spacing:.04em;color:#b8b0a6;margin-bottom:5px;}
+    #tip .t-body{color:#e4ded5;}
+    #tip .t-tag{display:inline-block;margin-top:6px;font-family:"DM Mono",ui-monospace,monospace;
+      font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:#c98a3c;}
+    #tip .t-cite{font-size:8.5px;font-weight:600;color:#c98a3c;margin-left:3px;
+      font-family:"DM Mono",ui-monospace,monospace;vertical-align:super;line-height:0;}
+
+  </style>
 </head>
 <body>
 
@@ -55,19 +112,1160 @@
           <div class="wf-index">WK01</div>
           <div class="wf-header-text">
             <div class="wf-title">Drawing as Thinking Tool</div>
-            <div class="wf-subtitle">Survey of drawing types · the thesis · the AI seed</div>
+            <div class="wf-subtitle">A visual survey of representational modes in landscape architecture</div>
           </div>
         </div>
 
-        <div class="wf-outcome">
-          <strong>Lecture slides — coming soon</strong>
-          This page is a placeholder. The Week 01 lecture slides will be built here.
+        <!-- ── Slides ── -->
+        <span class="timeline-section-label">Lecture Slides</span>
+        <div class="deck" id="deck">
+          <div class="deck-stage" id="deck-stage">
+
+            <!-- 1 · Title -->
+            <div class="slide slide--title" data-cap="">
+              <div class="tt">Drawings<br>as Tools</div>
+              <div class="ts">LAAR 61400 · Week 01 · A Visual Survey of Representational Modes</div>
+            </div>
+
+            <!-- Section · Thinking -->
+            <div class="slide slide--title" data-era="Thinking" data-cap="">
+              <div class="tt">Thinking</div>
+              <div class="ts">Parti · sketch · process drawing · freehand ideation · study models</div>
+            </div>
+
+            <!-- 3 · slide 3 -->
+            <div class="slide single" data-era="Thinking" data-cap="Lawrence Halprin, RSVP Cycles / Notebooks 1959–1971" data-credit="https://lawrencehalprin.com">
+              <img src="/teaching/laar61400/assets/img/Week01/s03_1.webp" alt="Lawrence Halprin, RSVP Cycles / Notebooks 1959–1971">
+            </div>
+
+            <!-- 4 · slide 4 -->
+            <div class="slide single" data-era="Thinking" data-cap="Lawrence Halprin, Notebooks" data-credit="https://lawrencehalprin.com">
+              <img src="/teaching/laar61400/assets/img/Week01/s04_1.webp" alt="Lawrence Halprin, Notebooks">
+            </div>
+
+            <!-- 5 · slide 5 -->
+            <div class="slide auto" data-era="Thinking" data-cap="Lawrence Halprin, Notebooks" data-credit="https://lawrencehalprin.com">
+              <figure><img src="/teaching/laar61400/assets/img/Week01/s05_1.webp" alt="Lawrence Halprin, Notebooks"></figure>
+              <figure><img src="/teaching/laar61400/assets/img/Week01/s05_2.webp" alt="Lawrence Halprin, Notebooks"></figure>
+            </div>
+
+            <!-- 6 · slide 6 -->
+            <div class="slide auto" data-era="Thinking" data-cap="Lawrence Halprin, Notebooks" data-credit="https://lawrencehalprin.com">
+              <figure><img src="/teaching/laar61400/assets/img/Week01/s06_1.webp" alt="Lawrence Halprin, Notebooks"></figure>
+              <figure><img src="/teaching/laar61400/assets/img/Week01/s06_2.webp" alt="Lawrence Halprin, Notebooks"></figure>
+            </div>
+
+            <!-- 7 · slide 7 -->
+            <div class="slide auto" data-era="Thinking" data-cap="Adriaan Geuze / West 8, The Hills, Governors Island, New York, 2007">
+              <figure><img src="/teaching/laar61400/assets/img/Week01/s07_1.webp" alt="Adriaan Geuze / West 8, The Hills, Governors Island, New York, 2007"></figure>
+              <figure><img src="/teaching/laar61400/assets/img/Week01/s07_2.webp" alt="Adriaan Geuze / West 8, The Hills, Governors Island, New York, 2007"></figure>
+            </div>
+
+            <!-- 8 · slide 8 -->
+            <div class="slide single" data-era="Thinking" data-cap="Adriaan Geuze / West 8, The Hills, Governors Island, New York, 2007">
+              <img src="/teaching/laar61400/assets/img/Week01/s08_1.webp" alt="Adriaan Geuze / West 8, The Hills, Governors Island, New York, 2007">
+            </div>
+
+            <!-- 9 · slide 9 -->
+            <div class="slide auto" data-era="Thinking" data-cap="Julie Bargmann / D.I.R.T. Studio URBAN OUTFITTERS HEADQUARTERS, Philadelphia, Pennsylvania2005 – 2011">
+              <figure><img src="/teaching/laar61400/assets/img/Week01/s09_1.webp" alt="Julie Bargmann / D.I.R.T. Studio URBAN OUTFITTERS HEADQUARTERS, Philadelphia, Pennsylvania2005 – 2011"></figure>
+              <figure><img src="/teaching/laar61400/assets/img/Week01/s09_2.webp" alt="Julie Bargmann / D.I.R.T. Studio URBAN OUTFITTERS HEADQUARTERS, Philadelphia, Pennsylvania2005 – 2011"></figure>
+            </div>
+
+            <!-- 10 · slide 10 -->
+            <div class="slide auto" data-era="Thinking" data-cap="Julie Bargmann / D.I.R.T. Studio">
+              <figure><img src="/teaching/laar61400/assets/img/Week01/s10_1.webp" alt="Julie Bargmann / D.I.R.T. Studio"></figure>
+              <figure><img src="/teaching/laar61400/assets/img/Week01/s10_2.webp" alt="Julie Bargmann / D.I.R.T. Studio"></figure>
+            </div>
+
+            <!-- 11 · slide 11 -->
+            <div class="slide single" data-era="Thinking" data-cap="Julie Bargmann / D.I.R.T. Studio">
+              <img src="/teaching/laar61400/assets/img/Week01/s11_1.webp" alt="Julie Bargmann / D.I.R.T. Studio">
+            </div>
+
+            <!-- 12 · slide 12 -->
+            <div class="slide auto" data-era="Thinking" data-cap="Kathryn Gustafson,Diana, Princess of Wales Memorial Fountain">
+              <figure><img src="/teaching/laar61400/assets/img/Week01/s12_1.webp" alt="Kathryn Gustafson,Diana, Princess of Wales Memorial Fountain"></figure>
+              <figure><img src="/teaching/laar61400/assets/img/Week01/s12_2.webp" alt="Kathryn Gustafson,Diana, Princess of Wales Memorial Fountain"></figure>
+            </div>
+
+            <!-- 13 · slide 13 -->
+            <div class="slide auto" data-era="Thinking" data-cap="Kathryn Gustafson,Diana, Princess of Wales Memorial Fountain">
+              <figure><img src="/teaching/laar61400/assets/img/Week01/s13_1.webp" alt="Kathryn Gustafson,Diana, Princess of Wales Memorial Fountain"></figure>
+              <figure><img src="/teaching/laar61400/assets/img/Week01/s13_2.webp" alt="Kathryn Gustafson,Diana, Princess of Wales Memorial Fountain"></figure>
+            </div>
+
+            <!-- 14 · slide 14 -->
+            <div class="slide auto" data-era="Thinking" data-cap="Kathryn Gustafson,Diana, Princess of Wales Memorial Fountain">
+              <figure><img src="/teaching/laar61400/assets/img/Week01/s14_1.webp" alt="Kathryn Gustafson,Diana, Princess of Wales Memorial Fountain"></figure>
+              <figure><img src="/teaching/laar61400/assets/img/Week01/s14_2.webp" alt="Kathryn Gustafson,Diana, Princess of Wales Memorial Fountain"></figure>
+            </div>
+
+            <!-- 15 · slide 15 -->
+            <div class="slide auto" data-era="Thinking" data-cap="Kongjian Yu / Turenscape, Harbin Qunli Stormwater Park">
+              <figure><img src="/teaching/laar61400/assets/img/Week01/s15_1.webp" alt="Kongjian Yu / Turenscape, Harbin Qunli Stormwater Park"></figure>
+              <figure><img src="/teaching/laar61400/assets/img/Week01/s15_2.webp" alt="Kongjian Yu / Turenscape, Harbin Qunli Stormwater Park"></figure>
+            </div>
+
+            <!-- 16 · slide 16 -->
+            <div class="slide auto" data-era="Thinking" data-cap="Kongjian Yu / Turenscape, Harbin Qunli Stormwater Park">
+              <figure><img src="/teaching/laar61400/assets/img/Week01/s16_1.webp" alt="Kongjian Yu / Turenscape, Harbin Qunli Stormwater Park"></figure>
+              <figure><img src="/teaching/laar61400/assets/img/Week01/s16_2.webp" alt="Kongjian Yu / Turenscape, Harbin Qunli Stormwater Park"></figure>
+            </div>
+
+            <!-- 17 · slide 17 -->
+            <div class="slide auto" data-era="Thinking" data-cap="Julie Bargmann / D.I.R.T. Studio">
+              <figure><img src="/teaching/laar61400/assets/img/Week01/s17_1.webp" alt="Julie Bargmann / D.I.R.T. Studio"></figure>
+              <figure><img src="/teaching/laar61400/assets/img/Week01/s17_2.webp" alt="Julie Bargmann / D.I.R.T. Studio"></figure>
+            </div>
+
+            <!-- Section · Analyzing -->
+            <div class="slide slide--title" data-era="Analyzing" data-cap="">
+              <div class="tt">Analyzing</div>
+              <div class="ts">Site analysis · ecological mapping · diagrams</div>
+            </div>
+
+            <!-- 19 · slide 19 -->
+            <div class="slide auto" data-era="Analyzing" data-cap="Ian McHarg, Design with Nature, 1969">
+              <figure><img src="/teaching/laar61400/assets/img/Week01/s19_1.webp" alt="Ian McHarg, Design with Nature, 1969"></figure>
+              <figure><img src="/teaching/laar61400/assets/img/Week01/s19_2.webp" alt="Ian McHarg, Design with Nature, 1969"></figure>
+            </div>
+
+            <!-- 20 · slide 20 -->
+            <div class="slide single" data-era="Analyzing" data-cap="Ian McHarg, Staten Island Study, 1960s">
+              <img src="/teaching/laar61400/assets/img/Week01/s20_1.webp" alt="Ian McHarg, Staten Island Study, 1960s">
+            </div>
+
+            <!-- 21 · slide 21 -->
+            <div class="slide auto" data-era="Analyzing" data-cap="James Corner, Taking Measures Across the American Landscape, 1996">
+              <figure><img src="/teaching/laar61400/assets/img/Week01/s21_1.webp" alt="James Corner, Taking Measures Across the American Landscape, 1996"></figure>
+              <figure><img src="/teaching/laar61400/assets/img/Week01/s21_2.webp" alt="James Corner, Taking Measures Across the American Landscape, 1996"></figure>
+            </div>
+
+            <!-- 22 · slide 22 -->
+            <div class="slide auto" data-era="Analyzing" data-cap="James Corner, Taking Measures Across the American Landscape, 1996">
+              <figure><img src="/teaching/laar61400/assets/img/Week01/s22_1.webp" alt="James Corner, Taking Measures Across the American Landscape, 1996"></figure>
+              <figure><img src="/teaching/laar61400/assets/img/Week01/s22_2.webp" alt="James Corner, Taking Measures Across the American Landscape, 1996"></figure>
+            </div>
+
+            <!-- 23 · slide 23 -->
+            <div class="slide single" data-era="Analyzing" data-cap="James Corner / Field Operations, Downsview, Toronto (1999) Freshkills Park, Staten Island, 2006">
+              <img src="/teaching/laar61400/assets/img/Week01/s23_1.webp" alt="James Corner / Field Operations, Downsview, Toronto (1999) Freshkills Park, Staten Island, 2006">
+            </div>
+
+            <!-- 24 · slide 24 -->
+            <div class="slide single" data-era="Analyzing" data-cap="James Corner / Field Operations, Downsview, Toronto (1999) Freshkills Park, Staten Island, 2006">
+              <img src="/teaching/laar61400/assets/img/Week01/s24_1.webp" alt="James Corner / Field Operations, Downsview, Toronto (1999) Freshkills Park, Staten Island, 2006">
+            </div>
+
+            <!-- 25 · slide 25 -->
+            <div class="slide single" data-era="Analyzing" data-cap="James Corner / Field Operations, The High Line, New York, 2004">
+              <img src="/teaching/laar61400/assets/img/Week01/s25_1.webp" alt="James Corner / Field Operations, The High Line, New York, 2004">
+            </div>
+
+            <!-- 26 · slide 26 -->
+            <div class="slide single" data-era="Analyzing" data-cap="Kongjian Yu / Turenscape">
+              <img src="/teaching/laar61400/assets/img/Week01/s26_1.webp" alt="Kongjian Yu / Turenscape">
+            </div>
+
+            <!-- 27 · slide 27 -->
+            <div class="slide auto" data-era="Analyzing" data-cap="Kongjian Yu / Turenscape">
+              <figure><img src="/teaching/laar61400/assets/img/Week01/s27_1.webp" alt="Kongjian Yu / Turenscape"></figure>
+              <figure><img src="/teaching/laar61400/assets/img/Week01/s27_2.webp" alt="Kongjian Yu / Turenscape"></figure>
+            </div>
+
+            <!-- 28 · slide 28 -->
+            <div class="slide auto" data-era="Analyzing" data-cap="Teresa Galí-Izard, Various, 2000s–present" data-credit="https://arquitecturaagronomia.net">
+              <figure><img src="/teaching/laar61400/assets/img/Week01/s28_1.webp" alt="Teresa Galí-Izard, Various, 2000s–present"></figure>
+              <figure><img src="/teaching/laar61400/assets/img/Week01/s28_2.webp" alt="Teresa Galí-Izard, Various, 2000s–present"></figure>
+            </div>
+
+            <!-- 29 · slide 29 -->
+            <div class="slide auto-rows" data-era="Analyzing" data-cap="Teresa Galí-Izard, Various, 2000s–present" data-credit="https://arquitecturaagronomia.net">
+              <div class="row"><figure><img src="/teaching/laar61400/assets/img/Week01/s29_1.webp" alt="Teresa Galí-Izard, Various, 2000s–present"></figure><figure><img src="/teaching/laar61400/assets/img/Week01/s29_2.webp" alt="Teresa Galí-Izard, Various, 2000s–present"></figure><figure><img src="/teaching/laar61400/assets/img/Week01/s29_3.webp" alt="Teresa Galí-Izard, Various, 2000s–present"></figure></div>
+              <div class="row"><figure><img src="/teaching/laar61400/assets/img/Week01/s29_4.webp" alt="Teresa Galí-Izard, Various, 2000s–present"></figure><figure><img src="/teaching/laar61400/assets/img/Week01/s29_5.webp" alt="Teresa Galí-Izard, Various, 2000s–present"></figure></div>
+            </div>
+
+            <!-- 30 · slide 30 -->
+            <div class="slide auto-rows" data-era="Analyzing" data-cap="Teresa Galí-Izard, Various, 2000s–present" data-credit="https://arquitecturaagronomia.net">
+              <div class="row"><figure><img src="/teaching/laar61400/assets/img/Week01/s30_1.webp" alt="Teresa Galí-Izard, Various, 2000s–present"></figure><figure><img src="/teaching/laar61400/assets/img/Week01/s30_2.webp" alt="Teresa Galí-Izard, Various, 2000s–present"></figure></div>
+              <div class="row"><figure><img src="/teaching/laar61400/assets/img/Week01/s30_3.webp" alt="Teresa Galí-Izard, Various, 2000s–present"></figure><figure><img src="/teaching/laar61400/assets/img/Week01/s30_4.webp" alt="Teresa Galí-Izard, Various, 2000s–present"></figure></div>
+            </div>
+
+            <!-- 31 · slide 31 -->
+            <div class="slide auto" data-era="Analyzing" data-cap="Teresa Galí-Izard, Various, 2000s–present" data-credit="https://arquitecturaagronomia.net">
+              <figure><img src="/teaching/laar61400/assets/img/Week01/s31_1.webp" alt="Teresa Galí-Izard, Various, 2000s–present"></figure>
+              <figure><img src="/teaching/laar61400/assets/img/Week01/s31_2.webp" alt="Teresa Galí-Izard, Various, 2000s–present"></figure>
+              <figure><img src="/teaching/laar61400/assets/img/Week01/s31_3.webp" alt="Teresa Galí-Izard, Various, 2000s–present"></figure>
+            </div>
+
+            <!-- 32 · slide 32 -->
+            <div class="slide auto" data-era="Analyzing" data-cap="Teresa Galí-Izard, Various, 2000s–present" data-credit="https://arquitecturaagronomia.net">
+              <figure><img src="/teaching/laar61400/assets/img/Week01/s32_1.webp" alt="Teresa Galí-Izard, Various, 2000s–present"></figure>
+              <figure><img src="/teaching/laar61400/assets/img/Week01/s32_2.webp" alt="Teresa Galí-Izard, Various, 2000s–present"></figure>
+            </div>
+
+            <!-- Section · Communicating Space -->
+            <div class="slide slide--title" data-era="Communicating Space" data-cap="">
+              <div class="tt">Communicating Space</div>
+              <div class="ts">Plan · section · elevation · axonometric · isometric · hybrid · detail</div>
+            </div>
+
+            <!-- 34 · slide 34 -->
+            <div class="slide auto" data-era="Communicating Space" data-cap="Álvaro Siza, Piscina de Marés, 1970s–2000s">
+              <figure><img src="/teaching/laar61400/assets/img/Week01/s34_1.webp" alt="Álvaro Siza, Piscina de Marés, 1970s–2000s"></figure>
+              <figure><img src="/teaching/laar61400/assets/img/Week01/s34_2.webp" alt="Álvaro Siza, Piscina de Marés, 1970s–2000s"></figure>
+            </div>
+
+            <!-- 35 · slide 35 -->
+            <div class="slide auto" data-era="Communicating Space" data-cap="Enric Miralles &amp; Carme Pinós, Igualada Cemetery, Barcelona, 1984">
+              <figure><img src="/teaching/laar61400/assets/img/Week01/s35_1.webp" alt="Enric Miralles &amp; Carme Pinós, Igualada Cemetery, Barcelona, 1984"></figure>
+              <figure><img src="/teaching/laar61400/assets/img/Week01/s35_2.webp" alt="Enric Miralles &amp; Carme Pinós, Igualada Cemetery, Barcelona, 1984"></figure>
+            </div>
+
+            <!-- 36 · slide 36 -->
+            <div class="slide auto" data-era="Communicating Space" data-cap="Enric Miralles &amp; Carme Pinós, Igualada Cemetery, Barcelona, 1984">
+              <figure><img src="/teaching/laar61400/assets/img/Week01/s36_1.webp" alt="Enric Miralles &amp; Carme Pinós, Igualada Cemetery, Barcelona, 1984"></figure>
+              <figure><img src="/teaching/laar61400/assets/img/Week01/s36_2.webp" alt="Enric Miralles &amp; Carme Pinós, Igualada Cemetery, Barcelona, 1984"></figure>
+            </div>
+
+            <!-- 37 · slide 37 -->
+            <div class="slide auto" data-era="Communicating Space" data-cap="Enric Miralles &amp; Carme Pinós, Igualada Cemetery, Barcelona, 1984">
+              <figure><img src="/teaching/laar61400/assets/img/Week01/s37_1.webp" alt="Enric Miralles &amp; Carme Pinós, Igualada Cemetery, Barcelona, 1984"></figure>
+              <figure><img src="/teaching/laar61400/assets/img/Week01/s37_2.webp" alt="Enric Miralles &amp; Carme Pinós, Igualada Cemetery, Barcelona, 1984"></figure>
+            </div>
+
+            <!-- 38 · slide 38 -->
+            <div class="slide auto" data-era="Communicating Space" data-cap="Thomas Church / Lawrence Halprin, Donnell Garden, Sonoma, California, 1947">
+              <figure><img src="/teaching/laar61400/assets/img/Week01/s38_1.webp" alt="Thomas Church / Lawrence Halprin, Donnell Garden, Sonoma, California, 1947"></figure>
+              <figure><img src="/teaching/laar61400/assets/img/Week01/s38_2.webp" alt="Thomas Church / Lawrence Halprin, Donnell Garden, Sonoma, California, 1947"></figure>
+            </div>
+
+            <!-- 39 · slide 39 -->
+            <div class="slide auto" data-era="Communicating Space" data-cap="Julie Bargmann / D.I.R.T. Studio Core City Park, Detroit, Michigan 2019">
+              <figure><img src="/teaching/laar61400/assets/img/Week01/s39_1.webp" alt="Julie Bargmann / D.I.R.T. Studio Core City Park, Detroit, Michigan 2019"></figure>
+              <figure><img src="/teaching/laar61400/assets/img/Week01/s39_2.webp" alt="Julie Bargmann / D.I.R.T. Studio Core City Park, Detroit, Michigan 2019"></figure>
+            </div>
+
+            <!-- 40 · slide 40 -->
+            <div class="slide auto" data-era="Communicating Space" data-cap="Julie Bargmann / D.I.R.T. Studio Core City Park, Detroit, Michigan 2019">
+              <figure><img src="/teaching/laar61400/assets/img/Week01/s40_1.webp" alt="Julie Bargmann / D.I.R.T. Studio Core City Park, Detroit, Michigan 2019"></figure>
+              <figure><img src="/teaching/laar61400/assets/img/Week01/s40_2.webp" alt="Julie Bargmann / D.I.R.T. Studio Core City Park, Detroit, Michigan 2019"></figure>
+            </div>
+
+            <!-- 41 · slide 41 -->
+            <div class="slide auto" data-era="Communicating Space" data-cap="Julie Bargmann / D.I.R.T. Studio Core City Park, Detroit, Michigan 2019 How to imagine a 3D space from a 2D plan?">
+              <figure><img src="/teaching/laar61400/assets/img/Week01/s41_1.webp" alt="Julie Bargmann / D.I.R.T. Studio Core City Park, Detroit, Michigan 2019 How to imagine a 3D space from a 2D plan?"></figure>
+              <figure><img src="/teaching/laar61400/assets/img/Week01/s41_2.webp" alt="Julie Bargmann / D.I.R.T. Studio Core City Park, Detroit, Michigan 2019 How to imagine a 3D space from a 2D plan?"></figure>
+            </div>
+
+            <!-- 42 · slide 42 -->
+            <div class="slide auto" data-era="Communicating Space" data-cap="Garrett Eckbo Axonometric and Isometric Drawings">
+              <figure><img src="/teaching/laar61400/assets/img/Week01/s42_1.webp" alt="Garrett Eckbo Axonometric and Isometric Drawings"></figure>
+              <figure><img src="/teaching/laar61400/assets/img/Week01/s42_2.webp" alt="Garrett Eckbo Axonometric and Isometric Drawings"></figure>
+            </div>
+
+            <!-- 43 · slide 43 -->
+            <div class="slide auto" data-era="Communicating Space" data-cap="Julie Bargmann / D.I.R.T. Studio, BROOKLYN NAVY YARD, 2009 – 2011">
+              <figure><img src="/teaching/laar61400/assets/img/Week01/s43_1.webp" alt="Julie Bargmann / D.I.R.T. Studio, BROOKLYN NAVY YARD, 2009 – 2011"></figure>
+              <figure><img src="/teaching/laar61400/assets/img/Week01/s43_2.webp" alt="Julie Bargmann / D.I.R.T. Studio, BROOKLYN NAVY YARD, 2009 – 2011"></figure>
+            </div>
+
+            <!-- 44 · slide 44 -->
+            <div class="slide auto" data-era="Communicating Space" data-cap="Julie Bargmann / D.I.R.T. Studio, BROOKLYN NAVY YARD, 2009 – 2011">
+              <figure><img src="/teaching/laar61400/assets/img/Week01/s44_1.webp" alt="Julie Bargmann / D.I.R.T. Studio, BROOKLYN NAVY YARD, 2009 – 2011"></figure>
+              <figure><img src="/teaching/laar61400/assets/img/Week01/s44_2.webp" alt="Julie Bargmann / D.I.R.T. Studio, BROOKLYN NAVY YARD, 2009 – 2011"></figure>
+            </div>
+
+            <!-- 45 · slide 45 -->
+            <div class="slide auto" data-era="Communicating Space" data-cap="Julie Bargmann / D.I.R.T. Studio, BROOKLYN NAVY YARD, 2009 – 2011">
+              <figure><img src="/teaching/laar61400/assets/img/Week01/s45_1.webp" alt="Julie Bargmann / D.I.R.T. Studio, BROOKLYN NAVY YARD, 2009 – 2011"></figure>
+              <figure><img src="/teaching/laar61400/assets/img/Week01/s45_2.webp" alt="Julie Bargmann / D.I.R.T. Studio, BROOKLYN NAVY YARD, 2009 – 2011"></figure>
+            </div>
+
+            <!-- 46 · slide 46 -->
+            <div class="slide auto" data-era="Communicating Space" data-cap="Dan Kiley, Miller House and Garden, Columbus, Indiana, 1957">
+              <figure><img src="/teaching/laar61400/assets/img/Week01/s46_1.webp" alt="Dan Kiley, Miller House and Garden, Columbus, Indiana, 1957"></figure>
+              <figure><img src="/teaching/laar61400/assets/img/Week01/s46_2.webp" alt="Dan Kiley, Miller House and Garden, Columbus, Indiana, 1957"></figure>
+            </div>
+
+            <!-- 47 · slide 47 -->
+            <div class="slide auto" data-era="Communicating Space" data-cap="Dan Kiley, Fountain Place, Dallas, TX Kiley Walker, 1985">
+              <figure><img src="/teaching/laar61400/assets/img/Week01/s47_1.webp" alt="Dan Kiley, Fountain Place, Dallas, TX Kiley Walker, 1985"></figure>
+              <figure><img src="/teaching/laar61400/assets/img/Week01/s47_2.webp" alt="Dan Kiley, Fountain Place, Dallas, TX Kiley Walker, 1985"></figure>
+            </div>
+
+            <!-- 48 · slide 48 -->
+            <div class="slide auto" data-era="Communicating Space" data-cap="Roberto Burle Marx, Mineral Roof Garden, Banco Safra headquarters, São Paulo, 1983">
+              <figure><img src="/teaching/laar61400/assets/img/Week01/s48_1.webp" alt="Roberto Burle Marx, Mineral Roof Garden, Banco Safra headquarters, São Paulo, 1983"></figure>
+              <figure><img src="/teaching/laar61400/assets/img/Week01/s48_2.webp" alt="Roberto Burle Marx, Mineral Roof Garden, Banco Safra headquarters, São Paulo, 1983"></figure>
+            </div>
+
+            <!-- 49 · slide 49 -->
+            <div class="slide auto" data-era="Communicating Space" data-cap="Roberto Burle Marx">
+              <figure><img src="/teaching/laar61400/assets/img/Week01/s49_1.webp" alt="Roberto Burle Marx"></figure>
+              <figure><img src="/teaching/laar61400/assets/img/Week01/s49_2.webp" alt="Roberto Burle Marx"></figure>
+            </div>
+
+            <!-- 50 · slide 50 -->
+            <div class="slide auto" data-era="Communicating Space" data-cap="Professional Rendered Plans and Isometrics, Sasaki">
+              <figure><img src="/teaching/laar61400/assets/img/Week01/s50_1.webp" alt="Professional Rendered Plans and Isometrics, Sasaki"></figure>
+              <figure><img src="/teaching/laar61400/assets/img/Week01/s50_2.webp" alt="Professional Rendered Plans and Isometrics, Sasaki"></figure>
+            </div>
+
+            <!-- 51 · slide 51 -->
+            <div class="slide auto" data-era="Communicating Space" data-cap="Professional Rendered Plans and Isometrics, Sasaki">
+              <figure><img src="/teaching/laar61400/assets/img/Week01/s51_1.webp" alt="Professional Rendered Plans and Isometrics, Sasaki"></figure>
+              <figure><img src="/teaching/laar61400/assets/img/Week01/s51_2.webp" alt="Professional Rendered Plans and Isometrics, Sasaki"></figure>
+            </div>
+
+            <!-- 52 · slide 52 -->
+            <div class="slide auto" data-era="Communicating Space" data-cap="Hand sketch, Pinterest, source unknown">
+              <figure><img src="/teaching/laar61400/assets/img/Week01/s52_1.webp" alt="Hand sketch, Pinterest, source unknown"></figure>
+              <figure><img src="/teaching/laar61400/assets/img/Week01/s52_2.webp" alt="Hand sketch, Pinterest, source unknown"></figure>
+            </div>
+
+            <!-- Section · Communicating Experience -->
+            <div class="slide slide--title" data-era="Communicating Experience" data-cap="">
+              <div class="tt">Communicating Experience</div>
+              <div class="ts">Perspective · rendering · photomontage · collage · storyboard</div>
+            </div>
+
+            <!-- 54 · slide 54 -->
+            <div class="slide auto-rows" data-era="Communicating Experience" data-cap="Julie Bargmann / D.I.R.T. Studio">
+              <div class="row"><figure><img src="/teaching/laar61400/assets/img/Week01/s54_1.webp" alt="Julie Bargmann / D.I.R.T. Studio"></figure></div>
+              <div class="row"><figure><img src="/teaching/laar61400/assets/img/Week01/s54_2.webp" alt="Julie Bargmann / D.I.R.T. Studio"></figure></div>
+            </div>
+
+            <!-- 55 · slide 55 -->
+            <div class="slide auto" data-era="Communicating Experience" data-cap="James Corner / Field Operations, The High Line, New York, 2004">
+              <figure><img src="/teaching/laar61400/assets/img/Week01/s55_1.webp" alt="James Corner / Field Operations, The High Line, New York, 2004"></figure>
+              <figure><img src="/teaching/laar61400/assets/img/Week01/s55_2.webp" alt="James Corner / Field Operations, The High Line, New York, 2004"></figure>
+            </div>
+
+            <!-- 56 · slide 56 -->
+            <div class="slide auto" data-era="Communicating Experience" data-cap="Field Operations, The High Line, New York, 2004">
+              <figure><img src="/teaching/laar61400/assets/img/Week01/s56_1.webp" alt="Field Operations, The High Line, New York, 2004"></figure>
+              <figure><img src="/teaching/laar61400/assets/img/Week01/s56_2.webp" alt="Field Operations, The High Line, New York, 2004"></figure>
+            </div>
+
+            <!-- 57 · slide 57 -->
+            <div class="slide auto" data-era="Communicating Experience" data-cap="Julie Bargmann / D.I.R.T. Studio, The High Line">
+              <figure><img src="/teaching/laar61400/assets/img/Week01/s57_1.webp" alt="Julie Bargmann / D.I.R.T. Studio, The High Line"></figure>
+              <figure><img src="/teaching/laar61400/assets/img/Week01/s57_2.webp" alt="Julie Bargmann / D.I.R.T. Studio, The High Line"></figure>
+              <figure><img src="/teaching/laar61400/assets/img/Week01/s57_3.webp" alt="Julie Bargmann / D.I.R.T. Studio, The High Line"></figure>
+            </div>
+
+            <!-- 58 · slide 58 -->
+            <div class="slide auto" data-era="Communicating Experience" data-cap="Professional Renderings, Sasaki">
+              <figure><img src="/teaching/laar61400/assets/img/Week01/s58_1.webp" alt="Professional Renderings, Sasaki"></figure>
+              <figure><img src="/teaching/laar61400/assets/img/Week01/s58_2.webp" alt="Professional Renderings, Sasaki"></figure>
+            </div>
+
+            <!-- 59 · slide 59 -->
+            <div class="slide auto" data-era="Communicating Experience" data-cap="Professional Renderings, Sasaki">
+              <figure><img src="/teaching/laar61400/assets/img/Week01/s59_1.webp" alt="Professional Renderings, Sasaki"></figure>
+              <figure><img src="/teaching/laar61400/assets/img/Week01/s59_2.webp" alt="Professional Renderings, Sasaki"></figure>
+            </div>
+
+            <!-- 60 · slide 60 -->
+            <div class="slide auto-rows" data-era="Communicating Experience" data-cap="Snøhetta, Various">
+              <div class="row"><figure><img src="/teaching/laar61400/assets/img/Week01/s60_1.webp" alt="Snøhetta, Various"></figure><figure><img src="/teaching/laar61400/assets/img/Week01/s60_2.webp" alt="Snøhetta, Various"></figure></div>
+              <div class="row"><figure><img src="/teaching/laar61400/assets/img/Week01/s60_3.webp" alt="Snøhetta, Various"></figure><figure><img src="/teaching/laar61400/assets/img/Week01/s60_4.webp" alt="Snøhetta, Various"></figure></div>
+            </div>
+
+            <!-- 61 · slide 61 -->
+            <div class="slide auto" data-era="Communicating Experience" data-cap="Professional Renderings, Sasaki">
+              <figure><img src="/teaching/laar61400/assets/img/Week01/s61_1.webp" alt="Professional Renderings, Sasaki"></figure>
+              <figure><img src="/teaching/laar61400/assets/img/Week01/s61_2.webp" alt="Professional Renderings, Sasaki"></figure>
+            </div>
+
+            <!-- 62 · slide 62 -->
+            <div class="slide single" data-era="Communicating Experience" data-cap="Professional Renderings, Sasaki">
+              <img src="/teaching/laar61400/assets/img/Week01/s62_1.webp" alt="Professional Renderings, Sasaki">
+            </div>
+
+            <!-- 63 · slide 63 -->
+            <div class="slide auto" data-era="Communicating Experience" data-cap="Hand sketch + watercolor, EDSA and others">
+              <figure><img src="/teaching/laar61400/assets/img/Week01/s63_1.webp" alt="Hand sketch + watercolor, EDSA and others"></figure>
+              <figure><img src="/teaching/laar61400/assets/img/Week01/s63_2.webp" alt="Hand sketch + watercolor, EDSA and others"></figure>
+            </div>
+
+            <!-- 64 · slide 64 -->
+            <div class="slide auto" data-era="Communicating Experience" data-cap="Hand sketch + watercolor, Pinterest, source unknown">
+              <figure><img src="/teaching/laar61400/assets/img/Week01/s64_1.webp" alt="Hand sketch + watercolor, Pinterest, source unknown"></figure>
+              <figure><img src="/teaching/laar61400/assets/img/Week01/s64_2.webp" alt="Hand sketch + watercolor, Pinterest, source unknown"></figure>
+            </div>
+
+            <!-- 65 · slide 65 -->
+            <div class="slide auto" data-era="Communicating Experience" data-cap="Hand sketch + Markers, Pinterest, source unknown">
+              <figure><img src="/teaching/laar61400/assets/img/Week01/s65_1.webp" alt="Hand sketch + Markers, Pinterest, source unknown"></figure>
+              <figure><img src="/teaching/laar61400/assets/img/Week01/s65_2.webp" alt="Hand sketch + Markers, Pinterest, source unknown"></figure>
+            </div>
+
+            <!-- 66 · slide 66 -->
+            <div class="slide auto" data-era="Communicating Experience" data-cap="Atelier le balto, Garten zum Wohnen">
+              <figure><img src="/teaching/laar61400/assets/img/Week01/s66_1.webp" alt="Atelier le balto, Garten zum Wohnen"></figure>
+              <figure><img src="/teaching/laar61400/assets/img/Week01/s66_2.webp" alt="Atelier le balto, Garten zum Wohnen"></figure>
+              <figure><img src="/teaching/laar61400/assets/img/Week01/s66_3.webp" alt="Atelier le balto, Garten zum Wohnen"></figure>
+            </div>
+
+            <!-- 67 · slide 67 -->
+            <div class="slide auto" data-era="Communicating Experience" data-cap="Hand sketch, Pinterest, source unknown">
+              <figure><img src="/teaching/laar61400/assets/img/Week01/s67_1.webp" alt="Hand sketch, Pinterest, source unknown"></figure>
+              <figure><img src="/teaching/laar61400/assets/img/Week01/s67_2.webp" alt="Hand sketch, Pinterest, source unknown"></figure>
+              <figure><img src="/teaching/laar61400/assets/img/Week01/s67_3.webp" alt="Hand sketch, Pinterest, source unknown"></figure>
+            </div>
+
+          </div>
+          <div class="deck-bar">
+            <button class="deck-btn" id="deck-prev" aria-label="Previous slide">&lsaquo;</button>
+            <div class="deck-count"><input id="deck-jump" type="text" inputmode="numeric" aria-label="Jump to slide" value="1"><span id="deck-total"> / 67</span></div>
+            <button class="deck-btn" id="deck-next" aria-label="Next slide">&rsaquo;</button>
+            <div class="deck-meta"><span class="deck-cap" id="deck-cap"></span><span id="deck-credit"></span></div>
+            <button class="deck-btn" id="deck-notes-toggle" aria-expanded="false" aria-controls="deck-notes" aria-label="Toggle speaker notes" title="Speaker notes"><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="2" y="2" width="12" height="12" rx="1.5"/><line x1="4.5" y1="5.5" x2="11.5" y2="5.5"/><line x1="4.5" y1="8" x2="11.5" y2="8"/><line x1="4.5" y1="10.5" x2="8.5" y2="10.5"/></svg></button>
+            <button class="deck-btn" id="deck-present" aria-label="Open Presenter View" title="Presenter View (synced second window)"><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="2" width="9" height="7" rx="1.2"/><path d="M3 11h5M5.5 9v2"/><rect x="11" y="5" width="4" height="4" rx="1" stroke-dasharray="1.8 1.2"/></svg></button>
+            <button class="deck-btn deck-fs" id="deck-fs" aria-label="Present full screen" title="Present (full screen)">&#x26F6;</button>
+          </div>
+          <div class="deck-notes" id="deck-notes" hidden></div>
         </div>
+
       </div>
 
     </div>
   </main>
 
-  <script src="/teaching/laar61400/assets/js/nav.js"></script>
+<div id="tip" role="tooltip" aria-hidden="true"></div>
+<script src="/teaching/laar61400/assets/js/nav.js"></script>
+<script>
+function buildChart(){
+  const svg = document.getElementById('chart');
+  while(svg.firstChild) svg.removeChild(svg.firstChild);
+
+  // ── dimensions — fit container, no scroll ───────────────────────────────
+  const PROLOGUE_W = 130;
+  const BOOM_START = 1982;
+  const BOOM_END   = 2026;
+  const NOW        = 2026;
+  const LEFT_PAD   = 10;
+  const RIGHT_PAD  = 16;
+  const AI_ZONE_W  = 72;
+
+  const scrollEl = document.querySelector('.scroll');
+  // Floor the chart width so the fixed pre-PC / Agentic-AI bands don't crowd
+  // out the 1982–2026 boom zone on narrow screens; .scroll pans horizontally.
+  const MIN_W = 620;
+  const W = Math.max(scrollEl.clientWidth || 800, MIN_W);
+  const BOOM_W = W - LEFT_PAD - RIGHT_PAD - PROLOGUE_W - AI_ZONE_W;
+  const PXY    = BOOM_W / (BOOM_END - BOOM_START);
+
+  const TOP     = 52;
+  const RH      = 24;
+  const BH      = 18;
+  const GRP_GAP = 20;
+  const SUB_GAP = 6;
+
+  const xPrologue = frac => LEFT_PAD + frac * PROLOGUE_W;
+  const xBoom     = yr   => LEFT_PAD + PROLOGUE_W + (yr - BOOM_START) * PXY;
+  const xAI       = ()   => LEFT_PAD + PROLOGUE_W + BOOM_W;
+
+  function ce(t,a){
+    const e=document.createElementNS('http://www.w3.org/2000/svg',t);
+    for(const k in a) e.setAttribute(k,a[k]);
+    return e;
+  }
+
+  // ── data ────────────────────────────────────────────────────────────────
+  const groups = [
+    { key:'draft', name:'Drafting', color:'var(--draft)', tools:[
+      { n:'AutoCAD', s:1982, e:null, meta:'1982 · Autodesk · IBM PC',
+        b:'Released December 1982 by Autodesk, the company John Walker co-founded that same year. Among the first CAD programs to run on a personal computer (the IBM PC) rather than a mainframe or dedicated workstation, undercutting $25,000 CAD systems.' },
+      { n:'MicroStation', s:1985, e:null, meta:'1985 · Bentley',
+        b:'Created by Keith and Barry Bentley, who founded Bentley Systems in 1984; MicroStation was first shown in 1985, with an MS-DOS release in 1986. Grew into a dominant CAD platform in civil engineering and infrastructure.' },
+      { n:'Vectorworks', s:1985, e:null, meta:'1985 (MiniCAD) · Nemetschek',
+        b:'Began as MiniCAD by Richard Diehl\'s Diehl Graphsoft (US) in 1985; renamed VectorWorks in 1999 and acquired by the German Nemetschek Group in 2000. The Landmark edition adds site, planting, and terrain tools.' },
+      { n:'Land F/X', s:1999, e:null, meta:'1999 · runs on AutoCAD',
+        b:'Built by landscape architect David Farmer and his programmer son Jeremiah to fit AutoCAD into landscape work; incorporated in 1999. An AutoCAD add-on for planting and irrigation documentation.' },
+      { n:'Civil 3D', s:2004, e:null, meta:'2004 · Autodesk',
+        b:'Released by Autodesk in 2004 for civil engineering — survey-driven grading, earthwork, and corridor documentation.' },
+    ]},
+    { key:'map', name:'Analysis', color:'var(--map)', tools:[
+      { n:'ARC/INFO → ArcGIS', s:1982, e:null, meta:'1982 ARC/INFO · 1999 ArcGIS · Esri',
+        b:'Esri was founded by Jack and Laura Dangermond in Redlands, California in 1969 as a land-use consulting firm — no product, just bespoke mapping on minicomputers. ARC/INFO (1982) was their first commercial software, command-line only. ArcView (1991) added a GUI; ArcGIS (1999) is the modern platform; ArcGIS Pro followed in 2015.',
+        prologueLine: true,
+        ticks:[{yr:1991,lab:'ArcView'},{yr:1999,lab:'ArcGIS'},{yr:2015,lab:'Pro'}] },
+      { n:'QGIS', s:2002, e:null, meta:'2002 · open source',
+        b:'Started by Gary Sherman in 2002 as a free, open-source GIS; now a flagship project of the Open Source Geospatial Foundation (OSGeo).' },
+      { n:'OpenStreetMap', s:2004, e:null, meta:'2004 · open data',
+        b:'Founded by Steve Coast in the UK in 2004 — a crowd-sourced, openly licensed map of the world, built and edited by volunteers.' },
+      { n:'Google Earth', s:2005, e:null, meta:'2005 (Keyhole acquired 2004)',
+        b:'Grew out of EarthViewer 3D by Keyhole Inc., a startup backed in part by the CIA\'s venture arm In-Q-Tel. Google acquired Keyhole in 2004 and released Google Earth in 2005.' },
+      { n:'Grasshopper', s:2007, e:null, meta:'2007 · David Rutten · McNeel',
+        b:'Created by David Rutten at Robert McNeel & Associates; first released in 2007 as "Explicit History," then renamed Grasshopper. A visual programming editor that runs inside Rhino, building geometry from a node graph.',
+        sub:true, gap:14 },
+    ]},
+    { key:'model', name:'Modeling', color:'var(--model)', tools:[
+      { n:'Rhino', s:1998, e:null, meta:'1998 · McNeel · NURBS',
+        b:'Developed by Robert McNeel & Associates (Seattle); commercially released in 1998 after a long public beta. Brought NURBS surface modeling to affordable Windows desktops, and later hosted Grasshopper.' },
+      { n:'3ds Max', s:1990, e:null, meta:'1990 · Yost Group / Autodesk',
+        b:'First released as 3D Studio for DOS in 1990, written by the Yost Group and published by Autodesk; relaunched as 3ds Max for Windows NT in 1996. A long-time workhorse in architecture and visualization studios.' },
+      { n:'SketchUp', s:2000, e:null, meta:'2000 · @Last → Google → Trimble',
+        b:'Created by @Last Software in 2000 for fast push-pull massing. Acquired by Google in 2006, then sold to Trimble in 2012.' },
+      { n:'Revit', s:2000, e:null, meta:'2000 · Autodesk · BIM',
+        b:'Built by Revit Technology Corporation (founded by former PTC engineers); released in 2000 and acquired by Autodesk in 2002. An early Building Information Modeling tool — geometry carrying embedded data.' },
+      { n:'Blender', s:2002, e:null, meta:'2002 · open source · Blender Foundation',
+        b:'Created by Ton Roosendaal, first at the Dutch studio NeoGeo and then his spin-off Not a Number (NaN). After NaN went under, his "Free Blender" campaign raised €100,000 in 2002 to buy out the code from NaN\'s investors and release it as open source under the new Blender Foundation.' },
+    ]},
+    { key:'comm', name:'Communication', color:'var(--comm)', subs:[
+      { name:'Still image', tools:[
+        { n:'Illustrator', s:1987, e:null, meta:'1987 · Adobe',
+          b:'Released by Adobe in 1987, originally for the Apple Macintosh — one of the first vector-drawing programs for personal computers, built around Adobe\'s PostScript curves.' },
+        { n:'Photoshop', s:1990, e:null, meta:'1990 · Adobe · Knoll brothers',
+          b:'Written by brothers Thomas and John Knoll starting in 1987; Adobe licensed it and shipped Photoshop 1.0 for the Macintosh in 1990. Editable layers arrived in version 3.0 (1994).' },
+        { n:'InDesign', s:1999, e:null, meta:'1999 · Adobe',
+          b:'Released by Adobe in 1999 as the successor to PageMaker, built to compete with QuarkXPress in professional print layout.' },
+        { n:'V-Ray', s:2002, e:null, meta:'2002 · Chaos Group',
+          b:'Developed by Vladimir Koylazov and Peter Mitev at Chaos Group in Sofia, Bulgaria; first released in 2002. A ray-tracing render engine widely adopted for architectural visualization.' },
+        { n:'Lumion', s:2010, e:null, meta:'2010 · Act-3D',
+          b:'Released by the Dutch company Act-3D in 2010 — real-time architectural rendering driven by a game-style engine.' },
+        { n:'Enscape', s:2015, e:null, meta:'2015 · Karlsruhe, Germany',
+          b:'First released in 2015, developed in Karlsruhe, Germany; a real-time renderer that plugs live into Revit, Rhino, and SketchUp. Merged with Chaos (V-Ray) in 2022.' },
+        { n:'D5 Render', s:2021, e:null, meta:'2021 · Dimension5',
+          b:'Released by Dimension5 (China) in 2021; a real-time ray-tracing renderer that added AI-assisted lighting and material features.' },
+      ]},
+      { name:'Moving image', tools:[
+        { n:'Premiere', s:1991, e:null, meta:'1991 · Adobe',
+          b:'Adobe Premiere launched on the Macintosh in 1991, one of the first computer-based non-linear video editors; rebuilt and relaunched as Premiere Pro in 2003.' },
+        { n:'After Effects', s:1993, e:null, meta:'1993 · CoSA → Adobe',
+          b:'Created by the Company of Science and Art (CoSA), first released January 1993; passed to Aldus, then to Adobe through its 1994 acquisition of Aldus. The standard tool for motion graphics and compositing.' },
+        { n:'RealFlow', s:1998, e:null, meta:'1998 · Next Limit',
+          b:'Developed by Next Limit Technologies in Madrid, Spain; released in 1998 for fluid and rigid-body simulation in film visual effects.' },
+      ]},
+      { name:'Interactive', tools:[
+        { n:'HTML / CSS / JS', s:1995, e:null, meta:'1991–95 · the browser',
+          b:'HTML was created by Tim Berners-Lee at CERN (announced 1991); JavaScript was written by Brendan Eich at Netscape in a 10-day sprint in 1995; CSS was proposed by Håkon Wium Lie in 1994 (first standard, 1996). Together, the three languages of the web browser.' },
+        { n:'Unreal Engine', s:1998, e:null, meta:'1998 · Epic Games',
+          b:'Built by Tim Sweeney at Epic Games and first shipped with the game Unreal in 1998. UE4 (released 2014) and UE5 (2022) extended it into film and architectural visualization; Twinmotion is built on it.',
+          ticks:[{yr:2012,lab:'UE4'},{yr:2022,lab:'UE5'}] },
+        { n:'Unity', s:2005, e:null, meta:'2005 · Unity Technologies',
+          b:'Founded in Denmark and first released in 2005 at Apple\'s WWDC as a Mac-only game engine; later became a cross-platform engine widely used for real-time and VR work.' },
+        { n:'Web maps / portfolio', s:2012, e:null, meta:'~2005 onward',
+          b:'Slippy web maps arrived with Google Maps (2005) and the open-source Leaflet library (2011), making pan-and-zoom maps embeddable in any web page — the navigable map itself becomes a deliverable.' },
+      ]},
+    ]},
+  ];
+
+  const prologueItems = [
+    { n:'Sketchpad', yr:1963, frac:0.16,
+      meta:'1963 · MIT Lincoln Lab · Sutherland',
+      b:'The "Robot Draftsman" — a light-pen drawing system on the TX-2. A research demo; never shipped commercially. Proved interactive screen-drawing was possible, but sat in a lab for nearly twenty years before drafting went digital. No technical descent to AutoCAD — a shared idea, not a shared codebase.',
+      alignToBar: 'AutoCAD' },
+    { n:'SYMAP', yr:1963, frac:0.16,
+      meta:'1963 · Howard Fisher · Harvard',
+      b:'The first computer maps — printed as overstruck typewriter characters because the line printer could not draw. ASCII art as cartography. The Harvard Lab for Computer Graphics grew from this work; Esri grew from the Lab.',
+      alignToBar: 'ARC/INFO → ArcGIS', lineage: true },
+    { n:'Esri', yr:1969, frac:0.56,
+      meta:'1969 · Dangermond · consulting firm',
+      b:'Founded not as a software company but as a land-use consulting firm — applying computer mapping on minicomputers for planning clients. No product to buy. ARC/INFO, the first commercial GIS, arrives thirteen years later in 1982.',
+      alignToBar: 'ARC/INFO → ArcGIS', lineage: true },
+    { n:'B-Spline', yr:1974, frac:0.84, labelLeft:true,
+      meta:'~1974 · Univ. of Utah · B-spline research',
+      b:'The academic foundation. The B-spline math predates this — Schoenberg coined the name in 1967, and the Cox&ndash;de Boor recurrence (1971&ndash;72) made it computable. Riesenfeld\'s 1973 Syracuse thesis brought B-splines to free-form design, showing they generalize the B&eacute;zier curve; he carried the work to the University of Utah where, with Elaine Cohen, he built the geometric-design lab — advancing knot insertion and the Oslo subdivision algorithm that later surface modeling rests on. Research, not a product.',
+      alignToBar: 'Rhino', lineage: true },
+    { n:'NURBS', yr:1980, frac:0.99,
+      meta:'1979–80 · Boeing TIGER · R. Blomgren',
+      b:'Where the math became a standard. Versprille\'s 1975 thesis had generalized B-splines to non-uniform and rational form; Boeing\'s TIGER CAD group (lead engineer Robert Blomgren) implemented them, abbreviated the result &ldquo;NURBS,&rdquo; and pushed it as an industry standard.',
+      alignToBar: 'Rhino', lineage: true },
+    { n:'AGLib', yr:1994, boomYear:1994, labelLeft:true,
+      meta:'Applied Geometry 1984 · AGLib licensed to McNeel 1994',
+      b:'How NURBS reached Rhino. Blomgren, who led Boeing\'s TIGER NURBS group, founded Applied Geometry in 1984 to commercialize the work as the AGLib kernel. In 1992 AG approached Robert McNeel &amp; Associates to add NURBS to AutoCAD; McNeel licensed AGLib in 1994. What began as an AutoCAD plug-in for boat designers — seeded by intern Michael Gibson\'s Sculptura modeler (1992) — became the standalone Rhinoceros, shipping as 1.0 in 1998. Dale Lear built McNeel\'s own kernel, later released as openNURBS.',
+      alignToBar: 'Rhino' },
+  ];
+
+  // ── layout pass ──────────────────────────────────────────────────────────
+  let y = TOP + 20;
+  const layout = [];
+  const BH_SUB = 12;
+
+  groups.forEach(g => {
+    layout.push({ t:'gh', g, y }); y += g.name ? (g.name.includes(' & ') ? 40 : 28) : 6;
+    const barsTop = y;
+    if(g.tools){
+      g.tools.forEach(tl => {
+        if(tl.gap) y += tl.gap;
+        layout.push({ t:'bar', g, tl, y, bhOver: tl.sub ? BH_SUB : undefined });
+        y += tl.sub ? RH - 4 : RH;
+      });
+    } else {
+      g.subs.forEach((sub, si) => {
+        if(si > 0) y += SUB_GAP;
+        layout.push({ t:'sh', g, sub, y }); y += 17;
+        sub.tools.forEach(tl => { layout.push({ t:'bar', g, tl, y }); y += RH; });
+      });
+    }
+    layout.push({ t:'strip', g, y0:barsTop-4, y1:y - (RH - BH)/2 - 2 });
+    y += GRP_GAP;
+  });
+
+  const H = y + 36;
+
+  svg.setAttribute('viewBox', `0 0 ${W} ${H}`);
+  svg.setAttribute('width', W);
+  svg.setAttribute('height', H);
+  svg.style.minWidth = W + 'px';
+
+  // ── prologue zone background ─────────────────────────────────────────────
+  svg.appendChild(ce('rect',{x:LEFT_PAD, y:TOP-8, width:PROLOGUE_W,
+    height:H-TOP-20, fill:'var(--ink)', opacity:.03}));
+  const pl = ce('text',{x:LEFT_PAD+PROLOGUE_W/2, y:TOP-14, 'text-anchor':'middle',
+    fill:'var(--prologue)', 'font-family':'"DM Mono",ui-monospace,monospace',
+    'font-size':'9', 'letter-spacing':'.1em', 'text-transform':'uppercase'});
+  pl.textContent = 'pre-PC'; svg.appendChild(pl);
+
+  // ── 1982 dividing line ───────────────────────────────────────────────────
+  const x82 = xBoom(1982);
+  svg.appendChild(ce('line',{x1:x82, y1:TOP-8, x2:x82, y2:H-24,
+    stroke:'var(--ink)', 'stroke-width':1.5, opacity:.35}));
+  const div1 = ce('text',{x:x82+5, y:TOP-14, fill:'var(--ink)',
+    'font-family':'"DM Mono",ui-monospace,monospace', 'font-size':'9',
+    'letter-spacing':'.1em', 'text-transform':'uppercase', opacity:.55});
+  div1.textContent = '1982 · PC era'; svg.appendChild(div1);
+
+  // ── decade grid ──────────────────────────────────────────────────────────
+  for(let yr = 1990; yr <= 2020; yr += 10){
+    svg.appendChild(ce('line',{x1:xBoom(yr), y1:TOP-8, x2:xBoom(yr), y2:H-24,
+      stroke:'var(--line)', 'stroke-width':.5, opacity:.8}));
+    const t = ce('text',{x:xBoom(yr), y:TOP-14, 'text-anchor':'middle',
+      fill:'var(--mute)', 'font-family':'"DM Mono",ui-monospace,monospace', 'font-size':'10'});
+    t.textContent = yr; svg.appendChild(t);
+    const b = ce('text',{x:xBoom(yr), y:H-10, 'text-anchor':'middle',
+      fill:'var(--mute)', 'font-family':'"DM Mono",ui-monospace,monospace', 'font-size':'10'});
+    b.textContent = yr; svg.appendChild(b);
+  }
+
+  // ── AI backdrop ──────────────────────────────────────────────────────────
+  const axAI = xAI();
+  const defs = ce('defs',{});
+  const grad = ce('linearGradient',{id:'aiGrad', x1:'0', x2:'1', y1:'0', y2:'0'});
+  grad.appendChild(ce('stop',{'offset':'0%', 'stop-color':'var(--ink)', 'stop-opacity':'.0'}));
+  grad.appendChild(ce('stop',{'offset':'100%', 'stop-color':'var(--ink)', 'stop-opacity':'.05'}));
+  defs.appendChild(grad);
+  const ghGrad = ce('linearGradient',{id:'ghGrad', x1:'0', x2:'1', y1:'0', y2:'0'});
+  ghGrad.appendChild(ce('stop',{'offset':'0%',   'stop-color':'#9a3b3b', 'stop-opacity':'1'}));
+  ghGrad.appendChild(ce('stop',{'offset':'100%', 'stop-color':'#5a7d52', 'stop-opacity':'1'}));
+  defs.appendChild(ghGrad);
+  svg.appendChild(defs);
+  const aiFullW = W - axAI;
+  svg.appendChild(ce('rect',{x:axAI, y:TOP-8, width:aiFullW,
+    height:H-TOP-20, fill:'url(#aiGrad)'}));
+  svg.appendChild(ce('line',{x1:axAI, y1:TOP-8, x2:axAI, y2:H-24,
+    stroke:'var(--ink)', 'stroke-width':1, 'stroke-dasharray':'4 3', opacity:.25}));
+  // vertical "Agentic AI?" label — large, faded, fills band
+  const aiFontSize = Math.round(aiFullW * 0.46);
+  const aiCx = axAI + aiFullW/2, aiCy = (TOP + H) / 2;
+  const ail = ce('text',{'text-anchor':'middle', 'dominant-baseline':'central',
+    fill:'var(--ink)', opacity:.07,
+    'font-family':'"DM Sans",sans-serif',
+    'font-size':aiFontSize, 'font-weight':'700', 'letter-spacing':'.04em',
+    x:aiCx, y:aiCy, transform:`rotate(-90,${aiCx},${aiCy})`});
+  ail.textContent = 'Agentic AI?'; svg.appendChild(ail);
+  const aiHit = ce('rect',{x:axAI, y:TOP-8, width:aiFullW,
+    height:H-TOP-20, fill:'transparent', style:'cursor:help'});
+  aiHit.addEventListener('mouseenter', e=>show(e,{name:'Agentic AI',
+    meta:'now · drawn as context, not a tool',
+    body:'Left off the chart on purpose. It does not sit in Drafting or Modeling or Communication. It washes across the live end of every bar at once. Open question: is AI a tool on this chart, or something else entirely?'}));
+  aiHit.addEventListener('mousemove', move);
+  aiHit.addEventListener('mouseleave', hide);
+  svg.appendChild(aiHit);
+
+  // ── main layout draw ─────────────────────────────────────────────────────
+  const barYByName = {};
+  const barStartXByName = {};   // bar's left edge — lineage connectors terminate here
+  const barColorByName = {};    // bar's group color — used to tint its lineage line
+
+  layout.forEach(it => {
+    if(it.t === 'strip'){
+      svg.appendChild(ce('rect',{x:0, y:it.y0, width:4,
+        height:Math.max(0,it.y1-it.y0), fill:it.g.color, opacity:.9, rx:2}));
+    }
+    if(it.t === 'gh'){
+      if(!it.g.name) return;
+      const twoLine = it.g.name.includes(' & ');
+      const lineY = it.y + (twoLine ? 26 : 14);
+      svg.appendChild(ce('line',{x1:LEFT_PAD, y1:lineY, x2:axAI, y2:lineY,
+        stroke:it.g.color, 'stroke-width':.8, opacity:.3}));
+      const attrs = {x:LEFT_PAD + 2, fill:it.g.color,
+        'font-family':'"DM Mono",ui-monospace,monospace',
+        'font-size':'11', 'font-weight':'600', 'letter-spacing':'.12em',
+        'text-transform':'uppercase'};
+      if(twoLine){
+        const parts = it.g.name.split(' & ');
+        const l1 = ce('text',{...attrs, y:lineY - 14}); l1.textContent = parts[0] + ' &'; svg.appendChild(l1);
+        const l2 = ce('text',{...attrs, y:lineY - 2});  l2.textContent = parts[1];         svg.appendChild(l2);
+      } else {
+        const lbl = ce('text',{...attrs, y:lineY - 4}); lbl.textContent = it.g.name; svg.appendChild(lbl);
+      }
+    }
+    if(it.t === 'sh'){
+      const xAnn = xBoom(it.sub.tools[0].s);
+      const lbl = ce('text',{x:xAnn+4, y:it.y+14,
+        fill:it.g.color, opacity:.65,
+        'font-family':'"DM Mono",ui-monospace,monospace',
+        'font-size':'10', 'letter-spacing':'.04em', 'text-transform':'uppercase'});
+      lbl.textContent = '↳ ' + it.sub.name;
+      svg.appendChild(lbl);
+    }
+    if(it.t === 'bar'){
+      const bh = it.bhOver || BH;
+      const cy = it.y + (it.bhOver ? (it.bhOver === BH_SUB ? RH-4 : RH) : RH) / 2;
+      barYByName[it.tl.n] = cy;
+
+      const x0 = xBoom(it.tl.s);
+      const x1 = xBoom(it.tl.e == null ? NOW : it.tl.e);
+      const barW = Math.max(3, x1 - x0);
+      barStartXByName[it.tl.n] = x0;
+      barColorByName[it.tl.n] = it.g.color;
+
+      const g = ce('g',{class:'bar-g', tabindex:0, role:'button', 'aria-label':it.tl.n,
+        style:'cursor:pointer'});
+
+      const fill = it.tl.sub ? 'url(#ghGrad)' : it.g.color;
+      g.appendChild(ce('rect',{x:x0, y:cy-bh/2, width:barW, height:bh,
+        rx:2, fill, opacity:.85}));
+
+      if(it.tl.e != null){
+        g.appendChild(ce('line',{x1:x1, y1:cy-bh/2-2, x2:x1, y2:cy+bh/2+2,
+          stroke:it.g.color, 'stroke-width':1.8}));
+      }
+
+      const nameX = Math.min(x1, xAI()) - 6;
+      const nm = ce('text',{x:nameX, y:cy+4, 'text-anchor':'end',
+        fill:'#fff', 'font-family':'"DM Sans",sans-serif',
+        'font-size': it.tl.sub ? '10.5' : '11.5',
+        'font-weight':'500', opacity:.9});
+      nm.textContent = it.tl.n; g.appendChild(nm);
+
+      const data = { name:it.tl.n, meta:it.tl.meta, body:it.tl.b,
+        group:it.g.name, life:(it.tl.e==null ? it.tl.s+'–present' : it.tl.s+'–'+it.tl.e) };
+      g.addEventListener('mouseenter', e=>show(e,data));
+      g.addEventListener('mousemove', move);
+      g.addEventListener('mouseleave', hide);
+      g.addEventListener('focus', ()=>showAt((x0+x1)/2, cy, data));
+      g.addEventListener('blur', hide);
+      svg.appendChild(g);
+    }
+  });
+
+  // ── Dashed connector: Grasshopper ↔ Rhino ──────────────────────────────
+  const ghY = barYByName['Grasshopper'], rhY = barYByName['Rhino'];
+  if(ghY != null && rhY != null){
+    const cx = xBoom(2007);
+    svg.insertBefore(ce('line',{
+      x1:cx, y1:ghY, x2:cx, y2:rhY,
+      stroke:'var(--model)', 'stroke-width':1.5,
+      'stroke-dasharray':'4 3', opacity:.7
+    }), svg.firstChild);
+  }
+
+  // ── lineage connector ────────────────────────────────────────────────────
+  const lineageByTarget = {};
+  prologueItems.forEach(pi => {
+    if(pi.lineage && pi.alignToBar && pi.boomYear == null && barYByName[pi.alignToBar] != null){
+      (lineageByTarget[pi.alignToBar] = lineageByTarget[pi.alignToBar] || []).push(xPrologue(pi.frac));
+    }
+  });
+  Object.keys(lineageByTarget).forEach(target => {
+    const by = barYByName[target];
+    const pts = lineageByTarget[target].sort((a,b) => a - b);
+    for(let i = 0; i < pts.length - 1; i++){
+      svg.insertBefore(ce('line',{
+        x1:pts[i], y1:by, x2:pts[i+1], y2:by,
+        stroke:'var(--prologue)', 'stroke-width':1.2, opacity:.7
+      }), svg.firstChild);
+    }
+    const endX = barStartXByName[target] != null ? barStartXByName[target] : xBoom(1982);
+    svg.insertBefore(ce('line',{
+      x1:pts[pts.length-1], y1:by, x2:endX, y2:by,
+      stroke:barColorByName[target] || 'var(--map)', 'stroke-width':1.2,
+      'stroke-dasharray':'3 3', opacity:.6
+    }), svg.firstChild);
+  });
+
+  // ── prologue dots + labels ───────────────────────────────────────────────
+  prologueItems.forEach(pi => {
+    const px = pi.boomYear != null ? xBoom(pi.boomYear) : xPrologue(pi.frac);
+    let py;
+    if(pi.alignToBar && barYByName[pi.alignToBar] != null){
+      py = barYByName[pi.alignToBar];
+    } else {
+      const floaters = prologueItems.filter(p => !p.alignToBar);
+      const idx = floaters.indexOf(pi), count = floaters.length;
+      py = TOP + 30 + idx * ((H - TOP - 60) / Math.max(count, 1));
+    }
+    const accent = 'var(--prologue)';
+
+    const g = ce('g',{tabindex:0, role:'button', style:'cursor:pointer'});
+    g.appendChild(ce('circle',{cx:px, cy:py, r:4,
+      fill:'var(--paper)', stroke:accent, 'stroke-width':1.8}));
+    const lx = pi.labelLeft ? px - 8 : px + 8;
+    const anchor = pi.labelLeft ? 'end' : 'start';
+    const nameY = pi.labelBelow ? py + 14 : py - 3;
+    const yrY   = pi.labelBelow ? py + 25 : py + 9;
+    const nm = ce('text',{x:lx, y:nameY, fill:accent, 'text-anchor':anchor,
+      'font-family':'"DM Sans",sans-serif', 'font-size':'12', 'font-weight':'500'});
+    nm.textContent = pi.n; g.appendChild(nm);
+    const yr = ce('text',{x:lx, y:yrY, fill:accent, opacity:.85, 'text-anchor':anchor,
+      'font-family':'"DM Mono",ui-monospace,monospace',
+      'font-size':'10', 'letter-spacing':'.04em'});
+    yr.textContent = pi.yr; g.appendChild(yr);
+
+    const data = { name:pi.n, meta:pi.meta, body:pi.b };
+    g.addEventListener('mouseenter', e=>show(e,data));
+    g.addEventListener('mousemove', move);
+    g.addEventListener('mouseleave', hide);
+    g.addEventListener('focus', ()=>showAt(px,py,data));
+    g.addEventListener('blur', hide);
+    svg.appendChild(g);
+  });
+
+  // ── tooltip ──────────────────────────────────────────────────────────────
+  const tip = document.getElementById('tip');
+  // tooltip name → reference number(s) in the References list below
+  const CITE = {
+    'Sketchpad':'35','SYMAP':'2','Esri':'1','B-Spline':'3,4,6','NURBS':'5,7','AGLib':'8',
+    'AutoCAD':'9','MicroStation':'17','Vectorworks':'10','Land F/X':'18','Civil 3D':'36',
+    'ARC/INFO → ArcGIS':'1','QGIS':'21','OpenStreetMap':'22','Google Earth':'14','Grasshopper':'12',
+    'Rhino':'8','3ds Max':'19','SketchUp':'20','Revit':'11','Blender':'15',
+    'Illustrator':'23','Photoshop':'13','InDesign':'24','V-Ray':'25','Lumion':'26','Enscape':'27','D5 Render':'28',
+    'Premiere':'29','After Effects':'30','RealFlow':'31',
+    'HTML / CSS / JS':'32,33','Unreal Engine':'34','Unity':'16','Web maps / portfolio':'37'
+  };
+  function fill(d){
+    const tag = d.group
+      ? `<span class="t-tag">${d.group}${d.life?' · '+d.life:''}</span>`
+      : '';
+    const c = CITE[d.name];
+    const cite = c ? `<sup class="t-cite">${c.split(',').join(',')}</sup>` : '';
+    tip.innerHTML = `<div class="t-name">${d.name}${cite}</div><div class="t-meta">${d.meta||''}</div><div class="t-body">${d.body||''}</div>${tag}`;
+  }
+  function show(e,d){ fill(d); tip.classList.add('on'); tip.setAttribute('aria-hidden','false'); place(e.clientX,e.clientY); }
+  function move(e){ place(e.clientX,e.clientY); }
+  function place(mx,my){
+    const w=tip.offsetWidth, h=tip.offsetHeight;
+    let lx=mx+16, ly=my+16;
+    if(lx+w>window.innerWidth-12) lx=mx-w-16;
+    if(ly+h>window.innerHeight-12) ly=my-h-16;
+    tip.style.left=Math.max(8,lx)+'px';
+    tip.style.top=Math.max(8,ly)+'px';
+  }
+  function showAt(cx,cy,d){
+    fill(d); tip.classList.add('on');
+    const r=svg.getBoundingClientRect(), sc=r.width/W;
+    place(r.left+cx*sc, r.top+cy*sc);
+  }
+  function hide(){ tip.classList.remove('on'); tip.setAttribute('aria-hidden','true'); }
+}
+if(document.getElementById('chart')) buildChart();
+(function(){
+  let t; window.addEventListener('resize', ()=>{ clearTimeout(t); t=setTimeout(buildChart, 120); });
+})();
+
+// ── slide deck (carousel) ──────────────────────────────────────────────────
+(function(){
+  const deck = document.getElementById('deck');
+  if(!deck) return;
+  const slides = [...deck.querySelectorAll('.slide')];
+  const prev  = document.getElementById('deck-prev');
+  const next  = document.getElementById('deck-next');
+  const jump  = document.getElementById('deck-jump');
+  const total = document.getElementById('deck-total');
+  const capEl    = document.getElementById('deck-cap');
+  const creditEl = document.getElementById('deck-credit');
+  const notesEl = document.getElementById('deck-notes');
+  const notesToggle = document.getElementById('deck-notes-toggle');
+  const presentBtn = document.getElementById('deck-present');
+  let i = 0, hot = false, bc = null;
+  try { bc = new BroadcastChannel('laar61400-w01-deck'); } catch(e){}
+  function render(){
+    slides.forEach((s,n)=>s.classList.toggle('on', n===i));
+    if(jump !== document.activeElement) jump.value = (i+1);
+    total.textContent = ' / ' + slides.length;
+    const s = slides[i];
+    capEl.innerHTML    = s.getAttribute('data-cap') || '';
+    creditEl.textContent = s.getAttribute('data-credit') || '';
+    const note = (s.getAttribute('data-notes') || '').trim();
+    notesEl.innerHTML = note ? note : '<span class="nn-empty">No notes for this slide yet.</span>';
+    prev.disabled = (i === 0);
+    next.disabled = (i === slides.length - 1);
+    if(bc) bc.postMessage({ type:'idx', i:i });
+  }
+  function go(d){ i = Math.min(slides.length-1, Math.max(0, i+d)); render(); }
+  function goTo(n){ i = Math.min(slides.length-1, Math.max(0, n)); render(); }
+  prev.addEventListener('click', ()=>go(-1));
+  next.addEventListener('click', ()=>go(1));
+  function commitJump(){
+    const n = parseInt(jump.value, 10);
+    if(!isNaN(n)) goTo(n-1);
+    jump.value = (i+1); // echo back the clamped/valid slide number
+  }
+  jump.addEventListener('keydown', e=>{
+    if(e.key === 'Enter'){ commitJump(); jump.blur(); }
+    e.stopPropagation(); // don't let ←/→ in the field drive the deck
+  });
+  jump.addEventListener('change', commitJump);
+  jump.addEventListener('focus', ()=>jump.select());
+  deck.addEventListener('mouseenter', ()=>hot=true);
+  deck.addEventListener('mouseleave', ()=>hot=false);
+
+  // ── fullscreen present mode ──
+  const fsBtn = document.getElementById('deck-fs');
+  deck.tabIndex = -1;
+  function inFS(){ return (document.fullscreenElement || document.webkitFullscreenElement) === deck; }
+  function toggleFS(){
+    if(inFS()){ (document.exitFullscreen || document.webkitExitFullscreen).call(document); }
+    else {
+      const r = (deck.requestFullscreen || deck.webkitRequestFullscreen).call(deck);
+      if(r && r.catch) r.catch(()=>{}); // browser may refuse without a user gesture
+    }
+  }
+  function onFS(){
+    const f = inFS();
+    fsBtn.innerHTML = f ? '&#x2715;' : '&#x26F6;';
+    fsBtn.setAttribute('aria-label', f ? 'Exit full screen' : 'Present full screen');
+    if(f && deck.focus) deck.focus();
+  }
+  fsBtn.addEventListener('click', toggleFS);
+  document.addEventListener('fullscreenchange', onFS);
+  document.addEventListener('webkitfullscreenchange', onFS);
+
+  document.addEventListener('keydown', e=>{
+    if(!(hot || inFS())) return;
+    if(e.key === 'ArrowLeft' || e.key === 'PageUp'){ e.preventDefault(); go(-1); }
+    else if(e.key === 'ArrowRight' || e.key === 'PageDown' || e.key === ' '){ e.preventDefault(); go(1); }
+    else if(e.key === 'f' || e.key === 'F'){ e.preventDefault(); toggleFS(); }
+  });
+
+  // ── notes disclosure (collapsed by default) ──
+  notesToggle.addEventListener('click', ()=>{
+    const opening = notesEl.hasAttribute('hidden');
+    if(opening) notesEl.removeAttribute('hidden'); else notesEl.setAttribute('hidden','');
+    notesToggle.setAttribute('aria-expanded', String(opening));
+  });
+
+  // ── presenter view (synced second window) ──
+  if(bc){
+    bc.onmessage = (ev)=>{
+      const m = ev.data || {};
+      if(m.type === 'go'){ go(m.d); }
+      else if(m.type === 'goto'){ i = Math.min(slides.length-1, Math.max(0, m.i)); render(); }
+      else if(m.type === 'req'){ bc.postMessage({ type:'idx', i:i }); }
+    };
+  }
+  const PRESENTER_DOC = `<!DOCTYPE html><html lang="en"><head><meta charset="utf-8">
+<title>Presenter — Week 01</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;700&display=swap');
+  :root{color-scheme:dark;} *{box-sizing:border-box;}
+  body{margin:0;height:100vh;display:flex;flex-direction:column;background:#0e0e0e;color:#e8e3da;
+    font-family:'DM Sans',system-ui,sans-serif;}
+  .pv-top{display:flex;gap:12px;padding:12px 14px 4px;}
+  .pv-col{flex:1;min-width:0;}
+  .pv-tag{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.14em;text-transform:uppercase;
+    color:#8a847c;margin:0 0 4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+  .pv-stage{aspect-ratio:16/9;width:100%;background:#1a1a1a;border:1px solid #333;border-radius:6px;
+    overflow:hidden;display:flex;align-items:center;justify-content:center;}
+  .pv-stage img{max-width:100%;max-height:100%;object-fit:contain;}
+  /* mirror of /teaching/_shared/deck.css layout system, scoped + dark */
+  .pv-stage .pv-deck{display:flex;align-items:center;justify-content:center;width:100%;height:100%;}
+  .pv-stage .pv-deck.single>img{max-width:100%;max-height:100%;object-fit:contain;}
+  .pv-stage .pv-deck.slide--title{flex-direction:column;gap:6px;}
+  .pv-stage .pv-deck.two-3-3,.pv-stage .pv-deck.grid-4{display:grid;gap:2px;background:#333;}
+  .pv-stage .pv-deck figure{margin:0;min-width:0;min-height:0;display:flex;align-items:center;
+    justify-content:center;background:#1a1a1a;overflow:hidden;}
+  .pv-stage .pv-deck figure img{width:100%;height:100%;object-fit:cover;}
+  .pv-stage .pv-deck.sq{display:grid;grid-template-columns:repeat(12,1fr);align-items:center;gap:2px;}
+  .pv-stage .pv-deck.sq figure{width:100%;aspect-ratio:1;overflow:hidden;margin:0;}
+  .pv-stage .pv-deck.sq figure img{width:100%;height:100%;object-fit:cover;}
+  .pv-stage .c1-4{grid-column:1/5;} .pv-stage .c5-8{grid-column:5/9;} .pv-stage .c9-12{grid-column:9/13;}
+  .pv-stage .c1-6{grid-column:1/7;} .pv-stage .c7-12{grid-column:7/13;}
+  .pv-stage .c2-5{grid-column:2/6;} .pv-stage .c8-11{grid-column:8/12;}
+  .pv-stage .c2-6{grid-column:2/7;} .pv-stage .c7-11{grid-column:7/12;}
+  .pv-stage .c3-6{grid-column:3/7;} .pv-stage .c7-10{grid-column:7/11;}
+  .pv-stage .pv-deck.hero-l,.pv-stage .pv-deck.hero-r{display:grid;grid-template-columns:2fr 1fr;
+    grid-template-rows:1fr 1fr;gap:2px;width:100%;height:100%;}
+  .pv-stage .pv-deck.hero-l figure:nth-child(1){grid-column:1;grid-row:1/3;}
+  .pv-stage .pv-deck.hero-l figure:nth-child(2){grid-column:2;grid-row:1;}
+  .pv-stage .pv-deck.hero-l figure:nth-child(3){grid-column:2;grid-row:2;}
+  .pv-stage .pv-deck.hero-r{grid-template-columns:1fr 2fr;}
+  .pv-stage .pv-deck.hero-r figure:nth-child(1){grid-column:2;grid-row:1/3;}
+  .pv-stage .pv-deck.hero-r figure:nth-child(2){grid-column:1;grid-row:1;}
+  .pv-stage .pv-deck.hero-r figure:nth-child(3){grid-column:1;grid-row:2;}
+  .pv-stage .pv-deck.hero-l figure,.pv-stage .pv-deck.hero-r figure{margin:0;overflow:hidden;}
+  .pv-stage .pv-deck.hero-l figure img,.pv-stage .pv-deck.hero-r figure img{width:100%;height:100%;object-fit:cover;}
+  .pv-stage .pv-deck.auto-rows{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;height:100%;}
+  .pv-stage .pv-deck.auto-rows .row{display:flex;align-items:center;justify-content:center;gap:2px;flex:1;min-height:0;}
+  .pv-stage .pv-deck.auto-rows figure{height:100%;flex:0 1 auto;margin:0;}
+  .pv-stage .pv-deck.auto-rows figure img{height:100%;width:auto;max-width:100%;object-fit:contain;}
+  .pv-stage .pv-deck.auto{display:flex;align-items:center;justify-content:center;gap:2px;}
+  .pv-stage .pv-deck.auto figure{height:100%;flex:0 1 auto;}
+  .pv-stage .pv-deck.auto figure img{height:100%;width:auto;max-width:100%;object-fit:contain;}
+  .pv-stage .pv-deck.two-3-3{grid-template-columns:3fr 3fr;}
+  .pv-stage .pv-deck.grid-4{grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;}
+  .pv-stage .ph{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;
+    width:calc(100% - 16px);height:calc(100% - 16px);border:1.5px dashed #555;border-radius:6px;
+    text-align:center;padding:10px;}
+  .pv-stage .ph-tag{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:.14em;
+    text-transform:uppercase;color:#777;}
+  .pv-stage .ph-desc{font-size:11px;color:#aaa;line-height:1.4;max-width:40ch;}
+  .pv-stage .tt{font-family:'DM Sans';font-weight:700;font-size:clamp(13px,2.4vw,24px);color:#f5f3f0;
+    text-align:center;line-height:1.12;}
+  .pv-stage .ts{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:.14em;
+    text-transform:uppercase;color:#b0a898;text-align:center;}
+  .pv-vid{font-family:'DM Mono',monospace;font-size:12px;color:#c98a3c;letter-spacing:.06em;}
+  .pv-noteswrap{flex:1;min-height:0;padding:6px 16px 10px;display:flex;flex-direction:column;}
+  .pv-cap{font-size:15px;font-style:italic;color:#cfc8bd;margin:4px 0 8px;}
+  .pv-notes{flex:1;overflow:auto;font-size:19px;line-height:1.6;color:#efeae1;
+    border-top:1px solid #2a2a2a;padding-top:10px;}
+  .pv-notes .empty{color:#777;font-style:italic;font-size:15px;}
+  .pv-bar{display:flex;align-items:center;gap:12px;padding:10px 16px;border-top:1px solid #222;background:#141414;}
+  .pv-btn{appearance:none;background:#1f1f1f;border:1px solid #3a3a3a;color:#e8e3da;border-radius:7px;
+    padding:7px 13px;font-size:13px;cursor:pointer;}
+  .pv-btn:hover{background:#292929;}
+  .pv-count{font-family:'DM Mono',monospace;font-size:13px;color:#b8b0a6;}
+  .pv-mini{font-family:'DM Mono',monospace;font-size:10px;color:#6f6a62;}
+  .pv-timer{font-family:'DM Mono',monospace;font-size:16px;color:#e8e3da;margin-left:auto;}
+</style></head><body>
+  <div class="pv-top">
+    <div class="pv-col"><p class="pv-tag" id="pvCurTag">Current</p><div class="pv-stage" id="pvCur"></div></div>
+    <div class="pv-col"><p class="pv-tag">Next &rarr;</p><div class="pv-stage" id="pvNext"></div></div>
+  </div>
+  <div class="pv-noteswrap">
+    <div class="pv-cap" id="pvCap"></div>
+    <div class="pv-notes" id="pvNotes"></div>
+  </div>
+  <div class="pv-bar">
+    <button class="pv-btn" id="pvPrev">&lsaquo; Prev</button>
+    <button class="pv-btn" id="pvNext2">Next &rsaquo;</button>
+    <span class="pv-count" id="pvCount">&ndash; / &ndash;</span>
+    <span class="pv-mini">&larr;&rarr; navigate &middot; synced with the page</span>
+    <span class="pv-timer" id="pvTimer">00:00</span>
+    <button class="pv-btn" id="pvReset">Reset timer</button>
+  </div>
+<script>
+(function(){
+  var op = window.opener;
+  if(!op){ document.getElementById('pvNotes').textContent = 'Opener window lost — close this and reopen Presenter from the page.'; return; }
+  var slides = [].slice.call(op.document.querySelectorAll('#deck-stage .slide')).map(function(s){
+    return { era:s.getAttribute('data-era')||'', cap:s.getAttribute('data-cap')||'',
+      notes:(s.getAttribute('data-notes')||'').trim(),
+      html: s.querySelector('iframe') ? '<div class="pv-vid">&#9654; video slide</div>'
+        : '<div class="pv-deck '+s.className.replace(/\bslide\b/g,'').replace(/\bon\b/g,'').trim()+'">'+s.innerHTML+'</div>' };
+  });
+  var total = slides.length, cur = 0;
+  var bc = null; try{ bc = new BroadcastChannel('laar61400-w01-deck'); }catch(e){}
+  var elCur=document.getElementById('pvCur'), elNext=document.getElementById('pvNext'),
+      elCap=document.getElementById('pvCap'), elNotes=document.getElementById('pvNotes'),
+      elCount=document.getElementById('pvCount'), elCurTag=document.getElementById('pvCurTag');
+  function paint(){
+    var s = slides[cur]||{}, n = slides[cur+1];
+    elCur.innerHTML = s.html||'';
+    elNext.innerHTML = n ? n.html : '<div class="pv-vid" style="color:#555">&mdash; end &mdash;</div>';
+    elCap.textContent = s.cap||'';
+    elCurTag.textContent = s.era || 'Current';
+    elNotes.innerHTML = s.notes ? s.notes : '<span class="empty">No notes for this slide yet.</span>';
+    elCount.textContent = (cur+1)+' / '+total;
+  }
+  function send(d){ if(bc) bc.postMessage({ type:'go', d:d }); }
+  document.getElementById('pvPrev').onclick = function(){ send(-1); };
+  document.getElementById('pvNext2').onclick = function(){ send(1); };
+  document.addEventListener('keydown', function(e){
+    if(e.key==='ArrowRight'||e.key==='ArrowDown'||e.key==='PageDown'||e.key===' '){ e.preventDefault(); send(1); }
+    else if(e.key==='ArrowLeft'||e.key==='ArrowUp'||e.key==='PageUp'){ e.preventDefault(); send(-1); }
+  });
+  if(bc){ bc.onmessage = function(ev){ var m = ev.data||{}; if(m.type==='idx'){ cur = m.i; paint(); } }; bc.postMessage({ type:'req' }); }
+  var t0 = Date.now(), tEl = document.getElementById('pvTimer');
+  function tick(){ var s=Math.floor((Date.now()-t0)/1000); tEl.textContent = String(Math.floor(s/60)).padStart(2,'0')+':'+String(s%60).padStart(2,'0'); }
+  setInterval(tick,1000); tick();
+  document.getElementById('pvReset').onclick = function(){ t0 = Date.now(); tick(); };
+  paint();
+})();
+<\/script></body></html>`;
+  presentBtn.addEventListener('click', ()=>{
+    const w = window.open('', 'laar61400-w01-presenter', 'width=940,height=720');
+    if(!w){ alert('Popup blocked — allow popups for this site to open Presenter view.'); return; }
+    w.document.open(); w.document.write(PRESENTER_DOC); w.document.close();
+  });
+
+  // ── justified "fit-to-box" layout for .auto slides (equal height, no crop, PPT-style) ──
+  const stage = document.getElementById('deck-stage');
+  function layoutAuto(){
+    if(!stage) return;
+    const W = stage.clientWidth, H = stage.clientHeight;
+    if(!W || !H) return;
+    const FILL_W = 1.00;  // full-bleed left/right → width-bound groups align with the 12-col content edge
+    const FILL_H = 0.90;  // breathing margin top/bottom
+    deck.querySelectorAll('.slide.auto').forEach(s=>{
+      const figs = [...s.querySelectorAll(':scope > figure')];
+      if(!figs.length) return;
+      const gap = parseFloat(getComputedStyle(s).columnGap) || 0;
+      let sumA = 0;
+      const ars = figs.map(fig=>{
+        const im = fig.querySelector('img');
+        const a = (im && im.naturalWidth && im.naturalHeight) ? im.naturalWidth/im.naturalHeight : 1;
+        sumA += a; return a;
+      });
+      const n = figs.length;
+      const hByW = (FILL_W*W - (n-1)*gap) / sumA;  // tallest row that fits the width budget
+      const hByH = FILL_H*H;                        // tallest row that fits the height budget
+      const h = Math.max(0, Math.min(hByW, hByH));
+      figs.forEach((fig,k)=>{ fig.style.height = h+'px'; fig.style.width = (ars[k]*h)+'px'; });
+    });
+    // hero + stack: hero whole at its aspect; two images stacked beside it; composite fit to box
+    const arOf = fig => { const im = fig.querySelector('img');
+      return (im && im.naturalWidth && im.naturalHeight) ? im.naturalWidth/im.naturalHeight : 1; };
+    deck.querySelectorAll('.slide.hero-l, .slide.hero-r').forEach(s=>{
+      const figs = [...s.querySelectorAll(':scope > figure')];
+      if(figs.length < 3) return;
+      const gap = parseFloat(getComputedStyle(s).rowGap) || 0;
+      const arHero = arOf(figs[0]);
+      const maxArS = Math.max(arOf(figs[1]), arOf(figs[2]));
+      // composite width(H) = arHero*H + gap + maxArS*(H-gap)/2  →  k*H + c
+      const k = arHero + maxArS/2, c = gap*(1 - maxArS/2);
+      const hByW = (FILL_W*W - c) / k;     // fit width budget
+      const hByH = FILL_H*H;                // fit height budget
+      const Ht = Math.max(0, Math.min(hByW, hByH));
+      const heroW = arHero*Ht, sH = (Ht-gap)/2, stackW = maxArS*sH;
+      figs[0].style.width = heroW+'px'; figs[0].style.height = Ht+'px';
+      [figs[1],figs[2]].forEach(f=>{ f.style.width = stackW+'px'; f.style.height = sH+'px'; });
+    });
+    // auto-rows: each .row justified to box width; rows stacked, whole block scaled to 90% height
+    deck.querySelectorAll('.slide.auto-rows').forEach(s=>{
+      const rows = [...s.querySelectorAll(':scope > .row')];
+      if(!rows.length) return;
+      const rowGap = parseFloat(getComputedStyle(s).rowGap) || 0;
+      const data = rows.map(r=>{
+        const figs = [...r.querySelectorAll(':scope > figure')];
+        const colGap = parseFloat(getComputedStyle(r).columnGap) || 0;
+        let sumA = 0; const ars = figs.map(f=>{ const a = arOf(f); sumA += a; return a; });
+        const hFill = (FILL_W*W - (figs.length-1)*colGap) / sumA;  // row height to fill the width
+        return { figs, ars, hFill };
+      });
+      const totalH = data.reduce((t,d)=>t+d.hFill, 0) + (rows.length-1)*rowGap;
+      const scale = totalH > FILL_H*H ? (FILL_H*H)/totalH : 1;     // shrink if too tall
+      data.forEach(d=>{ const h = d.hFill*scale;
+        d.figs.forEach((f,k)=>{ f.style.height = h+'px'; f.style.width = (d.ars[k]*h)+'px'; }); });
+    });
+  }
+  deck.querySelectorAll('.slide.auto img, .slide.hero-l img, .slide.hero-r img, .slide.auto-rows img').forEach(im=>{
+    if(!im.complete) im.addEventListener('load', layoutAuto, {once:true});
+  });
+  let _lt; window.addEventListener('resize', ()=>{ clearTimeout(_lt); _lt=setTimeout(layoutAuto, 80); });
+  document.addEventListener('fullscreenchange', ()=>setTimeout(layoutAuto, 60));
+  document.addEventListener('webkitfullscreenchange', ()=>setTimeout(layoutAuto, 60));
+
+  render();
+  layoutAuto();
+})();
+</script>
 </body>
 </html>
