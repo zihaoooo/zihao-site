@@ -84,15 +84,16 @@
     .lt-hero .a{inset:7% 7% 26% 7%;} .lt-hero .b{left:7%;right:7%;bottom:7%;height:13%;}
     /* T2 plan + section */
     .lt-ps .a{left:7%;right:7%;top:7%;height:55%;} .lt-ps .b{left:7%;right:7%;bottom:7%;height:24%;}
-    /* T3 small multiples 3x2 */
-    .lt-sm span{width:27%;height:40%;}
-    .lt-sm .a{left:7%;top:7%;}.lt-sm .b{left:36.5%;top:7%;}.lt-sm .c{right:7%;top:7%;}
-    .lt-sm .d{left:7%;bottom:7%;}.lt-sm .e{left:36.5%;bottom:7%;}.lt-sm .f{right:7%;bottom:7%;}
+    /* T3 small multiples — dense 4x3 grid */
+    .lt-sm{display:grid;grid-template-columns:repeat(4,1fr);grid-template-rows:repeat(3,1fr);
+      gap:5%;}
+    .lt-sm span{position:static;width:auto;height:auto;}
     /* T4 left text, right image */
     .lt-lr .a{left:7%;top:7%;bottom:7%;width:34%;background:#e3ddd2;}
     .lt-lr .b{right:7%;top:7%;bottom:7%;width:46%;}
-    /* T5 full bleed + title band */
-    .lt-fb .a{inset:0 0 18% 0;border-radius:0;} .lt-fb .b{left:7%;bottom:6%;width:50%;height:8%;}
+    /* T5 full bleed — image fills the tile, title floats on top */
+    .lt-fb .a{inset:0;border-radius:0;} .lt-fb .b{left:7%;top:10%;width:50%;height:9%;
+      background:rgba(255,255,255,.92);}
     /* T6 two-thirds / one-third */
     .lt-23 .a{left:7%;top:7%;bottom:7%;width:54%;} .lt-23 .b{right:7%;top:7%;width:25%;height:40%;}
     .lt-23 .c{right:7%;bottom:7%;width:25%;height:40%;}
@@ -831,7 +832,7 @@
                 <div class="gd-templates">
                   <figure><div class="lt lt-hero"><span class="ink a"></span><span class="dk b"></span></div><figcaption>Hero + caption</figcaption></figure>
                   <figure><div class="lt lt-ps"><span class="ink a"></span><span class="b"></span></div><figcaption>Plan over section</figcaption></figure>
-                  <figure><div class="lt lt-sm"><span class="a"></span><span class="b"></span><span class="c"></span><span class="d"></span><span class="e"></span><span class="f"></span></div><figcaption>Small multiples (material study)</figcaption></figure>
+                  <figure><div class="lt lt-sm"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div><figcaption>Small multiples (material study)</figcaption></figure>
                   <figure><div class="lt lt-lr"><span class="a"></span><span class="ink b"></span></div><figcaption>Text left, image right</figcaption></figure>
                   <figure><div class="lt lt-fb"><span class="ink a"></span><span class="dk b"></span></div><figcaption>Full bleed + title band</figcaption></figure>
                   <figure><div class="lt lt-23"><span class="ink a"></span><span class="b"></span><span class="c"></span></div><figcaption>Two-thirds / one-third</figcaption></figure>
@@ -874,7 +875,7 @@
                   <li>Reads in greyscale? <b>(6)</b></li>
                   <li>Limited palette, one accent? <b>(7)</b></li>
                   <li>Type legible at actual size? <b>(16, 19)</b></li>
-                  <li>Enough white space — not filled to the edges? <b>(13)</b></li>
+                  <li>Use white space intentionally? <b>(13)</b></li>
                   <li>Each drawing stands alone, portfolio-ready? <b>(14)</b></li>
                 </ul>
               </div>
@@ -1032,8 +1033,8 @@
         <span class="timeline-section-label">Bonus — 留白 in a handscroll</span>
         <div class="gd-scroll">
           <div class="gd-scroll__bar">
-            <b>黄公望《富春山居圖》(無用師卷)</b>
-            <span>Huang Gongwang, Dwelling in the Fuchun Mountains, 1350 · Yuan dynasty</span>
+            <b>Huang Gongwang, Dwelling in the Fuchun Mountains, 1350 · Yuan dynasty</b>
+            <span>黄公望《富春山居图》（无用师卷）</span>
           </div>
           <div class="gd-scroll__viewport">
             <img src="/teaching/laar61400/assets/img/Week04/scroll-fuchun.webp" alt="Huang Gongwang, Dwelling in the Fuchun Mountains handscroll">
