@@ -6,6 +6,384 @@
   <title>Week 04 Lecture: Graphic Design 101 — LAAR 61400</title>
   <link rel="stylesheet" href="/teaching/laar61400/assets/css/main.css">
   <link rel="stylesheet" href="/teaching/laar61400/assets/css/workflow-shared.css">
+  <link rel="stylesheet" href="/teaching/_shared/deck.css">
+  <style>
+    /* palette tokens (deck.css + widgets read these) */
+    :root{
+      --ink:#1a1a1a; --paper:#fbfaf8; --line:#e0dbd3; --mute:#8a847c; --accent:#b87333;
+    }
+    .timeline-section-label{
+      font-family:"DM Mono",ui-monospace,monospace;font-size:9px;font-weight:700;
+      text-transform:uppercase;letter-spacing:.12em;color:#aaa;
+      display:block;border-top:1px solid #e0e0e0;padding-top:20px;margin:32px 0 14px;}
+
+    /* a widget/diagram living inside a carousel slide: centered, clipped; JS scales the
+       child to fit the fixed 16:9 stage (see fitEmbeds) so nothing scrolls. */
+    .slide .embed{width:100%;height:100%;display:flex;align-items:center;justify-content:center;
+      overflow:hidden;padding:14px;box-sizing:border-box;}
+    .slide .embed>*{transform-origin:center center;}
+    /* neutralize deck.css's .slide figure / figcaption rules inside embeds (they collapse
+       widget boards & template tiles and absolutely-position our captions) */
+    .slide .embed figure{display:block;margin:0;overflow:visible;background:none;
+      align-items:initial;justify-content:initial;}
+    .slide .embed figure img{width:auto;height:auto;max-width:100%;object-fit:initial;}
+    .slide .embed figcaption{position:static;left:auto;bottom:auto;background:none;padding:0;}
+    /* SCAPE credit logo — small, pinned bottom-right (slide 7) */
+    .slide img.scape-logo{position:absolute;right:16px;bottom:14px;height:20px;width:auto;
+      max-width:140px;object-fit:contain;opacity:.85;}
+
+    /* ── text slide (checklist) ── */
+    .slide.textslide{display:flex;align-items:center;justify-content:center;background:var(--paper);}
+    .gd-checklist{width:min(640px,90%);font-family:"DM Sans",sans-serif;color:var(--ink);}
+    .gd-checklist h3{font-size:clamp(18px,2.6vw,26px);margin:0 0 18px;font-weight:700;}
+    .gd-checklist ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:11px;}
+    .gd-checklist li{font-size:clamp(13px,1.8vw,16px);line-height:1.4;padding-left:26px;position:relative;color:#3a352f;}
+    .gd-checklist li::before{content:"";position:absolute;left:0;top:.35em;width:13px;height:13px;
+      border:2px solid var(--accent);border-radius:3px;}
+    .gd-checklist li b{color:var(--mute);font-weight:600;font-family:"DM Mono",monospace;font-size:.82em;}
+
+    /* ── schematic two-up mocks (slides 9 & 12), d1-fix-it page idiom ── */
+    .gd-mock{width:min(860px,94%);display:grid;grid-template-columns:1fr 1fr;gap:clamp(16px,3vw,38px);align-items:start;}
+    .gd-mock figure{margin:0;}
+    .gd-mock figcaption{font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--mute);
+      margin-bottom:8px;text-align:center;}
+    .gd-mock__page{aspect-ratio:17/11;background:#fff;border:1px solid var(--line);border-radius:8px;
+      box-shadow:0 6px 22px rgba(0,0,0,.10);position:relative;overflow:hidden;}
+    .gd-mock__el{position:absolute;border-radius:4px;}
+    /* slide 9 — alignment */
+    /* "almost aligned" — upright, but edges miss the shared grid by a few % */
+    .al-bad .e1{top:7%;left:5%;width:41%;height:33%;background:#9bafac;}
+    .al-bad .e2{top:10%;left:55%;width:38%;height:35%;background:#c4cecb;}
+    .al-bad .e3{top:52%;left:8%;width:40%;height:41%;background:#2f6d68;}
+    .al-bad .e4{top:48%;left:51%;width:42%;height:43%;background:#243b3a;}
+    .al-good .e1{top:8%;left:7%;width:40%;height:34%;background:#9bafac;}
+    .al-good .e2{top:8%;left:53%;width:40%;height:34%;background:#c4cecb;}
+    .al-good .e3{top:50%;left:7%;width:40%;height:42%;background:#2f6d68;}
+    .al-good .e4{top:50%;left:53%;width:40%;height:42%;background:#243b3a;}
+    /* slide 12 — balance, grey masses */
+    .bal .m{position:absolute;background:#8a847c;border-radius:3px;opacity:.85;}
+    .bal-sym .m1{top:10%;left:32%;width:36%;height:40%;}
+    .bal-sym .m2{top:58%;left:18%;width:28%;height:28%;}
+    .bal-sym .m3{top:58%;left:54%;width:28%;height:28%;}
+    .bal-asym .m1{top:10%;left:8%;width:50%;height:62%;background:#3a352f;}
+    .bal-asym .m2{top:16%;left:64%;width:26%;height:20%;}
+    .bal-asym .m3{top:62%;left:64%;width:26%;height:24%;opacity:.6;}
+
+    /* ── slide 20 — layout templates gallery ── */
+    .gd-templates{width:min(900px,95%);display:grid;grid-template-columns:repeat(4,1fr);
+      gap:clamp(10px,1.6vw,18px);}
+    .gd-templates figure{margin:0;}
+    .gd-templates figcaption{font-size:10.5px;letter-spacing:.04em;color:var(--mute);
+      margin-top:6px;text-align:center;line-height:1.3;}
+    .lt{aspect-ratio:17/11;background:#fff;border:1px solid var(--line);border-radius:6px;
+      box-shadow:0 3px 12px rgba(0,0,0,.07);position:relative;overflow:hidden;padding:7%;box-sizing:border-box;}
+    .lt span{position:absolute;background:#c4cecb;border-radius:2px;}
+    .lt .ink{background:#2f6d68;}
+    .lt .dk{background:#243b3a;}
+    /* T1 hero + caption */
+    .lt-hero .a{inset:7% 7% 26% 7%;} .lt-hero .b{left:7%;right:7%;bottom:7%;height:13%;}
+    /* T2 plan + section */
+    .lt-ps .a{left:7%;right:7%;top:7%;height:55%;} .lt-ps .b{left:7%;right:7%;bottom:7%;height:24%;}
+    /* T3 small multiples 3x2 */
+    .lt-sm span{width:27%;height:40%;}
+    .lt-sm .a{left:7%;top:7%;}.lt-sm .b{left:36.5%;top:7%;}.lt-sm .c{right:7%;top:7%;}
+    .lt-sm .d{left:7%;bottom:7%;}.lt-sm .e{left:36.5%;bottom:7%;}.lt-sm .f{right:7%;bottom:7%;}
+    /* T4 left text, right image */
+    .lt-lr .a{left:7%;top:7%;bottom:7%;width:34%;background:#e3ddd2;}
+    .lt-lr .b{right:7%;top:7%;bottom:7%;width:46%;}
+    /* T5 full bleed + title band */
+    .lt-fb .a{inset:0 0 18% 0;border-radius:0;} .lt-fb .b{left:7%;bottom:6%;width:50%;height:8%;}
+    /* T6 two-thirds / one-third */
+    .lt-23 .a{left:7%;top:7%;bottom:7%;width:54%;} .lt-23 .b{right:7%;top:7%;width:25%;height:40%;}
+    .lt-23 .c{right:7%;bottom:7%;width:25%;height:40%;}
+    /* T7 banner + 3 column */
+    .lt-b3 .a{left:7%;right:7%;top:7%;height:34%;} .lt-b3 span.col{top:52%;width:25%;height:41%;}
+    .lt-b3 .b{left:7%;}.lt-b3 .c{left:37.5%;}.lt-b3 .d{right:7%;}
+    /* T8 centered focus + margins */
+    .lt-cf .a{inset:18% 22%;}
+    @media(max-width:680px){.gd-templates{grid-template-columns:repeat(2,1fr);}}
+
+    /* ── Tools strip (six widgets, below the deck) — single column, no page scroll ── */
+    .gd-tools{display:flex;flex-direction:column;gap:18px;margin-top:14px;}
+    .gd-tools__card{border:1px solid var(--line);border-radius:12px;background:#fff;
+      padding:20px 22px 24px;box-shadow:0 4px 16px rgba(0,0,0,.05);overflow:hidden;}
+    .gd-tools__card h4{margin:0 0 4px;font-family:"DM Sans",sans-serif;font-size:15px;color:var(--ink);}
+    .gd-tools__card p.k{margin:0 0 16px;font-family:"DM Mono",monospace;font-size:10.5px;
+      letter-spacing:.06em;text-transform:uppercase;color:var(--mute);}
+    /* widgets fill the card width (override their min(...,92vw) standalone sizing) so the page never scrolls sideways */
+    .gd-tools__card>.gd-hsv,.gd-tools__card>.gd-mix,.gd-tools__card>.gd-val,
+    .gd-tools__card>.gd-t1,.gd-tools__card>.gd-type,.gd-tools__card>.gd-fix{width:100%;max-width:100%;margin:0 auto;}
+
+    /* ── 富春山居圖 scroll widget ── */
+    .gd-scroll{margin-top:14px;border:1px solid var(--line);border-radius:10px;background:var(--paper);
+      overflow:hidden;}
+    .gd-scroll__bar{display:flex;align-items:baseline;gap:10px;padding:12px 16px 0;}
+    .gd-scroll__bar b{font-family:"DM Sans",sans-serif;font-size:14px;color:var(--ink);}
+    .gd-scroll__bar span{font-family:"DM Mono",monospace;font-size:10px;letter-spacing:.05em;color:var(--mute);}
+    .gd-scroll__viewport{overflow-x:auto;overflow-y:hidden;-webkit-overflow-scrolling:touch;
+      margin:12px 0 0;}
+    .gd-scroll__viewport img{display:block;height:360px;width:auto;max-width:none;}
+    .gd-scroll__hint{font-family:"DM Mono",monospace;font-size:10px;letter-spacing:.05em;color:var(--mute);
+      padding:8px 16px 12px;}
+
+    /* ===== widget: C1 HSV ===== */
+    .gd-hsv{width:min(900px,92vw);display:grid;grid-template-columns:1.1fr 1fr;
+      gap:clamp(24px,4vw,56px);align-items:center;}
+    .gd-hsv__swatch{aspect-ratio:1/1;border-radius:14px;border:1px solid var(--line);
+      box-shadow:0 8px 30px rgba(0,0,0,.10);transition:background .08s linear;
+      display:flex;align-items:flex-end;justify-content:flex-end;padding:14px;}
+    .gd-hsv__hex{font:600 15px/1 ui-monospace,Menlo,Consolas,monospace;
+      letter-spacing:.05em;background:rgba(255,255,255,.85);color:var(--ink);
+      padding:6px 9px;border-radius:6px;backdrop-filter:blur(2px);}
+    .gd-hsv__controls{display:flex;flex-direction:column;gap:22px;}
+    .gd-hsv__row label{display:flex;justify-content:space-between;align-items:baseline;
+      font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--mute);margin-bottom:8px;}
+    .gd-hsv__row label b{color:var(--ink);font:600 15px/1 ui-monospace,Menlo,Consolas,monospace;
+      text-transform:none;letter-spacing:0;}
+    .gd-hsv input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:14px;
+      border-radius:8px;border:1px solid var(--line);outline:none;cursor:pointer;}
+    .gd-hsv input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:22px;height:22px;
+      border-radius:50%;background:#fff;border:2px solid var(--ink);box-shadow:0 1px 4px rgba(0,0,0,.3);}
+    .gd-hsv input[type=range]::-moz-range-thumb{width:22px;height:22px;border-radius:50%;
+      background:#fff;border:2px solid var(--ink);box-shadow:0 1px 4px rgba(0,0,0,.3);}
+    .gd-hsv__cap{grid-column:1/-1;text-align:center;color:var(--mute);font-size:14px;margin-top:4px;}
+    @media(max-width:640px){.gd-hsv{grid-template-columns:1fr;}}
+
+    /* ===== widget: C2 RGB/CMYK ===== */
+    .gd-mix{width:min(960px,94vw);display:grid;grid-template-columns:1fr 1fr;gap:clamp(20px,4vw,48px);}
+    .gd-mix__panel{display:flex;flex-direction:column;gap:14px;}
+    .gd-mix__title{font-size:14px;letter-spacing:.1em;text-transform:uppercase;color:var(--mute);
+      display:flex;justify-content:space-between;align-items:baseline;}
+    .gd-mix__title b{color:var(--ink);font-size:13px;letter-spacing:.04em;text-transform:none;}
+    .gd-mix__stage{aspect-ratio:16/11;border-radius:12px;border:1px solid var(--line);
+      position:relative;overflow:hidden;}
+    .gd-mix__stage--add{background:#0a0a0a;}
+    .gd-mix__stage--sub{background:#fff;}
+    .gd-mix__circ{position:absolute;width:52%;aspect-ratio:1/1;border-radius:50%;}
+    .gd-mix__stage--add .gd-mix__circ{mix-blend-mode:screen;}
+    .gd-mix__stage--sub .gd-mix__circ{mix-blend-mode:multiply;}
+    .gd-mix .c-top{top:8%;left:24%;}
+    .gd-mix .c-bl{bottom:8%;left:6%;}
+    .gd-mix .c-br{bottom:8%;right:6%;}
+    .gd-mix__sliders{display:flex;flex-direction:column;gap:10px;}
+    .gd-mix__sl{display:grid;grid-template-columns:24px 1fr 42px;gap:10px;align-items:center;
+      font:600 13px/1 ui-monospace,Menlo,Consolas,monospace;}
+    .gd-mix__sl input{width:100%;}
+    .gd-mix__note{color:var(--mute);font-size:13px;line-height:1.5;min-height:2.6em;}
+    .gd-mix__note b{color:var(--ink);}
+    @media(max-width:680px){.gd-mix{grid-template-columns:1fr;}}
+
+    /* ===== widget: C5 greyscale ===== */
+    .gd-val{width:min(900px,92vw);display:flex;flex-direction:column;gap:22px;align-items:center;}
+    .gd-val__row{display:grid;grid-template-columns:1fr 1fr;gap:clamp(20px,4vw,44px);width:100%;
+      transition:filter .45s ease;}
+    .gd-val.is-grey .gd-val__row{filter:grayscale(1);}
+    .gd-val__card figcaption{font-size:13px;letter-spacing:.06em;text-transform:uppercase;
+      color:var(--mute);margin-bottom:8px;text-align:center;}
+    .gd-val__board{aspect-ratio:11/8.5;border-radius:10px;border:1px solid var(--line);
+      overflow:hidden;position:relative;box-shadow:0 6px 22px rgba(0,0,0,.10);}
+    .board-good{background:#f4efe6;}
+    .board-good .sky{position:absolute;inset:0 0 46% 0;background:#1d3a52;}
+    .board-good .ground{position:absolute;inset:54% 0 0 0;background:#e7decb;}
+    .board-good .mass{position:absolute;left:12%;bottom:14%;width:30%;height:52%;background:#0f1a14;border-radius:4px;}
+    .board-good .path{position:absolute;right:8%;bottom:14%;width:40%;height:8%;background:#c9a24a;border-radius:3px;}
+    .board-good .title{position:absolute;top:8%;left:8%;width:46%;height:7%;background:#0f1a14;border-radius:2px;}
+    .board-bad{background:#9a9a52;}
+    .board-bad .sky{position:absolute;inset:0 0 46% 0;background:#5a8f9a;}
+    .board-bad .ground{position:absolute;inset:54% 0 0 0;background:#9a7d5a;}
+    .board-bad .mass{position:absolute;left:12%;bottom:14%;width:30%;height:52%;background:#6f9a5a;border-radius:4px;}
+    .board-bad .path{position:absolute;right:8%;bottom:14%;width:40%;height:8%;background:#9a5a7d;border-radius:3px;}
+    .board-bad .title{position:absolute;top:8%;left:8%;width:46%;height:7%;background:#8a6f9a;border-radius:2px;}
+    .gd-val__btn{appearance:none;border:1.5px solid var(--ink);background:var(--ink);color:var(--paper);
+      font:600 14px/1 inherit;letter-spacing:.04em;padding:12px 22px;border-radius:999px;cursor:pointer;
+      transition:background .2s,color .2s;}
+    .gd-val__btn:hover{background:transparent;color:var(--ink);}
+    .gd-val__hint{color:var(--mute);font-size:14px;text-align:center;max-width:46ch;}
+    @media(max-width:600px){.gd-val__row{grid-template-columns:1fr;}}
+
+    /* ===== widget: T1 hierarchy ===== */
+    .gd-t1{width:min(720px,92vw);display:flex;flex-direction:column;gap:18px;align-items:center;}
+    .gd-t1__demo{width:100%;border:1px solid var(--line);border-radius:8px;overflow:hidden;
+      box-shadow:0 6px 22px rgba(0,0,0,.10);background:#fff;}
+    .gd-t1__band{padding:26px 30px;transition:background .4s ease;}
+    .gd-t1__band--a{background:#6f6358;}
+    .gd-t1__band--b{background:#ffffff;padding:34px 30px;}
+    .gd-t1__band--c{background:#6f6358;padding:30px;}
+    .gd-t1__line{margin:0;line-height:1.05;transition:font-size .4s ease,color .4s ease,font-weight .4s ease;}
+    .gd-t1 .l-last {font-size:15px;font-weight:600;color:#efe9e2;}
+    .gd-t1 .l-first{font-size:clamp(40px,7vw,84px);font-weight:800;color:#111;letter-spacing:-.01em;}
+    .gd-t1 .l-then {font-size:26px;font-weight:700;color:#f3eee8;}
+    .gd-t1 .l-thenmin{font-size:16px;font-weight:600;color:#d6ccc2;margin-top:12px;}
+    .gd-t1.is-flat .gd-t1__band{background:#e8e3dc;}
+    .gd-t1.is-flat .gd-t1__band--b{background:#e8e3dc;}
+    .gd-t1.is-flat .gd-t1__line{font-size:19px!important;font-weight:600!important;
+      color:#5a554f!important;letter-spacing:0!important;margin-top:0!important;}
+    .gd-t1.is-flat .l-thenmin{margin-top:10px!important;}
+    .gd-t1__btn{appearance:none;border:1.5px solid var(--ink);background:var(--ink);color:var(--paper);
+      font:600 14px/1 inherit;letter-spacing:.04em;padding:12px 22px;border-radius:999px;cursor:pointer;
+      transition:background .2s,color .2s;}
+    .gd-t1__btn:hover{background:transparent;color:var(--ink);}
+    .gd-t1__hint{color:var(--mute);font-size:14px;text-align:center;max-width:48ch;}
+
+    /* ===== widget: T2 readability ===== */
+    .gd-type{width:min(760px,94vw);display:flex;flex-direction:column;gap:clamp(20px,3.5vw,32px);}
+    .gd-type__sample{
+      font-family:var(--family,-apple-system,"Segoe UI",Helvetica,Arial,sans-serif);
+      font-size:var(--size,17px);font-weight:var(--weight,400);font-style:var(--style,normal);
+      line-height:var(--lead,1.4);letter-spacing:var(--track,0em);color:var(--col,#1a1a1a);
+      width:var(--meas,60ch);max-width:100%;}
+    .gd-type__sample p{margin:0;}
+    .gd-type__toggles{display:flex;gap:10px;flex-wrap:wrap;}
+    .gd-type__tog{appearance:none;border:1.5px solid var(--line);background:#fff;color:var(--ink);
+      font:600 13px/1 inherit;padding:9px 16px;border-radius:999px;cursor:pointer;transition:.15s;}
+    .gd-type__tog[aria-pressed=true]{background:var(--ink);color:var(--paper);border-color:var(--ink);}
+    .gd-type__grid{display:grid;grid-template-columns:1fr 1fr;gap:18px 28px;}
+    .gd-type__row label{display:flex;justify-content:space-between;align-items:baseline;
+      font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--mute);margin-bottom:7px;}
+    .gd-type__row label b{color:var(--ink);font:600 14px/1 ui-monospace,Menlo,Consolas,monospace;
+      text-transform:none;letter-spacing:0;}
+    .gd-type__row small{display:block;color:var(--mute);font-size:11.5px;margin-top:5px;line-height:1.4;}
+    .gd-type input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:6px;
+      border-radius:4px;background:var(--line);outline:none;cursor:pointer;}
+    .gd-type input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:20px;height:20px;
+      border-radius:50%;background:var(--accent);border:2px solid #fff;box-shadow:0 1px 4px rgba(0,0,0,.3);}
+    .gd-type input[type=range]::-moz-range-thumb{width:20px;height:20px;border-radius:50%;
+      background:var(--accent);border:2px solid #fff;box-shadow:0 1px 4px rgba(0,0,0,.3);}
+    .gd-type__ok{color:var(--accent);font-weight:700;}
+    @media(max-width:560px){.gd-type__grid{grid-template-columns:1fr;}}
+
+    /* ===== widget: D1 fix-it ===== */
+    .gd-fix,.gd-fix *{box-sizing:border-box;}
+    .gd-fix{width:min(820px,94vw);display:flex;flex-direction:column;gap:18px;align-items:center;}
+    .gd-fix__page{width:100%;aspect-ratio:17/11;background:#fff;border:1px solid var(--line);
+      border-radius:8px;box-shadow:0 6px 22px rgba(0,0,0,.10);position:relative;overflow:hidden;
+      padding:0;transition:padding .55s cubic-bezier(.4,0,.2,1);}
+    .gd-fix__canvas{position:absolute;inset:0;transition:inset .55s cubic-bezier(.4,0,.2,1);}
+    .gd-fix__el{position:absolute;border-radius:4px;display:flex;align-items:center;
+      justify-content:center;font:700 11px/1.1 inherit;letter-spacing:.06em;text-transform:uppercase;
+      color:#fff;overflow:hidden;transition:all .55s cubic-bezier(.4,0,.2,1);}
+    .gd-fix .el-title{top:3%;left:20%;width:58%;height:9%;transform:rotate(-1.5deg);background:#7b4fd6;font-size:11px;}
+    .gd-fix .el-hero {top:19%;left:8%;width:40%;height:30%;transform:rotate(-3deg);background:#e0452f;}
+    .gd-fix .el-a    {top:14%;left:54%;width:40%;height:30%;transform:rotate(2.5deg);background:#1f8fd6;}
+    .gd-fix .el-b    {top:55%;left:16%;width:40%;height:30%;transform:rotate(-1deg);background:#2fae5a;}
+    .gd-fix .el-body {top:50%;left:56%;width:38%;height:36%;transform:rotate(1.5deg);background:#f2efe9;
+      background-image:repeating-linear-gradient(#c4bdb2 0 5px,transparent 5px 13px);
+      background-size:100% 100%;background-position:8px 10px;background-repeat:no-repeat;}
+    .gd-fix .is-align.gd-fix__page .el-title,.gd-fix__page.is-align .el-title{top:5%;left:6%;width:88%;height:8%;transform:none;}
+    .gd-fix__page.is-align .el-title{top:5%;left:6%;width:88%;height:8%;transform:none;}
+    .gd-fix__page.is-align .el-hero {top:17%;left:6%;width:42%;height:35%;transform:none;}
+    .gd-fix__page.is-align .el-a    {top:17%;left:52%;width:42%;height:35%;transform:none;}
+    .gd-fix__page.is-align .el-b    {top:56%;left:6%;width:42%;height:35%;transform:none;}
+    .gd-fix__page.is-align .el-body {top:56%;left:52%;width:42%;height:35%;transform:none;}
+    .gd-fix__page.is-hier .el-hero {top:17%;left:6%;width:54%;height:50%;font-size:14px;}
+    .gd-fix__page.is-hier .el-a    {top:17%;left:64%;width:30%;height:24%;}
+    .gd-fix__page.is-hier .el-b    {top:43%;left:64%;width:30%;height:24%;}
+    .gd-fix__page.is-hier .el-title{height:11%;font-size:18px;}
+    .gd-fix__page.is-hier .el-body {top:70%;left:6%;width:88%;height:24%;}
+    .gd-fix__page.is-space .gd-fix__canvas{inset:7% 6%;}
+    .gd-fix__page.is-space .el-body{height:20%;}
+    .gd-fix__page.is-color .el-title{background:#243b3a;}
+    .gd-fix__page.is-color .el-hero {background:#2f6d68;}
+    .gd-fix__page.is-color .el-a    {background:#9bafac;color:#243b3a;}
+    .gd-fix__page.is-color .el-b    {background:#c4cecb;color:#243b3a;}
+    .gd-fix__bar{display:flex;gap:14px;align-items:center;flex-wrap:wrap;justify-content:center;}
+    .gd-fix__btn{appearance:none;border:1.5px solid var(--ink);background:var(--ink);color:var(--paper);
+      font:600 14px/1 inherit;letter-spacing:.03em;padding:12px 22px;border-radius:999px;cursor:pointer;
+      transition:background .2s,color .2s;}
+    .gd-fix__btn:hover{background:transparent;color:var(--ink);}
+    .gd-fix__btn--ghost{background:transparent;color:var(--mute);border-color:var(--line);}
+    .gd-fix__btn--ghost:hover{color:var(--ink);border-color:var(--ink);}
+    .gd-fix__step{font-size:13px;color:var(--mute);letter-spacing:.04em;}
+    .gd-fix__cap{font-size:15px;color:var(--ink);text-align:center;max-width:54ch;min-height:2.6em;}
+    .gd-fix__cap b{color:var(--accent);}
+
+    /* ===== widget: S04 interactive color wheel ===== */
+    .gd-wheel{display:flex;flex-direction:column;align-items:center;gap:16px;}
+    .gd-wheel svg{width:min(380px,72vw);height:auto;display:block;}
+    .gd-wheel__seg{stroke:var(--paper);stroke-width:2;cursor:pointer;transition:opacity .25s ease;}
+    .gd-wheel__seg.is-off{opacity:.16;}
+    .gd-wheel__marker{fill:var(--ink);}
+    .gd-wheel__marker.is-base{fill:var(--accent);}
+    .gd-wheel__link{stroke:var(--ink);stroke-width:1.6;opacity:.5;stroke-linecap:round;}
+    .gd-wheel__schemes{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;}
+    .gd-wheel__btn{appearance:none;border:1.5px solid var(--line);background:#fff;color:var(--ink);
+      font:600 12px/1 inherit;padding:8px 13px;border-radius:999px;cursor:pointer;transition:.15s;}
+    .gd-wheel__btn[aria-pressed=true]{background:var(--ink);color:var(--paper);border-color:var(--ink);}
+    .gd-wheel__hint{font-size:12px;color:var(--mute);text-align:center;}
+    .gd-wheel__div{stroke:var(--ink);stroke-width:1.5;stroke-dasharray:5 5;opacity:.55;}
+    .gd-wheel__lbl{font:700 13px/1 -apple-system,"Segoe UI",sans-serif;letter-spacing:.12em;
+      text-transform:uppercase;fill:var(--ink);}
+    .gd-wheel__sub{font:600 11px/1 -apple-system,"Segoe UI",sans-serif;fill:var(--mute);letter-spacing:.04em;}
+    .gd-wheel__ctr{font:700 14px/1 -apple-system,"Segoe UI",sans-serif;letter-spacing:.16em;
+      fill:var(--mute);text-transform:uppercase;}
+    .gd-wheel__cap{font-size:14px;color:var(--mute);text-align:center;max-width:42ch;}
+
+    /* ===== diagram: S10 grid ===== */
+    .gd-grid{width:min(760px,92vw);display:flex;flex-direction:column;gap:14px;align-items:center;}
+    .gd-grid__cap{font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:var(--mute);}
+    .gd-grid__cap b{color:var(--ink);}
+    .gd-grid__page{width:100%;aspect-ratio:17/11;background:#fff;border:1px solid var(--line);
+      border-radius:6px;box-shadow:0 6px 22px rgba(0,0,0,.10);position:relative;padding:6.5%;box-sizing:border-box;}
+    .gd-grid__field{position:absolute;inset:6.5%;display:grid;
+      grid-template-columns:repeat(12,1fr);grid-template-rows:repeat(12,1fr);gap:1.1%;}
+    /* dashed 12×12 grid drawn ON TOP of the snapped blocks so the lines stay visible */
+    .gd-grid__field[data-cells]{z-index:2;pointer-events:none;}
+    .gd-grid__cell{background:none;border:1px dashed var(--accent);opacity:.55;border-radius:2px;}
+    .gd-grid__el{border-radius:3px;display:flex;align-items:center;justify-content:center;
+      font:700 11px/1 inherit;letter-spacing:.05em;text-transform:uppercase;color:#fff;}
+    .gd-grid .el-anchor{grid-column:1/8;grid-row:1/9;background:#2f6d68;}
+    .gd-grid .el-a{grid-column:8/13;grid-row:1/5;background:#9bafac;color:#243b3a;}
+    .gd-grid .el-b{grid-column:8/13;grid-row:5/9;background:#c4cecb;color:#243b3a;}
+    .gd-grid .el-title{grid-column:1/13;grid-row:9/11;background:#243b3a;}
+    .gd-grid .el-cap{grid-column:1/13;grid-row:11/13;background:#fff;border:1px dashed var(--line);color:var(--mute);}
+
+    /* ===== diagram: S11 page anatomy ===== */
+    .gd-anat{width:min(720px,94vw);}
+    .gd-anat svg{width:100%;height:auto;display:block;}
+    .gd-anat .lbl{font:700 12px/1 -apple-system,"Segoe UI",sans-serif;fill:var(--ink);letter-spacing:.02em;}
+    .gd-anat .val{font:600 11px/1 ui-monospace,Menlo,Consolas,monospace;fill:var(--mute);}
+    .gd-anat .lead{stroke:var(--ink);stroke-width:1;}
+    .gd-anat .dot{fill:var(--accent);}
+
+    /* ===== diagram: S17 serif vs sans ===== */
+    .gd-serif{width:min(820px,94vw);display:grid;grid-template-columns:1fr 1fr;gap:clamp(20px,4vw,40px);}
+    .gd-serif__card{border:1px solid var(--line);border-radius:8px;background:#fff;
+      padding:24px 26px 22px;box-shadow:0 6px 22px rgba(0,0,0,.08);}
+    .gd-serif__tag{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--mute);
+      display:flex;justify-content:space-between;align-items:baseline;margin-bottom:6px;}
+    .gd-serif__tag b{color:var(--ink);font-size:13px;letter-spacing:.03em;text-transform:none;}
+    .gd-serif__glyph{font-size:108px;line-height:1;color:var(--ink);text-align:center;margin:6px 0 16px;}
+    .gd-serif__glyph.is-serif{font-family:Georgia,"Times New Roman",Times,serif;}
+    .gd-serif__glyph.is-sans{font-family:-apple-system,"Segoe UI",Helvetica,Arial,sans-serif;}
+    /* tight inline-block around the letter so rings land on its actual serif feet */
+    .gd-serif__rg{position:relative;display:inline-block;}
+    .gd-serif__ring{position:absolute;width:26px;height:26px;border:2px solid var(--accent);border-radius:50%;}
+    .gd-serif .r1{top:-7px;left:-9px;} .gd-serif .r2{bottom:-5px;left:-9px;} .gd-serif .r3{bottom:-5px;right:-9px;}
+    .gd-serif__note{font-size:13px;color:var(--accent);font-weight:700;text-align:center;margin:0 0 14px;}
+    .gd-serif__note.mute{color:var(--mute);}
+    .gd-serif__body{font-size:14px;line-height:1.5;color:var(--ink);}
+    .gd-serif__body.is-serif{font-family:Georgia,"Times New Roman",Times,serif;}
+    .gd-serif__conv{font-size:12.5px;color:var(--mute);margin-top:12px;border-top:1px solid var(--line);padding-top:10px;}
+    .gd-serif__conv b{color:var(--ink);}
+    @media(max-width:600px){.gd-serif{grid-template-columns:1fr;}}
+
+    /* ===== diagram: S18 pairing ===== */
+    .gd-pair{width:min(820px,94vw);display:grid;grid-template-columns:1fr 1fr;gap:clamp(20px,4vw,40px);}
+    .gd-pair__card{border:1px solid var(--line);border-radius:8px;background:#fff;
+      padding:24px 26px 20px;box-shadow:0 6px 22px rgba(0,0,0,.08);display:flex;flex-direction:column;gap:10px;}
+    .gd-pair__tag{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--mute);}
+    .gd-pair__tag b{color:var(--accent);}
+    .gd-pair__h{font-size:30px;line-height:1.1;color:var(--ink);margin:2px 0;}
+    .gd-pair__p{font-size:14px;line-height:1.55;color:var(--ink);margin:0;}
+    .gd-pair__meta{font-size:11.5px;color:var(--mute);font-family:ui-monospace,Menlo,Consolas,monospace;}
+    .gd-pair__rule{font-size:12.5px;color:var(--mute);margin-top:8px;border-top:1px solid var(--line);padding-top:10px;}
+    .gd-pair__rule b{color:var(--ink);}
+    .gd-pair .sf-h{font-family:-apple-system,"Segoe UI",Helvetica,Arial,sans-serif;font-weight:800;}
+    .gd-pair .sf-p{font-family:-apple-system,"Segoe UI",Helvetica,Arial,sans-serif;font-weight:400;}
+    .gd-pair .ss-h{font-family:Georgia,"Times New Roman",Times,serif;font-weight:700;}
+    .gd-pair .ss-p{font-family:-apple-system,"Segoe UI",Helvetica,Arial,sans-serif;font-weight:400;}
+    @media(max-width:600px){.gd-pair{grid-template-columns:1fr;}}
+  </style>
 </head>
 <body>
 
@@ -55,19 +433,841 @@
           <div class="wf-index">WK04</div>
           <div class="wf-header-text">
             <div class="wf-title">Graphic Design 101</div>
-            <div class="wf-subtitle">Color · composition · typography · layout</div>
+            <div class="wf-subtitle">Color · composition · typography · layout — make work that doesn't look bad</div>
           </div>
         </div>
 
-        <div class="wf-outcome">
-          <strong>Lecture slides — coming soon</strong>
-          This page is a placeholder. The Week 04 lecture slides will be built here.
+        <!-- ── Slides ── -->
+        <span class="timeline-section-label">Lecture Slides</span>
+        <div class="deck" id="deck" data-deck-id="w04" data-deck-title="Week 04">
+          <div class="deck-stage" id="deck-stage">
+
+            <!-- 1 · Title -->
+            <div class="slide slide--title" data-cap="">
+              <div class="tt">Graphic Design 101</div>
+              <div class="ts">LAAR 61400 · Week 04</div>
+            </div>
+
+            <!-- 2 · C1 HSV -->
+            <div class="slide" data-cap="Color has three dimensions" data-notes="Before any color theory — every color is three knobs. Hue (which color), Value (how light/dark), Saturation (how intense vs grey). Designers adjust color along these three, not by picking from a box. Play the slider live. Foreshadow: Value does the heavy lifting — hold that thought for slide 6.">
+              <div class="embed">
+                <div class="gd-hsv">
+                  <div class="gd-hsv__swatch"><span class="gd-hsv__hex" data-hex>#000000</span></div>
+                  <div class="gd-hsv__controls">
+                    <div class="gd-hsv__row">
+                      <label>Hue <b><span data-out="h">210</span>°</b></label>
+                      <input type="range" data-ch="h" min="0" max="360" value="210">
+                    </div>
+                    <div class="gd-hsv__row">
+                      <label>Saturation <b><span data-out="s">70</span>%</b></label>
+                      <input type="range" data-ch="s" min="0" max="100" value="70">
+                    </div>
+                    <div class="gd-hsv__row">
+                      <label>Value <b><span data-out="v">85</span>%</b></label>
+                      <input type="range" data-ch="v" min="0" max="100" value="85">
+                    </div>
+                  </div>
+                  <p class="gd-hsv__cap">Move one slider at a time — each dimension changes the color independently.</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- 3 · C2 RGB vs CMYK -->
+            <div class="slide" data-cap="How color is made — RGB vs CMYK" data-notes="Two ways color is produced. RGB = light, additive: starts black, add all → white. Your screen. CMYK = ink, subtractive: starts white (the paper), add all → near black. Print. The same file looks different in each; screen shows colors ink can't. Know your target: your deck is read on screen / projected (RGB), but the PDF gets printed for pin-up (CMYK — duller). Design for where it'll be seen; if both, check it survives print.">
+              <div class="embed">
+                <div class="gd-mix">
+                  <div class="gd-mix__panel">
+                    <div class="gd-mix__title">RGB · light · screen <b>additive</b></div>
+                    <div class="gd-mix__stage gd-mix__stage--add">
+                      <div class="gd-mix__circ c-top" data-add="r"></div>
+                      <div class="gd-mix__circ c-bl"  data-add="g"></div>
+                      <div class="gd-mix__circ c-br"  data-add="b"></div>
+                    </div>
+                    <div class="gd-mix__sliders">
+                      <div class="gd-mix__sl"><span>R</span><input type="range" data-add-ch="r" min="0" max="255" value="255"><span data-add-out="r">255</span></div>
+                      <div class="gd-mix__sl"><span>G</span><input type="range" data-add-ch="g" min="0" max="255" value="255"><span data-add-out="g">255</span></div>
+                      <div class="gd-mix__sl"><span>B</span><input type="range" data-add-ch="b" min="0" max="255" value="255"><span data-add-out="b">255</span></div>
+                    </div>
+                    <p class="gd-mix__note">Starts <b>black</b>. Adding all channels → <b>white</b>. This is your screen.</p>
+                  </div>
+                  <div class="gd-mix__panel">
+                    <div class="gd-mix__title">CMY · ink · paper <b>subtractive</b></div>
+                    <div class="gd-mix__stage gd-mix__stage--sub">
+                      <div class="gd-mix__circ c-top" data-sub="c"></div>
+                      <div class="gd-mix__circ c-bl"  data-sub="m"></div>
+                      <div class="gd-mix__circ c-br"  data-sub="y"></div>
+                    </div>
+                    <div class="gd-mix__sliders">
+                      <div class="gd-mix__sl"><span>C</span><input type="range" data-sub-ch="c" min="0" max="100" value="100"><span data-sub-out="c">100</span></div>
+                      <div class="gd-mix__sl"><span>M</span><input type="range" data-sub-ch="m" min="0" max="100" value="100"><span data-sub-out="m">100</span></div>
+                      <div class="gd-mix__sl"><span>Y</span><input type="range" data-sub-ch="y" min="0" max="100" value="100"><span data-sub-out="y">100</span></div>
+                    </div>
+                    <p class="gd-mix__note">Starts <b>white</b> (the paper). Adding all inks → near <b>black</b>. This is your printed board.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 4 · interactive color wheel — harmony schemes -->
+            <div class="slide" data-cap="The color wheel &amp; harmonies" data-notes="How the wheel is organized — primary, secondary, tertiary; warm hues advance, cool recede (a free depth cue in a plan). Toggle a scheme to see which hues it pairs, then click any hue to set the base. Don't compute these by hand in practice — pick a base in Canva/Adobe Color/Coolors and it generates the scheme + hex codes for InDesign.">
+              <div class="embed">
+                <div class="gd-wheel">
+                  <svg viewBox="0 -44 360 448" role="img" aria-label="Interactive 12-hue color wheel with harmony schemes">
+                    <g data-segments></g>
+                    <g data-links></g>
+                    <line class="gd-wheel__div" x1="20" y1="180" x2="340" y2="180"></line>
+                    <text class="gd-wheel__lbl" x="180" y="-18" text-anchor="middle">Warm</text>
+                    <text class="gd-wheel__sub" x="180" y="-3" text-anchor="middle">advances · comes forward</text>
+                    <text class="gd-wheel__lbl" x="180" y="372" text-anchor="middle">Cool</text>
+                    <text class="gd-wheel__sub" x="180" y="387" text-anchor="middle">recedes · falls back</text>
+                    <circle cx="180" cy="180" r="70" fill="var(--paper)"></circle>
+                    <text class="gd-wheel__ctr" x="180" y="185" text-anchor="middle">Hue</text>
+                  </svg>
+                  <div class="gd-wheel__schemes">
+                    <button class="gd-wheel__btn" data-scheme="complementary" aria-pressed="true">Complementary</button>
+                    <button class="gd-wheel__btn" data-scheme="analogous" aria-pressed="false">Analogous</button>
+                    <button class="gd-wheel__btn" data-scheme="triadic" aria-pressed="false">Triadic</button>
+                    <button class="gd-wheel__btn" data-scheme="split" aria-pressed="false">Split-comp.</button>
+                    <button class="gd-wheel__btn" data-scheme="monochromatic" aria-pressed="false">Monochromatic</button>
+                  </div>
+                  <p class="gd-wheel__cap" data-cap></p>
+                  <p class="gd-wheel__hint">Pick a scheme — then click any hue to set the base color.</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- 5 · color harmonies — two paintings -->
+            <div class="slide auto" data-cap="Color relationships — harmonies" data-credit="Left: Van Gogh, ‘Café Terrace on the Place du Forum, Arles’, 1888; Right: Claude Monet, ‘Water Lilies’, 1904." data-notes="Five workhorse schemes: complementary (opposite, max contrast), analogous (neighbors, calm), triadic (balanced, lively), split-complementary, monochromatic (one hue, vary value/saturation). Don't compute these by hand — pick a base color in Canva/Adobe Color/Coolors and it generates the scheme + hex codes to drop into InDesign.">
+              <figure><img src="/teaching/laar61400/assets/img/Week04/05-right.webp" alt="Van Gogh, Café Terrace on the Place du Forum, Arles, 1888"></figure>
+              <figure><img src="/teaching/laar61400/assets/img/Week04/05-left.webp" alt="Claude Monet, Water Lilies, 1904"></figure>
+            </div>
+
+            <!-- 6 · C5 greyscale -->
+            <div class="slide" data-cap="Value does the work" data-notes="Contrast = legibility. A layout must read in greyscale first — if it dies in grey, it's a value problem, not a hue problem. Most ‘ugly’ student color is really flat value. The squint test: blur your eyes; if the masses still separate, value is doing its job. Toggle the widget — the strong-value design survives greyscale, the all-mid-value one collapses.">
+              <div class="embed">
+                <div class="gd-val">
+                  <div class="gd-val__row">
+                    <figure class="gd-val__card" style="margin:0">
+                      <figcaption>Strong value range</figcaption>
+                      <div class="gd-val__board board-good">
+                        <div class="sky"></div><div class="ground"></div>
+                        <div class="mass"></div><div class="path"></div><div class="title"></div>
+                      </div>
+                    </figure>
+                    <figure class="gd-val__card" style="margin:0">
+                      <figcaption>All mid-value</figcaption>
+                      <div class="gd-val__board board-bad">
+                        <div class="sky"></div><div class="ground"></div>
+                        <div class="mass"></div><div class="path"></div><div class="title"></div>
+                      </div>
+                    </figure>
+                  </div>
+                  <button class="gd-val__btn" data-toggle
+                    data-on="Back to color" data-off="Convert to greyscale"
+                    data-hint-on="Left still reads — value carries it. Right collapses — it was all hue, no value contrast."
+                    data-hint-off="Both look fine in color. Now drop the hue — which one still reads?">Convert to greyscale</button>
+                  <p class="gd-val__hint" data-hint>Both look fine in color. Now drop the hue — which one still reads?</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- 7 · SCAPE drawings — limited palette (two rows of 4) -->
+            <div class="slide auto-rows" data-cap="A limited, intentional palette" data-credit="Various drawings by SCAPE" data-notes="Restraint beats variety. 60–30–10 — a dominant, a secondary, a small accent. One accent color earns attention; ten colors earn none. Build from value first, then add hue. This is the discipline that makes the harmonies from slide 5 actually work.">
+              <div class="row">
+                <figure><img src="/teaching/laar61400/assets/img/Week04/07-scape-01.webp" alt="SCAPE drawing"></figure>
+                <figure><img src="/teaching/laar61400/assets/img/Week04/07-scape-02.webp" alt="SCAPE drawing"></figure>
+                <figure><img src="/teaching/laar61400/assets/img/Week04/07-scape-03.webp" alt="SCAPE drawing"></figure>
+                <figure><img src="/teaching/laar61400/assets/img/Week04/07-scape-04.webp" alt="SCAPE drawing"></figure>
+              </div>
+              <div class="row">
+                <figure><img src="/teaching/laar61400/assets/img/Week04/07-scape-05.webp" alt="SCAPE drawing"></figure>
+                <figure><img src="/teaching/laar61400/assets/img/Week04/07-scape-06.webp" alt="SCAPE drawing"></figure>
+                <figure><img src="/teaching/laar61400/assets/img/Week04/07-scape-07.webp" alt="SCAPE drawing"></figure>
+              </div>
+              <img class="scape-logo" src="/teaching/laar61400/assets/img/Week04/07-scape-08.webp" alt="SCAPE logo">
+            </div>
+
+            <!-- 8 · landscape color — top/bottom stack -->
+            <div class="slide auto-rows" data-cap="Color in landscape representation" data-credit="Top: Zhiming Zhang, 2025 Student ASLA Honor Award. Bottom: MVVA, Brooklyn Botanic Garden." data-notes="Pull it together on a plan. Restrained, value-led palette; a legend that actually reads; warm/cool for figure-ground; check screen vs print before pin-up. The real point — intention over convention: water doesn't have to be blue, trees don't have to be green. Those defaults are inherited conventions no one can trace; copying them isn't a color decision, it's the absence of one. Decide what you want to communicate — mood, season, materiality, what should dominate — then choose color to say that. Professional work vs competitions: the former is constrained by client preference and ‘professionalism’; the latter can be more experimental.">
+              <div class="row"><figure><img src="/teaching/laar61400/assets/img/Week04/08-top.webp" alt="Zhiming Zhang, 2025 Student ASLA Honor Award"></figure></div>
+              <div class="row"><figure><img src="/teaching/laar61400/assets/img/Week04/08-bottom.webp" alt="MVVA, Brooklyn Botanic Garden"></figure></div>
+            </div>
+
+            <!-- 9 · alignment before/after (schematic mock) -->
+            <div class="slide" data-cap="Alignment — the backbone" data-notes="Nothing reads as amateur faster than things *almost* lined up. Every element aligns to something; alignment creates invisible edge-lines that hold a page together. Left-align beats center-everything for stacked text and elements. The center-everything reflex is the #1 student failure. Before/after at right.">
+              <div class="embed">
+                <div class="gd-mock">
+                  <figure>
+                    <figcaption>Before — almost aligned</figcaption>
+                    <div class="gd-mock__page al-bad">
+                      <div class="gd-mock__el e1"></div><div class="gd-mock__el e2"></div>
+                      <div class="gd-mock__el e3"></div><div class="gd-mock__el e4"></div>
+                    </div>
+                  </figure>
+                  <figure>
+                    <figcaption>After — snapped to shared edges</figcaption>
+                    <div class="gd-mock__page al-good">
+                      <div class="gd-mock__el e1"></div><div class="gd-mock__el e2"></div>
+                      <div class="gd-mock__el e3"></div><div class="gd-mock__el e4"></div>
+                    </div>
+                  </figure>
+                </div>
+              </div>
+            </div>
+
+            <!-- 10 · S10 grid -->
+            <div class="slide" data-cap="The grid — 12 columns (and rows)" data-notes="The grid is the skeleton alignment hangs on. Why 12: it divides cleanly by 2, 3, 4, 6 — so one system gives 2-, 3-, 4-, 6-up layouts. Web's standard column count, and it works for an 11×17 page too. Set margins, then a 12×12 grid with gutters; snap every image, caption, title block to it. One grid reused across pages = instant alignment + a consistent deck.">
+              <div class="embed">
+                <div class="gd-grid">
+                  <div class="gd-grid__cap"><b>12 columns × 12 rows</b> — one skeleton, snap everything to it</div>
+                  <div class="gd-grid__page">
+                    <div class="gd-grid__field" data-cells></div>
+                    <div class="gd-grid__field">
+                      <div class="gd-grid__el el-anchor">Anchor</div>
+                      <div class="gd-grid__el el-a">image</div>
+                      <div class="gd-grid__el el-b">image</div>
+                      <div class="gd-grid__el el-title">Title</div>
+                      <div class="gd-grid__el el-cap">caption</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 11 · S11 page anatomy -->
+            <div class="slide" data-cap="Publication terms — page anatomy" data-notes="The vocabulary InDesign hands you and most people guess at. Margin = page edge to content, the breathing frame. Column + gutter = the grid; gutter is the space between columns. Bleed = artwork run past the trim so a full-bleed image has no white sliver after cutting (~0.125&quot;). Trim = the final cut line / page size. Safe area = keep titles and key content inside the margin. Set these once in the document and every page inherits them. (Proximity, quickly: gutters and margins are also how you group — related close, unrelated apart.)">
+              <div class="embed">
+                <div class="gd-anat">
+                  <svg viewBox="0 0 730 440" role="img" aria-label="Page anatomy: bleed, trim, margin, columns, gutter, safe area">
+                    <rect x="40" y="40" width="440" height="360" fill="#fff" stroke="var(--accent)" stroke-width="1.5" stroke-dasharray="5 4"/>
+                    <rect x="58" y="58" width="404" height="324" fill="#fff" stroke="var(--ink)" stroke-width="1.5"/>
+                    <rect x="92" y="92" width="336" height="256" fill="none" stroke="var(--mute)" stroke-width="1" stroke-dasharray="4 4"/>
+                    <g fill="var(--accent)" opacity="0.10">
+                      <rect x="92"  y="92" width="75" height="256"/>
+                      <rect x="179" y="92" width="75" height="256"/>
+                      <rect x="266" y="92" width="75" height="256"/>
+                      <rect x="353" y="92" width="75" height="256"/>
+                    </g>
+                    <rect x="254" y="92" width="12" height="256" fill="var(--accent)" opacity="0.5"/>
+                    <line class="lead" x1="480" y1="48" x2="556" y2="48"/><circle class="dot" cx="480" cy="48" r="2.5"/>
+                    <text class="lbl" x="560" y="45">Bleed</text>
+                    <text class="val" x="560" y="60">art past the cut · ~0.125"</text>
+                    <line class="lead" x1="462" y1="92" x2="556" y2="92"/><circle class="dot" cx="462" cy="92" r="2.5"/>
+                    <text class="lbl" x="560" y="89">Trim</text>
+                    <text class="val" x="560" y="104">final page size / cut line</text>
+                    <line class="lead" x1="428" y1="140" x2="556" y2="140"/><circle class="dot" cx="428" cy="140" r="2.5"/>
+                    <text class="lbl" x="560" y="137">Margin</text>
+                    <text class="val" x="560" y="152">edge → content frame</text>
+                    <!-- safe area: right-side callout (was overlapping the column shapes) -->
+                    <line class="lead" x1="300" y1="200" x2="556" y2="200"/><circle class="dot" cx="300" cy="200" r="2.5"/>
+                    <text class="lbl" x="560" y="197">Safe area</text>
+                    <text class="val" x="560" y="212">keep content inside margin</text>
+                    <!-- bottom callouts: column + gutter, centered under their leaders -->
+                    <line class="lead" x1="129" y1="348" x2="129" y2="394"/><circle class="dot" cx="129" cy="348" r="2.5"/>
+                    <text class="lbl" x="129" y="410" text-anchor="middle">Column</text>
+                    <line class="lead" x1="260" y1="348" x2="260" y2="394"/><circle class="dot" cx="260" cy="348" r="2.5"/>
+                    <text class="lbl" x="260" y="410" text-anchor="middle">Gutter</text>
+                    <text class="val" x="260" y="424" text-anchor="middle">space between columns</text>
+                  </svg>
+                </div>
+              </div>
+            </div>
+
+            <!-- 12 · balance & visual weight (schematic mock) -->
+            <div class="slide" data-cap="Balance &amp; visual weight" data-notes="Every element has visual weight — size, darkness, color, density. Key move: treat a text block as a grey block — squint and a paragraph is a grey rectangle of weight, not words. Composing is balancing masses (images, drawings, grey text-blocks, empty space), not arranging content. Symmetric = formal, static, calm; asymmetric = dynamic, modern — balance a big quiet element against a small busy one. Squint test: do the masses balance? Balance within each page — each drawing is its own composition.">
+              <div class="embed">
+                <div class="gd-mock">
+                  <figure>
+                    <figcaption>Symmetric — formal, static</figcaption>
+                    <div class="gd-mock__page bal bal-sym">
+                      <div class="m m1"></div><div class="m m2"></div><div class="m m3"></div>
+                    </div>
+                  </figure>
+                  <figure>
+                    <figcaption>Asymmetric — dynamic, balanced by weight</figcaption>
+                    <div class="gd-mock__page bal bal-asym">
+                      <div class="m m1"></div><div class="m m2"></div><div class="m m3"></div>
+                    </div>
+                  </figure>
+                </div>
+              </div>
+            </div>
+
+            <!-- 13 · white space 留白 — two-up -->
+            <div class="slide auto" data-cap="White space — 留白" data-credit="Left: Ma Yuan (馬遠), Angler on a Wintry Lake 寒江独钓图, Southern Song dynasty; Right: a page composition." data-notes="Empty space is active, not wasted. Chinese landscape painting names this — 留白. Ma Yuan is ‘one-corner Ma’ (馬一角): the subject sits in a corner and the vast emptiness IS the composition — it directs the eye, sets mood, gives the subject room to breathe. The student instinct to fill every inch kills the work. Negative space frames the focal point. Ties back to grouping and asymmetry.">
+              <figure><img src="/teaching/laar61400/assets/img/Week04/13-angler.webp" alt="Ma Yuan, Angler on a Wintry Lake, Southern Song dynasty"></figure>
+              <figure><img src="/teaching/laar61400/assets/img/Week04/13-whitespace.webp" alt="A page composition using white space"></figure>
+            </div>
+
+            <!-- 14 · one bounded work — 3 student boards -->
+            <div class="slide auto" data-cap="One drawing, one bounded work" data-credit="Student boards." data-notes="Composition all together on a single page. One dominant anchor, supporting elements aligned to columns, generous margins, a clear reading path — focal point then flow. No bedsheet-board: make each drawing stand alone, then sequence pages into a deck. Payoff — these lift straight into a portfolio. Before/after: scattered/centered vs gridded/aligned.">
+              <figure><img src="/teaching/laar61400/assets/img/Week04/14-board-a.webp" alt="Student board"></figure>
+              <figure><img src="/teaching/laar61400/assets/img/Week04/14-board-b.webp" alt="Student board"></figure>
+              <figure><img src="/teaching/laar61400/assets/img/Week04/14-board-c.webp" alt="Student board"></figure>
+            </div>
+
+            <!-- 15 · T1 hierarchy -->
+            <div class="slide" data-cap="Type guides the eye" data-notes="Before anyone reads a word, the type tells them where to look. Size, weight, and contrast set reading order — not position. In the demo, the middle line is read first (biggest, highest contrast) and the top band last (small, low contrast). Position ≠ priority. Press Flatten: make every line equal and the order collapses — same words, no idea where to start. This is hierarchy inside text; slide 20 extends it to the whole page.">
+              <div class="embed">
+                <div class="gd-t1">
+                  <div class="gd-t1__demo">
+                    <div class="gd-t1__band gd-t1__band--a"><p class="gd-t1__line l-last">And you will read this last</p></div>
+                    <div class="gd-t1__band gd-t1__band--b"><p class="gd-t1__line l-first">You will read this first</p></div>
+                    <div class="gd-t1__band gd-t1__band--c">
+                      <p class="gd-t1__line l-then">And then you will read this</p>
+                      <p class="gd-t1__line l-thenmin">Then this one</p>
+                    </div>
+                  </div>
+                  <button class="gd-t1__btn" data-toggle
+                    data-on="Restore hierarchy" data-off="Flatten the type"
+                    data-hint-on="All equal now — your eye has no idea where to start. Same words, no order."
+                    data-hint-off="Top band is read last, middle first — size and contrast decide, not position.">Flatten the type</button>
+                  <p class="gd-t1__hint" data-hint>Top band is read last, middle first — size and contrast decide, not position.</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- 16 · T2 readability -->
+            <div class="slide" data-cap="The readability rules" data-notes="The few mechanical settings that make type legible — every one a slider here. Size; weight (bold for emphasis, sparingly); leading = space between lines, body ≈ 1.3–1.5×; measure = characters per line, comfortable 45–75; tracking = run-wide letter-spacing, leave body near 0 (different from kerning, which is per-pair); contrast = text vs background — drop it and the text dissolves (the value lesson again). Toggle serif/sans too. Then lock these as paragraph/character styles in InDesign so the whole deck stays consistent.">
+              <div class="embed">
+                <div class="gd-type" style="--size:17px;--weight:400;--lead:1.4;--track:0em;--meas:60ch;--col:#1a1a1a;--style:normal;">
+                  <div class="gd-type__sample">
+                    <p>Typography is what language looks like. The same words can invite you in or push you away, depending only on how the type is set. Spacing, line length, and rhythm do the quiet work of making a paragraph easy — or tiring — to read.</p>
+                  </div>
+                  <div class="gd-type__toggles">
+                    <button class="gd-type__tog" data-tog="family" aria-pressed="false" data-on="Serif" data-off="Sans-serif">Sans-serif</button>
+                    <button class="gd-type__tog" data-tog="style" aria-pressed="false" data-on="Italic" data-off="Roman">Roman</button>
+                  </div>
+                  <div class="gd-type__grid">
+                    <div class="gd-type__row">
+                      <label>Size <b><span data-out="size">17</span>px</b></label>
+                      <input type="range" data-var="size" min="11" max="32" value="17">
+                    </div>
+                    <div class="gd-type__row">
+                      <label>Weight <b><span data-out="weight">400</span></b></label>
+                      <input type="range" data-var="weight" min="100" max="900" step="100" value="400">
+                      <small>Bold for emphasis — <span class="gd-type__ok">sparingly</span>.</small>
+                    </div>
+                    <div class="gd-type__row">
+                      <label>Leading <b><span data-out="lead">1.40</span>×</b></label>
+                      <input type="range" data-var="lead" min="100" max="220" value="140">
+                      <small>Space between lines. Body: <span class="gd-type__ok">1.3–1.5×</span>.</small>
+                    </div>
+                    <div class="gd-type__row">
+                      <label>Measure <b><span data-out="meas">60</span> ch</b></label>
+                      <input type="range" data-var="meas" min="20" max="95" value="60">
+                      <small>Chars per line. Comfortable: <span class="gd-type__ok">45–75</span>.</small>
+                    </div>
+                    <div class="gd-type__row">
+                      <label>Tracking <b><span data-out="track">0</span></b></label>
+                      <input type="range" data-var="track" min="-50" max="200" value="0">
+                      <small>Letter-spacing. Body near <span class="gd-type__ok">0</span>.</small>
+                    </div>
+                    <div class="gd-type__row">
+                      <label>Contrast <b><span data-out="contrast">100</span>%</b></label>
+                      <input type="range" data-var="contrast" min="12" max="100" value="100">
+                      <small>Text vs background. Low contrast = <span class="gd-type__ok">hard to read</span>.</small>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 17 · S17 serif vs sans -->
+            <div class="slide" data-cap="Serif vs sans-serif" data-notes="Serifs are the little feet; sans = without them. The convention: serif for long-form print/paper, sans for screen/digital — but flag it's contested. It came from low-res screens mangling serifs; modern displays render serifs fine, so today it's more about tone and context (serif = traditional/editorial; sans = neutral/modern) than a hard rule. Separate axis: display faces (headlines) vs text faces (body).">
+              <div class="embed">
+                <div class="gd-serif">
+                  <div class="gd-serif__card">
+                    <div class="gd-serif__tag">Serif <b>Georgia</b></div>
+                    <div class="gd-serif__glyph is-serif"><span class="gd-serif__rg">R<span class="gd-serif__ring r1"></span><span class="gd-serif__ring r2"></span><span class="gd-serif__ring r3"></span></span></div>
+                    <p class="gd-serif__note">the little feet = serifs</p>
+                    <p class="gd-serif__body is-serif">The quick brown fox jumps over the lazy dog.</p>
+                    <p class="gd-serif__conv"><b>Convention:</b> long-form print / paper. Editorial, traditional tone.</p>
+                  </div>
+                  <div class="gd-serif__card">
+                    <div class="gd-serif__tag">Sans-serif <b>system UI</b></div>
+                    <div class="gd-serif__glyph is-sans"><span class="gd-serif__rg">R</span></div>
+                    <p class="gd-serif__note mute">no feet — clean terminals</p>
+                    <p class="gd-serif__body">The quick brown fox jumps over the lazy dog.</p>
+                    <p class="gd-serif__conv"><b>Convention:</b> screen / digital. Neutral, modern tone. <i>(Contested — modern displays render serifs fine.)</i></p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 18 · S18 pairing -->
+            <div class="slide" data-cap="Font pairing" data-notes="How to combine typefaces without it looking accidental. Safest — one superfamily: a single family, vary weight/size/style; guaranteed harmony, the beginner default. Next — serif + sans: the classic pairing, contrast of category with harmony of mood (serif headline + sans body, or vice versa). Rules: pair by contrast not near-sameness; cap at two families; one for headings, one for body. Unsure? Do the superfamily move.">
+              <div class="embed">
+                <div class="gd-pair">
+                  <div class="gd-pair__card">
+                    <div class="gd-pair__tag">Safest — <b>one superfamily</b></div>
+                    <h3 class="gd-pair__h sf-h">Site Analysis</h3>
+                    <span class="gd-pair__meta">same family · weight 800</span>
+                    <p class="gd-pair__p sf-p">A single typeface carries both heading and body — you just change the weight and size. Harmony is guaranteed because nothing clashes.</p>
+                    <span class="gd-pair__meta">same family · weight 400</span>
+                    <p class="gd-pair__rule"><b>Why it works:</b> contrast by weight/size, not by clashing shapes. The beginner default.</p>
+                  </div>
+                  <div class="gd-pair__card">
+                    <div class="gd-pair__tag">Next — <b>serif + sans</b></div>
+                    <h3 class="gd-pair__h ss-h">Site Analysis</h3>
+                    <span class="gd-pair__meta">serif · headline</span>
+                    <p class="gd-pair__p ss-p">A serif heading paired with a sans body: contrast of category, harmony of mood. One leads, one reads — never two of the same job.</p>
+                    <span class="gd-pair__meta">sans · body</span>
+                    <p class="gd-pair__rule"><b>Rules:</b> pair by contrast, not near-sameness · cap at two families · one heads, one bodies.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 19 · type on a page — two-up -->
+            <div class="slide auto" data-cap="Type on a page" data-credit="Field Operations, drawings for Fresh Kills Park." data-notes="A small, consistent type system across the deck — title block, drawing labels, body/notes. Minimum legible sizes that hold at 11×17, on screen AND printed for pin-up (test the small stuff at actual size). Reuse the same paragraph styles on every page so labels and captions match drawing-to-drawing.">
+              <figure><img src="/teaching/laar61400/assets/img/Week04/19-left.webp" alt="Field Operations, Fresh Kills site plan"></figure>
+              <figure><img src="/teaching/laar61400/assets/img/Week04/19-right.webp" alt="Field Operations, Staten Island Fresh Kills"></figure>
+            </div>
+
+            <!-- 20 · layout templates -->
+            <div class="slide" data-cap="A few layout templates" data-notes="These are a few practical layout templates you can try out — small-multiple grids for material study, a plan-over-section, a hero with caption, left-text/right-image, full-bleed with a title band, two-thirds/one-third, banner-over-columns, and a centered focus with generous margins. Pick one per page; reuse across the deck for consistency. (Draft set — to refine with Zihao.)">
+              <div class="embed">
+                <div class="gd-templates">
+                  <figure><div class="lt lt-hero"><span class="ink a"></span><span class="dk b"></span></div><figcaption>Hero + caption</figcaption></figure>
+                  <figure><div class="lt lt-ps"><span class="ink a"></span><span class="b"></span></div><figcaption>Plan over section</figcaption></figure>
+                  <figure><div class="lt lt-sm"><span class="a"></span><span class="b"></span><span class="c"></span><span class="d"></span><span class="e"></span><span class="f"></span></div><figcaption>Small multiples (material study)</figcaption></figure>
+                  <figure><div class="lt lt-lr"><span class="a"></span><span class="ink b"></span></div><figcaption>Text left, image right</figcaption></figure>
+                  <figure><div class="lt lt-fb"><span class="ink a"></span><span class="dk b"></span></div><figcaption>Full bleed + title band</figcaption></figure>
+                  <figure><div class="lt lt-23"><span class="ink a"></span><span class="b"></span><span class="c"></span></div><figcaption>Two-thirds / one-third</figcaption></figure>
+                  <figure><div class="lt lt-b3"><span class="dk a"></span><span class="col b"></span><span class="col c"></span><span class="col d"></span></div><figcaption>Banner + three columns</figcaption></figure>
+                  <figure><div class="lt lt-cf"><span class="ink a"></span></div><figcaption>Centered focus + margins</figcaption></figure>
+                </div>
+              </div>
+            </div>
+
+            <!-- 21 · D1 fix-it -->
+            <div class="slide" data-cap="Putting it together — fix a page" data-notes="No new principles — this is the repair process. Take one messy page and fix it in four moves, each a thing we already learned: align (snap to grid) → hierarchy (one anchor dominates, size sets order) → white space (margins, breathe) → color (limited palette, one accent). Step through the widget. This sequence IS the checklist you run on every page.">
+              <div class="embed">
+                <div class="gd-fix">
+                  <div class="gd-fix__page">
+                    <div class="gd-fix__canvas">
+                      <div class="gd-fix__el el-title">Site Title</div>
+                      <div class="gd-fix__el el-hero">Anchor drawing</div>
+                      <div class="gd-fix__el el-a">image</div>
+                      <div class="gd-fix__el el-b">image</div>
+                      <div class="gd-fix__el el-body"></div>
+                    </div>
+                  </div>
+                  <p class="gd-fix__cap" data-cap>Stage 0 — <b>messy</b>: misaligned, no focal point, clashing color, crammed to the edges. Press fix.</p>
+                  <div class="gd-fix__bar">
+                    <button class="gd-fix__btn" data-next>Apply next fix ▸</button>
+                    <button class="gd-fix__btn gd-fix__btn--ghost" data-reset>Reset</button>
+                    <span class="gd-fix__step" data-step>0 / 4</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 22 · pre-flight checklist -->
+            <div class="slide textslide" data-cap="Pre-flight checklist" data-notes="Run this on every WF02 page before you submit. Each item links back to a block this week.">
+              <div class="gd-checklist">
+                <h3>Before you submit — the one-screen check</h3>
+                <ul>
+                  <li>Aligned to a grid? <b>(slides 9–10)</b></li>
+                  <li>One clear focal point? <b>(15, 20)</b></li>
+                  <li>Reads in greyscale? <b>(6)</b></li>
+                  <li>Limited palette, one accent? <b>(7)</b></li>
+                  <li>Type legible at actual size? <b>(16, 19)</b></li>
+                  <li>Enough white space — not filled to the edges? <b>(13)</b></li>
+                  <li>Each drawing stands alone, portfolio-ready? <b>(14)</b></li>
+                </ul>
+              </div>
+            </div>
+
+          </div>
+          <div class="deck-bar">
+            <button class="deck-btn" id="deck-prev" aria-label="Previous slide">&lsaquo;</button>
+            <div class="deck-count"><input id="deck-jump" type="text" inputmode="numeric" aria-label="Jump to slide" value="1"><span id="deck-total"> / 22</span></div>
+            <button class="deck-btn" id="deck-next" aria-label="Next slide">&rsaquo;</button>
+            <div class="deck-meta"><span class="deck-cap" id="deck-cap"></span><span id="deck-credit"></span></div>
+            <button class="deck-btn" id="deck-notes-toggle" aria-expanded="false" aria-controls="deck-notes" aria-label="Toggle speaker notes" title="Speaker notes"><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="2" y="2" width="12" height="12" rx="1.5"/><line x1="4.5" y1="5.5" x2="11.5" y2="5.5"/><line x1="4.5" y1="8" x2="11.5" y2="8"/><line x1="4.5" y1="10.5" x2="8.5" y2="10.5"/></svg></button>
+            <button class="deck-btn" id="deck-present" aria-label="Open Presenter View" title="Presenter View (synced second window)"><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="2" width="9" height="7" rx="1.2"/><path d="M3 11h5M5.5 9v2"/><rect x="11" y="5" width="4" height="4" rx="1" stroke-dasharray="1.8 1.2"/></svg></button>
+            <button class="deck-btn deck-fs" id="deck-fs" aria-label="Present full screen" title="Present (full screen)">&#x26F6;</button>
+          </div>
+          <div class="deck-notes" id="deck-notes" hidden></div>
         </div>
+
+        <!-- ── Tools strip (play with these any time) ── -->
+        <span class="timeline-section-label">Tools — play with these</span>
+        <div class="gd-tools">
+          <div class="gd-tools__card">
+            <h4>Color has three dimensions</h4>
+            <p class="k">Hue · Saturation · Value</p>
+            <div class="gd-hsv">
+              <div class="gd-hsv__swatch"><span class="gd-hsv__hex" data-hex>#000000</span></div>
+              <div class="gd-hsv__controls">
+                <div class="gd-hsv__row"><label>Hue <b><span data-out="h">210</span>°</b></label><input type="range" data-ch="h" min="0" max="360" value="210"></div>
+                <div class="gd-hsv__row"><label>Saturation <b><span data-out="s">70</span>%</b></label><input type="range" data-ch="s" min="0" max="100" value="70"></div>
+                <div class="gd-hsv__row"><label>Value <b><span data-out="v">85</span>%</b></label><input type="range" data-ch="v" min="0" max="100" value="85"></div>
+              </div>
+              <p class="gd-hsv__cap">Move one slider at a time — each dimension changes the color independently.</p>
+            </div>
+          </div>
+
+          <div class="gd-tools__card">
+            <h4>RGB vs CMYK</h4>
+            <p class="k">Additive light · subtractive ink</p>
+            <div class="gd-mix">
+              <div class="gd-mix__panel">
+                <div class="gd-mix__title">RGB · light · screen <b>additive</b></div>
+                <div class="gd-mix__stage gd-mix__stage--add">
+                  <div class="gd-mix__circ c-top" data-add="r"></div>
+                  <div class="gd-mix__circ c-bl"  data-add="g"></div>
+                  <div class="gd-mix__circ c-br"  data-add="b"></div>
+                </div>
+                <div class="gd-mix__sliders">
+                  <div class="gd-mix__sl"><span>R</span><input type="range" data-add-ch="r" min="0" max="255" value="255"><span data-add-out="r">255</span></div>
+                  <div class="gd-mix__sl"><span>G</span><input type="range" data-add-ch="g" min="0" max="255" value="255"><span data-add-out="g">255</span></div>
+                  <div class="gd-mix__sl"><span>B</span><input type="range" data-add-ch="b" min="0" max="255" value="255"><span data-add-out="b">255</span></div>
+                </div>
+                <p class="gd-mix__note">Starts <b>black</b>. Adding all channels → <b>white</b>. This is your screen.</p>
+              </div>
+              <div class="gd-mix__panel">
+                <div class="gd-mix__title">CMY · ink · paper <b>subtractive</b></div>
+                <div class="gd-mix__stage gd-mix__stage--sub">
+                  <div class="gd-mix__circ c-top" data-sub="c"></div>
+                  <div class="gd-mix__circ c-bl"  data-sub="m"></div>
+                  <div class="gd-mix__circ c-br"  data-sub="y"></div>
+                </div>
+                <div class="gd-mix__sliders">
+                  <div class="gd-mix__sl"><span>C</span><input type="range" data-sub-ch="c" min="0" max="100" value="100"><span data-sub-out="c">100</span></div>
+                  <div class="gd-mix__sl"><span>M</span><input type="range" data-sub-ch="m" min="0" max="100" value="100"><span data-sub-out="m">100</span></div>
+                  <div class="gd-mix__sl"><span>Y</span><input type="range" data-sub-ch="y" min="0" max="100" value="100"><span data-sub-out="y">100</span></div>
+                </div>
+                <p class="gd-mix__note">Starts <b>white</b> (the paper). Adding all inks → near <b>black</b>. This is your printed board.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="gd-tools__card">
+            <h4>Value does the work</h4>
+            <p class="k">Squint test · greyscale toggle</p>
+            <div class="gd-val">
+              <div class="gd-val__row">
+                <figure class="gd-val__card" style="margin:0">
+                  <figcaption>Strong value range</figcaption>
+                  <div class="gd-val__board board-good"><div class="sky"></div><div class="ground"></div><div class="mass"></div><div class="path"></div><div class="title"></div></div>
+                </figure>
+                <figure class="gd-val__card" style="margin:0">
+                  <figcaption>All mid-value</figcaption>
+                  <div class="gd-val__board board-bad"><div class="sky"></div><div class="ground"></div><div class="mass"></div><div class="path"></div><div class="title"></div></div>
+                </figure>
+              </div>
+              <button class="gd-val__btn" data-toggle data-on="Back to color" data-off="Convert to greyscale"
+                data-hint-on="Left still reads — value carries it. Right collapses — it was all hue, no value contrast."
+                data-hint-off="Both look fine in color. Now drop the hue — which one still reads?">Convert to greyscale</button>
+              <p class="gd-val__hint" data-hint>Both look fine in color. Now drop the hue — which one still reads?</p>
+            </div>
+          </div>
+
+          <div class="gd-tools__card">
+            <h4>Type guides the eye</h4>
+            <p class="k">Hierarchy · flatten toggle</p>
+            <div class="gd-t1">
+              <div class="gd-t1__demo">
+                <div class="gd-t1__band gd-t1__band--a"><p class="gd-t1__line l-last">And you will read this last</p></div>
+                <div class="gd-t1__band gd-t1__band--b"><p class="gd-t1__line l-first">You will read this first</p></div>
+                <div class="gd-t1__band gd-t1__band--c">
+                  <p class="gd-t1__line l-then">And then you will read this</p>
+                  <p class="gd-t1__line l-thenmin">Then this one</p>
+                </div>
+              </div>
+              <button class="gd-t1__btn" data-toggle data-on="Restore hierarchy" data-off="Flatten the type"
+                data-hint-on="All equal now — your eye has no idea where to start. Same words, no order."
+                data-hint-off="Top band is read last, middle first — size and contrast decide, not position.">Flatten the type</button>
+              <p class="gd-t1__hint" data-hint>Top band is read last, middle first — size and contrast decide, not position.</p>
+            </div>
+          </div>
+
+          <div class="gd-tools__card">
+            <h4>The readability rules</h4>
+            <p class="k">Size · weight · leading · measure · tracking · contrast</p>
+            <div class="gd-type" style="--size:17px;--weight:400;--lead:1.4;--track:0em;--meas:60ch;--col:#1a1a1a;--style:normal;">
+              <div class="gd-type__sample"><p>Typography is what language looks like. The same words can invite you in or push you away, depending only on how the type is set. Spacing, line length, and rhythm do the quiet work of making a paragraph easy — or tiring — to read.</p></div>
+              <div class="gd-type__toggles">
+                <button class="gd-type__tog" data-tog="family" aria-pressed="false" data-on="Serif" data-off="Sans-serif">Sans-serif</button>
+                <button class="gd-type__tog" data-tog="style" aria-pressed="false" data-on="Italic" data-off="Roman">Roman</button>
+              </div>
+              <div class="gd-type__grid">
+                <div class="gd-type__row"><label>Size <b><span data-out="size">17</span>px</b></label><input type="range" data-var="size" min="11" max="32" value="17"></div>
+                <div class="gd-type__row"><label>Weight <b><span data-out="weight">400</span></b></label><input type="range" data-var="weight" min="100" max="900" step="100" value="400"><small>Bold for emphasis — <span class="gd-type__ok">sparingly</span>.</small></div>
+                <div class="gd-type__row"><label>Leading <b><span data-out="lead">1.40</span>×</b></label><input type="range" data-var="lead" min="100" max="220" value="140"><small>Space between lines. Body: <span class="gd-type__ok">1.3–1.5×</span>.</small></div>
+                <div class="gd-type__row"><label>Measure <b><span data-out="meas">60</span> ch</b></label><input type="range" data-var="meas" min="20" max="95" value="60"><small>Chars per line. Comfortable: <span class="gd-type__ok">45–75</span>.</small></div>
+                <div class="gd-type__row"><label>Tracking <b><span data-out="track">0</span></b></label><input type="range" data-var="track" min="-50" max="200" value="0"><small>Letter-spacing. Body near <span class="gd-type__ok">0</span>.</small></div>
+                <div class="gd-type__row"><label>Contrast <b><span data-out="contrast">100</span>%</b></label><input type="range" data-var="contrast" min="12" max="100" value="100"><small>Text vs background. Low contrast = <span class="gd-type__ok">hard to read</span>.</small></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="gd-tools__card">
+            <h4>Fix a page</h4>
+            <p class="k">Align → hierarchy → white space → color</p>
+            <div class="gd-fix">
+              <div class="gd-fix__page">
+                <div class="gd-fix__canvas">
+                  <div class="gd-fix__el el-title">Site Title</div>
+                  <div class="gd-fix__el el-hero">Anchor drawing</div>
+                  <div class="gd-fix__el el-a">image</div>
+                  <div class="gd-fix__el el-b">image</div>
+                  <div class="gd-fix__el el-body"></div>
+                </div>
+              </div>
+              <p class="gd-fix__cap" data-cap>Stage 0 — <b>messy</b>: misaligned, no focal point, clashing color, crammed to the edges. Press fix.</p>
+              <div class="gd-fix__bar">
+                <button class="gd-fix__btn" data-next>Apply next fix ▸</button>
+                <button class="gd-fix__btn gd-fix__btn--ghost" data-reset>Reset</button>
+                <span class="gd-fix__step" data-step>0 / 4</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ── Bonus: 富春山居圖 handscroll ── -->
+        <span class="timeline-section-label">Bonus — 留白 in a handscroll</span>
+        <div class="gd-scroll">
+          <div class="gd-scroll__bar">
+            <b>黄公望《富春山居圖》(無用師卷)</b>
+            <span>Huang Gongwang, Dwelling in the Fuchun Mountains, 1350 · Yuan dynasty</span>
+          </div>
+          <div class="gd-scroll__viewport">
+            <img src="/teaching/laar61400/assets/img/Week04/scroll-fuchun.webp" alt="Huang Gongwang, Dwelling in the Fuchun Mountains handscroll">
+          </div>
+          <p class="gd-scroll__hint">Scroll horizontally → — a handscroll is read a span at a time, never all at once. The emptiness sets the pace.</p>
+        </div>
+
       </div>
 
     </div>
   </main>
 
   <script src="/teaching/laar61400/assets/js/nav.js"></script>
+
+  <!-- ── widget / diagram instance scripts (all instance-safe: querySelectorAll().forEach) ── -->
+  <script>
+  /* C1 HSV */
+  (function(){
+    function hsv2rgb(h,s,v){s/=100;v/=100;var c=v*s,x=c*(1-Math.abs((h/60)%2-1)),m=v-c,r,g,b;
+      if(h<60){r=c;g=x;b=0;}else if(h<120){r=x;g=c;b=0;}else if(h<180){r=0;g=c;b=x;}
+      else if(h<240){r=0;g=x;b=c;}else if(h<300){r=x;g=0;b=c;}else{r=c;g=0;b=x;}
+      return [Math.round((r+m)*255),Math.round((g+m)*255),Math.round((b+m)*255)];}
+    function hex(rgb){return '#'+rgb.map(function(n){return n.toString(16).padStart(2,'0');}).join('').toUpperCase();}
+    function init(root){
+      var H=root.querySelector('[data-ch=h]'),S=root.querySelector('[data-ch=s]'),V=root.querySelector('[data-ch=v]');
+      var sw=root.querySelector('.gd-hsv__swatch'),hexEl=root.querySelector('[data-hex]');
+      function out(ch){return root.querySelector('[data-out='+ch+']');}
+      function update(){
+        var h=+H.value,s=+S.value,v=+V.value;
+        out('h').textContent=h;out('s').textContent=s;out('v').textContent=v;
+        var rgb=hsv2rgb(h,s,v);
+        sw.style.background='rgb('+rgb.join(',')+')';hexEl.textContent=hex(rgb);
+        S.style.background='linear-gradient(90deg,rgb('+hsv2rgb(h,0,v).join(',')+'),rgb('+hsv2rgb(h,100,v).join(',')+'))';
+        V.style.background='linear-gradient(90deg,#000,rgb('+hsv2rgb(h,s,100).join(',')+'))';
+      }
+      H.style.background='linear-gradient(90deg,#f00,#ff0,#0f0,#0ff,#00f,#f0f,#f00)';
+      [H,S,V].forEach(function(el){el.addEventListener('input',update);});update();
+    }
+    document.querySelectorAll('.gd-hsv').forEach(init);
+  })();
+
+  /* C2 RGB/CMYK */
+  (function(){
+    function init(root){
+      function add(){['r','g','b'].forEach(function(ch){
+        var val=+root.querySelector('[data-add-ch='+ch+']').value;
+        root.querySelector('[data-add-out='+ch+']').textContent=val;
+        var rgb={r:[val,0,0],g:[0,val,0],b:[0,0,val]}[ch];
+        root.querySelector('[data-add='+ch+']').style.background='rgb('+rgb.join(',')+')';});}
+      function sub(){['c','m','y'].forEach(function(ch){
+        var val=+root.querySelector('[data-sub-ch='+ch+']').value,k=Math.round(255-val*2.55);
+        root.querySelector('[data-sub-out='+ch+']').textContent=val;
+        var rgb={c:[k,255,255],m:[255,k,255],y:[255,255,k]}[ch];
+        root.querySelector('[data-sub='+ch+']').style.background='rgb('+rgb.join(',')+')';});}
+      root.querySelectorAll('[data-add-ch]').forEach(function(el){el.addEventListener('input',add);});
+      root.querySelectorAll('[data-sub-ch]').forEach(function(el){el.addEventListener('input',sub);});
+      add();sub();
+    }
+    document.querySelectorAll('.gd-mix').forEach(init);
+  })();
+
+  /* C5 greyscale */
+  (function(){
+    function init(root){
+      var btn=root.querySelector('[data-toggle]'),hint=root.querySelector('[data-hint]');
+      btn.addEventListener('click',function(){
+        var grey=root.classList.toggle('is-grey');
+        btn.textContent=grey?btn.dataset.on:btn.dataset.off;
+        hint.textContent=grey?btn.dataset.hintOn:btn.dataset.hintOff;});
+    }
+    document.querySelectorAll('.gd-val').forEach(init);
+  })();
+
+  /* T1 hierarchy */
+  (function(){
+    function init(root){
+      var btn=root.querySelector('[data-toggle]'),hint=root.querySelector('[data-hint]');
+      btn.addEventListener('click',function(){
+        var flat=root.classList.toggle('is-flat');
+        btn.textContent=flat?btn.dataset.on:btn.dataset.off;
+        hint.textContent=flat?btn.dataset.hintOn:btn.dataset.hintOff;});
+    }
+    document.querySelectorAll('.gd-t1').forEach(init);
+  })();
+
+  /* T2 readability */
+  (function(){
+    var BG=[251,250,248],INK=[26,26,26];
+    var SANS='-apple-system,"Segoe UI",Helvetica,Arial,sans-serif',SERIF='Georgia,"Times New Roman",Times,serif';
+    function init(root){
+      var sliders=root.querySelectorAll('[data-var]');
+      function out(v){return root.querySelector('[data-out='+v+']');}
+      function update(){
+        sliders.forEach(function(el){
+          var v=el.dataset.var,n=+el.value;
+          if(v==='size'){root.style.setProperty('--size',n+'px');out('size').textContent=n;}
+          else if(v==='weight'){root.style.setProperty('--weight',n);out('weight').textContent=n;}
+          else if(v==='lead'){var L=n/100;root.style.setProperty('--lead',L);out('lead').textContent=L.toFixed(2);}
+          else if(v==='meas'){root.style.setProperty('--meas',n+'ch');out('meas').textContent=n;}
+          else if(v==='track'){var T=n/1000;root.style.setProperty('--track',T+'em');out('track').textContent=(T>0?'+':'')+(T?T+'em':'0');}
+          else if(v==='contrast'){var t=n/100,c=BG.map(function(b,i){return Math.round(b+(INK[i]-b)*t);});
+            root.style.setProperty('--col','rgb('+c.join(',')+')');out('contrast').textContent=n;}
+        });
+      }
+      sliders.forEach(function(el){el.addEventListener('input',update);});
+      root.querySelectorAll('[data-tog]').forEach(function(btn){
+        btn.addEventListener('click',function(){
+          var on=btn.getAttribute('aria-pressed')!=='true';
+          btn.setAttribute('aria-pressed',on);btn.textContent=on?btn.dataset.on:btn.dataset.off;
+          if(btn.dataset.tog==='family')root.style.setProperty('--family',on?SERIF:SANS);
+          if(btn.dataset.tog==='style')root.style.setProperty('--style',on?'italic':'normal');});
+      });
+      update();
+    }
+    document.querySelectorAll('.gd-type').forEach(init);
+  })();
+
+  /* D1 fix-it */
+  (function(){
+    var STEPS=[
+      {cls:'is-align',cap:'<b>Align</b> — snap every edge to the grid. Same content, instantly less amateur.'},
+      {cls:'is-hier',cap:'<b>Hierarchy</b> — let one anchor dominate and the title lead. Size sets the reading order.'},
+      {cls:'is-space',cap:'<b>White space</b> — add margins and let it breathe. Empty space is active, not wasted.'},
+      {cls:'is-color',cap:'<b>Color</b> — cut to a limited, value-led palette with a single accent. Done.'}
+    ];
+    function init(root){
+      var page=root.querySelector('.gd-fix__page'),cap=root.querySelector('[data-cap]'),
+          step=root.querySelector('[data-step]'),next=root.querySelector('[data-next]'),
+          reset=root.querySelector('[data-reset]'),i=0;
+      function render(){
+        step.textContent=i+' / '+STEPS.length;
+        if(i===0){cap.innerHTML='Stage 0 — <b>messy</b>: misaligned, no focal point, clashing color, crammed to the edges. Press fix.';}
+        else{cap.innerHTML=STEPS[i-1].cap;}
+        next.textContent=i>=STEPS.length?'Done ✓':'Apply next fix ▸';
+        next.disabled=i>=STEPS.length;next.style.opacity=i>=STEPS.length?.5:1;
+      }
+      next.addEventListener('click',function(){
+        if(i>=STEPS.length)return;page.classList.add(STEPS[i].cls);i++;render();});
+      reset.addEventListener('click',function(){
+        STEPS.forEach(function(s){page.classList.remove(s.cls);});i=0;render();});
+      render();
+    }
+    document.querySelectorAll('.gd-fix').forEach(init);
+  })();
+
+  /* S04 interactive color wheel — harmony schemes (instance-safe) */
+  (function(){
+    var NS='http://www.w3.org/2000/svg';
+    function ce(t,a){var e=document.createElementNS(NS,t);for(var k in a)e.setAttribute(k,a[k]);return e;}
+    function polar(cx,cy,r,deg){var a=(deg-90)*Math.PI/180;return [cx+r*Math.cos(a),cy+r*Math.sin(a)];}
+    function sector(cx,cy,rO,rI,a0,a1){
+      var p0=polar(cx,cy,rO,a0),p1=polar(cx,cy,rO,a1),p2=polar(cx,cy,rI,a1),p3=polar(cx,cy,rI,a0);
+      var big=(a1-a0)>180?1:0;
+      return 'M'+p0[0]+','+p0[1]+' A'+rO+','+rO+' 0 '+big+' 1 '+p1[0]+','+p1[1]+
+             ' L'+p2[0]+','+p2[1]+' A'+rI+','+rI+' 0 '+big+' 0 '+p3[0]+','+p3[1]+' Z';
+    }
+    var SCHEMES={
+      complementary:{off:[0,6],cap:'Complementary — opposite hues, maximum contrast.'},
+      analogous:{off:[-1,0,1],cap:'Analogous — neighboring hues, calm and harmonious.'},
+      triadic:{off:[0,4,8],cap:'Triadic — three evenly spaced hues, balanced and lively.'},
+      split:{off:[0,5,7],cap:'Split-complementary — a base plus the two neighbors of its opposite.'},
+      monochromatic:{off:[0],cap:'Monochromatic — one hue; vary value and saturation.'}
+    };
+    function init(root){
+      var g=root.querySelector('[data-segments]');if(!g)return;
+      var links=root.querySelector('[data-links]'),capEl=root.querySelector('[data-cap]');
+      var cx=180,cy=180,rO=160,rI=70,gap=1.4,base=0,scheme='complementary',segs=[];
+      for(var i=0;i<12;i++){
+        var hue=i*30,a0=i*30+gap/2,a1=(i+1)*30-gap/2;
+        var p=ce('path',{d:sector(cx,cy,rO,rI,a0,a1),fill:'hsl('+hue+',68%,52%)','class':'gd-wheel__seg'});
+        (function(idx){p.addEventListener('click',function(){base=idx;render();});})(i);
+        g.appendChild(p);segs.push(p);
+      }
+      function selected(){var set={};SCHEMES[scheme].off.forEach(function(o){set[((base+o)%12+12)%12]=true;});return set;}
+      function render(){
+        var set=selected();
+        segs.forEach(function(p,i){p.classList.toggle('is-off',!set[i]);});
+        while(links.firstChild)links.removeChild(links.firstChild);
+        var idxs=Object.keys(set).map(Number);
+        if(idxs.length>1){
+          var bp=polar(cx,cy,rI+8,base*30+15);
+          idxs.forEach(function(i){if(i===base)return;var pt=polar(cx,cy,rI+8,i*30+15);
+            links.appendChild(ce('line',{x1:bp[0],y1:bp[1],x2:pt[0],y2:pt[1],'class':'gd-wheel__link'}));});
+        }
+        idxs.forEach(function(i){var m=polar(cx,cy,rO+11,i*30+15);
+          links.appendChild(ce('circle',{cx:m[0],cy:m[1],r:i===base?4.5:3,
+            'class':'gd-wheel__marker'+(i===base?' is-base':'')}));});
+        capEl.textContent=SCHEMES[scheme].cap;
+        root.querySelectorAll('[data-scheme]').forEach(function(b){
+          b.setAttribute('aria-pressed',String(b.dataset.scheme===scheme));});
+      }
+      root.querySelectorAll('[data-scheme]').forEach(function(b){
+        b.addEventListener('click',function(){scheme=b.dataset.scheme;render();});});
+      render();
+    }
+    document.querySelectorAll('.gd-wheel').forEach(init);
+  })();
+
+  /* S10 grid cells */
+  (function(){
+    document.querySelectorAll('.gd-grid [data-cells]').forEach(function(field){
+      for(var i=0;i<144;i++){var c=document.createElement('div');c.className='gd-grid__cell';field.appendChild(c);}
+    });
+  })();
+  </script>
+
+  <!-- ── deck carousel controller (shared, page-agnostic) ── -->
+  <script src="/teaching/_shared/deck.js"></script>
+
+  <!-- ── scale each widget/diagram embed to fit the fixed 16:9 stage (no scroll) ── -->
+  <script>
+  (function(){
+    var stage=document.getElementById('deck-stage');
+    if(!stage) return;
+    var embeds=[].slice.call(document.querySelectorAll('#deck-stage .slide .embed'));
+    function fit(){
+      var SW=stage.clientWidth, SH=stage.clientHeight;
+      if(!SW||!SH) return;
+      embeds.forEach(function(e){
+        var c=e.firstElementChild; if(!c) return;
+        c.style.transform='none';
+        var w=c.offsetWidth, h=c.offsetHeight;
+        if(!w||!h) return;
+        var avW=SW-28, avH=SH-28;               // minus .embed padding (14px each side)
+        var s=Math.min(1, avW/w, avH/h);
+        c.style.transform = s<1 ? 'scale('+s+')' : 'none';
+      });
+    }
+    window.addEventListener('load',fit);
+    if(document.readyState==='complete') fit();
+    var t; window.addEventListener('resize',function(){clearTimeout(t);t=setTimeout(fit,80);});
+    document.addEventListener('fullscreenchange',function(){setTimeout(fit,80);});
+    document.addEventListener('webkitfullscreenchange',function(){setTimeout(fit,80);});
+  })();
+  </script>
 </body>
 </html>
