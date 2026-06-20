@@ -1,5 +1,5 @@
-# local-only working files — never push
-_local/
+# _local/ is committed (backup) but stripped from the deploy in
+# .github/workflows/pages.yml, so it never appears on the live site.
 
 # Claude Code — not website content
 .claude/

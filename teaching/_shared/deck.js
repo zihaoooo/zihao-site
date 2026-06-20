@@ -386,3 +386,15 @@
   render();
   layoutAuto();
 })();
+
+/* Local-only editor auto-loader. Inert on the live site: the hostname check fails
+   off localhost, and _local/ is gitignored so it never deploys. Open any deck page
+   with ?edit on a local dev server to load the visual edit overlay. */
+(function () {
+  var h = location.hostname;
+  if ((h === 'localhost' || h === '127.0.0.1') && /[?&]edit\b/.test(location.search)) {
+    var s = document.createElement('script');
+    s.src = '/_local/deck-editor.js?' + Date.now();
+    document.body.appendChild(s);
+  }
+})();
