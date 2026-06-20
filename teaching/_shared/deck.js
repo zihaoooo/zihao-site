@@ -21,7 +21,7 @@
   const notesEl = document.getElementById('deck-notes');
   const notesToggle = document.getElementById('deck-notes-toggle');
   const presentBtn = document.getElementById('deck-present');
-  let i = 0, hot = false, bc = null;
+  let i = 0, hot = false, bc = null, lbOpen = false;
   try { bc = new BroadcastChannel('laar61400-' + DECK_ID + '-deck'); } catch(e){}
   function render(){
     slides.forEach((s,n)=>s.classList.toggle('on', n===i));
@@ -76,6 +76,12 @@
   document.addEventListener('webkitfullscreenchange', onFS);
 
   document.addEventListener('keydown', e=>{
+    if(lbOpen){
+      if(e.key === 'Escape'){ e.preventDefault(); closeLightbox(); return; }
+      // arrows/space still drive the deck — close the zoom and fall through
+      if(['ArrowLeft','ArrowRight','PageUp','PageDown',' '].includes(e.key)) closeLightbox();
+      else return;
+    }
     if(!(hot || inFS())) return;
     if(e.key === 'ArrowLeft' || e.key === 'PageUp'){ e.preventDefault(); go(-1); }
     else if(e.key === 'ArrowRight' || e.key === 'PageDown' || e.key === ' '){ e.preventDefault(); go(1); }
@@ -299,6 +305,83 @@
   let _lt; window.addEventListener('resize', ()=>{ clearTimeout(_lt); _lt=setTimeout(layoutAuto, 80); });
   document.addEventListener('fullscreenchange', ()=>setTimeout(layoutAuto, 60));
   document.addEventListener('webkitfullscreenchange', ()=>setTimeout(layoutAuto, 60));
+
+  // ── click-to-zoom lightbox: click an image to fit-to-screen, scroll to zoom further, drag to pan ──
+  let lbEl = null, lbImg = null;
+  let lbScale = 1, lbTx = 0, lbTy = 0, lbDragging = false, lbMoved = false, lbLastX = 0, lbLastY = 0;
+  const LB_MAX = 6;
+  function lbApply(){
+    lbImg.style.transform = 'translate(' + lbTx + 'px,' + lbTy + 'px) scale(' + lbScale + ')';
+    lbImg.style.cursor = lbScale > 1 ? (lbDragging ? 'grabbing' : 'grab') : 'zoom-out';
+  }
+  function lbReset(){ lbScale = 1; lbTx = 0; lbTy = 0; }
+  function buildLightbox(){
+    const st = document.createElement('style');
+    st.textContent =
+      '.deck-lightbox{position:absolute;inset:0;z-index:50;display:none;align-items:center;justify-content:center;'
+      + 'background:rgba(12,12,12,.92);cursor:zoom-out;padding:2.5%;overflow:hidden;}'
+      + '.deck-lightbox.on{display:flex;}'
+      + '.deck-lightbox img{max-width:100%;max-height:100%;object-fit:contain;transform-origin:0 0;'
+      + 'box-shadow:0 10px 40px rgba(0,0,0,.5);border-radius:2px;}'
+      + '#deck-stage img{cursor:zoom-in;}';
+    deck.appendChild(st);
+    lbEl = document.createElement('div');
+    lbEl.className = 'deck-lightbox';
+    lbEl.setAttribute('role', 'dialog');
+    lbEl.setAttribute('aria-label', 'Image zoom — scroll to zoom, drag to pan, click to close');
+    lbImg = document.createElement('img');
+    lbImg.draggable = false;
+    lbEl.appendChild(lbImg);
+
+    // backdrop or unzoomed image → close; while zoomed, a click that wasn't a drag does nothing
+    lbEl.addEventListener('click', e=>{
+      if(lbMoved){ lbMoved = false; return; }
+      if(e.target === lbEl || lbScale === 1) closeLightbox();
+    });
+    // scroll to zoom toward the cursor
+    lbEl.addEventListener('wheel', e=>{
+      e.preventDefault();
+      const r = lbImg.getBoundingClientRect();
+      const dx = e.clientX - r.left, dy = e.clientY - r.top;
+      const s2 = Math.min(LB_MAX, Math.max(1, lbScale * (e.deltaY < 0 ? 1.15 : 1/1.15)));
+      lbTx += dx * (1 - s2/lbScale);
+      lbTy += dy * (1 - s2/lbScale);
+      lbScale = s2;
+      if(lbScale === 1){ lbTx = 0; lbTy = 0; }
+      lbApply();
+    }, {passive:false});
+    // drag to pan when zoomed
+    lbImg.addEventListener('mousedown', e=>{
+      if(lbScale === 1) return;
+      e.preventDefault(); lbDragging = true; lbMoved = false; lbLastX = e.clientX; lbLastY = e.clientY; lbApply();
+    });
+    window.addEventListener('mousemove', e=>{
+      if(!lbDragging) return;
+      lbTx += e.clientX - lbLastX; lbTy += e.clientY - lbLastY;
+      lbLastX = e.clientX; lbLastY = e.clientY; lbMoved = true; lbApply();
+    });
+    window.addEventListener('mouseup', ()=>{ if(lbDragging){ lbDragging = false; lbApply(); } });
+    deck.appendChild(lbEl);
+  }
+  function openLightbox(src, alt){
+    if(!lbEl) buildLightbox();
+    lbReset();
+    lbImg.src = src; lbImg.alt = alt || '';
+    lbApply();
+    lbEl.classList.add('on'); lbOpen = true;
+  }
+  function closeLightbox(){
+    if(!lbEl) return;
+    lbEl.classList.remove('on'); lbImg.src = ''; lbOpen = false; lbReset();
+  }
+  if(stage){
+    buildLightbox();
+    stage.addEventListener('click', e=>{
+      const im = e.target.closest('img');
+      if(!im || !stage.contains(im)) return;
+      openLightbox(im.currentSrc || im.src, im.alt);
+    });
+  }
 
   render();
   layoutAuto();
