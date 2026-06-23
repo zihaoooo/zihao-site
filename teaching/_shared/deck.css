@@ -103,6 +103,33 @@
 .slide.auto-rows figure{margin:0;flex:0 0 auto;overflow:hidden;background:var(--paper);}
 .slide.auto-rows figure img{width:100%;height:100%;object-fit:cover;display:block;}
 
+/* ── points + one image (a key-points panel beside a single image) ──
+   A split slide: a short bulleted argument on one side, one image on the other.
+   points-l = text LEFT / image RIGHT;  points-r = text RIGHT / image LEFT.
+   Image is CONTAINED (whole, never cropped) so diagrams survive; keep bullets ≤4 short lines.
+   Markup: <div class="slide points-l" data-cap="…">
+             <div class="pts"><h3>optional</h3><ul><li>…</li></ul></div>
+             <figure><img …></figure>
+           </div>  (.pts first; image side follows from the class, not the DOM order) */
+.slide.points-l,.slide.points-r{grid-template-rows:minmax(0,1fr);align-items:stretch;
+  gap:clamp(14px,3vw,40px);padding:clamp(16px,4vw,46px);background:var(--paper);}
+.slide.points-l{grid-template-columns:5fr 7fr;}
+.slide.points-r{grid-template-columns:7fr 5fr;}
+.slide.points-l .pts{grid-column:1;}   .slide.points-l figure{grid-column:2;}
+.slide.points-r .pts{grid-column:2;}   .slide.points-r figure{grid-column:1;}
+.slide.points-l figure,.slide.points-r figure{margin:0;width:100%;height:100%;
+  overflow:hidden;background:var(--paper);display:flex;align-items:center;justify-content:center;}
+.slide.points-l figure img,.slide.points-r figure img{max-width:100%;max-height:100%;
+  width:auto;height:auto;object-fit:contain;display:block;}
+.pts{display:flex;flex-direction:column;justify-content:center;min-width:0;}
+.pts h3{font-family:"DM Sans",sans-serif;font-weight:700;letter-spacing:-.01em;
+  font-size:clamp(15px,2.2vw,24px);color:#2e2a24;line-height:1.2;margin:0 0 .7em;}
+.pts ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:.6em;}
+.pts li{font-family:"DM Sans",sans-serif;font-size:clamp(12px,1.6vw,17px);line-height:1.45;
+  color:#4a463f;padding-left:1.15em;position:relative;}
+.pts li::before{content:"";position:absolute;left:0;top:.6em;width:.42em;height:.42em;
+  background:#b9532e;border-radius:50%;}
+
 /* optional caption chip, bottom-left of a cell (used sparingly) */
 .slide figure figcaption{position:absolute;left:8px;bottom:7px;
   font-family:"DM Mono",ui-monospace,monospace;font-size:9.5px;letter-spacing:.04em;
