@@ -263,23 +263,27 @@
       const h = Math.max(0, Math.min(hByW, hByH));
       figs.forEach((fig,k)=>{ fig.style.height = h+'px'; fig.style.width = (ars[k]*h)+'px'; });
     });
-    // hero + stack: hero whole at its aspect; two images stacked beside it; composite fit to box
+    // hero + stack: hero fills the frame (cover-cropped); two whole images stacked beside it
     const arOf = fig => { const im = fig.querySelector('img');
       return (im && im.naturalWidth && im.naturalHeight) ? im.naturalWidth/im.naturalHeight : 1; };
     deck.querySelectorAll('.slide.hero-l, .slide.hero-r').forEach(s=>{
       const figs = [...s.querySelectorAll(':scope > figure')];
       if(figs.length < 3) return;
+      const heroLeft = s.classList.contains('hero-l');
+      const stack = figs.slice(1), n = stack.length;
       const gap = parseFloat(getComputedStyle(s).rowGap) || 0;
-      const arHero = arOf(figs[0]);
-      const maxArS = Math.max(arOf(figs[1]), arOf(figs[2]));
-      // composite width(H) = arHero*H + gap + maxArS*(H-gap)/2  →  k*H + c
-      const k = arHero + maxArS/2, c = gap*(1 - maxArS/2);
-      const hByW = (FILL_W*W - c) / k;     // fit width budget
-      const hByH = FILL_H*H;                // fit height budget
-      const Ht = Math.max(0, Math.min(hByW, hByH));
-      const heroW = arHero*Ht, sH = (Ht-gap)/2, stackW = maxArS*sH;
+      const maxArS = Math.max(...stack.map(arOf));
+      // hero fills the frame (cover-cropped); N stack cells keep their aspect (whole), equal height.
+      // composite is the full width budget and the height budget; hero takes the leftover width.
+      const Ht = FILL_H*H;                            // composite height (full height budget)
+      const sH = (Ht-(n-1)*gap)/n, stackW = maxArS*sH;       // each stack cell: whole, aspect-sized
+      const heroW = Math.max(0, FILL_W*W - gap - stackW);    // hero fills the rest → cover crops
+      // placement: hero spans all rows of its column; stack fills the other column top→bottom
+      figs[0].style.gridColumn = heroLeft ? '1' : '2';
+      figs[0].style.gridRow = '1 / '+(n+1);
       figs[0].style.width = heroW+'px'; figs[0].style.height = Ht+'px';
-      [figs[1],figs[2]].forEach(f=>{ f.style.width = stackW+'px'; f.style.height = sH+'px'; });
+      stack.forEach((f,i)=>{ f.style.gridColumn = heroLeft ? '2' : '1';
+        f.style.gridRow = (i+1)+''; f.style.width = stackW+'px'; f.style.height = sH+'px'; });
     });
     // auto-rows: each .row justified to box width; rows stacked, whole block scaled to 90% height
     deck.querySelectorAll('.slide.auto-rows').forEach(s=>{

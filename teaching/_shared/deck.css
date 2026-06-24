@@ -24,7 +24,7 @@
 /* ── stage + carousel mechanics ── */
 .deck{margin-top:10px;}
 .deck-stage{position:relative;aspect-ratio:16/9;width:100%;
-  background:var(--paper);border:1px solid var(--line);border-radius:10px;overflow:hidden;}
+  background:var(--paper);border:1px solid var(--line);overflow:hidden;}
 .slide{position:absolute;inset:0;display:grid;place-items:center;
   opacity:0;visibility:hidden;transition:opacity .25s ease;}
 .slide.on{opacity:1;visibility:visible;}
@@ -76,22 +76,17 @@
 .slide.auto figure{margin:0;flex:0 0 auto;overflow:hidden;background:var(--paper);}
 .slide.auto figure img{width:100%;height:100%;object-fit:cover;display:block;}
 
-/* hero + stack (image-aware, JS-sized like auto): a hero image kept WHOLE at its true aspect,
-   with two images stacked beside it; the whole composite is scaled to fit the box (100% W /
-   90% H). hero-l = hero on the left, hero-r = hero on the right. First <figure> is the hero;
-   the next two are the stack. JS (layoutAuto) sets the px sizes from the natural aspect ratios. */
+/* hero + stack (image-aware, JS-sized like auto): a hero image that FILLS its frame (cover-cropped)
+   beside a column of N (≥2) equal-height stacked images; the composite spans the FULL width and the
+   90% height budget. hero-l = hero on the left, hero-r = hero on the right. First <figure> is the
+   hero; every following <figure> joins the stack. JS (layoutAuto) sets the px sizes AND the grid
+   placement (hero spans all rows; the stack fills the other column top→bottom) for any stack count. */
 .slide.hero-l,.slide.hero-r{display:grid;grid-template-columns:auto auto;grid-auto-rows:auto;
   gap:var(--deck-gutter);justify-content:center;align-content:center;background:var(--paper);}
-.slide.hero-l figure:nth-child(1){grid-column:1;grid-row:1/3;}
-.slide.hero-l figure:nth-child(2){grid-column:2;grid-row:1;}
-.slide.hero-l figure:nth-child(3){grid-column:2;grid-row:2;}
-.slide.hero-r figure:nth-child(1){grid-column:2;grid-row:1/3;}
-.slide.hero-r figure:nth-child(2){grid-column:1;grid-row:1;}
-.slide.hero-r figure:nth-child(3){grid-column:1;grid-row:2;}
 .slide.hero-l figure,.slide.hero-r figure{margin:0;overflow:hidden;background:var(--paper);}
-/* cover, not contain: the two stack figures are forced to equal width (the wider image's aspect),
-   so the narrower one would letterbox (side gaps) under contain. The hero figure is sized to its
-   own exact aspect, so cover is a no-op there — only the stack crops slightly. */
+/* cover, not contain: the stack figures are forced to equal width (the widest image's aspect), so a
+   narrower one would letterbox under contain. The hero takes the leftover width at full height, so
+   cover crops it to fill the frame. */
 .slide.hero-l figure img,.slide.hero-r figure img{width:100%;height:100%;object-fit:cover;display:block;}
 
 /* auto-rows = multi-row justified gallery (image-aware): each .row is justified to the box

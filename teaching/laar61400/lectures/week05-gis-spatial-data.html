@@ -255,22 +255,28 @@
               <img src="/teaching/laar61400/assets/img/Week05/14.avif" alt="GIS layers stacked: elevation, land use, parcels, streets">
             </div>
 
-            <!-- 15 · a raster field — the DEM -->
+            <!-- 15 · digital elevation model -->
+            <div class="slide auto" data-cap="Digital elevation model">
+              <figure><img src="/teaching/laar61400/assets/img/Week05/14-5-left.avif" alt="Digital elevation model"></figure>
+              <figure><img src="/teaching/laar61400/assets/img/Week05/14-5-right.avif" alt="Digital elevation model detail"></figure>
+            </div>
+
+            <!-- 16 · a raster field — the DEM -->
             <div class="slide single" data-cap="A raster field — the DEM" data-notes="A Digital Elevation Model: every cell holds a height. Grayscale = high/low. This single grid is the raw material for a huge amount of landscape analysis — slope, aspect, hillshade, watersheds all derive from it. Resolution is destiny: a 30 m cell can't see a 5 m swale. The DEM looks like a photo of terrain but it's a sampled field, and the sample spacing decides what's knowable.">
               <img src="/teaching/laar61400/assets/img/Week05/15.avif" alt="A digital elevation model rendered in grayscale">
             </div>
 
-            <!-- 16 · under the raster — cells and values -->
+            <!-- 17 · under the raster — cells and values -->
             <div class="slide single" data-cap="Under the raster — cells and values" data-notes="Zoom in and the smooth terrain is just a grid of numbered cells, each one a value in a table. That's the whole trick: a continuous landscape reduced to a matrix of numbers we can compute on. Powerful, and lossy — anything finer than a cell, or between two values, simply doesn't exist to the analysis. Merleau-Ponty's “most worked-up phenomena,” made of pixels.">
               <img src="/teaching/laar61400/assets/img/Week05/16.avif" alt="Raster terrain zoomed to reveal the grid of cell values">
             </div>
 
-            <!-- 17 · operating on the grid -->
+            <!-- 18 · operating on the grid -->
             <div class="slide single" data-cap="Operating on the grid" data-notes="Because a raster is just a matrix, analysis is arithmetic on cells — neighborhood operations, map algebra, reclassification. The GIS tool dialog hides simple loops over the grid. Keep this in view: nothing mystical happens here, it's a program walking cells. That's the bridge to the last move — and to Week 9.">
               <img src="/teaching/laar61400/assets/img/Week05/17.avif" alt="Map algebra / neighborhood operation on a raster grid">
             </div>
 
-            <!-- 18 · ANALYSIS (divider) -->
+            <!-- 19 · ANALYSIS (divider) -->
             <div class="slide slide--epi" data-cap="Analysis — “to test out, to operate, to transform”" data-notes="Merleau-Ponty's verbs return, now as method. Analysis is where data stops describing and starts doing — we transform the grid to surface patterns that weren't visible in the raw values. We'll walk one canonical example: how water moves across terrain, derived entirely from the DEM.">
               <div class="embed">
                 <div class="gis-epi">
@@ -283,7 +289,7 @@
               </div>
             </div>
 
-            <!-- 19+20 · hydrologic analysis (one row, 5 images: the DEM→streams pipeline) -->
+            <!-- 20+21 · hydrologic analysis (one row, 5 images: the DEM→streams pipeline) -->
             <div class="slide" data-cap="Hydrologic analysis — from DEM to streams" data-credit="ArcGIS Spatial Analyst documentation" data-notes="From a bare elevation grid you can derive the whole drainage structure — none of it in the original data, all of it latent in the heights. Left to right: the DEM; the elevation→flow-direction worked example (each cell points to its steepest downhill neighbor, coded 1–128); the resulting flow-direction raster; flow direction → flow accumulation (sum the cells draining through each, and the stream network lights up); and the extracted stream. Simple local rule, global pattern. Next slide: the actual algorithm.">
               <div class="embed">
                 <div class="gis-tri">
@@ -296,17 +302,17 @@
               </div>
             </div>
 
-            <!-- 21 · from terrain grid to model -->
+            <!-- 22 · from terrain grid to model -->
             <div class="slide single" data-cap="From terrain grid to model" data-notes="The same DEM, now driving a parametric model in Rhino/Grasshopper — the grid of heights becomes geometry you can sculpt, contour, and represent. GIS analysis doesn't end in the GIS; it flows into the design pipeline (the Week 7 toolchain). Data sourced and analyzed here becomes the ground you actually design on.">
               <img src="/teaching/laar61400/assets/img/Week05/21.avif" alt="Terrain grid driving a parametric model in Rhino/Grasshopper">
             </div>
 
-            <!-- 22 · computation as representation -->
+            <!-- 23 · computation as representation -->
             <div class="slide single" data-cap="Computation as representation" data-notes="The terrain re-represented again — mesh, contours, a visual definition wired in the canvas. Each re-representation is another “operation, transformation” in Merleau-Ponty's sense, and another set of choices about what to show. The tool is powerful; the responsibility for meaning stays with you. (Seeds Week 7's data-trap and Week 9's computational thinking.)">
               <img src="/teaching/laar61400/assets/img/Week05/22.avif" alt="Terrain re-represented as mesh and contours in a Grasshopper definition">
             </div>
 
-            <!-- 23 · the analysis, written as an algorithm -->
+            <!-- 24 · the analysis, written as an algorithm -->
             <div class="slide" data-cap="The analysis, written as an algorithm" data-notes="Here's flow-direction as plain pseudocode: build a 3×3 box, slide it over every cell, compare the center's elevation to its 8 neighbors, find the maximum drop, and code the direction water leaves. That's it — the “magic” GIS button is a nested loop you could write yourself. This is the literal bridge to Week 9: computational thinking is just being able to see the algorithm under the tool.">
               <div class="embed">
                 <div class="gis-code">
@@ -330,7 +336,7 @@ DIR = {E:1, SE:2, S:4, SW:8, W:16, NW:32, N:64, NE:128}
               </div>
             </div>
 
-            <!-- 24 · closing epigraph (divider, mirrors slide 5) -->
+            <!-- 25 · closing epigraph (divider, mirrors slide 5) -->
             <div class="slide slide--epi" data-cap="“…to think is to test out, to operate, to transform.”" data-credit="Maurice Merleau-Ponty, ‘Eye and Mind’, 1961" data-notes="We close where we opened. You now know spatial data is built — projected, classified, sampled, computed — at every step a choice. That's not a reason to distrust GIS; it's the reason to use it with intent. When you source and map your site for WF03, you're not recording the world, you're making an argument about it. Make a good one.">
               <div class="embed">
                 <div class="gis-epi">

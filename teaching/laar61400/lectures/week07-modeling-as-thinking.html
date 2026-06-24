@@ -29,12 +29,16 @@
       text-transform:uppercase;color:var(--accent);margin-bottom:18px;}
     .m7-div h2{margin:0;font-family:"DM Sans",sans-serif;font-weight:700;color:var(--ink);
       font-size:clamp(26px,4.8vw,54px);letter-spacing:-.01em;line-height:1.08;}
-    .m7-div .terms{display:flex;align-items:center;justify-content:center;gap:clamp(14px,3vw,34px);
+    .m7-div .terms{display:flex;align-items:flex-start;justify-content:center;gap:clamp(14px,3vw,34px);
       flex-wrap:wrap;}
+    .m7-div .term-col{display:flex;flex-direction:column;align-items:center;gap:12px;
+      width:min(320px,40vw);}
     .m7-div .term{font-family:"DM Sans",sans-serif;font-weight:700;color:var(--ink);
       font-size:clamp(24px,4.4vw,50px);letter-spacing:-.01em;}
+    .m7-div .def{font-family:"DM Sans",sans-serif;font-weight:400;color:var(--mute);
+      font-size:clamp(13px,1.5vw,17px);line-height:1.4;}
     .m7-div .vs{font-family:"DM Mono",ui-monospace,monospace;font-size:13px;letter-spacing:.14em;
-      text-transform:uppercase;color:var(--mute);}
+      text-transform:uppercase;color:var(--mute);align-self:center;margin-top:clamp(8px,2vw,20px);}
 
     /* ── render build-up (slide 11): hero diagram + a 2×2 labelled grid ── */
     .m7-render{display:grid;grid-template-columns:1.05fr 1fr;gap:16px;width:min(1000px,96%);
@@ -113,32 +117,32 @@
             </div>
 
             <!-- 2 · A model is a selective abstraction -->
-            <div class="slide" data-cap="A model is a selective abstraction" data-notes="Definition. A model stands in for something real, but it is never the whole thing — it keeps what matters for a purpose and throws the rest away. A chipboard massing model keeps volume and light and drops material and program. A subway map keeps connectivity and drops geography. The keeping-and-dropping is the whole act. The first question of any model is therefore not 'is it accurate?' but 'accurate *for what*?' (RealFlow fluid sim — one way to model water.)">
-              <video src="/teaching/laar61400/assets/img/Week07/02-realflow.mp4" autoplay muted loop playsinline></video>
+            <div class="slide auto" data-cap="A model is a selective abstraction" data-credit="Left: RealFlow · Middle: Rhino Grasshopper · Right: SWMM (Storm Water Management Model)" data-notes="Definition. A model stands in for something real, but it is never the whole thing — it keeps what matters for a purpose and throws the rest away. A chipboard massing model keeps volume and light and drops material and program. A subway map keeps connectivity and drops geography. The keeping-and-dropping is the whole act. The first question of any model is therefore not 'is it accurate?' but 'accurate *for what*?' (RealFlow fluid sim, a Rhino model, and an SWMM stormwater model — three ways to model water.)">
+              <figure><video src="/teaching/laar61400/assets/img/Week07/02-realflow.mp4" autoplay muted loop playsinline></video></figure>
+              <figure><img src="/teaching/laar61400/assets/img/Week07/02-rhino.avif" alt="Rhino 3D model"></figure>
+              <figure><img src="/teaching/laar61400/assets/img/Week07/02-swmm.avif" alt="SWMM stormwater model"></figure>
             </div>
 
             <!-- 3 · A physical model simulates something -->
-            <div class="slide auto-rows" data-cap="A physical model simulates something" data-notes="A scale model isn't just a small copy — you use it to *simulate* something. A physical model already simulates; we'll see that simulation doesn't require a computer. Always ask the question: who is the audience of the model, and what does the model simulate?">
+            <div class="slide auto-rows" data-cap="A physical model simulates something" data-credit="Bottom right: Isamu Noguchi · others: Pinterest" data-notes="A scale model isn't just a small copy — you use it to *simulate* something. A physical model already simulates; we'll see that simulation doesn't require a computer. Always ask the question: who is the audience of the model, and what does the model simulate?">
               <div class="row">
                 <figure><img src="/teaching/laar61400/assets/img/Week07/03-a.avif" alt="Physical study model"></figure>
                 <figure><img src="/teaching/laar61400/assets/img/Week07/03-b.avif" alt="Rib structure model"></figure>
                 <figure><img src="/teaching/laar61400/assets/img/Week07/03-c.avif" alt="Rib structure model, second view"></figure>
-              </div>
-              <div class="row">
-                <figure><img src="/teaching/laar61400/assets/img/Week07/03-d.avif" alt="CNC router cutting a model"></figure>
                 <figure><img src="/teaching/laar61400/assets/img/Week07/03-e.avif" alt="Stacked contour 'pancake' terrain model"></figure>
-                <figure><img src="/teaching/laar61400/assets/img/Week07/03-f.avif" alt="Stacked contour terrain model, second view"></figure>
               </div>
               <div class="row">
-                <figure><img src="/teaching/laar61400/assets/img/Week07/03-g.avif" alt="Noguchi landscape model"></figure>
+                <figure><img src="/teaching/laar61400/assets/img/Week07/03-f.avif" alt="Stacked contour terrain model, second view"></figure>
                 <figure><img src="/teaching/laar61400/assets/img/Week07/03-h.avif" alt="Playground model"></figure>
                 <figure><img src="/teaching/laar61400/assets/img/Week07/03-i.avif" alt="Landscape model"></figure>
+                <figure><img src="/teaching/laar61400/assets/img/Week07/03-g.avif" alt="Isamu Noguchi landscape model"></figure>
               </div>
             </div>
 
             <!-- 3.5 · A detour — my own models -->
-            <div class="slide auto-rows" data-cap="A detour — my own models" data-notes="Bonus page. A few physical models I built — shown not to present, but to make the point concrete: each was made to test a question with the hands and eyes, and most ended up cut apart for the next one. Use them to seed the 'study model' idea on the next slide.">
+            <div class="slide auto-rows" data-cap="CNC routed models" data-credit="Models: Zihao Zhang · top left: CNC router" data-notes="Bonus page. A few physical models I built — shown not to present, but to make the point concrete: each was made to test a question with the hands and eyes, and most ended up cut apart for the next one. Use them to seed the 'study model' idea on the next slide.">
               <div class="row">
+                <figure><img src="/teaching/laar61400/assets/img/Week07/035-a.avif" alt="CNC router cutting Zihao's model"></figure>
                 <figure><img src="/teaching/laar61400/assets/img/Week07/035-b.avif" alt="Zihao's physical model"></figure>
                 <figure><img src="/teaching/laar61400/assets/img/Week07/035-e.avif" alt="Zihao's physical model"></figure>
               </div>
@@ -149,13 +153,14 @@
             </div>
 
             <!-- 4 · The same thing, modeled at different scales -->
-            <div class="slide auto" data-cap="The same thing, modeled at different scales" data-credit="OMA, Parc de la Villette" data-notes="A model has a scale, and the scale is itself a choice about the question. A 1:500 site model answers massing and context — how the project sits in its surroundings — and stays silent on materials. A 1:20 detail model answers the joint, the material, how two surfaces meet — and knows nothing about context. Same project, two scales, two different sets of answerable questions. You don't pick a scale because it's 'to scale'; you pick the scale that makes your question visible.">
+            <div class="slide hero-l" data-cap="Model and scale" data-credit="Left: detail section model (Pinterest) · Right: OMA, Parc de la Villette" data-notes="A model has a scale, and the scale is itself a choice about the question. A 1:500 site model answers massing and context — how the project sits in its surroundings — and stays silent on materials. A 1:20 detail model answers the joint, the material, how two surfaces meet — and knows nothing about context. Same project, two scales, two different sets of answerable questions. You don't pick a scale because it's 'to scale'; you pick the scale that makes your question visible.">
+              <figure><img src="/teaching/laar61400/assets/img/Week07/04-b.avif" alt="Detail-scale section model (Pinterest)"></figure>
               <figure><img src="/teaching/laar61400/assets/img/Week07/04-a.avif" alt="Large-scale site/massing model — OMA Parc de la Villette"></figure>
-              <figure><img src="/teaching/laar61400/assets/img/Week07/04-b.avif" alt="Detail-scale model"></figure>
+              <figure><img src="/teaching/laar61400/assets/img/Week07/04-c.avif" alt="OMA Parc de la Villette model, second view"></figure>
             </div>
 
             <!-- 5 · The study model — built to think, not to present -->
-            <div class="slide auto-rows" data-cap="The study model — built to think, not to present" data-credit="Study models: Shurui" data-notes="One type of model for yourself: the study model. The most important physical model in studio is often the one you throw away. A study model is rough, fast, and cheap — chipboard, foam, tape — built not to impress a jury but to test an idea with your hands and eyes. You make many; each answers one question and gets cut up for the next. The polished presentation model comes later, if at all. This is the whole thesis of the week in analog form: the value isn't the artifact, it's the thinking the model lets you do. Hold this when you open Rhino — a screen model can be a study model too.">
+            <div class="slide auto-rows" data-cap="The study model — built to think, not to present" data-credit="Top left: Shurui Zhang · top right: Pinterest · bottom: Zihao Zhang" data-notes="One type of model for yourself: the study model. The most important physical model in studio is often the one you throw away. A study model is rough, fast, and cheap — chipboard, foam, tape — built not to impress a jury but to test an idea with your hands and eyes. You make many; each answers one question and gets cut up for the next. The polished presentation model comes later, if at all. This is the whole thesis of the week in analog form: the value isn't the artifact, it's the thinking the model lets you do. Hold this when you open Rhino — a screen model can be a study model too.">
               <div class="row">
                 <figure><img src="/teaching/laar61400/assets/img/Week07/05-a.avif" alt="Rough working study model"></figure>
                 <figure><img src="/teaching/laar61400/assets/img/Week07/05-b.avif" alt="Rough working study model"></figure>
@@ -177,7 +182,11 @@
             <div class="slide" data-cap="Model vs. Simulation" data-notes="Section break. People use these words loosely, so let's separate them cleanly, because the distinction demystifies a lot of what you'll do this semester. The model is the *thing*. The simulation is the *thing running* — the model put in motion under some rules to see what happens. Same object, two states: at rest, and at work.">
               <div class="embed">
                 <div class="m7-div">
-                  <div class="terms"><span class="term">MODEL</span><span class="vs">vs</span><span class="term">SIMULATION</span></div>
+                  <div class="terms">
+                    <div class="term-col"><span class="term">MODEL</span><span class="def">A selective abstraction of something real — the thing, at rest.</span></div>
+                    <span class="vs">vs</span>
+                    <div class="term-col"><span class="term">SIMULATION</span><span class="def">The model put in motion under a set of rules — the thing, running.</span></div>
+                  </div>
                 </div>
               </div>
             </div>
