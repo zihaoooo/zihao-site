@@ -154,18 +154,18 @@
 
             <!-- 2 · London cholera deaths -->
             <div class="slide single" data-cap="London cholera deaths, 1854" data-credit="Edward R. Tufte, ‘Visual and Statistical Thinking’" data-notes="1854 Soho cholera outbreak — hundreds dead in days. Start with the raw mortality data. By itself a table of deaths explains nothing about cause; the dominant theory was “miasma,” bad air. The point of the next three slides: the same deaths, represented differently, produce completely different knowledge. Representation is not neutral packaging — it's where the insight is made or lost.">
-              <img src="/teaching/laar61400/assets/img/Week05/02.webp" alt="Table of London cholera mortality, 1854">
+              <img src="/teaching/laar61400/assets/img/Week05/02.avif" alt="Table of London cholera mortality, 1854">
             </div>
 
             <!-- 3 · the same deaths as a time series -->
             <div class="slide single" data-cap="The same deaths, as a time series" data-credit="Edward R. Tufte, ‘Visual and Statistical Thinking’" data-notes="Plot deaths over time and you see the epidemic's shape — the spike and decline — but still not its cause. A good chart answers some questions and stays silent on others. Time was the wrong axis for the question that mattered. The breakthrough came from changing what got represented: not when people died, but where.">
-              <img src="/teaching/laar61400/assets/img/Week05/03.webp" alt="Cholera deaths plotted over time as a bar chart">
+              <img src="/teaching/laar61400/assets/img/Week05/03.avif" alt="Cholera deaths plotted over time as a bar chart">
             </div>
 
             <!-- 4 · John Snow's cholera map (two-up) -->
             <div class="slide auto" data-cap="John Snow's cholera map" data-credit="John Snow, 1854" data-notes="Snow plotted each death at its address and the neighborhood's water pumps. The deaths cluster around the Broad Street pump — the spatial pattern made the waterborne hypothesis visible and overturned miasma theory. This is the founding image of spatial analysis: knowledge that only exists once data is placed in space. But note what Snow had to decide — to map location, to include pumps, to trust addresses. The insight was constructed, not found.">
-              <figure><img src="/teaching/laar61400/assets/img/Week05/04-left.webp" alt="John Snow cholera map, detail"></figure>
-              <figure><img src="/teaching/laar61400/assets/img/Week05/04-right.webp" alt="John Snow cholera map, full"></figure>
+              <figure><img src="/teaching/laar61400/assets/img/Week05/04-left.avif" alt="John Snow cholera map, detail"></figure>
+              <figure><img src="/teaching/laar61400/assets/img/Week05/04-right.avif" alt="John Snow cholera map, full"></figure>
             </div>
 
             <!-- 5 · Merleau-Ponty epigraph (divider) -->
@@ -190,42 +190,42 @@
 
             <!-- 6 · the earth is a geoid (two-up) -->
             <div class="slide auto" data-cap="The earth is a geoid" data-notes="Before coordinates, what surface are we even measuring against? The geoid is the earth's true shape — the surface of its gravity field, roughly mean sea level, lumpy and irregular. It's physically real but mathematically inconvenient: you can't write clean equations on a potato. So we approximate it. Every approximation from here is a deliberate simplification of this messy ground truth.">
-              <figure><img src="/teaching/laar61400/assets/img/Week05/06-left.webp" alt="The geoid — exaggerated gravity-field surface of the earth"></figure>
-              <figure><img src="/teaching/laar61400/assets/img/Week05/06-right.webp" alt="Geoid undulation globe"></figure>
+              <figure><img src="/teaching/laar61400/assets/img/Week05/06-left.avif" alt="The geoid — exaggerated gravity-field surface of the earth"></figure>
+              <figure><img src="/teaching/laar61400/assets/img/Week05/06-right.avif" alt="Geoid undulation globe"></figure>
             </div>
 
             <!-- 7 · datum fits a spheroid to the geoid (two-up) -->
             <div class="slide auto" data-cap="A datum fits a spheroid to the geoid" data-notes="We replace the lumpy geoid with a smooth ellipsoid (spheroid). A datum defines how that ellipsoid is positioned relative to the earth's center — the reference frame everything else hangs on. NAD27 vs NAD83 are two such choices for North America, and they don't agree: the same latitude/longitude can shift by tens of meters between them. The datum is invisible until your layers don't line up. Choice number one.">
-              <figure><img src="/teaching/laar61400/assets/img/Week05/07-left.webp" alt="A spheroid fitted to the geoid"></figure>
-              <figure><img src="/teaching/laar61400/assets/img/Week05/07-right.webp" alt="Datum reference — NAD27 vs NAD83"></figure>
+              <figure><img src="/teaching/laar61400/assets/img/Week05/07-left.avif" alt="A spheroid fitted to the geoid"></figure>
+              <figure><img src="/teaching/laar61400/assets/img/Week05/07-right.avif" alt="Datum reference — NAD27 vs NAD83"></figure>
             </div>
 
             <!-- 8 · geographic coordinate system (two-up) -->
             <div class="slide auto" data-cap="Geographic coordinate system (GCS)" data-notes="A GCS locates points on the 3-D spheroid with angles — latitude and longitude, in degrees. It's a position system, not a flat map. Crucial limitation: degrees are not distances. A degree of longitude is ~111 km at the equator and shrinks to zero at the poles. You can't measure area or do geometry directly in lat/long — which is exactly why we project.">
-              <figure><img src="/teaching/laar61400/assets/img/Week05/08-right.webp" alt="Geographic coordinate system globe"></figure>
-              <figure><img src="/teaching/laar61400/assets/img/Week05/08-left.webp" alt="Latitude and longitude graticule on a globe"></figure>
+              <figure><img src="/teaching/laar61400/assets/img/Week05/08-right.avif" alt="Geographic coordinate system globe"></figure>
+              <figure><img src="/teaching/laar61400/assets/img/Week05/08-left.avif" alt="Latitude and longitude graticule on a globe"></figure>
             </div>
 
             <!-- 9 · projected coordinate system -->
             <div class="slide single" data-cap="Projected coordinate system (PCS)" data-notes="A PCS flattens the spheroid onto a 2-D plane so that lengths, angles, and areas behave consistently — measurable in meters or feet. This is what lets you compute distances and areas. But you cannot flatten a sphere without tearing or stretching it: every projection is a controlled distortion. The question is never “distorted or not,” it's “which distortion can I live with for this map?”">
-              <img src="/teaching/laar61400/assets/img/Week05/09.webp" alt="Projecting the spheroid onto a flat plane">
+              <img src="/teaching/laar61400/assets/img/Week05/09.avif" alt="Projecting the spheroid onto a flat plane">
             </div>
 
             <!-- 10 · families of projection (two-up) -->
             <div class="slide auto" data-cap="Families of projection" data-notes="You project onto a developable surface — a cone, a cylinder, or a plane — then unroll it. Conic suits mid-latitude regions; cylindrical (e.g. Mercator) suits the whole globe but balloons the poles; planar/azimuthal suits a pole or a point; “interrupted” cuts the map to spread the error into the oceans. Each preserves one property (area, shape, distance, or direction) at the cost of the others. The vintage figure on the right — a face projected onto a globe and back — is the oldest trick for seeing the distortion.">
-              <figure><img src="/teaching/laar61400/assets/img/Week05/10-left.webp" alt="Conic, cylindrical and planar developable surfaces"></figure>
-              <figure><img src="/teaching/laar61400/assets/img/Week05/10-right.webp" alt="A face projected onto a globe and back — distortion illustration"></figure>
+              <figure><img src="/teaching/laar61400/assets/img/Week05/10-left.avif" alt="Conic, cylindrical and planar developable surfaces"></figure>
+              <figure><img src="/teaching/laar61400/assets/img/Week05/10-right.avif" alt="A face projected onto a globe and back — distortion illustration"></figure>
             </div>
 
             <!-- 11 · State Plane Coordinate zones (two-up) -->
             <div class="slide auto" data-cap="State Plane Coordinate zones" data-credit="SPC Zones, 2004" data-notes="The practical American consequence: the US is carved into dozens of State Plane zones, each with its own projection tuned to keep distortion under ~1:10,000 locally. This is the system your site survey and civil drawings actually use. Pick the wrong zone and your site lands in the wrong county. Projection isn't abstract — it's the coordinate system on the CAD file an engineer hands you.">
-              <figure><img src="/teaching/laar61400/assets/img/Week05/11-left.webp" alt="US State Plane Coordinate zones map"></figure>
-              <figure><img src="/teaching/laar61400/assets/img/Week05/11-right.webp" alt="State Plane zone detail"></figure>
+              <figure><img src="/teaching/laar61400/assets/img/Week05/11-left.avif" alt="US State Plane Coordinate zones map"></figure>
+              <figure><img src="/teaching/laar61400/assets/img/Week05/11-right.avif" alt="State Plane zone detail"></figure>
             </div>
 
             <!-- 12 · a zoo of world projections -->
             <div class="slide single" data-cap="A zoo of world projections" data-notes="Mercator, Robinson, Peters, Mollweide, Goode — each a different political and visual argument. Mercator preserves direction (great for navigation) but inflates Greenland to Africa's size; equal-area projections fix the sizes but bend the shapes. There is no “correct” world map, only fit-for-purpose ones. The projection you choose is an editorial decision about what your audience should believe is big, central, and true.">
-              <img src="/teaching/laar61400/assets/img/Week05/12.webp" alt="A grid of different world map projections">
+              <img src="/teaching/laar61400/assets/img/Week05/12.avif" alt="A grid of different world map projections">
             </div>
 
             <!-- Part III divider -->
@@ -252,22 +252,22 @@
 
             <!-- 14 · the world as a stack of layers -->
             <div class="slide single" data-cap="The world as a stack of layers" data-notes="The GIS worldview: reality sliced into thematic layers — elevation, land use, parcels, streets — each a separate dataset, stacked and registered to the same coordinates. This is enormously productive and quietly ideological: it assumes the world decomposes into clean, independent themes. Every layer is a decision about what counts as one thing. The map you make is only as honest as the slicing underneath it.">
-              <img src="/teaching/laar61400/assets/img/Week05/14.webp" alt="GIS layers stacked: elevation, land use, parcels, streets">
+              <img src="/teaching/laar61400/assets/img/Week05/14.avif" alt="GIS layers stacked: elevation, land use, parcels, streets">
             </div>
 
             <!-- 15 · a raster field — the DEM -->
             <div class="slide single" data-cap="A raster field — the DEM" data-notes="A Digital Elevation Model: every cell holds a height. Grayscale = high/low. This single grid is the raw material for a huge amount of landscape analysis — slope, aspect, hillshade, watersheds all derive from it. Resolution is destiny: a 30 m cell can't see a 5 m swale. The DEM looks like a photo of terrain but it's a sampled field, and the sample spacing decides what's knowable.">
-              <img src="/teaching/laar61400/assets/img/Week05/15.webp" alt="A digital elevation model rendered in grayscale">
+              <img src="/teaching/laar61400/assets/img/Week05/15.avif" alt="A digital elevation model rendered in grayscale">
             </div>
 
             <!-- 16 · under the raster — cells and values -->
             <div class="slide single" data-cap="Under the raster — cells and values" data-notes="Zoom in and the smooth terrain is just a grid of numbered cells, each one a value in a table. That's the whole trick: a continuous landscape reduced to a matrix of numbers we can compute on. Powerful, and lossy — anything finer than a cell, or between two values, simply doesn't exist to the analysis. Merleau-Ponty's “most worked-up phenomena,” made of pixels.">
-              <img src="/teaching/laar61400/assets/img/Week05/16.webp" alt="Raster terrain zoomed to reveal the grid of cell values">
+              <img src="/teaching/laar61400/assets/img/Week05/16.avif" alt="Raster terrain zoomed to reveal the grid of cell values">
             </div>
 
             <!-- 17 · operating on the grid -->
             <div class="slide single" data-cap="Operating on the grid" data-notes="Because a raster is just a matrix, analysis is arithmetic on cells — neighborhood operations, map algebra, reclassification. The GIS tool dialog hides simple loops over the grid. Keep this in view: nothing mystical happens here, it's a program walking cells. That's the bridge to the last move — and to Week 9.">
-              <img src="/teaching/laar61400/assets/img/Week05/17.webp" alt="Map algebra / neighborhood operation on a raster grid">
+              <img src="/teaching/laar61400/assets/img/Week05/17.avif" alt="Map algebra / neighborhood operation on a raster grid">
             </div>
 
             <!-- 18 · ANALYSIS (divider) -->
@@ -287,23 +287,23 @@
             <div class="slide" data-cap="Hydrologic analysis — from DEM to streams" data-credit="ArcGIS Spatial Analyst documentation" data-notes="From a bare elevation grid you can derive the whole drainage structure — none of it in the original data, all of it latent in the heights. Left to right: the DEM; the elevation→flow-direction worked example (each cell points to its steepest downhill neighbor, coded 1–128); the resulting flow-direction raster; flow direction → flow accumulation (sum the cells draining through each, and the stream network lights up); and the extracted stream. Simple local rule, global pattern. Next slide: the actual algorithm.">
               <div class="embed">
                 <div class="gis-tri">
-                  <figure><img src="/teaching/laar61400/assets/img/Week05/19-b.webp" alt="Colored digital elevation model"><figcaption>Elevation (DEM)</figcaption></figure>
-                  <figure><img src="/teaching/laar61400/assets/img/Week05/19-a.webp" alt="Elevation surface to flow direction, with the 8-direction coding scheme"><figcaption>Elevation → flow direction</figcaption></figure>
-                  <figure><img src="/teaching/laar61400/assets/img/Week05/19-c.webp" alt="Flow direction raster derived from the DEM"><figcaption>Flow direction</figcaption></figure>
-                  <figure><img src="/teaching/laar61400/assets/img/Week05/20-a.webp" alt="Flow direction grid to flow accumulation, with the 8-direction coding scheme"><figcaption>Flow direction → accumulation</figcaption></figure>
-                  <figure><img src="/teaching/laar61400/assets/img/Week05/20-b.webp" alt="Extracted stream network"><figcaption>Extracted stream</figcaption></figure>
+                  <figure><img src="/teaching/laar61400/assets/img/Week05/19-b.avif" alt="Colored digital elevation model"><figcaption>Elevation (DEM)</figcaption></figure>
+                  <figure><img src="/teaching/laar61400/assets/img/Week05/19-a.avif" alt="Elevation surface to flow direction, with the 8-direction coding scheme"><figcaption>Elevation → flow direction</figcaption></figure>
+                  <figure><img src="/teaching/laar61400/assets/img/Week05/19-c.avif" alt="Flow direction raster derived from the DEM"><figcaption>Flow direction</figcaption></figure>
+                  <figure><img src="/teaching/laar61400/assets/img/Week05/20-a.avif" alt="Flow direction grid to flow accumulation, with the 8-direction coding scheme"><figcaption>Flow direction → accumulation</figcaption></figure>
+                  <figure><img src="/teaching/laar61400/assets/img/Week05/20-b.avif" alt="Extracted stream network"><figcaption>Extracted stream</figcaption></figure>
                 </div>
               </div>
             </div>
 
             <!-- 21 · from terrain grid to model -->
             <div class="slide single" data-cap="From terrain grid to model" data-notes="The same DEM, now driving a parametric model in Rhino/Grasshopper — the grid of heights becomes geometry you can sculpt, contour, and represent. GIS analysis doesn't end in the GIS; it flows into the design pipeline (the Week 7 toolchain). Data sourced and analyzed here becomes the ground you actually design on.">
-              <img src="/teaching/laar61400/assets/img/Week05/21.webp" alt="Terrain grid driving a parametric model in Rhino/Grasshopper">
+              <img src="/teaching/laar61400/assets/img/Week05/21.avif" alt="Terrain grid driving a parametric model in Rhino/Grasshopper">
             </div>
 
             <!-- 22 · computation as representation -->
             <div class="slide single" data-cap="Computation as representation" data-notes="The terrain re-represented again — mesh, contours, a visual definition wired in the canvas. Each re-representation is another “operation, transformation” in Merleau-Ponty's sense, and another set of choices about what to show. The tool is powerful; the responsibility for meaning stays with you. (Seeds Week 7's data-trap and Week 9's computational thinking.)">
-              <img src="/teaching/laar61400/assets/img/Week05/22.webp" alt="Terrain re-represented as mesh and contours in a Grasshopper definition">
+              <img src="/teaching/laar61400/assets/img/Week05/22.avif" alt="Terrain re-represented as mesh and contours in a Grasshopper definition">
             </div>
 
             <!-- 23 · the analysis, written as an algorithm -->
@@ -311,7 +311,7 @@
               <div class="embed">
                 <div class="gis-code">
                   <figure>
-                    <img src="/teaching/laar61400/assets/img/Week05/23.webp" alt="Worked example: elevation surface to flow direction, with the 8-direction coding scheme">
+                    <img src="/teaching/laar61400/assets/img/Week05/23.avif" alt="Worked example: elevation surface to flow direction, with the 8-direction coding scheme">
                   </figure>
                   <pre><span class="cm"># flow direction: for every cell, where does water leave?</span>
 DIR = {E:1, SE:2, S:4, SW:8, W:16, NW:32, N:64, NE:128}
