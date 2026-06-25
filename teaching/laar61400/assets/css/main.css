@@ -349,3 +349,10 @@ body { font-family: 'DM Sans', sans-serif; background: #fff; color: #1a1a1a; }
   .syllabus-meta-grid { grid-template-columns: 1fr; gap: 2px 0; }
   .syllabus-meta-label { padding-top: 10px; }
 }
+
+/* eyebrow caption that introduces a lecture section: tiny uppercase mono label
+   with a hairline rule above. Used across the week decks (born in week02's timeline). */
+.section-label{
+  font-family:"DM Mono",ui-monospace,monospace;font-size:9px;font-weight:700;
+  text-transform:uppercase;letter-spacing:.12em;color:#aaa;
+  display:block;border-top:1px solid #e0e0e0;padding-top:20px;margin:32px 0 14px;}

@@ -23,7 +23,7 @@
 
 /* ── stage + carousel mechanics ── */
 .deck{margin-top:10px;}
-.deck-stage{position:relative;aspect-ratio:16/9;width:100%;
+.deck-stage{position:relative;aspect-ratio:16/9;width:100%;container-type:inline-size;
   background:var(--paper);border:1px solid var(--line);overflow:hidden;}
 .slide{position:absolute;inset:0;display:grid;place-items:center;
   opacity:0;visibility:hidden;transition:opacity .25s ease;}
@@ -88,6 +88,14 @@
    narrower one would letterbox under contain. The hero takes the leftover width at full height, so
    cover crops it to fill the frame. */
 .slide.hero-l figure img,.slide.hero-r figure img{width:100%;height:100%;object-fit:cover;display:block;}
+/* .fit modifier: the hero reads WHOLE (uncropped). JS sizes the hero figure to its own aspect
+   (like a stack cell) instead of the leftover width, so contain shows it edge-to-edge with no crop.
+   Use for portrait/vertical heroes where cover would chop top/bottom. Stack cells stay cover. */
+.slide.hero-l.fit>figure:first-child img,.slide.hero-r.fit>figure:first-child img{object-fit:contain;}
+/* hero + rows: the non-hero side is a multi-row gallery (wrap each row in <div class="row">).
+   JS (layoutAuto) sizes the rows; this just makes each row a justified flex line beside the hero. */
+.slide.hero-l>.row,.slide.hero-r>.row{display:flex;align-items:center;justify-content:center;
+  gap:var(--deck-gutter);margin:0;}
 
 /* auto-rows = multi-row justified gallery (image-aware): each .row is justified to the box
    width (images share that row's height, widths by aspect); rows stack and the whole block is
@@ -107,7 +115,7 @@
              <figure><img …></figure>
            </div>  (.pts first; image side follows from the class, not the DOM order) */
 .slide.points-l,.slide.points-r{grid-template-rows:minmax(0,1fr);align-items:stretch;
-  gap:clamp(14px,3vw,40px);padding:clamp(16px,4vw,46px);background:var(--paper);}
+  gap:clamp(14px,3.2cqw,40px);padding:clamp(16px,4.3cqw,46px);background:var(--paper);}
 .slide.points-l{grid-template-columns:5fr 7fr;}
 .slide.points-r{grid-template-columns:7fr 5fr;}
 .slide.points-l .pts{grid-column:1;}   .slide.points-l figure{grid-column:2;}
@@ -118,12 +126,34 @@
   width:auto;height:auto;object-fit:contain;display:block;}
 .pts{display:flex;flex-direction:column;justify-content:center;min-width:0;}
 .pts h3{font-family:"DM Sans",sans-serif;font-weight:700;letter-spacing:-.01em;
-  font-size:clamp(15px,2.2vw,24px);color:#2e2a24;line-height:1.2;margin:0 0 .7em;}
+  font-size:clamp(15px,2.4cqw,24px);color:#2e2a24;line-height:1.2;margin:0 0 .7em;}
 .pts ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:.6em;}
-.pts li{font-family:"DM Sans",sans-serif;font-size:clamp(12px,1.6vw,17px);line-height:1.45;
+.pts li{font-family:"DM Sans",sans-serif;font-size:clamp(12px,1.7cqw,17px);line-height:1.45;
   color:#4a463f;padding-left:1.15em;position:relative;}
-.pts li::before{content:"";position:absolute;left:0;top:.6em;width:.42em;height:.42em;
-  background:#b9532e;border-radius:50%;}
+.pts li::before{content:"+";position:absolute;left:0;top:0;line-height:1.45;
+  font-family:"DM Mono",ui-monospace,monospace;font-weight:500;font-size:.95em;
+  color:#b9532e;}
+
+/* ── part TOC / agenda divider — list the parts, highlight the one being entered ──
+   A recurring divider: one instance per part transition; the row for the part being entered gets
+   `.active` (full opacity + accent), the rest dim to .3. Place the .toc inside the page's typeset
+   `.embed` wrapper (same as other dividers — the fit script scales it to the stage); cqw tracks the
+   stage width. Each row: a mono `.toc-n` "Part N" label + a `.toc-h` heading. Scales to any row count.
+   Markup: <div class="slide" data-cap="…"><div class="embed"><div class="toc">
+             <div class="toc-row active"><span class="toc-n">Part I</span><h2 class="toc-h">…</h2></div>
+             <div class="toc-row"><span class="toc-n">Part II</span><h2 class="toc-h">…</h2></div>
+           </div></div></div> */
+.toc{width:min(820px,94%);display:grid;grid-template-columns:auto 1fr;
+  row-gap:clamp(10px,2cqw,22px);column-gap:clamp(16px,3cqw,34px);text-align:left;}
+.toc .toc-row{display:grid;grid-template-columns:subgrid;grid-column:1/-1;align-items:baseline;
+  padding-bottom:clamp(10px,1.8cqw,20px);border-bottom:1px solid var(--line);opacity:.3;transition:opacity .2s;}
+.toc .toc-row:last-child{border-bottom:0;padding-bottom:0;}
+.toc .toc-n{grid-column:1;grid-row:1;font-family:"DM Mono",ui-monospace,monospace;
+  font-size:clamp(11px,1.3cqw,14px);letter-spacing:.2em;text-transform:uppercase;color:var(--mute);}
+.toc .toc-h{grid-column:2;grid-row:1;margin:0;font-family:"DM Sans",sans-serif;font-weight:700;
+  color:var(--ink);font-size:clamp(16px,2.2cqw,36px);letter-spacing:-.01em;line-height:1.05;}
+.toc .toc-row.active{opacity:1;}
+.toc .toc-row.active .toc-n,.toc .toc-row.active .toc-h{color:var(--accent);}
 
 /* optional caption chip, bottom-left of a cell (used sparingly) */
 .slide figure figcaption{position:absolute;left:8px;bottom:7px;
@@ -134,7 +164,7 @@
 .slide--title{flex-direction:column;text-align:center;gap:14px;background:var(--ink);
   display:flex;align-items:center;justify-content:center;}
 .slide--title .tt{font-family:"DM Sans",sans-serif;font-weight:700;
-  font-size:clamp(20px,4.4vw,46px);color:#fbfaf8;letter-spacing:-.01em;line-height:1.1;}
+  font-size:clamp(16px,2.6cqw,46px);color:#fbfaf8;letter-spacing:-.01em;line-height:1.1;}
 .slide--title .ts{font-family:"DM Mono",ui-monospace,monospace;font-size:11px;
   letter-spacing:.14em;text-transform:uppercase;color:#b0a898;}
 

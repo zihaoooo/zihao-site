@@ -12,10 +12,6 @@
     :root{
       --ink:#1a1a1a; --paper:#fbfaf8; --line:#e0dbd3; --mute:#8a847c; --accent:#b87333;
     }
-    .timeline-section-label{
-      font-family:"DM Mono",ui-monospace,monospace;font-size:9px;font-weight:700;
-      text-transform:uppercase;letter-spacing:.12em;color:#aaa;
-      display:block;border-top:1px solid #e0e0e0;padding-top:20px;margin:32px 0 14px;}
 
     /* a typeset card living inside a carousel slide: centered, clipped; JS scales the
        child to fit the fixed 16:9 stage (see fit script) so nothing scrolls. */
@@ -27,10 +23,10 @@
     .slide--epi{background:var(--ink);}
     .gis-epi{width:min(740px,92%);text-align:center;color:#fbfaf8;}
     .gis-epi blockquote{margin:0;font-family:Georgia,"Times New Roman",Times,serif;
-      font-size:clamp(22px,3.6vw,42px);line-height:1.22;font-weight:500;letter-spacing:-.01em;}
+      font-size:clamp(22px,2.35cqw,42px);line-height:1.22;font-weight:500;letter-spacing:-.01em;}
     /* wide variant for a long passage (slide 5): wider box, smaller type, looser leading */
     .gis-epi--wide{width:min(1060px,96%);}
-    .gis-epi--wide blockquote{font-size:clamp(15px,2.05vw,24px);line-height:1.45;
+    .gis-epi--wide blockquote{font-size:clamp(15px,2.05cqw,24px);line-height:1.45;
       font-weight:400;letter-spacing:0;text-align:left;}
     .gis-epi cite{display:block;margin-top:24px;font-style:normal;font-family:"DM Mono",ui-monospace,monospace;
       font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#b0a898;}
@@ -40,11 +36,11 @@
     .gis-div .kicker{font-family:"DM Mono",ui-monospace,monospace;font-size:11px;letter-spacing:.2em;
       text-transform:uppercase;color:var(--accent);margin-bottom:20px;}
     .gis-div h2{margin:0;font-family:"DM Sans",sans-serif;font-weight:700;color:var(--ink);
-      font-size:clamp(26px,4.8vw,54px);letter-spacing:-.01em;line-height:1.08;}
-    .gis-div .terms{display:flex;align-items:center;justify-content:center;gap:clamp(14px,3vw,34px);
+      font-size:clamp(26px,3cqw,54px);letter-spacing:-.01em;line-height:1.08;}
+    .gis-div .terms{display:flex;align-items:center;justify-content:center;gap:clamp(14px,3cqw,34px);
       flex-wrap:wrap;}
     .gis-div .term{font-family:"DM Sans",sans-serif;font-weight:700;color:var(--ink);
-      font-size:clamp(24px,4.4vw,50px);letter-spacing:-.01em;}
+      font-size:clamp(24px,2.8cqw,50px);letter-spacing:-.01em;}
     .gis-div .vs{font-family:"DM Mono",ui-monospace,monospace;font-size:13px;letter-spacing:.14em;
       text-transform:uppercase;color:var(--mute);}
     .gis-div .sub{margin:18px auto 0;font-family:"DM Sans",sans-serif;font-size:14px;color:var(--mute);
@@ -53,7 +49,7 @@
 
     /* ── hydrologic slides (22 & 23): three images justified at equal height (PPT-style),
        each with a centered caption below. Inside .embed so the fit script scales it. */
-    .gis-tri{display:flex;align-items:flex-start;justify-content:center;gap:clamp(16px,3vw,44px);}
+    .gis-tri{display:flex;align-items:flex-start;justify-content:center;gap:clamp(16px,3cqw,44px);}
     .gis-tri figure{margin:0;display:flex;flex-direction:column;align-items:center;
       background:none;overflow:visible;}
     .gis-tri figure img{display:block;height:300px;width:auto;}
@@ -63,7 +59,7 @@
 
     /* ── worked-example + pseudocode (slide 23) ── */
     .gis-code{width:min(940px,95%);display:grid;grid-template-columns:0.8fr 1fr;
-      gap:clamp(16px,3vw,34px);align-items:center;}
+      gap:clamp(16px,3cqw,34px);align-items:center;}
     .gis-code figure{margin:0;display:block;background:none;overflow:visible;}
     .gis-code figure img{width:100%;height:auto;display:block;border:1px solid var(--line);
       border-radius:6px;background:#fff;}
@@ -132,7 +128,7 @@
         </div>
 
         <!-- ── Slides ── -->
-        <span class="timeline-section-label">Lecture Slides</span>
+        <span class="section-label">Lecture Slides</span>
         <div class="deck" id="deck" data-deck-id="w05" data-deck-title="Week 05">
           <div class="deck-stage" id="deck-stage">
 
@@ -145,9 +141,11 @@
             <!-- Part I divider -->
             <div class="slide" data-cap="Part I — A map is an argument" data-notes="Section break. Part I earns the thesis: spatial data is constructed, not recorded. The 1854 London cholera case — the same deaths represented three ways — shows that only the map makes the cause visible. Representation is where the knowledge is made.">
               <div class="embed">
-                <div class="gis-div">
-                  <div class="kicker">Part I</div>
-                  <h2>A map is an argument</h2>
+                <div class="toc">
+                  <div class="toc-row active"><span class="toc-n">Part I</span><h2 class="toc-h">A map is an argument</h2></div>
+                  <div class="toc-row"><span class="toc-n">Part II</span><h2 class="toc-h">From globe to grid</h2></div>
+                  <div class="toc-row"><span class="toc-n">Part III</span><h2 class="toc-h">How space becomes data</h2></div>
+                  <div class="toc-row"><span class="toc-n">Part IV</span><h2 class="toc-h">Analysis</h2></div>
                 </div>
               </div>
             </div>
@@ -181,9 +179,11 @@
             <!-- Part II divider -->
             <div class="slide" data-cap="Part II — From globe to grid" data-notes="Section break. Part II goes under the hood: how the round, lumpy earth becomes a flat, measurable map — geoid → datum → geographic coordinates → projection. Every step is a deliberate choice that trades something away.">
               <div class="embed">
-                <div class="gis-div">
-                  <div class="kicker">Part II</div>
-                  <h2>From globe to grid</h2>
+                <div class="toc">
+                  <div class="toc-row"><span class="toc-n">Part I</span><h2 class="toc-h">A map is an argument</h2></div>
+                  <div class="toc-row active"><span class="toc-n">Part II</span><h2 class="toc-h">From globe to grid</h2></div>
+                  <div class="toc-row"><span class="toc-n">Part III</span><h2 class="toc-h">How space becomes data</h2></div>
+                  <div class="toc-row"><span class="toc-n">Part IV</span><h2 class="toc-h">Analysis</h2></div>
                 </div>
               </div>
             </div>
@@ -231,9 +231,11 @@
             <!-- Part III divider -->
             <div class="slide" data-cap="Part III — How space becomes data" data-notes="Section break. Part III: the two data models that turn space into something computable — vector (discrete objects with edges) and raster (a continuous field sampled on a grid) — and the GIS worldview of reality sliced into stacked layers.">
               <div class="embed">
-                <div class="gis-div">
-                  <div class="kicker">Part III</div>
-                  <h2>How space becomes data</h2>
+                <div class="toc">
+                  <div class="toc-row"><span class="toc-n">Part I</span><h2 class="toc-h">A map is an argument</h2></div>
+                  <div class="toc-row"><span class="toc-n">Part II</span><h2 class="toc-h">From globe to grid</h2></div>
+                  <div class="toc-row active"><span class="toc-n">Part III</span><h2 class="toc-h">How space becomes data</h2></div>
+                  <div class="toc-row"><span class="toc-n">Part IV</span><h2 class="toc-h">Analysis</h2></div>
                 </div>
               </div>
             </div>
@@ -277,14 +279,13 @@
             </div>
 
             <!-- 19 · ANALYSIS (divider) -->
-            <div class="slide slide--epi" data-cap="Analysis — “to test out, to operate, to transform”" data-notes="Merleau-Ponty's verbs return, now as method. Analysis is where data stops describing and starts doing — we transform the grid to surface patterns that weren't visible in the raw values. We'll walk one canonical example: how water moves across terrain, derived entirely from the DEM.">
+            <div class="slide" data-cap="Analysis — “to test out, to operate, to transform”" data-notes="Merleau-Ponty's verbs return, now as method. Analysis is where data stops describing and starts doing — we transform the grid to surface patterns that weren't visible in the raw values. We'll walk one canonical example: how water moves across terrain, derived entirely from the DEM.">
               <div class="embed">
-                <div class="gis-epi">
-                  <div class="gis-div">
-                    <div class="kicker">Part IV</div>
-                    <h2 style="color:#fbfaf8;">ANALYSIS</h2>
-                  </div>
-                  <cite>“…to test out, to operate, to transform.”</cite>
+                <div class="toc">
+                  <div class="toc-row"><span class="toc-n">Part I</span><h2 class="toc-h">A map is an argument</h2></div>
+                  <div class="toc-row"><span class="toc-n">Part II</span><h2 class="toc-h">From globe to grid</h2></div>
+                  <div class="toc-row"><span class="toc-n">Part III</span><h2 class="toc-h">How space becomes data</h2></div>
+                  <div class="toc-row active"><span class="toc-n">Part IV</span><h2 class="toc-h">Analysis</h2></div>
                 </div>
               </div>
             </div>

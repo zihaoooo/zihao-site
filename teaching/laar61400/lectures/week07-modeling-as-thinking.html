@@ -12,10 +12,6 @@
     :root{
       --ink:#1a1a1a; --paper:#fbfaf8; --line:#e0dbd3; --mute:#8a847c; --accent:#b87333;
     }
-    .timeline-section-label{
-      font-family:"DM Mono",ui-monospace,monospace;font-size:9px;font-weight:700;
-      text-transform:uppercase;letter-spacing:.12em;color:#aaa;
-      display:block;border-top:1px solid #e0e0e0;padding-top:20px;margin:32px 0 14px;}
 
     /* a typeset card living inside a carousel slide: centered, clipped; JS scales the
        child to fit the fixed 16:9 stage (see fit script) so nothing scrolls. */
@@ -28,17 +24,17 @@
     .m7-div .kicker{font-family:"DM Mono",ui-monospace,monospace;font-size:11px;letter-spacing:.2em;
       text-transform:uppercase;color:var(--accent);margin-bottom:18px;}
     .m7-div h2{margin:0;font-family:"DM Sans",sans-serif;font-weight:700;color:var(--ink);
-      font-size:clamp(26px,4.8vw,54px);letter-spacing:-.01em;line-height:1.08;}
-    .m7-div .terms{display:flex;align-items:flex-start;justify-content:center;gap:clamp(14px,3vw,34px);
+      font-size:clamp(26px,3cqw,54px);letter-spacing:-.01em;line-height:1.08;}
+    .m7-div .terms{display:flex;align-items:flex-start;justify-content:center;gap:clamp(14px,3cqw,34px);
       flex-wrap:wrap;}
     .m7-div .term-col{display:flex;flex-direction:column;align-items:center;gap:12px;
-      width:min(320px,40vw);}
+      width:min(320px,40cqw);}
     .m7-div .term{font-family:"DM Sans",sans-serif;font-weight:700;color:var(--ink);
-      font-size:clamp(24px,4.4vw,50px);letter-spacing:-.01em;}
+      font-size:clamp(24px,2.8cqw,50px);letter-spacing:-.01em;}
     .m7-div .def{font-family:"DM Sans",sans-serif;font-weight:400;color:var(--mute);
-      font-size:clamp(13px,1.5vw,17px);line-height:1.4;}
+      font-size:clamp(13px,1.5cqw,17px);line-height:1.4;}
     .m7-div .vs{font-family:"DM Mono",ui-monospace,monospace;font-size:13px;letter-spacing:.14em;
-      text-transform:uppercase;color:var(--mute);align-self:center;margin-top:clamp(8px,2vw,20px);}
+      text-transform:uppercase;color:var(--mute);align-self:center;margin-top:clamp(8px,2cqw,20px);}
 
     /* ── render build-up (slide 11): hero diagram + a 2×2 labelled grid ── */
     .m7-render{display:grid;grid-template-columns:1.05fr 1fr;gap:16px;width:min(1000px,96%);
@@ -106,7 +102,7 @@
         </div>
 
         <!-- ── Slides ── -->
-        <span class="timeline-section-label">Lecture Slides</span>
+        <span class="section-label">Lecture Slides</span>
         <div class="deck" id="deck" data-deck-id="w07" data-deck-title="Week 07">
           <div class="deck-stage" id="deck-stage">
 
@@ -114,6 +110,23 @@
             <div class="slide slide--title" data-cap="" data-notes="This week you start building a 3D site model in Rhino (WF04). Before we touch the tool, one lecture on the thing the tool makes: a model. Three questions hold the hour — what *is* a model, what do we model, and why / for what. The through-line: a model is not a copy of the world, it's a selective argument about it, built to answer a question. Choose it for the question you're asking, not the software you happen to know. By the end, the Rhino assignment should look less like 'make a 3D thing' and more like 'use modeling to think.' A cautionary tale: a student wanted to model a relatively flat site in 3D.">
               <div class="tt">Modeling as Thinking</div>
               <div class="ts">LAAR 61400 · Week 07 · Zihao Zhang, Ph.D.</div>
+            </div>
+
+            <!-- Part I divider (TOC) -->
+            <div class="slide" data-cap="What a model is" data-notes="Part I. First question: what *is* a model? A selective abstraction built to answer a question — and the choosing of what to keep and what to drop is the whole act.">
+              <div class="embed">
+                <div class="toc">
+                  <div class="toc-row active">
+                    <span class="toc-n">Part I</span><h2 class="toc-h">What a model is</h2>
+                  </div>
+                  <div class="toc-row">
+                    <span class="toc-n">Part II</span><h2 class="toc-h">What we model</h2>
+                  </div>
+                  <div class="toc-row">
+                    <span class="toc-n">Part III</span><h2 class="toc-h">Why, and what for</h2>
+                  </div>
+                </div>
+              </div>
             </div>
 
             <!-- 2 · A model is a selective abstraction -->
@@ -139,36 +152,36 @@
               </div>
             </div>
 
-            <!-- 3.5 · A detour — my own models -->
+            <!-- 4 · A detour — my own models -->
             <div class="slide auto-rows" data-cap="CNC routed models" data-credit="Models: Zihao Zhang · top left: CNC router" data-notes="Bonus page. A few physical models I built — shown not to present, but to make the point concrete: each was made to test a question with the hands and eyes, and most ended up cut apart for the next one. Use them to seed the 'study model' idea on the next slide.">
               <div class="row">
-                <figure><img src="/teaching/laar61400/assets/img/Week07/035-a.avif" alt="CNC router cutting Zihao's model"></figure>
-                <figure><img src="/teaching/laar61400/assets/img/Week07/035-b.avif" alt="Zihao's physical model"></figure>
-                <figure><img src="/teaching/laar61400/assets/img/Week07/035-e.avif" alt="Zihao's physical model"></figure>
+                <figure><img src="/teaching/laar61400/assets/img/Week07/04-a.avif" alt="CNC router cutting Zihao's model"></figure>
+                <figure><img src="/teaching/laar61400/assets/img/Week07/04-b.avif" alt="Zihao's physical model"></figure>
+                <figure><img src="/teaching/laar61400/assets/img/Week07/04-e.avif" alt="Zihao's physical model"></figure>
               </div>
               <div class="row">
-                <figure><img src="/teaching/laar61400/assets/img/Week07/035-f.avif" alt="Zihao's physical model"></figure>
-                <figure><img src="/teaching/laar61400/assets/img/Week07/035-g.avif" alt="Zihao's physical model"></figure>
+                <figure><img src="/teaching/laar61400/assets/img/Week07/04-f.avif" alt="Zihao's physical model"></figure>
+                <figure><img src="/teaching/laar61400/assets/img/Week07/04-g.avif" alt="Zihao's physical model"></figure>
               </div>
             </div>
 
-            <!-- 4 · The same thing, modeled at different scales -->
-            <div class="slide hero-l" data-cap="Model and scale" data-credit="Left: detail section model (Pinterest) · Right: OMA, Parc de la Villette" data-notes="A model has a scale, and the scale is itself a choice about the question. A 1:500 site model answers massing and context — how the project sits in its surroundings — and stays silent on materials. A 1:20 detail model answers the joint, the material, how two surfaces meet — and knows nothing about context. Same project, two scales, two different sets of answerable questions. You don't pick a scale because it's 'to scale'; you pick the scale that makes your question visible.">
-              <figure><img src="/teaching/laar61400/assets/img/Week07/04-b.avif" alt="Detail-scale section model (Pinterest)"></figure>
-              <figure><img src="/teaching/laar61400/assets/img/Week07/04-a.avif" alt="Large-scale site/massing model — OMA Parc de la Villette"></figure>
-              <figure><img src="/teaching/laar61400/assets/img/Week07/04-c.avif" alt="OMA Parc de la Villette model, second view"></figure>
+            <!-- 5 · The same thing, modeled at different scales -->
+            <div class="slide hero-l fit" data-cap="Model and scale" data-credit="Left: detail section model (Pinterest) · Right: OMA, Parc de la Villette" data-notes="A model has a scale, and the scale is itself a choice about the question. A 1:500 site model answers massing and context — how the project sits in its surroundings — and stays silent on materials. A 1:20 detail model answers the joint, the material, how two surfaces meet — and knows nothing about context. Same project, two scales, two different sets of answerable questions. You don't pick a scale because it's 'to scale'; you pick the scale that makes your question visible.">
+              <figure><img src="/teaching/laar61400/assets/img/Week07/05-b.avif" alt="Detail-scale section model (Pinterest)"></figure>
+              <figure><img src="/teaching/laar61400/assets/img/Week07/05-a.avif" alt="Large-scale site/massing model — OMA Parc de la Villette"></figure>
+              <figure><img src="/teaching/laar61400/assets/img/Week07/05-c.avif" alt="OMA Parc de la Villette model, second view"></figure>
             </div>
 
-            <!-- 5 · The study model — built to think, not to present -->
+            <!-- 6 · The study model — built to think, not to present -->
             <div class="slide auto-rows" data-cap="The study model — built to think, not to present" data-credit="Top left: Shurui Zhang · top right: Pinterest · bottom: Zihao Zhang" data-notes="One type of model for yourself: the study model. The most important physical model in studio is often the one you throw away. A study model is rough, fast, and cheap — chipboard, foam, tape — built not to impress a jury but to test an idea with your hands and eyes. You make many; each answers one question and gets cut up for the next. The polished presentation model comes later, if at all. This is the whole thesis of the week in analog form: the value isn't the artifact, it's the thinking the model lets you do. Hold this when you open Rhino — a screen model can be a study model too.">
               <div class="row">
-                <figure><img src="/teaching/laar61400/assets/img/Week07/05-a.avif" alt="Rough working study model"></figure>
-                <figure><img src="/teaching/laar61400/assets/img/Week07/05-b.avif" alt="Rough working study model"></figure>
+                <figure><img src="/teaching/laar61400/assets/img/Week07/06-a.avif" alt="Rough working study model"></figure>
+                <figure><img src="/teaching/laar61400/assets/img/Week07/06-b.avif" alt="Rough working study model"></figure>
               </div>
               <div class="row">
-                <figure><img src="/teaching/laar61400/assets/img/Week07/05-c.avif" alt="Rough working study model"></figure>
-                <figure><img src="/teaching/laar61400/assets/img/Week07/05-d.avif" alt="Rough working study model"></figure>
-                <figure><img src="/teaching/laar61400/assets/img/Week07/05-e.avif" alt="Rough working study model"></figure>
+                <figure><img src="/teaching/laar61400/assets/img/Week07/06-c.avif" alt="Rough working study model"></figure>
+                <figure><img src="/teaching/laar61400/assets/img/Week07/06-d.avif" alt="Rough working study model"></figure>
+                <figure><img src="/teaching/laar61400/assets/img/Week07/06-e.avif" alt="Rough working study model"></figure>
               </div>
             </div>
 
@@ -205,17 +218,15 @@
             </div>
 
             <!-- 11 · A render is a simulation of light -->
-            <div class="slide" data-cap="A render is a simulation of light" data-credit="Render build-up via ArchiCGI" data-notes="Here's the demystification. A render isn't magic and it isn't 'the computer making it pretty.' It's a simulation: the software traces how light leaves a source, bounces off surfaces, and picks up their material properties — color, roughness, reflectivity — on the way to a virtual camera. Same logic as the flood model, different physics. Light instead of water. Once you see rendering as a light simulation, the material and lighting settings stop being mysterious sliders and become the physics you're choosing to model. Right grid: same corner built up A→D (clay/AO → + materials → + lighting → final post).">
-              <div class="embed">
-                <div class="m7-render">
-                  <figure class="hero"><img src="/teaching/laar61400/assets/img/Week07/11-left.avif" alt="Raytrace diagram: camera, image plane, view ray, shadow ray, light, object"></figure>
-                  <div class="grid">
-                    <figure><figcaption>A</figcaption><img src="/teaching/laar61400/assets/img/Week07/11-a.avif" alt="Clay / ambient-occlusion model"></figure>
-                    <figure><figcaption>B</figcaption><img src="/teaching/laar61400/assets/img/Week07/11-b.avif" alt="Same corner with materials added"></figure>
-                    <figure><figcaption>C</figcaption><img src="/teaching/laar61400/assets/img/Week07/11-c.avif" alt="Same corner with lighting added"></figure>
-                    <figure><figcaption>D</figcaption><img src="/teaching/laar61400/assets/img/Week07/11-d.avif" alt="Final image after post-processing"></figure>
-                  </div>
-                </div>
+            <div class="slide hero-l fit" data-cap="A render is a simulation of light" data-credit="Render build-up via ArchiCGI" data-notes="Here's the demystification. A render isn't magic and it isn't 'the computer making it pretty.' It's a simulation: the software traces how light leaves a source, bounces off surfaces, and picks up their material properties — color, roughness, reflectivity — on the way to a virtual camera. Same logic as the flood model, different physics. Light instead of water. Once you see rendering as a light simulation, the material and lighting settings stop being mysterious sliders and become the physics you're choosing to model. Right grid: same corner built up A→D (clay/AO → + materials → + lighting → final post).">
+              <figure><img src="/teaching/laar61400/assets/img/Week07/11-left.avif" alt="Raytrace diagram: camera, image plane, view ray, shadow ray, light, object"></figure>
+              <div class="row">
+                <figure><img src="/teaching/laar61400/assets/img/Week07/11-a.avif" alt="Clay / ambient-occlusion model"></figure>
+                <figure><img src="/teaching/laar61400/assets/img/Week07/11-b.avif" alt="Same corner with materials added"></figure>
+              </div>
+              <div class="row">
+                <figure><img src="/teaching/laar61400/assets/img/Week07/11-c.avif" alt="Same corner with lighting added"></figure>
+                <figure><img src="/teaching/laar61400/assets/img/Week07/11-d.avif" alt="Final image after post-processing"></figure>
               </div>
             </div>
 
@@ -232,11 +243,15 @@
             </div>
 
             <!-- 14 · Same question, asked in water -->
-            <div class="slide auto" data-cap="Same question, asked in water" data-credit="U.S. Army Corps of Engineers" data-notes="Think about what this model *is* in our terms. It's a selective abstraction — it keeps topography and flow, drops cities and soil and weather. It's a simulation — water running under gravity's rules. And it answered a real question with real stakes: where will the water go, and what should we build to control it? It worked. It guided actual flood-control decisions for decades. Analog, physical, and genuinely a simulation — no computer in sight.">
-              <figure><img src="/teaching/laar61400/assets/img/Week07/14-a.avif" alt="Basin Model detail — scaled terrain"></figure>
-              <figure><img src="/teaching/laar61400/assets/img/Week07/14-b.avif" alt="Basin Model detail — control structures"></figure>
-              <figure><img src="/teaching/laar61400/assets/img/Week07/14-c.avif" alt="Basin Model detail"></figure>
-              <figure><img src="/teaching/laar61400/assets/img/Week07/14-d.avif" alt="Basin Model detail"></figure>
+            <div class="slide auto-rows" data-cap="Same question, asked in water" data-credit="U.S. Army Corps of Engineers" data-notes="Think about what this model *is* in our terms. It's a selective abstraction — it keeps topography and flow, drops cities and soil and weather. It's a simulation — water running under gravity's rules. And it answered a real question with real stakes: where will the water go, and what should we build to control it? It worked. It guided actual flood-control decisions for decades. Analog, physical, and genuinely a simulation — no computer in sight.">
+              <div class="row">
+                <figure><img src="/teaching/laar61400/assets/img/Week07/14-a.avif" alt="Basin Model detail — scaled terrain"></figure>
+                <figure><img src="/teaching/laar61400/assets/img/Week07/14-b.avif" alt="Basin Model detail — control structures"></figure>
+              </div>
+              <div class="row">
+                <figure><img src="/teaching/laar61400/assets/img/Week07/14-c.avif" alt="Basin Model detail"></figure>
+                <figure><img src="/teaching/laar61400/assets/img/Week07/14-d.avif" alt="Basin Model detail"></figure>
+              </div>
             </div>
 
             <!-- 15 · Replaced by a mathematical model -->
@@ -247,9 +262,16 @@
             <!-- 16 · What we model — and why (divider) -->
             <div class="slide" data-cap="What we model — and why" data-notes="Section break. If a model is chosen for a question, then the *type* of model is an answer to a *kind* of question. Let's lay the main types side by side, not as a tool catalog but as a set of questions each one is good at. The skill isn't knowing all the tools — it's matching the model to the question.">
               <div class="embed">
-                <div class="m7-div">
-                  <div class="kicker">Part II</div>
-                  <h2>What we model — and why</h2>
+                <div class="toc">
+                  <div class="toc-row">
+                    <span class="toc-n">Part I</span><h2 class="toc-h">What a model is</h2>
+                  </div>
+                  <div class="toc-row active">
+                    <span class="toc-n">Part II</span><h2 class="toc-h">What we model</h2>
+                  </div>
+                  <div class="toc-row">
+                    <span class="toc-n">Part III</span><h2 class="toc-h">Why, and what for</h2>
+                  </div>
                 </div>
               </div>
             </div>
@@ -270,6 +292,23 @@
             <div class="slide points-l" data-cap="Data / GIS models — what is true across a territory?" data-notes="Back to Week 5. A GIS model answers questions about patterns over space — elevation, slope, land use, who lives where, where water flows. It's the right model when the question is regional and quantitative, not formal. Note it's a completely different *kind* of model from the Rhino one: a field of values, not a sculpted surface. Same site, two models, two questions. Neither is 'the real one.'">
               <div class="pts"><h3>Data / GIS</h3><ul><li>Good for: patterns across a territory</li><li>A <em>field of values</em>, not a surface</li><li>Same site, a different question</li></ul></div>
               <figure><div class="ph"><span class="ph-tag">To source</span><span class="ph-desc">A GIS analysis layer of a site (slope / land-use / DEM hillshade) — callback to Week 5.</span></div></figure>
+            </div>
+
+            <!-- Part III divider -->
+            <div class="slide" data-cap="Why — and what for" data-notes="Part III. Last question: why model at all, and what for? A model has a real cost; it earns its place only when the insight it buys beats that cost. Fit it to the question, and build only when it pays.">
+              <div class="embed">
+                <div class="toc">
+                  <div class="toc-row">
+                    <span class="toc-n">Part I</span><h2 class="toc-h">What a model is</h2>
+                  </div>
+                  <div class="toc-row">
+                    <span class="toc-n">Part II</span><h2 class="toc-h">What we model</h2>
+                  </div>
+                  <div class="toc-row active">
+                    <span class="toc-n">Part III</span><h2 class="toc-h">Why, and what for</h2>
+                  </div>
+                </div>
+              </div>
             </div>
 
             <!-- 20 · Fit the model to the question -->
@@ -334,7 +373,7 @@
 
             <!-- 29 · Closing takeaways -->
             <div class="slide slide--title" data-cap="" data-notes="Where we close — the three takeaways, which are really one. You pick a model to fit the question (not the tool), you know that what it omits is its argument, and you only build when the insight beats the cost. That's not anti-technology — it's what makes you the one directing the tool instead of the tool directing you. Now go build the Rhino model, and the whole time, ask the question it's supposed to answer.">
-              <div class="tt">Choose the model for the question. What you leave out is the argument. Build only when it earns its cost.</div>
+              <div class="tt">Choose the model for the question.<br>What you leave out is the argument.<br>Build only when it earns its cost.</div>
               <div class="ts">Week 07 · three takeaways, really one</div>
             </div>
 

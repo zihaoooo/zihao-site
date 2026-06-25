@@ -12,10 +12,6 @@
     :root{
       --ink:#1a1a1a; --paper:#fbfaf8; --line:#e0dbd3; --mute:#8a847c; --accent:#b87333;
     }
-    .timeline-section-label{
-      font-family:"DM Mono",ui-monospace,monospace;font-size:9px;font-weight:700;
-      text-transform:uppercase;letter-spacing:.12em;color:#aaa;
-      display:block;border-top:1px solid #e0e0e0;padding-top:20px;margin:32px 0 14px;}
 
     /* a widget/diagram living inside a carousel slide: centered, clipped; JS scales the
        child to fit the fixed 16:9 stage (see fitEmbeds) so nothing scrolls. */
@@ -35,15 +31,15 @@
     /* ── text slide (checklist) ── */
     .slide.textslide{display:flex;align-items:center;justify-content:center;background:var(--paper);}
     .gd-checklist{width:min(640px,90%);font-family:"DM Sans",sans-serif;color:var(--ink);}
-    .gd-checklist h3{font-size:clamp(18px,2.6vw,26px);margin:0 0 18px;font-weight:700;}
+    .gd-checklist h3{font-size:clamp(18px,2.6cqw,26px);margin:0 0 18px;font-weight:700;}
     .gd-checklist ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:11px;}
-    .gd-checklist li{font-size:clamp(13px,1.8vw,16px);line-height:1.4;padding-left:26px;position:relative;color:#3a352f;}
+    .gd-checklist li{font-size:clamp(13px,1.8cqw,16px);line-height:1.4;padding-left:26px;position:relative;color:#3a352f;}
     .gd-checklist li::before{content:"";position:absolute;left:0;top:.35em;width:13px;height:13px;
       border:2px solid var(--accent);border-radius:3px;}
     .gd-checklist li b{color:var(--mute);font-weight:600;font-family:"DM Mono",monospace;font-size:.82em;}
 
     /* ── schematic two-up mocks (slides 9 & 12), d1-fix-it page idiom ── */
-    .gd-mock{width:min(860px,94%);display:grid;grid-template-columns:1fr 1fr;gap:clamp(16px,3vw,38px);align-items:start;}
+    .gd-mock{width:min(860px,94%);display:grid;grid-template-columns:1fr 1fr;gap:clamp(16px,3cqw,38px);align-items:start;}
     .gd-mock figure{margin:0;}
     .gd-mock figcaption{font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--mute);
       margin-bottom:8px;text-align:center;}
@@ -71,7 +67,7 @@
 
     /* ── slide 20 — layout templates gallery ── */
     .gd-templates{width:min(900px,95%);display:grid;grid-template-columns:repeat(4,1fr);
-      gap:clamp(10px,1.6vw,18px);}
+      gap:clamp(10px,1.6cqw,18px);}
     .gd-templates figure{margin:0;}
     .gd-templates figcaption{font-size:10.5px;letter-spacing:.04em;color:var(--mute);
       margin-top:6px;text-align:center;line-height:1.3;}
@@ -111,7 +107,7 @@
     .gd-tools__card h4{margin:0 0 4px;font-family:"DM Sans",sans-serif;font-size:15px;color:var(--ink);}
     .gd-tools__card p.k{margin:0 0 16px;font-family:"DM Mono",monospace;font-size:10.5px;
       letter-spacing:.06em;text-transform:uppercase;color:var(--mute);}
-    /* widgets fill the card width (override their min(...,92vw) standalone sizing) so the page never scrolls sideways */
+    /* widgets fill the card width (override their min(...,92cqw) standalone sizing) so the page never scrolls sideways */
     .gd-tools__card>.gd-hsv,.gd-tools__card>.gd-mix,.gd-tools__card>.gd-val,
     .gd-tools__card>.gd-t1,.gd-tools__card>.gd-type,.gd-tools__card>.gd-fix{width:100%;max-width:100%;margin:0 auto;}
 
@@ -128,8 +124,8 @@
       padding:8px 16px 12px;}
 
     /* ===== widget: C1 HSV ===== */
-    .gd-hsv{width:min(900px,92vw);display:grid;grid-template-columns:1.1fr 1fr;
-      gap:clamp(24px,4vw,56px);align-items:center;}
+    .gd-hsv{width:min(900px,92cqw);display:grid;grid-template-columns:1.1fr 1fr;
+      gap:clamp(24px,4cqw,56px);align-items:center;}
     .gd-hsv__swatch{aspect-ratio:1/1;border-radius:14px;border:1px solid var(--line);
       box-shadow:0 8px 30px rgba(0,0,0,.10);transition:background .08s linear;
       display:flex;align-items:flex-end;justify-content:flex-end;padding:14px;}
@@ -151,7 +147,7 @@
     @media(max-width:640px){.gd-hsv{grid-template-columns:1fr;}}
 
     /* ===== widget: C2 RGB/CMYK ===== */
-    .gd-mix{width:min(960px,94vw);display:grid;grid-template-columns:1fr 1fr;gap:clamp(20px,4vw,48px);}
+    .gd-mix{width:min(960px,94cqw);display:grid;grid-template-columns:1fr 1fr;gap:clamp(20px,4cqw,48px);}
     .gd-mix__panel{display:flex;flex-direction:column;gap:14px;}
     .gd-mix__title{font-size:14px;letter-spacing:.1em;text-transform:uppercase;color:var(--mute);
       display:flex;justify-content:space-between;align-items:baseline;}
@@ -175,8 +171,8 @@
     @media(max-width:680px){.gd-mix{grid-template-columns:1fr;}}
 
     /* ===== widget: C5 greyscale ===== */
-    .gd-val{width:min(900px,92vw);display:flex;flex-direction:column;gap:22px;align-items:center;}
-    .gd-val__row{display:grid;grid-template-columns:1fr 1fr;gap:clamp(20px,4vw,44px);width:100%;
+    .gd-val{width:min(900px,92cqw);display:flex;flex-direction:column;gap:22px;align-items:center;}
+    .gd-val__row{display:grid;grid-template-columns:1fr 1fr;gap:clamp(20px,4cqw,44px);width:100%;
       transition:filter .45s ease;}
     .gd-val.is-grey .gd-val__row{filter:grayscale(1);}
     .gd-val__card figcaption{font-size:13px;letter-spacing:.06em;text-transform:uppercase;
@@ -203,7 +199,7 @@
     @media(max-width:600px){.gd-val__row{grid-template-columns:1fr;}}
 
     /* ===== widget: T1 hierarchy ===== */
-    .gd-t1{width:min(720px,92vw);display:flex;flex-direction:column;gap:18px;align-items:center;}
+    .gd-t1{width:min(720px,92cqw);display:flex;flex-direction:column;gap:18px;align-items:center;}
     .gd-t1__demo{width:100%;border:1px solid var(--line);border-radius:8px;overflow:hidden;
       box-shadow:0 6px 22px rgba(0,0,0,.10);background:#fff;}
     .gd-t1__band{padding:26px 30px;transition:background .4s ease;}
@@ -212,7 +208,7 @@
     .gd-t1__band--c{background:#6f6358;padding:30px;}
     .gd-t1__line{margin:0;line-height:1.05;transition:font-size .4s ease,color .4s ease,font-weight .4s ease;}
     .gd-t1 .l-last {font-size:15px;font-weight:600;color:#efe9e2;}
-    .gd-t1 .l-first{font-size:clamp(40px,7vw,84px);font-weight:800;color:#111;letter-spacing:-.01em;}
+    .gd-t1 .l-first{font-size:clamp(40px,4.7cqw,84px);font-weight:800;color:#111;letter-spacing:-.01em;}
     .gd-t1 .l-then {font-size:26px;font-weight:700;color:#f3eee8;}
     .gd-t1 .l-thenmin{font-size:16px;font-weight:600;color:#d6ccc2;margin-top:12px;}
     .gd-t1.is-flat .gd-t1__band{background:#e8e3dc;}
@@ -227,7 +223,7 @@
     .gd-t1__hint{color:var(--mute);font-size:14px;text-align:center;max-width:48ch;}
 
     /* ===== widget: T2 readability ===== */
-    .gd-type{width:min(760px,94vw);display:flex;flex-direction:column;gap:clamp(20px,3.5vw,32px);}
+    .gd-type{width:min(760px,94cqw);display:flex;flex-direction:column;gap:clamp(20px,3.5cqw,32px);}
     .gd-type__sample{
       font-family:var(--family,-apple-system,"Segoe UI",Helvetica,Arial,sans-serif);
       font-size:var(--size,17px);font-weight:var(--weight,400);font-style:var(--style,normal);
@@ -255,7 +251,7 @@
 
     /* ===== widget: D1 fix-it ===== */
     .gd-fix,.gd-fix *{box-sizing:border-box;}
-    .gd-fix{width:min(820px,94vw);display:flex;flex-direction:column;gap:18px;align-items:center;}
+    .gd-fix{width:min(820px,94cqw);display:flex;flex-direction:column;gap:18px;align-items:center;}
     .gd-fix__page{width:100%;aspect-ratio:17/11;background:#fff;border:1px solid var(--line);
       border-radius:8px;box-shadow:0 6px 22px rgba(0,0,0,.10);position:relative;overflow:hidden;
       padding:0;transition:padding .55s cubic-bezier(.4,0,.2,1);}
@@ -300,7 +296,7 @@
 
     /* ===== widget: S04 interactive color wheel ===== */
     .gd-wheel{display:flex;flex-direction:column;align-items:center;gap:16px;}
-    .gd-wheel svg{width:min(380px,72vw);height:auto;display:block;}
+    .gd-wheel svg{width:min(380px,72cqw);height:auto;display:block;}
     .gd-wheel__seg{stroke:var(--paper);stroke-width:2;cursor:pointer;transition:opacity .25s ease;}
     .gd-wheel__seg.is-off{opacity:.16;}
     .gd-wheel__marker{fill:var(--ink);}
@@ -320,7 +316,7 @@
     .gd-wheel__cap{font-size:14px;color:var(--mute);text-align:center;max-width:42ch;}
 
     /* ===== diagram: S10 grid ===== */
-    .gd-grid{width:min(760px,92vw);display:flex;flex-direction:column;gap:14px;align-items:center;}
+    .gd-grid{width:min(760px,92cqw);display:flex;flex-direction:column;gap:14px;align-items:center;}
     .gd-grid__cap{font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:var(--mute);}
     .gd-grid__cap b{color:var(--ink);}
     .gd-grid__page{width:100%;aspect-ratio:17/11;background:#fff;border:1px solid var(--line);
@@ -339,7 +335,7 @@
     .gd-grid .el-cap{grid-column:1/13;grid-row:11/13;background:#fff;border:1px dashed var(--line);color:var(--mute);}
 
     /* ===== diagram: S11 page anatomy ===== */
-    .gd-anat{width:min(720px,94vw);}
+    .gd-anat{width:min(720px,94cqw);}
     .gd-anat svg{width:100%;height:auto;display:block;}
     .gd-anat .lbl{font:700 12px/1 -apple-system,"Segoe UI",sans-serif;fill:var(--ink);letter-spacing:.02em;}
     .gd-anat .val{font:600 11px/1 ui-monospace,Menlo,Consolas,monospace;fill:var(--mute);}
@@ -347,7 +343,7 @@
     .gd-anat .dot{fill:var(--accent);}
 
     /* ===== diagram: S17 serif vs sans ===== */
-    .gd-serif{width:min(820px,94vw);display:grid;grid-template-columns:1fr 1fr;gap:clamp(20px,4vw,40px);}
+    .gd-serif{width:min(820px,94cqw);display:grid;grid-template-columns:1fr 1fr;gap:clamp(20px,4cqw,40px);}
     .gd-serif__card{border:1px solid var(--line);border-radius:8px;background:#fff;
       padding:24px 26px 22px;box-shadow:0 6px 22px rgba(0,0,0,.08);}
     .gd-serif__tag{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--mute);
@@ -369,7 +365,7 @@
     @media(max-width:600px){.gd-serif{grid-template-columns:1fr;}}
 
     /* ===== diagram: S18 pairing ===== */
-    .gd-pair{width:min(820px,94vw);display:grid;grid-template-columns:1fr 1fr;gap:clamp(20px,4vw,40px);}
+    .gd-pair{width:min(820px,94cqw);display:grid;grid-template-columns:1fr 1fr;gap:clamp(20px,4cqw,40px);}
     .gd-pair__card{border:1px solid var(--line);border-radius:8px;background:#fff;
       padding:24px 26px 20px;box-shadow:0 6px 22px rgba(0,0,0,.08);display:flex;flex-direction:column;gap:10px;}
     .gd-pair__tag{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--mute);}
@@ -439,7 +435,7 @@
         </div>
 
         <!-- ── Slides ── -->
-        <span class="timeline-section-label">Lecture Slides</span>
+        <span class="section-label">Lecture Slides</span>
         <div class="deck" id="deck" data-deck-id="w04" data-deck-title="Week 04">
           <div class="deck-stage" id="deck-stage">
 
@@ -895,7 +891,7 @@
         </div>
 
         <!-- ── Tools strip (play with these any time) ── -->
-        <span class="timeline-section-label">Tools — play with these</span>
+        <span class="section-label">Tools — play with these</span>
         <div class="gd-tools">
           <div class="gd-tools__card">
             <h4>Color has three dimensions</h4>
@@ -1030,7 +1026,7 @@
         </div>
 
         <!-- ── Bonus: 富春山居圖 handscroll ── -->
-        <span class="timeline-section-label">Bonus — 留白 in a handscroll</span>
+        <span class="section-label">Bonus — 留白 in a handscroll</span>
         <div class="gd-scroll">
           <div class="gd-scroll__bar">
             <b>Huang Gongwang, Dwelling in the Fuchun Mountains, 1350 · Yuan dynasty</b>

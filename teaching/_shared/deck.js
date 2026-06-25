@@ -145,6 +145,14 @@
   .pv-stage .pv-deck.hero-r figure:nth-child(3){grid-column:1;grid-row:2;}
   .pv-stage .pv-deck.hero-l figure,.pv-stage .pv-deck.hero-r figure{margin:0;overflow:hidden;}
   .pv-stage .pv-deck.hero-l figure img,.pv-stage .pv-deck.hero-r figure img{width:100%;height:100%;object-fit:cover;}
+  .pv-stage .pv-deck.hero-l.fit figure:nth-child(1) img,.pv-stage .pv-deck.hero-r.fit figure:nth-child(1) img{object-fit:contain;}
+  /* hero + rows (static approximation): hero column spans, .row divs stack in the other column */
+  .pv-stage .pv-deck.hero-l:has(>.row)>figure:first-child{grid-column:1;grid-row:1/99;}
+  .pv-stage .pv-deck.hero-r:has(>.row)>figure:first-child{grid-column:2;grid-row:1/99;}
+  .pv-stage .pv-deck.hero-l:has(>.row)>.row{grid-column:2;}
+  .pv-stage .pv-deck.hero-r:has(>.row)>.row{grid-column:1;}
+  .pv-stage .pv-deck.hero-l>.row,.pv-stage .pv-deck.hero-r>.row{display:flex;gap:2px;align-items:center;justify-content:center;}
+  .pv-stage .pv-deck.hero-l>.row img,.pv-stage .pv-deck.hero-r>.row img{width:100%;height:100%;object-fit:cover;}
   .pv-stage .pv-deck.auto-rows{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;height:100%;}
   .pv-stage .pv-deck.auto-rows .row{display:flex;align-items:center;justify-content:center;gap:2px;flex:1;min-height:0;}
   .pv-stage .pv-deck.auto-rows figure{height:100%;flex:0 1 auto;margin:0;}
@@ -154,6 +162,17 @@
   .pv-stage .pv-deck.auto figure img{height:100%;width:auto;max-width:100%;object-fit:contain;}
   .pv-stage .pv-deck.two-3-3{grid-template-columns:3fr 3fr;}
   .pv-stage .pv-deck.grid-4{grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;}
+  /* part TOC / agenda divider (dark mirror) */
+  .pv-stage .pv-deck .toc{display:grid;grid-template-columns:auto 1fr;row-gap:5px;column-gap:12px;width:86%;text-align:left;}
+  .pv-stage .pv-deck .toc .toc-row{display:grid;grid-template-columns:subgrid;grid-column:1/-1;
+    align-items:baseline;padding-bottom:5px;border-bottom:1px solid #333;opacity:.4;}
+  .pv-stage .pv-deck .toc .toc-row:last-child{border-bottom:0;padding-bottom:0;}
+  .pv-stage .pv-deck .toc .toc-n{grid-column:1;grid-row:1;font-family:'DM Mono',monospace;font-size:8px;
+    letter-spacing:.16em;text-transform:uppercase;color:#8a847c;}
+  .pv-stage .pv-deck .toc .toc-h{grid-column:2;grid-row:1;margin:0;font-weight:700;font-size:14px;
+    line-height:1.05;color:#e8e3da;}
+  .pv-stage .pv-deck .toc .toc-row.active{opacity:1;}
+  .pv-stage .pv-deck .toc .toc-row.active .toc-n,.pv-stage .pv-deck .toc .toc-row.active .toc-h{color:#d98a63;}
   .pv-stage .ph{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;
     width:calc(100% - 16px);height:calc(100% - 16px);border:1.5px dashed #555;border-radius:6px;
     text-align:center;padding:10px;}
@@ -267,9 +286,46 @@
     const arOf = fig => { const im = fig.querySelector('img');
       return (im && im.naturalWidth && im.naturalHeight) ? im.naturalWidth/im.naturalHeight : 1; };
     deck.querySelectorAll('.slide.hero-l, .slide.hero-r').forEach(s=>{
+      const heroLeft = s.classList.contains('hero-l');
+      const fit = s.classList.contains('fit');   // hero reads whole (contained) vs. cover-cropped
+      // hero + ROWS variant: the non-hero side is a multi-row gallery (each row wrapped in <div class="row">,
+      // like auto-rows). Hero is the first <figure>; rows fill the other column, auto-rows-justified, the
+      // block's total height matched to the hero height. Detected by the presence of .row children.
+      const heroRows = [...s.querySelectorAll(':scope > .row')];
+      if(heroRows.length){
+        const hero = s.querySelector(':scope > figure');
+        if(!hero) return;
+        const colGapS = parseFloat(getComputedStyle(s).columnGap) || 0;
+        const rowGapS = parseFloat(getComputedStyle(s).rowGap) || 0;
+        const Ht0 = FILL_H*H;
+        const rd = heroRows.map(r=>{
+          const rfigs = [...r.querySelectorAll(':scope > figure')];
+          const cg = parseFloat(getComputedStyle(r).columnGap) || 0;
+          let sumA = 0; const ars = rfigs.map(f=>{ const a = arOf(f); sumA += a; return a; });
+          return { figs:rfigs, ars, sumA, cg, n:rfigs.length };
+        });
+        // solve for the right-column width Wcol that makes the rows' stacked height == hero height Ht0
+        const invSum = rd.reduce((t,d)=>t + 1/d.sumA, 0);
+        const gapCorr = rd.reduce((t,d)=>t + (d.n-1)*d.cg/d.sumA, 0);
+        const Wcol = (Ht0 - (heroRows.length-1)*rowGapS + gapCorr) / invSum;
+        const heroW0 = fit ? arOf(hero)*Ht0 : Math.max(0, FILL_W*W - colGapS - Wcol);
+        // scale down if the composite is wider than the width budget (keeps every aspect ratio)
+        const composite = heroW0 + colGapS + Wcol;
+        const sc = composite > FILL_W*W ? (FILL_W*W)/composite : 1;
+        const Ht = Ht0*sc;
+        hero.style.gridColumn = heroLeft ? '1' : '2';
+        hero.style.gridRow = '1 / '+(heroRows.length+1);
+        hero.style.width = (heroW0*sc)+'px'; hero.style.height = Ht+'px';
+        rd.forEach((d,i)=>{
+          const hr = ((Wcol*sc) - (d.n-1)*d.cg)/d.sumA;
+          heroRows[i].style.gridColumn = heroLeft ? '2' : '1';
+          heroRows[i].style.gridRow = (i+1)+'';
+          d.figs.forEach((f,k)=>{ f.style.height = hr+'px'; f.style.width = (d.ars[k]*hr)+'px'; });
+        });
+        return;
+      }
       const figs = [...s.querySelectorAll(':scope > figure')];
       if(figs.length < 3) return;
-      const heroLeft = s.classList.contains('hero-l');
       const stack = figs.slice(1), n = stack.length;
       const gap = parseFloat(getComputedStyle(s).rowGap) || 0;
       const maxArS = Math.max(...stack.map(arOf));
@@ -277,7 +333,8 @@
       // composite is the full width budget and the height budget; hero takes the leftover width.
       const Ht = FILL_H*H;                            // composite height (full height budget)
       const sH = (Ht-(n-1)*gap)/n, stackW = maxArS*sH;       // each stack cell: whole, aspect-sized
-      const heroW = Math.max(0, FILL_W*W - gap - stackW);    // hero fills the rest → cover crops
+      // fit: hero sized to its own aspect (whole, contained); else fills leftover width (cover-cropped)
+      const heroW = fit ? arOf(figs[0])*Ht : Math.max(0, FILL_W*W - gap - stackW);
       // placement: hero spans all rows of its column; stack fills the other column top→bottom
       figs[0].style.gridColumn = heroLeft ? '1' : '2';
       figs[0].style.gridRow = '1 / '+(n+1);
