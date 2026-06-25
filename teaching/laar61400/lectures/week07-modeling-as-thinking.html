@@ -37,7 +37,7 @@
       text-transform:uppercase;color:var(--mute);align-self:center;margin-top:clamp(8px,2cqw,20px);}
 
     /* ── multi-column text card (slide "three types" / "two logics") ── */
-    .m7-cols{display:flex;gap:clamp(16px,3cqw,44px);width:min(980px,96%);
+    .m7-cols{display:flex;gap:clamp(16px,3cqw,44px);width:min(1280px,96%);
       align-items:flex-start;justify-content:center;}
     .m7-cols .col{flex:1;display:flex;flex-direction:column;gap:9px;}
     .m7-cols .col h3{margin:0;font-family:"DM Sans",sans-serif;font-weight:700;color:var(--ink);
@@ -49,14 +49,17 @@
       font-size:clamp(12px,1.35cqw,16px);line-height:1.4;padding-left:15px;position:relative;}
     .m7-cols .col li::before{content:"+";position:absolute;left:0;color:var(--accent);
       font-family:"DM Mono",ui-monospace,monospace;}
+    /* split variant: each column centers its block within its own half, text stays left */
+    .m7-cols--split .col{align-items:center;}
+    .m7-cols--split .col h3,.m7-cols--split .col .lead,.m7-cols--split .col ul{
+      width:max-content;max-width:100%;}
 
-    /* ── points-l with two images on the right, spread left↔right ── */
-    .slide.points-l .pts-imgs{grid-column:2;display:flex;gap:14px;height:100%;
-      align-items:center;justify-content:space-between;min-width:0;}
-    .slide.points-l .pts-imgs figure{margin:0;flex:1;height:100%;display:flex;
-      align-items:center;justify-content:center;min-width:0;}
-    .slide.points-l .pts-imgs img{max-width:100%;max-height:100%;width:auto;height:auto;
-      object-fit:contain;border-radius:4px;}
+    /* ── points-l with two images on the right, stacked top/bottom at equal width ── */
+    .slide.points-l .pts-imgs{grid-column:2;display:flex;flex-direction:column;gap:12px;
+      height:100%;width:min(100%,38cqw);margin:0 auto;
+      align-items:stretch;justify-content:center;min-width:0;}
+    .slide.points-l .pts-imgs figure{margin:0;width:100%;height:auto;display:block;}
+    .slide.points-l .pts-imgs img{width:100%;height:auto;display:block;border-radius:4px;}
 
     /* ── render build-up (slide 11): hero diagram + a 2×2 labelled grid ── */
     .m7-render{display:grid;grid-template-columns:1.05fr 1fr;gap:16px;width:min(1000px,96%);
@@ -364,7 +367,7 @@
             <!-- 24 · What a model gives you that plan + section can't / the operations are logics -->
             <div class="slide" data-cap="Why 3D is the right model here" data-notes="Now Rhino and WF04, with eyes open — because here the site's form genuinely *is* the question. Two reasons it earns its cost. First, perspective the orthographic drawings withhold: a plan flattens height, a section cuts one line, but the 3D model lets you stand inside the continuous form and see how the whole ground moves. Second, the modeling commands aren't just buttons — they're ways of reasoning about a surface. Loft blends between profiles, Sweep runs a section along a path, Patch fits a surface through constraints. Choosing the operation is choosing how you understand the landform.">
               <div class="embed">
-                <div class="m7-cols">
+                <div class="m7-cols m7-cols--split">
                   <div class="col">
                     <h3>A view plan + section can't</h3>
                     <ul><li>Plan flattens height</li><li>Section cuts one line</li><li>3D: the continuous ground, whole</li></ul>
