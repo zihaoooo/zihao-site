@@ -50,6 +50,14 @@
     .m7-cols .col li::before{content:"+";position:absolute;left:0;color:var(--accent);
       font-family:"DM Mono",ui-monospace,monospace;}
 
+    /* ── points-l with two images on the right, spread left↔right ── */
+    .slide.points-l .pts-imgs{grid-column:2;display:flex;gap:14px;height:100%;
+      align-items:center;justify-content:space-between;min-width:0;}
+    .slide.points-l .pts-imgs figure{margin:0;flex:1;height:100%;display:flex;
+      align-items:center;justify-content:center;min-width:0;}
+    .slide.points-l .pts-imgs img{max-width:100%;max-height:100%;width:auto;height:auto;
+      object-fit:contain;border-radius:4px;}
+
     /* ── render build-up (slide 11): hero diagram + a 2×2 labelled grid ── */
     .m7-render{display:grid;grid-template-columns:1.05fr 1fr;gap:16px;width:min(1000px,96%);
       align-items:center;}
@@ -372,8 +380,10 @@
             <!-- 25 · A curb is just a breakline -->
             <div class="slide points-l" data-cap="A curb is just a breakline" data-credit="Zihao Zhang" data-notes="The move that makes the real world modelable: every hard edge in the landscape is a *breakline* — a line where the surface stops being smooth and changes abruptly. A curb, a retaining wall, the top of a slope. So a continuous surface (Patch — a smooth field) and a hard stop (a breakline — Loft a vertical face) are the two primitives you reason with. Your WF04 workflow says it exactly: *the plan curve is always the breakline.* Once you see the world as smooth fields meeting breaklines, you can model any ground.">
               <div class="pts"><h3>A curb is just a breakline</h3><ul><li>Breakline: where the surface stops being smooth</li><li>Smooth field &rarr; Patch</li><li>Hard stop &rarr; Loft a face</li></ul></div>
-              <figure><img src="/teaching/laar61400/assets/img/Week07/27-a.avif" alt="A real curb — the hard breakline where a smooth surface stops"></figure>
-              <figure><img src="/teaching/laar61400/assets/img/Week07/27-b.avif" alt="Breakline diagram — smooth field meeting a hard edge"></figure>
+              <div class="pts-imgs">
+                <figure><img src="/teaching/laar61400/assets/img/Week07/27-a.avif" alt="A real curb — the hard breakline where a smooth surface stops"></figure>
+                <figure><img src="/teaching/laar61400/assets/img/Week07/27-b.avif" alt="Breakline diagram — smooth field meeting a hard edge"></figure>
+              </div>
             </div>
 
             <!-- 29 · Closing takeaways -->
