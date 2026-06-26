@@ -76,6 +76,9 @@
   document.addEventListener('webkitfullscreenchange', onFS);
 
   document.addEventListener('keydown', e=>{
+    // typing in a field (e.g. a live-code editor on a slide) — let keys through, no deck shortcuts
+    const t = e.target;
+    if(t && (t.isContentEditable || /^(INPUT|TEXTAREA|SELECT)$/.test(t.tagName))) return;
     if(lbOpen){
       if(e.key === 'Escape'){ e.preventDefault(); closeLightbox(); return; }
       // arrows/space still drive the deck — close the zoom and fall through
