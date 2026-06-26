@@ -100,7 +100,7 @@
     .lt-cf .a{inset:18% 22%;}
     @media(max-width:680px){.gd-templates{grid-template-columns:repeat(2,1fr);}}
 
-    /* ── Tools strip (six widgets, below the deck) — single column, no page scroll ── */
+    /* ── Tools strip (seven widgets, below the deck) — single column, no page scroll ── */
     .gd-tools{display:flex;flex-direction:column;gap:18px;margin-top:14px;}
     .gd-tools__card{border:1px solid var(--line);border-radius:12px;background:#fff;
       padding:20px 22px 24px;box-shadow:0 4px 16px rgba(0,0,0,.05);overflow:hidden;}
@@ -939,6 +939,33 @@
                 </div>
                 <p class="gd-mix__note">Starts <b>white</b> (the paper). Adding all inks → near <b>black</b>. This is your printed board.</p>
               </div>
+            </div>
+          </div>
+
+          <div class="gd-tools__card">
+            <h4>The color wheel &amp; harmonies</h4>
+            <p class="k">Primary · secondary · tertiary · warm/cool</p>
+            <div class="gd-wheel">
+              <svg viewBox="0 -44 360 448" role="img" aria-label="Interactive 12-hue color wheel with harmony schemes">
+                <g data-segments></g>
+                <g data-links></g>
+                <line class="gd-wheel__div" x1="20" y1="180" x2="340" y2="180"></line>
+                <text class="gd-wheel__lbl" x="180" y="-18" text-anchor="middle">Warm</text>
+                <text class="gd-wheel__sub" x="180" y="-3" text-anchor="middle">advances · comes forward</text>
+                <text class="gd-wheel__lbl" x="180" y="372" text-anchor="middle">Cool</text>
+                <text class="gd-wheel__sub" x="180" y="387" text-anchor="middle">recedes · falls back</text>
+                <circle cx="180" cy="180" r="70" fill="var(--paper)"></circle>
+                <text class="gd-wheel__ctr" x="180" y="185" text-anchor="middle">Hue</text>
+              </svg>
+              <div class="gd-wheel__schemes">
+                <button class="gd-wheel__btn" data-scheme="complementary" aria-pressed="true">Complementary</button>
+                <button class="gd-wheel__btn" data-scheme="analogous" aria-pressed="false">Analogous</button>
+                <button class="gd-wheel__btn" data-scheme="triadic" aria-pressed="false">Triadic</button>
+                <button class="gd-wheel__btn" data-scheme="split" aria-pressed="false">Split-comp.</button>
+                <button class="gd-wheel__btn" data-scheme="monochromatic" aria-pressed="false">Monochromatic</button>
+              </div>
+              <p class="gd-wheel__cap" data-cap></p>
+              <p class="gd-wheel__hint">Pick a scheme — then click any hue to set the base color.</p>
             </div>
           </div>
 
