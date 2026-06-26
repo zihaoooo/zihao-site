@@ -6,6 +6,165 @@
   <title>Week 12 Lecture: Web Coding Literacy — LAAR 61400</title>
   <link rel="stylesheet" href="/teaching/laar61400/assets/css/main.css">
   <link rel="stylesheet" href="/teaching/laar61400/assets/css/workflow-shared.css">
+  <link rel="stylesheet" href="/teaching/_shared/deck.css">
+  <style>
+    /* palette tokens (deck.css + widgets read these) */
+    :root{ --ink:#1a1a1a; --paper:#fbfaf8; --line:#e0dbd3; --mute:#8a847c; --accent:#b87333;
+      --html:#2f6d68; --css:#1f6f8b; --js:#9a6a00; }
+
+    /* a widget/diagram living inside a carousel slide: centered, clipped; JS scales the
+       child to fit the fixed 16:9 stage (see fitEmbeds) so nothing scrolls. */
+    .slide .embed{width:100%;height:100%;display:flex;align-items:center;justify-content:center;
+      overflow:hidden;padding:14px;box-sizing:border-box;}
+    .slide .embed>*{transform-origin:center center;}
+    .slide .embed figure{display:block;margin:0;overflow:visible;background:none;
+      align-items:initial;justify-content:initial;}
+    .slide .embed figure img{width:auto;height:auto;max-width:100%;object-fit:initial;}
+    .slide .embed figcaption{position:static;left:auto;bottom:auto;background:none;padding:0;}
+
+    /* ── placeholder (slides you'll fill with real site screenshots) ── */
+    .wc-ph{width:min(820px,92cqw);min-height:300px;border:2px dashed var(--accent);border-radius:12px;
+      background:repeating-linear-gradient(45deg,rgba(184,115,51,.04) 0 12px,transparent 12px 24px);
+      display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;
+      padding:34px;box-sizing:border-box;text-align:center;}
+    .wc-ph b{font-family:"DM Sans",sans-serif;font-size:16px;color:var(--ink);}
+    .wc-ph p{margin:0;font-size:13.5px;line-height:1.55;color:var(--mute);max-width:54ch;}
+    .wc-ph span{font-family:"DM Mono",monospace;font-size:10.5px;letter-spacing:.1em;
+      text-transform:uppercase;color:var(--accent);}
+
+    /* ── three-layers card (slide 5) ── */
+    .wc-layers{width:min(1040px,96cqw);display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(14px,2.4cqw,28px);}
+    .wc-layers__col{border:1px solid var(--line);border-radius:12px;background:#fff;padding:22px 22px 24px;
+      box-shadow:0 4px 16px rgba(0,0,0,.05);border-top:4px solid var(--c);}
+    .wc-layers__col.l-html{--c:var(--html);} .wc-layers__col.l-css{--c:var(--css);} .wc-layers__col.l-js{--c:var(--js);}
+    .wc-layers__tag{font:700 12px/1 "DM Mono",ui-monospace,monospace;letter-spacing:.12em;text-transform:uppercase;color:var(--c);}
+    .wc-layers__role{font:800 26px/1.05 "DM Sans",sans-serif;color:var(--ink);margin:8px 0 10px;}
+    .wc-layers__def{font-size:14px;line-height:1.55;color:#3a352f;margin:0;}
+    @media(max-width:680px){.wc-layers{grid-template-columns:1fr;}}
+
+    /* ── reveal widget (slide 4) ── */
+    .wc-reveal{width:min(720px,92cqw);display:flex;flex-direction:column;gap:16px;align-items:center;}
+    .wc-reveal__frame{width:100%;aspect-ratio:16/10;border:1px solid var(--line);border-radius:10px;
+      background:#fff;box-shadow:0 6px 22px rgba(0,0,0,.10);}
+    .wc-reveal__bar{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;}
+    .wc-reveal__btn{appearance:none;border:1.5px solid var(--line);background:#fff;color:var(--ink);
+      font:600 13px/1 inherit;padding:10px 18px;border-radius:999px;cursor:pointer;transition:.15s;}
+    .wc-reveal__btn[aria-pressed=true]{background:var(--ink);color:var(--paper);border-color:var(--ink);}
+    .wc-reveal__cap{font-size:14px;color:var(--mute);text-align:center;max-width:52ch;min-height:2.6em;margin:0;}
+    .wc-reveal__cap b{color:var(--accent);}
+
+    /* ── object-fit toggle (slide 12) ── */
+    .wc-fit{width:min(560px,90cqw);display:flex;flex-direction:column;gap:16px;align-items:center;}
+    .wc-fit__box{width:min(340px,72cqw);aspect-ratio:1/1;border:2px dashed var(--accent);border-radius:8px;
+      overflow:hidden;background:#eee7dc;}
+    .wc-fit__box img{width:100%;height:100%;object-fit:cover;display:block;}
+    .wc-fit__bar{display:flex;gap:10px;}
+    .wc-fit__btn{appearance:none;border:1.5px solid var(--line);background:#fff;color:var(--ink);
+      font:600 13px/1 ui-monospace,Menlo,Consolas,monospace;padding:9px 16px;border-radius:999px;cursor:pointer;transition:.15s;}
+    .wc-fit__btn[aria-pressed=true]{background:var(--ink);color:var(--paper);border-color:var(--ink);}
+    .wc-fit__cap{font-size:14px;color:var(--mute);text-align:center;max-width:48ch;min-height:2.6em;margin:0;}
+    .wc-fit__cap b{color:var(--accent);}
+
+    /* ── box model diagram (slide 10) ── */
+    .wc-box{width:min(560px,90cqw);font-family:"DM Mono",ui-monospace,monospace;}
+    .wc-box__l{padding:18px;border-radius:8px;position:relative;text-align:center;}
+    .wc-box__l>span{position:absolute;top:5px;left:10px;font-size:11px;letter-spacing:.08em;text-transform:uppercase;}
+    .wc-box__margin{background:#efe7da;border:1px dashed #c9b58f;}
+    .wc-box__margin>span{color:#9a7d3a;left:auto;right:10px;}
+    /* border = a thin line; its label sits ON the line like a fieldset legend (a line pointer) */
+    .wc-box__border{background:#faf6ef;border:2px solid #1a1a1a;padding:0;border-radius:4px;}
+    .wc-box__border>span{top:-8px;left:14px;background:#efe7da;padding:0 6px;color:#1a1a1a;z-index:2;}
+    .wc-box__padding{background:#cfe3d6;padding:22px;border-radius:4px;}
+    .wc-box__padding>span{color:#3a6d52;}
+    .wc-box__content{background:#fff;border:1px solid var(--line);padding:20px;color:var(--ink);
+      font:700 14px/1 "DM Sans",sans-serif;}
+
+    /* ── 12-col grid diagram (slide 13) ── */
+    .wc-grid{width:min(760px,92cqw);display:flex;flex-direction:column;gap:14px;align-items:center;}
+    .wc-grid__cap{font-size:13px;letter-spacing:.06em;color:var(--mute);text-align:center;}
+    .wc-grid__cap b{color:var(--ink);font-family:"DM Mono",monospace;}
+    .wc-grid__page{width:100%;aspect-ratio:16/9;background:#fff;border:1px solid var(--line);
+      border-radius:8px;box-shadow:0 6px 22px rgba(0,0,0,.10);position:relative;padding:4%;box-sizing:border-box;}
+    /* the GRID is the loud element: 12 tinted column tracks with accent borders */
+    .wc-grid__cells{position:absolute;inset:4%;display:grid;grid-template-columns:repeat(12,1fr);gap:1%;}
+    .wc-grid__cell{border:1px solid var(--accent);background:rgba(184,115,51,.12);border-radius:2px;}
+    /* content blocks are just outlines sitting on top, so the columns read through them */
+    .wc-grid__field{position:absolute;inset:4%;display:grid;grid-template-columns:repeat(12,1fr);
+      grid-auto-rows:1fr;gap:1%;}
+    .wc-grid__el{border-radius:4px;display:flex;align-items:center;justify-content:center;
+      font:700 11px/1 "DM Mono",monospace;letter-spacing:.04em;text-transform:uppercase;
+      background:transparent;border:2px solid var(--ink);color:var(--ink);}
+    .wc-grid .g-head{grid-column:1/13;grid-row:1;}
+    .wc-grid .g-a{grid-column:1/7;grid-row:2/4;}
+    .wc-grid .g-b{grid-column:7/13;grid-row:2/4;}
+    .wc-grid .g-foot{grid-column:1/13;grid-row:4;}
+
+    /* ── best-practices checklist (slide 14) ── */
+    .slide.textslide{display:flex;align-items:center;justify-content:center;background:var(--paper);}
+    .wc-check{width:min(680px,90%);font-family:"DM Sans",sans-serif;color:var(--ink);}
+    .wc-check h3{font-size:clamp(18px,2.6cqw,26px);margin:0 0 18px;font-weight:700;}
+    .wc-check ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:11px;}
+    .wc-check li{font-size:clamp(13px,1.8cqw,16px);line-height:1.4;padding-left:26px;position:relative;color:#3a352f;}
+    .wc-check li::before{content:"";position:absolute;left:0;top:.32em;width:13px;height:13px;
+      border:2px solid var(--accent);border-radius:3px;}
+    .wc-check li b{color:var(--ink);font-weight:700;}
+
+    /* ── hosting + DNS flow (slides 16–17) ── */
+    .wc-flow{width:min(900px,94cqw);display:flex;flex-direction:column;gap:22px;}
+    .wc-flow__row{display:flex;align-items:stretch;gap:0;flex-wrap:wrap;justify-content:center;}
+    .wc-flow__node{flex:1;min-width:150px;border:1px solid var(--line);border-radius:10px;background:#fff;
+      padding:16px 18px;box-shadow:0 3px 12px rgba(0,0,0,.06);text-align:center;}
+    .wc-flow__node b{display:block;font-family:"DM Sans",sans-serif;font-size:14.5px;color:var(--ink);margin-bottom:5px;}
+    .wc-flow__node span{font-size:12px;line-height:1.45;color:var(--mute);}
+    .wc-flow__node code{font-family:"DM Mono",monospace;font-size:11.5px;color:var(--accent);}
+    .wc-flow__arrow{display:flex;align-items:center;color:var(--accent);font-size:22px;padding:0 8px;}
+    .wc-defs{display:flex;flex-direction:column;gap:10px;}
+    .wc-def{border-left:3px solid var(--accent);padding:4px 0 4px 14px;font-size:13.5px;line-height:1.55;color:#3a352f;}
+    .wc-def b{font-family:"DM Mono",monospace;color:var(--ink);}
+    @media(max-width:680px){.wc-flow__arrow{transform:rotate(90deg);padding:6px 0;}.wc-flow__node{flex-basis:100%;}}
+
+    /* ===== live editor widget (transparent <textarea> over highlighted <pre>) ===== */
+    .wc-editor{width:min(960px,95cqw);display:flex;flex-direction:column;gap:12px;}
+    .wc-editor__panes{display:grid;grid-template-columns:1fr 1fr;gap:0;
+      border:1.5px solid var(--line);border-radius:12px;overflow:hidden;background:#fff;box-shadow:0 4px 16px rgba(0,0,0,.06);}
+    .wc-editor__code{display:flex;flex-direction:column;min-width:0;border-right:1.5px solid var(--line);}
+    .wc-editor__tabs{display:flex;gap:2px;padding:8px 8px 0;background:#f3f0eb;border-bottom:1.5px solid var(--line);}
+    .wc-editor__tab{appearance:none;border:none;background:transparent;color:var(--mute);
+      font:700 12px/1 ui-monospace,Menlo,Consolas,monospace;letter-spacing:.04em;
+      padding:9px 13px;border-radius:8px 8px 0 0;cursor:pointer;transition:.12s;}
+    .wc-editor__tab[aria-selected=true]{background:#fff;color:var(--ink);box-shadow:0 -1.5px 0 var(--accent) inset;}
+    .wc-editor__tab small{font-weight:500;margin-left:6px;text-transform:none;letter-spacing:0;opacity:.7;}
+    .wc-editor__edit{display:none;position:relative;flex:1;min-height:320px;background:#fdfcfa;}
+    .wc-editor__edit[data-active]{display:block;}
+    .wc-editor__ta,.wc-editor__hl{margin:0;box-sizing:border-box;padding:13px 15px;border:0;
+      font:13px/1.6 ui-monospace,Menlo,Consolas,"Courier New",monospace;tab-size:2;white-space:pre;word-wrap:normal;}
+    .wc-editor__hl{position:absolute;inset:0;overflow:auto;pointer-events:none;color:#2a2a2a;background:transparent;}
+    .wc-editor__ta{position:absolute;inset:0;width:100%;height:100%;resize:none;outline:none;overflow:auto;
+      background:transparent;color:transparent;caret-color:var(--ink);}
+    .wc-editor__hl .tk-tag{color:#2f5d3a;} .wc-editor__hl .tk-attr{color:#9a6a00;}
+    .wc-editor__hl .tk-str{color:#b03a2e;} .wc-editor__hl .tk-prop{color:#1f6f8b;}
+    .wc-editor__hl .tk-kw{color:#7b3f9d;font-weight:600;} .wc-editor__hl .tk-com{color:#9a948b;font-style:italic;}
+    .wc-editor__hl .tk-punc{color:#9a948b;}
+    .wc-editor__result{display:flex;flex-direction:column;min-width:0;}
+    .wc-editor__rlabel{font:700 11px/1 ui-monospace,Menlo,Consolas,monospace;letter-spacing:.12em;
+      text-transform:uppercase;color:var(--mute);padding:13px 15px 9px;background:#f3f0eb;border-bottom:1.5px solid var(--line);}
+    .wc-editor__frame{flex:1;width:100%;border:none;background:#fff;min-height:320px;}
+    @media(max-width:680px){.wc-editor__panes{grid-template-columns:1fr;}
+      .wc-editor__code{border-right:none;border-bottom:1.5px solid var(--line);}}
+
+    /* ── playground (full live editor below the deck) ── */
+    .wc-play{margin-top:6px;}
+    .wc-play .wc-editor{width:100%;max-width:100%;}
+    .wc-play .wc-editor__edit{min-height:380px;}
+
+    /* ── reference strip (below the deck) ── */
+    .wc-refs{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin-top:14px;}
+    .wc-refs a{display:block;border:1px solid var(--line);border-radius:10px;background:#fff;padding:16px 18px;
+      text-decoration:none;box-shadow:0 3px 12px rgba(0,0,0,.05);transition:.15s;}
+    .wc-refs a:hover{border-color:var(--accent);transform:translateY(-2px);}
+    .wc-refs b{display:block;font-family:"DM Sans",sans-serif;font-size:14px;color:var(--ink);margin-bottom:4px;}
+    .wc-refs span{font-size:12px;line-height:1.45;color:var(--mute);}
+  </style>
 </head>
 <body>
 
@@ -55,19 +214,601 @@
           <div class="wf-index">WK12</div>
           <div class="wf-header-text">
             <div class="wf-title">Web Coding Literacy</div>
-            <div class="wf-subtitle">HTML structure · CSS style · JS behavior</div>
+            <div class="wf-subtitle">What a webpage is made of — structure, style, behavior — and how it gets online</div>
           </div>
         </div>
 
-        <div class="wf-outcome">
-          <strong>Lecture slides — coming soon</strong>
-          This page is a placeholder. The Week 12 lecture slides will be built here.
+        <!-- ── Slides ── -->
+        <span class="section-label">Lecture Slides</span>
+        <div class="deck" id="deck" data-deck-id="w12" data-deck-title="Week 12">
+          <div class="deck-stage" id="deck-stage">
+
+            <!-- 1 · Title -->
+            <div class="slide slide--title" data-cap="">
+              <div class="tt">Web Coding Literacy</div>
+              <div class="ts">LAAR 61400 · Week 12</div>
+            </div>
+
+            <!-- 2 · anatomy of a webpage (PLACEHOLDER) -->
+            <div class="slide" data-cap="A webpage is just labeled regions" data-notes="Start visual. A page = a few named blocks you already recognize · nav · hero / title · main content · cards · footer · No code yet — just naming what you see.">
+              <div class="embed">
+                <div class="wc-ph">
+                  <span>Placeholder — annotated screenshot</span>
+                  <b>One real site, regions called out</b>
+                  <p>Nav · hero/title · main content · card grid · footer — labelled over a screenshot of a real site (Zihao to provide). The takeaway: a page is ~6 named blocks, not magic.</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- 3 · same parts, every site (PLACEHOLDER) -->
+            <div class="slide" data-cap="The same parts, every site" data-notes="Pattern recognition · 2–3 different sites side by side · all share the same blocks · nav, hero, sections, footer · once you see the pattern, every site looks the same underneath.">
+              <div class="embed">
+                <div class="wc-ph">
+                  <span>Placeholder — 2–3 example sites</span>
+                  <b>Different sites, same building blocks</b>
+                  <p>Two or three real sites side by side (Zihao to provide — e.g. zihaozhang.cc + one studio + one news site). Point at the recurring nav / hero / cards / footer in each.</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- 4 · reveal — three layers -->
+            <div class="slide" data-cap="Three layers, three jobs" data-notes="Take one block · strip it to layers · HTML only = raw, unstyled, but it works · + CSS = it looks designed · + JS = it responds · same page, three layers doing three jobs. Click through live.">
+              <div class="embed">
+                <div class="wc-reveal">
+                  <iframe class="wc-reveal__frame" title="layer reveal" sandbox="allow-scripts"></iframe>
+                  <div class="wc-reveal__bar">
+                    <button class="wc-reveal__btn" data-stage="0" aria-pressed="true">HTML only</button>
+                    <button class="wc-reveal__btn" data-stage="1" aria-pressed="false">+ CSS</button>
+                    <button class="wc-reveal__btn" data-stage="2" aria-pressed="false">+ JS</button>
+                  </div>
+                  <p class="wc-reveal__cap" data-cap></p>
+                </div>
+              </div>
+            </div>
+
+            <!-- 5 · structure / style / behavior -->
+            <div class="slide" data-cap="Structure · Style · Behavior" data-notes="The one model for the whole lecture. Real definitions on the card — read them out.">
+              <div class="embed">
+                <div class="wc-layers">
+                  <div class="wc-layers__col l-html">
+                    <div class="wc-layers__tag">HTML</div>
+                    <div class="wc-layers__role">Structure</div>
+                    <p class="wc-layers__def">HyperText Markup Language — the tags that say what each piece of content <em>is</em>: a heading, a paragraph, an image, a link.</p>
+                  </div>
+                  <div class="wc-layers__col l-css">
+                    <div class="wc-layers__tag">CSS</div>
+                    <div class="wc-layers__role">Style</div>
+                    <p class="wc-layers__def">Cascading Style Sheets — rules that control how those pieces <em>look</em>: color, size, spacing, position.</p>
+                  </div>
+                  <div class="wc-layers__col l-js">
+                    <div class="wc-layers__tag">JS</div>
+                    <div class="wc-layers__role">Behavior</div>
+                    <p class="wc-layers__def">JavaScript — code that makes the page <em>do</em> things in response to the user: clicks, input, changes after the page loads.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 6 · heading + text (live editor) -->
+            <div class="slide" data-cap="Title &amp; text — what HTML puts there" data-notes="Edit the words → that's HTML (structure) · edit color / size → that's CSS (style) · same content, two layers · a heading vs a paragraph — tags name what each thing IS.">
+              <div class="embed">
+                <div class="wc-editor">
+                  <div class="wc-editor__panes">
+                    <div class="wc-editor__code">
+                      <div class="wc-editor__tabs" role="tablist">
+                        <button class="wc-editor__tab" role="tab" data-tab="html" aria-selected="true">HTML <small>structure</small></button>
+                        <button class="wc-editor__tab" role="tab" data-tab="css" aria-selected="false">CSS <small>style</small></button>
+                        <button class="wc-editor__tab" role="tab" data-tab="js" aria-selected="false">JS <small>behavior</small></button>
+                      </div>
+                      <div class="wc-editor__edit" data-lang="html" data-active><pre class="wc-editor__hl" aria-hidden="true"><code></code></pre><textarea class="wc-editor__ta" data-pane="html" spellcheck="false">&lt;h1&gt;Riverside Park&lt;/h1&gt;
+&lt;p&gt;A 2.4-acre restoration along the south bank.&lt;/p&gt;
+&lt;p&gt;A living edge between the city and the river.&lt;/p&gt;</textarea></div>
+                      <div class="wc-editor__edit" data-lang="css"><pre class="wc-editor__hl" aria-hidden="true"><code></code></pre><textarea class="wc-editor__ta" data-pane="css" spellcheck="false">h1{
+  color: #2f5d3a;
+  font-size: 34px;
+}
+p{
+  color: #444;
+  line-height: 1.6;
+}</textarea></div>
+                      <div class="wc-editor__edit" data-lang="js"><pre class="wc-editor__hl" aria-hidden="true"><code></code></pre><textarea class="wc-editor__ta" data-pane="js" spellcheck="false">// nothing happens here yet —
+// this page has no behavior</textarea></div>
+                    </div>
+                    <div class="wc-editor__result">
+                      <div class="wc-editor__rlabel">Rendered page</div>
+                      <iframe class="wc-editor__frame" title="rendered result" sandbox="allow-scripts allow-modals"></iframe>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 7 · images (live editor) -->
+            <div class="slide" data-cap="Images — the img tag puts a picture in" data-notes="img src = HTML places the picture · width / border-radius = CSS controls size and shape · alt = text description (accessibility) · try changing width to 50%.">
+              <div class="embed">
+                <div class="wc-editor">
+                  <div class="wc-editor__panes">
+                    <div class="wc-editor__code">
+                      <div class="wc-editor__tabs" role="tablist">
+                        <button class="wc-editor__tab" role="tab" data-tab="html" aria-selected="true">HTML <small>structure</small></button>
+                        <button class="wc-editor__tab" role="tab" data-tab="css" aria-selected="false">CSS <small>style</small></button>
+                        <button class="wc-editor__tab" role="tab" data-tab="js" aria-selected="false">JS <small>behavior</small></button>
+                      </div>
+                      <div class="wc-editor__edit" data-lang="html" data-active><pre class="wc-editor__hl" aria-hidden="true"><code></code></pre><textarea class="wc-editor__ta" data-pane="html" spellcheck="false">&lt;h1&gt;Riverside Park&lt;/h1&gt;
+
+&lt;img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=600"
+     alt="river landscape"&gt;</textarea></div>
+                      <div class="wc-editor__edit" data-lang="css"><pre class="wc-editor__hl" aria-hidden="true"><code></code></pre><textarea class="wc-editor__ta" data-pane="css" spellcheck="false">h1{ color: #2f5d3a; }
+img{
+  width: 100%;        /* try: 50% */
+  border-radius: 8px;
+}</textarea></div>
+                      <div class="wc-editor__edit" data-lang="js"><pre class="wc-editor__hl" aria-hidden="true"><code></code></pre><textarea class="wc-editor__ta" data-pane="js" spellcheck="false">// an image is structure + style —
+// no behavior needed</textarea></div>
+                    </div>
+                    <div class="wc-editor__result">
+                      <div class="wc-editor__rlabel">Rendered page</div>
+                      <iframe class="wc-editor__frame" title="rendered result" sandbox="allow-scripts allow-modals"></iframe>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 8 · nav bar (live editor) -->
+            <div class="slide" data-cap="Nav bar — a list of links, made a row" data-notes="A nav is just links (HTML) · display:flex turns a vertical list into a horizontal bar (CSS) · change flex → block to see the list collapse · a real nav stays put with position:sticky.">
+              <div class="embed">
+                <div class="wc-editor">
+                  <div class="wc-editor__panes">
+                    <div class="wc-editor__code">
+                      <div class="wc-editor__tabs" role="tablist">
+                        <button class="wc-editor__tab" role="tab" data-tab="html" aria-selected="true">HTML <small>structure</small></button>
+                        <button class="wc-editor__tab" role="tab" data-tab="css" aria-selected="false">CSS <small>style</small></button>
+                        <button class="wc-editor__tab" role="tab" data-tab="js" aria-selected="false">JS <small>behavior</small></button>
+                      </div>
+                      <div class="wc-editor__edit" data-lang="html" data-active><pre class="wc-editor__hl" aria-hidden="true"><code></code></pre><textarea class="wc-editor__ta" data-pane="html" spellcheck="false">&lt;nav&gt;
+  &lt;a href="#"&gt;Home&lt;/a&gt;
+  &lt;a href="#"&gt;Projects&lt;/a&gt;
+  &lt;a href="#"&gt;About&lt;/a&gt;
+&lt;/nav&gt;</textarea></div>
+                      <div class="wc-editor__edit" data-lang="css"><pre class="wc-editor__hl" aria-hidden="true"><code></code></pre><textarea class="wc-editor__ta" data-pane="css" spellcheck="false">nav{
+  display: flex;      /* try: block */
+  gap: 20px;
+  background: #2f5d3a;
+  padding: 14px 20px;
+}
+nav a{
+  color: white;
+  text-decoration: none;
+}</textarea></div>
+                      <div class="wc-editor__edit" data-lang="js"><pre class="wc-editor__hl" aria-hidden="true"><code></code></pre><textarea class="wc-editor__ta" data-pane="js" spellcheck="false">// links navigate on their own —
+// no JS required</textarea></div>
+                    </div>
+                    <div class="wc-editor__result">
+                      <div class="wc-editor__rlabel">Rendered page</div>
+                      <iframe class="wc-editor__frame" title="rendered result" sandbox="allow-scripts allow-modals"></iframe>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 9 · button + behavior (live editor) -->
+            <div class="slide" data-cap="Button — where JS earns its keep" data-notes="The button exists in HTML, is styled by CSS — but does nothing until JS · delete the JS → dead button · the model: event (click) → function → change the page · this is ALL behavior is.">
+              <div class="embed">
+                <div class="wc-editor">
+                  <div class="wc-editor__panes">
+                    <div class="wc-editor__code">
+                      <div class="wc-editor__tabs" role="tablist">
+                        <button class="wc-editor__tab" role="tab" data-tab="html" aria-selected="true">HTML <small>structure</small></button>
+                        <button class="wc-editor__tab" role="tab" data-tab="css" aria-selected="false">CSS <small>style</small></button>
+                        <button class="wc-editor__tab" role="tab" data-tab="js" aria-selected="false">JS <small>behavior</small></button>
+                      </div>
+                      <div class="wc-editor__edit" data-lang="html" data-active><pre class="wc-editor__hl" aria-hidden="true"><code></code></pre><textarea class="wc-editor__ta" data-pane="html" spellcheck="false">&lt;h1&gt;Riverside Park&lt;/h1&gt;
+&lt;button id="more"&gt;Read more&lt;/button&gt;
+&lt;p id="detail" hidden&gt;Native plantings, a boardwalk,
+a tidal wetland edge.&lt;/p&gt;</textarea></div>
+                      <div class="wc-editor__edit" data-lang="css"><pre class="wc-editor__hl" aria-hidden="true"><code></code></pre><textarea class="wc-editor__ta" data-pane="css" spellcheck="false">button{
+  background: #2f5d3a; color: white;
+  border: none; padding: 10px 18px;
+  border-radius: 6px; cursor: pointer;
+}</textarea></div>
+                      <div class="wc-editor__edit" data-lang="js"><pre class="wc-editor__hl" aria-hidden="true"><code></code></pre><textarea class="wc-editor__ta" data-pane="js" spellcheck="false">// click the button -> show the hidden line
+document.getElementById("more")
+  .addEventListener("click", function () {
+    document.getElementById("detail").hidden = false;
+  });</textarea></div>
+                    </div>
+                    <div class="wc-editor__result">
+                      <div class="wc-editor__rlabel">Rendered page</div>
+                      <iframe class="wc-editor__frame" title="rendered result" sandbox="allow-scripts allow-modals"></iframe>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 10 · box model -->
+            <div class="slide" data-cap="Every element is a box" data-notes="The one idea behind all CSS layout · each element is a nested box · content → padding (inside) → border → margin (outside) · spacing problems are almost always padding vs margin confusion.">
+              <div class="embed">
+                <div class="wc-box">
+                  <div class="wc-box__l wc-box__margin"><span>margin — space outside</span>
+                    <div class="wc-box__l wc-box__border"><span>border</span>
+                      <div class="wc-box__l wc-box__padding"><span>padding — space inside</span>
+                        <div class="wc-box__content">content</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 11 · flexbox (live editor — gallery) -->
+            <div class="slide" data-cap="Flexbox — arrange boxes in a row" data-notes="display:flex lays children in a row OR column · flex-direction: row → column stacks them · gap = space between · object-fit: cover crops to fill · this is how you lay out components.">
+              <div class="embed">
+                <div class="wc-editor">
+                  <div class="wc-editor__panes">
+                    <div class="wc-editor__code">
+                      <div class="wc-editor__tabs" role="tablist">
+                        <button class="wc-editor__tab" role="tab" data-tab="html" aria-selected="false">HTML <small>structure</small></button>
+                        <button class="wc-editor__tab" role="tab" data-tab="css" aria-selected="true">CSS <small>style</small></button>
+                        <button class="wc-editor__tab" role="tab" data-tab="js" aria-selected="false">JS <small>behavior</small></button>
+                      </div>
+                      <div class="wc-editor__edit" data-lang="html"><pre class="wc-editor__hl" aria-hidden="true"><code></code></pre><textarea class="wc-editor__ta" data-pane="html" spellcheck="false">&lt;h1&gt;Riverside Park&lt;/h1&gt;
+&lt;div class="gallery"&gt;
+  &lt;img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=500" alt="river"&gt;
+  &lt;img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=500" alt="forest"&gt;
+  &lt;img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=500" alt="meadow"&gt;
+&lt;/div&gt;</textarea></div>
+                      <div class="wc-editor__edit" data-lang="css" data-active><pre class="wc-editor__hl" aria-hidden="true"><code></code></pre><textarea class="wc-editor__ta" data-pane="css" spellcheck="false">h1{ color: #2f5d3a; font-family: Georgia, serif; }
+.gallery{
+  display: flex;
+  flex-direction: row;   /* try: column */
+  gap: 12px;
+}
+.gallery img{
+  flex: 1;
+  height: 150px;
+  object-fit: cover;     /* try: contain / fill */
+  border-radius: 8px;
+  min-width: 0;
+}</textarea></div>
+                      <div class="wc-editor__edit" data-lang="js"><pre class="wc-editor__hl" aria-hidden="true"><code></code></pre><textarea class="wc-editor__ta" data-pane="js" spellcheck="false">// layout is pure CSS — no behavior here</textarea></div>
+                    </div>
+                    <div class="wc-editor__result">
+                      <div class="wc-editor__rlabel">Rendered page</div>
+                      <iframe class="wc-editor__frame" title="rendered result" sandbox="allow-scripts allow-modals"></iframe>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 12 · object-fit -->
+            <div class="slide" data-cap="Fitting images — object-fit" data-notes="One fixed box, three behaviors. Real definitions on the toggle. cover = crop to fill · contain = letterbox, whole image · fill = stretch, distorts · cover is almost always what you want for photos.">
+              <div class="embed">
+                <div class="wc-fit">
+                  <div class="wc-fit__box">
+                    <img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=500" alt="forest" data-img>
+                  </div>
+                  <div class="wc-fit__bar">
+                    <button class="wc-fit__btn" data-fit="cover" aria-pressed="true">cover</button>
+                    <button class="wc-fit__btn" data-fit="contain" aria-pressed="false">contain</button>
+                    <button class="wc-fit__btn" data-fit="fill" aria-pressed="false">fill</button>
+                  </div>
+                  <p class="wc-fit__cap" data-cap></p>
+                </div>
+              </div>
+            </div>
+
+            <!-- 13 · CSS grid = 12 columns -->
+            <div class="slide" data-cap="CSS Grid — the 12-column skeleton" data-notes="The other layout mode. Flexbox = 1D (a row or a column). Grid = 2D (rows AND columns at once). The same 12 columns you used in InDesign · rule of thumb: Grid for the page skeleton, Flexbox for the pieces inside.">
+              <div class="embed">
+                <div class="wc-grid">
+                  <div class="wc-grid__cap"><b>grid-template-columns: repeat(12, 1fr)</b> — place blocks across the 12 tracks</div>
+                  <div class="wc-grid__page">
+                    <div class="wc-grid__cells" data-cells></div>
+                    <div class="wc-grid__field">
+                      <div class="wc-grid__el g-head">header — spans 1 / 13</div>
+                      <div class="wc-grid__el g-a">main · 1 / 7</div>
+                      <div class="wc-grid__el g-b">aside · 7 / 13</div>
+                      <div class="wc-grid__el g-foot">footer — spans 1 / 13</div>
+                    </div>
+                  </div>
+                  <div class="wc-grid__cap">Flexbox = <b>1D</b> (a line) · Grid = <b>2D</b> (a field)</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 14 · best practices -->
+            <div class="slide textslide" data-cap="Layout best practices" data-notes="The habits that keep a page from looking amateur — most carry straight over from Week 04 graphic design.">
+              <div class="wc-check">
+                <h3>Habits that keep a page clean</h3>
+                <ul>
+                  <li><b>Align to the grid</b> — snap blocks to the 12 columns; almost-aligned reads as broken.</li>
+                  <li><b>Let it breathe</b> — use whitespace on purpose; don't fill every pixel.</li>
+                  <li><b>One clear hierarchy</b> — a single dominant heading; size sets reading order.</li>
+                  <li><b>Limit type</b> — two fonts at most; a consistent spacing scale.</li>
+                  <li><b>Go responsive</b> — test it narrow (phone width); blocks should stack, not overflow.</li>
+                  <li><b>Restraint in color</b> — a limited palette, one accent (Week 04 still applies).</li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- 15 · where a website lives -->
+            <div class="slide" data-cap="Where a website lives" data-notes="A website is just files · they sit on a computer that's always on = the host · hosting = renting that space (GitHub Pages, Netlify, Vercel) · this very site = files in the zihao-site repo, served by GitHub.">
+              <div class="embed">
+                <div class="wc-flow">
+                  <div class="wc-flow__row">
+                    <div class="wc-flow__node"><b>Your files</b><span>HTML · CSS · JS<br>(what you just built)</span></div>
+                    <div class="wc-flow__arrow">&rarr;</div>
+                    <div class="wc-flow__node"><b>A host</b><span>a computer that stays on, serving the files<br><code>GitHub Pages</code></span></div>
+                    <div class="wc-flow__arrow">&rarr;</div>
+                    <div class="wc-flow__node"><b>Any browser</b><span>anyone who visits<br>gets the files</span></div>
+                  </div>
+                  <div class="wc-defs">
+                    <p class="wc-def"><b>Hosting</b> means renting space on a computer that stays on around the clock, serving your files to anyone who visits.</p>
+                    <p class="wc-def">This site: your pages live in the <b>zihao-site</b> GitHub repo; GitHub Pages serves them for free.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 16 · domains & DNS -->
+            <div class="slide" data-cap="Domain names &amp; DNS" data-notes="A host has a numeric IP — hard to remember · a domain is the human name you rent yearly from a registrar · DNS translates name → IP · two records matter — read the definitions.">
+              <div class="embed">
+                <div class="wc-flow">
+                  <div class="wc-flow__row">
+                    <div class="wc-flow__node"><b>You type</b><span><code>zihaozhang.cc</code></span></div>
+                    <div class="wc-flow__arrow">&rarr;</div>
+                    <div class="wc-flow__node"><b>DNS lookup</b><span>the internet's phonebook<br>name &rarr; number</span></div>
+                    <div class="wc-flow__arrow">&rarr;</div>
+                    <div class="wc-flow__node"><b>IP address</b><span><code>185.199.108.153</code><br>the host's number</span></div>
+                    <div class="wc-flow__arrow">&rarr;</div>
+                    <div class="wc-flow__node"><b>Files load</b><span>GitHub serves<br>your page</span></div>
+                  </div>
+                  <div class="wc-defs">
+                    <p class="wc-def"><b>DNS</b> — the Domain Name System is the internet's phonebook: it translates a human name like zihaozhang.cc into the numeric IP address of the computer that serves the site.</p>
+                    <p class="wc-def"><b>A record</b> — points a domain straight to an IP address.</p>
+                    <p class="wc-def"><b>CNAME</b> — points one name to another name (an alias), so you target a host's domain instead of an IP that might change.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+          <div class="deck-bar">
+            <button class="deck-btn" id="deck-prev" aria-label="Previous slide">&lsaquo;</button>
+            <div class="deck-count"><input id="deck-jump" type="text" inputmode="numeric" aria-label="Jump to slide" value="1"><span id="deck-total"> / 16</span></div>
+            <button class="deck-btn" id="deck-next" aria-label="Next slide">&rsaquo;</button>
+            <div class="deck-meta"><span class="deck-cap" id="deck-cap"></span><span id="deck-credit"></span></div>
+            <button class="deck-btn" id="deck-notes-toggle" aria-expanded="false" aria-controls="deck-notes" aria-label="Toggle speaker notes" title="Speaker notes"><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="2" y="2" width="12" height="12" rx="1.5"/><line x1="4.5" y1="5.5" x2="11.5" y2="5.5"/><line x1="4.5" y1="8" x2="11.5" y2="8"/><line x1="4.5" y1="10.5" x2="8.5" y2="10.5"/></svg></button>
+            <button class="deck-btn" id="deck-present" aria-label="Open Presenter View" title="Presenter View (synced second window)"><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="2" width="9" height="7" rx="1.2"/><path d="M3 11h5M5.5 9v2"/><rect x="11" y="5" width="4" height="4" rx="1" stroke-dasharray="1.8 1.2"/></svg></button>
+            <button class="deck-btn deck-fs" id="deck-fs" aria-label="Present full screen" title="Present (full screen)">&#x26F6;</button>
+          </div>
+          <div class="deck-notes" id="deck-notes" hidden></div>
         </div>
+
+        <!-- ── Playground (full page, build it yourself) ── -->
+        <span class="section-label">Playground — build the whole page</span>
+        <div class="wc-play">
+          <div class="wc-editor">
+            <div class="wc-editor__panes">
+              <div class="wc-editor__code">
+                <div class="wc-editor__tabs" role="tablist">
+                  <button class="wc-editor__tab" role="tab" data-tab="html" aria-selected="true">HTML <small>structure</small></button>
+                  <button class="wc-editor__tab" role="tab" data-tab="css" aria-selected="false">CSS <small>style</small></button>
+                  <button class="wc-editor__tab" role="tab" data-tab="js" aria-selected="false">JS <small>behavior</small></button>
+                </div>
+                <div class="wc-editor__edit" data-lang="html" data-active><pre class="wc-editor__hl" aria-hidden="true"><code></code></pre><textarea class="wc-editor__ta" data-pane="html" spellcheck="false">&lt;nav&gt;
+  &lt;a href="#"&gt;Home&lt;/a&gt; &lt;a href="#"&gt;Projects&lt;/a&gt;
+&lt;/nav&gt;
+
+&lt;h1&gt;Riverside Park&lt;/h1&gt;
+&lt;p class="site"&gt;A 2.4-acre restoration along the south bank.&lt;/p&gt;
+
+&lt;div class="gallery"&gt;
+  &lt;img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=500" alt="river"&gt;
+  &lt;img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=500" alt="forest"&gt;
+&lt;/div&gt;
+
+&lt;button id="more"&gt;Read more&lt;/button&gt;
+&lt;p id="detail" hidden&gt;Native plantings, a boardwalk, a tidal wetland edge.&lt;/p&gt;</textarea></div>
+                <div class="wc-editor__edit" data-lang="css"><pre class="wc-editor__hl" aria-hidden="true"><code></code></pre><textarea class="wc-editor__ta" data-pane="css" spellcheck="false">body{ font-family: Georgia, serif; color:#2a2a2a; margin:0; }
+nav{ display:flex; gap:18px; background:#2f5d3a; padding:14px 20px; }
+nav a{ color:white; text-decoration:none; }
+h1{ color:#2f5d3a; margin:20px; }
+.site{ color:#888; font-style:italic; margin:0 20px; }
+.gallery{ display:flex; gap:12px; margin:16px 20px; }
+.gallery img{ flex:1; height:150px; object-fit:cover; border-radius:8px; min-width:0; }
+button{ margin:0 20px; background:#2f5d3a; color:white; border:none;
+  padding:10px 18px; border-radius:6px; cursor:pointer; }
+#detail{ margin:12px 20px; }</textarea></div>
+                <div class="wc-editor__edit" data-lang="js"><pre class="wc-editor__hl" aria-hidden="true"><code></code></pre><textarea class="wc-editor__ta" data-pane="js" spellcheck="false">document.getElementById("more")
+  .addEventListener("click", function () {
+    document.getElementById("detail").hidden = false;
+  });</textarea></div>
+              </div>
+              <div class="wc-editor__result">
+                <div class="wc-editor__rlabel">Rendered page</div>
+                <iframe class="wc-editor__frame" title="rendered result" sandbox="allow-scripts allow-modals"></iframe>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ── Reference strip (take these home) ── -->
+        <span class="section-label">Reference — keep these open</span>
+        <div class="wc-refs">
+          <a href="https://developer.mozilla.org/en-US/docs/Web" target="_blank" rel="noopener"><b>MDN Web Docs</b><span>The authoritative reference for HTML, CSS, and JS.</span></a>
+          <a href="https://www.w3schools.com/" target="_blank" rel="noopener"><b>W3Schools</b><span>Beginner tutorials + a Try-It editor for every tag and property.</span></a>
+          <a href="https://css-tricks.com/snippets/css/a-guide-to-flexbox/" target="_blank" rel="noopener"><b>A Guide to Flexbox</b><span>CSS-Tricks — the one-page flexbox cheat sheet.</span></a>
+          <a href="https://css-tricks.com/snippets/css/complete-guide-grid/" target="_blank" rel="noopener"><b>A Guide to CSS Grid</b><span>CSS-Tricks — the companion grid reference.</span></a>
+          <a href="https://docs.github.com/en/pages" target="_blank" rel="noopener"><b>GitHub Pages docs</b><span>Free hosting + custom domains — how this site ships.</span></a>
+          <a href="https://developer.mozilla.org/en-US/docs/Learn" target="_blank" rel="noopener"><b>View source</b><span>Press Ctrl/Cmd+U on any site to read its real HTML.</span></a>
+        </div>
+
       </div>
 
     </div>
   </main>
 
   <script src="/teaching/laar61400/assets/js/nav.js"></script>
+
+  <!-- ── widget instance scripts (all instance-safe: querySelectorAll().forEach) ── -->
+  <script>
+  /* live editor: transparent <textarea> over a highlighted <pre>, live srcdoc render */
+  (function(){
+    function esc(s){ return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+    function hlHTML(s){
+      return esc(s)
+        .replace(/(&lt;!--[\s\S]*?--&gt;)/g,'<span class="tk-com">$1</span>')
+        .replace(/(&lt;\/?)([a-zA-Z][\w-]*)/g,'$1<span class="tk-tag">$2</span>')
+        .replace(/([a-zA-Z-]+)(=)(&quot;[^&]*?&quot;)/g,'<span class="tk-attr">$1</span>$2<span class="tk-str">$3</span>');
+    }
+    function hlCSS(s){
+      return esc(s)
+        .replace(/(\/\*[\s\S]*?\*\/)/g,'<span class="tk-com">$1</span>')
+        .replace(/([{}();,])/g,'<span class="tk-punc">$1</span>')
+        .replace(/([a-z-]+)(\s*:)/gi,'<span class="tk-prop">$1</span>$2');
+    }
+    var JSKW=/\b(var|let|const|function|return|if|else|for|while|new|true|false|null|this|document)\b/g;
+    function hlJS(s){
+      return esc(s)
+        .replace(/(\/\/[^\n]*)/g,'<span class="tk-com">$1</span>')
+        .replace(/(&quot;[^&]*?&quot;|'[^']*?'|`[^`]*?`)/g,'<span class="tk-str">$1</span>')
+        .replace(JSKW,'<span class="tk-kw">$1</span>');
+    }
+    var HL={html:hlHTML,css:hlCSS,js:hlJS};
+    function init(root){
+      var tabs=root.querySelectorAll('[data-tab]'), edits=root.querySelectorAll('.wc-editor__edit'),
+          frame=root.querySelector('.wc-editor__frame');
+      function val(name){ return root.querySelector('[data-pane="'+name+'"]').value; }
+      tabs.forEach(function(t){
+        t.addEventListener('click',function(){
+          tabs.forEach(function(x){ x.setAttribute('aria-selected', x===t); });
+          edits.forEach(function(e){ if(e.dataset.lang===t.dataset.tab) e.setAttribute('data-active',''); else e.removeAttribute('data-active'); });
+        });
+      });
+      edits.forEach(function(e){
+        var ta=e.querySelector('textarea'), code=e.querySelector('code'), lang=e.dataset.lang;
+        function paint(){ code.innerHTML=HL[lang](ta.value+'\n'); }
+        function sync(){ var pre=code.parentNode; pre.scrollTop=ta.scrollTop; pre.scrollLeft=ta.scrollLeft; }
+        ta.addEventListener('input',function(){ paint(); render(); });
+        ta.addEventListener('scroll',sync);
+        ta.addEventListener('keydown',function(ev){
+          if(ev.key==='Tab'){ ev.preventDefault();
+            var a=ta.selectionStart,b=ta.selectionEnd;
+            ta.value=ta.value.slice(0,a)+'  '+ta.value.slice(b);
+            ta.selectionStart=ta.selectionEnd=a+2; paint(); render(); }
+        });
+        paint();
+      });
+      var timer;
+      function render(){
+        clearTimeout(timer);
+        timer=setTimeout(function(){
+          frame.srcdoc='<!DOCTYPE html><html><head><meta charset="utf-8">'+
+            '<style>body{font-family:Georgia,serif;margin:16px}'+val('css')+'</style></head><body>'+
+            val('html')+'<scr'+'ipt>try{'+val('js')+'}catch(e){}</scr'+'ipt></body></html>';
+        },180);
+      }
+      render();
+    }
+    document.querySelectorAll('.wc-editor').forEach(init);
+  })();
+
+  /* reveal — strip a page to its three layers */
+  (function(){
+    var HTML='<h1>Riverside Park</h1>'+
+      '<p class="site">A 2.4-acre restoration along the south bank.</p>'+
+      '<img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=420" alt="river">'+
+      '<button id="more">Read more</button>'+
+      '<p id="detail" hidden>Native plantings, a boardwalk, a tidal wetland edge.</p>';
+    var CSS='body{font-family:Georgia,serif;color:#2a2a2a;margin:20px;line-height:1.5}'+
+      'h1{color:#2f5d3a}.site{color:#888;font-style:italic}'+
+      'img{width:100%;border-radius:8px;margin:10px 0}'+
+      'button{background:#2f5d3a;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer}';
+    var JS='document.getElementById("more").addEventListener("click",function(){document.getElementById("detail").hidden=false});';
+    var CAPS=[
+      '<b>HTML only</b> — raw structure. It works, but it looks like 1995.',
+      '<b>+ CSS</b> — same content, now styled. Color, type, spacing.',
+      '<b>+ JS</b> — now it responds. Click "Read more" — the hidden line appears.'
+    ];
+    function doc(stage){
+      return '<!DOCTYPE html><html><head><meta charset="utf-8">'+
+        (stage>=1?'<style>'+CSS+'</style>':'')+'</head><body>'+HTML+
+        (stage>=2?'<scr'+'ipt>'+JS+'</scr'+'ipt>':'')+'</body></html>';
+    }
+    function init(root){
+      var frame=root.querySelector('.wc-reveal__frame'), cap=root.querySelector('[data-cap]'),
+          btns=root.querySelectorAll('[data-stage]');
+      function set(stage){
+        frame.srcdoc=doc(stage); cap.innerHTML=CAPS[stage];
+        btns.forEach(function(b){ b.setAttribute('aria-pressed', String(+b.dataset.stage===stage)); });
+      }
+      btns.forEach(function(b){ b.addEventListener('click',function(){ set(+b.dataset.stage); }); });
+      set(0);
+    }
+    document.querySelectorAll('.wc-reveal').forEach(init);
+  })();
+
+  /* object-fit toggle */
+  (function(){
+    var CAPS={
+      cover:'<b>cover</b> — fills the box and crops the overflow. The default for photos.',
+      contain:'<b>contain</b> — fits the whole image inside, leaving empty bars. Nothing is cropped.',
+      fill:'<b>fill</b> — stretches the image to the box, distorting it. Usually wrong.'
+    };
+    function init(root){
+      var img=root.querySelector('[data-img]'), cap=root.querySelector('[data-cap]'),
+          btns=root.querySelectorAll('[data-fit]');
+      function set(f){
+        img.style.objectFit=f; cap.innerHTML=CAPS[f];
+        btns.forEach(function(b){ b.setAttribute('aria-pressed', String(b.dataset.fit===f)); });
+      }
+      btns.forEach(function(b){ b.addEventListener('click',function(){ set(b.dataset.fit); }); });
+      set('cover');
+    }
+    document.querySelectorAll('.wc-fit').forEach(init);
+  })();
+
+  /* 12-col grid cells overlay */
+  (function(){
+    document.querySelectorAll('.wc-grid [data-cells]').forEach(function(field){
+      for(var i=0;i<12;i++){ var c=document.createElement('div'); c.className='wc-grid__cell'; field.appendChild(c); }
+    });
+  })();
+  </script>
+
+  <!-- ── deck carousel controller (shared, page-agnostic) ── -->
+  <script src="/teaching/_shared/deck.js"></script>
+
+  <!-- ── scale each widget/diagram embed to fit the fixed 16:9 stage (no scroll) ── -->
+  <script>
+  (function(){
+    var stage=document.getElementById('deck-stage');
+    if(!stage) return;
+    var embeds=[].slice.call(document.querySelectorAll('#deck-stage .slide .embed'));
+    function fit(){
+      var SW=stage.clientWidth, SH=stage.clientHeight;
+      if(!SW||!SH) return;
+      embeds.forEach(function(e){
+        var c=e.firstElementChild; if(!c) return;
+        c.style.transform='none';
+        var w=c.offsetWidth, h=c.offsetHeight;
+        if(!w||!h) return;
+        var avW=SW-28, avH=SH-28;
+        var s=Math.min(1, avW/w, avH/h);
+        c.style.transform = s<1 ? 'scale('+s+')' : 'none';
+      });
+    }
+    window.addEventListener('load',fit);
+    if(document.readyState==='complete') fit();
+    var t; window.addEventListener('resize',function(){clearTimeout(t);t=setTimeout(fit,80);});
+    document.addEventListener('fullscreenchange',function(){setTimeout(fit,80);});
+    document.addEventListener('webkitfullscreenchange',function(){setTimeout(fit,80);});
+  })();
+  </script>
 </body>
 </html>
