@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>File Types Reference — LAAR 61400</title>
+  <link rel="stylesheet" href="/teaching/laar61400/assets/css/main.css">
+  <link rel="stylesheet" href="/teaching/laar61400/assets/css/workflow-shared.css">
+  <link rel="stylesheet" href="/teaching/laar61400/assets/css/shortcuts-shared.css">
+</head>
+<body>
+
+  <!-- Side panel -->
+  <nav id="sidepanel">
+    <a class="panel-brand" href="/teaching/laar61400/index.html">
+      <span class="panel-brand-title">LAAR 61400</span>
+      <span class="panel-brand-sub">Representation + Computation</span>
+    </a>
+    <div class="panel-section">
+      <span class="panel-section-label">Workflows</span>
+      <a class="panel-link" href="/teaching/laar61400/workflows/wf01-autocad.html"><span class="panel-link-num">01</span>AutoCAD Site Drafting</a>
+      <a class="panel-link" href="/teaching/laar61400/workflows/wf02-sketch-portfolio.html"><span class="panel-link-num">02</span>Hand Sketch → Hybrid Drawing</a>
+      <a class="panel-link" href="/teaching/laar61400/workflows/wf03-urban-context.html"><span class="panel-link-num">03</span>Urban Context Mapping</a>
+      <a class="panel-link" href="/teaching/laar61400/workflows/wf04-landform-design.html"><span class="panel-link-num">04</span>Rhino Landform Modeling</a>
+      <a class="panel-link" href="/teaching/laar61400/workflows/wf05-meadow-parametric.html"><span class="panel-link-num">05</span>Attractor Fields</a>
+      <a class="panel-link" href="/teaching/laar61400/workflows/wf06-slope-analysis.html"><span class="panel-link-num">06</span>Slope Analysis</a>
+      <a class="panel-link" href="/teaching/laar61400/workflows/wf07-claude-code-site.html"><span class="panel-link-num">07</span>Website with Claude Code</a>
+    </div>
+    <div class="panel-section">
+      <span class="panel-section-label">Lectures</span>
+      <a class="panel-link" href="/teaching/laar61400/lectures/week01-drawing-as-thinking.html"><span class="panel-link-wk">W01</span>Drawing as Thinking Tool</a>
+      <a class="panel-link" href="/teaching/laar61400/lectures/week02-history-computer-graphics.html"><span class="panel-link-wk">W02</span>History of Computer Graphics</a>
+      <a class="panel-link" href="/teaching/laar61400/lectures/week04-graphic-design-101.html"><span class="panel-link-wk">W04</span>Graphic Design 101</a>
+      <a class="panel-link" href="/teaching/laar61400/lectures/week05-gis-spatial-data.html"><span class="panel-link-wk">W05</span>Intro to GIS / Spatial Data</a>
+      <a class="panel-link" href="/teaching/laar61400/lectures/week07-modeling-as-thinking.html"><span class="panel-link-wk">W07</span>Modeling as Thinking</a>
+      <a class="panel-link" href="/teaching/laar61400/lectures/week09-computational-thinking.html"><span class="panel-link-wk">W09</span>Computational Thinking</a>
+      <a class="panel-link" href="/teaching/laar61400/lectures/week11-co-productive-intelligence.html"><span class="panel-link-wk">W11</span>Co-productive Intelligence</a>
+      <a class="panel-link" href="/teaching/laar61400/lectures/week12-web-coding-literacy.html"><span class="panel-link-wk">W12</span>Web Coding Literacy</a>
+    </div>
+    <div class="panel-section">
+      <span class="panel-section-label">Shortcuts &amp; Reference</span>
+      <a class="panel-link active" href="/teaching/laar61400/shortcuts/file-types.html">File Types Reference</a>
+      <a class="panel-link" href="/teaching/laar61400/shortcuts/adobe.html">Adobe Ps / Ai / Id</a>
+      <a class="panel-link" href="/teaching/laar61400/shortcuts/autocad.html">AutoCAD</a>
+      <a class="panel-link" href="/teaching/laar61400/shortcuts/rhino-pipeline.html">Rhino — Pipeline</a>
+      <a class="panel-link" href="/teaching/laar61400/shortcuts/rhino-ui.html">Rhino — Navigation &amp; UI</a>
+    </div>
+  </nav>
+
+  <main id="main-content">
+    <div class="page-inner">
+
+      <div class="sc-wrap">
+
+        <div class="sc-header">
+          <div class="sc-header-left">
+            <span class="sc-icon" style="background:#2a2a2a;color:#fff;font-size:9px;letter-spacing:0.04em;">FT</span>
+            <div class="sc-header-text">
+              <div class="sc-title">File Types Reference</div>
+              <div class="sc-subtitle">Raster · Vector · CAD · 3D · GIS · Layout</div>
+            </div>
+          </div>
+          <span class="sc-course-tag">LAAR 61400</span>
+        </div>
+
+<style>
+  .ft-category { margin-bottom: 28px; }
+  .ft-cat-head { display: flex; align-items: baseline; gap: 10px; padding: 7px 12px; border-radius: 4px 4px 0 0; }
+  .ft-cat-head h2 { font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #fff; margin: 0; }
+  .ft-cat-sub { font-size: 10px; color: rgba(255,255,255,0.65); font-family: 'DM Mono', monospace; margin: 0; }
+
+  .ft-table { width: 100%; border-collapse: collapse; }
+  .ft-table thead th { font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: #999; padding: 6px 10px 5px; border-bottom: 1px solid #e8e8e8; text-align: left; font-family: 'DM Mono', monospace; background: #faf9f7; }
+  .ft-table tbody tr { border-bottom: 1px solid #f0eeeb; }
+  .ft-table tbody tr:last-child { border-bottom: none; }
+  .ft-table tbody td { padding: 8px 10px; vertical-align: top; font-size: 13px; line-height: 1.5; }
+
+  .ft-tag { font-family: 'DM Mono', monospace; font-size: 11px; font-weight: 700; display: inline-block; padding: 2px 7px; border-radius: 3px; color: #fff; white-space: nowrap; }
+  .ft-name { font-weight: 600; color: #1a1a1a; }
+  .ft-note { color: #777; font-size: 11px; font-family: 'DM Mono', monospace; display: block; margin-top: 1px; }
+  .ft-use { color: #333; }
+  .ft-fact { color: #555; font-size: 12.5px; line-height: 1.6; }
+  .ft-fact strong { color: #1a1a1a; font-weight: 600; }
+  .ft-alert { color: #b05000; }
+
+  .ft-divider { border: none; border-top: 2px solid #1a1a1a; margin: 28px 0 20px; }
+  .ft-section-label { font-family: 'DM Mono', monospace; font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: #aaa; margin-bottom: 14px; display: block; }
+
+  .ft-concepts { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+  .ft-concept { background: #f7f5f2; border-left: 3px solid #1a1a1a; padding: 10px 14px; border-radius: 0 4px 4px 0; }
+  .ft-concept strong { font-size: 12px; font-weight: 700; display: block; margin-bottom: 3px; color: #1a1a1a; }
+  .ft-concept p { font-size: 12px; color: #444; line-height: 1.6; margin: 0; }
+
+  .ft-nurbs-note { background: #f0eee8; border: 1px solid #ddd; border-radius: 4px; padding: 10px 14px; font-size: 12px; color: #444; line-height: 1.6; margin-top: 6px; }
+  .ft-nurbs-note strong { color: #1a1a1a; }
+
+  .ft-shp-note { background: #f0f4f0; border: 1px solid #c8dac8; border-radius: 4px; padding: 8px 12px; font-size: 11.5px; color: #3a5a3a; font-family: 'DM Mono', monospace; margin-top: 4px; line-height: 1.7; }
+
+  @media (max-width: 640px) {
+    .ft-concepts { grid-template-columns: 1fr; }
+    .ft-table thead { display: none; }
+    .ft-table tbody tr { display: block; border-bottom: 2px solid #e8e8e8; padding: 8px 0; }
+    .ft-table tbody td { display: block; padding: 2px 10px; border: none; }
+    .ft-table tbody td:first-child { padding-top: 6px; }
+    .ft-table tbody td:last-child { padding-bottom: 6px; }
+    .ft-cat-sub { display: none; }
+  }
+</style>
+
+<!-- ═══════════════════════════════════════════════════ RASTER ══ -->
+<div class="ft-category">
+  <div class="ft-cat-head" style="background:#2D5A8E;">
+    <h2>Raster Images</h2>
+    <span class="ft-cat-sub">pixel grid · fixed resolution · photos &amp; renders</span>
+  </div>
+  <table class="ft-table">
+    <thead>
+      <tr>
+        <th style="width:80px;">Format</th>
+        <th style="width:150px;">Full Name</th>
+        <th style="width:30%;">Use For</th>
+        <th>Key Facts</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="ft-tag" style="background:#2D5A8E;">.jpg</span></td>
+        <td><span class="ft-name">JPEG</span></td>
+        <td class="ft-use">Photos, renders, textures</td>
+        <td class="ft-fact"><strong>Lossy</strong> — every save discards data. Never re-save an edited JPEG. Excellent compression for photographic content; artifacts appear on line art and text.</td>
+      </tr>
+      <tr>
+        <td><span class="ft-tag" style="background:#2D5A8E;">.png</span></td>
+        <td><span class="ft-name">PNG</span></td>
+        <td class="ft-use">Diagrams, screenshots, transparency</td>
+        <td class="ft-fact"><strong>Lossless</strong> — compresses without losing data. Supports alpha (transparent pixels). Larger than JPG for photos; correct choice for graphics, line art, logos.</td>
+      </tr>
+      <tr>
+        <td><span class="ft-tag" style="background:#2D5A8E;">.tif</span></td>
+        <td><span class="ft-name">TIFF</span></td>
+        <td class="ft-use">Print, archival, high-res output</td>
+        <td class="ft-fact"><strong>Lossless</strong>. Standard for high-resolution print. Large files. Use for source images when quality must be preserved across edits.</td>
+      </tr>
+      <tr>
+        <td><span class="ft-tag" style="background:#2D5A8E;">.gif</span></td>
+        <td><span class="ft-name">GIF</span></td>
+        <td class="ft-use">Legacy animations <span class="ft-alert">(dated)</span></td>
+        <td class="ft-fact">8-bit color only (256 colors max). <span class="ft-alert">No longer recommended for web</span> — an animated GIF is often 5–10× the size of an equivalent clip. Use a looping <kbd>&lt;video&gt;</kbd> with <strong>MP4</strong> (or WebM) instead: smaller, full color, smoother.</td>
+      </tr>
+      <tr>
+        <td><span class="ft-tag" style="background:#2D5A8E;">.webp</span></td>
+        <td><span class="ft-name">WebP</span></td>
+        <td class="ft-use">Web images (photos + graphics)</td>
+        <td class="ft-fact">Modern format — supports both lossy and lossless. Smaller file than JPG/PNG at equivalent quality. Universal browser support.</td>
+      </tr>
+      <tr>
+        <td><span class="ft-tag" style="background:#2D5A8E;">.avif</span></td>
+        <td><span class="ft-name">AVIF</span></td>
+        <td class="ft-use">Web images — best-in-class compression</td>
+        <td class="ft-fact">Newest web format (from the AV1 video codec). <strong>Smallest file of all</strong> at equal quality — typically 30–50% under JPG, beats WebP too. Lossy or lossless, supports transparency. Used for this course site. Slower to encode; near-universal browser support now.</td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="ft-nurbs-note" style="border-color:#2D5A8E;background:#eef2f8;">
+    <strong>DPI / Resolution:</strong> DPI (dots per inch) only matters for print. A screen has no fixed DPI — pixel count is all that matters. For print: 300 DPI at final output size means a 8″×10″ print needs 2400×3000 pixels. "Exporting at 72 DPI" doesn't degrade quality if the pixel count is unchanged.
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════ VECTOR ══ -->
+<div class="ft-category">
+  <div class="ft-cat-head" style="background:#3D7A35;">
+    <h2>Vector</h2>
+    <span class="ft-cat-sub">mathematical paths · infinite scale · drawings &amp; diagrams</span>
+  </div>
+  <table class="ft-table">
+    <thead>
+      <tr>
+        <th style="width:80px;">Format</th>
+        <th style="width:150px;">Full Name</th>
+        <th style="width:30%;">Use For</th>
+        <th>Key Facts</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="ft-tag" style="background:#3D7A35;">.svg</span></td>
+        <td><span class="ft-name">SVG</span></td>
+        <td class="ft-use">Web graphics, diagrams, icons</td>
+        <td class="ft-fact">XML text file — open, human-readable. Scales infinitely. Can be embedded directly in HTML. Editable in Illustrator and in a text editor.</td>
+      </tr>
+      <tr>
+        <td><span class="ft-tag" style="background:#3D7A35;">.ai</span></td>
+        <td><span class="ft-name">Adobe Illustrator</span></td>
+        <td class="ft-use">Illustrator working file</td>
+        <td class="ft-fact">Proprietary. Preserves layers, artboards, live effects, symbols. Not portable without Illustrator. Save as .pdf or .svg for handoff.</td>
+      </tr>
+      <tr>
+        <td><span class="ft-tag" style="background:#3D7A35;">.eps</span></td>
+        <td><span class="ft-name">Encapsulated PostScript</span></td>
+        <td class="ft-use">Legacy vector exchange, print shops</td>
+        <td class="ft-fact">Old interchange format. Still accepted by some print bureaus. Prefer .svg or .pdf for new work — EPS has no transparency support.</td>
+      </tr>
+      <tr>
+        <td><span class="ft-tag" style="background:#3D7A35;">.pdf</span></td>
+        <td><span class="ft-name">PDF — as vector document</span></td>
+        <td class="ft-use">Vector output, layout, sharing</td>
+        <td class="ft-fact"><strong>Dual nature:</strong> a PDF can contain both vectors and embedded rasters. When exported from Illustrator or InDesign with live vector data, it scales cleanly. Use for sharing drawings that must stay crisp.</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- ═══════════════════════════════════════════════════ CAD ══ -->
+<div class="ft-category">
+  <div class="ft-cat-head" style="background:#C81922;">
+    <h2>CAD / Drafting</h2>
+    <span class="ft-cat-sub">real-world units · layers · measured drawings</span>
+  </div>
+  <table class="ft-table">
+    <thead>
+      <tr>
+        <th style="width:80px;">Format</th>
+        <th style="width:150px;">Full Name</th>
+        <th style="width:30%;">Use For</th>
+        <th>Key Facts</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="ft-tag" style="background:#C81922;">.dwg</span></td>
+        <td><span class="ft-name">DWG</span></td>
+        <td class="ft-use">AutoCAD native, site survey files</td>
+        <td class="ft-fact">Binary format. Stores layers, dimensions, blocks, model/paper space. <strong>Versioned</strong> — a 2020 .dwg may not open in AutoCAD 2010. Save down (Save As → older version) for wide compatibility. This is what you get from a surveyor.</td>
+      </tr>
+      <tr>
+        <td><span class="ft-tag" style="background:#C81922;">.dxf</span></td>
+        <td><span class="ft-name">Drawing Exchange Format</span></td>
+        <td class="ft-use">CAD interchange, cross-software handoff</td>
+        <td class="ft-fact">Text-based. Opens in almost any CAD, vector, or GIS program. Loses some AutoCAD-specific data (live dimensions, some blocks). Use when the receiver doesn't have AutoCAD.</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- ═══════════════════════════════════════════════════ 3D ══ -->
+<div class="ft-category">
+  <div class="ft-cat-head" style="background:#801010;">
+    <h2>3D Models</h2>
+    <span class="ft-cat-sub">geometry · NURBS vs mesh · fabrication &amp; rendering</span>
+  </div>
+  <table class="ft-table">
+    <thead>
+      <tr>
+        <th style="width:80px;">Format</th>
+        <th style="width:150px;">Full Name / App</th>
+        <th style="width:30%;">Use For</th>
+        <th>Key Facts</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="ft-tag" style="background:#801010;">.3dm</span></td>
+        <td><span class="ft-name">Rhino 3DM</span></td>
+        <td class="ft-use">Rhino working file</td>
+        <td class="ft-fact">Native NURBS + mesh geometry. Preserves layers, materials, history. The format to work in — only export to others for delivery.</td>
+      </tr>
+      <tr>
+        <td><span class="ft-tag" style="background:#801010;">.obj</span></td>
+        <td><span class="ft-name">Wavefront OBJ</span></td>
+        <td class="ft-use">3D mesh exchange (renderers, Illustrator)</td>
+        <td class="ft-fact">Universal mesh format. Text-based. Carries mesh only — no NURBS. Pairs with .mtl file for materials. Exporting Rhino → OBJ converts NURBS to mesh: an <span class="ft-alert">irreversible approximation</span>.</td>
+      </tr>
+      <tr>
+        <td><span class="ft-tag" style="background:#801010;">.fbx</span></td>
+        <td><span class="ft-name">Filmbox (Autodesk)</span></td>
+        <td class="ft-use">Game engines, animation, SketchUp handoff</td>
+        <td class="ft-fact">Carries mesh + materials + animation + hierarchy. Use for Unity, Unreal, or exchanging with SketchUp / 3ds Max. Autodesk proprietary.</td>
+      </tr>
+      <tr>
+        <td><span class="ft-tag" style="background:#801010;">.stl</span></td>
+        <td><span class="ft-name">Stereolithography</span></td>
+        <td class="ft-use">3D printing / fabrication</td>
+        <td class="ft-fact">Mesh only (triangulated surfaces). No color, materials, or hierarchy. The universal fabrication format. Geometry must be a closed solid — open surfaces won't print.</td>
+      </tr>
+      <tr>
+        <td><span class="ft-tag" style="background:#801010;">.skp</span></td>
+        <td><span class="ft-name">SketchUp</span></td>
+        <td class="ft-use">Massing models, quick architecture</td>
+        <td class="ft-fact">Proprietary. Common in architecture offices for quick massing. Imports into Rhino with some data loss (mesh only, no NURBS). Avoid as a final deliverable if Rhino is the project standard.</td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="ft-nurbs-note">
+    <strong>NURBS vs. Mesh:</strong> NURBS (Rhino's native) = mathematically smooth curves and surfaces, precise at any scale, infinitely editable. Mesh = polygon faces (triangles/quads), a fixed approximation of shape. Every export from Rhino to OBJ, STL, or FBX converts NURBS to mesh — the smooth surface becomes faceted polygons. This conversion is one-way.
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════ GIS ══ -->
+<div class="ft-category">
+  <div class="ft-cat-head" style="background:#2D7A5A;">
+    <h2>GIS / Spatial</h2>
+    <span class="ft-cat-sub">georeferenced · coordinate systems · terrain &amp; base data</span>
+  </div>
+  <table class="ft-table">
+    <thead>
+      <tr>
+        <th style="width:80px;">Format</th>
+        <th style="width:150px;">Full Name</th>
+        <th style="width:30%;">Use For</th>
+        <th>Key Facts</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="ft-tag" style="background:#2D7A5A;">.shp</span></td>
+        <td><span class="ft-name">Shapefile</span></td>
+        <td class="ft-use">Vector GIS data (roads, parcels, boundaries)</td>
+        <td class="ft-fact"><strong>Not one file — a bundle.</strong> A shapefile requires at minimum: .shp (geometry), .dbf (attributes), .shx (index), and .prj (projection). Moving only the .shp breaks it. Always zip the whole folder.</td>
+      </tr>
+      <tr>
+        <td><span class="ft-tag" style="background:#2D7A5A;">.tif</span><span class="ft-note">(GeoTIFF)</span></td>
+        <td><span class="ft-name">GeoTIFF</span></td>
+        <td class="ft-use">Aerial imagery, satellite, raster analysis</td>
+        <td class="ft-fact">A standard TIFF with embedded coordinate metadata — it knows exactly where it sits on Earth. Opens as a regular image in Photoshop; opens as a map layer in QGIS. Source of aerial basemaps.</td>
+      </tr>
+      <tr>
+        <td><span class="ft-tag" style="background:#2D7A5A;">.geojson</span></td>
+        <td><span class="ft-name">GeoJSON</span></td>
+        <td class="ft-use">Web mapping, lightweight vector data</td>
+        <td class="ft-fact">JSON-based. Human-readable. One self-contained file (unlike Shapefile). Standard for Mapbox, Leaflet, and web projects. Easy to inspect and edit in a text editor.</td>
+      </tr>
+      <tr>
+        <td><span class="ft-tag" style="background:#2D7A5A;">.kml / .kmz</span></td>
+        <td><span class="ft-name">Keyhole Markup / Zipped</span></td>
+        <td class="ft-use">Google Earth export/import</td>
+        <td class="ft-fact">XML-based (KML) or zipped (KMZ). Carries placemarks, paths, polygons, ground overlays. Opens in Google Earth, QGIS, and many GIS apps. Commonly used for site boundary exchange.</td>
+      </tr>
+      <tr>
+        <td><span class="ft-tag" style="background:#2D7A5A;">.gdb</span></td>
+        <td><span class="ft-name">Esri File Geodatabase</span></td>
+        <td class="ft-use">Whole GIS projects — many layers in one container</td>
+        <td class="ft-fact"><strong>Not a file — a folder.</strong> A <kbd>.gdb</kbd> is a directory full of cryptic system files; never open or move the pieces individually. Holds many feature classes, rasters, and tables together with topology rules. Esri's modern replacement for the Shapefile — no 2GB / 10-char-field limits. <span class="ft-alert">Zip the whole .gdb folder</span> to share.</td>
+      </tr>
+      <tr>
+        <td><span class="ft-tag" style="background:#2D7A5A;">.dem</span></td>
+        <td><span class="ft-name">Digital Elevation Model</span></td>
+        <td class="ft-use">Terrain data, slope analysis, Rhino import</td>
+        <td class="ft-fact">A raster where each pixel value = an elevation. The raw source for terrain models. Import into Rhino using <kbd>HeightField</kbd>. Also arrives as a GeoTIFF with elevation values instead of colors.</td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="ft-shp-note">
+    Shapefile bundle: <strong>.shp</strong> geometry · <strong>.dbf</strong> attribute table · <strong>.shx</strong> index · <strong>.prj</strong> projection · (.cpg charset, .qpj QGIS projection, .sbn/.sbx spatial index — optional but include them)
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════ LAYOUT ══ -->
+<div class="ft-category">
+  <div class="ft-cat-head" style="background:#3D1A2E;">
+    <h2>Layout / Documents</h2>
+    <span class="ft-cat-sub">InDesign · PDF · final delivery</span>
+  </div>
+  <table class="ft-table">
+    <thead>
+      <tr>
+        <th style="width:80px;">Format</th>
+        <th style="width:150px;">Full Name / App</th>
+        <th style="width:30%;">Use For</th>
+        <th>Key Facts</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="ft-tag" style="background:#3D1A2E;">.indd</span></td>
+        <td><span class="ft-name">InDesign Document</span></td>
+        <td class="ft-use">Layout working file (portfolio, boards)</td>
+        <td class="ft-fact">Proprietary. Stores linked assets by path — if you move the .indd without its linked images, links break. <span class="ft-alert">Never submit .indd.</span> Export to PDF for delivery. Package (File → Package) to bundle all links before sharing.</td>
+      </tr>
+      <tr>
+        <td><span class="ft-tag" style="background:#3D1A2E;">.idml</span></td>
+        <td><span class="ft-name">InDesign Markup Language</span></td>
+        <td class="ft-use">InDesign backwards compatibility handoff</td>
+        <td class="ft-fact">XML-based InDesign interchange. Opens in InDesign versions older than the file was saved in. Use when collaborating with someone on an older subscription. Some live effects may be flattened.</td>
+      </tr>
+      <tr>
+        <td><span class="ft-tag" style="background:#3D1A2E;">.pptx</span></td>
+        <td><span class="ft-name">PowerPoint (Open XML)</span></td>
+        <td class="ft-use">Slide decks, pin-up boards</td>
+        <td class="ft-fact"><strong>Secretly a ZIP archive.</strong> A .pptx is a renamed .zip bundle of XML + your embedded media. Rename <kbd>deck.pptx</kbd> → <kbd>deck.zip</kbd>, unzip, and every image sits full-resolution inside <kbd>/ppt/media/</kbd> — the fastest way to pull pictures back out of a slide. The same trick works on .docx and .xlsx.</td>
+      </tr>
+      <tr>
+        <td><span class="ft-tag" style="background:#3D1A2E;">.pdf</span></td>
+        <td><span class="ft-name">PDF — as final output</span></td>
+        <td class="ft-use">Submission, print, sharing</td>
+        <td class="ft-fact">The universal delivery format. Embeds all fonts and linked images. Flatten transparencies before sending to a print bureau. Name files clearly: <kbd>lastname-projectname-YYYYMMDD.pdf</kbd>, not "untitled-2.pdf".</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- ═══════════════════════════════════════════════════ VIDEO ══ -->
+<div class="ft-category">
+  <div class="ft-cat-head" style="background:#6B3FA0;">
+    <h2>Animation / Video</h2>
+    <span class="ft-cat-sub">motion · web loops · presentation media</span>
+  </div>
+  <table class="ft-table">
+    <thead>
+      <tr>
+        <th style="width:80px;">Format</th>
+        <th style="width:150px;">Full Name</th>
+        <th style="width:30%;">Use For</th>
+        <th>Key Facts</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="ft-tag" style="background:#6B3FA0;">.mp4</span></td>
+        <td><span class="ft-name">MPEG-4 (H.264)</span></td>
+        <td class="ft-use">Web video, deck embeds, shared motion</td>
+        <td class="ft-fact">The universal video format. Plays on every device and browser with no plugin. <strong>The right replacement for animated GIF</strong> — far smaller, full color, smooth. Embed in PPTX; loop in a web <kbd>&lt;video&gt;</kbd>.</td>
+      </tr>
+      <tr>
+        <td><span class="ft-tag" style="background:#6B3FA0;">.webm</span></td>
+        <td><span class="ft-name">WebM (VP9 / AV1)</span></td>
+        <td class="ft-use">Web video — open alternative</td>
+        <td class="ft-fact">Open, royalty-free. Slightly smaller than MP4 at equal quality and supports a true transparent (alpha) channel, which MP4 can't. Pair as a fallback alongside MP4 in <kbd>&lt;video&gt;</kbd>.</td>
+      </tr>
+      <tr>
+        <td><span class="ft-tag" style="background:#6B3FA0;">.mov</span></td>
+        <td><span class="ft-name">QuickTime</span></td>
+        <td class="ft-use">Editing, screen recordings (Mac)</td>
+        <td class="ft-fact">Apple's container — high quality, large files. Common straight out of QuickTime / Keynote / phones. Convert to <strong>.mp4</strong> before putting it on the web or into a deck for someone else.</td>
+      </tr>
+      <tr>
+        <td><span class="ft-tag" style="background:#6B3FA0;">.gif</span></td>
+        <td><span class="ft-name">GIF — see Raster</span></td>
+        <td class="ft-use">Legacy loops only</td>
+        <td class="ft-fact">Animated but <span class="ft-alert">obsolete for this purpose</span>: 256 colors, no audio, 5–10× the size of equivalent MP4. Reach for MP4/WebM instead.</td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="ft-nurbs-note" style="border-color:#6B3FA0;background:#f3eef8;">
+    <strong>Animation in presentations — PPT vs. PDF:</strong> A <strong>PPTX</strong> is the only one that truly animates — element animations, slide transitions, and embedded MP4 that plays inline. A <strong>PDF is static</strong>: its embedded-video feature only works in Adobe Acrobat (dead in browsers, Preview, and phones). <span class="ft-alert">The trap:</span> build motion in a deck, export to PDF for submission, and it silently dies. If the deliverable must move, the deliverable is a <strong>video (MP4)</strong> — export the whole deck out — not a PDF. Present live in PPTX/Keynote; freeze to PDF only when motion doesn't matter.
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════ CONCEPTS ══ -->
+<hr class="ft-divider">
+<span class="ft-section-label">Cross-Cutting Concepts</span>
+<div class="ft-concepts">
+  <div class="ft-concept">
+    <strong>Lossy vs. Lossless</strong>
+    <p>Lossy (JPEG, lossy WebP) discards data to shrink the file — quality degrades with each save. Lossless (PNG, TIFF, GIF) compresses without discarding — the original is always recoverable. Work in lossless formats; deliver in whatever the brief requires.</p>
+  </div>
+  <div class="ft-concept">
+    <strong>Raster vs. Vector</strong>
+    <p>Raster = a grid of pixels at a fixed resolution. "Scaling up" interpolates between pixels and blurs. Vector = mathematical paths (lines, curves, fills) that render at any size without degradation. Rule: drawings and diagrams in vector; photos and renders in raster.</p>
+  </div>
+  <div class="ft-concept">
+    <strong>What "Export" Actually Does</strong>
+    <p>Export is a conversion, not a copy. Rhino → OBJ converts NURBS to mesh. InDesign → PDF flattens layers and embeds fonts. DWG → DXF strips AutoCAD-specific data. Every format conversion involves some loss — know what you're giving up before you export.</p>
+  </div>
+  <div class="ft-concept">
+    <strong>Why Handoff Loses Data</strong>
+    <p>Files carry more than geometry: layers, parametric links, editable text, live effects. A PDF is a static snapshot of a layout, not the layout itself. Send the working file (with all links packaged) to a collaborator; send the PDF to a client or printer. Name files for the receiver, not yourself.</p>
+  </div>
+  <div class="ft-concept">
+    <strong>Compression</strong>
+    <p>Compression reduces file size. Lossless compression (ZIP, PNG, LZW-TIFF) reconstructs the original exactly. Lossy compression (JPEG, MP3) permanently discards data the algorithm judges unimportant. File size alone tells you nothing about whether a compression is lossy.</p>
+  </div>
+  <div class="ft-concept">
+    <strong>Fluency ≠ Literacy</strong>
+    <p>You've double-clicked files since childhood — that's fluency. Literacy is knowing what the file <em>is</em>: how it stores data, what it can and can't carry, what happens when you convert it. The same gap applies to AI tools: using a chatbot isn't the same as understanding what it's doing.</p>
+  </div>
+</div>
+
+        <div class="sc-footer">
+          <span>LAAR 61400 — Representation &amp; Computation I</span>
+          <span>Shortcuts &amp; Reference · W08</span>
+        </div>
+
+      </div><!-- /sc-wrap -->
+
+    </div>
+  </main>
+
+  <script src="/teaching/laar61400/assets/js/nav.js"></script>
+</body>
+</html>
