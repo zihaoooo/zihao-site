@@ -265,6 +265,12 @@
         <td class="ft-fact">Native NURBS + mesh geometry. Preserves layers, materials, history. The format to work in — only export to others for delivery.</td>
       </tr>
       <tr>
+        <td><span class="ft-tag" style="background:#801010;">.gh</span><span class="ft-note">.ghx</span></td>
+        <td><span class="ft-name">Grasshopper Definition</span></td>
+        <td class="ft-use">Parametric scripts (the recipe, not the model)</td>
+        <td class="ft-fact"><strong>Stores logic, not geometry.</strong> A <kbd>.gh</kbd> is the node graph — the rules that <em>generate</em> form — and runs on top of an open Rhino file. <kbd>.gh</kbd> is binary; <kbd>.ghx</kbd> is the same as readable XML. Share both the .gh and the .3dm it drives; the .gh alone produces nothing.</td>
+      </tr>
+      <tr>
         <td><span class="ft-tag" style="background:#801010;">.obj</span></td>
         <td><span class="ft-name">Wavefront OBJ</span></td>
         <td class="ft-use">3D mesh exchange (renderers, Illustrator)</td>
@@ -442,6 +448,47 @@
   </table>
   <div class="ft-nurbs-note" style="border-color:#6B3FA0;background:#f3eef8;">
     <strong>Animation in presentations — PPT vs. PDF:</strong> A <strong>PPTX</strong> is the only one that truly animates — element animations, slide transitions, and embedded MP4 that plays inline. A <strong>PDF is static</strong>: its embedded-video feature only works in Adobe Acrobat (dead in browsers, Preview, and phones). <span class="ft-alert">The trap:</span> build motion in a deck, export to PDF for submission, and it silently dies. If the deliverable must move, the deliverable is a <strong>video (MP4)</strong> — export the whole deck out — not a PDF. Present live in PPTX/Keynote; freeze to PDF only when motion doesn't matter.
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════ WEB ══ -->
+<div class="ft-category">
+  <div class="ft-cat-head" style="background:#B5651D;">
+    <h2>Web Coding</h2>
+    <span class="ft-cat-sub">structure · style · behavior — three files make a site</span>
+  </div>
+  <table class="ft-table">
+    <thead>
+      <tr>
+        <th style="width:80px;">Format</th>
+        <th style="width:150px;">Full Name</th>
+        <th style="width:30%;">Use For</th>
+        <th>Key Facts</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="ft-tag" style="background:#B5651D;">.html</span></td>
+        <td><span class="ft-name">HyperText Markup</span></td>
+        <td class="ft-use">Structure — the content &amp; its skeleton</td>
+        <td class="ft-fact">The page itself: headings, paragraphs, images, links. Plain text, opens in any browser or editor. <kbd>index.html</kbd> is the front door of every site. Structure only — no styling, no logic.</td>
+      </tr>
+      <tr>
+        <td><span class="ft-tag" style="background:#B5651D;">.css</span></td>
+        <td><span class="ft-name">Cascading Style Sheets</span></td>
+        <td class="ft-use">Style — color, type, layout, spacing</td>
+        <td class="ft-fact">Controls how the HTML <em>looks</em>. One stylesheet can style a whole site, so a single edit restyles every page. Keeps appearance separate from content.</td>
+      </tr>
+      <tr>
+        <td><span class="ft-tag" style="background:#B5651D;">.js</span></td>
+        <td><span class="ft-name">JavaScript</span></td>
+        <td class="ft-use">Behavior — interaction &amp; logic</td>
+        <td class="ft-fact">Makes the page <em>do</em> things: toggles, sliders, maps, fetched data. Runs in the browser. Optional — a site with zero JS still works; add it only where interaction is needed.</td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="ft-nurbs-note" style="border-color:#B5651D;background:#f7efe6;">
+    <strong>For a portfolio site, these three are enough.</strong> HTML (structure) + CSS (style) + JS (behavior) = a complete <em>static site</em> — plain files a browser opens directly, no server, no database, no build step. Host it free on GitHub Pages or Netlify by uploading the folder. You only need frameworks (React, etc.) once a site has accounts, live data, or hundreds of pages — almost never for design work.
   </div>
 </div>
 
