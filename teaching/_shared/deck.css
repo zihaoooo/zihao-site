@@ -207,6 +207,13 @@
   color:var(--mute);margin-top:6px;}
 .deck-fs{margin-left:auto;flex:0 0 auto;font-size:14px;}
 
+/* ── narrow screens: caption drops to its own full-width line below the controls ── */
+@media (max-width:560px){
+  .deck-bar{flex-wrap:wrap;}
+  .deck-meta{order:1;flex-basis:100%;margin-top:8px;min-width:0;}
+  .deck-cap{font-size:12.5px;}
+}
+
 /* ── fullscreen present mode ── */
 .deck:fullscreen{background:#0e0e0e;display:flex;flex-direction:column;
   align-items:center;justify-content:center;gap:12px;width:100vw;height:100vh;}
