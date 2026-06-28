@@ -19,7 +19,9 @@
          → <div class="slide two-4-2"> … <figure class="fit"> on the right cell
    ============================================================ */
 
-:root{ --deck-gutter:6px; }
+/* Shared lecture palette — single source of truth; a page may override or extend. */
+:root{ --deck-gutter:6px;
+  --ink:#1a1a1a; --paper:#fbfaf8; --line:#e0dbd3; --mute:#8a847c; --accent:#b87333; }
 
 /* ── stage + carousel mechanics ── */
 .deck{margin-top:10px;}
