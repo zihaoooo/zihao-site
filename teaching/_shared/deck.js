@@ -382,7 +382,7 @@
   function buildLightbox(){
     const st = document.createElement('style');
     st.textContent =
-      '.deck-lightbox{position:absolute;inset:0;z-index:50;display:none;align-items:center;justify-content:center;'
+      '.deck-lightbox{position:fixed;inset:0;z-index:9999;display:none;align-items:center;justify-content:center;'
       + 'background:rgba(12,12,12,.92);cursor:zoom-out;padding:2.5%;overflow:hidden;}'
       + '.deck-lightbox.on{display:flex;}'
       + '.deck-lightbox img{max-width:100%;max-height:100%;object-fit:contain;transform-origin:0 0;'
