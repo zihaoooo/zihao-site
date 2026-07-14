@@ -3,9 +3,23 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Week 11 Lecture: Co-productive Intelligence — LAAR 61400</title>
+  <title>Week 11 Lecture: Cybernetics and Design — LAAR 61400</title>
   <link rel="stylesheet" href="/teaching/laar61400/assets/css/main.css">
   <link rel="stylesheet" href="/teaching/laar61400/assets/css/workflow-shared.css">
+  <link rel="stylesheet" href="/teaching/_shared/deck.css">
+  <style>
+    /* palette tokens live in deck.css :root */
+    /* typeset text cards + placeholders living inside a carousel slide; the fit
+       script scales each .embed child to the fixed 16:9 stage so nothing scrolls. */
+    .cyb-card{max-width:960px;padding:0 48px;text-align:center;}
+    .cyb-card__main{font-size:42px;line-height:1.28;font-weight:600;color:#1a1a1a;letter-spacing:-0.01em;}
+    .cyb-card__main .q{color:#534AB7;}
+    .cyb-ph{width:1000px;max-width:100%;min-height:420px;display:flex;flex-direction:column;
+            align-items:center;justify-content:center;gap:14px;text-align:center;padding:48px;
+            border:2px dashed #c9c4bb;border-radius:14px;background:rgba(0,0,0,0.015);}
+    .cyb-ph__tag{font-size:12px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#a89ff5;}
+    .cyb-ph__desc{font-size:22px;line-height:1.5;color:#6d6860;max-width:44ch;}
+  </style>
 </head>
 <body>
 
@@ -32,8 +46,7 @@
       <a class="panel-link" href="/teaching/laar61400/lectures/week04-graphic-design-101.html"><span class="panel-link-wk">W04</span>Graphic Design 101</a>
       <a class="panel-link" href="/teaching/laar61400/lectures/week05-gis-spatial-data.html"><span class="panel-link-wk">W05</span>Intro to GIS / Spatial Data</a>
       <a class="panel-link" href="/teaching/laar61400/lectures/week07-modeling-as-thinking.html"><span class="panel-link-wk">W07</span>Modeling as Thinking</a>
-      <a class="panel-link" href="/teaching/laar61400/lectures/week09-computational-thinking.html"><span class="panel-link-wk">W09</span>Computational Thinking</a>
-      <a class="panel-link active" href="/teaching/laar61400/lectures/week11-co-productive-intelligence.html"><span class="panel-link-wk">W11</span>Co-productive Intelligence</a>
+      <a class="panel-link active" href="/teaching/laar61400/lectures/week11-co-productive-intelligence.html"><span class="panel-link-wk">W11</span>Cybernetics and Design</a>
       <a class="panel-link" href="/teaching/laar61400/lectures/week12-web-coding-literacy.html"><span class="panel-link-wk">W12</span>Web Coding Literacy</a>
     </div>
     <div class="panel-section">
@@ -54,20 +67,172 @@
         <div class="wf-header">
           <div class="wf-index">WK11</div>
           <div class="wf-header-text">
-            <div class="wf-title">Co-productive Intelligence</div>
-            <div class="wf-subtitle">OPJD · thinking-with · skill in chatting · labor stakes</div>
+            <div class="wf-title">Cybernetics and Design</div>
+            <div class="wf-subtitle">from alternative cybernetics to co-productive intelligence · control → co-becoming · OPJD · technodiversity</div>
           </div>
         </div>
 
-        <div class="wf-outcome">
-          <strong>Lecture slides — coming soon</strong>
-          This page is a placeholder. The Week 11 lecture slides will be built here.
+        <div class="deck" id="deck" data-deck-id="w11" data-deck-title="Week 11">
+          <div class="deck-stage" id="deck-stage">
+
+            <!-- ACT I — Alternative Cybernetics (reused talk, notes verbatim) -->
+
+            <!-- 1 -->
+            <div class="slide single" data-cap="What is cybernetics?" data-credit="Norbert Wiener, Cybernetics, 1948." data-notes="Norbert Wiener's 1948 book first publicly used the term cybernetics to refer to recursive processes and self-regulation behavior found in machines and animals. As plainly stated by the title, Wiener envisioned cybernetics to be a study of Control and Communication across different entities.">
+              <img src="/teaching/laar61400/assets/img/Week11/01.avif" alt="Norbert Wiener, Cybernetics, 1948 — title slide">
+            </div>
+
+            <!-- 2 -->
+            <div class="slide single" data-cap="The black box" data-notes="Cybernetics positions communication — the exchange of information — at the center of control. Before cybernetics, you needed to understand the internal structure of a machine to control it. Cybernetics turns the system into a black box: by measuring its input and output — the exchange of information, i.e. communication — we can start to control the system.">
+              <img src="/teaching/laar61400/assets/img/Week11/02.avif" alt="The black box — communication at the center of control">
+            </div>
+
+            <!-- 3 -->
+            <div class="slide single" data-cap="All modern machines are cybernetic" data-notes="This underpins all modern machines, including the most advanced machine learning algorithms such as AlphaGo. By measuring the output with sensors, we feed the signal into a controller to compute control laws and deploy them with actuators to change system dynamics. This is why sensing, modeling, and actuating are regarded as fundamental processes in feedback mechanisms — and why mainstream technological development has focused on advancing these three fronts.">
+              <img src="/teaching/laar61400/assets/img/Week11/03.avif" alt="Sensing, modeling, actuating — the feedback mechanism of modern machines">
+            </div>
+
+            <!-- 4 -->
+            <div class="slide single" data-cap="The smart city as cybernetic project" data-notes="In the past decade, the smart city has become the most ambitious cybernetic project, mobilizing different social sectors to develop technologies that could make cities 'smarter.' Sensors, platforms, crowd-sourced data, machine learning algorithms, AI — myriads of new tools are being developed every day to experiment with feedback loops between urban systems. But what counts as 'smart'? It is often narrowly defined as more efficient and more connected.">
+              <img src="/teaching/laar61400/assets/img/Week11/04.avif" alt="The smart city as the most ambitious cybernetic project">
+            </div>
+
+            <!-- 5 -->
+            <div class="slide single" data-cap="Cybernetics as a universal mode of thinking" data-credit="Yuk Hui." data-notes="This is why Yuk Hui acutely points out: 'We are more than ever in an epoch of cybernetics, since cybernetics was not a discipline parallel to other disciplines such as philosophy and psychology, but rather it aimed to be a universal discipline, able to unite all other disciplines — a universal mode of thinking par excellence.' Cybernetics is not just a technology; it is a worldview.">
+              <img src="/teaching/laar61400/assets/img/Week11/05.avif" alt="Yuk Hui — cybernetics as a universal mode of thinking">
+            </div>
+
+            <!-- 6 -->
+            <div class="slide single" data-cap="Sougwen Chung's drawing duets" data-credit="Sougwen Chung." data-notes="Here is an example that challenges the standard cybernetic assumption. Artist Sougwen Chung's drawing duets pair the artist with a robotic arm that mimics her gestures via an overhead camera. The robot tracks her linework perfectly in digital simulation — but the movement is dramatically altered when translated to the physical robotic arm. There is no perfect communication, no real control. And yet something interesting emerges.">
+              <img src="/teaching/laar61400/assets/img/Week11/06.avif" alt="Sougwen Chung's drawing duets with a robotic arm">
+            </div>
+
+            <!-- 7 -->
+            <div class="slide single" data-cap="Withdrawn, non-communicative, uncontrollable" data-credit="after Object-Oriented Ontology." data-notes="The feedback loop in standard cybernetics always presumes things are accessible, communicative, and thus controllable. But in Sougwen's case, you can read the recursive mechanism differently. If we take Object-Oriented Ontology's lens — starting from the premise that things are withdrawn and non-communicative, and thus uncontrollable — what does cybernetics mean? This is the generative question.">
+              <img src="/teaching/laar61400/assets/img/Week11/07.avif" alt="Object-Oriented Ontology — things as withdrawn and uncontrollable">
+            </div>
+
+            <!-- 8 -->
+            <div class="slide single" data-cap="Coding · Choreographing · Attuning" data-notes="By collecting a range of emerging cybernetic practices across art, science, engineering, and design, we can map out an alternative interpretation of cybernetic thinking centered on uncontrollability and non-communication. Instead of sensing, modeling, and actuating — three alternative terms: Coding, Choreographing, and Attuning.">
+              <img src="/teaching/laar61400/assets/img/Week11/08.avif" alt="An alternative framework — Coding, Choreographing, Attuning">
+            </div>
+
+            <!-- 9 -->
+            <div class="slide single" data-cap="Attuning — reinterpreting sensing" data-credit="David Bowen, &quot;tele-present wind.&quot;" data-notes="First, reinterpreting sensing. David Bowen's 'tele-present wind': an accelerometer on a dried plant stalk outdoors captures wind movement; the signal is transmitted to tilting devices in a gallery, each made of a dried plant stalk. The exact movement is replicated inside. Rather than sensing as data extraction for control, here sensing is about attunement — registering the world as it is, not as we want to manage it.">
+              <img src="/teaching/laar61400/assets/img/Week11/09.avif" alt="David Bowen, tele-present wind installation">
+            </div>
+
+            <!-- 10 -->
+            <div class="slide single" data-cap="Choreographing — setting conditions in motion" data-notes="Our relationship with a model is changing. We render our intention through objective functions that will never be comprehensive. Choreographing describes this better than controlling: the designer sets conditions in motion rather than dictating outcomes. Think of possibilities like AI agents that cause flooding to promote emergent ecologies — design as score, not blueprint.">
+              <img src="/teaching/laar61400/assets/img/Week11/10.avif" alt="Choreographing — AI agents and emergent ecologies">
+            </div>
+
+            <!-- 11 -->
+            <div class="slide single" data-cap="&quot;Scores communicate but do not control.&quot;" data-credit="Lawrence Halprin, RSVP Cycles, 1970s." data-notes="The term choreograph is gaining traction among landscape architects, inseparable from Lawrence Halprin's theory. In the 1970s, Halprin introduced RSVP cycles: S stands for Score — a series of instructions for setting things in motion, akin to musical scores. He writes: 'Scores communicate but do not control.' This apparent wordplay on Wiener's book title suggests Halprin found in recursive thinking a design philosophy grounded in openness rather than optimization.">
+              <img src="/teaching/laar61400/assets/img/Week11/11.avif" alt="Lawrence Halprin — RSVP cycles and the Score">
+            </div>
+
+            <!-- 12 -->
+            <div class="slide single" data-cap="Cellular automata — rule-setting, not outcome-control" data-notes="A more technical example: cellular automaton — a classic algorithm from early cybernetics. Each cell in a grid follows rules of transformation. By adjusting these rules you can produce an ecosystem of digital species. It demonstrates another mode of cybernetic thinking: rule-setting rather than outcome-controlling. The behavior is emergent, not prescribed.">
+              <img src="/teaching/laar61400/assets/img/Week11/12.avif" alt="Cellular automaton — emergent behavior from simple rules">
+            </div>
+
+            <!-- 13 -->
+            <div class="slide single" data-cap="An alternative cybernetics: co-becoming, not control" data-notes="Mainstream cybernetics is about control through communication — through the exchange of information, one reaches controlled stability. But in Sougwen's drawing duet, the artist and robot are not in good communication, and there is no control. Yet the underlying thinking is deeply cybernetic: recursive causality and self-regulation, found in both human and machine. An alternative cybernetics starts not from control, but from co-becoming.">
+              <img src="/teaching/laar61400/assets/img/Week11/13.avif" alt="Alternative cybernetics — from control to co-becoming">
+            </div>
+
+            <!-- ACT II — From Co-becoming to Co-productive Intelligence (course extension) -->
+
+            <!-- 14 -->
+            <div class="slide" data-cap="Co-becoming, named as a framework" data-credit="Zhang." data-notes="Bridge from the talk into the course thesis. Co-becoming IS co-productive intelligence: human and machine intelligences are not stable categories that meet in the middle — they are produced through entanglement; intelligence as effect, not cause. &quot;The designer who thinks with AI is not the designer who thinks with tracing paper.&quot; Everything the talk just argued about control vs. co-becoming now applies to working with an AI.">
+              <div class="embed"><div class="cyb-card"><div class="cyb-card__main">Co-productive intelligence — intelligence as <span class="q">effect, not cause</span>.<br>Co-becoming with the machine, not controlling it.</div></div></div>
+            </div>
+
+            <!-- 15 -->
+            <div class="slide" data-cap="The opposite story: One Prompt, Job Done" data-notes="OPJD as syndrome — name it. The dominant story about AI is pure control-fantasy: one prompt in, finished job out, delete the messy middle. It is the ANTI-cybernetic story — no loop, no choreography, no attunement; exactly the control cybernetics the talk spent 13 slides dismantling. The rest of the lecture applies the talk's argument to AI practice.">
+              <div class="embed"><div class="cyb-card"><div class="cyb-card__main">OPJD — <span class="q">“One Prompt, Job Done”</span><br>the control-fantasy the talk already refuted</div></div></div>
+            </div>
+
+            <!-- 16 -->
+            <div class="slide" data-cap="The convoluted human path vs. the straight AI line" data-credit="Genspark subway ad." data-notes="The ad sells the middle as waste — the detour you'd skip if you could. But the middle is the choreography; the winding path was the thinking. Straightening the line deletes the co-becoming, not the drudgery.">
+              <div class="embed"><div class="cyb-ph"><div class="cyb-ph__tag">Image to source</div><div class="cyb-ph__desc">Genspark NYC subway ad — the winding subway-map human path vs. the single straight AI line (“One prompt. Job done.”)</div></div></div>
+            </div>
+
+            <!-- 17 -->
+            <div class="slide" data-cap="Four prompts, a lifeless-but-fast plan" data-credit="Nano Banana illustrative-plan experiment." data-notes="PLACEHOLDER — escalating-prompt sequence + the dead result. Fast, competent, says nothing — because there was no loop, no conversation, no attunement to intent. The real question: do we pay the entry-level designer, or the AI tokens? What's lost is where a designer would have learned to steer.">
+              <div class="embed"><div class="cyb-ph"><div class="cyb-ph__tag">Your experiment</div><div class="cyb-ph__desc">Nano Banana illustrative-plan — the four escalating prompts and the lifeless-but-fast result (Zihao to provide)</div></div></div>
+            </div>
+
+            <!-- 18 -->
+            <div class="slide" data-cap="Directing the machine is a skill" data-notes="Skill-in-chatting as literacy. The chat box fakes effortlessness; but choreographing a partner you can't see inside is a literacy, learned. Locked-room framing: the agent is intelligent but sealed — no hands, no eyes; MCP = the doors that let it act. You can only co-become with a partner you know how to reach. (Bridges to Week 12 web literacy + the Claude Code workshop.)">
+              <div class="embed"><div class="cyb-card"><div class="cyb-card__main"><span class="q">“Skill in chatting”</span> — choreographing a partner is a literacy, not a wish.</div></div></div>
+            </div>
+
+            <!-- 19 -->
+            <div class="slide" data-cap="OPJD packages the designer into a bundle of functions" data-notes="The labor stakes. Define the entry-level designer AS a bundle of tasks; hand the bundle to an agent; classic alienation. The automated middle is where the next designer would have grown. Control-cybernetics applied to labor.">
+              <div class="embed"><div class="cyb-card"><div class="cyb-card__main">Alienation — package the designer into functions, hand the bundle to the agent.</div></div></div>
+            </div>
+
+            <!-- 20 -->
+            <div class="slide" data-cap="Technodiversity — keep the futures plural" data-credit="Yuk Hui — cosmotechnics." data-notes="Close the loop opened at slide 5. Yuk Hui returns: what's at stake is the RANGE of possible futures. The talk's alternative cybernetics and this course's wager are the same bet — resist the single control-story (OPJD), keep many ways of thinking-with plural. The course's open question (posed Week 2): there could be a NEW representation native to this tool — if we don't let OPJD flatten the field first.">
+              <div class="embed"><div class="cyb-card"><div class="cyb-card__main">Technodiversity — <span class="q">many cybernetics, many futures</span>.<br>(Yuk Hui, cosmotechnics)</div></div></div>
+            </div>
+
+            <!-- 21 · Workshop -->
+            <div class="slide slide--title" data-cap="" data-notes="Hand-off to the workshop (WF06 / Claude Code). The whole lecture in one instruction: design is a conversation — co-become with the machine, don't command it.">
+              <div class="tt">Workshop</div>
+              <div class="ts">Design is a conversation — co-become with the machine, don't command it.</div>
+            </div>
+
+          </div>
+          <div class="deck-bar">
+            <button class="deck-btn" id="deck-prev" aria-label="Previous slide">&lsaquo;</button>
+            <div class="deck-count"><input id="deck-jump" type="text" inputmode="numeric" aria-label="Jump to slide" value="1"><span id="deck-total"> / 21</span></div>
+            <button class="deck-btn" id="deck-next" aria-label="Next slide">&rsaquo;</button>
+            <div class="deck-meta"><span class="deck-cap" id="deck-cap"></span><span id="deck-credit"></span></div>
+            <button class="deck-btn" id="deck-notes-toggle" aria-expanded="false" aria-controls="deck-notes" aria-label="Toggle speaker notes" title="Speaker notes"><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="2" y="2" width="12" height="12" rx="1.5"/><line x1="4.5" y1="5.5" x2="11.5" y2="5.5"/><line x1="4.5" y1="8" x2="11.5" y2="8"/><line x1="4.5" y1="10.5" x2="8.5" y2="10.5"/></svg></button>
+            <button class="deck-btn" id="deck-present" aria-label="Open Presenter View" title="Presenter View (synced second window)"><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="2" width="9" height="7" rx="1.2"/><path d="M3 11h5M5.5 9v2"/><rect x="11" y="5" width="4" height="4" rx="1" stroke-dasharray="1.8 1.2"/></svg></button>
+            <button class="deck-btn deck-fs" id="deck-fs" aria-label="Present full screen" title="Present (full screen)">&#x26F6;</button>
+          </div>
+          <div class="deck-notes" id="deck-notes" hidden></div>
         </div>
+
       </div>
 
     </div>
   </main>
 
   <script src="/teaching/laar61400/assets/js/nav.js"></script>
+
+  <!-- ── deck carousel controller (shared, page-agnostic) ── -->
+  <script src="/teaching/_shared/deck.js"></script>
+
+  <!-- ── scale each typeset embed (text cards, placeholders) to fit the fixed 16:9 stage ── -->
+  <script>
+  (function(){
+    var stage=document.getElementById('deck-stage');
+    if(!stage) return;
+    var embeds=[].slice.call(document.querySelectorAll('#deck-stage .slide .embed'));
+    function fit(){
+      var SW=stage.clientWidth, SH=stage.clientHeight;
+      if(!SW||!SH) return;
+      embeds.forEach(function(e){
+        var c=e.firstElementChild; if(!c) return;
+        c.style.transform='none';
+        var w=c.offsetWidth, h=c.offsetHeight;
+        if(!w||!h) return;
+        var avW=SW-28, avH=SH-28;
+        var s=Math.min(1, avW/w, avH/h);
+        c.style.transform = s<1 ? 'scale('+s+')' : 'none';
+      });
+    }
+    window.addEventListener('load',fit);
+    if(document.readyState==='complete') fit();
+    var t; window.addEventListener('resize',function(){clearTimeout(t);t=setTimeout(fit,80);});
+    document.addEventListener('fullscreenchange',function(){setTimeout(fit,80);});
+    document.addEventListener('webkitfullscreenchange',function(){setTimeout(fit,80);});
+  })();
+  </script>
 </body>
 </html>

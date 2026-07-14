@@ -52,6 +52,17 @@
     .wc-reveal__cap{font-size:14px;color:var(--mute);text-align:center;max-width:52ch;min-height:2.6em;margin:0;}
     .wc-reveal__cap b{color:var(--accent);}
 
+    /* ── live site examples (slide 3) ── */
+    .wc-sites{width:min(920px,95cqw);display:flex;gap:22px;align-items:stretch;
+      justify-content:center;flex-wrap:wrap;}
+    .wc-sites__card{flex:1 1 0;min-width:280px;display:flex;flex-direction:column;gap:10px;}
+    .wc-sites__frame{width:100%;aspect-ratio:16/10;border:1px solid var(--line);border-radius:10px;
+      background:#fff;box-shadow:0 6px 22px rgba(0,0,0,.10);overflow:hidden;
+      object-fit:cover;object-position:left top;display:block;}
+    .wc-sites__link{font-family:"DM Mono",monospace;font-size:12.5px;letter-spacing:.02em;
+      color:var(--accent);text-decoration:none;text-align:center;}
+    .wc-sites__link:hover{text-decoration:underline;}
+
     /* ── object-fit toggle (slide 12) ── */
     .wc-fit{width:min(560px,90cqw);display:flex;flex-direction:column;gap:16px;align-items:center;}
     .wc-fit__box{width:min(340px,72cqw);aspect-ratio:1/1;border:2px dashed var(--accent);border-radius:8px;
@@ -190,8 +201,7 @@
       <a class="panel-link" href="/teaching/laar61400/lectures/week04-graphic-design-101.html"><span class="panel-link-wk">W04</span>Graphic Design 101</a>
       <a class="panel-link" href="/teaching/laar61400/lectures/week05-gis-spatial-data.html"><span class="panel-link-wk">W05</span>Intro to GIS / Spatial Data</a>
       <a class="panel-link" href="/teaching/laar61400/lectures/week07-modeling-as-thinking.html"><span class="panel-link-wk">W07</span>Modeling as Thinking</a>
-      <a class="panel-link" href="/teaching/laar61400/lectures/week09-computational-thinking.html"><span class="panel-link-wk">W09</span>Computational Thinking</a>
-      <a class="panel-link" href="/teaching/laar61400/lectures/week11-co-productive-intelligence.html"><span class="panel-link-wk">W11</span>Co-productive Intelligence</a>
+      <a class="panel-link" href="/teaching/laar61400/lectures/week11-co-productive-intelligence.html"><span class="panel-link-wk">W11</span>Cybernetics and Design</a>
       <a class="panel-link active" href="/teaching/laar61400/lectures/week12-web-coding-literacy.html"><span class="panel-link-wk">W12</span>Web Coding Literacy</a>
     </div>
     <div class="panel-section">
@@ -231,21 +241,146 @@
             <!-- 2 · anatomy of a webpage (PLACEHOLDER) -->
             <div class="slide" data-cap="A webpage is just labeled regions" data-notes="Start visual. A page = a few named blocks you already recognize · nav · hero / title · main content · cards · footer · No code yet — just naming what you see.">
               <div class="embed">
-                <div class="wc-ph">
-                  <span>Placeholder — annotated screenshot</span>
-                  <b>One real site, regions called out</b>
-                  <p>Nav · hero/title · main content · card grid · footer — labelled over a screenshot of a real site (Zihao to provide). The takeaway: a page is ~6 named blocks, not magic.</p>
-                </div>
+                <svg width="960" height="540" viewBox="0 0 960 540" xmlns="http://www.w3.org/2000/svg"
+                     font-family="'DM Sans',sans-serif" aria-label="An annotated webpage: named regions and elements">
+                  <defs>
+                    <style>
+                      .tag{font-family:"DM Mono",monospace;font-size:14px;fill:var(--accent);font-weight:500;}
+                      .desc{font-family:"DM Sans",sans-serif;font-size:14.5px;fill:var(--mute);}
+                      .col{font-family:"DM Mono",monospace;font-size:11.5px;letter-spacing:.18em;fill:var(--mute);}
+                      .lead{stroke:var(--accent);stroke-width:1.2;fill:none;}
+                      .dot{fill:var(--accent);}
+                      .bar{fill:#d8d2c8;}
+                      .bar-d{fill:#c7bfb2;}
+                      .inv{font-family:"DM Mono",monospace;font-size:14px;fill:#1f6f8b;font-weight:500;}
+                      .invd{font-family:"DM Sans",sans-serif;font-size:12.5px;fill:#5b87a0;}
+                      .invlead{stroke:#1f6f8b;stroke-width:1.2;fill:none;}
+                      .invdot{fill:#1f6f8b;}
+                    </style>
+                  </defs>
+
+                  <!-- column headers -->
+                  <text class="col" x="30" y="34">REGIONS</text>
+                  <text class="col" x="950" y="34" text-anchor="end">ELEMENTS</text>
+
+                  <!-- ── browser window mock ── -->
+                  <rect x="200" y="44" width="560" height="452" rx="12" fill="var(--paper)" stroke="var(--line)" stroke-width="1.5"/>
+                  <!-- chrome bar -->
+                  <path d="M200 56 a12 12 0 0 1 12 -12 h536 a12 12 0 0 1 12 12 v20 h-560 z" fill="#efeae2"/>
+                  <line x1="200" y1="76" x2="760" y2="76" stroke="var(--line)"/>
+                  <circle cx="220" cy="60" r="4" fill="#e0857a"/><circle cx="236" cy="60" r="4" fill="#e6c15c"/><circle cx="252" cy="60" r="4" fill="#8fbf7f"/>
+                  <rect x="300" y="52" width="360" height="16" rx="8" fill="var(--paper)" stroke="var(--line)"/>
+
+                  <!-- nav region -->
+                  <rect x="201" y="77" width="558" height="42" fill="#f3efe8"/>
+                  <rect x="222" y="90" width="72" height="16" rx="3" class="bar-d"/>
+                  <rect x="590" y="92" width="40" height="13" rx="6" class="bar"/>
+                  <rect x="638" y="92" width="40" height="13" rx="6" class="bar"/>
+                  <rect x="686" y="92" width="52" height="13" rx="6" fill="var(--accent)" opacity=".85"/>
+
+                  <!-- hero / header region -->
+                  <rect x="201" y="119" width="558" height="126" fill="rgba(184,115,51,.05)"/>
+                  <rect x="240" y="146" width="360" height="26" rx="4" class="bar-d"/>
+                  <rect x="240" y="182" width="300" height="11" rx="3" class="bar"/>
+                  <rect x="240" y="199" width="240" height="11" rx="3" class="bar"/>
+                  <rect x="240" y="222" width="128" height="30" rx="6" fill="var(--accent)"/>
+                  <rect x="360" y="231" width="64" height="12" rx="3" fill="var(--paper)" opacity=".7"/>
+
+                  <!-- main / card grid -->
+                  <g>
+                    <!-- card 1 -->
+                    <rect x="236" y="272" width="150" height="150" rx="6" fill="var(--paper)" stroke="var(--line)"/>
+                    <rect x="236" y="272" width="150" height="80" rx="6" fill="rgba(184,115,51,.14)"/>
+                    <rect x="252" y="366" width="102" height="12" rx="3" class="bar-d"/>
+                    <rect x="252" y="386" width="118" height="8" rx="3" class="bar"/>
+                    <rect x="252" y="399" width="90" height="8" rx="3" class="bar"/>
+                    <!-- card 2 -->
+                    <rect x="405" y="272" width="150" height="150" rx="6" fill="var(--paper)" stroke="var(--line)"/>
+                    <rect x="405" y="272" width="150" height="80" rx="6" fill="rgba(184,115,51,.14)"/>
+                    <rect x="421" y="366" width="102" height="12" rx="3" class="bar-d"/>
+                    <rect x="421" y="386" width="118" height="8" rx="3" class="bar"/>
+                    <rect x="421" y="399" width="90" height="8" rx="3" class="bar"/>
+                    <!-- card 3 -->
+                    <rect x="574" y="272" width="150" height="150" rx="6" fill="var(--paper)" stroke="var(--line)"/>
+                    <rect x="574" y="272" width="150" height="80" rx="6" fill="rgba(184,115,51,.14)"/>
+                    <rect x="590" y="366" width="102" height="12" rx="3" class="bar-d"/>
+                    <rect x="590" y="386" width="118" height="8" rx="3" class="bar"/>
+                    <rect x="590" y="399" width="90" height="8" rx="3" class="bar"/>
+                  </g>
+
+                  <!-- div box (drawn on the cards; labelled from the left invisible column) -->
+                  <rect x="232" y="268" width="492" height="158" rx="8" fill="none"
+                        stroke="#1f6f8b" stroke-width="1.2" stroke-dasharray="5 4" opacity=".8"/>
+
+                  <!-- footer region -->
+                  <rect x="201" y="446" width="558" height="49" fill="#22201d"/>
+                  <rect x="240" y="463" width="120" height="10" rx="3" fill="#57534d"/>
+                  <rect x="600" y="463" width="36" height="10" rx="3" fill="#57534d"/>
+                  <rect x="644" y="463" width="36" height="10" rx="3" fill="#57534d"/>
+                  <rect x="688" y="463" width="36" height="10" rx="3" fill="#57534d"/>
+
+                  <!-- ══ LEFT · visible regions (accent, horizontal leaders) ══ -->
+                  <!-- nav -->
+                  <line class="lead" x1="200" y1="98" x2="120" y2="98"/><circle class="dot" cx="200" cy="98" r="3"/>
+                  <text class="tag" x="30" y="94">&lt;nav&gt;</text><text class="desc" x="30" y="110">navigation bar</text>
+                  <!-- header -->
+                  <line class="lead" x1="200" y1="182" x2="120" y2="182"/><circle class="dot" cx="200" cy="182" r="3"/>
+                  <text class="tag" x="30" y="178">&lt;header&gt;</text><text class="desc" x="30" y="194">hero / title</text>
+                  <!-- main -->
+                  <line class="lead" x1="200" y1="334" x2="120" y2="334"/><circle class="dot" cx="200" cy="334" r="3"/>
+                  <text class="tag" x="30" y="330">&lt;main&gt;</text><text class="desc" x="30" y="346">content · cards</text>
+                  <!-- footer -->
+                  <line class="lead" x1="200" y1="470" x2="120" y2="470"/><circle class="dot" cx="200" cy="470" r="3"/>
+                  <text class="tag" x="30" y="466">&lt;footer&gt;</text><text class="desc" x="30" y="482">footer</text>
+
+                  <!-- ══ RIGHT · visible elements (accent, horizontal leaders) ══ -->
+                  <!-- a -->
+                  <line class="lead" x1="738" y1="99" x2="800" y2="99"/><circle class="dot" cx="738" cy="99" r="3"/>
+                  <text class="tag" x="808" y="103">&lt;a&gt;</text><text class="desc" x="838" y="103">link</text>
+                  <!-- h1 -->
+                  <line class="lead" x1="600" y1="159" x2="800" y2="159"/><circle class="dot" cx="600" cy="159" r="3"/>
+                  <text class="tag" x="808" y="163">&lt;h1&gt;</text><text class="desc" x="846" y="163">heading</text>
+                  <!-- button -->
+                  <line class="lead" x1="368" y1="237" x2="800" y2="237"/><circle class="dot" cx="368" cy="237" r="3"/>
+                  <text class="tag" x="808" y="241">&lt;button&gt;</text><text class="desc" x="878" y="241">action</text>
+                  <!-- img -->
+                  <line class="lead" x1="722" y1="312" x2="800" y2="312"/><circle class="dot" cx="722" cy="312" r="3"/>
+                  <text class="tag" x="808" y="316">&lt;img&gt;</text><text class="desc" x="846" y="316">image</text>
+                  <!-- article -->
+                  <line class="lead" x1="722" y1="392" x2="800" y2="392"/><circle class="dot" cx="722" cy="392" r="3"/>
+                  <text class="tag" x="808" y="396">&lt;article&gt;</text><text class="desc" x="880" y="396">a card</text>
+
+                  <!-- ══ INVISIBLE wrappers · blue, pointing to where they live ══ -->
+                  <!-- html → the whole document/window -->
+                  <line class="invlead" x1="200" y1="56" x2="120" y2="56"/><circle class="invdot" cx="200" cy="56" r="3"/>
+                  <text class="inv" x="30" y="54">&lt;html&gt;</text>
+                  <text class="invd" x="30" y="70">whole document (+ head)</text>
+                  <!-- body → the page, below the chrome -->
+                  <line class="invlead" x1="200" y1="140" x2="120" y2="140"/><circle class="invdot" cx="200" cy="140" r="3"/>
+                  <text class="inv" x="30" y="136">&lt;body&gt;</text>
+                  <text class="invd" x="30" y="151">everything on the page</text>
+                  <!-- div → the blue dashed box on the cards -->
+                  <line class="invlead" x1="724" y1="424" x2="800" y2="424"/><circle class="invdot" cx="724" cy="424" r="3"/>
+                  <text class="inv" x="808" y="428">&lt;div&gt;</text>
+                  <text class="invd" x="808" y="443">groups the cards</text>
+                  <!-- caption -->
+                  <text class="desc" x="480" y="524" text-anchor="middle" style="font-size:11px">Chrome (tabs · address bar) isn't part of the page — the document begins below it</text>
+                </svg>
               </div>
             </div>
 
-            <!-- 3 · same parts, every site (PLACEHOLDER) -->
-            <div class="slide" data-cap="The same parts, every site" data-notes="Pattern recognition · 2–3 different sites side by side · all share the same blocks · nav, hero, sections, footer · once you see the pattern, every site looks the same underneath.">
+            <!-- 3 · same parts, every site -->
+            <div class="slide" data-cap="The same parts, every site" data-notes="Pattern recognition · two live sites side by side · both share the same blocks · nav, hero, sections, footer · once you see the pattern, every site looks the same underneath.">
               <div class="embed">
-                <div class="wc-ph">
-                  <span>Placeholder — 2–3 example sites</span>
-                  <b>Different sites, same building blocks</b>
-                  <p>Two or three real sites side by side (Zihao to provide — e.g. zihaozhang.cc + one studio + one news site). Point at the recurring nav / hero / cards / footer in each.</p>
+                <div class="wc-sites">
+                  <div class="wc-sites__card">
+                    <img class="wc-sites__frame" src="../assets/img/Week12/oma.avif" alt="OMA — oma.com homepage">
+                    <a class="wc-sites__link" href="https://www.oma.com" target="_blank" rel="noopener">oma.com ↗</a>
+                  </div>
+                  <div class="wc-sites__card">
+                    <img class="wc-sites__frame" src="../assets/img/Week12/cargo.avif" alt="Cargo — Sites in Use gallery">
+                    <a class="wc-sites__link" href="https://cargo.site/community/in-use" target="_blank" rel="noopener">cargo.site/community/in-use ↗</a>
+                  </div>
                 </div>
               </div>
             </div>
