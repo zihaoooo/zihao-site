@@ -8,17 +8,74 @@
   <link rel="stylesheet" href="/teaching/laar61400/assets/css/workflow-shared.css">
   <link rel="stylesheet" href="/teaching/_shared/deck.css">
   <style>
-    /* palette tokens live in deck.css :root */
-    /* typeset text cards + placeholders living inside a carousel slide; the fit
-       script scales each .embed child to the fixed 16:9 stage so nothing scrolls. */
+    /* palette tokens live in deck.css :root (--ink/--paper/--line/--mute/--accent) */
+
+    /* ── typeset text cards + placeholders (inside a carousel slide; fitEmbeds scales
+       each .embed child to the fixed 16:9 stage so nothing scrolls) ── */
     .cyb-card{max-width:960px;padding:0 48px;text-align:center;}
-    .cyb-card__main{font-size:42px;line-height:1.28;font-weight:600;color:#1a1a1a;letter-spacing:-0.01em;}
+    .cyb-card__main{font-size:42px;line-height:1.28;font-weight:600;color:var(--ink);letter-spacing:-0.01em;}
     .cyb-card__main .q{color:#534AB7;}
     .cyb-ph{width:1000px;max-width:100%;min-height:420px;display:flex;flex-direction:column;
             align-items:center;justify-content:center;gap:14px;text-align:center;padding:48px;
             border:2px dashed #c9c4bb;border-radius:14px;background:rgba(0,0,0,0.015);}
     .cyb-ph__tag{font-size:12px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#a89ff5;}
     .cyb-ph__desc{font-size:22px;line-height:1.5;color:#6d6860;max-width:44ch;}
+
+    /* ── full-bleed hero image with a quote overlaid (cover-cropped to the stage) ── */
+    .cyb-hero{position:absolute;inset:0;overflow:hidden;background:#111;}
+    .cyb-hero__img{width:100%;height:100%;object-fit:cover;display:block;}
+    .cyb-hero__q{position:absolute;left:0;right:0;bottom:0;padding:14% 7% 6%;
+      background:linear-gradient(to top,rgba(0,0,0,.74),rgba(0,0,0,.34) 55%,transparent);}
+    .cyb-hero__q q{display:block;quotes:none;color:#fff;font-family:"DM Sans",sans-serif;
+      font-weight:600;font-size:clamp(20px,3.4cqw,54px);line-height:1.14;letter-spacing:-0.01em;
+      text-shadow:0 1px 18px rgba(0,0,0,.35);}
+    .cyb-hero__q cite{display:block;margin-top:.7em;font-style:normal;
+      font-family:"DM Mono",ui-monospace,monospace;font-size:clamp(10px,1.15cqw,15px);
+      letter-spacing:.08em;color:rgba(255,255,255,.82);}
+
+    /* ── interactive Conway's Game of Life (slide 12 + playground) ── */
+    .cyb-life{position:relative;width:100%;height:100%;display:flex;gap:16px;padding:16px;
+      box-sizing:border-box;font-family:"DM Sans",sans-serif;color:var(--ink);}
+    .cyb-life__panel{flex:0 0 200px;display:flex;flex-direction:column;gap:16px;overflow:auto;}
+    .cyb-life__panel h3{font-size:11px;letter-spacing:.13em;text-transform:uppercase;color:var(--mute);
+      font-weight:700;margin:0 0 7px;}
+    .cyb-life__btns{display:flex;flex-wrap:wrap;gap:7px;}
+    .cyb-life__btns button{font:600 12px "DM Sans",sans-serif;padding:6px 11px;border:1px solid var(--line);
+      border-radius:6px;background:#fff;cursor:pointer;color:#4a463f;}
+    .cyb-life__btns button:hover{border-color:#bbb;}
+    .cyb-life__btns button.is-on{background:var(--ink);color:var(--paper);border-color:var(--ink);}
+    .cyb-life__speed{display:flex;align-items:center;gap:8px;}
+    .cyb-life__speed input{flex:1;accent-color:var(--accent);}
+    .cyb-life__meta{font:600 12px "DM Mono",ui-monospace,monospace;color:#4a463f;}
+    .cyb-life__hint{font-size:11px;line-height:1.4;color:var(--mute);}
+    .cyb-life__canvas{flex:1;min-width:0;border:1px solid var(--line);background:var(--paper);overflow:hidden;}
+    .cyb-life__canvas canvas{display:block;width:100%;height:100%;cursor:crosshair;}
+    /* rules popover */
+    .cyb-life__pop{position:absolute;left:16px;bottom:16px;width:min(430px,calc(100% - 32px));
+      background:#fff;border:1px solid var(--line);border-radius:12px;padding:16px 18px 18px;
+      box-shadow:0 14px 44px rgba(0,0,0,.18);z-index:20;}
+    .cyb-life__pop[hidden]{display:none;}
+    .cyb-life__pop h4{margin:0 0 13px;font-size:11px;letter-spacing:.12em;text-transform:uppercase;
+      color:var(--mute);font-weight:700;}
+    .cyb-life__pop-close{position:absolute;top:9px;right:12px;border:0;background:none;cursor:pointer;
+      font-size:19px;line-height:1;color:var(--mute);}
+    .cyb-life__pop-close:hover{color:var(--ink);}
+    .cyb-life__pop-grid{display:grid;grid-template-columns:1fr 1fr;gap:15px 16px;}
+    .cyb-life__rule{display:flex;flex-direction:column;gap:6px;}
+    .cyb-life__rule .row{display:flex;align-items:center;gap:7px;}
+    .cyb-life__rule .arr{color:#b0a898;font-size:15px;}
+    .cyb-life__rule .cap{font-size:11.5px;line-height:1.35;color:#4a463f;}
+    .cyb-life__rule .cap b{color:var(--accent);font-weight:700;}
+
+    /* ── Tools strip (below the deck) — matches week04 .gd-tools convention ── */
+    .cyb-tools{display:flex;flex-direction:column;gap:18px;margin-top:14px;}
+    .cyb-tools__card{border:1px solid var(--line);border-radius:12px;background:#fff;
+      padding:20px 22px 24px;box-shadow:0 4px 16px rgba(0,0,0,.05);overflow:hidden;}
+    .cyb-tools__card>h4{margin:0 0 4px;font-family:"DM Sans",sans-serif;font-size:15px;color:var(--ink);}
+    .cyb-tools__card>p.k{margin:0 0 16px;font-family:"DM Mono",monospace;font-size:10.5px;
+      letter-spacing:.06em;text-transform:uppercase;color:var(--mute);}
+    /* the widget fills the card and gets an explicit height (it is height:100% by default) */
+    .cyb-life--play{height:min(58vh,440px);padding:0;}
   </style>
 </head>
 <body>
@@ -75,6 +132,12 @@
         <div class="deck" id="deck" data-deck-id="w11" data-deck-title="Week 11">
           <div class="deck-stage" id="deck-stage">
 
+            <!-- 0 · Title -->
+            <div class="slide slide--title" data-cap="" data-notes="Title card. Cybernetics and Design — a single continuous thesis: from mainstream cybernetics (control through communication) to an alternative cybernetics (co-becoming), and its living payoff for working with AI, co-productive intelligence.">
+              <div class="tt">Cybernetics and Design</div>
+              <div class="ts">LAAR 61400 · Week 11 · Zihao Zhang, Ph.D.</div>
+            </div>
+
             <!-- ACT I — Alternative Cybernetics (reused talk, notes verbatim) -->
 
             <!-- 1 -->
@@ -103,8 +166,8 @@
             </div>
 
             <!-- 6 -->
-            <div class="slide single" data-cap="Sougwen Chung's drawing duets" data-credit="Sougwen Chung." data-notes="Here is an example that challenges the standard cybernetic assumption. Artist Sougwen Chung's drawing duets pair the artist with a robotic arm that mimics her gestures via an overhead camera. The robot tracks her linework perfectly in digital simulation — but the movement is dramatically altered when translated to the physical robotic arm. There is no perfect communication, no real control. And yet something interesting emerges.">
-              <img src="/teaching/laar61400/assets/img/Week11/06.avif" alt="Sougwen Chung's drawing duets with a robotic arm">
+            <div class="slide" data-cap="Sougwen Chung's drawing duets" data-credit="Sougwen Chung." data-notes="Here is an example that challenges the standard cybernetic assumption. Artist Sougwen Chung's drawing duets pair the artist with a robotic arm that mimics her gestures via an overhead camera. The robot tracks her linework perfectly in digital simulation — but the movement is dramatically altered when translated to the physical robotic arm. There is no perfect communication, no real control. And yet something interesting emerges.">
+              <iframe src="https://player.vimeo.com/video/138487938" title="Sougwen Chung — drawing duet with a robotic arm" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
             </div>
 
             <!-- 7 -->
@@ -118,8 +181,8 @@
             </div>
 
             <!-- 9 -->
-            <div class="slide single" data-cap="Attuning — reinterpreting sensing" data-credit="David Bowen, &quot;tele-present wind.&quot;" data-notes="First, reinterpreting sensing. David Bowen's 'tele-present wind': an accelerometer on a dried plant stalk outdoors captures wind movement; the signal is transmitted to tilting devices in a gallery, each made of a dried plant stalk. The exact movement is replicated inside. Rather than sensing as data extraction for control, here sensing is about attunement — registering the world as it is, not as we want to manage it.">
-              <img src="/teaching/laar61400/assets/img/Week11/09.avif" alt="David Bowen, tele-present wind installation">
+            <div class="slide" data-cap="Attuning — reinterpreting sensing" data-credit="David Bowen, &quot;tele-present wind.&quot;" data-notes="First, reinterpreting sensing. David Bowen's 'tele-present wind': an accelerometer on a dried plant stalk outdoors captures wind movement; the signal is transmitted to tilting devices in a gallery, each made of a dried plant stalk. The exact movement is replicated inside. Rather than sensing as data extraction for control, here sensing is about attunement — registering the world as it is, not as we want to manage it.">
+              <iframe src="https://player.vimeo.com/video/26109459" title="David Bowen — tele-present wind" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
             </div>
 
             <!-- 10 -->
@@ -127,14 +190,23 @@
               <img src="/teaching/laar61400/assets/img/Week11/10.avif" alt="Choreographing — AI agents and emergent ecologies">
             </div>
 
-            <!-- 11 -->
-            <div class="slide single" data-cap="&quot;Scores communicate but do not control.&quot;" data-credit="Lawrence Halprin, RSVP Cycles, 1970s." data-notes="The term choreograph is gaining traction among landscape architects, inseparable from Lawrence Halprin's theory. In the 1970s, Halprin introduced RSVP cycles: S stands for Score — a series of instructions for setting things in motion, akin to musical scores. He writes: 'Scores communicate but do not control.' This apparent wordplay on Wiener's book title suggests Halprin found in recursive thinking a design philosophy grounded in openness rather than optimization.">
-              <img src="/teaching/laar61400/assets/img/Week11/11.avif" alt="Lawrence Halprin — RSVP cycles and the Score">
+            <!-- 11 · full-bleed RSVP diagram + quote -->
+            <div class="slide" data-cap="&quot;Scores communicate but do not control.&quot;" data-credit="Lawrence Halprin, RSVP Cycles, 1970s." data-notes="The term choreograph is gaining traction among landscape architects, inseparable from Lawrence Halprin's theory. In the 1970s, Halprin introduced RSVP cycles: S stands for Score — a series of instructions for setting things in motion, akin to musical scores. He writes: 'Scores communicate but do not control.' This apparent wordplay on Wiener's book title suggests Halprin found in recursive thinking a design philosophy grounded in openness rather than optimization.">
+              <div class="cyb-hero">
+                <img class="cyb-hero__img" src="/teaching/laar61400/assets/img/Week11/11-rsvp.avif" alt="Lawrence Halprin's hand-drawn RSVP Cycles diagram — Resources, Scores, Valuaction, Performance">
+                <div class="cyb-hero__q"><q>Scores communicate but do not control.</q><cite>Lawrence Halprin · The RSVP Cycles, 1970s</cite></div>
+              </div>
             </div>
 
-            <!-- 12 -->
-            <div class="slide single" data-cap="Cellular automata — rule-setting, not outcome-control" data-notes="A more technical example: cellular automaton — a classic algorithm from early cybernetics. Each cell in a grid follows rules of transformation. By adjusting these rules you can produce an ecosystem of digital species. It demonstrates another mode of cybernetic thinking: rule-setting rather than outcome-controlling. The behavior is emergent, not prescribed.">
-              <img src="/teaching/laar61400/assets/img/Week11/12.avif" alt="Cellular automaton — emergent behavior from simple rules">
+            <!-- 11b · a score and its performance -->
+            <div class="slide auto" data-cap="A score, and its enactment" data-credit="Anna &amp; Lawrence Halprin — movement scores." data-notes="The Score is only half the cycle. Left: a drawn movement score, held up like a musical notation. Right: people enacting it in the open — the Performance. Between them sits Valuaction, the feedback that reads the result back into the next score. The instruction sets bodies in motion; it does not dictate what they do. Choreography, not control — the loop, made literal.">
+              <figure><img src="/teaching/laar61400/assets/img/Week11/11-score.avif" alt="A person holding up a drawn circular movement score"></figure>
+              <figure><img src="/teaching/laar61400/assets/img/Week11/11-perform.avif" alt="People enacting the score, moving through a park"></figure>
+            </div>
+
+            <!-- 12 · interactive Conway's Game of Life (Gosper glider gun) -->
+            <div class="slide" data-cap="Conway's Game of Life — rule-setting, not outcome-control" data-notes="A more technical example: the cellular automaton — a classic idea from early cybernetics. Conway's Game of Life runs four tiny rules on a grid (a live cell with 2–3 live neighbours survives; a dead cell with exactly 3 is born; everything else dies). From those rules alone, structure emerges that no one wrote: the Gosper glider gun shown here endlessly fires 'gliders' that crawl across the grid forever. This is the point — rule-setting rather than outcome-controlling. You author the four rules; the behaviour is emergent, not prescribed. Click the grid to draw your own cells, or load a random field and watch it self-organise.">
+              <div class="cyb-life" data-life></div>
             </div>
 
             <!-- 13 -->
@@ -188,7 +260,7 @@
           </div>
           <div class="deck-bar">
             <button class="deck-btn" id="deck-prev" aria-label="Previous slide">&lsaquo;</button>
-            <div class="deck-count"><input id="deck-jump" type="text" inputmode="numeric" aria-label="Jump to slide" value="1"><span id="deck-total"> / 21</span></div>
+            <div class="deck-count"><input id="deck-jump" type="text" inputmode="numeric" aria-label="Jump to slide" value="1"><span id="deck-total"> / 23</span></div>
             <button class="deck-btn" id="deck-next" aria-label="Next slide">&rsaquo;</button>
             <div class="deck-meta"><span class="deck-cap" id="deck-cap"></span><span id="deck-credit"></span></div>
             <button class="deck-btn" id="deck-notes-toggle" aria-expanded="false" aria-controls="deck-notes" aria-label="Toggle speaker notes" title="Speaker notes"><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="2" y="2" width="12" height="12" rx="1.5"/><line x1="4.5" y1="5.5" x2="11.5" y2="5.5"/><line x1="4.5" y1="8" x2="11.5" y2="8"/><line x1="4.5" y1="10.5" x2="8.5" y2="10.5"/></svg></button>
@@ -196,6 +268,16 @@
             <button class="deck-btn deck-fs" id="deck-fs" aria-label="Present full screen" title="Present (full screen)">&#x26F6;</button>
           </div>
           <div class="deck-notes" id="deck-notes" hidden></div>
+        </div>
+
+        <!-- ── Tools strip (play with these any time) — same widget, always interactive ── -->
+        <span class="section-label">Try it yourself — Conway's Game of Life</span>
+        <div class="cyb-tools">
+          <div class="cyb-tools__card">
+            <h4>Conway's Game of Life</h4>
+            <p class="k">Four rules · emergent behaviour · click to draw</p>
+            <div class="cyb-life cyb-life--play" data-life></div>
+          </div>
         </div>
 
       </div>
@@ -232,6 +314,181 @@
     var t; window.addEventListener('resize',function(){clearTimeout(t);t=setTimeout(fit,80);});
     document.addEventListener('fullscreenchange',function(){setTimeout(fit,80);});
     document.addEventListener('webkitfullscreenchange',function(){setTimeout(fit,80);});
+  })();
+  </script>
+
+  <!-- ── interactive Conway's Game of Life — Gosper glider gun (reusable widget) ── -->
+  <script>
+  (function(){
+    var mounts=[].slice.call(document.querySelectorAll('[data-life]'));
+    if(!mounts.length) return;
+    // canvas fill colours read from the shared deck.css palette tokens (single source of truth)
+    var cs=getComputedStyle(document.documentElement);
+    function tok(name,fallback){ return (cs.getPropertyValue(name)||'').trim()||fallback; }
+    var INK=tok('--ink','#1a1a1a'), PAPER=tok('--paper','#fbfaf8'), GRID='#ece7df', ACCENT=tok('--accent','#b87333');
+
+    var WIDGET =
+      '<div class="cyb-life__panel">'
+      + '<div><h3>Pattern</h3><div class="cyb-life__btns">'
+      +   '<button class="js-gun is-on">Glider gun</button><button class="js-random">Random</button><button class="js-clear">Clear</button></div></div>'
+      + '<div><h3>Run</h3><div class="cyb-life__btns">'
+      +   '<button class="js-play">Pause</button><button class="js-step">Step</button><button class="js-reset">Reset</button></div></div>'
+      + '<div><h3>Speed</h3><div class="cyb-life__speed"><input class="js-speed" type="range" min="1" max="30" value="12" aria-label="Speed"></div></div>'
+      + '<div class="cyb-life__meta js-meta">gen 0 · pop 0</div>'
+      + '<div class="cyb-life__btns"><button class="js-rules-btn" aria-expanded="false">The 4 rules ▾</button></div>'
+      + '<div class="cyb-life__hint">Click the grid to draw cells.</div>'
+      + '</div>'
+      + '<div class="cyb-life__canvas"><canvas class="js-canvas"></canvas></div>'
+      + '<div class="cyb-life__pop js-pop" hidden>'
+      +   '<button class="cyb-life__pop-close js-pop-close" aria-label="Close">&times;</button>'
+      +   '<h4>Conway’s Game of Life — four rules</h4>'
+      +   '<div class="cyb-life__pop-grid js-rules-grid"></div>'
+      + '</div>';
+
+    // canonical Gosper glider gun, cells as [x,y] (y downwards), 36 wide x 9 tall
+    var GUN=[[0,4],[0,5],[1,4],[1,5],[10,4],[10,5],[10,6],[11,3],[11,7],[12,2],[12,8],
+      [13,2],[13,8],[14,5],[15,3],[15,7],[16,4],[16,5],[16,6],[17,5],[20,2],[20,3],[20,4],
+      [21,2],[21,3],[21,4],[22,1],[22,5],[24,0],[24,1],[24,5],[24,6],[34,2],[34,3],[35,2],[35,3]];
+
+    // ── rules popover diagrams (shared, static) ──
+    function grid3(live,centerAlive){
+      var s=13,g=2,svg='<svg width="47" height="47" viewBox="0 0 47 47" aria-hidden="true">';
+      for(var i=0;i<9;i++){
+        var x=1+(i%3)*(s+g), y=1+((i/3)|0)*(s+g);
+        var on=(i===4)?centerAlive:(live.indexOf(i)>=0), isC=(i===4);
+        svg+='<rect x="'+x+'" y="'+y+'" width="'+s+'" height="'+s+'" rx="2" fill="'
+          +(on?INK:'#fff')+'" stroke="'+(isC?ACCENT:'#d8d2c8')+'" stroke-width="'+(isC?2:1)+'"/>';
+      }
+      return svg+'</svg>';
+    }
+    function outcome(alive){
+      var s=13,y=(47-s)/2;
+      return '<svg width="15" height="47" viewBox="0 0 15 47" aria-hidden="true"><rect x="1" y="'+y
+        +'" width="'+s+'" height="'+s+'" rx="2" fill="'+(alive?INK:'#fff')+'" stroke="'
+        +(alive?INK:'#d8d2c8')+'" stroke-width="1"/></svg>';
+    }
+    var RULES=[
+      {live:[1,7],   c:1,o:1,cap:'A live cell with <b>2&ndash;3</b> live neighbours <b>survives</b>'},
+      {live:[1],     c:1,o:0,cap:'<b>Fewer than 2</b> &rarr; <b>dies</b> (underpopulation)'},
+      {live:[1,3,5,7],c:1,o:0,cap:'<b>More than 3</b> &rarr; <b>dies</b> (overpopulation)'},
+      {live:[1,3,5], c:0,o:1,cap:'A dead cell with <b>exactly 3</b> &rarr; <b>born</b>'}
+    ];
+    var RULES_HTML=RULES.map(function(r){
+      return '<div class="cyb-life__rule"><div class="row">'+grid3(r.live,r.c)
+        +'<span class="arr">&rarr;</span>'+outcome(r.o)+'</div><div class="cap">'+r.cap+'</div></div>';
+    }).join('');
+
+    function initLife(root){
+      root.innerHTML=WIDGET;
+      var canvas=root.querySelector('.js-canvas'), ctx=canvas.getContext('2d');
+      var wrap=root.querySelector('.cyb-life__canvas'), meta=root.querySelector('.js-meta');
+      var cell=9, cols=0, rows=0, grid=null, playing=true, gen=0, resizeT;
+      var speed=12, acc=0, mode='gun';
+
+      function idx(x,y){ return y*cols+x; }
+      function clear(){ grid=new Uint8Array(cols*rows); gen=0; }
+      function loadGun(){
+        clear();
+        for(var i=0;i<GUN.length;i++){
+          var x=GUN[i][0]+2, y=GUN[i][1]+2;
+          if(x>=0&&x<cols&&y>=0&&y<rows) grid[idx(x,y)]=1;
+        }
+      }
+      function loadRandom(){ clear(); for(var i=0;i<grid.length;i++) grid[i]=Math.random()<0.28?1:0; }
+      function load(){ if(mode==='gun') loadGun(); else if(mode==='random') loadRandom(); else clear(); }
+
+      function size(){
+        var W=wrap.clientWidth, H=wrap.clientHeight; if(!W||!H) return;
+        canvas.width=W; canvas.height=H;
+        cell=Math.max(6, Math.round(W/64));
+        cols=Math.floor(W/cell); rows=Math.floor(H/cell);
+        load(); draw();
+      }
+      function stepGen(){
+        var next=new Uint8Array(cols*rows), pop=0;
+        for(var y=0;y<rows;y++){
+          for(var x=0;x<cols;x++){
+            var n=0;
+            for(var dy=-1;dy<=1;dy++){
+              var yy=y+dy; if(yy<0||yy>=rows) continue;
+              for(var dx=-1;dx<=1;dx++){
+                if(!dx&&!dy) continue;
+                var xx=x+dx; if(xx<0||xx>=cols) continue;
+                n+=grid[idx(xx,yy)];
+              }
+            }
+            var alive=grid[idx(x,y)];
+            var v=(alive?(n===2||n===3):(n===3))?1:0;
+            next[idx(x,y)]=v; pop+=v;
+          }
+        }
+        grid=next; gen++;
+        if(mode==='gun' && gen>640) loadGun();  // keep the gun demo pristine
+        return pop;
+      }
+      function draw(){
+        ctx.fillStyle=PAPER; ctx.fillRect(0,0,canvas.width,canvas.height);
+        if(cell>=9){
+          ctx.strokeStyle=GRID; ctx.lineWidth=1; ctx.beginPath();
+          for(var gx=0;gx<=cols;gx++){ ctx.moveTo(gx*cell+.5,0); ctx.lineTo(gx*cell+.5,rows*cell); }
+          for(var gy=0;gy<=rows;gy++){ ctx.moveTo(0,gy*cell+.5); ctx.lineTo(cols*cell,gy*cell+.5); }
+          ctx.stroke();
+        }
+        ctx.fillStyle=INK; var pop=0;
+        for(var y=0;y<rows;y++) for(var x=0;x<cols;x++) if(grid[idx(x,y)]){
+          ctx.fillRect(x*cell+1,y*cell+1,cell-1,cell-1); pop++;
+        }
+        meta.textContent='gen '+gen+' · pop '+pop;
+      }
+      function frame(){
+        if(playing && grid){
+          acc+=speed; var steps=0;
+          while(acc>=60 && steps<8){ stepGen(); acc-=60; steps++; }
+          if(steps) draw();
+        }
+        requestAnimationFrame(frame);
+      }
+
+      function pick(btn,others){ btn.classList.add('is-on'); others.forEach(function(b){b.classList.remove('is-on');}); }
+      var gunBtn=root.querySelector('.js-gun'), randBtn=root.querySelector('.js-random'), clearBtn=root.querySelector('.js-clear');
+      gunBtn.onclick=function(){ mode='gun'; pick(gunBtn,[randBtn,clearBtn]); loadGun(); draw(); };
+      randBtn.onclick=function(){ mode='random'; pick(randBtn,[gunBtn,clearBtn]); loadRandom(); draw(); };
+      clearBtn.onclick=function(){ mode='clear'; pick(clearBtn,[gunBtn,randBtn]); clear(); draw(); };
+      var playBtn=root.querySelector('.js-play');
+      playBtn.onclick=function(){ playing=!playing; playBtn.textContent=playing?'Pause':'Play'; };
+      root.querySelector('.js-step').onclick=function(){ if(grid){ stepGen(); draw(); } };
+      root.querySelector('.js-reset').onclick=function(){ load(); draw(); };
+      var speedInput=root.querySelector('.js-speed');
+      speedInput.addEventListener('input',function(){ speed=+speedInput.value; });
+
+      // rules popover
+      root.querySelector('.js-rules-grid').innerHTML=RULES_HTML;
+      var pop=root.querySelector('.js-pop'), rulesBtn=root.querySelector('.js-rules-btn');
+      function setPop(open){ pop.hidden=!open; rulesBtn.setAttribute('aria-expanded',open?'true':'false'); }
+      rulesBtn.onclick=function(e){ e.stopPropagation(); setPop(pop.hidden); };
+      root.querySelector('.js-pop-close').onclick=function(){ setPop(false); };
+      root.addEventListener('click',function(e){ if(!pop.hidden && !pop.contains(e.target) && e.target!==rulesBtn) setPop(false); });
+      document.addEventListener('keydown',function(e){ if(e.key==='Escape') setPop(false); });
+
+      // click / drag to draw cells
+      var drawing=false;
+      function paint(e){
+        var r=canvas.getBoundingClientRect();
+        var x=Math.floor((e.clientX-r.left)/(r.width/cols));
+        var y=Math.floor((e.clientY-r.top)/(r.height/rows));
+        if(grid && x>=0&&x<cols&&y>=0&&y<rows){ grid[idx(x,y)]=1; draw(); }
+      }
+      canvas.addEventListener('mousedown',function(e){ drawing=true; paint(e); });
+      canvas.addEventListener('mousemove',function(e){ if(drawing) paint(e); });
+      window.addEventListener('mouseup',function(){ drawing=false; });
+
+      size();
+      requestAnimationFrame(frame);
+      window.addEventListener('resize',function(){ clearTimeout(resizeT); resizeT=setTimeout(size,120); });
+      document.addEventListener('fullscreenchange',function(){ setTimeout(size,120); });
+    }
+
+    mounts.forEach(initLife);
   })();
   </script>
 </body>
