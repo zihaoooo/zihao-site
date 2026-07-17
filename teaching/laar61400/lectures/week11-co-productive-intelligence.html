@@ -78,8 +78,12 @@
     .cyb-life--play{height:min(58vh,440px);padding:0;}
 
     /* ── two-column comparison table (slides 18 + 19; scaled to the stage via .embed) ── */
-    .cyb-cmp{width:1120px;font-family:"DM Sans",sans-serif;color:var(--ink);}
-    .cyb-cmp__grid{display:grid;grid-template-columns:132px 1fr 1fr;
+    /* oversized embeds left-align in the slide's grid; flex unsafe-centers them so the
+       fit-scaler's transform (around the element centre) keeps them centred on the stage */
+    .slide:has(.cyb-cmp){display:flex;align-items:center;justify-content:center;}
+    .cyb-cmp{width:1120px;display:flex;flex-direction:column;align-items:center;
+      font-family:"DM Sans",sans-serif;color:var(--ink);}
+    .cyb-cmp__grid{width:100%;display:grid;grid-template-columns:132px 1fr 1fr;
       border:1px solid var(--line);border-radius:12px;overflow:hidden;background:#fff;}
     .cyb-cmp__grid>div{padding:11px 16px;border-top:1px solid var(--line);
       border-left:1px solid var(--line);display:flex;align-items:center;
@@ -269,15 +273,10 @@
               <img src="/teaching/laar61400/assets/img/Week11/14.avif" alt="A hand-drawn entanglement diagram — a human figure holding a phone, wired by dotted lines to a brain, gut microbes, a circuit board, a drone, birds, a tree and its roots, a wolf, a hare, a crab and an oyster.">
             </div>
 
-            <!-- 15 -->
-            <div class="slide" data-cap="The other story — “One Prompt, Job Done.” One prompt in, finished job out. What happens to everything in the middle?" data-notes="OPJD as syndrome — name it. The dominant story about AI is pure control-fantasy: one prompt in, finished job out, delete the messy middle. It is the ANTI-cybernetic story — no loop, no choreography, no attunement; exactly the control cybernetics the talk spent 13 slides dismantling. The rest of the lecture applies the talk's argument to AI practice.">
-              <div class="embed"><div class="cyb-ph"><span class="cyb-ph__tag">Image placeholder</span><span class="cyb-ph__desc">A single straight arrow from “prompt” to “finished deck” — the messy middle erased.</span></div></div>
-            </div>
-
-            <!-- 16 -->
-            <div class="slide auto" data-cap="The convoluted human path vs. the straight AI line" data-credit="Genspark subway ads, NYC MTA." data-notes="The ad sells the middle as waste — the detour you'd skip if you could. But the middle is the choreography; the winding path was the thinking. Straightening the line deletes the co-becoming, not the drudgery.">
-              <figure><img src="/teaching/laar61400/assets/img/Week11/16-a.avif" alt="Genspark subway ad — a winding subway-map path (Draft Slides → Add Charts → Polish → Final Deck) beside the line ‘One prompt, job done.’"></figure>
-              <figure><img src="/teaching/laar61400/assets/img/Week11/16-b.avif" alt="Genspark subway ad — ‘Slides in 10 minutes. Not 10 PM.’"></figure>
+            <!-- 15+16 · "One Prompt, Job Done" — the ad makes the point -->
+            <div class="slide auto" data-cap="The other story — “One Prompt, Job Done.” One prompt in, finished job out. What happens to everything in the middle?" data-notes="OPJD as syndrome — name it. The dominant story about AI is pure control-fantasy: one prompt in, finished job out, delete the messy middle. The ad sells that middle as waste — the detour you'd skip if you could. But the middle is the choreography; the winding path was the thinking. It is the ANTI-cybernetic story — no loop, no attunement — exactly the control cybernetics the talk spent 13 slides dismantling. Straightening the line deletes the co-becoming, not the drudgery.">
+              <figure><img src="/teaching/laar61400/assets/img/Week11/16-a.avif" alt="A winding subway-map path (Draft Slides → Add Charts → Polish → Final Deck) beside the line ‘One prompt, job done.’"></figure>
+              <figure><img src="/teaching/laar61400/assets/img/Week11/16-b.avif" alt="‘Slides in 10 minutes. Not 10 PM.’"></figure>
             </div>
 
             <!-- 17 -->
@@ -377,8 +376,8 @@
             </div>
 
             <!-- 20 -->
-            <div class="slide" data-cap="Technodiversity — many cybernetics, many futures. How many ways of thinking-with do we want to keep open?" data-credit="Yuk Hui — cosmotechnics." data-notes="Close the loop opened at slide 5. Yuk Hui returns: what's at stake is the RANGE of possible futures. The talk's alternative cybernetics and this course's wager are the same bet — resist the single control-story (OPJD), keep many ways of thinking-with plural. The course's open question (posed Week 2): there could be a NEW representation native to this tool — if we don't let OPJD flatten the field first.">
-              <div class="embed"><div class="cyb-ph"><span class="cyb-ph__tag">Image placeholder</span><span class="cyb-ph__desc">Many divergent paths branching outward — a plural field of futures kept open rather than narrowed to one.</span></div></div>
+            <div class="slide single" data-cap="Technodiversity — many cybernetics, many futures. How many ways of thinking-with do we want to keep open?" data-credit="Cover, Jugaad Innovation (Radjou, Prabhu &amp; Ahuja, 2012)." data-notes="Close the loop opened at slide 5. Yuk Hui returns: what's at stake is the RANGE of possible futures. The talk's alternative cybernetics and this course's wager are the same bet — resist the single control-story (OPJD), keep many ways of thinking-with plural. The course's open question (posed Week 2): there could be a NEW representation native to this tool — if we don't let OPJD flatten the field first. Hold jugaad alongside technodiversity: the frugal, improvised workaround — making do with what's at hand — is another way of thinking-with, a vernacular where the messy middle IS the invention (the anti-OPJD move). Draw the parallel, leave it open — jugaad also carries its own costs (constraint, precarity, safety); it names a different cosmotechnics, not a verdict on it.">
+              <img src="/teaching/laar61400/assets/img/Week11/20.avif" alt="Jugaad Innovation book cover — the word JUGAAD spelled out from improvised objects">
             </div>
 
           </div>
