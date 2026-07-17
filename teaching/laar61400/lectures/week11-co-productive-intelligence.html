@@ -76,6 +76,26 @@
       letter-spacing:.06em;text-transform:uppercase;color:var(--mute);}
     /* the widget fills the card and gets an explicit height (it is height:100% by default) */
     .cyb-life--play{height:min(58vh,440px);padding:0;}
+
+    /* ── two-column comparison table (slides 18 + 19; scaled to the stage via .embed) ── */
+    .cyb-cmp{width:1120px;max-width:100%;font-family:"DM Sans",sans-serif;color:var(--ink);}
+    .cyb-cmp__grid{display:grid;grid-template-columns:132px 1fr 1fr;
+      border:1px solid var(--line);border-radius:12px;overflow:hidden;background:#fff;}
+    .cyb-cmp__grid>div{padding:11px 16px;border-top:1px solid var(--line);
+      border-left:1px solid var(--line);display:flex;align-items:center;
+      font-size:16px;line-height:1.34;}
+    /* first row + first column carry no inner rule (outer border only) */
+    .cyb-cmp__grid>div:nth-child(-n+3){border-top:0;}
+    .cyb-cmp__grid>div:nth-child(3n+1){border-left:0;}
+    .cyb-cmp__h{font:700 12px/1 "DM Mono",ui-monospace,monospace;letter-spacing:.13em;
+      text-transform:uppercase;background:#f4f1ea;color:var(--mute);}
+    .cyb-cmp__h--a{color:#534AB7;}
+    .cyb-cmp__h--b{color:var(--accent);}
+    .cyb-cmp__lab{font-weight:700;font-size:12px;letter-spacing:.02em;color:var(--mute);
+      background:#faf8f3;}
+    .cyb-cmp__b{background:rgba(184,115,51,.05);}
+    .cyb-cmp__cap{margin:0 2px 14px;font-size:14px;line-height:1.4;color:#6d6860;max-width:1120px;}
+    .cyb-cmp__cap b{color:var(--ink);}
   </style>
 </head>
 <body>
@@ -246,7 +266,7 @@
 
             <!-- 14 -->
             <div class="slide" data-cap="Co-productive intelligence — what if intelligence is an effect, not a cause? Something we produce together, rather than a thing one side owns." data-credit="Zhang." data-notes="Bridge from the talk into the course thesis. Co-becoming IS co-productive intelligence: human and machine intelligences are not stable categories that meet in the middle — they are produced through entanglement; intelligence as effect, not cause. &quot;The designer who thinks with AI is not the designer who thinks with tracing paper.&quot; Everything the talk just argued about control vs. co-becoming now applies to working with an AI.">
-              <div class="embed"><div class="cyb-ph"><span class="cyb-ph__tag">Image placeholder</span><span class="cyb-ph__desc">Human and machine drawing into the same line — two intelligences entangled in one gesture.</span></div></div>
+              <img src="/teaching/laar61400/assets/img/Week11/14.avif" alt="A hand-drawn entanglement diagram — a human figure holding a phone, wired by dotted lines to a brain, gut microbes, a circuit board, a drone, birds, a tree and its roots, a wolf, a hare, a crab and an oyster.">
             </div>
 
             <!-- 15 -->
@@ -272,14 +292,88 @@
               </div>
             </div>
 
-            <!-- 18 -->
-            <div class="slide" data-cap="“Skill in chatting” — how do you choreograph a partner you can't see inside? A literacy still being learned." data-notes="Skill-in-chatting as literacy. The chat box fakes effortlessness; but choreographing a partner you can't see inside is a literacy, learned. Locked-room framing: the agent is intelligent but sealed — no hands, no eyes; MCP = the doors that let it act. You can only co-become with a partner you know how to reach. (Bridges to Week 12 web literacy + the Claude Code workshop.)">
-              <div class="embed"><div class="cyb-ph"><span class="cyb-ph__tag">Image placeholder</span><span class="cyb-ph__desc">A sealed room with many doors — an intelligent partner reached only through the openings you know how to use.</span></div></div>
+            <!-- 18 · chatbot vs agent comparison -->
+            <div class="slide" data-cap="Chatbot vs. agent — the door opens. A prompt-in, response-out box becomes a partner that acts." data-notes="The chatbot→agent shift, named. Chatbot = a person in a locked room: you slip a prompt under the door, it slips a response back — text only, one turn, no hands, no eyes. Agent = MCP unlocks the door: it walks the corridor, opens rooms, picks up tools (terminal, files, connectors), takes a task apart, spawns subagents, checks its own work. The technique moved with it: from engineering the prompt to engineering the context, the harness, the loop. This sets up the labor + care stakes on the next slides — the automated middle is the choreography; you can only co-become with a partner you know how to reach. (Bridges to Week 12 web literacy + the Claude Code workshop.)">
+              <div class="embed">
+                <div class="cyb-cmp">
+                  <p class="cyb-cmp__cap">A <b>chatbot</b> is a person in a locked room — a prompt in exchange for a response. <b>MCP</b> unlocks the door: the <b>agent</b> walks the corridor, opens rooms, and picks up tools.</p>
+                  <div class="cyb-cmp__grid">
+                    <div class="cyb-cmp__h"></div>
+                    <div class="cyb-cmp__h cyb-cmp__h--a">Chatbot</div>
+                    <div class="cyb-cmp__h cyb-cmp__h--b">Agent</div>
+
+                    <div class="cyb-cmp__lab">Interaction</div>
+                    <div>One prompt → one response</div>
+                    <div class="cyb-cmp__b">Takes a task apart, acts, self-corrects in a loop</div>
+
+                    <div class="cyb-cmp__lab">Room analogy</div>
+                    <div>Sealed room; you pass notes under the door</div>
+                    <div class="cyb-cmp__b">MCP unlocks the door — walks the corridor, opens other rooms</div>
+
+                    <div class="cyb-cmp__lab">Reach</div>
+                    <div>Text out; no hands, no eyes</div>
+                    <div class="cyb-cmp__b">Tools: terminal, files, software, connectors (MCP)</div>
+
+                    <div class="cyb-cmp__lab">Memory</div>
+                    <div>Stateless turn</div>
+                    <div class="cyb-cmp__b">Managed context across many steps</div>
+
+                    <div class="cyb-cmp__lab">The craft</div>
+                    <div>Prompt engineering — word the question well</div>
+                    <div class="cyb-cmp__b">Context / harness / loop engineering — choreograph the work</div>
+
+                    <div class="cyb-cmp__lab">Autonomy</div>
+                    <div>You steer every step</div>
+                    <div class="cyb-cmp__b">You delegate a goal; it plans, spawns subagents, evaluates</div>
+
+                    <div class="cyb-cmp__lab">Cybernetic reading</div>
+                    <div>A message exchanged</div>
+                    <div class="cyb-cmp__b">A loop that acts back on the world</div>
+                  </div>
+                </div>
+              </div>
             </div>
 
-            <!-- 19 -->
-            <div class="slide" data-cap="Package the designer into a bundle of functions, hand it to the agent — what happens to where the next designer would have grown?" data-notes="The labor stakes. Define the entry-level designer AS a bundle of tasks; hand the bundle to an agent; classic alienation. The automated middle is where the next designer would have grown. Control-cybernetics applied to labor.">
-              <div class="embed"><div class="cyb-ph"><span class="cyb-ph__tag">Image placeholder</span><span class="cyb-ph__desc">A designer's role split into labelled boxes, boxed up and handed off — the person no longer in the loop.</span></div></div>
+            <!-- 19 · care vs care-less comparison -->
+            <div class="slide" data-cap="Care vs. care-less — draw a line between them and you've already conceded the handed-off half is care-less." data-credit="after Tronto; Puig de la Bellacasa; Žižek; ASLA 2025." data-notes="Do machines care? The ASLA irony: to say &quot;AI is a tool only, it lacks empathetic site-based care&quot; is to concede that the work we DO hand to AI is care-less — labor with the affect already subtracted. Split the effect of care (the labor executed — taking care of, caregiving) from its affect (the toll, the noticing — caring about, care receiving). Machines keep the effect at no cost; capitalism was already stripping the affect long before AI (&quot;decaffeinated care&quot; — the form kept, the active ingredient removed). The danger is not deception but normalization: once simulated care is ordinary, we stop wanting to know the difference — we don't care that we don't care. The double shot: keep the &quot;human +&quot; in the loop — do the care and care about doing it. Same bet as the talk's co-becoming.">
+              <div class="embed">
+                <div class="cyb-cmp">
+                  <p class="cyb-cmp__cap">Split care into its <b>effect</b> (the labor executed) and its <b>affect</b> (the toll, the noticing). Machines keep the effect at no cost — but drawing the line concedes the handed-off half is <b>care-less</b>.</p>
+                  <div class="cyb-cmp__grid">
+                    <div class="cyb-cmp__h"></div>
+                    <div class="cyb-cmp__h cyb-cmp__h--a">Care</div>
+                    <div class="cyb-cmp__h cyb-cmp__h--b">Care-less</div>
+
+                    <div class="cyb-cmp__lab">Tronto's phases</div>
+                    <div>Caring about + care receiving — notice, be affected</div>
+                    <div class="cyb-cmp__b">Taking care of + caregiving — assume + execute the task</div>
+
+                    <div class="cyb-cmp__lab">Dimensions</div>
+                    <div>Act + affect + ethics, held together</div>
+                    <div class="cyb-cmp__b">The act alone, sliced off</div>
+
+                    <div class="cyb-cmp__lab">Žižek</div>
+                    <div>The double shot — full intensity, presence, cost</div>
+                    <div class="cyb-cmp__b">Decaffeinated — form kept, active ingredient removed</div>
+
+                    <div class="cyb-cmp__lab">Toll</div>
+                    <div>Friction, struggle — the toll that keeps it human</div>
+                    <div class="cyb-cmp__b">Smooth, frictionless — no cost to anyone</div>
+
+                    <div class="cyb-cmp__lab">Obligation</div>
+                    <div>Reciprocal — you owe it something, you stay with the trouble</div>
+                    <div class="cyb-cmp__b">None — delivered and done, no strings</div>
+
+                    <div class="cyb-cmp__lab">The worker</div>
+                    <div>A present, accountable subject</div>
+                    <div class="cyb-cmp__b">A bundle of functions — intern = renderer = agent</div>
+
+                    <div class="cyb-cmp__lab">Landscape</div>
+                    <div>Continuous noticing of land, labor, evolving lives</div>
+                    <div class="cyb-cmp__b">A one-time deliverable, handed over</div>
+                  </div>
+                </div>
+              </div>
             </div>
 
             <!-- 20 -->
