@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Scripting Flushing Bay &mdash; Zihao Zhang</title>
+  <link rel="stylesheet" href="/assets/css/site.css">
+  <link rel="stylesheet" href="/teaching/_shared/deck.css">
+  <style>
+    #site-main { max-width: 100%; }
+
+    /* ── the deck stands in for the project hero: full width, top of the page ── */
+    .deck { margin-top: 0; margin-bottom: 40px; }
+    /* site.css sets body line-height 1.7; the stage sets its own per element */
+    .deck-stage { line-height: 1.35; }
+
+    /* ── title slide: a second, dimmer subtitle line ── */
+    .slide--title .ts--occ { color: #8f867a; }
+
+    /* ── part TOC: keep each part heading on one line ── */
+    .toc { width: 880px; }
+    .toc .toc-h { white-space: nowrap; }
+
+    /* numbered list card (the three questions) — the deck's only typeset slide */
+    .qs { width: 900px; text-align: left; display: flex; flex-direction: column; gap: 20px; }
+    .qs__k { font-family: "DM Mono", ui-monospace, monospace; font-size: 12px; letter-spacing: .18em;
+      text-transform: uppercase; color: var(--accent); }
+    .qs ol { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 18px; counter-reset: q; }
+    .qs li { counter-increment: q; position: relative; padding-left: 52px; font-size: 25px; line-height: 1.35; color: #3a362f; }
+    .qs li::before { content: counter(q); position: absolute; left: 0; top: 2px;
+      font-family: "DM Mono", ui-monospace, monospace; font-size: 15px; color: var(--accent);
+      border: 1px solid var(--line); border-radius: 50%; width: 32px; height: 32px;
+      display: flex; align-items: center; justify-content: center; }
+  </style>
+</head>
+<body>
+
+  <div id="site-wrap">
+
+    <nav id="site-nav">
+      <a class="site-nav-name" href="/">Zihao Zhang</a>
+      <span class="site-nav-zh">张子豪</span>
+      <p class="site-nav-meta">Associate Professor<br>Landscape Architecture<br>City College of New York</p>
+      <div class="site-nav-links">
+        <a class="site-nav-link" href="/projects/">Projects</a>
+        <a class="site-nav-link" href="/publications/">Publications</a>
+        <a class="site-nav-link" href="/teaching/">Teaching</a>
+        <a class="site-nav-link" href="/talks/">Talks</a>
+      </div>
+    </nav>
+
+    <main id="site-main">
+
+      <a class="project-back" href="/talks/">&larr; Talks</a>
+
+      <!-- Stage (in place of the project hero) -->
+      <div class="deck" id="deck" data-deck-id="bedac" data-deck-title="Scripting Flushing Bay">
+        <div class="deck-stage" id="deck-stage">
+
+          <!-- 1 · Title -->
+          <div class="slide slide--title" data-cap="" data-notes="Scripting Flushing Bay. A joint graduate landscape architecture and advanced undergraduate architecture studio, Fall 2025, at a public, majority-minority college. Fifteen minutes, three points.">
+            <div class="tt">Scripting Flushing Bay</div>
+            <div class="ts">Panel on teaching in 2026 · Built Environment Deans Advancing Change</div>
+            <div class="ts ts--occ">LAAR 63100 / ARCH 51000 · Fall 2025 · City College of New York</div>
+          </div>
+
+          <!-- 2 · The grant behind the studio -->
+          <div class="slide auto" data-cap="&ldquo;Chinatown is Chinatown; Flushing is China&rdquo; · Architectural League of New York Independent Projects Grant, 2024&ndash;25" data-credit="Drawings: Zihao Zhang and Shurui Zhang" data-notes="Before the studio, the research. An Architectural League of New York Independent Projects Grant, with Shurui Zhang, on what we call Chinese diasporic urbanism — how contemporary Chinese urbanization models travel overseas through migration and urban imagination rather than through translation for an American audience. Left: the neighborhood as it is narrated — developer bets, headlines about the fastest-growing Asian population, and the street underneath all of it. Middle: the geography. Flushing and Long Island City, twenty minutes apart on the No. 7, the International Express — a nostalgic hometown at one end and a Shanghai-like skyline of luxury towers at the other. The trip is temporal as much as spatial: when homesick, go to Flushing. Right: the development pressure, parcel by parcel, and the Special Flushing Waterfront District. Fieldwork, interviews, drawings and mapping, disseminated as a bilingual visual archive and a podcast. Say why it belongs in a talk about teaching: I did not come to this site through the studio. I was already in it, on a grant, which is exactly the inversion the next section is about.">
+            <figure><img src="/talks/bedac/img/s02_1.webp" alt="Collage of Flushing street signage, the LIC skyline, the 7 train and news headlines about Queens"></figure>
+            <figure><img src="/talks/bedac/img/s02_2.webp" alt="Map of recent development parcels and the Special Flushing Waterfront District"></figure>
+          </div>
+
+          <!-- 3 · Part I divider -->
+          <div class="slide" data-cap="Positionality" data-notes="Part one. Positionality — but the version where you don't get to choose.">
+            <div class="embed">
+              <div class="toc">
+                <div class="toc-row active"><span class="toc-n">One</span><h2 class="toc-h">Positionality</h2></div>
+                <div class="toc-row"><span class="toc-n">Two</span><h2 class="toc-h">Go to hard places</h2></div>
+                <div class="toc-row"><span class="toc-n">Three</span><h2 class="toc-h">Collaboration</h2></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 4 · Flushing, the street -->
+          <div class="slide auto" data-cap="Main Street and a produce market, Flushing, Queens" data-credit="Photos: Zihao Zhang" data-notes="This is the street the studio worked from. Signage in two scripts, a retail culture imported by migration rather than translated for outsiders.">
+            <figure><img src="/talks/bedac/img/s03_2.webp" alt="Main Street, Flushing, with Chinese-language storefront signage"></figure>
+            <figure><img src="/talks/bedac/img/s03_1.webp" alt="Chinese-language produce signage in a Flushing market"></figure>
+          </div>
+
+          <!-- 5 · The casino fight + positionality -->
+          <div class="slide hero-l" data-cap="Hero: bilingual anti-casino posters, Flushing. Stack: protest and the proposal (Metropolitan Park, Hard Rock / Field Operations)" data-credit="Photos: Zihao Zhang" data-notes="The whole of point one, on the hero image. The inversion: the usual arrangement in a community-engaged studio is an outsider professor and insider students. This one flipped it — I am inside this neighborhood, I research it as Chinese diasporic urbanism on an Architectural League grant, and most of my students were not. Then the core: I never told the class my immigration story. It didn't need telling. Students see who I am and hear how I speak; they knew I was from China before I said anything about the site. It operated as backdrop, not narration — legibility, not disclosure. That is the vulnerability: not confession, but standing in front of a room while the thing being studied is legible on you. It changed what the room permitted; students could tell the material wasn't abstract for me, which made it harder for it to stay abstract for them. Then the limit, or this sounds like a boast. These posters run in two languages and are not saying the same thing twice — the Chinese and the English are pitched to different audiences with different stakes. That is legible to me and was not legible to the class. It is also why my read of the casino fight is not disinterested. Flushing has a 370-year record of refusing the story assigned to it — the 1657 Remonstrance, a station on the Underground Railroad, Fitzgerald's Valley of Ashes, then a Mandarin-speaking immigrant hub. Now this: an $8 billion casino and entertainment complex on 78 acres of parking lot beside Citi Field, licensed December 2025, with a Field Operations landscape. Opposition organized around flooding, displacement of Asian communities, and gambling addiction — note the signs in Spanish, Chinese and English in one crowd. Flushing is not one community with one position — the auto-body workers, the condo buyers, the restaurant owners and the organizers do not agree — and my background makes some of those positions more legible to me than others. I had to say out loud where my position would distort the brief. Optional half-sentence for this room: disclosure is not equally cheap, and I did this with tenure.">
+            <figure><img src="/talks/bedac/img/s03_3.webp" alt="Bilingual NO CASINO posters on a wall in Flushing" style="object-position:center 78%;"></figure>
+            <figure><img src="/talks/bedac/img/s_casino_1.webp" alt="Residents protesting the Metropolitan Park casino with signs in Spanish, Chinese and English"></figure>
+            <figure><img src="/talks/bedac/img/s_casino_2.webp" alt="Rendering of the proposed Metropolitan Park casino complex beside Citi Field"></figure>
+          </div>
+
+          <!-- 8 · Part II divider -->
+          <div class="slide" data-cap="Go to hard places" data-notes="Part two. The site visit — and why difficulty is the method rather than an obstacle to it.">
+            <div class="embed">
+              <div class="toc">
+                <div class="toc-row"><span class="toc-n">One</span><h2 class="toc-h">Positionality</h2></div>
+                <div class="toc-row active"><span class="toc-n">Two</span><h2 class="toc-h">Go to hard places</h2></div>
+                <div class="toc-row"><span class="toc-n">Three</span><h2 class="toc-h">Collaboration</h2></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 6 · The walk, as one gallery -->
+          <div class="slide auto-rows" data-cap="The site tour with Cody Herrmann, Flushing Bay" data-credit="Photos: Zihao Zhang" data-notes="One page, six pictures, no text — the sequence is the argument. Read left to right, top to bottom: into the auto-body district, the salvage yards, along the Van Wyck, the water's edge, what is left under the expressway, and the thicket on the way out. Say over it: site selection is where equity quietly fails. Easy sites are documented, photogenic, walkable, safe and already designed, and they return the generic answer. Herrmann wants her tours challenging and therefore memorable — not showmanship, an epistemology. Cars gutted and salvaged shop by shop, a working economy pushed out by the luxury development next door, protest banners still up. Students were disoriented, and the disorientation is the first thing the walk teaches. At one point I was genuinely worried someone would get hurt; one student decided the poison ivy was too much and took another route. Her access to that water's edge was not a permit — it was earned over years of Thursday mornings, including from the MS-13 members who once controlled the site and came to expect her. That is proximity, not credential. Her own line, if you want it: &ldquo;As a white woman, this is the way I tell these stories. I wonder how others would tell these stories.&rdquo; She names her position because hers is not automatically read; mine is read before I speak. What is under the highway now reads as neglect — her account of the earlier encampment was of a place that was sketchy but cared for. One student's project answered that directly, designing shelters in light of the deportation raids running that same semester. Getting out meant the thicket, a highway barrier, and jaywalking a freeway.">
+            <div class="row">
+              <figure><img src="/talks/bedac/img/s04b_1.webp" alt="Students walking through the Willets Point auto-body district"></figure>
+              <figure><img src="/talks/bedac/img/s04b_2.webp" alt="Salvage yard structures and fencing at Willets Point"></figure>
+              <figure><img src="/talks/bedac/img/s04a_2.webp" alt="Students walking along the Van Wyck Expressway"></figure>
+            </div>
+            <div class="row">
+              <figure><img src="/talks/bedac/img/s04a_3.webp" alt="Students listening to Cody Herrmann at the water's edge under the highway"></figure>
+              <figure><img src="/talks/bedac/img/s04a_4.webp" alt="Debris and a wheelchair under the expressway"></figure>
+              <figure><img src="/talks/bedac/img/s04a_1.webp" alt="Students pushing through marsh thicket"></figure>
+            </div>
+          </div>
+
+          <!-- 13 · What the site says -->
+          <div class="slide auto" data-cap="Left: &ldquo;Racist Rezoning,&rdquo; Flushing Creek. Right: horseshoe crab" data-credit="Photos: Zihao Zhang" data-notes="Two things the site says out loud. The graffiti across the creek is the neighborhood's own reading of the rezoning — no interpretation required. The horseshoe crab is the other constituency: combined sewer overflows, an aging system, and a bay that still sustains life. Keep this beat short; the images carry it.">
+            <figure><img src="/talks/bedac/img/s04_1.webp" alt="Graffiti reading Racist Rezoning across Flushing Creek"></figure>
+            <figure><img src="/talks/bedac/img/s04_2.webp" alt="Horseshoe crab shell on the mudflat"></figure>
+          </div>
+
+          <!-- 14 · Second walk: Bowne House + Tangram arcade -->
+          <div class="slide auto" data-cap="Left: the class at the Bowne House, built 1661. Right: One Fulton Square." data-credit="Photos: Zihao Zhang" data-notes="The second walk was hard in a different way. Not hard to reach — hard to see. It starts at the Bowne House, 1661, where the Remonstrance story lives: religious freedom, and later a stop on the Underground Railroad. Say the argument plainly: 1661 to now, on foot, in one afternoon. The same few blocks asking the same question — who is Flushing for. Two walks, two kinds of hard: the bay is hard to reach, this one is hard to see. Together they cover the two ways a site resists a studio.">
+            <figure><img src="/talks/bedac/img/s05_1.webp" alt="The class gathered on the lawn at the Bowne House"></figure>
+            <figure><img src="/talks/bedac/img/s05_4.webp" alt="Street-level arcade at Tangram, Flushing"></figure>
+          </div>
+
+          <!-- 15 · Second walk: Tangram -->
+          <div class="slide auto" data-cap="Tangram, downtown Flushing" data-credit="Photos: Zihao Zhang" data-notes="And it ends here — Tangram. Neon food courts and contemporary Chinese retail urbanism, a typology imported directly from cities in China by Millennial and Gen Z migration rather than translated for an American audience. Young Chinese immigrants recognize this landscape and find comfort in it. A generative model asked for Flushing will give you a pagoda and a red lantern; it has never seen this.">
+            <figure><img src="/talks/bedac/img/s05_2.webp" alt="Neon-lit food court interior at Tangram"></figure>
+            <figure><img src="/talks/bedac/img/s05_3.webp" alt="Food stalls and crowds at Tangram"></figure>
+          </div>
+
+          <!-- 17 · Part III divider -->
+          <div class="slide" data-cap="Collaboration" data-notes="Part three. The part no one else on the panel will have.">
+            <div class="embed">
+              <div class="toc">
+                <div class="toc-row"><span class="toc-n">One</span><h2 class="toc-h">Positionality</h2></div>
+                <div class="toc-row"><span class="toc-n">Two</span><h2 class="toc-h">Go to hard places</h2></div>
+                <div class="toc-row active"><span class="toc-n">Three</span><h2 class="toc-h">Collaboration</h2></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 18 · The planning day, as one gallery -->
+          <div class="slide auto" data-cap="One-day strategic planning session, Spitzer School of Architecture" data-credit="Photos: Zihao Zhang" data-notes="One day, two groups, one room — and the artifact it produced. Studio manufactures individual authorship, and then the profession wonders why graduates cannot work in coalition. The whole class had to arrive at a single framework, and then every student was bound to design against it. Nobody got to design against their own private brief. Describe the mechanism, not the value — panels remember mechanisms. Maps on the wall, both groups visible to each other all day: the format is what forced the convergence. The third image is what the room drew together; everything after this had to answer to it. Then the beat the panel will lean into — a forced consensus makes power in a room visible: whose voice set the frame, who conceded, what the concession cost. If the day sounds frictionless they will not believe it, so name the disagreement.">
+            <figure><img src="/talks/bedac/img/s06_3.webp" alt="Planning session with maps and boards on the wall"></figure>
+            <figure><img src="/talks/bedac/img/s06_1.webp" alt="Hand-drawn collective framework map of Flushing Bay"></figure>
+          </div>
+
+          <!-- 23 · Student work divider -->
+          <div class="slide slide--title" data-cap="" data-notes="The proof that the framework was not coercion: one frame, divergent projects. Consensus on the frame produced more difference, not less.">
+            <div class="tt">One framework, divergent projects</div>
+            <div class="ts">Student work · Fall 2025</div>
+          </div>
+
+          <!-- 24 · Moffett, the table -->
+          <div class="slide auto" data-cap="William Moffett, &ldquo;Map of Flushing Bay&rdquo; — specimen table" data-notes="Moffett brought the bay into the school as material — grid trays of soil, debris, plant matter and trash lifted from the bay edge and installed in the studio, with a sonic component. Wildlife and urban systems, adaptation within what remains. The drawing is the ground itself. Note the lineage: the site tour made the material collectible in the first place.">
+            <figure><img src="/talks/bedac/img/s08_3.webp" alt="Specimen table of collected Flushing Bay ground material"></figure>
+            <figure><img src="/talks/bedac/img/s08_4.webp" alt="Detail of the specimen trays"></figure>
+          </div>
+
+          <!-- 25 · Gatton, sections -->
+          <div class="slide single" data-cap="Sabastian Gatton — Flushing Terminal Park, proposed sections and performance matrix" data-notes="Process-based strategy rather than a finished park: sections paired with a matrix of what each condition does over time. Let the drawing carry it.">
+            <img src="/talks/bedac/img/s09_2.webp" alt="Sabastian Gatton, proposed sections and matrix">
+          </div>
+
+          <!-- 28 · Gatton, experiential -->
+          <div class="slide single" data-cap="Sabastian Gatton — experiential drawing" data-notes="The experiential register. Same framework, a completely different spatial proposition from the next project.">
+            <img src="/talks/bedac/img/s09_3.webp" alt="Sabastian Gatton, experiential drawing of a planted allée">
+          </div>
+
+          <!-- 29 · Santana -->
+          <div class="slide auto" data-cap="Lia Santana — experiential drawings" data-notes="The contrast with Gatton is the point — same agreed framework, opposite spatial and social bets.">
+            <figure><img src="/talks/bedac/img/s09b_1.webp" alt="Lia Santana, experiential drawing with structures and canopy"></figure>
+            <figure><img src="/talks/bedac/img/s09b_2.webp" alt="Lia Santana, experiential drawing of a public ground"></figure>
+          </div>
+
+          <!-- 30 · Santana, structure -->
+          <div class="slide single" data-cap="Lia Santana — scaffold and water's edge" data-notes="Modular, incremental, deployable now — process rather than end product.">
+            <img src="/talks/bedac/img/s09b_3.webp" alt="Lia Santana, timber scaffold structure at the water's edge">
+          </div>
+
+          <!-- 31 · Santana, plan + vertical -->
+          <div class="slide auto" data-cap="Lia Santana — plan and vertical study" data-notes="Close the student work here and move straight to the questions; do not summarize the projects.">
+            <figure><img src="/talks/bedac/img/s09b_5.webp" alt="Lia Santana, rotated site plan"></figure>
+            <figure><img src="/talks/bedac/img/s09b_4.webp" alt="Lia Santana, vertical study"></figure>
+          </div>
+
+          <!-- 32 · Three questions -->
+          <div class="slide" data-cap="" data-notes="Hand the room the argument. Ask all three, then stop talking — this is an opening statement for a two-hour panel, not a conclusion.">
+            <div class="embed">
+              <div class="qs">
+                <div class="qs__k">To the panel</div>
+                <ol>
+                  <li>What do you give up to teach equitably — and is it in your syllabus, or only in your practice?</li>
+                  <li>Who has standing at your site, and did you go with them?</li>
+                  <li>If your students must agree on something before they design, what does that do to how you grade them?</li>
+                </ol>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <div class="deck-bar">
+          <button class="deck-btn" id="deck-prev" aria-label="Previous slide">&lsaquo;</button>
+          <div class="deck-count"><input id="deck-jump" type="text" inputmode="numeric" aria-label="Jump to slide" value="1"><span id="deck-total"> / 20</span></div>
+          <button class="deck-btn" id="deck-next" aria-label="Next slide">&rsaquo;</button>
+          <div class="deck-meta"><span class="deck-cap" id="deck-cap"></span><span id="deck-credit"></span></div>
+          <button class="deck-btn" id="deck-notes-toggle" aria-expanded="false" aria-controls="deck-notes" aria-label="Toggle speaker notes" title="Speaker notes"><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="2" y="2" width="12" height="12" rx="1.5"/><line x1="4.5" y1="5.5" x2="11.5" y2="5.5"/><line x1="4.5" y1="8" x2="11.5" y2="8"/><line x1="4.5" y1="10.5" x2="8.5" y2="10.5"/></svg></button>
+          <button class="deck-btn" id="deck-present" aria-label="Open Presenter View" title="Presenter View (synced second window)"><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="2" width="9" height="7" rx="1.2"/><path d="M3 11h5M5.5 9v2"/><rect x="11" y="5" width="4" height="4" rx="1" stroke-dasharray="1.8 1.2"/></svg></button>
+          <button class="deck-btn deck-fs" id="deck-fs" aria-label="Present full screen" title="Present (full screen)">&#x26F6;</button>
+        </div>
+        <div class="deck-notes" id="deck-notes" hidden></div>
+      </div>
+
+      <!-- Title -->
+      <h1 class="project-title">Scripting Flushing Bay</h1>
+      <p class="project-year">August 5, 2026 &middot; Conference Panel</p>
+
+      <!-- Meta -->
+      <div class="project-meta-grid" style="grid-template-columns: 1fr;">
+        <div>
+          <span class="project-meta-label">Venue</span>
+          <ul class="project-meta-list">
+            <li>Built Environment Deans Advancing Change, Cohort 5 <span class="role">&mdash; panel on teaching in 2026</span></li>
+            <li>City College of New York, Spitzer School of Architecture</li>
+          </ul>
+        </div>
+        <div style="margin-top:20px">
+          <span class="project-meta-label">Studio</span>
+          <ul class="project-meta-list">
+            <li>LAAR 63100 / ARCH 51000, Advanced Studio <span class="role">&mdash; Fall 2025</span></li>
+          </ul>
+        </div>
+        <div style="margin-top:20px">
+          <span class="project-meta-label">Student Work</span>
+          <ul class="project-meta-list">
+            <li>William Moffett</li>
+            <li>Sabastian Gatton</li>
+            <li>Lia Santana</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Description -->
+      <div class="project-description">
+        <p>A fifteen-minute opening statement for a panel on teaching in 2026, drawn from a joint graduate landscape architecture and advanced undergraduate architecture studio taught at a public, majority-minority college. Three points, each argued from the studio rather than from principle.</p>
+        <p><em>Positionality.</em> The usual arrangement in a community-engaged studio is an outsider instructor and insider students. This one inverted it: I research Flushing as Chinese diasporic urbanism, on an Architectural League of New York grant, and most of the class did not know the neighborhood. I never told the students my immigration story&mdash;it operated as backdrop rather than narration. That is legibility, not disclosure, and it cuts both ways: the bilingual anti-casino posters are pitched to two audiences with different stakes, which is legible to me and was not to the class.</p>
+        <p><em>Go to hard places.</em> Site selection is where equity quietly fails. Easy sites are documented, photogenic, walkable and already designed, and they return the generic answer. Two walks made the argument: Flushing Bay with Cody Herrmann, through the Willets Point auto-body district to a water&rsquo;s edge reachable only by proximity earned over years&mdash;and downtown Flushing from the Bowne House of 1661 to the neon food courts of Tangram. One site is hard to reach; the other is hard to see.</p>
+        <p><em>Collaboration.</em> Studio manufactures individual authorship, and then the profession wonders why graduates cannot work in coalition. A one-day strategic planning session required the whole class to converge on a single framework, and every student was then bound to design against it. A forced consensus makes power in a room visible&mdash;whose voice set the frame, who conceded, what the concession cost. The student work is the proof it was not coercion: one framework, divergent projects.</p>
+      </div>
+
+    </main>
+  </div>
+
+<script src="/assets/js/site.js"></script>
+<script src="/teaching/_shared/deck.js"></script>
+<script>
+(function(){
+  var stage=document.getElementById('deck-stage');
+  if(!stage) return;
+  var embeds=[].slice.call(document.querySelectorAll('#deck-stage .slide .embed'));
+  function fit(){
+    var SW=stage.clientWidth, SH=stage.clientHeight;
+    if(!SW||!SH) return;
+    embeds.forEach(function(e){
+      var c=e.firstElementChild; if(!c) return;
+      c.style.transform='none';
+      var w=c.offsetWidth, h=c.offsetHeight;
+      if(!w||!h) return;
+      var s=Math.min(1,(SW-28)/w,(SH-28)/h);
+      c.style.transform = s<1 ? 'scale('+s+')' : 'none';
+    });
+  }
+  window.addEventListener('load',fit);
+  if(document.readyState==='complete') fit();
+  var t; window.addEventListener('resize',function(){clearTimeout(t);t=setTimeout(fit,80);});
+  document.addEventListener('fullscreenchange',function(){setTimeout(fit,80);});
+  document.addEventListener('webkitfullscreenchange',function(){setTimeout(fit,80);});
+})();
+</script>
+</body>
+</html>
