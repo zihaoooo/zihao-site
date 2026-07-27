@@ -106,6 +106,7 @@ body { font-family: 'DM Sans', sans-serif; background: #fff; color: #1a1a1a; }
 }
 .syllabus-body p { margin-bottom: 12px; }
 .syllabus-body p:last-child { margin-bottom: 0; }
+.syllabus-body a { color: #1a1a1a; }
 
 /* Software grid */
 .software-grid {
