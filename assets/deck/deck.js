@@ -194,6 +194,10 @@
   .pv-notes{flex:1;overflow:auto;font-size:19px;line-height:1.6;color:#efeae1;
     border-top:1px solid #2a2a2a;padding-top:10px;}
   .pv-notes .empty{color:#777;font-style:italic;font-size:15px;}
+  .pv-notes ul{margin:0;padding-left:1.1em;list-style:disc;}
+  .pv-notes ul ul{margin:3px 0;list-style:circle;}
+  .pv-notes li{margin:0 0 7px;}
+  .pv-notes b{color:#fff;font-weight:600;}
   .pv-bar{display:flex;align-items:center;gap:12px;padding:10px 16px;border-top:1px solid #222;background:#141414;}
   .pv-btn{appearance:none;background:#1f1f1f;border:1px solid #3a3a3a;color:#e8e3da;border-radius:7px;
     padding:7px 13px;font-size:13px;cursor:pointer;}

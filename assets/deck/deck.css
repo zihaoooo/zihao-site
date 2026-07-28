@@ -244,6 +244,11 @@
   color:#4a463f;max-width:82ch;}
 .deck-notes[hidden]{display:none;}
 .deck-notes .nn-empty{color:var(--mute);font-style:italic;}
+.deck-notes ul{margin:0;padding-left:1.1em;list-style:disc;}
+.deck-notes ul ul{margin:2px 0;list-style:circle;}
+.deck-notes li{margin:0 0 4px;}
+.deck-notes li:last-child{margin-bottom:0;}
+.deck-notes b{font-weight:600;color:#2b2823;}
 /* never project notes / second-window controls */
 .deck:fullscreen .deck-notes,
 .deck:fullscreen #deck-notes-toggle,
