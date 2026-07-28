@@ -1,7 +1,10 @@
 /* ============================================================
-   Teaching deck — shared layout system (factory standard)
-   Source of truth: course-prep/style/site-rules.md
-   Linked from each lecture page: <link rel="stylesheet" href="/teaching/_shared/deck.css">
+   Slide deck — shared layout system (factory standard)
+   Source of truth: course-prep/site-rules.md
+   Used by teaching/<course>/lectures/ AND talks/<topic>/ — site-wide, not
+   teaching-only, which is why it lives under /assets/ rather than in a
+   course folder.
+   Linked from each deck page: <link rel="stylesheet" href="/assets/deck/deck.css">
 
    MODEL
    - The stage is a 16:9 carousel of .slide elements.

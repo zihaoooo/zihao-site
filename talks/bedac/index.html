@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Scripting Flushing Bay &mdash; Zihao Zhang</title>
   <link rel="stylesheet" href="/assets/css/site.css">
-  <link rel="stylesheet" href="/teaching/_shared/deck.css">
+  <link rel="stylesheet" href="/assets/deck/deck.css">
   <style>
     #site-main { max-width: 100%; }
 
@@ -20,17 +20,6 @@
     /* ── part TOC: keep each part heading on one line ── */
     .toc { width: 880px; }
     .toc .toc-h { white-space: nowrap; }
-
-    /* numbered list card (the three questions) — the deck's only typeset slide */
-    .qs { width: 900px; text-align: left; display: flex; flex-direction: column; gap: 20px; }
-    .qs__k { font-family: "DM Mono", ui-monospace, monospace; font-size: 12px; letter-spacing: .18em;
-      text-transform: uppercase; color: var(--accent); }
-    .qs ol { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 18px; counter-reset: q; }
-    .qs li { counter-increment: q; position: relative; padding-left: 52px; font-size: 25px; line-height: 1.35; color: #3a362f; }
-    .qs li::before { content: counter(q); position: absolute; left: 0; top: 2px;
-      font-family: "DM Mono", ui-monospace, monospace; font-size: 15px; color: var(--accent);
-      border: 1px solid var(--line); border-radius: 50%; width: 32px; height: 32px;
-      display: flex; align-items: center; justify-content: center; }
   </style>
 </head>
 <body>
@@ -88,7 +77,7 @@
           </div>
 
           <!-- 5 · The casino fight + positionality -->
-          <div class="slide hero-l" data-cap="Hero: bilingual anti-casino posters, Flushing. Stack: protest and the proposal (Metropolitan Park, Hard Rock / Field Operations)" data-credit="Photos: Zihao Zhang" data-notes="The whole of point one, on the hero image. The inversion: the usual arrangement in a community-engaged studio is an outsider professor and insider students. This one flipped it — I am inside this neighborhood, I research it as Chinese diasporic urbanism on an Architectural League grant, and most of my students were not. Then the core: I never told the class my immigration story. It didn't need telling. Students see who I am and hear how I speak; they knew I was from China before I said anything about the site. It operated as backdrop, not narration — legibility, not disclosure. That is the vulnerability: not confession, but standing in front of a room while the thing being studied is legible on you. It changed what the room permitted; students could tell the material wasn't abstract for me, which made it harder for it to stay abstract for them. Then the limit, or this sounds like a boast. These posters run in two languages and are not saying the same thing twice — the Chinese and the English are pitched to different audiences with different stakes. That is legible to me and was not legible to the class. It is also why my read of the casino fight is not disinterested. Flushing has a 370-year record of refusing the story assigned to it — the 1657 Remonstrance, a station on the Underground Railroad, Fitzgerald's Valley of Ashes, then a Mandarin-speaking immigrant hub. Now this: an $8 billion casino and entertainment complex on 78 acres of parking lot beside Citi Field, licensed December 2025, with a Field Operations landscape. Opposition organized around flooding, displacement of Asian communities, and gambling addiction — note the signs in Spanish, Chinese and English in one crowd. Flushing is not one community with one position — the auto-body workers, the condo buyers, the restaurant owners and the organizers do not agree — and my background makes some of those positions more legible to me than others. I had to say out loud where my position would distort the brief. Optional half-sentence for this room: disclosure is not equally cheap, and I did this with tenure.">
+          <div class="slide hero-l" data-cap="Hero: bilingual anti-casino posters, Flushing. Stack: protest and the proposal (Metropolitan Park, Hard Rock / Field Operations)" data-credit="Photos: Zihao Zhang" data-notes="The whole of point one, on the hero image. The inversion: the usual arrangement in a community-engaged studio is an outsider professor and insider students. This one flipped it — I am inside this neighborhood, I research it as Chinese diasporic urbanism on an Architectural League grant, and most of my students were not. Then the core: I never told the class my immigration story. It didn't need telling. Students see who I am and hear how I speak; they knew I was from China before I said anything about the site. It operated as backdrop, not narration — legibility, not disclosure. That is the vulnerability: not confession, but standing in front of a room while the thing being studied is legible on you. It changed what the room permitted; students could tell the material wasn't abstract for me, which made it harder for it to stay abstract for them. Then the limit, or this sounds like a boast. These posters run in two languages and are not saying the same thing twice — the Chinese and the English are pitched to different audiences with different stakes. That is legible to me and was not legible to the class. It is also why my read of the casino fight is not disinterested. Flushing has a 370-year record of refusing the story assigned to it — the 1657 Remonstrance, a station on the Underground Railroad, Fitzgerald's Valley of Ashes, then a Mandarin-speaking immigrant hub. Now this: an $8 billion casino and entertainment complex on 78 acres of parking lot beside Citi Field, licensed December 2025, with a Field Operations landscape. Opposition organized around flooding, displacement of Asian communities, and gambling addiction — note the signs in Spanish, Chinese and English in one crowd. Flushing is not one community with one position — the auto-body workers, the condo buyers, the restaurant owners and the organizers do not agree — and my background makes some of those positions more legible to me than others. I had to say out loud where my position would distort the brief. Optional half-sentence for this room: disclosure is not equally cheap, and I did this without tenure. Sets up the closing question.">
             <figure><img src="/talks/bedac/img/s03_3.webp" alt="Bilingual NO CASINO posters on a wall in Flushing" style="object-position:center 78%;"></figure>
             <figure><img src="/talks/bedac/img/s_casino_1.webp" alt="Residents protesting the Metropolitan Park casino with signs in Spanish, Chinese and English"></figure>
             <figure><img src="/talks/bedac/img/s_casino_2.webp" alt="Rendering of the proposed Metropolitan Park casino complex beside Citi Field"></figure>
@@ -161,56 +150,42 @@
           </div>
 
           <!-- 24 · Moffett, the table -->
-          <div class="slide auto" data-cap="William Moffett, &ldquo;Map of Flushing Bay&rdquo; — specimen table" data-notes="Moffett brought the bay into the school as material — grid trays of soil, debris, plant matter and trash lifted from the bay edge and installed in the studio, with a sonic component. Wildlife and urban systems, adaptation within what remains. The drawing is the ground itself. Note the lineage: the site tour made the material collectible in the first place.">
+          <div class="slide auto" data-cap="William Moffett, &ldquo;Map of Flushing Bay&rdquo; — specimen table" data-notes="">
             <figure><img src="/talks/bedac/img/s08_3.webp" alt="Specimen table of collected Flushing Bay ground material"></figure>
             <figure><img src="/talks/bedac/img/s08_4.webp" alt="Detail of the specimen trays"></figure>
           </div>
 
           <!-- 25 · Gatton, sections -->
-          <div class="slide single" data-cap="Sabastian Gatton — Flushing Terminal Park, proposed sections and performance matrix" data-notes="Process-based strategy rather than a finished park: sections paired with a matrix of what each condition does over time. Let the drawing carry it.">
+          <div class="slide single" data-cap="Sabastian Gatton — Flushing Terminal Park, proposed sections and performance matrix" data-notes="">
             <img src="/talks/bedac/img/s09_2.webp" alt="Sabastian Gatton, proposed sections and matrix">
           </div>
 
           <!-- 28 · Gatton, experiential -->
-          <div class="slide single" data-cap="Sabastian Gatton — experiential drawing" data-notes="The experiential register. Same framework, a completely different spatial proposition from the next project.">
+          <div class="slide single" data-cap="Sabastian Gatton — experiential drawing" data-notes="">
             <img src="/talks/bedac/img/s09_3.webp" alt="Sabastian Gatton, experiential drawing of a planted allée">
           </div>
 
           <!-- 29 · Santana -->
-          <div class="slide auto" data-cap="Lia Santana — experiential drawings" data-notes="The contrast with Gatton is the point — same agreed framework, opposite spatial and social bets.">
+          <div class="slide auto" data-cap="Lia Santana — experiential drawings" data-notes="">
             <figure><img src="/talks/bedac/img/s09b_1.webp" alt="Lia Santana, experiential drawing with structures and canopy"></figure>
             <figure><img src="/talks/bedac/img/s09b_2.webp" alt="Lia Santana, experiential drawing of a public ground"></figure>
           </div>
 
           <!-- 30 · Santana, structure -->
-          <div class="slide single" data-cap="Lia Santana — scaffold and water's edge" data-notes="Modular, incremental, deployable now — process rather than end product.">
+          <div class="slide single" data-cap="Lia Santana — scaffold and water's edge" data-notes="">
             <img src="/talks/bedac/img/s09b_3.webp" alt="Lia Santana, timber scaffold structure at the water's edge">
           </div>
 
-          <!-- 31 · Santana, plan + vertical -->
-          <div class="slide auto" data-cap="Lia Santana — plan and vertical study" data-notes="Close the student work here and move straight to the questions; do not summarize the projects.">
+          <!-- 31 · Santana, plan + vertical — last slide; the closing question is spoken over it -->
+          <div class="slide auto" data-cap="Lia Santana — plan and vertical study" data-notes="Close here. Do not summarize the projects. Then the question to the panel: I did this without tenure, and none of it is legible to a review committee. How are you carrying that? Ask it and stop talking — this is an opening statement for a two-hour panel, not a conclusion.">
             <figure><img src="/talks/bedac/img/s09b_5.webp" alt="Lia Santana, rotated site plan"></figure>
             <figure><img src="/talks/bedac/img/s09b_4.webp" alt="Lia Santana, vertical study"></figure>
-          </div>
-
-          <!-- 32 · Three questions -->
-          <div class="slide" data-cap="" data-notes="Hand the room the argument. Ask all three, then stop talking — this is an opening statement for a two-hour panel, not a conclusion.">
-            <div class="embed">
-              <div class="qs">
-                <div class="qs__k">To the panel</div>
-                <ol>
-                  <li>What do you give up to teach equitably — and is it in your syllabus, or only in your practice?</li>
-                  <li>Who has standing at your site, and did you go with them?</li>
-                  <li>If your students must agree on something before they design, what does that do to how you grade them?</li>
-                </ol>
-              </div>
-            </div>
           </div>
 
         </div>
         <div class="deck-bar">
           <button class="deck-btn" id="deck-prev" aria-label="Previous slide">&lsaquo;</button>
-          <div class="deck-count"><input id="deck-jump" type="text" inputmode="numeric" aria-label="Jump to slide" value="1"><span id="deck-total"> / 20</span></div>
+          <div class="deck-count"><input id="deck-jump" type="text" inputmode="numeric" aria-label="Jump to slide" value="1"><span id="deck-total"> / 19</span></div>
           <button class="deck-btn" id="deck-next" aria-label="Next slide">&rsaquo;</button>
           <div class="deck-meta"><span class="deck-cap" id="deck-cap"></span><span id="deck-credit"></span></div>
           <button class="deck-btn" id="deck-notes-toggle" aria-expanded="false" aria-controls="deck-notes" aria-label="Toggle speaker notes" title="Speaker notes"><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="2" y="2" width="12" height="12" rx="1.5"/><line x1="4.5" y1="5.5" x2="11.5" y2="5.5"/><line x1="4.5" y1="8" x2="11.5" y2="8"/><line x1="4.5" y1="10.5" x2="8.5" y2="10.5"/></svg></button>
@@ -261,7 +236,7 @@
   </div>
 
 <script src="/assets/js/site.js"></script>
-<script src="/teaching/_shared/deck.js"></script>
+<script src="/assets/deck/deck.js"></script>
 <script>
 (function(){
   var stage=document.getElementById('deck-stage');

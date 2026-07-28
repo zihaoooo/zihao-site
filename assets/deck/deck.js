@@ -1,8 +1,10 @@
 /* ============================================================
-   Teaching deck — shared carousel controller (factory standard)
+   Slide deck — shared carousel controller (factory standard)
+   Used by teaching/<course>/lectures/ AND talks/<topic>/ — site-wide, not
+   teaching-only, which is why it lives under /assets/.
    Page-agnostic: reads #deck data attributes.
      <div class="deck" id="deck" data-deck-id="w04" data-deck-title="Week 04">
-   Include AFTER nav.js:  <script src="/teaching/_shared/deck.js"></script>
+   Include AFTER nav.js:  <script src="/assets/deck/deck.js"></script>
    Does NOT include buildChart (timeline) — that stays inline per page.
    ============================================================ */
 // ── slide deck (carousel) ──────────────────────────────────────────────────
@@ -121,7 +123,7 @@
   .pv-stage{aspect-ratio:16/9;width:100%;background:#1a1a1a;border:1px solid #333;border-radius:6px;
     overflow:hidden;display:flex;align-items:center;justify-content:center;}
   .pv-stage img{max-width:100%;max-height:100%;object-fit:contain;}
-  /* mirror of /teaching/_shared/deck.css layout system, scoped + dark */
+  /* mirror of /assets/deck/deck.css layout system, scoped + dark */
   .pv-stage .pv-deck{display:flex;align-items:center;justify-content:center;width:100%;height:100%;}
   .pv-stage .pv-deck.single>img{max-width:100%;max-height:100%;object-fit:contain;}
   .pv-stage .pv-deck.slide--title{flex-direction:column;gap:6px;}

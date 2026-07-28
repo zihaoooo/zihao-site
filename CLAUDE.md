@@ -3,6 +3,9 @@
 Repo layout:
 - _local/ — committed backup; unlinked, never on the live site.
 - assets/css/site.css — shared styles. assets/js/site.js — nav active-state by URL.
+- assets/deck/deck.{css,js} — the slide-deck layout system + carousel controller, shared by
+  teaching/<course>/lectures/ and talks/<topic>/. (Was teaching/_shared/ until talks/ started
+  using it too.) Mirror path changes into ../course-prep.
 - projects/, publications/, index.html (About) — complete.
 - teaching/laar61400/ — factory output of ../course-prep.
 - talks/ — factory output of ../lecture-factory; slide-viewer modules + gallery.
