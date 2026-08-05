@@ -47,6 +47,10 @@
   display:flex;align-items:center;justify-content:center;background:var(--paper);}
 .slide figure img{display:block;width:100%;height:100%;object-fit:cover;} /* default = fill (cover) */
 
+/* ── bleed: one image, edge-to-edge, cover-cropped (stretch overrides .slide's place-items:center,
+   so the lone figure fills the stage instead of shrink-wrapping its image). ── */
+.slide.bleed{place-items:stretch;background:var(--paper);}
+
 /* ── bleed/cover grid family (full-stage cells, image cover-cropped) ──
    Use when images are uniform enough that an edge-to-edge crop reads clean (≈16:9 sets, 2×2). */
 .slide.two-3-3,.slide.grid-4{place-items:stretch;gap:var(--deck-gutter);background:var(--paper);}
