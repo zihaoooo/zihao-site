@@ -24,6 +24,8 @@
   const notesToggle = document.getElementById('deck-notes-toggle');
   const presentBtn = document.getElementById('deck-present');
   let i = 0, hot = false, bc = null, lbOpen = false;
+  // decrypted verbatim notes, per slide (null until unlocked); Presenter View reads this
+  const fullNotes = window.__deckNotesFull = new Array(slides.length).fill(null);
   try { bc = new BroadcastChannel('laar61400-' + DECK_ID + '-deck'); } catch(e){}
   function render(){
     slides.forEach((s,n)=>s.classList.toggle('on', n===i));
@@ -99,6 +101,46 @@
     if(opening) notesEl.removeAttribute('hidden'); else notesEl.setAttribute('hidden','');
     notesToggle.setAttribute('aria-expanded', String(opening));
   });
+
+  // ── verbatim notes, encrypted at rest ──────────────────────────────────
+  // Slides carry two versions: data-notes (public, synthesized, shown in the
+  // page's notes panel) and data-notes-full (verbatim, AES-GCM ciphertext).
+  // Presenter View is the gate: opening it asks for the passphrase, and the
+  // verbatim text lives only in that window. The passphrase never leaves the
+  // browser; see _local/tools/notes-crypto.py to lock/unlock the source file.
+  const ENC = 'enc:v1:';
+  const PASS_KEY = 'deck-notes-pass-' + DECK_ID;
+  const saltB64 = deck.dataset.notesSalt || '';
+  const sealed = slides.map(s => {
+    const v = s.getAttribute('data-notes-full') || '';
+    return v.startsWith(ENC) ? v.slice(ENC.length) : '';
+  });
+  const notesLocked = !!saltB64 && sealed.some(Boolean) && !!(window.crypto && crypto.subtle);
+  if(notesLocked){
+    presentBtn.title = 'Presenter View (passphrase required)';
+  }
+  async function decryptNotes(pass){
+    const bytes = s => Uint8Array.from(atob(s), c => c.charCodeAt(0));
+    try {
+      const base = await crypto.subtle.importKey('raw', new TextEncoder().encode(pass), 'PBKDF2', false, ['deriveKey']);
+      const key = await crypto.subtle.deriveKey(
+        { name:'PBKDF2', salt:bytes(saltB64), hash:'SHA-256',
+          iterations: parseInt(deck.dataset.notesIter, 10) || 210000 },
+        base, { name:'AES-GCM', length:256 }, false, ['decrypt']);
+      const dec = new TextDecoder();
+      for(let n = 0; n < sealed.length; n++){
+        if(!sealed[n]) continue;
+        const raw = bytes(sealed[n]);
+        fullNotes[n] = dec.decode(await crypto.subtle.decrypt(
+          { name:'AES-GCM', iv: raw.slice(0,12) }, key, raw.slice(12)));
+      }
+      return true;
+    } catch(e){
+      fullNotes.fill(null);
+      localStorage.removeItem(PASS_KEY);
+      return false;
+    }
+  }
 
   // ── presenter view (synced second window) ──
   if(bc){
@@ -226,9 +268,10 @@
 (function(){
   var op = window.opener;
   if(!op){ document.getElementById('pvNotes').textContent = 'Opener window lost — close this and reopen Presenter from the page.'; return; }
-  var slides = [].slice.call(op.document.querySelectorAll('#deck-stage .slide')).map(function(s){
+  var vb = op.__deckNotesFull || [];   // verbatim notes, if the page has been unlocked
+  var slides = [].slice.call(op.document.querySelectorAll('#deck-stage .slide')).map(function(s,ix){
     return { era:s.getAttribute('data-era')||'', cap:s.getAttribute('data-cap')||'',
-      notes:(s.getAttribute('data-notes')||'').trim(),
+      notes:(vb[ix] || s.getAttribute('data-notes')||'').trim(),
       html: s.querySelector('iframe') ? '<div class="pv-vid">&#9654; video slide</div>'
         : '<div class="pv-deck '+s.className.replace(/\bslide\b/g,'').replace(/\bon\b/g,'').trim()+'">'+s.innerHTML+'</div>' };
   });
@@ -261,9 +304,20 @@
   paint();
 })();
 <\/script></body></html>`;
-  presentBtn.addEventListener('click', ()=>{
+  presentBtn.addEventListener('click', async ()=>{
+    // prompt() is synchronous, so the click gesture survives it and the popup opens;
+    // decryption is awaited only after the window exists.
+    const needs = notesLocked && !fullNotes.some(Boolean);
+    const pass = needs ? (localStorage.getItem(PASS_KEY) || prompt('Passphrase for speaker notes:')) : null;
+    if(needs && !pass) return;
     const w = window.open('', 'laar61400-' + DECK_ID + '-presenter', 'width=940,height=720');
     if(!w){ alert('Popup blocked — allow popups for this site to open Presenter view.'); return; }
+    if(needs && !await decryptNotes(pass)){
+      w.close();
+      alert('Wrong passphrase.');
+      return;
+    }
+    if(needs) localStorage.setItem(PASS_KEY, pass);
     w.document.open(); w.document.write(PRESENTER_DOC); w.document.close();
   });
 

@@ -219,11 +219,21 @@
   color:var(--mute);margin-top:6px;}
 .deck-fs{margin-left:auto;flex:0 0 auto;font-size:14px;}
 
-/* ── narrow screens: caption drops to its own full-width line below the controls ── */
+/* ── narrow screens: caption drops to its own full-width line below the controls ──
+   Phone-sized controls and reading-sized notes: on a phone this page doubles as the
+   speaker-note view, held at arm's length while presenting, so hits are thumb-sized
+   (44px) and the notes are set for glancing rather than for reading a web page. */
 @media (max-width:560px){
-  .deck-bar{flex-wrap:wrap;}
+  .deck-bar{flex-wrap:wrap;gap:6px;}
   .deck-meta{order:1;flex-basis:100%;margin-top:8px;min-width:0;}
-  .deck-cap{font-size:12.5px;}
+  .deck-cap{font-size:13px;}
+  .deck-btn{width:44px;height:44px;font-size:19px;border-radius:10px;}
+  .deck-btn svg{width:19px;height:19px;}
+  /* the count's flex-grow does the right-pushing here; margin-left:auto would force a wrap */
+  .deck-fs{font-size:17px;margin-left:0;}
+  .deck-btn--text{width:auto;padding:0 14px;font-size:12px;}
+  /* five 44px hits + the counter must clear one row at 320px; keep the counter from growing */
+  .deck-count{font-size:15px;flex:0 0 auto;min-width:56px;}
 }
 
 /* ── fullscreen present mode ── */
@@ -253,6 +263,12 @@
 .deck-notes li{margin:0 0 4px;}
 .deck-notes li:last-child{margin-bottom:0;}
 .deck-notes b{font-weight:600;color:#2b2823;}
+/* phone: notes set for glancing while presenting (must follow the base rules above) */
+@media (max-width:560px){
+  .deck-notes{margin-top:12px;padding:14px 16px;font-size:17px;line-height:1.62;}
+  .deck-notes ul{padding-left:1.15em;}
+  .deck-notes li{margin:0 0 10px;}
+}
 /* never project notes / second-window controls */
 .deck:fullscreen .deck-notes,
 .deck:fullscreen #deck-notes-toggle,
