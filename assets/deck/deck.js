@@ -152,6 +152,7 @@
     };
   }
   const PRESENTER_DOC = `<!DOCTYPE html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Presenter — ${DECK_TITLE}</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;700&display=swap');
@@ -242,11 +243,32 @@
   .pv-notes b{color:#fff;font-weight:600;}
   .pv-bar{display:flex;align-items:center;gap:12px;padding:10px 16px;border-top:1px solid #222;background:#141414;}
   .pv-btn{appearance:none;background:#1f1f1f;border:1px solid #3a3a3a;color:#e8e3da;border-radius:7px;
-    padding:7px 13px;font-size:13px;cursor:pointer;}
+    padding:7px 13px;font-size:13px;cursor:pointer;white-space:nowrap;}
   .pv-btn:hover{background:#292929;}
   .pv-count{font-family:'DM Mono',monospace;font-size:13px;color:#b8b0a6;}
   .pv-mini{font-family:'DM Mono',monospace;font-size:10px;color:#6f6a62;}
   .pv-timer{font-family:'DM Mono',monospace;font-size:16px;color:#e8e3da;margin-left:auto;}
+  /* ── phone: this window IS the speaker-note view, held at arm's length ──
+     Drop the Next preview (no room for two 16:9 frames), give the notes the
+     screen, and pin the controls in thumb reach. dvh so the bar clears the
+     browser's own chrome instead of hiding beneath it. */
+  @media (max-width:600px){
+    body{height:100dvh;}
+    .pv-top{padding:8px 10px 2px;}
+    .pv-col + .pv-col{display:none;}
+    .pv-tag{font-size:8px;margin-bottom:3px;}
+    .pv-stage{max-height:26dvh;}
+    .pv-noteswrap{padding:8px 14px 4px;}
+    .pv-cap{font-size:14px;margin:2px 0 6px;}
+    .pv-notes{font-size:22px;line-height:1.5;padding-top:8px;}
+    .pv-notes li{margin:0 0 13px;}
+    .pv-bar{gap:7px;padding:8px 10px calc(8px + env(safe-area-inset-bottom));}
+    .pv-btn{padding:15px 12px;font-size:16px;}
+    .pv-count{margin-left:auto;}
+    .pv-mini{display:none;}
+    .pv-count{font-size:15px;}
+    .pv-timer{font-size:17px;}
+  }
 </style></head><body>
   <div class="pv-top">
     <div class="pv-col"><p class="pv-tag" id="pvCurTag">Current</p><div class="pv-stage" id="pvCur"></div></div>
