@@ -149,6 +149,16 @@ body { font-family: 'DM Sans', sans-serif; background: #fff; color: #1a1a1a; }
   font-family: 'DM Mono', monospace; font-size: 10px; color: #aaa;
   white-space: nowrap;
 }
+.schedule-table .week-date {
+  display: inline-block; margin-top: 3px;
+  font-family: 'DM Mono', monospace; font-size: 9px; color: #888;
+  letter-spacing: 0.02em; white-space: nowrap;
+}
+.schedule-table .no-class-row td {
+  background: #faf9f7; color: #888; font-size: 11px; font-style: italic;
+}
+.schedule-table .no-class-row .week-num,
+.schedule-table .no-class-row .week-date { font-style: normal; }
 .schedule-table .week-topic { font-weight: 600; color: #1a1a1a; }
 .schedule-table .lecture-link {
   display: inline-block; margin-top: 6px;
