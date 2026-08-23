@@ -143,12 +143,6 @@
   letter-spacing: 0.1em;
   color: #b05a5a;
 }
-.wf-due-week {
-  font-size: 9px;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: #b05a5a;
-}
 
 /* ── Pipeline strip ── */
 .wf-pipeline {
