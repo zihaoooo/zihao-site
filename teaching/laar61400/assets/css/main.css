@@ -367,3 +367,23 @@ body { font-family: 'DM Sans', sans-serif; background: #fff; color: #1a1a1a; }
   font-family:"DM Mono",ui-monospace,monospace;font-size:9px;font-weight:700;
   text-transform:uppercase;letter-spacing:.12em;color:#aaa;
   display:block;border-top:1px solid #e0e0e0;padding-top:20px;margin:32px 0 14px;}
+
+/* Jump-to-schedule button (syllabus header) */
+.schedule-jump {
+  display: inline-block; margin-top: 14px;
+  font-family: 'DM Mono', monospace; font-size: 10px;
+  letter-spacing: 0.06em; text-transform: uppercase;
+  color: #801010; text-decoration: none;
+  border: 1px solid #d8c9c9; border-radius: 4px;
+  padding: 6px 12px; background: #fff;
+}
+.schedule-jump:hover { background: #801010; color: #fff; border-color: #801010; }
+
+/* Workflow topic links in the weekly schedule */
+.schedule-table .wf-link {
+  color: #801010; text-decoration: none;
+  border-bottom: 1px dotted #c09090;
+}
+.schedule-table .wf-link:hover { border-bottom-style: solid; }
+html { scroll-behavior: smooth; }
+#weekly-schedule { scroll-margin-top: 24px; }
