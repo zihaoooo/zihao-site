@@ -73,9 +73,21 @@ N/A
 
 ### Books and Book Chapters
 
-**2025**
+**Under Contract**
 
-(Forthcoming) Macwillie, Elizabeth, Shawn Rickenbacker, and **Zihao Zhang**. 2025. "Strengthening Local Ecologies of Care Through Art and Activism in Harlem, NYC." In *The Activist University: Models for Building Community Health, Justice, and Climate Action*, edited by Jean Yang and Claire Latane. Routledge.
+**Zhang, Zihao**, and Shurui Zhang. *Solarpunk Landscapes: Towards Radical Sustainability.* New York: Routledge. Author contract signed February 2, 2026; manuscript due October 1, 2027.
+*Co-authored. Contribution: Equal / Lead Author*
+
+**2027**
+
+Macwillie, Elizabeth, Shawn Rickenbacker, and **Zihao Zhang**. 2027. "Strengthening Local Ecologies of Care Through Art and Activism in Harlem, NYC." In *Activism in Design Education: Health, Equity, and Climate Action*, edited by Claire Latane and Jean Yang, 95–108. New York: Routledge. ISBN 9781041118640
+*Editor-reviewed. Co-authored. Contribution: Major*
+
+(Forthcoming) **Zhang, Zihao**. 2027. "Do Machines Care? Posthuman Labor in the Design Professions." In *The Routledge Companion to Artificial Intelligence in Architecture*, 2nd ed., edited by Imdat As. New York: Routledge.
+*Editor-reviewed. Solo-authored.*
+
+(Forthcoming) **Zhang, Zihao**, and Shurui Zhang. 2027. "Escaping Western Gaze: Chinese Diasporic Urbanism in Flushing." In *Becoming Chinatown: An Anthology of Interiors*, edited by Leyuan Li and Tairan An. Berlin: Jovis.
+*Editor-reviewed. Co-authored. Contribution: Major / Lead Author*
 
 **2024**
 
@@ -156,6 +168,11 @@ Mondschein, Andrew, **Zihao Zhang**, and Mona El Khafif. 2019. "Community-Center
 
 **Zhang, Zihao**. 2017. "Human Factors in Responsive Landscapes: Importance and Method." *Journal of Digital Landscape Architecture* 2–2017: 10–17. https://doi.org/10.14627/537629002
 *Double-blind peer-reviewed*
+
+### Manuscripts Under Review
+
+**Zhang, Zihao**. "Jugaad Epistemology: Community Sensing and the Knowledge That Lives in the Gap." *Landscape Architecture Frontiers*. Special Issue: Sustainable Landscape Architecture Supported by Pioneering Sensing Technology. Manuscript ID LAF-2026-0030. Submitted 2026; under review.
+*Double-blind peer review. Solo-authored.*
 
 ### Referred Conference Proceedings
 

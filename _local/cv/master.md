@@ -76,13 +76,16 @@
 
 | Year | Citation |
 |------|----------|
+| Under contract | **Zhang, Zihao**, and Shurui Zhang. *Solarpunk Landscapes: Towards Radical Sustainability.* New York: Routledge. Contract signed February 2, 2026; manuscript due October 1, 2027. ISBN 9781041338864 (hb), 9781041338833 (pb), 9781003790051 (eb). |
 | 2024 | **Zhang, Zihao.** *Cybernetics and the Constructed Environment: Design Between Nature and Technology.* New York: Routledge, 2024. https://doi.org/10.4324/9781003320852 |
 
 ### Book Chapters
 
 | Year | Citation | Review | Contribution |
 |------|----------|--------|--------------|
-| 2025 (forthcoming) | Macwillie, Elizabeth, Shawn Rickenbacker, and **Zihao Zhang**. "Strengthening Local Ecologies of Care Through Art and Activism in Harlem, NYC." In *The Activist University: Models for Building Community Health, Justice, and Climate Action*, edited by Jean Yang and Claire Latane. Routledge. | — | Major |
+| 2027 (forthcoming) | **Zhang, Zihao**. "Do Machines Care? Posthuman Labor in the Design Professions." In *The Routledge Companion to Artificial Intelligence in Architecture*, 2nd ed., edited by Imdat As. New York: Routledge. | Editor-reviewed | Solo |
+| 2027 (forthcoming) | **Zhang, Zihao**, and Shurui Zhang. "Escaping Western Gaze: Chinese Diasporic Urbanism in Flushing." In *Becoming Chinatown: An Anthology of Interiors*, edited by Leyuan Li and Tairan An. Berlin: Jovis. | Editor-reviewed | Major / Lead Author |
+| 2027 | Macwillie, Elizabeth, Shawn Rickenbacker, and **Zihao Zhang**. "Strengthening Local Ecologies of Care Through Art and Activism in Harlem, NYC." In *Activism in Design Education: Health, Equity, and Climate Action*, edited by Claire Latane and Jean Yang, 95–108. New York: Routledge, 2027. ISBN 9781041118640 | Editor-reviewed | Major |
 | 2024 | **Zhang, Zihao**, and Shurui Zhang. "Before the After: Representing Climate Actions in the Age of AI." In *Representing Landscapes: Visualizing Climate Action*, edited by Nadia Amoroso. Routledge. https://doi.org/10.4324/9781003404798 | Peer-reviewed | Major, co-authored |
 | 2021 | Cantrell, Bradley, **Zihao Zhang**, and Xun Liu. "Artificial intelligence and machine learning in landscape architecture." In *The Routledge Companion to Artificial Intelligence in Architecture*, edited by Imdat As & Prithwish Basu. Taylor & Francis Group. DOI: 10.4324/9780367824259-15 | Peer-reviewed | Equal, co-authored |
 | 2019 | Gorman, Michael E., **Zihao Zhang**, Kristina D. Fauss, and Benjamin D. Bowes. "Collaboration Among Apparently Incommensurable Expertises." In *The Third Wave in Science and Technology Studies*, edited by Caudill et al., 255–72. Springer. https://doi.org/10.1007/978-3-030-14335-0_14 | Peer-reviewed | Major, co-authored |
@@ -106,6 +109,12 @@
 | 2018 | **Zhang, Zihao**, Andrew Mondschein, and Mona El Khafif. "Human-Tool Assemblage: Designers in the Big Data World." *Journal of Digital Landscape Architecture* 2–2017 (May): 397–405. https://doi.org/10.14627/537642042 | Double-blind peer-reviewed | Major / Lead Author |
 | 2018 | Mondschein, Andrew, **Zihao Zhang**, and Mona El Khafif. "Community-Centered Urban Sensing: Smart Engaged Planning and Design in a Dysfunctional Urban Context." *International Journal of E-Planning Research* 8 (4): 1–16. https://doi.org/10.4018/IJEPR.2019100101 | Double-blind peer-reviewed | Second Author |
 | 2017 | **Zhang, Zihao**. "Human Factors in Responsive Landscapes: Importance and Method." *Journal of Digital Landscape Architecture* 2–2017: 10–17. https://doi.org/10.14627/537629002 | Double-blind peer-reviewed | Solo |
+
+### Manuscripts Under Review
+
+| Year | Citation | Status |
+|------|----------|--------|
+| 2026 | **Zhang, Zihao**. "Jugaad Epistemology: Community Sensing and the Knowledge That Lives in the Gap." *Landscape Architecture Frontiers*. Special Issue: Sustainable Landscape Architecture Supported by Pioneering Sensing Technology. Manuscript ID LAF-2026-0030. | Under review |
 
 ### Conference Proceedings
 

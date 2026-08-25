@@ -68,11 +68,17 @@ Committee: Michael Lee, Nana Last, Bradley Cantrell, Michael Gorman
 
 ### Books
 
+**(Under contract)** **Zhang, Zihao**, and Shurui Zhang. *Solarpunk Landscapes: Towards Radical Sustainability.* New York: Routledge.
+
 **Zhang, Zihao.** *Cybernetics and the Constructed Environment: Design Between Nature and Technology.* New York: Routledge, 2024. https://doi.org/10.4324/9781003320852
 
 ### Book Chapters
 
-**(Forthcoming)** Macwillie, Elizabeth, Shawn Rickenbacker, and **Zihao Zhang**. "Strengthening Local Ecologies of Care Through Art and Activism in Harlem, NYC." In *The Activist University*, edited by Jean Yang and Claire Latane. Routledge, 2025.
+**(Forthcoming)** **Zhang, Zihao**. "Do Machines Care? Posthuman Labor in the Design Professions." In *The Routledge Companion to Artificial Intelligence in Architecture*, 2nd ed., edited by Imdat As. New York: Routledge, 2027.
+
+**(Forthcoming)** **Zhang, Zihao**, and Shurui Zhang. "Escaping Western Gaze: Chinese Diasporic Urbanism in Flushing." In *Becoming Chinatown: An Anthology of Interiors*, edited by Leyuan Li and Tairan An. Berlin: Jovis, 2027.
+
+Macwillie, Elizabeth, Shawn Rickenbacker, and **Zihao Zhang**. "Strengthening Local Ecologies of Care Through Art and Activism in Harlem, NYC." In *Activism in Design Education: Health, Equity, and Climate Action*, edited by Claire Latane and Jean Yang, 95–108. New York: Routledge, 2027.
 
 **Zhang, Zihao**, and Shurui Zhang. "Before the After: Representing Climate Actions in the Age of AI." In *Representing Landscapes: Visualizing Climate Action*, edited by Nadia Amoroso. Routledge, 2024. https://doi.org/10.4324/9781003404798 *(Peer-reviewed; Major contribution)*
 
@@ -103,6 +109,10 @@ Cantrell, Bradley, and **Zihao Zhang**. "A Third Intelligence." *Landscape Archi
 **Zhang, Zihao**, Andrew Mondschein, and Mona El Khafif. "Human-Tool Assemblage: Designers in the Big Data World." *Journal of Digital Landscape Architecture* 2 (2018): 397–405. *(Double-blind peer-reviewed; Lead author)*
 
 **Zhang, Zihao**. "Human Factors in Responsive Landscapes: Importance and Method." *Journal of Digital Landscape Architecture* 2 (2017): 10–17. *(Double-blind peer-reviewed)*
+
+### Manuscripts Under Review
+
+**Zhang, Zihao**. "Jugaad Epistemology: Community Sensing and the Knowledge That Lives in the Gap." *Landscape Architecture Frontiers*, special issue on Sustainable Landscape Architecture Supported by Pioneering Sensing Technology. Under review, 2026.
 
 ### Conference Proceedings
 
