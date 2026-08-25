@@ -518,13 +518,16 @@ body {
 .media-full video { width: 100%; display: block; }
 
 .media-2up { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin: 24px 0; }
-.media-2up img { width: 100%; display: block; }
+.media-2up img,
+.media-2up video { width: 100%; display: block; }
 
 .media-3up { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; margin: 24px 0; }
-.media-3up img { width: 100%; display: block; }
+.media-3up img,
+.media-3up video { width: 100%; display: block; }
 
 .media-4up { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 8px; margin: 24px 0; }
-.media-4up img { width: 100%; display: block; }
+.media-4up img,
+.media-4up video { width: 100%; display: block; }
 
 .gallery-row { display: flex; gap: 6px; margin-bottom: 6px; width: 100%; overflow: hidden; }
 .gallery-row img { width: 0; min-width: 0; height: auto; display: block; }

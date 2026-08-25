@@ -23,5 +23,5 @@ Flushing, Seed Bomb, Harlem Lane Activation, East Harlem Polder. Add `<span clas
 - Masonry: `columns: 2; gap: 8px` on `.gallery`; `width: 100%; margin-bottom: 8px` on imgs
 - Lightbox: `<script src="/assets/js/lightbox.js"></script>` before `</body>` — auto-applies to all imgs in `#site-main`
 - Video: `<video autoplay loop muted playsinline style="width:100%;display:block;">` — convert GIFs to MP4 rather than embedding GIF
-- Image optimization: max 1600px wide, JPEG q85; never convert PNG→JPG (Zihao does that); use ffmpeg (Python unavailable)
+- Image optimization: max 1600px wide, JPEG q85 — everything ships as JPEG (flatten PNG alpha onto white); use ffmpeg (Python unavailable)
 - Zoom crop on thumbnails/heroes: wrap img in `<div style="overflow:hidden;aspect-ratio:...">` and apply `transform:scale()` + `transform-origin` + `object-position` on the img inside. Use when default crop shows wrong part of a portrait image.
