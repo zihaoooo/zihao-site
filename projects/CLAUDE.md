@@ -12,7 +12,7 @@
 All shared CSS (hero, meta grid, gallery-row, back link, etc.) is in site.css — no need to redeclare.
 
 ## OSE projects
-Flushing, Seed Bomb, Harlem Schist, East Harlem Polder. Add `<span class="ose-tag">OSE</span>` to `.project-year` on the page and `.project-meta` on the index card.
+Flushing, Seed Bomb, Harlem Lane Activation, East Harlem Polder. Add `<span class="ose-tag">OSE</span>` to `.project-year` on the page and `.project-meta` on the index card.
 
 ## Collaborators
 - Single-column meta grid; people only (not orgs); `<span class="role">` for role text
