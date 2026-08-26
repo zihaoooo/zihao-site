@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Thresholds of Winter &mdash; Zihao Zhang</title>
+  <link rel="stylesheet" href="/assets/css/site.css">
+  <style>
+    #site-main { max-width: 100%; }
+
+    /* ── Visualization ── */
+    .viz { margin: 24px 0 8px; }
+
+    .viz-controls {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 10px 22px;
+      font-size: 11px;
+      color: #555;
+      padding-bottom: 14px;
+      border-bottom: 1px solid #e0e0e0;
+      margin-bottom: 18px;
+    }
+    .viz-controls label { letter-spacing: 0.03em; }
+    .viz-controls select,
+    .viz-controls button {
+      font: inherit;
+      font-size: 11px;
+      color: #333;
+      background: #fff;
+      border: 1px solid #d5d5d5;
+      border-radius: 3px;
+      padding: 4px 7px;
+    }
+    .viz-controls button { cursor: pointer; }
+    .viz-controls button:hover { border-color: #1a1a1a; }
+    .viz-controls button.on { background: #1a1a1a; border-color: #1a1a1a; color: #fff; }
+    .viz-slider { display: flex; align-items: center; gap: 8px; flex: 1 1 300px; min-width: 240px; }
+    .viz-slider input[type=range] { flex: 1; accent-color: #1a1a1a; }
+    #thresholdValue { font-variant-numeric: tabular-nums; min-width: 62px; color: #1a1a1a; }
+    .viz-unit { display: flex; gap: 10px; }
+    .viz-unit label { display: flex; align-items: center; gap: 4px; }
+
+    .viz-panels { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; }
+    .viz-panel-title {
+      font-size: 9px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: #aaa;
+      margin-bottom: 10px;
+      display: block;
+    }
+    .viz-plot { position: relative; width: 100%; }
+    .viz-plot canvas { width: 100%; display: block; }
+
+    .viz-legend {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 10px;
+      color: #aaa;
+      margin-top: 22px;
+    }
+    .viz-legend .ramp {
+      height: 8px;
+      width: 180px;
+      border: 1px solid #e0e0e0;
+    }
+
+    .viz-tip {
+      position: fixed;
+      pointer-events: none;
+      background: rgba(20,20,20,0.92);
+      color: #fff;
+      padding: 7px 9px;
+      border-radius: 4px;
+      font-size: 11px;
+      line-height: 1.5;
+      white-space: nowrap;
+      opacity: 0;
+      transition: opacity 0.1s;
+      z-index: 20;
+    }
+
+    .viz-note { font-size: 11px; color: #aaa; line-height: 1.8; margin-top: 14px; max-width: 580px; }
+
+    @media (max-width: 700px) {
+      .viz-panels { grid-template-columns: 1fr; gap: 32px; }
+    }
+  </style>
+</head>
+<body>
+
+  <div id="site-wrap">
+
+    <nav id="site-nav">
+      <a class="site-nav-name" href="/">Zihao Zhang</a>
+      <span class="site-nav-zh">张子豪</span>
+      <p class="site-nav-meta">Associate Professor<br>Landscape Architecture<br>City College of New York</p>
+      <div class="site-nav-links">
+        <details class="site-nav-projects" open>
+          <summary class="active"><a href="/projects/">Projects</a></summary>
+          <div class="site-nav-sublinks">
+            <a class="site-nav-sublink" href="/projects/elua/">ELUA</a>
+            <a class="site-nav-sublink" href="/projects/cyborgbloom/">Cyborg Bloom</a>
+            <a class="site-nav-sublink" href="/projects/flushing/">Flushing</a>
+            <a class="site-nav-sublink" href="/projects/seedbomb/">Seed Bomb</a>
+            <a class="site-nav-sublink" href="/projects/hydroponics/">Hydroponic</a>
+            <a class="site-nav-sublink" href="/projects/harlemlane/">Harlem Lane</a>
+            <a class="site-nav-sublink" href="/projects/hole/">A Hole in the Park</a>
+            <a class="site-nav-sublink" href="/projects/thresholds/">Thresholds of Winter</a>
+            <a class="site-nav-sublink" href="/projects/eastharlem/">East Harlem Polder</a>
+            <a class="site-nav-sublink" href="/projects/shroomdrone/">Shroom Drone</a>
+            <a class="site-nav-sublink" href="/projects/othernatures/">Other Natures</a>
+            <a class="site-nav-sublink" href="/projects/sensing/">Urban Sensing</a>
+            <a class="site-nav-sublink" href="/projects/ghagent/">GH Agent</a>
+          </div>
+        </details>
+        <a class="site-nav-link" href="/publications/">Publications</a>
+        <a class="site-nav-link" href="/teaching/">Teaching</a>
+        <a class="site-nav-link" href="/talks/">Talks</a>
+      </div>
+    </nav>
+
+    <main id="site-main">
+
+      <a class="project-back" href="/projects/">&larr; Projects</a>
+
+      <!-- Hero -->
+      <img class="project-hero" src="/assets/img/projects/Thresholds/hero.jpg" alt="A heatmap of daily maximum temperatures in Central Park, one row per year from 1870 to 2025, blue in winter and red through summer">
+
+      <!-- Title -->
+      <h1 class="project-title">Thresholds of Winter</h1>
+      <p class="project-year">2025 &middot; Data Visualization</p>
+
+      <!-- Meta -->
+      <div class="project-meta-grid" style="grid-template-columns: 1fr;">
+        <div>
+          <span class="project-meta-label">Part of</span>
+          <ul class="project-meta-list">
+            <li><a href="https://resiliencelighthouse.cargo.site/thresholds-of-winter">Urban Resilience Lighthouse</a> <span class="role">&mdash; reading cold, heat, and dormancy in Central Park</span></li>
+          </ul>
+        </div>
+        <div style="margin-top:20px">
+          <span class="project-meta-label">Support</span>
+          <ul class="project-meta-list">
+            <li>U.S. Department of Energy <span class="role">&mdash; research grant</span></li>
+          </ul>
+        </div>
+        <div style="margin-top:20px">
+          <span class="project-meta-label">Data</span>
+          <ul class="project-meta-list">
+            <li>NOAA daily records, Central Park station <span class="role">&mdash; 1870&ndash;2025, daily minimum and maximum temperature</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Description -->
+      <div class="project-description">
+        <p>This visualization maps daily minimum and maximum temperatures in Central Park across more than a century, rendering climate as a dense field of seasonal repetition and disruption. Each row is a year, each column a day; read together they reveal long-term patterns that are otherwise difficult to perceive: persistent cold, extreme heat, and shifting thresholds.</p>
+        <p>An interactive filter isolates days above or below a selected temperature limit &mdash; winter chill, hot nights, heatwaves &mdash; so the picture holds thresholds and duration rather than averages. Those are the conditions that govern plant dormancy, urban ecology, and lived experience in New York City: a chilling requirement met or missed, a run of nights that never cools.</p>
+        <p>The spring arrival line estimates when spring-like conditions first appear each year, taken as the first day the daily maximum reaches or exceeds 60&deg;F (15.6&deg;C). The shift toward earlier emergence appears as the line drifting leftward through time.</p>
+      </div>
+
+      <hr class="site-rule">
+
+      <!-- Visualization -->
+      <span class="project-section-label">Explore the Visualization</span>
+
+      <div class="viz">
+        <div class="viz-controls">
+          <div class="viz-unit" id="unitToggle">
+            <label><input type="radio" name="unit" value="F" checked> &deg;F</label>
+            <label><input type="radio" name="unit" value="C"> &deg;C</label>
+          </div>
+
+          <label>Filter by
+            <select id="metricSelect">
+              <option value="tmax" selected>Max</option>
+              <option value="tmin">Min</option>
+            </select>
+          </label>
+
+          <label>Condition
+            <select id="opSelect">
+              <option value="gte" selected>&ge; threshold</option>
+              <option value="lte">&le; threshold</option>
+            </select>
+          </label>
+
+          <div class="viz-slider">
+            <label for="thresholdSlider">Threshold</label>
+            <input id="thresholdSlider" type="range" step="0.5">
+            <span id="thresholdValue"></span>
+          </div>
+
+          <button id="springBtn">Spring arrival line</button>
+          <button id="resetBtn">Reset</button>
+        </div>
+
+        <div class="viz-panels">
+          <div>
+            <span class="viz-panel-title">Minimum temperature</span>
+            <div class="viz-plot"><canvas id="chart-min"></canvas></div>
+          </div>
+          <div>
+            <span class="viz-panel-title">Maximum temperature</span>
+            <div class="viz-plot"><canvas id="chart-max"></canvas></div>
+          </div>
+        </div>
+
+        <div class="viz-legend">
+          <span id="legendLow"></span>
+          <span class="ramp" id="legendRamp"></span>
+          <span id="legendHigh"></span>
+          <span style="margin-left:14px;">&#9633; filtered out</span>
+        </div>
+
+        <p class="viz-note">Dashed lines mark the equinoxes, solid lines the solstices. Hover any cell for that day&rsquo;s record.</p>
+      </div>
+
+      <div class="viz-tip" id="vizTip"></div>
+
+    </main>
+  </div>
+
+  <script>
+  (function () {
+    var DATA_URL = 'central-park-daily.json';
+    var DAYS = 366;
+    var GRAY = '#dcdcdc';
+    var SPRING_F = 60;
+
+    var MARGIN = { top: 16, right: 4, bottom: 20, left: 30 };
+    var MARKERS = [
+      { day: 79,  label: 'Mar', dash: true },
+      { day: 172, label: 'Jun', dash: false },
+      { day: 265, label: 'Sep', dash: true },
+      { day: 355, label: 'Dec', dash: false }
+    ];
+
+    // RdBu control points, reversed so hot reads red and cold reads blue.
+    var RAMP = [
+      [103,0,31],[178,24,43],[214,96,77],[244,165,130],[253,219,199],
+      [247,247,247],[209,229,240],[146,197,222],[67,147,195],[33,102,172],[5,48,97]
+    ];
+
+    var state = {
+      unit: 'F', metric: 'tmax', op: 'gte', thresholdF: 95, spring: false
+    };
+    var data = null, years = [], lo = 0, hi = 1, springLine = [], panels = [];
+    var tip = document.getElementById('vizTip');
+
+    function color(v) {
+      var t = 1 - (v - lo) / (hi - lo);
+      t = t < 0 ? 0 : t > 1 ? 1 : t;
+      var s = t * (RAMP.length - 1), i = Math.min(RAMP.length - 2, Math.floor(s)), f = s - i;
+      var a = RAMP[i], b = RAMP[i + 1];
+      return 'rgb(' + Math.round(a[0] + (b[0] - a[0]) * f) + ',' +
+                      Math.round(a[1] + (b[1] - a[1]) * f) + ',' +
+                      Math.round(a[2] + (b[2] - a[2]) * f) + ')';
+    }
+
+    function FtoC(f) { return (f - 32) * 5 / 9; }
+    function CtoF(c) { return c * 9 / 5 + 32; }
+    function toDisplay(f) { return state.unit === 'F' ? f : FtoC(f); }
+    function fromDisplay(v) { return state.unit === 'F' ? v : CtoF(v); }
+    function fmt(f) { return toDisplay(f).toFixed(1) + ' °' + state.unit; }
+
+    function dateLabel(year, doy) {
+      var d = new Date(Date.UTC(year, 0, 1));
+      d.setUTCDate(doy);
+      return d.toLocaleDateString('en-US', { timeZone: 'UTC', month: 'short', day: 'numeric', year: 'numeric' });
+    }
+
+    function passes(year, doy) {
+      var v = data[state.metric][year][doy];
+      if (v === null) return false;
+      return state.op === 'gte' ? v >= state.thresholdF : v <= state.thresholdF;
+    }
+
+    function draw(panel) {
+      var cv = panel.canvas, box = cv.parentNode;
+      var cssW = box.clientWidth;
+      if (!cssW) return;
+      var rows = years.length;
+      var cellH = Math.max(2, Math.round(Math.min(4, Math.max(2, cssW / 150))));
+      var gridH = rows * cellH;
+      var cssH = MARGIN.top + gridH + MARGIN.bottom;
+      var dpr = window.devicePixelRatio || 1;
+
+      cv.width = Math.round(cssW * dpr);
+      cv.height = Math.round(cssH * dpr);
+      cv.style.height = cssH + 'px';
+
+      var ctx = cv.getContext('2d');
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      ctx.clearRect(0, 0, cssW, cssH);
+
+      var gridW = Math.max(120, cssW - MARGIN.left - MARGIN.right);
+      var cellW = gridW / DAYS;
+      panel.geom = { cellW: cellW, cellH: cellH, gridW: gridW, gridH: gridH };
+
+      var vals = data[panel.key];
+      for (var r = 0; r < rows; r++) {
+        var row = vals[r], y = MARGIN.top + r * cellH;
+        for (var c = 0; c < DAYS; c++) {
+          var v = row[c];
+          if (v === null) continue;
+          ctx.fillStyle = passes(r, c) ? color(v) : GRAY;
+          ctx.fillRect(MARGIN.left + c * cellW, y, Math.ceil(cellW) + 0.5, cellH);
+        }
+      }
+
+      // Year axis
+      ctx.fillStyle = '#aaa';
+      ctx.font = '9px system-ui, sans-serif';
+      ctx.textAlign = 'right';
+      ctx.textBaseline = 'middle';
+      for (var i = 0; i < rows; i++) {
+        if (years[i] % 20 !== 0) continue;
+        ctx.fillText(years[i], MARGIN.left - 6, MARGIN.top + i * cellH + cellH / 2);
+      }
+
+      // Season markers
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'alphabetic';
+      MARKERS.forEach(function (m) {
+        var x = MARGIN.left + (m.day - 0.5) * cellW;
+        ctx.save();
+        ctx.strokeStyle = m.dash ? 'rgba(0,0,0,0.55)' : 'rgba(0,0,0,0.8)';
+        ctx.lineWidth = 1;
+        if (m.dash) ctx.setLineDash([3, 3]);
+        ctx.beginPath();
+        ctx.moveTo(x, MARGIN.top);
+        ctx.lineTo(x, MARGIN.top + gridH);
+        ctx.stroke();
+        ctx.restore();
+        ctx.fillStyle = '#aaa';
+        ctx.fillText(m.label, x, MARGIN.top - 5);
+      });
+
+      // Day axis
+      ctx.fillStyle = '#aaa';
+      ctx.textBaseline = 'top';
+      [1, 92, 183, 274, 366].forEach(function (d) {
+        ctx.fillText(d, MARGIN.left + (d - 0.5) * cellW, MARGIN.top + gridH + 6);
+      });
+
+      // Spring arrival line
+      if (state.spring) {
+        ctx.strokeStyle = '#111';
+        ctx.lineWidth = 1.5;
+        ctx.lineJoin = 'round';
+        ctx.beginPath();
+        springLine.forEach(function (p, i) {
+          var x = MARGIN.left + (p.doy - 0.5) * cellW;
+          var y = MARGIN.top + p.row * cellH + cellH / 2;
+          if (i === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
+        });
+        ctx.stroke();
+      }
+    }
+
+    function drawAll() { panels.forEach(draw); }
+
+    function hit(panel, ev) {
+      var g = panel.geom;
+      if (!g) return null;
+      var rect = panel.canvas.getBoundingClientRect();
+      var x = ev.clientX - rect.left - MARGIN.left;
+      var y = ev.clientY - rect.top - MARGIN.top;
+      if (x < 0 || y < 0 || x >= g.gridW || y >= g.gridH) return null;
+      var c = Math.min(DAYS - 1, Math.floor(x / g.cellW));
+      var r = Math.min(years.length - 1, Math.floor(y / g.cellH));
+      if (data.tmin[r][c] === null) return null;
+      return { row: r, doy: c };
+    }
+
+    function bindTip(panel) {
+      panel.canvas.addEventListener('mousemove', function (ev) {
+        var h = hit(panel, ev);
+        if (!h) { tip.style.opacity = 0; return; }
+        var year = years[h.row];
+        tip.innerHTML =
+          '<strong>' + dateLabel(year, h.doy + 1) + '</strong><br>' +
+          'Min ' + fmt(data.tmin[h.row][h.doy]) + '<br>' +
+          'Max ' + fmt(data.tmax[h.row][h.doy]);
+        tip.style.opacity = 1;
+        var tw = tip.offsetWidth, th = tip.offsetHeight;
+        var left = Math.min(ev.clientX + 12, window.innerWidth - tw - 8);
+        var top = ev.clientY + 14 + th > window.innerHeight ? ev.clientY - th - 12 : ev.clientY + 14;
+        tip.style.left = left + 'px';
+        tip.style.top = top + 'px';
+      });
+      panel.canvas.addEventListener('mouseleave', function () { tip.style.opacity = 0; });
+    }
+
+    function syncSlider() {
+      var s = document.getElementById('thresholdSlider');
+      var vals = [];
+      data[state.metric].forEach(function (row) {
+        for (var i = 0; i < DAYS; i++) if (row[i] !== null) vals.push(row[i]);
+      });
+      vals.sort(function (a, b) { return a - b; });
+      var minF = vals[0], maxF = vals[vals.length - 1];
+      s.min = toDisplay(minF).toFixed(1);
+      s.max = toDisplay(maxF).toFixed(1);
+      return vals;
+    }
+
+    function defaultThreshold() {
+      var vals = syncSlider();
+      var q = state.op === 'lte' ? 0.10 : 0.90;
+      state.thresholdF = vals[Math.floor(q * (vals.length - 1))];
+      document.getElementById('thresholdSlider').value = toDisplay(state.thresholdF);
+      label();
+    }
+
+    function label() {
+      document.getElementById('thresholdValue').textContent = fmt(state.thresholdF);
+    }
+
+    function legend() {
+      var stops = [];
+      for (var i = 0; i <= 10; i++) stops.push(color(lo + (hi - lo) * (i / 10)));
+      document.getElementById('legendRamp').style.background =
+        'linear-gradient(to right, ' + stops.join(',') + ')';
+      document.getElementById('legendLow').textContent = fmt(lo);
+      document.getElementById('legendHigh').textContent = fmt(hi);
+    }
+
+    function controls() {
+      document.querySelectorAll('#unitToggle input').forEach(function (input) {
+        input.addEventListener('change', function (e) {
+          state.unit = e.target.value;
+          syncSlider();
+          document.getElementById('thresholdSlider').value = toDisplay(state.thresholdF);
+          label(); legend();
+        });
+      });
+
+      document.getElementById('metricSelect').addEventListener('change', function (e) {
+        state.metric = e.target.value;
+        defaultThreshold();
+        drawAll();
+      });
+
+      document.getElementById('opSelect').addEventListener('change', function (e) {
+        state.op = e.target.value;
+        drawAll();
+      });
+
+      document.getElementById('thresholdSlider').addEventListener('input', function (e) {
+        state.thresholdF = fromDisplay(parseFloat(e.target.value));
+        label();
+        drawAll();
+      });
+
+      document.getElementById('springBtn').addEventListener('click', function () {
+        state.spring = !state.spring;
+        this.classList.toggle('on', state.spring);
+        drawAll();
+      });
+
+      document.getElementById('resetBtn').addEventListener('click', function () {
+        state.metric = 'tmax';
+        state.op = 'gte';
+        document.getElementById('metricSelect').value = 'tmax';
+        document.getElementById('opSelect').value = 'gte';
+        defaultThreshold();
+        drawAll();
+      });
+    }
+
+    fetch(DATA_URL).then(function (r) { return r.json(); }).then(function (json) {
+      data = json;
+      years = [];
+      for (var y = json.startYear; y <= json.endYear; y++) years.push(y);
+
+      lo = Infinity; hi = -Infinity;
+      ['tmin', 'tmax'].forEach(function (k) {
+        json[k].forEach(function (row) {
+          for (var i = 0; i < DAYS; i++) {
+            var v = row[i];
+            if (v === null) continue;
+            if (v < lo) lo = v;
+            if (v > hi) hi = v;
+          }
+        });
+      });
+
+      springLine = [];
+      json.tmax.forEach(function (row, r) {
+        for (var i = 0; i < DAYS; i++) {
+          if (row[i] !== null && row[i] >= SPRING_F) { springLine.push({ row: r, doy: i + 1 }); return; }
+        }
+      });
+
+      panels = [
+        { key: 'tmin', canvas: document.getElementById('chart-min') },
+        { key: 'tmax', canvas: document.getElementById('chart-max') }
+      ];
+      panels.forEach(bindTip);
+
+      controls();
+      defaultThreshold();
+      legend();
+      drawAll();
+
+      var t;
+      window.addEventListener('resize', function () {
+        clearTimeout(t);
+        t = setTimeout(drawAll, 120);
+      });
+    });
+  })();
+  </script>
+</body>
+</html>
