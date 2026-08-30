@@ -273,3 +273,53 @@
 .deck:fullscreen .deck-notes,
 .deck:fullscreen #deck-notes-toggle,
 .deck:fullscreen #deck-present{display:none;}
+
+/* -- thumbnail navigator (slide sorter) -------------------------------------
+   A vertical, scrollable strip of live slide thumbnails that opens OUTSIDE the
+   stage, in the page margin to its right: the stage keeps its full size and the
+   slide is never covered. JS wraps the stage in .deck-row (the positioning box),
+   sizes the strip to the margin that is actually free, and nudges the row left
+   only when the right margin alone is too narrow. Toggled by the grid button in
+   the control bar (and by `t`). Thumbs are cloned slide DOM scaled with a
+   transform, so they stay in sync with the real layout -- no exported images. */
+.deck-row{position:relative;width:100%;transition:transform .22s ease;}
+.deck-thumbs{--thumbW:232px;
+  position:absolute;top:0;left:100%;height:100%;width:var(--thumbW);
+  margin-left:10px;box-sizing:border-box;overflow:hidden;z-index:5;
+  background:var(--paper);border:1px solid var(--line);border-radius:3px;
+  opacity:0;visibility:hidden;transform:translateX(-14px);
+  transition:opacity .18s ease,transform .22s ease,visibility 0s linear .22s;}
+.deck-thumbs.on{opacity:1;visibility:visible;transform:none;transition-delay:0s;}
+.deck-thumbs-inner{position:absolute;inset:0;display:flex;flex-direction:column;}
+.deck-thumbs-head{flex:0 0 auto;display:flex;align-items:center;gap:8px;
+  padding:9px 10px;border-bottom:1px solid var(--line);}
+.deck-thumbs-title{font-family:"DM Mono",ui-monospace,monospace;font-size:9.5px;
+  letter-spacing:.16em;text-transform:uppercase;color:var(--mute);}
+.deck-thumbs-close{margin-left:auto;appearance:none;border:0;background:transparent;
+  color:#4a463f;font-size:15px;line-height:1;cursor:pointer;padding:3px 5px;border-radius:5px;}
+.deck-thumbs-close:hover{background:rgba(0,0,0,.06);}
+.deck-thumbs-list{flex:1;min-height:0;overflow-y:auto;overscroll-behavior:contain;
+  padding:8px;display:flex;flex-direction:column;gap:8px;}
+.deck-thumb{flex:0 0 auto;display:flex;gap:7px;align-items:flex-start;
+  background:none;border:0;padding:0;cursor:pointer;text-align:left;font:inherit;}
+.deck-thumb-n{font-family:"DM Mono",ui-monospace,monospace;font-size:9px;color:var(--mute);
+  width:1.9em;flex:0 0 auto;padding-top:3px;text-align:right;}
+.deck-thumb-frame{flex:1;min-width:0;aspect-ratio:16/9;position:relative;overflow:hidden;
+  background:var(--paper);border:1px solid var(--line);border-radius:3px;
+  transition:border-color .12s,box-shadow .12s;}
+.deck-thumb:hover .deck-thumb-frame{border-color:#bbb;}
+.deck-thumb.active .deck-thumb-n{color:var(--accent);}
+.deck-thumb.active .deck-thumb-frame{border-color:var(--accent);
+  box-shadow:0 0 0 1.5px var(--accent);}
+/* the cloned slide is rendered at stage size, then scaled down into the frame */
+.deck-thumb-scale{position:absolute;top:0;left:0;transform-origin:0 0;
+  container-type:inline-size;pointer-events:none;}
+.deck-thumb-scale .slide{position:absolute;inset:0;opacity:1;visibility:visible;transition:none;}
+.deck-thumb-vid{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+  font-family:"DM Mono",ui-monospace,monospace;font-size:11px;color:var(--accent);}
+/* fullscreen: dark to match the stage */
+.deck:fullscreen .deck-thumbs{background:#121212;border-color:#333;}
+.deck:fullscreen .deck-thumbs-head{border-bottom-color:#2a2a2a;}
+.deck:fullscreen .deck-thumbs-close{color:#e4ded5;}
+.deck:fullscreen .deck-thumbs-close:hover{background:rgba(255,255,255,.09);}
+.deck:fullscreen .deck-thumb-frame{border-color:#3a3a3a;}

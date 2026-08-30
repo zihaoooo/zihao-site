@@ -24,6 +24,7 @@
   const notesToggle = document.getElementById('deck-notes-toggle');
   const presentBtn = document.getElementById('deck-present');
   let i = 0, hot = false, bc = null, lbOpen = false;
+  let syncThumbs = null, toggleThumbs = null;   // wired up by the thumbnail navigator, below
   // decrypted verbatim notes, per slide (null until unlocked); Presenter View reads this
   const fullNotes = window.__deckNotesFull = new Array(slides.length).fill(null);
   try { bc = new BroadcastChannel('laar61400-' + DECK_ID + '-deck'); } catch(e){}
@@ -39,6 +40,7 @@
     prev.disabled = (i === 0);
     next.disabled = (i === slides.length - 1);
     if(bc) bc.postMessage({ type:'idx', i:i });
+    if(syncThumbs) syncThumbs();
   }
   function go(d){ i = Math.min(slides.length-1, Math.max(0, i+d)); render(); }
   function goTo(n){ i = Math.min(slides.length-1, Math.max(0, n)); render(); }
@@ -93,6 +95,7 @@
     if(e.key === 'ArrowLeft' || e.key === 'PageUp'){ e.preventDefault(); go(-1); }
     else if(e.key === 'ArrowRight' || e.key === 'PageDown' || e.key === ' '){ e.preventDefault(); go(1); }
     else if(e.key === 'f' || e.key === 'F'){ e.preventDefault(); toggleFS(); }
+    else if((e.key === 't' || e.key === 'T') && toggleThumbs){ e.preventDefault(); toggleThumbs(); }
   });
 
   // ── notes disclosure (collapsed by default) ──
@@ -527,6 +530,150 @@
       if(!im || !stage.contains(im)) return;
       openLightbox(im.currentSrc || im.src, im.alt);
     });
+  }
+
+
+  // -- thumbnail navigator (slide sorter) --------------------------------
+  // A vertical, scrollable strip of live slide thumbnails on the right edge of
+  // the stage: click one to jump. Each thumb is a clone of the slide rendered at
+  // stage size and scaled down with a transform, so it always matches the real
+  // layout -- no exported images to keep in sync. Built on first open (cloning
+  // every slide up front is wasted work on a deck nobody navigates) and rebuilt
+  // whenever the stage changes size, since the clones inherit px-sized layout.
+  if(stage){
+    let _ft;
+    // the panel opens OUTSIDE the stage, in the margin beside it: the row is just
+    // the positioning box, so the stage keeps its own size and is never covered
+    const row = document.createElement('div');
+    row.className = 'deck-row';
+    stage.parentNode.insertBefore(row, stage);
+    row.appendChild(stage);
+    const panel = document.createElement('aside');
+    panel.className = 'deck-thumbs';
+    panel.id = 'deck-thumbs';
+    panel.setAttribute('aria-label', 'Slide thumbnails');
+    panel.innerHTML = '<div class="deck-thumbs-inner"><div class="deck-thumbs-head">'
+      + '<span class="deck-thumbs-title">Slides</span>'
+      + '<button class="deck-thumbs-close" type="button" aria-label="Close thumbnails">&#x2715;</button>'
+      + '</div><div class="deck-thumbs-list" id="deck-thumbs-list"></div></div>';
+    row.appendChild(panel);
+    const list = panel.querySelector('#deck-thumbs-list');
+    let thumbs = [], built = false, builtW = 0;
+
+    // the clones are laid out at full stage size; scale each into its 16:9 frame
+    function fitThumbs(){
+      const SW = stage.clientWidth, SH = stage.clientHeight;
+      if(!SW || !SH) return;
+      list.querySelectorAll('.deck-thumb-scale').forEach(sc=>{
+        const w = sc.parentElement.clientWidth;
+        if(!w) return;
+        sc.style.width = SW + 'px'; sc.style.height = SH + 'px';
+        sc.style.transform = 'scale(' + (w / SW) + ')';
+      });
+    }
+    function build(){
+      const SW = stage.clientWidth, SH = stage.clientHeight;
+      list.innerHTML = '';
+      thumbs = [];
+      slides.forEach((s, n)=>{
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'deck-thumb';
+        btn.setAttribute('aria-label', 'Go to slide ' + (n + 1));
+        const num = document.createElement('span');
+        num.className = 'deck-thumb-n';
+        num.textContent = (n + 1);
+        const frame = document.createElement('div');
+        frame.className = 'deck-thumb-frame';
+        if(s.querySelector('iframe')){
+          // embedded video: show a marker rather than loading a second player
+          frame.innerHTML = '<span class="deck-thumb-vid">&#9654;</span>';
+        } else {
+          const sc = document.createElement('div');
+          sc.className = 'deck-thumb-scale';
+          sc.style.width = SW + 'px'; sc.style.height = SH + 'px';
+          const clone = s.cloneNode(true);
+          clone.classList.remove('on');
+          clone.removeAttribute('id');
+          sc.appendChild(clone);
+          frame.appendChild(sc);
+        }
+        btn.append(num, frame);
+        btn.addEventListener('click', ()=>goTo(n));
+        list.appendChild(btn);
+        thumbs.push(btn);
+      });
+      built = true; builtW = SW;
+      fitThumbs();
+      if(syncThumbs) syncThumbs();
+    }
+    syncThumbs = function(){
+      thumbs.forEach((t, n)=>t.classList.toggle('active', n === i));
+      const cur = thumbs[i];
+      if(cur && panel.classList.contains('on')){
+        const top = cur.offsetTop, bot = top + cur.offsetHeight;
+        if(top < list.scrollTop || bot > list.scrollTop + list.clientHeight){
+          list.scrollTop = top - (list.clientHeight - cur.offsetHeight) / 2;
+        }
+      }
+    };
+    toggleThumbs = function(force){
+      const open = (force === undefined) ? !panel.classList.contains('on') : force;
+      if(open){ place(); if(!built || builtW !== stage.clientWidth) build(); }
+      else { row.style.transform = ''; }
+      panel.classList.toggle('on', open);
+      thumbBtn.setAttribute('aria-expanded', String(open));
+      if(open) syncThumbs();
+    };
+    // Size the strip to the margin that is actually free beside the stage, and shift
+    // the row left only by the shortfall — so the stage never gives up any width and
+    // the strip never runs off the viewport. Measured in JS because the space depends
+    // on the deck's position in the page, which a media query cannot see.
+    function place(){
+      const GAP = 10, MAXW = 232, MINW = 108, EDGE = 8;
+      row.style.transform = '';                       // measure the row where it really sits
+      const r = row.getBoundingClientRect();
+      const vw = document.documentElement.clientWidth;
+      const roomL = Math.max(0, r.left - EDGE), roomR = Math.max(0, vw - r.right - EDGE);
+      // take the right margin first, down to a readable minimum; borrow from the left
+      // (by sliding the row) only for whatever that minimum still lacks
+      const w = Math.round(Math.max(MINW, Math.min(MAXW, roomR - GAP)));
+      panel.style.setProperty('--thumbW', w + 'px');
+      const shift = Math.round(Math.max(0, Math.min(roomL, w + GAP - roomR)));
+      if(shift) row.style.transform = 'translateX(-' + shift + 'px)';
+    }
+    const thumbBtn = document.createElement('button');
+    thumbBtn.type = 'button';
+    thumbBtn.className = 'deck-btn';
+    thumbBtn.id = 'deck-thumbs-toggle';
+    thumbBtn.setAttribute('aria-label', 'Slide thumbnails');
+    thumbBtn.setAttribute('aria-controls', 'deck-thumbs');
+    thumbBtn.setAttribute('aria-expanded', 'false');
+    thumbBtn.title = 'Slide thumbnails (T)';
+    thumbBtn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" '
+      + 'viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5">'
+      + '<rect x="1.6" y="1.6" width="5.4" height="4.4" rx="1"/>'
+      + '<rect x="1.6" y="10" width="5.4" height="4.4" rx="1"/>'
+      + '<path d="M9.6 3.2h4.8M9.6 5.6h3.2M9.6 11.6h4.8M9.6 14h3.2" stroke-linecap="round"/></svg>';
+    thumbBtn.addEventListener('click', ()=>toggleThumbs());
+    fsBtn.parentNode.insertBefore(thumbBtn, fsBtn);
+    panel.querySelector('.deck-thumbs-close').addEventListener('click', ()=>toggleThumbs(false));
+    document.addEventListener('keydown', e=>{
+      if(e.key === 'Escape' && panel.classList.contains('on') && !lbOpen){ e.preventDefault(); toggleThumbs(false); }
+    });
+    window.addEventListener('resize', ()=>{ clearTimeout(_ft); _ft = setTimeout(()=>{
+      if(!built) return;
+      if(panel.classList.contains('on')) place();
+      if(builtW !== stage.clientWidth) build(); else fitThumbs();
+    }, 140); });
+    // entering/leaving fullscreen resizes the stage: the px-sized clones must be redrawn
+    const reflow = ()=>setTimeout(()=>{
+      if(!built) return;
+      if(panel.classList.contains('on')) place();
+      build();
+    }, 120);
+    document.addEventListener('fullscreenchange', reflow);
+    document.addEventListener('webkitfullscreenchange', reflow);
   }
 
   render();
