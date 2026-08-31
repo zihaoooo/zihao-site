@@ -7,7 +7,7 @@
 ## IDENTITY
 
 - **Full name:** Zihao Zhang (张子豪), Ph.D.
-- **Title:** Assistant Professor, Department of Architecture, Spitzer School of Architecture, City College of New York
+- **Title:** Associate Professor, Department of Architecture, Spitzer School of Architecture, City College of New York
 - **Email:** zzhang@ccny.cuny.edu
 - **Phone (personal):** 434-242-6010
 - **Phone (office landline):** 212-650-5567
@@ -42,7 +42,8 @@
 
 | Year | Title | Institution |
 |------|-------|-------------|
-| 2021–present | Assistant Professor (tenure-track) | City College of New York |
+| 2026–present | Associate Professor | City College of New York |
+| 2021–2026 | Assistant Professor (tenure-track) | City College of New York |
 | 2019–2021 | Lecturer, Landscape Architecture | University of Virginia, School of Architecture |
 | 2017–2019 | Teaching Fellow, Landscape Architecture | University of Virginia, School of Architecture |
 | 2015, 2016 | Graduate Instructor, Summer Design Institute | University of Virginia, School of Architecture |

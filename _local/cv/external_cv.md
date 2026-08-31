@@ -1,5 +1,5 @@
 # ZIHAO ZHANG, PH.D.
-**Curriculum Vitae** | Updated: March 14, 2026
+**Curriculum Vitae** | Updated: August 31, 2026
 
 City College of New York, Spitzer School of Architecture  
 141 Convent Avenue, New York, NY 10031  
@@ -37,8 +37,9 @@ Committee: Michael Lee, Nana Last, Bradley Cantrell, Michael Gorman
 
 ### Academic Appointments
 
-| 2021–present | Assistant Professor (tenure-track), City College of New York |
+| 2026–present | Associate Professor, City College of New York |
 |-----------|---|
+| 2021–2026 | Assistant Professor (tenure-track), City College of New York |
 | 2019–2021 | Lecturer, Landscape Architecture, University of Virginia |
 | 2017–2019 | Teaching Fellow, Landscape Architecture, University of Virginia |
 | 2015, 2016 | Graduate Instructor, Summer Design Institute, University of Virginia |
