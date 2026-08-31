@@ -77,7 +77,7 @@
 | Year | Citation |
 |------|----------|
 | Under contract | **Zhang, Zihao**, and Shurui Zhang. *Solarpunk Landscapes: Towards Radical Sustainability.* New York: Routledge. Contract signed February 2, 2026; manuscript due October 1, 2027. ISBN 9781041338864 (hb), 9781041338833 (pb), 9781003790051 (eb). |
-| 2024 | **Zhang, Zihao.** *Cybernetics and the Constructed Environment: Design Between Nature and Technology.* New York: Routledge, 2024. https://doi.org/10.4324/9781003320852 |
+| 2025 | **Zhang, Zihao.** *Cybernetics and the Constructed Environment: Design Between Nature and Technology.* New York: Routledge, 2025. https://doi.org/10.4324/9781003320852 |
 
 ### Book Chapters
 

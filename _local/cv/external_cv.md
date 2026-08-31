@@ -10,7 +10,7 @@ researchgate.net/profile/Zihao-Zhang-10
 
 ## SUMMARY
 
-Zihao Zhang is a designer, educator, and scholar in landscape architecture. As a landscape theorist, he provides critical analyses of the entanglement between nature and technology, the human and nonhuman realms, and ecosystems and intelligent machines. His book *Cybernetics and the Constructed Environment* (Routledge, 2024) interrogates the ramifications of cybernetics on contemporary culture and the constructed environment. His design experiments address pressing issues including the climate crisis and social injustice.
+Zihao Zhang is a designer, educator, and scholar in landscape architecture. As a landscape theorist, he provides critical analyses of the entanglement between nature and technology, the human and nonhuman realms, and ecosystems and intelligent machines. His book *Cybernetics and the Constructed Environment* (Routledge, 2025) interrogates the ramifications of cybernetics on contemporary culture and the constructed environment. His design experiments address pressing issues including the climate crisis and social injustice.
 
 ---
 
@@ -70,7 +70,7 @@ Committee: Michael Lee, Nana Last, Bradley Cantrell, Michael Gorman
 
 **(Under contract)** **Zhang, Zihao**, and Shurui Zhang. *Solarpunk Landscapes: Towards Radical Sustainability.* New York: Routledge.
 
-**Zhang, Zihao.** *Cybernetics and the Constructed Environment: Design Between Nature and Technology.* New York: Routledge, 2024. https://doi.org/10.4324/9781003320852
+**Zhang, Zihao.** *Cybernetics and the Constructed Environment: Design Between Nature and Technology.* New York: Routledge, 2025. https://doi.org/10.4324/9781003320852
 
 ### Book Chapters
 
