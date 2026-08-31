@@ -213,6 +213,22 @@ body {
 }
 .site-body p:last-child { margin-bottom: 0; }
 
+/* CV download link (index.html) */
+.site-body p.site-body-cv {
+  margin-top: 28px;
+  margin-bottom: 0;
+  font-size: 14px;
+  color: #888;
+}
+.site-body p.site-body-cv a {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  text-decoration-thickness: 1px;
+  text-decoration-color: #dcb9b2;
+  transition: text-decoration-color 0.15s;
+}
+.site-body p.site-body-cv a:hover { text-decoration-color: #8a2e22; }
+
 .site-body-zh {
   margin-top: 40px;
   padding-top: 32px;

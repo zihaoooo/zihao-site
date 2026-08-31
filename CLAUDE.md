@@ -7,6 +7,8 @@ Repo layout:
   teaching/<course>/lectures/ and talks/<topic>/. (Was teaching/_shared/ until talks/ started
   using it too.) Mirror path changes into ../course-prep.
 - projects/, publications/, index.html (About) — complete.
+- assets/cv/Zihao_Zhang_CV.pdf — public CV download, built from _local/cv/external_cv.md
+  by _local/cv/build_external_pdf.py. Linked from index.html.
 - teaching/laar61400/ — factory output of ../course-prep.
 - talks/ — factory output of ../lecture-factory; slide-viewer modules + gallery.
 - CNAME.
