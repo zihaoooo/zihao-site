@@ -243,6 +243,11 @@
   width:min(100vw, calc((100vh - 76px) * 16 / 9));
   max-height:calc(100vh - 76px);border:0;border-radius:0;}
 .deck:fullscreen .deck-hint{display:none;}
+/* the stage is a block inside the full-width .deck-row wrapper, so centre it there;
+   present mode drops the thumbnail strip */
+.deck:fullscreen .deck-row{display:flex;justify-content:center;transform:none;}
+.deck:fullscreen .deck-thumbs,
+.deck:fullscreen #deck-thumbs-toggle{display:none;}
 .deck:fullscreen .deck-bar{width:min(100vw, calc((100vh - 76px) * 16 / 9));
   padding:0 4px;margin-top:0;}
 .deck:fullscreen .deck-btn{background:#1c1c1c;border-color:#3a3a3a;color:#e4ded5;}

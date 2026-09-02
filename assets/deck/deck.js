@@ -95,7 +95,7 @@
     if(e.key === 'ArrowLeft' || e.key === 'PageUp'){ e.preventDefault(); go(-1); }
     else if(e.key === 'ArrowRight' || e.key === 'PageDown' || e.key === ' '){ e.preventDefault(); go(1); }
     else if(e.key === 'f' || e.key === 'F'){ e.preventDefault(); toggleFS(); }
-    else if((e.key === 't' || e.key === 'T') && toggleThumbs){ e.preventDefault(); toggleThumbs(); }
+    else if((e.key === 't' || e.key === 'T') && toggleThumbs && !inFS()){ e.preventDefault(); toggleThumbs(); }
   });
 
   // ── notes disclosure (collapsed by default) ──
@@ -666,8 +666,10 @@
       if(panel.classList.contains('on')) place();
       if(builtW !== stage.clientWidth) build(); else fitThumbs();
     }, 140); });
-    // entering/leaving fullscreen resizes the stage: the px-sized clones must be redrawn
+    // entering/leaving fullscreen resizes the stage: the px-sized clones must be redrawn.
+    // present mode has no strip, so close it on the way in and let the row sit centred.
     const reflow = ()=>setTimeout(()=>{
+      if(inFS() && panel.classList.contains('on')) toggleThumbs(false);
       if(!built) return;
       if(panel.classList.contains('on')) place();
       build();
