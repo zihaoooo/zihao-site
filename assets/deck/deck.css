@@ -169,6 +169,17 @@
 .toc .toc-row.active{opacity:1;}
 .toc .toc-row.active .toc-n,.toc .toc-row.active .toc-h{color:var(--accent);}
 
+/* split variant: the part list keeps to the left at a smaller size and the active part
+   spells out its drawing types on the right. Add `toc--split` to the .toc and put a
+   <ul class="toc-k"><li>…</li></ul> inside the `.active` row. */
+.toc--split{width:min(980px,96%);grid-template-columns:auto minmax(0,auto) minmax(0,1.15fr);}
+.toc--split .toc-h{font-size:clamp(13px,1.6cqw,26px);}
+.toc--split .toc-k{grid-column:3;grid-row:1;margin:0;padding:0;list-style:none;
+  display:grid;row-gap:clamp(3px,.6cqw,7px);align-self:start;}
+.toc--split .toc-k li{font-family:"DM Sans",sans-serif;color:var(--ink);
+  font-size:clamp(11px,1.25cqw,19px);line-height:1.25;}
+.toc--split .toc-k li::before{content:"—";color:var(--accent);margin-right:.55em;}
+
 /* optional caption chip, bottom-left of a cell (used sparingly) */
 .slide figure figcaption{position:absolute;left:8px;bottom:7px;
   font-family:"DM Mono",ui-monospace,monospace;font-size:9.5px;letter-spacing:.04em;
