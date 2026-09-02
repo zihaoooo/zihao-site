@@ -172,7 +172,8 @@
 /* split variant: the part list keeps to the left at a smaller size and the active part
    spells out its drawing types on the right. Add `toc--split` to the .toc and put a
    <ul class="toc-k"><li>…</li></ul> inside the `.active` row. */
-.toc--split{width:min(980px,96%);grid-template-columns:auto minmax(0,auto) minmax(0,1.15fr);}
+.toc--split{width:92cqw;grid-template-columns:auto max-content minmax(0,1fr);
+  column-gap:clamp(20px,4cqw,52px);}
 .toc--split .toc-h{font-size:clamp(13px,1.6cqw,26px);}
 .toc--split .toc-k{grid-column:3;grid-row:1;margin:0;padding:0;list-style:none;
   display:grid;row-gap:clamp(3px,.6cqw,7px);align-self:start;}
