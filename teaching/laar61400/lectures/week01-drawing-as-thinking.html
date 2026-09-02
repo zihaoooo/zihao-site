@@ -7,6 +7,30 @@
   <link rel="stylesheet" href="/teaching/laar61400/assets/css/main.css">
   <link rel="stylesheet" href="/teaching/laar61400/assets/css/workflow-shared.css">
   <link rel="stylesheet" href="/assets/deck/deck.css">
+  <style>
+    /* Week 01 closing slide: the sketchbook assignment (page-local, one slide) */
+    .sk{width:92cqw;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);
+      column-gap:clamp(22px,4.5cqw,58px);row-gap:clamp(10px,1.6cqw,18px);text-align:left;}
+    .sk-h{grid-column:1/-1;margin:0;font-family:"DM Sans",sans-serif;font-weight:700;
+      color:var(--ink);font-size:clamp(16px,2.4cqw,34px);letter-spacing:-.01em;line-height:1.1;}
+    .sk-sub{grid-column:1/-1;font-family:"DM Mono",ui-monospace,monospace;
+      font-size:clamp(9px,1.05cqw,13px);letter-spacing:.16em;text-transform:uppercase;
+      color:var(--mute);margin-top:-.4em;}
+    .sk h4{margin:0 0 .55em;font-family:"DM Mono",ui-monospace,monospace;
+      font-size:clamp(9px,1.05cqw,13px);letter-spacing:.14em;text-transform:uppercase;
+      color:var(--accent);}
+    .sk ul{list-style:none;margin:0;padding:0;display:grid;row-gap:clamp(5px,.8cqw,10px);}
+    .sk li{font-family:"DM Sans",sans-serif;color:#4a463f;line-height:1.4;
+      font-size:clamp(11px,1.3cqw,18px);padding-left:1.1em;position:relative;}
+    .sk li::before{content:"+";position:absolute;left:0;color:var(--accent);
+      font-family:"DM Mono",ui-monospace,monospace;}
+    .sk-when{display:grid;grid-template-columns:max-content minmax(0,1fr);
+      column-gap:clamp(12px,2cqw,26px);row-gap:clamp(6px,1cqw,12px);}
+    .sk-when dt{font-family:"DM Mono",ui-monospace,monospace;color:var(--accent);
+      font-size:clamp(9px,1.1cqw,14px);letter-spacing:.06em;padding-top:.15em;}
+    .sk-when dd{margin:0;font-family:"DM Sans",sans-serif;color:#4a463f;line-height:1.4;
+      font-size:clamp(11px,1.3cqw,18px);}
+  </style>
 </head>
 <body>
 
@@ -321,9 +345,9 @@
             </div>
 
             <!-- 42 · slide 42 -->
-            <div class="slide auto" data-era="Communicating Space" data-cap="Garrett Eckbo, Axonometric and Isometric Drawings">
-              <figure><img src="/teaching/laar61400/assets/img/Week01/s42_1.avif" alt="Garrett Eckbo Axonometric and Isometric Drawings"></figure>
-              <figure><img src="/teaching/laar61400/assets/img/Week01/s42_2.avif" alt="Garrett Eckbo Axonometric and Isometric Drawings"></figure>
+            <div class="slide auto" data-era="Communicating Space" data-cap="Garrett Eckbo, Perspective and Oblique Drawings">
+              <figure><img src="/teaching/laar61400/assets/img/Week01/s42_1.avif" alt="Garrett Eckbo, perspective drawing"></figure>
+              <figure><img src="/teaching/laar61400/assets/img/Week01/s42_2.avif" alt="Garrett Eckbo, oblique drawing"></figure>
             </div>
 
             <!-- 43 · slide 43 -->
@@ -484,10 +508,37 @@
               <figure><img src="/teaching/laar61400/assets/img/Week01/s67_3.avif" alt="Hand sketch, Pinterest, source unknown"></figure>
             </div>
 
+            <!-- 68 · sketchbook assignment -->
+            <div class="slide" data-cap="Sketchbook — ongoing assignment, 10% of the final grade">
+              <div class="embed">
+                <div class="sk">
+                  <h2 class="sk-h">The Sketchbook</h2>
+                  <span class="sk-sub">Ongoing · 10% · due Dec 21</span>
+                  <div>
+                    <h4>The practice</h4>
+                    <ul>
+                      <li>A physical sketchbook, kept all semester — start it this week.</li>
+                      <li>At least one sketch each week, tied to what we cover in class.</li>
+                      <li>Observation, site sketching, diagramming, analog ideation.</li>
+                      <li>Drawing to think: the modes we just surveyed, in your own hand.</li>
+                    </ul>
+                  </div>
+                  <div>
+                    <h4>Milestones</h4>
+                    <dl class="sk-when">
+                      <dt>Weekly</dt><dd>One sketch minimum, dated.</dd>
+                      <dt>Week 06 · Oct 8</dt><dd>Bring the sketchbook to the Part I Pin-Up — informal review alongside WF01–WF03.</dd>
+                      <dt>Dec 21</dt><dd>Full review. Select and scan your 10 best sketches; submit them with the Final Integrated Drawing Set.</dd>
+                    </dl>
+                  </div>
+                </div>
+              </div>
+            </div>
+
           </div>
           <div class="deck-bar">
             <button class="deck-btn" id="deck-prev" aria-label="Previous slide">&lsaquo;</button>
-            <div class="deck-count"><input id="deck-jump" type="text" inputmode="numeric" aria-label="Jump to slide" value="1"><span id="deck-total"> / 67</span></div>
+            <div class="deck-count"><input id="deck-jump" type="text" inputmode="numeric" aria-label="Jump to slide" value="1"><span id="deck-total"> / 68</span></div>
             <button class="deck-btn" id="deck-next" aria-label="Next slide">&rsaquo;</button>
             <div class="deck-meta"><span class="deck-cap" id="deck-cap"></span><span id="deck-credit"></span></div>
             <button class="deck-btn" id="deck-notes-toggle" aria-expanded="false" aria-controls="deck-notes" aria-label="Toggle speaker notes" title="Speaker notes"><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="2" y="2" width="12" height="12" rx="1.5"/><line x1="4.5" y1="5.5" x2="11.5" y2="5.5"/><line x1="4.5" y1="8" x2="11.5" y2="8"/><line x1="4.5" y1="10.5" x2="8.5" y2="10.5"/></svg></button>
