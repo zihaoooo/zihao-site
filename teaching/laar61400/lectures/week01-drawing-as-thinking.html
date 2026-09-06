@@ -52,6 +52,20 @@
     .aud-end{grid-column:1/-1;margin:0;font-family:"DM Sans",sans-serif;color:#4a463f;
       font-size:clamp(10px,1.2cqw,17px);line-height:1.4;border-top:1px solid var(--line);
       padding-top:clamp(5px,.9cqw,12px);}
+
+    /* phone: both blocks drop to one column — the stage goes 4:5 (deck.css) and two
+       ~150px columns would break every line. */
+    @media (max-width:560px){
+      /* four stacked rows need more than the 4:5 phone stage deck.css gives typeset slides */
+      .deck-stage:has(.slide.on .aud){aspect-ratio:12/25;}
+      .sk,.aud{grid-template-columns:minmax(0,1fr);row-gap:8px;}
+      .aud-row,.aud-end{padding-top:6px;}
+      .aud-to{margin-bottom:.2em;}
+      .aud-h,.sk-h{font-size:16px;}
+      .aud-row b{font-size:14px;}
+      .aud-row span:not(.aud-to){font-size:12.5px;line-height:1.35;margin-top:.15em;}
+      .aud-row i,.aud-end,.sk li,.sk-when dd{font-size:11px;line-height:1.3;}
+    }
   </style>
 </head>
 <body>

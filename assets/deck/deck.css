@@ -231,6 +231,30 @@
   color:var(--mute);margin-top:6px;}
 .deck-fs{margin-left:auto;flex:0 0 auto;font-size:14px;}
 
+/* ── phone: typeset slides get a taller stage ──
+   Every typeset size is a clamp whose px floor is tuned for a laptop-width stage. On a
+   375px phone the floors all bind at once while a 16:9 stage is only ~170px tall, so a
+   text slide overflows and gets clipped. Image slides keep 16:9 (a taller box would just
+   letterbox them); the stage grows only while a typeset slide is showing, and anything
+   still past the taller box scrolls inside the stage rather than clipping.
+   Fullscreen present mode keeps 16:9 — its own rule below is more specific. */
+@media (max-width:560px){
+  .deck-stage{aspect-ratio:4/5;}                       /* typeset slide: room for the copy */
+  .deck-stage:has(.slide.on img){aspect-ratio:16/9;}   /* a picture keeps the wide box */
+  .deck-stage:has(.slide.on .pts){aspect-ratio:3/4;}   /* copy stacked over a picture */
+  /* a page whose typeset block needs more than 4:5 asks for its own ratio the same way,
+     keyed to that block's class (see week01 `.aud`) */
+  .slide{overflow-y:auto;overscroll-behavior:contain;align-items:safe center;}
+  /* text beside an image stacks: a 5-of-12 column is ~140px at phone width */
+  .slide.points-l,.slide.points-r{grid-template-columns:minmax(0,1fr);
+    grid-template-rows:auto minmax(0,1fr);gap:clamp(8px,2.5cqw,14px);padding:14px;}
+  .slide.points-l .pts,.slide.points-r .pts{grid-column:1;grid-row:1;}
+  .slide.points-l figure,.slide.points-r figure{grid-column:1;grid-row:2;}
+  /* split TOC: the active part's drawing types drop under its heading */
+  .toc--split{grid-template-columns:auto minmax(0,1fr);}
+  .toc--split .toc-k{grid-column:2;grid-row:2;margin-top:.45em;}
+}
+
 /* ── narrow screens: caption drops to its own full-width line below the controls ──
    Phone-sized controls and reading-sized notes: on a phone this page doubles as the
    speaker-note view, held at arm's length while presenting, so hits are thumb-sized

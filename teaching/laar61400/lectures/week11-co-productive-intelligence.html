@@ -81,6 +81,9 @@
     /* oversized embeds left-align in the slide's grid; flex unsafe-centers them so the
        fit-scaler's transform (around the element centre) keeps them centred on the stage */
     .slide:has(.cyb-cmp){display:flex;align-items:center;justify-content:center;}
+    /* phone: this block is scaled to the stage width by the fit script below, so the taller
+       typeset stage deck.css gives text slides would only add letterbox */
+    @media (max-width:560px){ .deck-stage:has(.slide.on .cyb-cmp){aspect-ratio:16/9;} }
     .cyb-cmp{width:1120px;display:flex;flex-direction:column;align-items:center;
       font-family:"DM Sans",sans-serif;color:var(--ink);}
     .cyb-cmp__grid{width:100%;display:grid;grid-template-columns:132px 1fr 1fr;
