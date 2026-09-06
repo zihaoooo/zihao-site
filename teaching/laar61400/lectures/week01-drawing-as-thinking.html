@@ -30,6 +30,28 @@
       font-size:clamp(9px,1.1cqw,14px);letter-spacing:.06em;padding-top:.15em;}
     .sk-when dd{margin:0;font-family:"DM Sans",sans-serif;color:#4a463f;line-height:1.4;
       font-size:clamp(11px,1.3cqw,18px);}
+
+    /* Week 01 slide 2: who the drawing is for (page-local, one slide) */
+    .aud{width:92cqw;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);
+      column-gap:clamp(22px,4.5cqw,58px);row-gap:clamp(8px,1.4cqw,18px);text-align:left;}
+    .aud-h{grid-column:1/-1;margin:0;font-family:"DM Sans",sans-serif;font-weight:700;
+      color:var(--ink);font-size:clamp(16px,2.4cqw,34px);letter-spacing:-.01em;line-height:1.1;}
+    .aud-sub{grid-column:1/-1;font-family:"DM Mono",ui-monospace,monospace;
+      font-size:clamp(9px,1.05cqw,13px);letter-spacing:.16em;text-transform:uppercase;
+      color:var(--mute);margin-top:-.4em;}
+    .aud-row{border-top:1px solid var(--line);padding-top:clamp(5px,.9cqw,12px);}
+    .aud-to{display:block;font-family:"DM Mono",ui-monospace,monospace;color:var(--accent);
+      font-size:clamp(9px,1.05cqw,13px);letter-spacing:.14em;text-transform:uppercase;
+      margin-bottom:.35em;}
+    .aud-row b{display:block;font-family:"DM Sans",sans-serif;font-weight:700;color:var(--ink);
+      font-size:clamp(12px,1.5cqw,21px);line-height:1.15;}
+    .aud-row span:not(.aud-to){display:block;font-family:"DM Sans",sans-serif;color:#4a463f;
+      line-height:1.4;font-size:clamp(10px,1.2cqw,17px);margin-top:.25em;}
+    .aud-row i{display:block;font-family:"DM Mono",ui-monospace,monospace;font-style:normal;
+      color:var(--mute);font-size:clamp(8px,.95cqw,12px);letter-spacing:.05em;margin-top:.35em;}
+    .aud-end{grid-column:1/-1;margin:0;font-family:"DM Sans",sans-serif;color:#4a463f;
+      font-size:clamp(10px,1.2cqw,17px);line-height:1.4;border-top:1px solid var(--line);
+      padding-top:clamp(5px,.9cqw,12px);}
   </style>
 </head>
 <body>
@@ -92,6 +114,46 @@
             <div class="slide slide--title" data-cap="">
               <div class="tt">Drawings as Tools</div>
               <div class="ts">LAAR 61400 · Week 01</div>
+            </div>
+
+            <!-- 2 · who the drawing is for -->
+            <div class="slide" data-cap="">
+              <div class="embed">
+                <div class="aud">
+                  <h2 class="aud-h">Who is the drawing for?</h2>
+                  <span class="aud-sub">Audience decides the mode</span>
+
+                  <div class="aud-row">
+                    <span class="aud-to">To the client</span>
+                    <b>Persuade</b>
+                    <span>Make the idea desirable to someone who reads no plans. Warm, resolved, legible at a glance, honest about what it promises.</span>
+                    <i>Renderings · illustrative plans · before-and-after</i>
+                  </div>
+
+                  <div class="aud-row">
+                    <span class="aud-to">To peers</span>
+                    <b>Argue</b>
+                    <span>Show the reasoning to instructors and colleagues so they can test it. Precise, comparative, open about what is still unresolved.</span>
+                    <i>Diagrams · sections · analysis · iteration series</i>
+                  </div>
+
+                  <div class="aud-row">
+                    <span class="aud-to">To the builder</span>
+                    <b>Instruct</b>
+                    <span>Tell someone exactly what to build. Dimensioned, measurable, contractual — one reading only.</span>
+                    <i>Grading · layout · planting · construction details</i>
+                  </div>
+
+                  <div class="aud-row">
+                    <span class="aud-to">To yourself</span>
+                    <b>Discover</b>
+                    <span>Draw to find out what you think. Fast, private, disposable — the drawing earns the right to be wrong.</span>
+                    <i>Parti · sketch · study model · trace overlay</i>
+                  </div>
+
+                  <p class="aud-end">One site, four drawings. This survey moves through those registers, and Part One starts with the audience of one.</p>
+                </div>
+              </div>
             </div>
 
             <!-- Section · Thinking -->
@@ -538,7 +600,7 @@
           </div>
           <div class="deck-bar">
             <button class="deck-btn" id="deck-prev" aria-label="Previous slide">&lsaquo;</button>
-            <div class="deck-count"><input id="deck-jump" type="text" inputmode="numeric" aria-label="Jump to slide" value="1"><span id="deck-total"> / 68</span></div>
+            <div class="deck-count"><input id="deck-jump" type="text" inputmode="numeric" aria-label="Jump to slide" value="1"><span id="deck-total"> / 69</span></div>
             <button class="deck-btn" id="deck-next" aria-label="Next slide">&rsaquo;</button>
             <div class="deck-meta"><span class="deck-cap" id="deck-cap"></span><span id="deck-credit"></span></div>
             <button class="deck-btn" id="deck-notes-toggle" aria-expanded="false" aria-controls="deck-notes" aria-label="Toggle speaker notes" title="Speaker notes"><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="2" y="2" width="12" height="12" rx="1.5"/><line x1="4.5" y1="5.5" x2="11.5" y2="5.5"/><line x1="4.5" y1="8" x2="11.5" y2="8"/><line x1="4.5" y1="10.5" x2="8.5" y2="10.5"/></svg></button>
