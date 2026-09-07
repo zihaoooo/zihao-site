@@ -122,7 +122,7 @@ Students build skills in the areas below, matching the educational goals above. 
 
 ### Part I — Representation (Weeks 1–6)
 
-| Week | Topic | Tools | Deliverable |
+| Week | Topic | Tools | Work |
 |------|-------|-------|-------------|
 | 01 | **Introduction + Sketching Workshop** — Course introduction and drawing fundamentals (line weight, freehand lines, drawing tools, landscape graphic conventions); sketchbook practice introduced | Pencils, Pens, Trace Paper, Sketchbook | In-class orthographic drawing of a simple outdoor space (plan + section); begin sketchbook |
 | 02 | **WF01: AutoCAD Site Plan + Section (1 of 2)** — AutoCAD introduction (interface, navigation, basic commands: line, circle, offset, trim, mirror, copy); recreating orthographic drawings digitally | AutoCAD | WF01 in progress — recreate the Week 1 orthographic drawing in AutoCAD |
@@ -133,7 +133,7 @@ Students build skills in the areas below, matching the educational goals above. 
 
 ### Part II — Computation (Weeks 7–15)
 
-| Week | Topic | Tools | Deliverable |
+| Week | Topic | Tools | Work |
 |------|-------|-------|-------------|
 | 07 | **WF04: Rhino 3D Site Modeling (1 of 2)** — Rhino introduction (interface, basic modeling commands, curves, surfaces, solids); 2D-to-3D workflow; importing CAD drawings | Rhino 3D | WF04 in progress — simple 3D model of a small site element (steps, wall, planter) |
 | 08 | **WF04: Rhino 3D Site Modeling (2 of 2)** — Site modeling (topography and grading, terrain surface tools, contour manipulation, rendered perspective views) | Rhino 3D, AutoCAD | **WF04 due** — a 3D topographic site model with contours and at least two rendered views |
