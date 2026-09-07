@@ -154,6 +154,34 @@
   gap: 20px;
 }
 
+/* ── Session divider ── */
+.wf-session {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  margin: 4px 0 -6px;
+}
+.wf-session-num {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  font-weight: 500;
+  color: #aaa;
+  flex-shrink: 0;
+}
+.wf-session-label {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: #1a1a1a;
+}
+.wf-session-rule {
+  flex: 1;
+  height: 1px;
+  background: #e8e8e8;
+}
+
 /* ── Step card ── */
 .wf-step {
   border: 1px solid #e8e8e8;
