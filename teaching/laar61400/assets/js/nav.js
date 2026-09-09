@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
   // ── Active link highlight ──
   const current = window.location.pathname;
-  document.querySelectorAll('.panel-link').forEach(link => {
+  document.querySelectorAll('.panel-link, .panel-announce').forEach(link => {
     const href = link.getAttribute('href');
     if (href && current.endsWith(href)) {
       link.classList.add('active');
@@ -51,7 +51,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   overlay.addEventListener('click', closeNav);
 
-  sidepanel.querySelectorAll('.panel-link').forEach(link => {
+  sidepanel.querySelectorAll('.panel-link, .panel-announce').forEach(link => {
     link.addEventListener('click', () => {
       if (window.innerWidth <= 768) closeNav();
     });

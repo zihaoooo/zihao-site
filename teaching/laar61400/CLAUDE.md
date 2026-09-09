@@ -10,6 +10,13 @@ there's no mirror in the factory to sync, and a rebuild reads from here. Only up
 factory's style/convention reference if the fix is a general rule future builds should follow.
 The notes below document the conventions the factory follows so the output stays consistent.
 
+
+## Announcements (`announcements.html`)
+Hand-authored, not factory output. Weekly housekeeping — newest week first, `.ann-week current`
+at top; demote past weeks to `.ann-week past` and leave them below as an archive. Linked from a
+highlighted `.panel-announce` block sitting directly under the brand block in every page's nav
+(propagate nav edits with sed, as elsewhere). Styles live at the end of `assets/css/main.css`.
+
 ## Workflows (`workflows/`)
 - WF01 `wf01-autocad.html` — AutoCAD Site Drafting (Weeks 2–3)
 - WF02 `wf02-sketch-portfolio.html` — Hand Sketch → Hybrid Drawing (Week 4)

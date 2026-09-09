@@ -387,3 +387,56 @@ body { font-family: 'DM Sans', sans-serif; background: #fff; color: #1a1a1a; }
 .schedule-table .wf-link:hover { border-bottom-style: solid; }
 html { scroll-behavior: smooth; }
 #weekly-schedule { scroll-margin-top: 24px; }
+
+/* ── Announcements: highlighted nav link under the brand block ── */
+.panel-announce {
+  display: flex; align-items: baseline; gap: 8px;
+  margin: 8px 12px 4px; padding: 9px 12px;
+  border: 1px solid #d8c9c9; border-left: 3px solid #801010;
+  border-radius: 4px; background: #fff;
+  font-size: 13px; color: #801010; text-decoration: none;
+}
+.panel-announce:hover { background: #801010; color: #fff; border-color: #801010; }
+.panel-announce .panel-announce-tag {
+  font-family: 'DM Mono', monospace; font-size: 9px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.1em; opacity: .75;
+}
+.panel-announce.active { background: #801010; color: #fff; border-color: #801010; }
+
+/* ── Announcements page ── */
+.ann-week { margin-bottom: 40px; }
+.ann-week-head {
+  display: flex; align-items: baseline; gap: 12px;
+  border-top: 1px solid #e0e0e0; padding-top: 20px; margin-bottom: 16px;
+}
+.ann-week-num {
+  font-family: 'DM Mono', monospace; font-size: 11px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.12em; color: #801010;
+}
+.ann-week-date {
+  font-family: 'DM Mono', monospace; font-size: 11px;
+  letter-spacing: 0.08em; color: #aaa;
+}
+.ann-week.current .ann-week-num { color: #801010; }
+.ann-list { list-style: none; counter-reset: ann; }
+.ann-item {
+  position: relative; padding: 12px 0 12px 34px;
+  border-bottom: 1px solid #f0eeeb;
+}
+.ann-item:last-child { border-bottom: none; }
+.ann-item::before {
+  counter-increment: ann; content: counter(ann, decimal-leading-zero);
+  position: absolute; left: 0; top: 14px;
+  font-family: 'DM Mono', monospace; font-size: 10px; color: #c0a8a8;
+}
+.ann-item-title { font-size: 14px; font-weight: 700; margin-bottom: 3px; }
+.ann-item-body { font-size: 13px; line-height: 1.6; color: #555; }
+.ann-item-body a { color: #801010; }
+.ann-tag {
+  font-family: 'DM Mono', monospace; font-size: 9px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.08em;
+  border: 1px solid #e0e0e0; border-radius: 3px;
+  padding: 2px 6px; color: #888; margin-left: 8px; white-space: nowrap;
+}
+.ann-tag.action { border-color: #d8c9c9; color: #801010; }
+.ann-week.past { opacity: .6; }
