@@ -71,6 +71,7 @@
   .cad-wrap .cad-section-label { font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: #aaa; margin-bottom: 10px; }
   .cad-wrap .cad-divider-strong { border: none; border-top: 2px solid #1a1a1a; margin: 0 0 18px; }
   .cad-wrap .cad-section { margin-bottom: 16px; }
+  .cad-wrap summary { display: none; }
   .cad-wrap .cad-section-title { font-size: 9.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; border-bottom: 1px solid #e0e0e0; padding-bottom: 4px; margin-bottom: 7px; color: #444; }
   .cad-wrap .cad-col-title { font-size: 10px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #888; margin-bottom: 12px; padding-top: 10px; border-top: 2px solid #1a1a1a; }
   .cad-wrap table { width: 100%; border-collapse: collapse; }
@@ -199,6 +200,7 @@
         <tr><td>Select All</td><td><kbd>Ctrl A</kbd></td></tr>
         <tr><td>Properties</td><td><kbd>Ctrl 1</kbd></td></tr>
         <tr><td>Match Properties</td><td><kbd>MA</kbd></td></tr>
+        <tr><td>Measure distance</td><td><kbd>DI</kbd></td></tr>
       </table>
     </details>
   </div>
@@ -232,9 +234,7 @@
           <tr><td>Circle</td><td><kbd>C</kbd></td></tr>
           <tr><td>Arc</td><td><kbd>A</kbd></td></tr>
           <tr><td>Rectangle</td><td><kbd>REC</kbd></td></tr>
-          <tr><td>Polygon</td><td><kbd>POL</kbd></td></tr>
-          <tr><td>Ellipse</td><td><kbd>EL</kbd></td></tr>
-          <tr><td>Spline</td><td><kbd>SPL</kbd></td></tr>
+              <tr><td>Spline</td><td><kbd>SPL</kbd></td></tr>
           <tr><td>Hatch</td><td><kbd>H</kbd></td></tr>
         </table>
       </details>
@@ -247,9 +247,7 @@
           <tr><td>Multiline Text</td><td><kbd>MT</kbd></td></tr>
           <tr><td>Dimension (linear)</td><td><kbd>DLI</kbd></td></tr>
           <tr><td>Dimension (aligned)</td><td><kbd>DAL</kbd></td></tr>
-          <tr><td>Dimension (angular)</td><td><kbd>DAN</kbd></td></tr>
-          <tr><td>Dimension (radius)</td><td><kbd>DRA</kbd></td></tr>
-          <tr><td>Leader</td><td><kbd>LE</kbd></td></tr>
+              <tr><td>Leader</td><td><kbd>LE</kbd></td></tr>
           <tr><td>Dimension Style</td><td><kbd>D</kbd></td></tr>
         </table>
       </details>
@@ -268,8 +266,7 @@
           <tr><td>Mirror</td><td><kbd>MI</kbd></td></tr>
           <tr><td>Array</td><td><kbd>AR</kbd></td></tr>
           <tr><td>Stretch</td><td><kbd>S</kbd></td></tr>
-          <tr><td>Align</td><td><kbd>AL</kbd></td></tr>
-        </table>
+          </table>
       </details>
     </div>
     <div class="cad-section">
@@ -280,8 +277,7 @@
           <tr><td>Extend</td><td><kbd>EX</kbd></td></tr>
           <tr><td>Offset</td><td><kbd>O</kbd></td></tr>
           <tr><td>Fillet</td><td><kbd>F</kbd></td></tr>
-          <tr><td>Chamfer</td><td><kbd>CHA</kbd></td></tr>
-          <tr><td>Break</td><td><kbd>BR</kbd></td></tr>
+            <tr><td>Break</td><td><kbd>BR</kbd></td></tr>
           <tr><td>Join</td><td><kbd>J</kbd></td></tr>
           <tr><td>Explode</td><td><kbd>X</kbd></td></tr>
           <tr><td>Erase</td><td><kbd>E</kbd></td></tr>
@@ -299,8 +295,7 @@
           <tr><td>Layer Manager</td><td><kbd>LA</kbd></td></tr>
           <tr><td>Layer Isolate</td><td><kbd>LAYISO</kbd></td></tr>
           <tr><td>Layer Unisolate</td><td><kbd>LAYUNISO</kbd></td></tr>
-          <tr><td>Layer Freeze</td><td><kbd>LAYFRZ</kbd></td></tr>
-          <tr><td>Layer Off</td><td><kbd>LAYOFF</kbd></td></tr>
+            <tr><td>Layer Off</td><td><kbd>LAYOFF</kbd></td></tr>
           <tr><td>Turn all layers on</td><td><kbd>LAYON</kbd></td></tr>
           <tr><td>Change obj. layer</td><td><kbd>LAYMCH</kbd></td></tr>
         </table>
@@ -312,21 +307,8 @@
         <table>
           <tr><td>Block (create)</td><td><kbd>B</kbd></td></tr>
           <tr><td>Insert block</td><td><kbd>I</kbd></td></tr>
-          <tr><td>Write block</td><td><kbd>W</kbd></td></tr>
-          <tr><td>Xref Manager</td><td><kbd>XR</kbd></td></tr>
+            <tr><td>Xref Manager</td><td><kbd>XR</kbd></td></tr>
           <tr><td>Attach Xref</td><td><kbd>XA</kbd></td></tr>
-        </table>
-      </details>
-    </div>
-    <div class="cad-section">
-      <div class="cad-section-title">Utilities</div>
-      <details><summary>Utilities</summary>
-        <table>
-          <tr><td>Measure distance</td><td><kbd>MEA</kbd></td></tr>
-          <tr><td>List properties</td><td><kbd>LI</kbd></td></tr>
-          <tr><td>Linetype Manager</td><td><kbd>LT</kbd></td></tr>
-          <tr><td>Lineweight</td><td><kbd>LW</kbd></td></tr>
-          <tr><td>Purge unused</td><td><kbd>PU</kbd></td></tr>
         </table>
       </details>
     </div>
