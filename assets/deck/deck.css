@@ -1,25 +1,19 @@
 /* ============================================================
-   Slide deck — shared layout system (factory standard)
-   Source of truth: course-prep/site-rules.md
+   Slide deck — shared layout system.
+   Source of truth for the system + markup recipes: ./deck-spec.md (this folder).
    Used by teaching/<course>/lectures/ AND talks/<topic>/ — site-wide, not
    teaching-only, which is why it lives under /assets/ rather than in a
    course folder.
    Linked from each deck page: <link rel="stylesheet" href="/assets/deck/deck.css">
 
-   MODEL
+   MODEL (summary — deck-spec.md has the full class table)
    - The stage is a 16:9 carousel of .slide elements.
-   - Every image slide is a 6-COLUMN grid. Templates set the column
-     (and where needed, row) structure. 6 = LCM of 1/2/3, so splits
-     divide cleanly: 3-3, 4-2, 2-2-2, etc.
+   - Pick a family per slide: `single` (one image, whole) · `auto`/`hero-*`/`auto-rows`
+     (JS sizes each figure to its image, so images read whole) · `sq`/`two-3-3`/`grid-4`
+     (CSS imposes a fixed frame, image cover-crops into it) · `points-*` (text + image).
    - FIT is an ORTHOGONAL axis, set per slide or per cell:
        .fill  (default)  object-fit:cover  → image fills the cell, cropped.
-                                              Tops/bottoms align (equal cells).
-       .fit              whole image shown, scaled to EQUAL HEIGHT
-                         (height:100%; width:auto) → in a 3-3 split both
-                         images share top AND bottom edges. Width varies.
-   - Naming is self-describing: the shorthand you say IS the class.
-       "2 images, 4-2, right one whole"
-         → <div class="slide two-4-2"> … <figure class="fit"> on the right cell
+       .fit              whole image shown, scaled to fit — uncropped.
    ============================================================ */
 
 /* Shared lecture palette — single source of truth; a page may override or extend. */
