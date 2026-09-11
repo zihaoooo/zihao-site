@@ -625,8 +625,9 @@ Amount: $4,000
 
 **Search Committees:**
 
-| 2026 | Search Committee: Lecturer for Sustainability in the Urban Environment Master Program; Laboratory Technician for Robotics Lab; Assistant Professor of Landscape Architecture |
+| 2026 | Chair, Search Committee: Associate/Full Professor of Architecture and Urban AI, Department of Architecture (CUNY Martin S. Spergel Initiative in Computational Science) |
 |---|---|
+| 2026 | Search Committee: Lecturer for Sustainability in the Urban Environment Master Program; Laboratory Technician for Robotics Lab; Assistant Professor of Landscape Architecture |
 | 2024 | Search Committee: Professor and Director of Master of Landscape Architecture program; Assistant Professor of Landscape Architecture |
 | 2022–2023 | Search Committee: Assistant Director, Bond Center for Urban Futures; Faculty Secretary, Department of Architecture |
 
