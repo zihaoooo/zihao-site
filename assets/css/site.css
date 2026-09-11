@@ -548,6 +548,12 @@ body {
 .gallery-row { display: flex; gap: 6px; margin-bottom: 6px; width: 100%; overflow: hidden; }
 .gallery-row img { width: 0; min-width: 0; height: auto; display: block; }
 
+/* Aspect guard: lets <img width/height> attributes reserve correct space (no layout
+   shift, and lazy-loading can judge what is really below the fold) without the
+   declared pixel height fighting a CSS width. Lowest specificity on purpose --
+   deck.css and any inline style still win. */
+img { height: auto; }
+
 @media (max-width: 700px) {
   .project-meta-grid { grid-template-columns: 1fr; gap: 24px 0; }
   .media-2up,
