@@ -70,7 +70,8 @@
   .pb-lead { font-size: 13px; color: #444; border-left: 3px solid #1a1a1a; padding-left: 12px; margin: 0 0 22px; }
   .pb-lead strong { color: #1a1a1a; }
 
-  .pb-route { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-bottom: 26px; }
+  .pb-route { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 26px; }
+  .pb-files { display: flex; flex-direction: column; align-items: flex-start; gap: 6px; margin: 12px 0 18px; }
   .pb-route-card { background: #f7f5f2; border-radius: 4px; padding: 12px 14px; border-top: 3px solid #1a1a1a; }
   .pb-route-card h3 { font-size: 12px; font-weight: 700; margin: 0 0 4px; letter-spacing: 0.04em; }
   .pb-route-card p { font-size: 12px; color: #555; margin: 0; }
@@ -109,18 +110,65 @@
 
 <div class="pb-wrap">
 
-<p class="pb-lead">A PNG tree is pixels. A CAD block is geometry with a name, a base point and a real size, inserted once and repeated at 1:1 across the drawing. <strong>Tracing is only the conversion — scaling and blocking are what make it usable.</strong> Both routes below end in the same place: a <span class="pb-cmd">.dwg</span> in your block library.</p>
+<p class="pb-lead">A PNG tree is pixels. A CAD block is geometry with a name, a base point and a real size, inserted once and repeated at 1:1 across the drawing. <strong>Tracing is only the conversion — scaling and blocking are what make it usable.</strong> Three routes below end in the same place: a <span class="pb-cmd">.dwg</span> in your block library. Start with the first one, because the cheapest block is the one you do not draw.</p>
 
 <div class="pb-route">
   <div class="pb-route-card">
-    <h3>Route A — Illustrator Image Trace</h3>
-    <p>Visual, one tree at a time, full control over how much detail survives. Use it for a hero tree or a symbol you will look at closely.</p>
+    <h3>Route A — Download and reuse</h3>
+    <p>Somebody already drew it. Three libraries to download sit below. Fastest by far, until the one you need is missing.</p>
   </div>
   <div class="pb-route-card">
-    <h3>Route B — Claude Code</h3>
+    <h3>Route B — Illustrator Image Trace</h3>
+    <p>Visual, one tree at a time, full control over how much detail survives. Use it for a symbol you will look at closely.</p>
+  </div>
+  <div class="pb-route-card">
+    <h3>Route C — Claude Code</h3>
     <p>Yes, this works in code, and you never touch a terminal. Best when twenty silhouettes need identical treatment.</p>
   </div>
 </div>
+
+<hr class="pb-divider">
+<span class="pb-label">Route A — Download and reuse</span>
+
+<p>The fastest block is the one somebody already drew. Entourage libraries circulate freely, and a competent drafter starts by looking for one rather than tracing. Three to start with, all tested and ready to insert:</p>
+
+<div class="pb-files">
+  <a class="wf-download" href="/teaching/laar61400/assets/downloads/blocks/entourage.dwg" download>↓ entourage.dwg — mixed entourage blocks, AutoCAD 2018, 1.8 MB</a>
+  <a class="wf-download" href="/teaching/laar61400/assets/downloads/blocks/tr-08.dwg" download>↓ tr-08.dwg — tree blocks, AutoCAD 2004 format, 2.2 MB</a>
+  <a class="wf-download" href="/teaching/laar61400/assets/downloads/blocks/entourage.3dm" download>↓ entourage.3dm — the Rhino version, 3.1 MB</a>
+</div>
+
+<div class="pb-step">
+  <div class="pb-num">1</div>
+  <div>
+    <h4>Open the donor file first</h4>
+    <p>Open it on its own and look before you borrow. Run <span class="pb-cmd">DIST</span> across something you can size by eye — a person is about 1.75&nbsp;m, a car about 4.5&nbsp;m long. That one measurement tells you the file's units, which is the thing that goes wrong most often.</p>
+  </div>
+</div>
+
+<div class="pb-step">
+  <div class="pb-num">2</div>
+  <div>
+    <h4>Bring the block across</h4>
+    <ul>
+      <li><strong>AutoCAD.</strong> Copy the block you want, then <span class="pb-cmd">PASTEBLOCK</span> into your drawing. Or use <span class="pb-cmd">DESIGNCENTER</span> to pull single blocks out of the donor file without opening it.</li>
+      <li><strong>Rhino.</strong> <span class="pb-cmd">Insert</span> for a block instance, <span class="pb-cmd">Import</span> to bring the geometry in loose.</li>
+      <li>Re-measure after it lands. If it came in at the wrong size, <span class="pb-cmd">SCALE</span> with the <em>Reference</em> option against a dimension you know.</li>
+    </ul>
+  </div>
+</div>
+
+<div class="pb-step">
+  <div class="pb-num">3</div>
+  <div>
+    <h4>Clean up what you inherited</h4>
+    <p>Borrowed files carry layers, text styles and dimension styles you never asked for. Run <span class="pb-cmd">PURGE</span> and then <span class="pb-cmd">AUDIT</span> after inserting. If the block will become part of your own library, redefine it on layer <span class="pb-cmd">0</span> with colour <span class="pb-cmd">ByBlock</span> and a base point you choose.</p>
+  </div>
+</div>
+
+<div class="pb-warn"><strong>Know where a block came from.</strong> Plenty of what circulates online was scraped from somewhere else, and a heavy downloaded block can carry thousands of vertices into a drawing it will never leave. Check the weight, check the licence before anything goes into public work, and credit the source when a drawing leans on someone else's library.</div>
+
+<div class="pb-note"><strong>When Route A runs out:</strong> the species is wrong, the style clashes with your drawing, or the plan symbol you need does not exist in anyone's library. That is when you make your own — which is the rest of this page.</div>
 
 <hr class="pb-divider">
 <span class="pb-label">Before you trace — prepare the PNG</span>
@@ -140,7 +188,7 @@
 </div>
 
 <hr class="pb-divider">
-<span class="pb-label">Route A — Illustrator → AutoCAD</span>
+<span class="pb-label">Route B — Illustrator → AutoCAD</span>
 
 <div class="pb-step">
   <div class="pb-num">1</div>
@@ -207,7 +255,7 @@
 </div>
 
 <hr class="pb-divider">
-<span class="pb-label">Route B — Claude Code, no Illustrator</span>
+<span class="pb-label">Route C — Claude Code, no Illustrator</span>
 
 <p>Tracing is contour-finding, and contour-finding is a solved problem. You do not need Python, pip or a command prompt for this — Claude Code installs what it needs, writes the script and runs it for you. You supply the tree, the real size and the judgement. Set Claude Code up the way WF07 describes, then:</p>
 
@@ -244,7 +292,7 @@ Do every PNG in this folder, all 12 m wide.</div>
 
 <div class="pb-warn"><strong>Check the result, not the code.</strong> Measure the canopy, look for open holes, and grab the block by its base point. If any of the three is wrong, say so and ask for a fix. Accepting output you have not checked is the one habit that makes this route worse than tracing by hand.</div>
 
-<div class="pb-note"><strong>Where code wins:</strong> twenty silhouettes traced with identical settings and identical canopy widths, from one sentence. <strong>Where Illustrator wins:</strong> the one tree you will look at closely, where the threshold slider is a design decision. Choose by the shape of the job rather than by the tool you already know.</div>
+<div class="pb-note"><strong>Where downloading wins:</strong> the common stuff — people, cars, a generic street tree. <strong>Where code wins:</strong> twenty silhouettes traced with identical settings and identical canopy widths, from one sentence. <strong>Where Illustrator wins:</strong> the one tree you will look at closely, where the threshold slider is a design decision. Choose by the shape of the job rather than by the tool you already know.</div>
 
 <hr class="pb-divider">
 <span class="pb-label">Things that go wrong</span>
