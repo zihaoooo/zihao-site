@@ -9,8 +9,11 @@ formats at two settings depending on which factory built the page.
 AVIF is the site standard. Two presets, because the two jobs differ:
 
     page   q65, long edge <=1920   article and lecture images
-    slide  q80, width    <=1920    deck slides -- projected full screen,
+    slide  q80, width    <=1920    talks slides -- projected full screen,
                                    text-heavy, so they carry more quality
+
+Only talks modules have a slides/ folder. Course lectures run the same deck
+system but their images are ordinary page images, so they use the page preset.
 
 Preserves alpha (RGBA); flattens CMYK/other modes to RGB; never upscales.
 
@@ -147,7 +150,7 @@ if __name__ == "__main__":
     d.add_argument("--max", type=int, default=MAX_EDGE, help="max long edge px")
     d.add_argument("--q", type=int, default=QUALITY, help="AVIF quality")
 
-    s = sub.add_parser("slides", help="encode deck slides and repoint index.html (slide preset)")
+    s = sub.add_parser("slides", help="encode a talks module's slides/ and repoint index.html")
     s.add_argument("talks_dir", help="folder holding <topic>/slides/")
     s.add_argument("--max", type=int, default=SLIDE_MAX_W, help="max width px")
     s.add_argument("--q", type=int, default=SLIDE_QUALITY, help="AVIF quality")

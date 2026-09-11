@@ -16,7 +16,9 @@ Repo layout:
 
 Factory output (teaching/<course>/, talks/<topic>/, incl. their assets/img/ & slides/): written one-way into this repo by sibling factories under ../ (../course-prep, ../lecture-factory). This repo is the source of truth — no mirror exists. Author new content in the factory; fix existing output here directly (a rebuild reads from here). Only touch the factory for a general convention future builds should follow.
 
-talks/ modules: each a deck page in its own subfolder, index.html + slides/ WebP. Modules use the
+talks/ modules: each a deck page in its own subfolder, index.html + slides/ (bedac is the
+outlier — it uses img/ with descriptive names, so the encoder's slides mode skips it; normalize
+it to slides/slide_NN on its next rebuild). Modules use the
 shared deck system and carry site chrome, same as lecture pages — spec in assets/deck/deck-spec.md.
 Don't hand-edit modules — regenerate from the factory.
 
@@ -25,8 +27,9 @@ Architecture: hand-authored static HTML, served as-is from main/root via .nojeky
 Tooling (all in `_local/` — committed, never served; check here before writing a new script):
 - `tools/encode_images.py` — the one encoder, shared by both factories (they call it across
   `../`, and their old copies are now signposts). `dir` mode = page images, AVIF q65, long
-  edge ≤1920. `slides` mode = deck slides, AVIF q80, width ≤1920, and repoints each slide
-  ref in the module's index.html. `encode_one()` is importable for curated names/panoramas.
+  edge ≤1920. `slides` mode = talks slides only (a module's `slides/` folder), AVIF q80,
+  width ≤1920, and repoints each slide ref in the module's index.html. Lecture images are
+  page images and use `dir` mode. `encode_one()` is importable for curated names/panoramas.
 - `tools/build_thumbs.py` — rebuild the projects-gallery thumbnails into `assets/img/thumbs/`
   and repoint `projects/index.html`. Run after changing a card image. Dry-runs by default;
   `--apply` writes.
@@ -35,7 +38,7 @@ Tooling (all in `_local/` — committed, never served; check here before writing
 - `tools/notes-crypto.py` — encrypt/decrypt the `data-notes-full` presenter notes in decks.
 - `cv/build_external_pdf.py` — build the public CV PDF (see the assets/cv line above).
 
-Image standard: AVIF everywhere — q65 for page images, q80 for deck slides — long edge ≤1920,
+Image standard: AVIF everywhere — q65 for page images, q80 for talks slides — long edge ≤1920,
 encoded by `_local/tools/encode_images.py`. Talks slides published before the merge are still
 WebP; they convert on their next factory rebuild. Web copies live in this repo; keep the
 high-quality originals outside it, the way the factories hold lecture and slide sources.
