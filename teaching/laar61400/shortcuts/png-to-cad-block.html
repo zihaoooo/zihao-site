@@ -117,8 +117,8 @@
     <p>Visual, one tree at a time, full control over how much detail survives. Use it for a hero tree or a symbol you will look at closely.</p>
   </div>
   <div class="pb-route-card">
-    <h3>Route B — Python, no Illustrator</h3>
-    <p>Yes, this works in code — you prompt the converter into existence rather than writing it. Best when twenty silhouettes need identical treatment.</p>
+    <h3>Route B — Claude Code</h3>
+    <p>Yes, this works in code, and you never touch a terminal. Best when twenty silhouettes need identical treatment.</p>
   </div>
 </div>
 
@@ -207,56 +207,44 @@
 </div>
 
 <hr class="pb-divider">
-<span class="pb-label">Route B — Python, no Illustrator</span>
+<span class="pb-label">Route B — Claude Code, no Illustrator</span>
 
-<p>Tracing is contour-finding, and contour-finding is a solved problem. Rather than hand you a script to copy, here is the prompt that writes one. Paste it into Claude Code (or any coding assistant) inside a folder that holds your PNGs. The prompt names the libraries on purpose — naming the tools is what keeps the answer on the path landscape architects actually use.</p>
+<p>Tracing is contour-finding, and contour-finding is a solved problem. You do not need Python, pip or a command prompt for this — Claude Code installs what it needs, writes the script and runs it for you. You supply the tree, the real size and the judgement. Set Claude Code up the way WF07 describes, then:</p>
 
-<div class="pb-code">Write a Python 3 command-line script called png2dxf.py that converts a
-silhouette PNG of a tree into a DXF containing a scaled CAD block.
+<div class="pb-step">
+  <div class="pb-num">1</div>
+  <div>
+    <h4>Make a folder</h4>
+    <p>Put your silhouette PNGs in it, plus the spec file below. Open Claude Code in that folder.</p>
+    <a class="wf-download" href="/teaching/laar61400/assets/downloads/png2dxf-spec.md" download>↓ Download the build spec — png2dxf-spec.md</a>
+  </div>
+</div>
 
-Use OpenCV (cv2) for image work, NumPy for the arrays, and ezdxf to
-write the DXF. No other dependencies.
+<div class="pb-step">
+  <div class="pb-num">2</div>
+  <div>
+    <h4>Ask in one line</h4>
+    <div class="pb-code">Read png2dxf-spec.md and turn tree.png into a CAD block 6 m wide.</div>
+    <p>The spec carries the detail — libraries, contour mode, base point at the trunk, geometry on layer 0 — so your prompt stays short. That division is the lesson: write the standing requirements down once, ask in a sentence.</p>
+  </div>
+</div>
 
-Behaviour:
-- Read the PNG with cv2.imread(..., IMREAD_UNCHANGED). If it has an
-  alpha channel, build the silhouette mask from alpha. Otherwise
-  threshold the greyscale with Otsu, dark shape on light background.
-- Trace with cv2.findContours using RETR_CCOMP so holes in the canopy
-  survive as their own loops, and CHAIN_APPROX_SIMPLE.
-- Drop contours smaller than a --min-area threshold in pixels.
-- Simplify each contour with cv2.approxPolyDP, tolerance from --tol
-  in pixels.
-- Scale everything so the overall bounding-box width equals --width in
-  real drawing units, flip the Y axis, and put the origin at the
-  bottom centre of the bounding box so the base point sits at the trunk.
-- Build an ezdxf R2010 document, set $INSUNITS from a --units option
-  (m, mm, ft, in), define a block named by --name with every contour as
-  a closed LWPOLYLINE on layer 0, and insert that block once at the
-  origin on a --layer that defaults to L-PLNT-TREE.
-- Save next to the input image unless -o gives a path.
-- Print the output path, the block name, the polyline and vertex
-  counts, and the final width.
+<div class="pb-step">
+  <div class="pb-num">3</div>
+  <div>
+    <h4>Keep talking</h4>
+    <p>The first result is a draft. Say what is wrong in plain language:</p>
+    <div class="pb-code">The outline is too jagged — simplify it more.
+The canopy holes came in filled.
+Do every PNG in this folder, all 12 m wide.</div>
+  </div>
+</div>
 
-Use argparse. Fail with a clear message when the image cannot be read
-or no contours survive the filters. Keep it one file, under 60 lines,
-comments only where the reason is not obvious from the code.</div>
+<p>Open the DXF in AutoCAD and the block is already defined, already the right size, already built on layer 0. Run <span class="pb-cmd">WBLOCK</span> once to write it into your library.</p>
 
-<p>Then install what it needs and run it:</p>
+<div class="pb-warn"><strong>Check the result, not the code.</strong> Measure the canopy, look for open holes, and grab the block by its base point. If any of the three is wrong, say so and ask for a fix. Accepting output you have not checked is the one habit that makes this route worse than tracing by hand.</div>
 
-<div class="pb-code"><span class="c"># one-time setup</span>
-py -m pip install opencv-python ezdxf numpy
-
-<span class="c"># convert one tree</span>
-py png2dxf.py tree.png --width 6 --name TREE-DECID-06M --tol 1.5
-
-<span class="c"># PowerShell — every PNG in the folder, all 6 m wide</span>
-Get-ChildItem *.png | ForEach-Object { py png2dxf.py $_.Name --width 6 }</div>
-
-<p>Three knobs matter once it runs. <span class="pb-cmd">--width</span> is the real canopy width in drawing units, <span class="pb-cmd">--tol</span> is the simplify tolerance in pixels — raise it for fewer vertices — and <span class="pb-cmd">--min-area</span> drops specks. Open the DXF and the block is already defined, already the right size, already built on layer 0 inside the definition. Run <span class="pb-cmd">WBLOCK</span> once to write it into your library.</p>
-
-<div class="pb-warn"><strong>Read what comes back.</strong> The prompt is specific because specificity is what you are being graded on: it names the libraries, the functions, the flags and the base point. Check three things in the code before you trust the output — that the contour mode keeps holes, that the Y axis is flipped, and that the block geometry lands on layer 0. A prompt that says "convert a PNG to a DXF" gets you something that runs and is wrong.</div>
-
-<div class="pb-note"><strong>Where code wins:</strong> twenty silhouettes traced with identical settings and identical canopy widths, in one command. <strong>Where Illustrator wins:</strong> the one tree you will look at closely, where the threshold slider is a design decision. Choose by the shape of the job rather than by the tool you already know.</div>
+<div class="pb-note"><strong>Where code wins:</strong> twenty silhouettes traced with identical settings and identical canopy widths, from one sentence. <strong>Where Illustrator wins:</strong> the one tree you will look at closely, where the threshold slider is a design decision. Choose by the shape of the job rather than by the tool you already know.</div>
 
 <hr class="pb-divider">
 <span class="pb-label">Things that go wrong</span>
@@ -265,7 +253,7 @@ Get-ChildItem *.png | ForEach-Object { py png2dxf.py $_.Name --width 6 }</div>
   <tr><th>Symptom</th><th>Cause and fix</th></tr>
   <tr><td>Tree arrives the size of a city block</td><td>DXF units never matched drawing units. Use <span class="pb-cmd">SCALE → Reference</span> against the known canopy width rather than guessing a factor.</td></tr>
   <tr><td>Solid rectangle behind the tree</td><td><em>Ignore White</em> was off during the trace. Delete the shape in Illustrator and export again.</td></tr>
-  <tr><td>Drawing crawls after inserting</td><td>Too many vertices. Re-trace with lower Paths, or raise <span class="pb-cmd">--tol</span>. A plan tree rarely needs more than a few hundred points.</td></tr>
+  <tr><td>Drawing crawls after inserting</td><td>Too many vertices. Re-trace with lower Paths, or ask for a simpler outline. A plan tree rarely needs more than a few hundred points.</td></tr>
   <tr><td>Block ignores its layer colour</td><td>The geometry carries an explicit colour. Redefine it with everything on layer <span class="pb-cmd">0</span> and colour <span class="pb-cmd">ByBlock</span>.</td></tr>
   <tr><td>Trees refuse to land on the survey point</td><td>Base point sits at a canopy corner. Redefine the block with the base at the trunk centre.</td></tr>
   <tr><td>Canopy holes come in filled</td><td>The trace kept outer contours only. In Illustrator select all paths and use <strong>Object → Compound Path → Make</strong>.</td></tr>
