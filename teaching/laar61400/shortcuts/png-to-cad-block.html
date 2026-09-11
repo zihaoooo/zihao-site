@@ -118,7 +118,7 @@
   </div>
   <div class="pb-route-card">
     <h3>Route B — Python, no Illustrator</h3>
-    <p>Yes, this works in code. Best when you have twenty silhouettes and want them traced and scaled identically in one command.</p>
+    <p>Yes, this works in code — you prompt the converter into existence rather than writing it. Best when twenty silhouettes need identical treatment.</p>
   </div>
 </div>
 
@@ -209,79 +209,52 @@
 <hr class="pb-divider">
 <span class="pb-label">Route B — Python, no Illustrator</span>
 
-<p>Tracing is contour-finding, and contour-finding is a solved problem. The script below reads a silhouette PNG, traces it, simplifies it, scales it to a real canopy width and writes a DXF that already contains a named block with its base point at the trunk. Same destination as Route A, minus the sliders.</p>
+<p>Tracing is contour-finding, and contour-finding is a solved problem. Rather than hand you a script to copy, here is the prompt that writes one. Paste it into Claude Code (or any coding assistant) inside a folder that holds your PNGs. The prompt names the libraries on purpose — naming the tools is what keeps the answer on the path landscape architects actually use.</p>
+
+<div class="pb-code">Write a Python 3 command-line script called png2dxf.py that converts a
+silhouette PNG of a tree into a DXF containing a scaled CAD block.
+
+Use OpenCV (cv2) for image work, NumPy for the arrays, and ezdxf to
+write the DXF. No other dependencies.
+
+Behaviour:
+- Read the PNG with cv2.imread(..., IMREAD_UNCHANGED). If it has an
+  alpha channel, build the silhouette mask from alpha. Otherwise
+  threshold the greyscale with Otsu, dark shape on light background.
+- Trace with cv2.findContours using RETR_CCOMP so holes in the canopy
+  survive as their own loops, and CHAIN_APPROX_SIMPLE.
+- Drop contours smaller than a --min-area threshold in pixels.
+- Simplify each contour with cv2.approxPolyDP, tolerance from --tol
+  in pixels.
+- Scale everything so the overall bounding-box width equals --width in
+  real drawing units, flip the Y axis, and put the origin at the
+  bottom centre of the bounding box so the base point sits at the trunk.
+- Build an ezdxf R2010 document, set $INSUNITS from a --units option
+  (m, mm, ft, in), define a block named by --name with every contour as
+  a closed LWPOLYLINE on layer 0, and insert that block once at the
+  origin on a --layer that defaults to L-PLNT-TREE.
+- Save next to the input image unless -o gives a path.
+- Print the output path, the block name, the polyline and vertex
+  counts, and the final width.
+
+Use argparse. Fail with a clear message when the image cannot be read
+or no contours survive the filters. Keep it one file, under 60 lines,
+comments only where the reason is not obvious from the code.</div>
+
+<p>Then install what it needs and run it:</p>
 
 <div class="pb-code"><span class="c"># one-time setup</span>
 py -m pip install opencv-python ezdxf numpy
 
-<span class="c"># convert</span>
-py png2dxf.py tree.png --width 6 --name TREE-DECID-06M --tol 1.5</div>
+<span class="c"># convert one tree</span>
+py png2dxf.py tree.png --width 6 --name TREE-DECID-06M --tol 1.5
 
-<p>Three knobs matter. <span class="pb-cmd">--width</span> is the real canopy width in drawing units, <span class="pb-cmd">--tol</span> is the simplify tolerance in pixels (raise it for fewer vertices), and <span class="pb-cmd">--min-area</span> drops specks. Save this as <span class="pb-cmd">png2dxf.py</span>:</p>
-
-<div class="pb-code">import argparse, os
-import cv2, numpy as np, ezdxf
-
-p = argparse.ArgumentParser()
-p.add_argument("image")
-p.add_argument("-o", "--out")
-p.add_argument("--width", type=float, default=6.0)      <span class="c"># real canopy width</span>
-p.add_argument("--units", choices=["m","mm","ft","in"], default="m")
-p.add_argument("--name", default=None)                  <span class="c"># block name</span>
-p.add_argument("--tol", type=float, default=1.0)        <span class="c"># simplify, in pixels</span>
-p.add_argument("--min-area", type=float, default=40.0)  <span class="c"># drop specks</span>
-p.add_argument("--layer", default="L-PLNT-TREE")
-a = p.parse_args()
-
-img = cv2.imread(a.image, cv2.IMREAD_UNCHANGED)
-if img is None:
-    raise SystemExit(f"cannot read {a.image}")
-
-<span class="c"># Silhouette mask: alpha if the PNG has it, otherwise dark-on-light threshold.</span>
-if img.ndim == 3 and img.shape[2] == 4:
-    mask = (img[:, :, 3] &gt; 128).astype(np.uint8) * 255
-else:
-    gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY) if img.ndim == 3 else img
-    _, mask = cv2.threshold(gray, 0, 255, cv2.THRESH_BINARY_INV + cv2.THRESH_OTSU)
-
-<span class="c"># RETR_CCOMP keeps holes in the canopy as loops of their own.</span>
-contours, _ = cv2.findContours(mask, cv2.RETR_CCOMP, cv2.CHAIN_APPROX_SIMPLE)
-polys = []
-for c in contours:
-    if cv2.contourArea(c) &lt; a.min_area:
-        continue
-    pts = cv2.approxPolyDP(c, a.tol, True).reshape(-1, 2)
-    if len(pts) &gt;= 3:
-        polys.append(pts.astype(float))
-if not polys:
-    raise SystemExit("no shapes found - check the threshold or the background")
-
-<span class="c"># Pixels to drawing units, flip Y, base point at bottom centre (the trunk).</span>
-allpts = np.vstack(polys)
-x0 = allpts[:, 0].min(); x1 = allpts[:, 0].max()
-y1 = allpts[:, 1].max()
-s = a.width / (x1 - x0)
-cx = (x0 + x1) / 2.0
-
-doc = ezdxf.new("R2010", setup=True)
-doc.header["$INSUNITS"] = {"in": 1, "ft": 2, "mm": 4, "m": 6}[a.units]
-doc.layers.add(a.layer, color=3)
-name = a.name or os.path.splitext(os.path.basename(a.image))[0].upper()
-blk = doc.blocks.new(name=name)
-for pts in polys:
-    pts = [((x - cx) * s, (y1 - y) * s) for x, y in pts]
-    blk.add_lwpolyline(pts, close=True, dxfattribs={"layer": "0"})
-doc.modelspace().add_blockref(name, (0, 0), dxfattribs={"layer": a.layer})
-
-out = a.out or os.path.splitext(a.image)[0] + ".dxf"
-doc.saveas(out)
-print(f"{out}: block {name}, {len(polys)} polylines, "
-      f"{sum(len(p) for p in polys)} vertices, {a.width}{a.units} wide")</div>
-
-<p>Open the resulting DXF and the block is already defined, already the right size, already built on layer 0 inside the definition. Run <span class="pb-cmd">WBLOCK</span> once to write it into your library. A whole folder converts in one line:</p>
-
-<div class="pb-code"><span class="c"># PowerShell — every PNG in the folder, all 6 m wide</span>
+<span class="c"># PowerShell — every PNG in the folder, all 6 m wide</span>
 Get-ChildItem *.png | ForEach-Object { py png2dxf.py $_.Name --width 6 }</div>
+
+<p>Three knobs matter once it runs. <span class="pb-cmd">--width</span> is the real canopy width in drawing units, <span class="pb-cmd">--tol</span> is the simplify tolerance in pixels — raise it for fewer vertices — and <span class="pb-cmd">--min-area</span> drops specks. Open the DXF and the block is already defined, already the right size, already built on layer 0 inside the definition. Run <span class="pb-cmd">WBLOCK</span> once to write it into your library.</p>
+
+<div class="pb-warn"><strong>Read what comes back.</strong> The prompt is specific because specificity is what you are being graded on: it names the libraries, the functions, the flags and the base point. Check three things in the code before you trust the output — that the contour mode keeps holes, that the Y axis is flipped, and that the block geometry lands on layer 0. A prompt that says "convert a PNG to a DXF" gets you something that runs and is wrong.</div>
 
 <div class="pb-note"><strong>Where code wins:</strong> twenty silhouettes traced with identical settings and identical canopy widths, in one command. <strong>Where Illustrator wins:</strong> the one tree you will look at closely, where the threshold slider is a design decision. Choose by the shape of the job rather than by the tool you already know.</div>
 
