@@ -22,6 +22,22 @@ Don't hand-edit modules — regenerate from the factory.
 
 Architecture: hand-authored static HTML, served as-is from main/root via .nojekyll — keep it. Shared chrome (head, nav, wrappers) is duplicated per page by design; propagate nav edits across pages with sed.
 
+Tooling (all in `_local/` — committed, never served; check here before writing a new script):
+- `tools/build_thumbs.py` — rebuild the projects-gallery thumbnails into `assets/img/thumbs/`
+  and repoint `projects/index.html`. Run after changing a card image. Dry-runs by default;
+  `--apply` writes.
+- `dev-server.py` — local preview with `Cache-Control: no-store`. Use this over
+  `py -m http.server`, which caches CSS hard enough to make a correct page look broken.
+- `tools/notes-crypto.py` — encrypt/decrypt the `data-notes-full` presenter notes in decks.
+- `cv/build_external_pdf.py` — build the public CV PDF (see the assets/cv line above).
+
+Image standard: AVIF, long edge ≤1920, q65. Web copies live in this repo; keep the
+high-quality originals outside it, the way the factories hold lecture and slide sources.
+Project images predate this and are still JPEG at ≤1600px — convert from masters, not from
+the web copies, which are already lossy. Declare `width`/`height` on every `<img>` (the
+`img{height:auto}` guard in site.css keeps the attributes from fighting a CSS width) and
+`loading="lazy"` on anything below the fold.
+
 Workflow:
 - Find-and-replace across HTML: sed via Bash, not PowerShell (it double-encodes UTF-8).
 - ffmpeg available for image work.
