@@ -42,8 +42,9 @@ Image standard: AVIF everywhere — q65 for page images, q80 for talks slides �
 encoded by `_local/tools/encode_images.py`. Talks slides published before the merge are still
 WebP; they convert on their next factory rebuild. Web copies live in this repo; keep the
 high-quality originals outside it, the way the factories hold lecture and slide sources.
-Project images predate this and are still JPEG at ≤1600px — convert from masters, not from
-the web copies, which are already lossy. Declare `width`/`height` on every `<img>` (the
+Project images are built from the originals in `..\project-originals\`, one folder per
+project; its README holds the folder rules. Encode from there, not from the web copies,
+which are already lossy. Declare `width`/`height` on every `<img>` (the
 `img{height:auto}` guard in site.css keeps the attributes from fighting a CSS width) and
 `loading="lazy"` on anything below the fold.
 
