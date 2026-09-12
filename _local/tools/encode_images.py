@@ -15,7 +15,8 @@ AVIF is the site standard. Two presets, because the two jobs differ:
 Only talks modules have a slides/ folder. Course lectures run the same deck
 system but their images are ordinary page images, so they use the page preset.
 
-Preserves alpha (RGBA); flattens CMYK/other modes to RGB; never upscales.
+Preserves alpha (RGBA); colour-manages CMYK to sRGB (embedded profile, else
+US Web Coated SWOP); flattens other modes to RGB; never upscales.
 
 Three ways to use it:
 
@@ -35,16 +36,35 @@ Three ways to use it:
        encode_one(src, dst)                 # long-edge cap
        encode_one(src, dst, panorama_h=440) # fixed height (scrolls)
 """
-import argparse, glob, os, pathlib, re
-from PIL import Image, ImageOps
+import argparse, glob, io, os, pathlib, re
+from PIL import Image, ImageCms, ImageOps
 
 MAX_EDGE = 1920
 QUALITY = 65          # page preset
 SLIDE_QUALITY = 80    # slide preset
 SLIDE_MAX_W = 1920
 
+# CMYK sources without an embedded profile are read as US Web Coated (SWOP),
+# Adobe's default US CMYK working space. It ships with Windows.
+CMYK_PROFILE = r"C:\Windows\System32\spool\drivers\color\USWebCoatedSWOP.icc"
+
 # Sources we read but never re-encode: already-final, or not raster.
 SKIP_EXT = ("avif", "svg")
+
+
+def cmyk_to_srgb(im, src):
+    """Colour-manage a CMYK image to sRGB (perceptual intent)."""
+    icc = im.info.get("icc_profile")
+    if icc:
+        profile, label = ImageCms.ImageCmsProfile(io.BytesIO(icc)), "embedded profile"
+    elif os.path.exists(CMYK_PROFILE):
+        profile, label = ImageCms.getOpenProfile(CMYK_PROFILE), "US Web Coated (SWOP)"
+    else:
+        print(f"  note: {os.path.basename(src)} is CMYK and no profile was found; plain convert")
+        return im.convert("RGB")
+    print(f"  note: {os.path.basename(src)} is CMYK; converting to sRGB via {label}")
+    return ImageCms.profileToProfile(im, profile, ImageCms.createProfile("sRGB"),
+                                     renderingIntent=ImageCms.Intent.PERCEPTUAL, outputMode="RGB")
 
 
 def encode_one(src, dst, max_edge=MAX_EDGE, q=QUALITY, panorama_h=None, fit_width=False):
@@ -60,9 +80,12 @@ def encode_one(src, dst, max_edge=MAX_EDGE, q=QUALITY, panorama_h=None, fit_widt
     im = ImageOps.exif_transpose(im)
     if im.mode in ("P", "LA"):
         im = im.convert("RGBA")
+    elif im.mode == "CMYK":
+        # AVIF has no CMYK path, and a plain convert() skips colour management:
+        # teals turn neon green. Go through the embedded profile, else SWOP.
+        im = cmyk_to_srgb(im, src)
     elif im.mode not in ("RGB", "RGBA"):
-        # AVIF has no CMYK/grayscale path; flatten to RGB. CMYK (Adobe-exported
-        # JPEGs) would otherwise produce an undecodable AVIF that breaks on site.
+        # AVIF has no grayscale/other path; flatten to RGB.
         print(f"  note: {os.path.basename(src)} is {im.mode}; converting to RGB")
         im = im.convert("RGB")
     w, h = im.size
