@@ -36,7 +36,7 @@ Three ways to use it:
        encode_one(src, dst, panorama_h=440) # fixed height (scrolls)
 """
 import argparse, glob, os, pathlib, re
-from PIL import Image
+from PIL import Image, ImageOps
 
 MAX_EDGE = 1920
 QUALITY = 65          # page preset
@@ -55,6 +55,9 @@ def encode_one(src, dst, max_edge=MAX_EDGE, q=QUALITY, panorama_h=None, fit_widt
                 width-bound, and a tall slide must not be shrunk to fit).
     """
     im = Image.open(src)
+    # Phone cameras record orientation in EXIF and leave the pixels as shot.
+    # AVIF carries no such tag, so bake the rotation in or portraits ship sideways.
+    im = ImageOps.exif_transpose(im)
     if im.mode in ("P", "LA"):
         im = im.convert("RGBA")
     elif im.mode not in ("RGB", "RGBA"):
