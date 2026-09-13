@@ -13,7 +13,8 @@ The notes below document the conventions the factory follows so the output stays
 
 ## Announcements (`announcements.html`)
 Hand-authored, not factory output. Weekly housekeeping — newest week first, `.ann-week current`
-at top; demote past weeks to `.ann-week past` and leave them below as an archive. Linked from a
+at top; demote past weeks to a collapsed `<details class="ann-week past">` with a
+`<summary class="ann-week-head">`, stacked below newest first. Linked from a
 highlighted `.panel-announce` block sitting directly under the brand block in every page's nav
 (propagate nav edits with sed, as elsewhere). Styles live at the end of `assets/css/main.css`.
 
