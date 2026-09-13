@@ -452,11 +452,5 @@ summary.ann-week-head::after {
 }
 .ann-week.past[open] summary.ann-week-head::after { content: '−'; }
 summary.ann-week-head:hover .ann-week-num { color: #801010; }
-.ann-agenda {
-  display: grid; grid-template-columns: 44px 1fr; gap: 4px 12px; margin-top: 6px;
-}
-.ann-agenda dt {
-  font-family: 'DM Mono', monospace; font-size: 11px; color: #801010; padding-top: 2px;
-}
-.ann-agenda dd { margin: 0; }
-.ann-agenda dd.ann-break { color: #aaa; font-style: italic; }
+.ann-agenda { margin-top: 6px; }
+.ann-agenda .ann-break { color: #aaa; font-style: italic; }
