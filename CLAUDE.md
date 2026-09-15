@@ -13,6 +13,7 @@ Repo layout:
 - teaching/laar61400/ — factory output of ../course-prep.
 - talks/ — factory output of ../lecture-factory; deck modules + gallery.
 - CNAME.
+- .claude/skills/ — workspace shortcuts: `/cv`, `/teach`, `/projects`. Each points to its folder's docs.
 
 Factory output (teaching/<course>/, talks/<topic>/, incl. their assets/img/ & slides/): written one-way into this repo by sibling factories under ../ (../course-prep, ../lecture-factory). This repo is the source of truth — no mirror exists. Author new content in the factory; fix existing output here directly (a rebuild reads from here). Only touch the factory for a general convention future builds should follow.
 

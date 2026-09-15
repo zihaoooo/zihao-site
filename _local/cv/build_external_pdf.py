@@ -1,7 +1,7 @@
 """Render _local/cv/external_cv.md into the public CV PDF.
 
 Parses the markdown so the PDF stays in sync with the source of truth.
-Design spec is locked (see _local/.claude ../ cv-pdf skill): Letter, 0.85" margins,
+Design spec is locked: Letter, 0.85" margins,
 Helvetica, 22pt name, 11pt caps sections, two-column date/content entries.
 
     py _local/cv/build_external_pdf.py
