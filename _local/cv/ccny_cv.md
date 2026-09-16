@@ -88,7 +88,10 @@ Macwillie, Elizabeth, Shawn Rickenbacker, and **Zihao Zhang**. 2027. "Strengthen
 *Editor-reviewed. Solo-authored.*
 
 (Forthcoming) **Zhang, Zihao**, and Shurui Zhang. 2027. "Escaping Western Gaze: Chinese Diasporic Urbanism in Flushing." In *Becoming Chinatown: An Anthology of Interiors*, edited by Leyuan Li and Tairan An. Berlin: Jovis.
-*Editor-reviewed. Co-authored. Contribution: Major / Lead Author*
+*Editor-reviewed. Co-authored. Contribution: Equal*
+
+(Forthcoming) **Zhang, Zihao**, and Shurui Zhang. 2027. "One Prompt, Job Done: A Syndrome." In *Representing Landscapes: AI, Machine Vision, and Climate Futures*, edited by Nadia Amoroso. New York: Routledge.
+*Editor-reviewed. Co-authored. Contribution: Lead Author*
 
 **2024**
 
