@@ -115,7 +115,9 @@
     .gd-scroll__bar b{font-family:"DM Sans",sans-serif;font-size:14px;color:var(--ink);}
     .gd-scroll__bar span{font-family:"DM Mono",monospace;font-size:10px;letter-spacing:.05em;color:var(--mute);}
     .gd-scroll__viewport{overflow-x:auto;overflow-y:hidden;-webkit-overflow-scrolling:touch;
-      margin:12px 0 0;}
+      margin:12px 0 0;cursor:grab;}
+    .gd-scroll__viewport.dragging{cursor:grabbing;scroll-behavior:auto;}
+    .gd-scroll__viewport.dragging img{pointer-events:none;}
     .gd-scroll__viewport img{display:block;height:360px;width:auto;max-width:none;}
     .gd-scroll__hint{font-family:"DM Mono",monospace;font-size:10px;letter-spacing:.05em;color:var(--mute);
       padding:8px 16px 12px;}
@@ -1060,7 +1062,7 @@
           <div class="gd-scroll__viewport">
             <img src="/teaching/laar61400/assets/img/Week04/scroll-fuchun.avif" alt="Huang Gongwang, Dwelling in the Fuchun Mountains handscroll">
           </div>
-          <p class="gd-scroll__hint">Scroll horizontally → — a handscroll is read a span at a time, never all at once. The emptiness sets the pace.</p>
+          <p class="gd-scroll__hint">Drag with the hand, or scroll horizontally → — a handscroll is read a span at a time, never all at once. The emptiness sets the pace.</p>
         </div>
 
       </div>
@@ -1252,6 +1254,31 @@
       render();
     }
     document.querySelectorAll('.gd-wheel').forEach(init);
+  })();
+
+  /* Bonus handscroll — drag to pan */
+  (function(){
+    document.querySelectorAll('.gd-scroll__viewport').forEach(function(vp){
+      var down=false,startX=0,startLeft=0,moved=0;
+      vp.addEventListener('pointerdown',function(e){
+        if(e.pointerType==='mouse'&&e.button!==0)return;
+        down=true;moved=0;startX=e.clientX;startLeft=vp.scrollLeft;
+        vp.classList.add('dragging');vp.setPointerCapture(e.pointerId);
+      });
+      vp.addEventListener('pointermove',function(e){
+        if(!down)return;
+        var dx=e.clientX-startX;moved=Math.max(moved,Math.abs(dx));
+        vp.scrollLeft=startLeft-dx;e.preventDefault();
+      });
+      ['pointerup','pointercancel'].forEach(function(t){
+        vp.addEventListener(t,function(e){
+          if(!down)return;down=false;vp.classList.remove('dragging');
+          try{vp.releasePointerCapture(e.pointerId);}catch(err){}
+        });
+      });
+      vp.addEventListener('dragstart',function(e){e.preventDefault();});
+      vp.addEventListener('click',function(e){if(moved>4){e.preventDefault();e.stopPropagation();}},true);
+    });
   })();
 
   /* S10 grid cells */
