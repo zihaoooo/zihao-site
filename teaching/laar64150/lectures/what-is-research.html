@@ -18,31 +18,31 @@
 
     /* ── text card: heading + bullets, no image (page-local; mirrors week07's m7-cols
        tokens). Authored wide so it fills a large stage — the fit script only scales down. ── */
-    .txt-card{width:min(1180px,96%);display:flex;flex-direction:column;gap:14px;text-align:left;}
+    .txt-card{width:min(1180px,94%);display:flex;flex-direction:column;gap:1.1em;text-align:left;}
     .txt-card h3{margin:0;font-family:"DM Sans",sans-serif;font-weight:700;color:var(--ink);
-      font-size:clamp(20px,2.4cqw,38px);letter-spacing:-.01em;line-height:1.1;}
+      font-size:clamp(22px,3cqw,52px);letter-spacing:-.01em;line-height:1.1;}
     .txt-card .lead{font-family:"DM Sans",sans-serif;font-weight:600;color:var(--accent);
-      font-size:clamp(13px,1.5cqw,19px);line-height:1.35;}
-    .txt-card ul{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:9px;}
+      font-size:clamp(15px,1.9cqw,28px);line-height:1.35;}
+    .txt-card ul{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:.62em;}
     .txt-card li{font-family:"DM Sans",sans-serif;color:var(--mute);
-      font-size:clamp(12px,1.45cqw,19px);line-height:1.45;padding-left:17px;position:relative;}
+      font-size:clamp(14px,1.95cqw,30px);line-height:1.45;padding-left:1.05em;position:relative;}
     .txt-card li::before{content:"+";position:absolute;left:0;color:var(--accent);
       font-family:"DM Mono",ui-monospace,monospace;}
     .txt-card li b{color:var(--ink);font-weight:600;}
     .txt-card li .src{font-family:"DM Mono",ui-monospace,monospace;font-size:.8em;
       letter-spacing:.04em;color:#a39c92;}
-    .txt-card ul ul{margin:7px 0 0;gap:6px;}
-    .txt-card ul ul li{font-size:clamp(11px,1.25cqw,16px);}
+    .txt-card ul ul{margin:.5em 0 0;gap:.45em;}
+    .txt-card ul ul li{font-size:clamp(13px,1.65cqw,25px);}
     .txt-card ul ul li::before{content:"–";}
     .txt-card a{color:inherit;text-decoration:underline;text-underline-offset:2px;
       text-decoration-color:#cfc8bd;word-break:break-all;}
 
     /* ── statement card: one sentence, carried large ── */
-    .stmt{width:min(940px,94%);text-align:center;}
+    .stmt{width:min(1100px,94%);text-align:center;}
     .stmt p{margin:0;font-family:"DM Sans",sans-serif;font-weight:700;color:var(--ink);
-      font-size:clamp(20px,2.6cqw,44px);line-height:1.18;letter-spacing:-.01em;text-wrap:balance;}
-    .stmt .sub{margin-top:18px;font-weight:400;color:var(--mute);
-      font-size:clamp(13px,1.5cqw,20px);line-height:1.45;}
+      font-size:clamp(22px,3.1cqw,56px);line-height:1.18;letter-spacing:-.01em;text-wrap:balance;}
+    .stmt .sub{margin-top:.6em;font-weight:400;color:var(--mute);
+      font-size:clamp(15px,1.9cqw,30px);line-height:1.45;}
   </style>
 </head>
 <body>
