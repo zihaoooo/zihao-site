@@ -510,6 +510,16 @@
   .wf-step.wf-full .wf-steps-row { grid-template-columns: 1fr; }
   .wf-step.wf-full .wf-step-body { border-right: none; border-bottom: 1px solid #e8e8e8; }
   .wf-step.wf-full .wf-step-body:last-child { border-bottom: none; }
+  /* CTB tables: tighten and let the Typical Use column wrap so the table
+     stays inside the card, which is overflow:hidden and would clip it */
+  .wf-ctb { font-size: 11px; }
+  .wf-ctb th { padding: 4px 6px; }
+  .wf-ctb td { padding: 5px 6px; }
+  .wf-ctb th:last-child,
+  .wf-ctb td:last-child { white-space: normal; }
+  .wf-ctb .wf-use { font-size: 10.5px; line-height: 1.35; }
+  /* last resort — scroll the table rather than cut it off */
+  .wf-step-body:has(> .wf-ctb) { overflow-x: auto; }
 }
 
 /* ── Phone ── */
@@ -517,6 +527,11 @@
   .wf-wrap { padding: 16px; }
   .wf-title { font-size: 15px; }
   .wf-pipeline { gap: 0; }
+  .wf-ctb { font-size: 10.5px; }
+  .wf-ctb th { padding: 4px 5px; }
+  .wf-ctb td { padding: 5px 5px; }
+  .wf-ctb .wf-swatch { width: 10px; height: 10px; margin-right: 4px; }
+  .wf-ctb .wf-use { font-size: 10px; }
 }
 
 /* ============================================
