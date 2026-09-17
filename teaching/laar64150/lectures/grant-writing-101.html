@@ -3,11 +3,47 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="robots" content="noindex">
   <title>Grant Writing 101 — LAAR 64150</title>
   <link rel="stylesheet" href="/teaching/laar61400/assets/css/main.css">
   <link rel="stylesheet" href="/teaching/laar61400/assets/css/workflow-shared.css">
   <link rel="stylesheet" href="/assets/deck/deck.css">
+  <style>
+    /* palette tokens live in deck.css :root */
+
+    /* a typeset card living inside a carousel slide: centered, clipped; JS scales the
+       child to fit the fixed 16:9 stage (see fit script) so nothing scrolls. */
+    .slide .embed{width:100%;height:100%;display:flex;align-items:center;justify-content:center;
+      overflow:hidden;padding:14px;box-sizing:border-box;}
+    .slide .embed>*{transform-origin:center center;}
+
+    /* ── text card: heading + bullets, no image (page-local; mirrors week07's m7-cols
+       tokens). Authored wide so it fills a large stage — the fit script only scales down. ── */
+    .txt-card{width:min(1180px,96%);display:flex;flex-direction:column;gap:14px;text-align:left;}
+    .txt-card h3{margin:0;font-family:"DM Sans",sans-serif;font-weight:700;color:var(--ink);
+      font-size:clamp(20px,2.4cqw,38px);letter-spacing:-.01em;line-height:1.1;}
+    .txt-card .lead{font-family:"DM Sans",sans-serif;font-weight:600;color:var(--accent);
+      font-size:clamp(13px,1.5cqw,19px);line-height:1.35;}
+    .txt-card ul{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:9px;}
+    .txt-card li{font-family:"DM Sans",sans-serif;color:var(--mute);
+      font-size:clamp(12px,1.45cqw,19px);line-height:1.45;padding-left:17px;position:relative;}
+    .txt-card li::before{content:"+";position:absolute;left:0;color:var(--accent);
+      font-family:"DM Mono",ui-monospace,monospace;}
+    .txt-card li b{color:var(--ink);font-weight:600;}
+    .txt-card li .src{font-family:"DM Mono",ui-monospace,monospace;font-size:.8em;
+      letter-spacing:.04em;color:#a39c92;}
+    .txt-card ul ul{margin:7px 0 0;gap:6px;}
+    .txt-card ul ul li{font-size:clamp(11px,1.25cqw,16px);}
+    .txt-card ul ul li::before{content:"–";}
+    .txt-card a{color:inherit;text-decoration:underline;text-underline-offset:2px;
+      text-decoration-color:#cfc8bd;word-break:break-all;}
+
+    /* ── statement card: one sentence, carried large ── */
+    .stmt{width:min(940px,94%);text-align:center;}
+    .stmt p{margin:0;font-family:"DM Sans",sans-serif;font-weight:700;color:var(--ink);
+      font-size:clamp(20px,2.6cqw,44px);line-height:1.18;letter-spacing:-.01em;text-wrap:balance;}
+    .stmt .sub{margin-top:18px;font-weight:400;color:var(--mute);
+      font-size:clamp(13px,1.5cqw,20px);line-height:1.45;}
+  </style>
 </head>
 <body>
 
@@ -20,7 +56,7 @@
     <div class="panel-section">
       <span class="panel-section-label">Lectures</span>
       <a class="panel-link" href="/teaching/laar64150/lectures/what-is-research.html">What is Research</a>
-      <a class="panel-link" href="/teaching/laar64150/lectures/grant-writing-101.html">Grant Writing 101</a>
+      <a class="panel-link active" href="/teaching/laar64150/lectures/grant-writing-101.html">Grant Writing 101</a>
     </div>
   </nav>
 
@@ -39,27 +75,173 @@
 
         <!-- ── Slides ── -->
         <span class="section-label">Lecture Slides</span>
-        <div class="deck" id="deck" data-deck-id="grant-writing-101" data-deck-title="Grant Writing 101">
+        <div class="deck" id="deck" data-deck-id="gw101" data-deck-title="Grant Writing 101">
           <div class="deck-stage" id="deck-stage">
 
-            <!-- 1 · Title -->
             <div class="slide slide--title" data-cap="" data-notes="">
               <div class="tt">Grant Writing 101</div>
               <div class="ts">LAAR 64150 · Design Research</div>
             </div>
-
-            <!-- 2 · Placeholder: import slides from source -->
-            <div class="slide" data-cap="Slides to import" data-notes="">
-              <div class="ph">
-                <span class="ph-tag">Placeholder</span>
-                <span class="ph-desc">Import slides from Dropbox /03_Lectures/Grant Writing 101.pptx</span>
+            <div class="slide" data-cap="Write for a reader" data-notes="Opening claim, and the standard for everything that follows. NSF panels are staffed by people who know the field next door, not yours. Jargon reads as hiding something. If a reviewer has to re-read a sentence, you have already lost that reviewer.">
+              <div class="embed">
+                <div class="stmt">
+                  <p>The winning proposal is always the clearest proposal that all grant reviewers understand.</p>
+                  <p class="sub">Write in clear language, no jargon. Your readers are knowledgeable non-experts.</p>
+                </div>
+              </div>
+            </div>
+            <div class="slide" data-cap="A general structure" data-notes="The skeleton most proposals share. Names vary by funder, but the moves do not: say what you will do, place it in a field, state the gap, plan the work, argue the contribution, fund it, prove you know the literature. We take them one at a time.">
+              <div class="embed">
+                <div class="txt-card">
+                  <h3>A general structure</h3>
+                  <ul>
+                    <li>Abstract / Summary</li>
+                    <li>First Paragraph</li>
+                    <li>Background and Previous Work</li>
+                    <li>Objectives</li>
+                    <li>Work Plan</li>
+                    <li>Intellectual Merit</li>
+                    <li>Broader Impact</li>
+                    <li>Budget</li>
+                    <li>Bibliography</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="slide" data-cap="Part II — The structure" data-notes="">
+              <div class="embed">
+                <div class="toc">
+                  <div class="toc-row"><span class="toc-n">Part I</span><h2 class="toc-h">Write for a reader</h2></div>
+                  <div class="toc-row active"><span class="toc-n">Part II</span><h2 class="toc-h">The structure</h2></div>
+                  <div class="toc-row"><span class="toc-n">Part III</span><h2 class="toc-h">Show the work</h2></div>
+                </div>
+              </div>
+            </div>
+            <div class="slide" data-cap="Abstract / Summary" data-notes="The most-read and least-revised page in the proposal. Some reviewers read only this. Lead with the work itself, in plain words.">
+              <div class="embed">
+                <div class="txt-card">
+                  <h3>Abstract / Summary</h3>
+                  <ul>
+                    <li>Use plain language to describe <b>what you are going to do</b>.</li>
+                    <li>Save the background — it does not belong here.</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="slide" data-cap="First Paragraph" data-notes="Two moves, in this order. The hook earns attention; the statement of work cashes it in before the reader&#x27;s patience runs out.">
+              <div class="embed">
+                <div class="txt-card">
+                  <h3>First Paragraph</h3>
+                  <ul>
+                    <li>Hook sentence.</li>
+                    <li>Then: what are you going to do?</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="slide" data-cap="Background and Previous Work" data-notes="Three moves in sequence — field, gap, fit. The gap is the hinge of the whole proposal: no gap, no reason to fund. Cite generously here; it doubles as evidence you know the field.">
+              <div class="embed">
+                <div class="txt-card">
+                  <h3>Background and Previous Work</h3>
+                  <ul>
+                    <li>Map out the field you are working in.</li>
+                    <li>Identify the gap.</li>
+                    <li>Say why your proposed work can address that gap.</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="slide" data-cap="Objectives" data-notes="Reviewers score against stated objectives, so vague verbs cost points. Exploratory framing is fine when the method is specific — it&#x27;s unspecified method that reads as a fishing trip.">
+              <div class="embed">
+                <div class="txt-card">
+                  <h3>Objectives</h3>
+                  <ul>
+                    <li>Use verbs with clear aims — <i>study x to understand y</i>.</li>
+                    <li>Be careful with &ldquo;explore.&rdquo;
+                      <ul>
+                        <li>You want the work to sound exploratory, not like a fishing trip.</li>
+                      </ul>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="slide" data-cap="Work Plan" data-notes="This is where a panel decides whether you can actually deliver. Realistic beats ambitious: an over-promised plan reads as inexperience.">
+              <div class="embed">
+                <div class="txt-card">
+                  <h3>Work Plan</h3>
+                  <ul>
+                    <li>What is your research? What are you going to do?</li>
+                    <li>Explain in plain and straightforward language.</li>
+                    <li>Have a clear plan — and make sure it is realistic.</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="slide" data-cap="Part III — Show the work" data-notes="">
+              <div class="embed">
+                <div class="toc">
+                  <div class="toc-row"><span class="toc-n">Part I</span><h2 class="toc-h">Write for a reader</h2></div>
+                  <div class="toc-row"><span class="toc-n">Part II</span><h2 class="toc-h">The structure</h2></div>
+                  <div class="toc-row active"><span class="toc-n">Part III</span><h2 class="toc-h">Show the work</h2></div>
+                </div>
+              </div>
+            </div>
+            <div class="slide" data-cap="Intellectual Merit" data-notes="An NSF review criterion, and a direct callback to the gap you named in the background. Answer it in the reviewers&#x27; own vocabulary.">
+              <div class="embed">
+                <div class="txt-card">
+                  <h3>Intellectual Merit</h3>
+                  <ul>
+                    <li>How does your project contribute to the theory of x, or fill the gap of y?</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="slide" data-cap="Broader Impact" data-notes="The second NSF criterion, and the one most often written as an afterthought. Impact that grows out of the work itself always reads stronger than impact appended at the end.">
+              <div class="embed">
+                <div class="txt-card">
+                  <h3>Broader Impact</h3>
+                  <ul>
+                    <li>Societal impact — educational, STEM, K–12.</li>
+                    <li>DEI should be intrinsic to the proposal, not bolted on.</li>
+                    <li>Climate, environmental, ecological.</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="slide" data-cap="Budget" data-notes="A budget with no salary line signals the work is a side project. Funders read the budget as a statement of commitment, not just arithmetic.">
+              <div class="embed">
+                <div class="txt-card">
+                  <h3>Budget</h3>
+                  <ul>
+                    <li>Pay yourself, so that they know you will work.</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="slide" data-cap="Bibliography" data-notes="The bibliography is an argument too. It shows whose conversation you are joining.">
+              <div class="embed">
+                <div class="txt-card">
+                  <h3>Bibliography</h3>
+                  <ul>
+                    <li>Show you know the field — and how you can contribute to it.</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="slide" data-cap="Pictures!" data-notes="Closing point, and an advantage design proposals have over most others. A single clear diagram of the work plan does more than a paragraph describing it.">
+              <div class="embed">
+                <div class="stmt">
+                  <p>Pictures!</p>
+                  <p class="sub">We are visual professions — use diagrams to explain your idea.</p>
+                </div>
               </div>
             </div>
 
           </div>
           <div class="deck-bar">
             <button class="deck-btn" id="deck-prev" aria-label="Previous slide">&lsaquo;</button>
-            <div class="deck-count"><input id="deck-jump" type="text" inputmode="numeric" aria-label="Jump to slide" value="1"><span id="deck-total"> / 2</span></div>
+            <div class="deck-count"><input id="deck-jump" type="text" inputmode="numeric" aria-label="Jump to slide" value="1"><span id="deck-total"> / 15</span></div>
             <button class="deck-btn" id="deck-next" aria-label="Next slide">&rsaquo;</button>
             <div class="deck-meta"><span class="deck-cap" id="deck-cap"></span><span id="deck-credit"></span></div>
             <button class="deck-btn" id="deck-notes-toggle" aria-expanded="false" aria-controls="deck-notes" aria-label="Toggle speaker notes" title="Speaker notes"><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="2" y="2" width="12" height="12" rx="1.5"/><line x1="4.5" y1="5.5" x2="11.5" y2="5.5"/><line x1="4.5" y1="8" x2="11.5" y2="8"/><line x1="4.5" y1="10.5" x2="8.5" y2="10.5"/></svg></button>
@@ -75,6 +257,35 @@
   </main>
 
   <script src="/teaching/laar61400/assets/js/nav.js"></script>
+
+  <!-- ── deck carousel controller (shared, page-agnostic) ── -->
   <script src="/assets/deck/deck.js"></script>
+
+  <!-- ── scale each typeset embed (text cards, dividers) to fit the fixed 16:9 stage ── -->
+  <script>
+  (function(){
+    var stage=document.getElementById('deck-stage');
+    if(!stage) return;
+    var embeds=[].slice.call(document.querySelectorAll('#deck-stage .slide .embed'));
+    function fit(){
+      var SW=stage.clientWidth, SH=stage.clientHeight;
+      if(!SW||!SH) return;
+      embeds.forEach(function(e){
+        var c=e.firstElementChild; if(!c) return;
+        c.style.transform='none';
+        var w=c.offsetWidth, h=c.offsetHeight;
+        if(!w||!h) return;
+        var avW=SW-28, avH=SH-28;               // minus .embed padding (14px each side)
+        var s=Math.min(1, avW/w, avH/h);
+        c.style.transform = s<1 ? 'scale('+s+')' : 'none';
+      });
+    }
+    window.addEventListener('load',fit);
+    if(document.readyState==='complete') fit();
+    var t; window.addEventListener('resize',function(){clearTimeout(t);t=setTimeout(fit,80);});
+    document.addEventListener('fullscreenchange',function(){setTimeout(fit,80);});
+    document.addEventListener('webkitfullscreenchange',function(){setTimeout(fit,80);});
+  })();
+  </script>
 </body>
 </html>

@@ -3,11 +3,47 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="robots" content="noindex">
   <title>What is Research — LAAR 64150</title>
   <link rel="stylesheet" href="/teaching/laar61400/assets/css/main.css">
   <link rel="stylesheet" href="/teaching/laar61400/assets/css/workflow-shared.css">
   <link rel="stylesheet" href="/assets/deck/deck.css">
+  <style>
+    /* palette tokens live in deck.css :root */
+
+    /* a typeset card living inside a carousel slide: centered, clipped; JS scales the
+       child to fit the fixed 16:9 stage (see fit script) so nothing scrolls. */
+    .slide .embed{width:100%;height:100%;display:flex;align-items:center;justify-content:center;
+      overflow:hidden;padding:14px;box-sizing:border-box;}
+    .slide .embed>*{transform-origin:center center;}
+
+    /* ── text card: heading + bullets, no image (page-local; mirrors week07's m7-cols
+       tokens). Authored wide so it fills a large stage — the fit script only scales down. ── */
+    .txt-card{width:min(1180px,96%);display:flex;flex-direction:column;gap:14px;text-align:left;}
+    .txt-card h3{margin:0;font-family:"DM Sans",sans-serif;font-weight:700;color:var(--ink);
+      font-size:clamp(20px,2.4cqw,38px);letter-spacing:-.01em;line-height:1.1;}
+    .txt-card .lead{font-family:"DM Sans",sans-serif;font-weight:600;color:var(--accent);
+      font-size:clamp(13px,1.5cqw,19px);line-height:1.35;}
+    .txt-card ul{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:9px;}
+    .txt-card li{font-family:"DM Sans",sans-serif;color:var(--mute);
+      font-size:clamp(12px,1.45cqw,19px);line-height:1.45;padding-left:17px;position:relative;}
+    .txt-card li::before{content:"+";position:absolute;left:0;color:var(--accent);
+      font-family:"DM Mono",ui-monospace,monospace;}
+    .txt-card li b{color:var(--ink);font-weight:600;}
+    .txt-card li .src{font-family:"DM Mono",ui-monospace,monospace;font-size:.8em;
+      letter-spacing:.04em;color:#a39c92;}
+    .txt-card ul ul{margin:7px 0 0;gap:6px;}
+    .txt-card ul ul li{font-size:clamp(11px,1.25cqw,16px);}
+    .txt-card ul ul li::before{content:"–";}
+    .txt-card a{color:inherit;text-decoration:underline;text-underline-offset:2px;
+      text-decoration-color:#cfc8bd;word-break:break-all;}
+
+    /* ── statement card: one sentence, carried large ── */
+    .stmt{width:min(940px,94%);text-align:center;}
+    .stmt p{margin:0;font-family:"DM Sans",sans-serif;font-weight:700;color:var(--ink);
+      font-size:clamp(20px,2.6cqw,44px);line-height:1.18;letter-spacing:-.01em;text-wrap:balance;}
+    .stmt .sub{margin-top:18px;font-weight:400;color:var(--mute);
+      font-size:clamp(13px,1.5cqw,20px);line-height:1.45;}
+  </style>
 </head>
 <body>
 
@@ -19,7 +55,7 @@
     </a>
     <div class="panel-section">
       <span class="panel-section-label">Lectures</span>
-      <a class="panel-link" href="/teaching/laar64150/lectures/what-is-research.html">What is Research</a>
+      <a class="panel-link active" href="/teaching/laar64150/lectures/what-is-research.html">What is Research</a>
       <a class="panel-link" href="/teaching/laar64150/lectures/grant-writing-101.html">Grant Writing 101</a>
     </div>
   </nav>
@@ -39,27 +75,359 @@
 
         <!-- ── Slides ── -->
         <span class="section-label">Lecture Slides</span>
-        <div class="deck" id="deck" data-deck-id="what-is-research" data-deck-title="What is Research">
+        <div class="deck" id="deck" data-deck-id="wir" data-deck-title="What is Research">
           <div class="deck-stage" id="deck-stage">
 
-            <!-- 1 · Title -->
             <div class="slide slide--title" data-cap="" data-notes="">
               <div class="tt">What is Research</div>
               <div class="ts">LAAR 64150 · Design Research</div>
             </div>
-
-            <!-- 2 · Placeholder: import slides from source -->
-            <div class="slide" data-cap="Slides to import" data-notes="">
-              <div class="ph">
-                <span class="ph-tag">Placeholder</span>
-                <span class="ph-desc">Import slides from Dropbox /03_Lectures/What is Research.pdf</span>
+            <div class="slide" data-cap="Part I — What is research" data-notes="">
+              <div class="embed">
+                <div class="toc">
+                  <div class="toc-row active"><span class="toc-n">Part I</span><h2 class="toc-h">What is research</h2></div>
+                  <div class="toc-row"><span class="toc-n">Part II</span><h2 class="toc-h">Making as a method</h2></div>
+                  <div class="toc-row"><span class="toc-n">Part III</span><h2 class="toc-h">Theorizing as a method</h2></div>
+                  <div class="toc-row"><span class="toc-n">Part IV</span><h2 class="toc-h">Where to find information</h2></div>
+                  <div class="toc-row"><span class="toc-n">Part V</span><h2 class="toc-h">Graphic references</h2></div>
+                </div>
               </div>
+            </div>
+            <div class="slide" data-cap="What is Research" data-notes="Start with definitions and note what they share: knowledge that did not exist before, arrived at by a process someone else could follow. The noun/verb split matters — research is both a thing you produce and a thing you do.">
+              <div class="embed">
+                <div class="txt-card">
+                  <h3>What is Research</h3>
+                  <ul>
+                    <li>Research is the pursuit of <b>new knowledge</b> through the <b>process of discovery</b>. <span class="src">Purdue University</span></li>
+                    <li>Two grammars of the word: <span class="src">Open English Wordnet</span>
+                      <ul>
+                        <li><i>Noun:</i> enquiry, inquiry, <b>a search for knowledge</b></li>
+                        <li><i>Verb:</i> attempt to find out in a systematic and scientific manner</li>
+                      </ul>
+                    </li>
+                    <li>Research is the systematic and <b>intentional process</b> of asking questions, gathering evidence, interpreting data, and <b>generating knowledge</b> — a way of making sense of the world, whether that world is social, ecological, technological or historical. <span class="src">ChatGPT</span></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="slide" data-cap="How to do research?" data-notes="The four questions a research proposal has to answer. Specificity is the whole game in the first one — most stalled projects are stalled because the topic never narrowed.">
+              <div class="embed">
+                <div class="txt-card">
+                  <h3>How to do research?</h3>
+                  <ul>
+                    <li><b>What do you want to study?</b>
+                      <ul>
+                        <li>Be specific. You cannot just say you want to study pumpkins — what about pumpkins?</li>
+                      </ul>
+                    </li>
+                    <li><b>Why do you want to study it, and why now?</b>
+                      <ul>
+                        <li>What is the impact of the topic — climate change, social injustice, democracy?</li>
+                      </ul>
+                    </li>
+                    <li><b>How are you going to study it? What is your method?</b>
+                      <ul>
+                        <li>How do you collect, analyze and interpret information? Qualitative, quantitative, design research?</li>
+                        <li>Through historical documents, critical theory, drawing, mapping?</li>
+                      </ul>
+                    </li>
+                    <li><b>What is your outcome?</b></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="slide" data-cap="What is a Method" data-notes="The move here is to loosen the quant/qual dichotomy. For designers the two live methods are making and theorizing, and theory used deliberately is itself a method.">
+              <div class="embed">
+                <div class="txt-card">
+                  <h3>What is a Method</h3>
+                  <ul>
+                    <li>Quantitative and qualitative are the traditional way scientists talk about method.</li>
+                    <li>The standard split:
+                      <ul>
+                        <li><b>Quantitative</b> — numerical data, statistical analysis; objective, measurable, expressed in numbers.</li>
+                        <li><b>Qualitative</b> — non-numerical data (words, images, sounds); subjective experience and attitudes, via observation and interview; detailed description and new insight.</li>
+                      </ul>
+                    </li>
+                    <li>Method is simply <b>how you study something</b> — so explain how you are going to study it.
+                      <ul>
+                        <li><b>Making</b></li>
+                        <li><b>Theorizing</b></li>
+                      </ul>
+                    </li>
+                    <li>Theory becomes a method to study something.
+                      <ul>
+                        <li>Posthumanism as a framework to study pumpkins; &ldquo;thing-power&rdquo; to understand edible plants; watermelon through a racial or colonial lens.</li>
+                      </ul>
+                    </li>
+                    <li>Combine methods and you have a new method.</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="slide" data-cap="Part II — Making as a method" data-notes="">
+              <div class="embed">
+                <div class="toc">
+                  <div class="toc-row"><span class="toc-n">Part I</span><h2 class="toc-h">What is research</h2></div>
+                  <div class="toc-row active"><span class="toc-n">Part II</span><h2 class="toc-h">Making as a method</h2></div>
+                  <div class="toc-row"><span class="toc-n">Part III</span><h2 class="toc-h">Theorizing as a method</h2></div>
+                  <div class="toc-row"><span class="toc-n">Part IV</span><h2 class="toc-h">Where to find information</h2></div>
+                  <div class="toc-row"><span class="toc-n">Part V</span><h2 class="toc-h">Graphic references</h2></div>
+                </div>
+              </div>
+            </div>
+            <div class="slide auto" data-cap="Making as a method — collage" data-credit="Taking Measures Across the American Landscape, James Corner, 1996" data-notes="Corner&#x27;s collages are arguments, not illustrations. Measure, instrument and terrain are cut together so the drawing makes a claim the photograph could not.">
+              <figure><img src="/teaching/laar64150/assets/img/what-is-research/04-a.avif" alt="Collage of measures, instruments and scales" width="800" height="684" loading="lazy"></figure>
+              <figure><img src="/teaching/laar64150/assets/img/what-is-research/04-b.avif" alt="Collage of a landscape instrument on a horizon" width="800" height="1109" loading="lazy"></figure>
+            </div>
+            <div class="slide single" data-cap="Making as a method — collage" data-credit="Torches of Freedom: 1960s cigarette posters" data-notes="Collecting and arranging found images is research. The grid makes a pattern visible across a campaign that no single poster shows.">
+              <img src="/teaching/laar64150/assets/img/what-is-research/05-a.avif" alt="1960s cigarette advertising posters arranged as a grid" width="1052" height="1052" loading="lazy">
+            </div>
+            <div class="slide single" data-cap="Making as a method — photos" data-credit="DIRT Studio, Highline competition entry" data-notes="Photography as fieldwork — the photograph carries evidence of the site&#x27;s existing condition into the design argument.">
+              <img src="/teaching/laar64150/assets/img/what-is-research/06-a.avif" alt="Photographic panorama of the Highline before conversion" width="800" height="285" loading="lazy">
+            </div>
+            <div class="slide single" data-cap="Making as a method — photos" data-credit="US Steel South Works master plan, DIRT Studio" data-notes="Same move at the scale of a post-industrial site: the camera records material and residue that a plan drawing flattens away.">
+              <img src="/teaching/laar64150/assets/img/what-is-research/07-a.avif" alt="Photographic study of the US Steel South Works site" width="500" height="500" loading="lazy">
+            </div>
+            <div class="slide auto" data-cap="Making as a method — models" data-notes="Drawing and model in sequence: the measured drawing is the analysis, the built model is the test. Making the thing forces questions the drawing let you avoid.">
+              <figure><img src="/teaching/laar64150/assets/img/what-is-research/08-a.avif" alt="Measured drawing of a 1600s Dutch windmill, blueprint style" width="314" height="863" loading="lazy"></figure>
+              <figure><img src="/teaching/laar64150/assets/img/what-is-research/08-b.avif" alt="Interpretive model of a 1600s Dutch windmill, photographed" width="863" height="863" loading="lazy"></figure>
+            </div>
+            <div class="slide auto" data-cap="Making as a method — models" data-notes="Quick study models in cheap material. Speed is the point — they are instruments for thinking, not presentation objects.">
+              <figure><img src="/teaching/laar64150/assets/img/what-is-research/09-a.avif" alt="Cardboard site model with cut landform and circulation" width="1200" height="900" loading="lazy"></figure>
+              <figure><img src="/teaching/laar64150/assets/img/what-is-research/09-b.avif" alt="Corrugated cardboard model of a shoreline edge" width="631" height="510" loading="lazy"></figure>
+            </div>
+            <div class="slide auto" data-cap="Making as a method — models" data-credit="Mississippi River Basin Model" data-notes="A 200-acre working hydraulic model — the landscape modelled at scale so floods could be run on it before they happened. Simulation as physical construction.">
+              <figure><img src="/teaching/laar64150/assets/img/what-is-research/10-a.avif" alt="Historical photograph of the Mississippi River Basin Model" width="600" height="401" loading="lazy"></figure>
+              <figure><img src="/teaching/laar64150/assets/img/what-is-research/10-b.avif" alt="Aerial view of the Mississippi River Basin Model" width="1107" height="744" loading="lazy"></figure>
+            </div>
+            <div class="slide auto" data-cap="Making as a method — score" data-credit="Lawrence Halprin, score example" data-notes="Halprin&#x27;s scores notate movement and time — a landscape representation that records what plan and section cannot: sequence, duration, participation.">
+              <figure><img src="/teaching/laar64150/assets/img/what-is-research/11-a.avif" alt="Lawrence Halprin motation score, vertical notation" width="640" height="841" loading="lazy"></figure>
+              <figure><img src="/teaching/laar64150/assets/img/what-is-research/11-b.avif" alt="Lawrence Halprin score of movement through a landscape" width="946" height="480" loading="lazy"></figure>
+            </div>
+            <div class="slide single" data-cap="Making as a method — mapping" data-credit="Design with Nature, Ian McHarg" data-notes="The founding layer-cake: separate the land into thematic layers, overlay them, and let the composite argue where to build. Every GIS you open inherits this.">
+              <img src="/teaching/laar64150/assets/img/what-is-research/12-a.avif" alt="Layered suitability analysis drawing from Design with Nature" width="640" height="610" loading="lazy">
+            </div>
+            <div class="slide single" data-cap="Making as a method — mapping" data-credit="Water level during intense flooding" data-notes="Mapping a process rather than a state — the map&#x27;s subject is an event with a duration.">
+              <img src="/teaching/laar64150/assets/img/what-is-research/13-a.avif" alt="Map of water level during intense flooding" width="1080" height="1080" loading="lazy">
+            </div>
+            <div class="slide single" data-cap="Making as a method — typologies and catalogs" data-credit="Dutch dikes typologies" data-notes="A catalog is a research instrument: draw every variant in one consistent frame and the differences become analyzable, and recombinable.">
+              <img src="/teaching/laar64150/assets/img/what-is-research/14-a.avif" alt="Catalog of Dutch dike typologies drawn in section" width="1024" height="489" loading="lazy">
+            </div>
+            <div class="slide single" data-cap="Making as a method — typologies and catalogs" data-credit="BQE vision typologies" data-notes="Same method on an infrastructural corridor. Consistent framing is what turns a collection into a comparison.">
+              <img src="/teaching/laar64150/assets/img/what-is-research/15-a.avif" alt="Typological study of BQE corridor conditions" width="1920" height="1044" loading="lazy">
+            </div>
+            <div class="slide single" data-cap="Making as a method — drawings" data-credit="Oyster-tecture, SCAPE" data-notes="The drawing does the speculative work — it proposes a living infrastructure that does not yet exist, in enough detail to be argued with.">
+              <img src="/teaching/laar64150/assets/img/what-is-research/16-a.avif" alt="Section drawing of oyster reef infrastructure" width="1000" height="624" loading="lazy">
+            </div>
+            <div class="slide single" data-cap="Making as a method — drawings" data-credit="The Ecological Relations of Roots (1919), John Ernest Weaver (1884–1966)" data-notes="Weaver excavated and drew root systems at full scale. A century later the drawings are still the reference — patient observation, recorded precisely, outlasts its author.">
+              <img src="/teaching/laar64150/assets/img/what-is-research/17-a.avif" alt="Scientific drawing of plant root systems below grade" width="964" height="755" loading="lazy">
+            </div>
+            <div class="slide auto" data-cap="Making as a method — drawings" data-credit="Grounding Root System Architecture, Gwendolyn McGinn — asla.org/2015studentawards/101999.html" data-notes="A student project that takes Weaver&#x27;s method and makes it a design research project.">
+              <figure><img src="/teaching/laar64150/assets/img/what-is-research/18-a.avif" alt="Root system architecture drawing, student work" width="1174" height="744" loading="lazy"></figure>
+              <figure><img src="/teaching/laar64150/assets/img/what-is-research/18-b.avif" alt="Root system architecture drawing, second plate" width="1152" height="744" loading="lazy"></figure>
+            </div>
+            <div class="slide auto" data-cap="Making as a method — drawings" data-credit="Grounding Root System Architecture, Gwendolyn McGinn — asla.org/2015studentawards/101999.html" data-notes="Drawing the same subject repeatedly, at different sections and scales, is how the project builds its argument.">
+              <figure><img src="/teaching/laar64150/assets/img/what-is-research/19-a.avif" alt="Root system study plate, sectional" width="1104" height="794" loading="lazy"></figure>
+              <figure><img src="/teaching/laar64150/assets/img/what-is-research/19-b.avif" alt="Root system study plate, comparative" width="1163" height="742" loading="lazy"></figure>
+            </div>
+            <div class="slide single" data-cap="Making as a method — drawings" data-credit="Grounding Root System Architecture, Gwendolyn McGinn — asla.org/2015studentawards/101999.html" data-notes="The composite plate: the accumulated studies assembled into one drawing that can be read at once.">
+              <img src="/teaching/laar64150/assets/img/what-is-research/20-a.avif" alt="Large composite drawing of root architecture across a site" width="1920" height="1227" loading="lazy">
+            </div>
+            <div class="slide" data-cap="Making as a Method" data-notes="The takeaway for Part II. Making is a method because the act of making generates the next question. Name it with a verb and it becomes a method statement you can put in a proposal.">
+              <div class="embed">
+                <div class="txt-card">
+                  <h3>Making as a Method</h3>
+                  <ul>
+                    <li>When you draw something you are forced to respond to it — and forced to ask more questions.</li>
+                    <li>What do you do, and why? <b>Use verbs.</b>
+                      <ul>
+                        <li><i>Diagram</i> root systems to understand how a root system grows over time.</li>
+                        <li><i>Combine</i> different typologies to create new forms of public space.</li>
+                        <li><i>Analyze</i> historical trade images to understand the relationship between China and the West.</li>
+                      </ul>
+                    </li>
+                    <li>Post-rationalization is allowed — you will often know what you were doing only after you did it.</li>
+                    <li>It should be fun.</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="slide" data-cap="Part III — Theorizing as a method" data-notes="">
+              <div class="embed">
+                <div class="toc">
+                  <div class="toc-row"><span class="toc-n">Part I</span><h2 class="toc-h">What is research</h2></div>
+                  <div class="toc-row"><span class="toc-n">Part II</span><h2 class="toc-h">Making as a method</h2></div>
+                  <div class="toc-row active"><span class="toc-n">Part III</span><h2 class="toc-h">Theorizing as a method</h2></div>
+                  <div class="toc-row"><span class="toc-n">Part IV</span><h2 class="toc-h">Where to find information</h2></div>
+                  <div class="toc-row"><span class="toc-n">Part V</span><h2 class="toc-h">Graphic references</h2></div>
+                </div>
+              </div>
+            </div>
+            <div class="slide" data-cap="Theorizing as a Method" data-notes="Theory is not decoration on top of a project. It supplies the vocabulary that makes a discussion possible — and Meyer&#x27;s framing is the one to hold: theory sits between thinking and doing, and moves in both directions.">
+              <div class="embed">
+                <div class="txt-card">
+                  <h3>Theorizing as a Method</h3>
+                  <ul>
+                    <li><b>What is theory?</b>
+                      <ul>
+                        <li>A well-substantiated explanation of an aspect of the natural world that can incorporate laws, hypotheses and facts. <span class="src">American Museum of Natural History</span></li>
+                        <li>A supposition or system of ideas intended to explain something, especially one based on general principles independent of the thing to be explained. <span class="src">Oxford Dictionary</span></li>
+                      </ul>
+                    </li>
+                    <li><b>Why do we need theory?</b>
+                      <ul>
+                        <li>Theories provide frameworks and vocabularies to study with; they provide the language to create discourse and generate knowledge within.</li>
+                      </ul>
+                    </li>
+                    <li>Theory bridges, mediates and reconciles thought and action. <span class="src">Beth Meyer</span></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="slide" data-cap="Part IV — Where to find information" data-notes="">
+              <div class="embed">
+                <div class="toc">
+                  <div class="toc-row"><span class="toc-n">Part I</span><h2 class="toc-h">What is research</h2></div>
+                  <div class="toc-row"><span class="toc-n">Part II</span><h2 class="toc-h">Making as a method</h2></div>
+                  <div class="toc-row"><span class="toc-n">Part III</span><h2 class="toc-h">Theorizing as a method</h2></div>
+                  <div class="toc-row active"><span class="toc-n">Part IV</span><h2 class="toc-h">Where to find information</h2></div>
+                  <div class="toc-row"><span class="toc-n">Part V</span><h2 class="toc-h">Graphic references</h2></div>
+                </div>
+              </div>
+            </div>
+            <div class="slide" data-cap="Where to find information — topography and geography" data-notes="The working list. Start federal for coverage, go local for resolution — a city GIS portal usually beats the national dataset for anything site-scale.">
+              <div class="embed">
+                <div class="txt-card">
+                  <h3>Where to Find Information — Topography and Geography</h3>
+                  <ul>
+                    <li><b>USGS</b> — <a href="https://store.usgs.gov/map-locator">store.usgs.gov/map-locator</a>
+                      <ul>
+                        <li>Find map products by location.</li>
+                        <li>How to download: <a href="https://www.usgs.gov/faqs/how-do-i-download-national-map-data-products">usgs.gov — download national map data products</a></li>
+                      </ul>
+                    </li>
+                    <li><b>USDA Agriculture Census</b> — <a href="https://www.nass.usda.gov/AgCensus/index.php">nass.usda.gov/AgCensus</a>
+                      <ul>
+                        <li>Crops and plants, economics, farms, livestock and animals, producers.</li>
+                      </ul>
+                    </li>
+                    <li><b>USDA Plant Hardiness Zones</b> — <a href="https://planthardiness.ars.usda.gov/pages/map-downloads">planthardiness.ars.usda.gov</a></li>
+                    <li><b>NOAA</b> — <a href="https://coast.noaa.gov/digitalcoast/data/ssurgo.html">coast.noaa.gov/digitalcoast</a>
+                      <ul>
+                        <li>Soil survey.</li>
+                      </ul>
+                    </li>
+                    <li><b>World Soil Information</b> — <a href="https://www.isric.org/soil-geographic-databases-north-america-central-america-and-caribbean">isric.org</a></li>
+                    <li><b>Local government</b> — e.g. <a href="https://phl.maps.arcgis.com/home/index.html">phl.maps.arcgis.com</a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="slide" data-cap="Where to find information — historical maps" data-notes="Historical maps are evidence of what a place was and of how it was seen. Both readings are usable in a research project.">
+              <div class="embed">
+                <div class="txt-card">
+                  <h3>Where to Find Information — Historical Maps</h3>
+                  <ul>
+                    <li><b>David Rumsey Map Collection</b> — <a href="https://www.davidrumsey.com/luna/servlet/RUMSEY~8~1">davidrumsey.com</a></li>
+                    <li><b>USGS Historical Topographic Maps</b> — <a href="https://www.usgs.gov/programs/national-geospatial-program/historical-topographic-maps-preserving-past">usgs.gov</a></li>
+                    <li><b>Library of Congress</b> — <a href="https://www.loc.gov/maps/collections/">loc.gov/maps</a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="slide" data-cap="Where to find information — images" data-notes="Sources that are safe to use and reproduce. Check the licence each time — open access at one museum is not open access at the next.">
+              <div class="embed">
+                <div class="txt-card">
+                  <h3>Where to Find Information — Images</h3>
+                  <ul>
+                    <li><b>Public domain images</b>
+                      <ul>
+                        <li><a href="https://public.work">Public Works</a></li>
+                        <li><a href="https://www.metmuseum.org/about-the-met/policies-and-documents/open-access">The MET, open access</a></li>
+                        <li><a href="https://www.oldbookillustrations.com/">Old Book Illustrations</a></li>
+                        <li><a href="https://publicdomainreview.org/">Public Domain Review</a></li>
+                      </ul>
+                    </li>
+                    <li><b>Vintage posters</b>
+                      <ul>
+                        <li><a href="https://www.thevintageposter.com/">The Vintage Poster</a></li>
+                        <li><a href="https://www.loc.gov/pictures/collection/pos/">Library of Congress, poster collection</a></li>
+                      </ul>
+                    </li>
+                    <li><b>Historical photographs</b>
+                      <ul>
+                        <li><a href="https://www.shorpy.com/">Shorpy</a></li>
+                        <li><a href="https://www.loc.gov/pictures/">Library of Congress, pictures</a></li>
+                        <li><a href="https://www.jstor.org/images">JSTOR images</a></li>
+                      </ul>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="slide" data-cap="Where to find information — other" data-notes="Patents are an underused landscape source: they record how a technology was supposed to work, drawn, at the moment it was new.">
+              <div class="embed">
+                <div class="txt-card">
+                  <h3>Where to Find Information — Other</h3>
+                  <ul>
+                    <li><b>Patents</b> — <a href="https://patents.google.com/">patents.google.com</a></li>
+                    <li><b>Google Scholar</b></li>
+                    <li><b>ResearchGate</b></li>
+                    <li><b>The library</b> — JSTOR, Project MUSE</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="slide" data-cap="Part V — Graphic references" data-notes="">
+              <div class="embed">
+                <div class="toc">
+                  <div class="toc-row"><span class="toc-n">Part I</span><h2 class="toc-h">What is research</h2></div>
+                  <div class="toc-row"><span class="toc-n">Part II</span><h2 class="toc-h">Making as a method</h2></div>
+                  <div class="toc-row"><span class="toc-n">Part III</span><h2 class="toc-h">Theorizing as a method</h2></div>
+                  <div class="toc-row"><span class="toc-n">Part IV</span><h2 class="toc-h">Where to find information</h2></div>
+                  <div class="toc-row active"><span class="toc-n">Part V</span><h2 class="toc-h">Graphic references</h2></div>
+                </div>
+              </div>
+            </div>
+            <div class="slide single" data-cap="Graphic references" data-credit="Embracing Dichotomy — Xijia Zhang, Shunfan Zheng, Sungchan Kim" data-notes="Part V is a reference set, not an argument — look at how each plate organizes information, and steal the moves you need.">
+              <img src="/teaching/laar64150/assets/img/what-is-research/28-a.avif" alt="Student drawing: circular composite analysis of a contested territory" width="1200" height="1200" loading="lazy">
+            </div>
+            <div class="slide single" data-cap="Graphic references" data-notes="">
+              <img src="/teaching/laar64150/assets/img/what-is-research/29-a.avif" alt="Analytical drawing overlaying settlement and terrain" width="736" height="1043" loading="lazy">
+            </div>
+            <div class="slide auto" data-cap="Graphic references" data-notes="">
+              <figure><img src="/teaching/laar64150/assets/img/what-is-research/30-a.avif" alt="Stitching the Borderlands — regional analysis plate" width="1200" height="1697" loading="lazy"></figure>
+              <figure><img src="/teaching/laar64150/assets/img/what-is-research/30-b.avif" alt="Topographic overlay study in warm tones" width="828" height="1200" loading="lazy"></figure>
+            </div>
+            <div class="slide auto" data-cap="Graphic references" data-notes="">
+              <figure><img src="/teaching/laar64150/assets/img/what-is-research/31-a.avif" alt="Hydrological analysis drawing in pale green" width="735" height="1041" loading="lazy"></figure>
+              <figure><img src="/teaching/laar64150/assets/img/what-is-research/31-b.avif" alt="Coastal composite plate with inset studies" width="736" height="736" loading="lazy"></figure>
+            </div>
+            <div class="slide auto" data-cap="Graphic references" data-notes="">
+              <figure><img src="/teaching/laar64150/assets/img/what-is-research/32-a.avif" alt="Circular diagram of seasonal migration and habitat" width="1000" height="746" loading="lazy"></figure>
+              <figure><img src="/teaching/laar64150/assets/img/what-is-research/32-b.avif" alt="Aerial-photo composite with annotation" width="718" height="1201" loading="lazy"></figure>
+            </div>
+            <div class="slide single" data-cap="Graphic references" data-notes="">
+              <img src="/teaching/laar64150/assets/img/what-is-research/33-a.avif" alt="Timeline diagram of trade and species movement across an ocean" width="1154" height="809" loading="lazy">
+            </div>
+            <div class="slide single" data-cap="Graphic references" data-notes="">
+              <img src="/teaching/laar64150/assets/img/what-is-research/34-a.avif" alt="Historical composite map of a river delta with vignettes" width="736" height="736" loading="lazy">
+            </div>
+            <div class="slide auto" data-cap="Graphic references" data-notes="">
+              <figure><img src="/teaching/laar64150/assets/img/what-is-research/35-a.avif" alt="Machined Landscapes, Johannesburg — layered analytical plate" width="1200" height="1600" loading="lazy"></figure>
+              <figure><img src="/teaching/laar64150/assets/img/what-is-research/35-b.avif" alt="Mining landscape diagram in magenta and grey" width="736" height="499" loading="lazy"></figure>
+            </div>
+            <div class="slide single" data-cap="Graphic references" data-notes="">
+              <img src="/teaching/laar64150/assets/img/what-is-research/36-a.avif" alt="Aerial photograph annotated with routes and numbered sites" width="1000" height="1000" loading="lazy">
+            </div>
+            <div class="slide single" data-cap="Graphic references" data-notes="">
+              <img src="/teaching/laar64150/assets/img/what-is-research/37-a.avif" alt="Regional map of settlement density over terrain and water" width="525" height="594" loading="lazy">
             </div>
 
           </div>
           <div class="deck-bar">
             <button class="deck-btn" id="deck-prev" aria-label="Previous slide">&lsaquo;</button>
-            <div class="deck-count"><input id="deck-jump" type="text" inputmode="numeric" aria-label="Jump to slide" value="1"><span id="deck-total"> / 2</span></div>
+            <div class="deck-count"><input id="deck-jump" type="text" inputmode="numeric" aria-label="Jump to slide" value="1"><span id="deck-total"> / 42</span></div>
             <button class="deck-btn" id="deck-next" aria-label="Next slide">&rsaquo;</button>
             <div class="deck-meta"><span class="deck-cap" id="deck-cap"></span><span id="deck-credit"></span></div>
             <button class="deck-btn" id="deck-notes-toggle" aria-expanded="false" aria-controls="deck-notes" aria-label="Toggle speaker notes" title="Speaker notes"><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="2" y="2" width="12" height="12" rx="1.5"/><line x1="4.5" y1="5.5" x2="11.5" y2="5.5"/><line x1="4.5" y1="8" x2="11.5" y2="8"/><line x1="4.5" y1="10.5" x2="8.5" y2="10.5"/></svg></button>
@@ -75,6 +443,35 @@
   </main>
 
   <script src="/teaching/laar61400/assets/js/nav.js"></script>
+
+  <!-- ── deck carousel controller (shared, page-agnostic) ── -->
   <script src="/assets/deck/deck.js"></script>
+
+  <!-- ── scale each typeset embed (text cards, dividers) to fit the fixed 16:9 stage ── -->
+  <script>
+  (function(){
+    var stage=document.getElementById('deck-stage');
+    if(!stage) return;
+    var embeds=[].slice.call(document.querySelectorAll('#deck-stage .slide .embed'));
+    function fit(){
+      var SW=stage.clientWidth, SH=stage.clientHeight;
+      if(!SW||!SH) return;
+      embeds.forEach(function(e){
+        var c=e.firstElementChild; if(!c) return;
+        c.style.transform='none';
+        var w=c.offsetWidth, h=c.offsetHeight;
+        if(!w||!h) return;
+        var avW=SW-28, avH=SH-28;               // minus .embed padding (14px each side)
+        var s=Math.min(1, avW/w, avH/h);
+        c.style.transform = s<1 ? 'scale('+s+')' : 'none';
+      });
+    }
+    window.addEventListener('load',fit);
+    if(document.readyState==='complete') fit();
+    var t; window.addEventListener('resize',function(){clearTimeout(t);t=setTimeout(fit,80);});
+    document.addEventListener('fullscreenchange',function(){setTimeout(fit,80);});
+    document.addEventListener('webkitfullscreenchange',function(){setTimeout(fit,80);});
+  })();
+  </script>
 </body>
 </html>
