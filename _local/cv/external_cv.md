@@ -1,5 +1,5 @@
 # ZIHAO ZHANG, PH.D.
-**Curriculum Vitae** | Updated: August 31, 2026
+**Curriculum Vitae** | Updated: September 18, 2026
 
 City College of New York, Spitzer School of Architecture  
 141 Convent Avenue, New York, NY 10031  
@@ -10,7 +10,7 @@ researchgate.net/profile/Zihao-Zhang-10
 
 ## SUMMARY
 
-Zihao Zhang is a designer, educator, and scholar in landscape architecture. As a landscape theorist, he provides critical analyses of the entanglement between nature and technology, the human and nonhuman realms, and ecosystems and intelligent machines. His book *Cybernetics and the Constructed Environment* (Routledge, 2025) interrogates the ramifications of cybernetics on contemporary culture and the constructed environment. His design experiments address pressing issues including the climate crisis and social injustice.
+Zihao Zhang is a designer, educator, and scholar in landscape architecture. He studies landscape as a product of technology and labor, asking what machines, tools, and unseen work of care produce the environments we call natural, and how that care is distributed among humans and nonhumans, including intelligent machines. He develops theory through making, prototyping with sensors, actuators, and fabrication. His book *Cybernetics and the Constructed Environment* (Routledge, 2025) critiques the cybernetic legacy in design, which, grounded in Western conceptions of nature, treats environments as systems to be sensed, modeled, and controlled. It proposes instead a design practice that begins where the model ends, among more-than-human agents that resist capture. His current research turns to Chinese thought and landscapes as a distinct cosmology of technology, nature, and cultivation, which he extends in his next book, *Solarpunk Landscapes: Towards Radical Sustainability* (with Shurui Zhang, under contract with Routledge). He is a co-founder of OSE (Office of Speculative Ecologies), a studio working across climate adaptation, urban ecology, and social justice.
 
 ---
 
