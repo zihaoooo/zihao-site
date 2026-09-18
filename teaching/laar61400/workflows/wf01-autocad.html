@@ -205,6 +205,8 @@
           <li><kbd>STYLESMANAGER</kbd> — create <strong>site-plan.ctb</strong> (max 0.50mm) and <strong>section.ctb</strong> (max 1.00mm). Or type "Plot" and create a new one in the top-right dropdown menu.&nbsp;</li>
           <li>Scale affects how lineweights read on paper — a 1mm line at 1"=30' reads very differently from 1"=5'</li>
           <li>Switch CTB files in the Plot dialog depending on what you are printing</li>
+          <li><strong>⚠ Select all colors → set Color to Black.</strong></li>
+          <li>Colors 8 and 9 are the gray screens: keep Color = Black and set <strong>Screening</strong> to 50% for ACI 8 (dark gray) and 25% for ACI 9 (light gray). Use them for context, existing conditions, background hatch, and poché. For more steps, the ACI 250–255 gray ramp works the same way.</li>
         </ul>
       </div>
       <div class="wf-steps-row">
@@ -220,6 +222,8 @@
               <tr><td><span class="wf-swatch" style="background:#ffff00; border-color:#ccc;"></span>Yellow</td><td>2</td><td>0.13mm</td><td class="wf-use">Light lines, vegetation</td></tr>
               <tr><td><span class="wf-swatch" style="background:#ff0000;"></span>Red</td><td>1</td><td>0.09mm</td><td class="wf-use">Hatch, texture</td></tr>
               <tr><td><span class="wf-swatch" style="background:#888888;"></span>White/Black</td><td>7</td><td>0.05mm</td><td class="wf-use">Hairline, dimensions, notes</td></tr>
+              <tr><td><span class="wf-swatch" style="background:#808080;"></span>Dark gray</td><td>8</td><td>0.13mm</td><td class="wf-use">Black @ 50% screen — context, existing</td></tr>
+              <tr><td><span class="wf-swatch" style="background:#c0c0c0;"></span>Light gray</td><td>9</td><td>0.09mm</td><td class="wf-use">Black @ 25% screen — background hatch, poché</td></tr>
             </tbody>
           </table>
         </div>
@@ -235,6 +239,8 @@
               <tr><td><span class="wf-swatch" style="background:#ffff00; border-color:#ccc;"></span>Yellow</td><td>2</td><td>0.25mm</td><td class="wf-use">Light lines, vegetation</td></tr>
               <tr><td><span class="wf-swatch" style="background:#ff0000;"></span>Red</td><td>1</td><td>0.13mm</td><td class="wf-use">Hatch, texture</td></tr>
               <tr><td><span class="wf-swatch" style="background:#888888;"></span>White/Black</td><td>7</td><td>0.05mm</td><td class="wf-use">Hairline, dimensions, notes</td></tr>
+              <tr><td><span class="wf-swatch" style="background:#808080;"></span>Dark gray</td><td>8</td><td>0.18mm</td><td class="wf-use">Black @ 50% screen — context, existing</td></tr>
+              <tr><td><span class="wf-swatch" style="background:#c0c0c0;"></span>Light gray</td><td>9</td><td>0.13mm</td><td class="wf-use">Black @ 25% screen — background hatch, poché</td></tr>
             </tbody>
           </table>
         </div>
@@ -279,7 +285,7 @@ Pro tip: verify your scale after setting it — draw a 20' line in model space a
         <ul class="wf-tips">
           <li><kbd>Ctrl P</kbd> → select <strong>site-plan.ctb</strong> or <strong>section.ctb</strong> depending on content</li>
           <li>Printer: DWG to PDF or any installed PDF printer</li>
-          <li>Check <strong>Plot with Plot Styles</strong> and <strong>Plot Object Lineweights</strong></li>
+          <li>Check <strong>Plot with Plot Styles</strong> — the CTB sets every lineweight</li>
           <li>Always preview — lineweights and scale read differently on paper than on screen</li>
         </ul>
       </div>
