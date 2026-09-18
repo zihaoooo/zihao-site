@@ -539,8 +539,12 @@ Amount: $4,000
 
 ## City College of New York
 
-| Fall 2024 | LAAR 63100/65100 Landscape Architecture Studio III/V — *Technological Sublime in a Watery City* | 6 credits / 7 contact hours |
+| Fall 2026 | LAAR 61400 Representation and Computation I | 3 credits / 3 contact hours |
 |---|---|---|
+| Spring 2026 | LAAR 66100 Research Studio 2 — *Designing Urban Pedogenesis: Soil Infrastructures in NYC* (Co-instructor with Luke Harris) | 6 credits / 2 contact hours |
+| Spring 2026 | LAAR 65500 Research Workshop | 3 credits / 3 contact hours |
+| Fall 2025 | LAAR 63100/ARCH 51000 Landscape Architecture Studio 3/Advanced Studio — *Solarpunk: Scripting Flushing Bay* | 6 credits |
+| Fall 2024 | LAAR 63100/65100 Landscape Architecture Studio III/V — *Technological Sublime in a Watery City* | 6 credits / 7 contact hours |
 | Spring 2024 | SUS 7501 Sustainability in the Urban Environment Capstone — *Climate Justice in NYC* | 1 credit / 1 contact hour |
 | Fall 2023 | LAAR 63100/65100 Landscape Architecture Studio III/V — *Technologic* | 6 credits / 7 contact hours |
 | Spring 2023 | ARCH 51560/ARCH 61560/LAAR 61610 Topics in Urban Landscape/Topics in Technology — *Machines and Ecologies* | 3 credits / 3 contact hours |

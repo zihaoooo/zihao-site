@@ -13,7 +13,7 @@
 - **Phone (office landline):** 212-650-5567
 - **Office:** SSA 3M04
 - **Address:** 141 Convent Avenue, New York, NY 10031
-- **Website:** oseresearch.com
+- **Website:** zihaozhang.cc
 - **ResearchGate:** https://www.researchgate.net/profile/Zihao-Zhang-10
 
 ---
@@ -338,6 +338,10 @@ Regular manuscript and abstract reviewer (2018–present):
 
 | Term | Course | Title | Credits |
 |------|--------|-------|---------|
+| Fall 2026 | LAAR 61400 | Representation and Computation I | 3 cr / 3 contact hrs |
+| Spring 2026 | LAAR 66100 | Research Studio 2 — *Designing Urban Pedogenesis: Soil Infrastructures in NYC* (Co-instructor with Luke Harris; 2 hrs/week overlap) | 6 cr / 2 contact hrs |
+| Spring 2026 | LAAR 65500 | Research Workshop | 3 cr / 3 contact hrs |
+| Fall 2025 | LAAR 63100/ARCH 51000 | Landscape Architecture Studio 3/Advanced Studio — *Solarpunk: Scripting Flushing Bay* | 6 cr |
 | Fall 2024 | LAAR 63100/65100 | Landscape Architecture Studio III/V — *Technological Sublime in a Watery City* | 6 cr / 7 contact hrs |
 | Spring 2024 | SUS 7501 | Sustainability in the Urban Environment Capstone — *Climate Justice in NYC* | 1 cr / 1 contact hr |
 | Fall 2023 | LAAR 63100/65100 | Landscape Architecture Studio III/V — *Technologic* | 6 cr / 7 contact hrs |

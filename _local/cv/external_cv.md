@@ -3,7 +3,7 @@
 
 City College of New York, Spitzer School of Architecture  
 141 Convent Avenue, New York, NY 10031  
-zzhang@ccny.cuny.edu | 434-242-6010 | oseresearch.com  
+zzhang@ccny.cuny.edu | 434-242-6010 | zihaozhang.cc  
 researchgate.net/profile/Zihao-Zhang-10
 
 ---
@@ -232,8 +232,12 @@ Zhang, Shurui, and **Zihao Zhang**. "Resilient Schist: Crafting Harlem's Corrido
 
 ### City College of New York
 
-| Fall 2024 | LAAR 63100/65100 — *Technological Sublime in a Watery City* | 6 cr |
+| Fall 2026 | LAAR 61400 — Representation and Computation I | 3 cr |
 |-----------|---|---|
+| Spring 2026 | LAAR 66100 — Research Studio 2, *Designing Urban Pedogenesis: Soil Infrastructures in NYC* (Co-instructor with Luke Harris) | 6 cr |
+| Spring 2026 | LAAR 65500 — Research Workshop | 3 cr |
+| Fall 2025 | LAAR 63100/ARCH 51000 — *Solarpunk: Scripting Flushing Bay* | 6 cr |
+| Fall 2024 | LAAR 63100/65100 — *Technological Sublime in a Watery City* | 6 cr |
 | Spring 2024 | SUS 7501 — *Climate Justice in NYC* | 1 cr |
 | Fall 2023 | LAAR 63100/65100 — *Technologic* | 6 cr |
 | Spring 2023 | ARCH/LAAR Topics — *Machines and Ecologies* | 3 cr |
