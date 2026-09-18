@@ -7,7 +7,7 @@
 
 **Affiliation:** City College of New York
 
-Zihao Zhang is a designer, educator, and scholar in landscape architecture. He studies landscape as a product of technology and labor, asking what machines, tools, and unseen work of care produce the environments we call natural, and how that care is distributed among humans and nonhumans, including intelligent machines. He develops theory through making, prototyping with sensors, actuators, and fabrication. His book *Cybernetics and the Constructed Environment* (Routledge, 2025) critiques the cybernetic legacy in design, which, grounded in Western conceptions of nature, treats environments as systems to be sensed, modeled, and controlled. It proposes instead a design practice that begins where the model ends, among more-than-human agents that resist capture. His current research turns to Chinese thought and landscapes as a distinct cosmology of technology, nature, and cultivation, which he extends in his next book, *Solarpunk Landscapes: Towards Radical Sustainability* (with Shurui Zhang, under contract with Routledge).
+Zihao Zhang studies landscape as a product of technology and labor through both theory and making, asking what machines, tools, and unseen work of care produce the environments we call natural. His work critiques the cybernetic legacy in design, which, grounded in Western conceptions of nature, treats environments as systems to be sensed, modeled, and controlled, and proposes a practice that begins where the model ends, among more-than-human agents that elude prediction. His current research turns to Chinese thought and landscapes as a distinct cosmology of technology, nature, and cultivation.
 
 ---
 
