@@ -1,10 +1,10 @@
-"""Render _local/cv/external_cv.md into the public CV PDF.
+"""Render _local/cv/external_cv.md into the external CV PDF.
 
-Parses the markdown so the PDF stays in sync with the source of truth.
-Design spec is locked: Letter, 0.85" margins,
-Helvetica, 22pt name, 11pt caps sections, two-column date/content entries.
+External style: Roboto body, Roboto Condensed Bold heads, black and white,
+two-column date/content entries (shared with the Penn application materials,
+which import the styles and header from here).
 
-    py _local/cv/build_external_pdf.py
+    py _local/cv/build_external_pdf.py [out.pdf]
 """
 
 import re
@@ -15,39 +15,16 @@ from reportlab.lib import colors
 from reportlab.lib.pagesizes import letter
 from reportlab.lib.styles import ParagraphStyle
 from reportlab.lib.units import inch
+from reportlab.pdfbase import pdfmetrics
+from reportlab.pdfbase.ttfonts import TTFont
 from reportlab.platypus import (
-    CondPageBreak, KeepTogether, Paragraph, SimpleDocTemplate, Spacer,
-    Table, TableStyle,
+    CondPageBreak, KeepTogether, Paragraph, SimpleDocTemplate,
+    Spacer, Table, TableStyle,
 )
 
 ROOT = Path(__file__).resolve().parents[2]
 SRC = ROOT / "_local" / "cv" / "external_cv.md"
 OUT = ROOT / "assets" / "cv" / "Zihao_Zhang_CV.pdf"
-
-BLACK = colors.HexColor("#1a1a1a")
-ACCENT = colors.HexColor("#2c2c2c")
-LIGHT_GRAY = colors.HexColor("#666666")
-
-name_style = ParagraphStyle("Name", fontSize=22, fontName="Helvetica-Bold",
-                            textColor=BLACK, spaceAfter=2, leading=26)
-tagline_style = ParagraphStyle("Tagline", fontSize=9.5, fontName="Helvetica",
-                               textColor=LIGHT_GRAY, spaceAfter=2, leading=13)
-contact_style = ParagraphStyle("Contact", fontSize=8.5, fontName="Helvetica",
-                               textColor=LIGHT_GRAY, spaceAfter=0, leading=12)
-section_style = ParagraphStyle("Section", fontSize=11, fontName="Helvetica-Bold",
-                               textColor=ACCENT, spaceBefore=14, spaceAfter=3,
-                               keepWithNext=True, leading=12)
-subsection_style = ParagraphStyle("Subsection", fontSize=9.5, fontName="Helvetica-Bold",
-                                  textColor=BLACK, spaceBefore=8, spaceAfter=2,
-                                  leading=13, keepWithNext=True)
-body_style = ParagraphStyle("Body", fontSize=8.8, fontName="Helvetica",
-                            textColor=BLACK, spaceAfter=5, leading=13)
-bullet_style = ParagraphStyle("Bullet", parent=body_style, leftIndent=10,
-                              bulletIndent=0, spaceAfter=3)
-date_style = ParagraphStyle("Date", fontSize=8, fontName="Helvetica",
-                            textColor=LIGHT_GRAY, spaceAfter=2, leading=11)
-entry_style = ParagraphStyle("Entry", fontSize=8.8, fontName="Helvetica",
-                             textColor=BLACK, leading=11.5)
 
 
 def inline(text):
@@ -59,31 +36,6 @@ def inline(text):
     text = re.sub(r"(https?://[^\s)]+)",
                   r'<link href="\1"><font color="#666666">\1</font></link>', text)
     return text
-
-
-def section(title):
-    return [CondPageBreak(2.5 * inch), Spacer(1, 4),
-            Paragraph(title.upper(), section_style), Spacer(1, 3)]
-
-
-def subsection(title):
-    return [KeepTogether([CondPageBreak(2.0 * inch),
-                          Paragraph(inline(title), subsection_style)])]
-
-
-def entry(date, content):
-    t = Table([[Paragraph(inline(date), date_style),
-                Paragraph(inline(content), entry_style)]],
-              colWidths=[0.95 * inch, 5.45 * inch], hAlign="LEFT")
-    t.setStyle(TableStyle([
-        ("VALIGN", (0, 0), (-1, -1), "TOP"),
-        ("LEFTPADDING", (0, 0), (-1, -1), 0),
-        ("RIGHTPADDING", (0, 0), (-1, -1), 0),
-        ("TOPPADDING", (0, 0), (-1, -1), 0),
-        ("BOTTOMPADDING", (0, 0), (-1, -1), 0),
-    ]))
-    t.spaceAfter = 7
-    return t
 
 
 def cells(line):
@@ -161,46 +113,123 @@ def parse(md):
         yield b
 
 
-def build():
+def ink(text):
+    """Site markdown -> reportlab markup; application prose carries no em dashes."""
+    return inline(text.replace(" — ", ", ")).replace("#666666", "#4d4d4d")
+
+
+SMALL_WORDS = {"a", "an", "and", "as", "at", "by", "for", "in", "of", "on", "or", "the", "to"}
+
+
+def title_case(text):
+    return " ".join(w if i and w in SMALL_WORDS else w[:1].upper() + w[1:]
+                    for i, w in enumerate(text.lower().split()))
+
+
+FONTS = Path("C:/Windows/Fonts")
+for name in ["Roboto-Regular", "Roboto-Bold", "Roboto-Italic", "Roboto-BoldItalic",
+             "Roboto-Medium", "RobotoCondensed-Bold"]:
+    pdfmetrics.registerFont(TTFont(name, str(FONTS / f"{name}.ttf")))
+pdfmetrics.registerFontFamily("Roboto", normal="Roboto-Regular", bold="Roboto-Bold",
+                              italic="Roboto-Italic", boldItalic="Roboto-BoldItalic")
+
+INK = colors.black
+GRAY = colors.HexColor("#3d3d3d")
+PAGE_W = letter[0]
+
+# Type scale (pt). CV body 9/13; vertical steps 3 · 6 · 10 · 20.
+S = lambda name, **kw: ParagraphStyle(name, **{"fontName": "Roboto-Regular", "textColor": INK, **kw})
+name_style = S("Name", fontName="Roboto-Bold", fontSize=24, leading=28, spaceAfter=3)
+tag_style = S("Tag", fontSize=10.5, leading=14, textColor=GRAY, spaceAfter=6)
+contact_style = S("Contact", fontSize=8.6, leading=12, textColor=GRAY)
+section_style = S("Section", fontName="RobotoCondensed-Bold", fontSize=13.5, leading=16)
+sub_style = S("Sub", fontName="RobotoCondensed-Bold", fontSize=10.2, leading=13,
+              spaceBefore=10, spaceAfter=4, keepWithNext=True)
+minor_style = S("Minor", fontName="Roboto-Medium", fontSize=9, leading=13,
+                spaceBefore=4, spaceAfter=2, keepWithNext=True)
+body_style = S("Body", fontSize=9, leading=13, spaceAfter=5)
+cite_style = ParagraphStyle("Cite", parent=body_style, leftIndent=14, firstLineIndent=-14)
+bullet_style = ParagraphStyle("Bullet", parent=body_style, leftIndent=12, bulletFontName="Roboto-Regular", spaceAfter=2.5,
+                              bulletFontSize=6.5, bulletIndent=2)
+date_style = S("Date", fontSize=8.6, leading=13, textColor=GRAY)
+entry_style = S("Entry", fontSize=9, leading=13)
+letter_style = S("Letter", fontSize=10.5, leading=15, spaceAfter=7.5)
+
+
+def footer(label, margin):
+    def draw(c, doc):
+        c.saveState()
+        c.setFont("RobotoCondensed-Bold", 7.5)
+        c.setFillColor(INK)
+        c.drawString(margin, 0.5 * inch, f"Zihao Zhang  |  {label}")
+        c.drawRightString(PAGE_W - margin, 0.5 * inch, str(doc.page))
+        c.restoreState()
+    return draw
+
+
+def build_doc(path, title, label, story, margin):
+    f = footer(label, margin)
+    SimpleDocTemplate(str(path), pagesize=letter, leftMargin=margin, rightMargin=margin,
+                      topMargin=0.8 * inch, bottomMargin=0.85 * inch, title=title,
+                      author="Zihao Zhang").build(story, onFirstPage=f, onLaterPages=f)
+
+
+def entry(date, content, width):
+    t = Table([[Paragraph(ink(date), date_style), Paragraph(ink(content), entry_style)]],
+              colWidths=[0.95 * inch, width - 0.95 * inch], hAlign="LEFT")
+    t.setStyle(TableStyle([("VALIGN", (0, 0), (-1, -1), "TOP")] +
+                          [(k, (0, 0), (-1, -1), 0) for k in
+                           ("LEFTPADDING", "RIGHTPADDING", "TOPPADDING", "BOTTOMPADDING")]))
+    t.spaceAfter = 3
+    return t
+
+
+def header(story, lines):
+    story.append(Paragraph("Zihao Zhang, Ph.D.", name_style))
+    story.append(Paragraph("Designer · Educator · Scholar in Landscape Architecture", tag_style))
+    for l in lines:
+        story.append(Paragraph(ink(l), contact_style))
+
+
+PROSE_SECTIONS = {"SUMMARY", "HIGHER EDUCATION"}
+MINOR_HEAD = re.compile(r"\*\*[^*]+\*\*(\s*\*\([^)]*\)\*)?")  # "**2024**", "**2022–2018** *(selected)*"
+
+
+def build_cv(out=OUT):
+    margin = 0.85 * inch
+    width = PAGE_W - 2 * margin
     md = SRC.read_text(encoding="utf-8")
-    OUT.parent.mkdir(parents=True, exist_ok=True)
-
-    doc = SimpleDocTemplate(
-        str(OUT), pagesize=letter,
-        leftMargin=0.85 * inch, rightMargin=0.85 * inch,
-        topMargin=0.85 * inch, bottomMargin=0.85 * inch,
-        title="Zihao Zhang — Curriculum Vitae", author="Zihao Zhang",
-        subject="Curriculum Vitae",
-    )
-
-    story = []
-    # Header: name, tagline, contact lines — everything before the first ---.
     head, rest = md.split("\n---\n", 1)
     head_lines = [l.strip() for l in head.splitlines() if l.strip()]
-    story.append(Paragraph(head_lines[0].lstrip("# ").strip(), name_style))
-    story.append(Paragraph("Designer · Educator · Scholar in Landscape Architecture",
-                           tagline_style))
-    for l in head_lines[2:]:
-        story.append(Paragraph(inline(l), contact_style))
-    story.append(Spacer(1, 6))
-
+    story = []
+    header(story, head_lines[2:])
+    current = ""
     for kind, payload in parse(rest):
         if kind == "section":
-            story += section(payload)
+            current = payload.upper()
+            story += [CondPageBreak(1.4 * inch), Spacer(1, 20),
+                      Paragraph(title_case(payload), section_style), Spacer(1, 6)]
         elif kind == "subsection":
-            story += subsection(payload)
+            story.append(KeepTogether([CondPageBreak(0.9 * inch),
+                                       Paragraph(ink(payload), sub_style)]))
         elif kind == "entry":
-            story.append(entry(*payload))
+            story.append(entry(*payload, width))
         elif kind == "bullet":
-            story.append(Paragraph(inline(payload), bullet_style, bulletText="·"))
+            story.append(Paragraph(ink(payload), bullet_style, bulletText="•"))
+        elif kind == "para" and MINOR_HEAD.fullmatch(payload):
+            story.append(Paragraph(re.sub(r"</?b>", "", ink(payload)), minor_style))
         elif kind == "para":
-            story.append(Paragraph(inline(payload), body_style))
+            style = body_style if current in PROSE_SECTIONS else cite_style
+            story.append(Paragraph(ink(payload), style))
+    build_doc(out, "Zihao Zhang, Curriculum Vitae", "Curriculum Vitae", story, margin)
+    return out
 
-    doc.build(story)
-    print(f"Wrote {OUT.relative_to(ROOT)} ({OUT.stat().st_size // 1024} KB)")
 
 
 if __name__ == "__main__":
     if not SRC.exists():
         sys.exit(f"missing source: {SRC}")
-    build()
+    out = Path(sys.argv[1]) if len(sys.argv) > 1 else OUT
+    out.parent.mkdir(parents=True, exist_ok=True)
+    build_cv(out)
+    print(f"Wrote {out} ({out.stat().st_size // 1024} KB)")

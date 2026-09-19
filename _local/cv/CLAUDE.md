@@ -2,7 +2,7 @@
 
 Three files: `master.md` (source of truth), `external_cv.md`, `ccny_cv.md`. Update all three simultaneously. External PDF via `py _local/cv/build_external_pdf.py` — parses `external_cv.md`,
 writes `assets/cv/Zihao_Zhang_CV.pdf` (the public download linked from `index.html`).
-Rerun it after editing `external_cv.md`. CCNY PDF: adapt `build_external_pdf.py` to `ccny_cv.md` (full author lists, CCNY section order) when one is needed.
+Rerun it after editing `external_cv.md`. It defines the external style (Roboto body, Roboto Condensed Bold heads, black and white); `penn-la-application/_scripts/penn_style.py` imports it, so style changes go here. CCNY PDF: adapt `build_external_pdf.py` to `ccny_cv.md` (full author lists, CCNY section order) when one is needed.
 - Director MLA: 2024–2026 (not "present"); Interim Director: 2023–2024
 - ASLA-NY Climate Action co-chair: 2023–2025
 - DOE Climate Lighthouse (~$1M, 2024–2027): Co-PI
