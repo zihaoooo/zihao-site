@@ -459,6 +459,12 @@
 .wf-alert-lg .wf-alert-icon { font-size: 18px; }
 .wf-alert-lg { flex-wrap: wrap; }
 .wf-alert-lg .wf-alert-body { font-size: 14px; flex: 1 1 300px; }
+.wf-alert-steps {
+  margin: 6px 0 0;
+  padding-left: 20px;
+  font-size: 13px;
+}
+.wf-alert-steps li { margin: 2px 0; }
 .wf-alert-example {
   flex-shrink: 0;
   max-width: 100%;
