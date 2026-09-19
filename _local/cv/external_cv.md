@@ -1,10 +1,9 @@
 # ZIHAO ZHANG, PH.D.
-**Curriculum Vitae** | Updated: September 18, 2026
+**Curriculum Vitae** | Updated: September 19, 2026
 
 City College of New York, Spitzer School of Architecture  
 141 Convent Avenue, New York, NY 10031  
-zzhang@ccny.cuny.edu | 434-242-6010 | zihaozhang.cc  
-researchgate.net/profile/Zihao-Zhang-10
+zzhang@ccny.cuny.edu | 434-242-6010 | zihaozhang.cc
 
 ---
 
