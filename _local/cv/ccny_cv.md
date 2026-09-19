@@ -512,7 +512,7 @@ Amount: $4,000
 
 ## Consulting
 
-| 2023–present | Landscape consultant, Masaryk Towers (Mitchell-Lama affordable housing), Lower East Side, New York City |
+| 2023–2025 | Landscape consultant, Masaryk Towers (Mitchell-Lama affordable housing), Lower East Side, New York City |
 |---|---|
 
 ## Membership in Professional Societies

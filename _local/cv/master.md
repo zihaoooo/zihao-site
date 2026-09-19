@@ -324,7 +324,7 @@ Regular manuscript and abstract reviewer (2018–present):
 
 | Year | Entry |
 |------|-------|
-| 2023–present | Landscape consultant, Masaryk Towers (Mitchell-Lama affordable housing), Lower East Side, NYC |
+| 2023–2025 | Landscape consultant, Masaryk Towers (Mitchell-Lama affordable housing), Lower East Side, NYC |
 
 ### Professional Memberships
 
