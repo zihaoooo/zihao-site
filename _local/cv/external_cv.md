@@ -271,11 +271,11 @@ Zhang, Shurui, and **Zihao Zhang**. "Resilient Schist: Crafting Harlem's Corrido
 
 ### Search Committees
 
-| 2026 | Chair, Associate/Full Professor of Architecture and Urban AI, Dept. of Architecture |
+| 2026 | Chair, search committee for Associate/Full Professor of Architecture and Urban AI, Dept. of Architecture |
 |-----------|---|
-| 2026 | Lecturer, Sustainability MUE Program; Lab Technician, Robotics Lab; Assistant Professor of LA |
-| 2024 | Professor and Director of MLA Program; Assistant Professor of LA |
-| 2022–2023 | Assistant Director, Bond Center for Urban Futures; Faculty Secretary, Dept. of Architecture |
+| 2026 | Member, search committees for Lecturer, Sustainability MUE Program; Lab Technician, Robotics Lab; Assistant Professor of LA |
+| 2024 | Member, search committees for Professor and Director of MLA Program; Assistant Professor of LA |
+| 2022–2023 | Member, search committees for Assistant Director, Bond Center for Urban Futures; Faculty Secretary, Dept. of Architecture |
 
 ---
 
