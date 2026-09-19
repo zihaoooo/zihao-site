@@ -430,6 +430,7 @@ Regular manuscript and abstract reviewer (2018–present):
 | 2025–present | Executive Committee, Sustainability in the Urban Environment Master Program |
 | 2023–present | Personnel and Budget Committee, Curriculum Committee, Graduate Programs Steering Committee — Department of Architecture |
 | 2022–present | Course and Standing Committee, Department of Architecture |
+| 2022–2023 | Faculty Secretary, Department of Architecture |
 | 2021–present | Graduate Program Admission Committee, Department of Architecture |
 
 ### Search Committees
@@ -439,7 +440,7 @@ Regular manuscript and abstract reviewer (2018–present):
 | 2026 | Chair, Search Committee: Associate/Full Professor of Architecture and Urban AI, Department of Architecture (CUNY Martin S. Spergel Initiative in Computational Science) |
 | 2026 | Search Committee: Lecturer (Sustainability MUE); Lab Technician (Robotics Lab); Assistant Professor of Landscape Architecture |
 | 2024 | Search Committee: Professor and Director of MLA program; Assistant Professor of Landscape Architecture |
-| 2022–2023 | Search Committee: Assistant Director, Bond Center for Urban Futures; Faculty Secretary, Dept. of Architecture |
+| 2022–2023 | Search Committee: Assistant Director, Bond Center for Urban Futures |
 
 ### Student Recruitment
 

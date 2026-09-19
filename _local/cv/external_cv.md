@@ -266,6 +266,7 @@ Zhang, Shurui, and **Zihao Zhang**. "Resilient Schist: Crafting Harlem's Corrido
 |-----------|---|
 | 2023–present | Personnel and Budget; Curriculum; Graduate Programs Steering Committees, Dept. of Architecture |
 | 2022–present | Course and Standing Committee, Dept. of Architecture |
+| 2022–2023 | Faculty Secretary, Dept. of Architecture |
 | 2021–present | Graduate Program Admission Committee, Dept. of Architecture |
 
 ### Search Committees
@@ -274,7 +275,7 @@ Zhang, Shurui, and **Zihao Zhang**. "Resilient Schist: Crafting Harlem's Corrido
 |-----------|---|
 | 2026 | Member, search committees for Lecturer, Sustainability MUE Program; Lab Technician, Robotics Lab; Assistant Professor of LA |
 | 2024 | Member, search committees for Professor and Director of MLA Program; Assistant Professor of LA |
-| 2022–2023 | Member, search committees for Assistant Director, Bond Center for Urban Futures; Faculty Secretary, Dept. of Architecture |
+| 2022–2023 | Member, search committee for Assistant Director, Bond Center for Urban Futures |
 
 ---
 

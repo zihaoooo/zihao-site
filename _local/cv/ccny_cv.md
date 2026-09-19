@@ -628,6 +628,7 @@ Amount: $4,000
 |---|---|
 | 2023–present | Personnel and Budget Committee; Curriculum Committee; Graduate Programs Steering Committee — Department of Architecture |
 | 2022–present | Course and Standing Committee, Department of Architecture |
+| 2022–2023 | Faculty Secretary, Department of Architecture |
 | 2021–present | Graduate Program Admission Committee, Department of Architecture |
 
 **Search Committees:**
@@ -636,7 +637,7 @@ Amount: $4,000
 |---|---|
 | 2026 | Search Committee: Lecturer for Sustainability in the Urban Environment Master Program; Laboratory Technician for Robotics Lab; Assistant Professor of Landscape Architecture |
 | 2024 | Search Committee: Professor and Director of Master of Landscape Architecture program; Assistant Professor of Landscape Architecture |
-| 2022–2023 | Search Committee: Assistant Director, Bond Center for Urban Futures; Faculty Secretary, Department of Architecture |
+| 2022–2023 | Search Committee: Assistant Director, Bond Center for Urban Futures |
 
 ## Student Recruitment Activities
 
