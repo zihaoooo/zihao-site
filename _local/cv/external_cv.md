@@ -154,7 +154,7 @@ Zhang, Shurui, and **Zihao Zhang**. "Resilient Schist: Crafting Harlem's Corrido
 - Invited panelist. ASLA 2023 Annual Conference, Minneapolis. October 29, 2023
 - Invited panelist. Bi-City Biennale of Urbanism\Architecture (UABB), Shenzhen. January 7, 2023
 
-**2022–2018** *(selected)*
+**2018–2022** *(selected)*
 - "Post-Digital Landscape and Post-Digital Culture." Digital Landscape Architecture Conference, Harvard GSD, 2022
 - "Cybernetic Environment." Digital Landscape Architecture Conference (virtual), 2020
 - Invited respondent for N. Katherine Hayles' lecture, UVA, 2020
