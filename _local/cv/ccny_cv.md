@@ -41,7 +41,7 @@ N/A
 | 2024–2026 | Director, Master of Landscape Architecture Program, Department of Architecture, Spitzer School of Architecture, City College of New York |
 |---|---|
 | 2023–2024 | Interim Director, Master of Landscape Architecture Program, Department of Architecture, Spitzer School of Architecture, City College of New York |
-| 2026–present | Associate Professor, City College of New York |
+| 2026–present | Associate Professor (with tenure; early promotion), City College of New York |
 | 2021–2026 | Assistant Professor, City College of New York |
 | 2019–2021 | Lecturer, Landscape Architecture, University of Virginia, School of Architecture |
 | 2017–2019 | Teaching Fellow, Landscape Architecture, University of Virginia, School of Architecture |

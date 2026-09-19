@@ -37,7 +37,7 @@ Committee: Michael Lee, Nana Last, Bradley Cantrell, Michael Gorman
 
 ### Academic Appointments
 
-| 2026–present | Associate Professor, City College of New York |
+| 2026–present | Associate Professor (with tenure; early promotion), City College of New York |
 |-----------|---|
 | 2021–2026 | Assistant Professor (tenure-track), City College of New York |
 | 2019–2021 | Lecturer, Landscape Architecture, University of Virginia |
