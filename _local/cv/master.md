@@ -184,8 +184,8 @@ Zihao Zhang studies landscape as a product of technology and labor through both 
 | Nov 2020 | Invited respondent for N. Katherine Hayles' lecture. University of Virginia. Nov. 2020 |
 | June 2020 | Presentation. "Cybernetic Environment: A Historical Reflection on System, Design, and Machine Intelligence." Digital Landscape Architecture Conference (virtual). June 3, 2020 |
 | Aug 2019 | Presentation. "Ecological Governance and Cybernetic Environment." International PhD Colloquium at Peking University. August 11, 2019 |
-| May 2019 | Invited lecture. "A Third Intelligence: Cybernetic Environment and Future Landscapes." Beijing Forestry University. May 15, 2019 |
 | June 2019 | Invited presentation. "The Future of AI and ML in Landscape Design." Digital Landscape Architecture Conference, Dessau, Germany. June 3, 2019 |
+| May 2019 | Invited lecture. "A Third Intelligence: Cybernetic Environment and Future Landscapes." Beijing Forestry University. May 15, 2019 |
 | May 2018 | Conference presentation. "Human-Tool Assemblage." Digital Landscape Architecture Conference, Freising, Germany. May 31, 2018 |
 | June 2017 | Invited presentation. "Human Factors in Responsive Landscapes." Digital Landscape Architecture Conference, Bernburg, Germany. June 8, 2017 |
 | Nov 2016 | Presentation. "Grid and Its Instruments." 2nd Annual Symposium on Ecological Wisdom. November 20, 2016 |

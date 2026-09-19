@@ -145,13 +145,13 @@ Zhang, Shurui, and **Zihao Zhang**. "Resilient Schist: Crafting Harlem's Corrido
 - "Do Machines Care?" Beyond Maintenance Colloquium, ETH Zürich. February 28, 2025
 
 **2024**
-- Invited lecture. University of Pennsylvania Stuart Weitzman School of Design. February 28, 2024
-- Invited lecture. "Of Bicycles and Artificial Intelligence." CCNY/CWE. March 25, 2024
 - Invited lecture. University of Colorado Boulder. September 10, 2024
+- Invited lecture. "Of Bicycles and Artificial Intelligence." CCNY/CWE. March 25, 2024
+- Invited lecture. University of Pennsylvania Stuart Weitzman School of Design. February 28, 2024
 
 **2023**
-- Invited webinar. Landscape Architecture Foundation. August 29, 2023 *(1000+ live attendees, LAF record)*
 - Invited panelist. ASLA 2023 Annual Conference, Minneapolis. October 29, 2023
+- Invited webinar. Landscape Architecture Foundation. August 29, 2023 *(1000+ live attendees, LAF record)*
 - Invited panelist. Bi-City Biennale of Urbanism\Architecture (UABB), Shenzhen. January 7, 2023
 
 **2018–2022** *(selected)*
@@ -171,7 +171,8 @@ Zhang, Shurui, and **Zihao Zhang**. "Resilient Schist: Crafting Harlem's Corrido
 
 ### Public Scholarship
 
-**Chubby Cat Happy Chat Podcast** (2024–present). Co-host with Shurui Zhang. Mandarin Chinese podcast on design, philosophy, art, and technology. https://chubbycathappychat.podbean.com/
+| 2024–present | **Chubby Cat Happy Chat Podcast**. Co-host with Shurui Zhang. Mandarin Chinese podcast on design, philosophy, art, and technology. https://chubbycathappychat.podbean.com/ |
+|-----------|---|
 
 ---
 
@@ -213,9 +214,10 @@ Zhang, Shurui, and **Zihao Zhang**. "Resilient Schist: Crafting Harlem's Corrido
 
 ### Funding Proposal Reviewer
 
-- BARD — US-Israel Agricultural Research & Development Fund (2025)
-- Austrian Science Fund (2024)
-- European Commission's European Research Council (2023)
+| 2025 | BARD — US-Israel Agricultural Research & Development Fund |
+|-----------|---|
+| 2024 | Austrian Science Fund |
+| 2023 | European Commission's European Research Council |
 
 ### Consulting
 
@@ -224,7 +226,8 @@ Zhang, Shurui, and **Zihao Zhang**. "Resilient Schist: Crafting Harlem's Corrido
 
 ### Membership
 
-- American Society of Landscape Architects, New York Chapter (2021–present)
+| 2021–present | American Society of Landscape Architects, New York Chapter |
+|-----------|---|
 
 ---
 
@@ -260,36 +263,43 @@ Zhang, Shurui, and **Zihao Zhang**. "Resilient Schist: Crafting Harlem's Corrido
 
 ### Committees
 
-- Executive Committee, Sustainability in the Urban Environment Master Program (2025–present)
-- Personnel and Budget; Curriculum; Graduate Programs Steering Committees, Dept. of Architecture (2023–present)
-- Course and Standing Committee, Dept. of Architecture (2022–present)
-- Graduate Program Admission Committee, Dept. of Architecture (2021–present)
+| 2025–present | Executive Committee, Sustainability in the Urban Environment Master Program |
+|-----------|---|
+| 2023–present | Personnel and Budget; Curriculum; Graduate Programs Steering Committees, Dept. of Architecture |
+| 2022–present | Course and Standing Committee, Dept. of Architecture |
+| 2021–present | Graduate Program Admission Committee, Dept. of Architecture |
 
 ### Search Committees
 
-- Chair, Associate/Full Professor of Architecture and Urban AI, Dept. of Architecture (2026)
-- Lecturer, Sustainability MUE Program; Lab Technician, Robotics Lab; Assistant Professor of LA (2026)
-- Professor and Director of MLA Program; Assistant Professor of LA (2024)
-- Assistant Director, Bond Center for Urban Futures; Faculty Secretary, Dept. of Architecture (2022–2023)
+| 2026 | Chair, Associate/Full Professor of Architecture and Urban AI, Dept. of Architecture |
+|-----------|---|
+| 2026 | Lecturer, Sustainability MUE Program; Lab Technician, Robotics Lab; Assistant Professor of LA |
+| 2024 | Professor and Director of MLA Program; Assistant Professor of LA |
+| 2022–2023 | Assistant Director, Bond Center for Urban Futures; Faculty Secretary, Dept. of Architecture |
 
 ---
 
 ## COMMUNITY OUTREACH
 
-- West Harlem Art Fund and Brotherhood Sister Sol — climate resilience advocacy (2024–present)
-- ELUA and SSA rooftop garden tours; partnerships with NYC Composting Project and CCNY Rangel Initiative (2023)
-- GrowNYC and NYC-GreenThumb community outreach as part of Synergistic Agriculture project (2021–2022)
-- Community-centered Urban Sensing outreach, Charlottesville, VA (2018)
+| 2024–present | West Harlem Art Fund and Brotherhood Sister Sol — climate resilience advocacy |
+|-----------|---|
+| 2023 | ELUA and SSA rooftop garden tours; partnerships with NYC Composting Project and CCNY Rangel Initiative |
+| 2021–2022 | GrowNYC and NYC-GreenThumb community outreach as part of Synergistic Agriculture project |
+| 2018 | Community-centered Urban Sensing outreach, Charlottesville, VA |
 
 ---
 
 ## GRADUATE RESEARCH EXPERIENCE
 
 **University of Virginia, School of Architecture**
-- MainStreet21 – Research Coordination Network (PI: Ila Berman, NSF), 2018
-- Lhasa Virtual Reality Project (PI: David Germano), 2013–2016
-- Winneba Lagoon project, Ghana (PI: Nancy Takahashi), 2015–2016
-- James River Viewshed Studies (PI: Guoping Huang), 2013–2014
+
+| 2018 | MainStreet21 – Research Coordination Network (PI: Ila Berman, NSF) |
+|-----------|---|
+| 2015–2016 | Winneba Lagoon project, Ghana (PI: Nancy Takahashi) |
+| 2013–2016 | Lhasa Virtual Reality Project (PI: David Germano) |
+| 2013–2014 | James River Viewshed Studies (PI: Guoping Huang) |
 
 **University of Virginia, School of Engineering**
-- dMIST – Data-driven Management for Interdependent Stormwater and Transportation Systems (PI: Jonathan Goodall, NSF), 2018–2021
+
+| 2018–2021 | dMIST – Data-driven Management for Interdependent Stormwater and Transportation Systems (PI: Jonathan Goodall, NSF) |
+|-----------|---|
