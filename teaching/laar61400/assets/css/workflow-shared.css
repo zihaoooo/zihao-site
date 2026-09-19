@@ -457,7 +457,17 @@
 }
 .wf-alert-lg { padding: 12px 16px; margin: 4px 0 0; }
 .wf-alert-lg .wf-alert-icon { font-size: 18px; }
-.wf-alert-lg .wf-alert-body { font-size: 14px; }
+.wf-alert-lg { flex-wrap: wrap; }
+.wf-alert-lg .wf-alert-body { font-size: 14px; flex: 1 1 300px; }
+.wf-alert-example {
+  flex-shrink: 0;
+  max-width: 100%;
+  height: auto;
+  background: #fff;
+  border: 1px solid #e8a0a0;
+  border-radius: 3px;
+  padding: 4px 6px;
+}
 
 /* ── CTB color chart ── */
 .wf-ctb {
