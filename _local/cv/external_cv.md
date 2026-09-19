@@ -80,13 +80,13 @@ Committee: Michael Lee, Nana Last, Bradley Cantrell, Michael Gorman
 
 **(Forthcoming)** **Zhang, Zihao**, and Shurui Zhang. "One Prompt, Job Done: A Syndrome." In *Representing Landscapes: AI, Machine Vision, and Climate Futures*, edited by Nadia Amoroso. New York: Routledge, 2027.
 
-Macwillie, Elizabeth, Shawn Rickenbacker, and **Zihao Zhang**. "Strengthening Local Ecologies of Care Through Art and Activism in Harlem, NYC." In *Activism in Design Education: Health, Equity, and Climate Action*, edited by Claire Latane and Jean Yang, 95–108. New York: Routledge, 2027.
+Macwillie, Elizabeth, Shawn Rickenbacker, and **Zihao Zhang**. "Strengthening Local Ecologies of Care Through Art and Activism in Harlem, NYC." In *Activism in Design Education: Health, Equity, and Climate Action*, edited by Claire Latane and Jean Yang, 95–108. New York: Routledge, 2027. https://doi.org/10.4324/9781003666073
 
 **Zhang, Zihao**, and Shurui Zhang. "Before the After: Representing Climate Actions in the Age of AI." In *Representing Landscapes: Visualizing Climate Action*, edited by Nadia Amoroso. Routledge, 2024. https://doi.org/10.4324/9781003404798 *(Peer-reviewed; Major contribution)*
 
 Cantrell, Bradley, **Zihao Zhang**, and Xun Liu. "Artificial intelligence and machine learning in landscape architecture." In *The Routledge Companion to Artificial Intelligence in Architecture*, edited by Imdat As & Prithwish Basu. Taylor & Francis, 2021. *(Peer-reviewed; Equal contribution)*
 
-Gorman, Michael E., **Zihao Zhang**, et al. "Collaboration Among Apparently Incommensurable Expertises." In *The Third Wave in Science and Technology Studies*, 255–72. Springer, 2019. *(Peer-reviewed; Major contribution)*
+Gorman, Michael E., **Zihao Zhang**, et al. "Collaboration Among Apparently Incommensurable Expertises: A Case Study of Combining Expertises and Perspectives to Manage Climate Change in Coastal Virginia." In *The Third Wave in Science and Technology Studies: Future Research Directions on Expertise and Experience*, 255–72. Springer, 2019. *(Peer-reviewed; Major contribution)*
 
 ### Journal Articles
 
@@ -94,7 +94,7 @@ Fernberg, Phillip, and **Zihao Zhang**. "Problematizing AI Omnipresence in Lands
 
 **Zhang, Zihao**, et al. "Robots in the Garden: Artificial Intelligence and Adaptive Landscapes." *Journal of Digital Landscape Architecture* 8 (2023): 264–72. *(Double-blind peer-reviewed; Lead author)*
 
-**Zhang, Zihao**, and Shurui Zhang. "Mapping Landscape Architects' Expertise in Climate Adaptation." *Landscape Architecture Frontiers* 10.2 (2022): 71–81. *(Double-blind peer-reviewed; Lead author)*
+**Zhang, Zihao**, and Shurui Zhang. "Mapping Landscape Architects' Expertise in Climate Adaptation with Design Research Projects Over the Past Two Decades." *Landscape Architecture Frontiers* 10.2 (2022): 71–81. *(Double-blind peer-reviewed; Lead author)*
 
 **Zhang, Zihao**. "Post-Digital Landscape and Post-Digital Culture." *Journal of Digital Landscape Architecture* 7 (2022): 26–35. *(Double-blind peer-reviewed)*
 
@@ -104,11 +104,11 @@ Fernberg, Phillip, and **Zihao Zhang**. "Problematizing AI Omnipresence in Lands
 
 **Zhang, Zihao**. "Cybernetic Environment: A Historical Reflection on System, Design, and Machine Intelligence." *Journal of Digital Landscape Architecture* 5 (2020). *(Double-blind peer-reviewed)*
 
-**Zhang, Zihao**, and Ben Bowes. "The Future of AI and ML in Landscape Design." *Journal of Digital Landscape Architecture* 4 (2019): 2–9. *(Double-blind peer-reviewed; Lead author)*
+**Zhang, Zihao**, and Ben Bowes. "The Future of Artificial Intelligence (AI) and Machine Learning (ML) in Landscape Design: A Case Study in Coastal Virginia, USA." *Journal of Digital Landscape Architecture* 4 (2019): 2–9. *(Double-blind peer-reviewed; Lead author)*
 
 Cantrell, Bradley, and **Zihao Zhang**. "A Third Intelligence." *Landscape Architecture Frontiers* 6.2 (2018): 42–51. *(Peer-reviewed; Equal authorship)*
 
-**Zhang, Zihao**, Andrew Mondschein, and Mona El Khafif. "Human-Tool Assemblage: Designers in the Big Data World." *Journal of Digital Landscape Architecture* 2 (2018): 397–405. *(Double-blind peer-reviewed; Lead author)*
+**Zhang, Zihao**, Andrew Mondschein, and Mona El Khafif. "Human-Tool Assemblage: Designers in the Big Data World." *Journal of Digital Landscape Architecture* 3 (2018): 397–405. *(Double-blind peer-reviewed; Lead author)*
 
 **Zhang, Zihao**. "Human Factors in Responsive Landscapes: Importance and Method." *Journal of Digital Landscape Architecture* 2 (2017): 10–17. *(Double-blind peer-reviewed)*
 
@@ -122,7 +122,7 @@ Cantrell, Bradley, and **Zihao Zhang**. "A Third Intelligence." *Landscape Archi
 
 Karkut, Nicholas, Alexey Kiriluk, **Zihao Zhang**, Zhigang Zhu. "Vegetation Coverage and Urban Amenity Mapping Using Computer Vision and Machine Learning." *International Conference on Image Processing and Vision Engineering*, 2023. *(Double-blind peer-reviewed)*
 
-Chen, G.Q., N. Kashyap, **Z. Zhang**, et al. "Predicting Building Energy Efficiency with Multi-Task Learning." *International Conference on SMART MULTIMEDIA*, 2024. *(Double-blind peer-reviewed)*
+Chen, G.Q., N. Kashyap, **Z. Zhang**, et al. "Predicting Building Energy Efficiency with Multi-Task Learning and Classification on Multimedia Data." *International Conference on SMART MULTIMEDIA*, 2024. *(Double-blind peer-reviewed)*
 
 Cantrell, Bradley, and **Zihao Zhang**. "Choreographing Intelligent Agents." *107th ACSA Annual Meeting Proceedings*, 2018.
 
@@ -164,7 +164,7 @@ Zhang, Shurui, and **Zihao Zhang**. "Resilient Schist: Crafting Harlem's Corrido
 | 2023–present | **Laboratory for Living Systems**, NYC. Co-director |
 |-----------|---|
 | 2022 | **Ecological Laboratory for Urban Agriculture (ELUA)**, NYC. Designer, PI. https://ce-lab.one/ELUA |
-| 2020 | **Ostenda illuminata** — Public installation, Charlottesville, VA |
+| 2020 | **Ostenda illuminata** — Public installation, Charlottesville, VA. Research associate: conceptual design, software development, and early prototyping (with Mona El Khafif, Andrew Mondschein, Eric Field) |
 | 2018 | **CyborgBloom** — Digital Art Installation, Charlottesville, VA |
 | 2018 | **"Forming Atmosphere"** — Landscape design research featured in *Codify* (Routledge) |
 
@@ -186,7 +186,7 @@ Zhang, Shurui, and **Zihao Zhang**. "Resilient Schist: Crafting Harlem's Corrido
 | 2022–2025 | **CCNY Energizing Equity.** Co-PI. $600,000. *(ended)* |
 | 2022–2023 | **CUNY Interdisciplinary Research Grant — Synergistic Agriculture.** PI. $40,000. *(ended)* |
 | 2023–2024 | **PSC-CUNY — Robots in the Garden.** PI. $6,000. *(ended)* |
-| 2022–2024 | **PSC-CUNY — Rooftop Thermodynamics.** PI. $6,000. *(ended)* |
+| 2022–2023 | **PSC-CUNY — Rooftop Thermodynamics.** PI. $6,000. *(ended)* |
 | 2022 | **Spitzer Faculty Book Project Award.** $4,000. |
 
 ### Fellowships
@@ -204,7 +204,7 @@ Zhang, Shurui, and **Zihao Zhang**. "Resilient Schist: Crafting Harlem's Corrido
 
 ### Boards, Workshops, and Committees
 
-| 2025–present | Executive Editorial Board, *Landscape Architecture Frontier* |
+| 2025–present | Executive Editorial Board, *Landscape Architecture Frontiers* |
 |-----------|---|
 | 2024–present | Advisory Board, West Harlem Art Fund |
 | 2023–2026 | Board member (ex officio), ASLA-NY |

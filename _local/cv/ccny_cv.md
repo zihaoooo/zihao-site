@@ -81,7 +81,7 @@ N/A
 
 **2027**
 
-Macwillie, Elizabeth, Shawn Rickenbacker, and **Zihao Zhang**. 2027. "Strengthening Local Ecologies of Care Through Art and Activism in Harlem, NYC." In *Activism in Design Education: Health, Equity, and Climate Action*, edited by Claire Latane and Jean Yang, 95–108. New York: Routledge. ISBN 9781041118640
+Macwillie, Elizabeth, Shawn Rickenbacker, and **Zihao Zhang**. 2027. "Strengthening Local Ecologies of Care Through Art and Activism in Harlem, NYC." In *Activism in Design Education: Health, Equity, and Climate Action*, edited by Claire Latane and Jean Yang, 95–108. New York: Routledge. ISBN 9781041118640. https://doi.org/10.4324/9781003666073
 *Editor-reviewed. Co-authored. Contribution: Major*
 
 (Forthcoming) **Zhang, Zihao**. 2027. "Do Machines Care? Posthuman Labor in the Design Professions." In *The Routledge Companion to Artificial Intelligence in Architecture*, 2nd ed., edited by Imdat As. New York: Routledge.
@@ -107,7 +107,7 @@ Cantrell, Bradley, **Zihao Zhang**, and Xun Liu. 2021. "Artificial intelligence 
 
 **2019**
 
-Gorman, Michael E., **Zihao Zhang**, Kristina D. Fauss, and Benjamin D. Bowes. 2019. "Collaboration Among Apparently Incommensurable Expertises." In *The Third Wave in Science and Technology Studies*, edited by Caudill et al., 255–72. Springer. https://doi.org/10.1007/978-3-030-14335-0_14
+Gorman, Michael E., **Zihao Zhang**, Kristina D. Fauss, and Benjamin D. Bowes. 2019. "Collaboration Among Apparently Incommensurable Expertises: A Case Study of Combining Expertises and Perspectives to Manage Climate Change in Coastal Virginia." In *The Third Wave in Science and Technology Studies: Future Research Directions on Expertise and Experience*, edited by Caudill et al., 255–72. Springer. https://doi.org/10.1007/978-3-030-14335-0_14
 *Peer-reviewed. Co-authored. Contribution: Major*
 
 ### Journal Articles
@@ -162,7 +162,7 @@ Davies-Vollum, K. Sian, **Zihao Zhang**, and Andrews Agyekumhene. 2019. "Impacts
 Cantrell, Bradley, and **Zihao Zhang**. 2018. "A Third Intelligence." *Landscape Architecture Frontiers* 6 (2): 42–51. https://doi.org/10.15302/J-LAF-20180205
 *Peer-reviewed. Co-authored. Equal authorship*
 
-**Zhang, Zihao**, Andrew Mondschein, and Mona El Khafif. 2018. "Human-Tool Assemblage: Designers in the Big Data World." *Journal of Digital Landscape Architecture* 2–2017 (May): 397–405. https://doi.org/10.14627/537642042
+**Zhang, Zihao**, Andrew Mondschein, and Mona El Khafif. 2018. "Human-Tool Assemblage: Designers in the Big Data World." *Journal of Digital Landscape Architecture* 3–2018 (May): 397–405. https://doi.org/10.14627/537642042
 *Double-blind peer-reviewed. Co-authored. Contribution: Major / Lead Author*
 
 Mondschein, Andrew, **Zihao Zhang**, and Mona El Khafif. 2019. "Community-Centered Urban Sensing: Smart Engaged Planning and Design in a Dysfunctional Urban Context." *International Journal of E-Planning Research* 8 (4): 1–16. https://doi.org/10.4018/IJEPR.2019100101
@@ -472,7 +472,7 @@ Amount: $4,000
 
 ## Conference/Journal Editorial Boards, Panels, Workshops
 
-| 2025–present | Executive Editorial Board, *Landscape Architecture Frontier* |
+| 2025–present | Executive Editorial Board, *Landscape Architecture Frontiers* |
 |---|---|
 | 2023–present | Editorial Board, *Journal of Digital Landscape Architecture* |
 | 2023–2024 | Editorial Board, *PLOS ONE* |
@@ -497,7 +497,7 @@ Amount: $4,000
 
 2018–present. Regular manuscript & abstract peer reviewer:
 
-- *Landscape Architecture Frontier* (2023, 2024, 2025, 2026)
+- *Landscape Architecture Frontiers* (2023, 2024, 2025, 2026)
 - *The Plan Journal* (2023, 2025)
 - *PLOS ONE* (2023)
 - *Journal of Digital Landscape Architecture* (2023, 2024, 2025)

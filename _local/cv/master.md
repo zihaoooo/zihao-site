@@ -93,10 +93,10 @@ Zihao Zhang studies landscape as a product of technology and labor through both 
 | 2027 (forthcoming) | **Zhang, Zihao**. "Do Machines Care? Posthuman Labor in the Design Professions." In *The Routledge Companion to Artificial Intelligence in Architecture*, 2nd ed., edited by Imdat As. New York: Routledge. | Editor-reviewed | Solo |
 | 2027 (forthcoming) | **Zhang, Zihao**, and Shurui Zhang. "Escaping Western Gaze: Chinese Diasporic Urbanism in Flushing." In *Becoming Chinatown: An Anthology of Interiors*, edited by Leyuan Li and Tairan An. Berlin: Jovis. | Editor-reviewed | Equal |
 | 2027 (forthcoming) | **Zhang, Zihao**, and Shurui Zhang. "One Prompt, Job Done: A Syndrome." In *Representing Landscapes: AI, Machine Vision, and Climate Futures*, edited by Nadia Amoroso. New York: Routledge. | Editor-reviewed | Lead Author |
-| 2027 | Macwillie, Elizabeth, Shawn Rickenbacker, and **Zihao Zhang**. "Strengthening Local Ecologies of Care Through Art and Activism in Harlem, NYC." In *Activism in Design Education: Health, Equity, and Climate Action*, edited by Claire Latane and Jean Yang, 95–108. New York: Routledge, 2027. ISBN 9781041118640 | Editor-reviewed | Major |
+| 2027 | Macwillie, Elizabeth, Shawn Rickenbacker, and **Zihao Zhang**. "Strengthening Local Ecologies of Care Through Art and Activism in Harlem, NYC." In *Activism in Design Education: Health, Equity, and Climate Action*, edited by Claire Latane and Jean Yang, 95–108. New York: Routledge, 2027. ISBN 9781041118640. https://doi.org/10.4324/9781003666073 | Editor-reviewed | Major |
 | 2024 | **Zhang, Zihao**, and Shurui Zhang. "Before the After: Representing Climate Actions in the Age of AI." In *Representing Landscapes: Visualizing Climate Action*, edited by Nadia Amoroso. Routledge. https://doi.org/10.4324/9781003404798 | Peer-reviewed | Major, co-authored |
 | 2021 | Cantrell, Bradley, **Zihao Zhang**, and Xun Liu. "Artificial intelligence and machine learning in landscape architecture." In *The Routledge Companion to Artificial Intelligence in Architecture*, edited by Imdat As & Prithwish Basu. Taylor & Francis Group. DOI: 10.4324/9780367824259-15 | Peer-reviewed | Equal, co-authored |
-| 2019 | Gorman, Michael E., **Zihao Zhang**, Kristina D. Fauss, and Benjamin D. Bowes. "Collaboration Among Apparently Incommensurable Expertises." In *The Third Wave in Science and Technology Studies*, edited by Caudill et al., 255–72. Springer. https://doi.org/10.1007/978-3-030-14335-0_14 | Peer-reviewed | Major, co-authored |
+| 2019 | Gorman, Michael E., **Zihao Zhang**, Kristina D. Fauss, and Benjamin D. Bowes. "Collaboration Among Apparently Incommensurable Expertises: A Case Study of Combining Expertises and Perspectives to Manage Climate Change in Coastal Virginia." In *The Third Wave in Science and Technology Studies: Future Research Directions on Expertise and Experience*, edited by Caudill et al., 255–72. Springer. https://doi.org/10.1007/978-3-030-14335-0_14 | Peer-reviewed | Major, co-authored |
 
 ### Journal Articles
 
@@ -114,7 +114,7 @@ Zihao Zhang studies landscape as a product of technology and labor through both 
 | 2019 | **Zhang, Zihao**, and Ben Bowes. "The Future of Artificial Intelligence (AI) and Machine Learning (ML) in Landscape Design: A Case Study in Coastal Virginia, USA." *Journal of Digital Landscape Architecture* 4–2019: 2–9. https://doi.org/10.14627/537663001 | Double-blind peer-reviewed | Major / Lead Author |
 | 2019 | Davies-Vollum, K. Sian, **Zihao Zhang**, and Andrews Agyekumhene. "Impacts of Lagoon Opening and Implications for Coastal Management: Case Study from Muni-Pomadze Lagoon, Ghana." *Journal of Coastal Conservation* 23 (2): 293–301. https://doi.org/10.1007/s11852-018-0658-1 | Double-blind peer-reviewed | Second Author |
 | 2018 | Cantrell, Bradley, and **Zihao Zhang**. "A Third Intelligence." *Landscape Architecture Frontiers* 6 (2): 42–51. https://doi.org/10.15302/J-LAF-20180205 | Peer-reviewed | Equal authorship |
-| 2018 | **Zhang, Zihao**, Andrew Mondschein, and Mona El Khafif. "Human-Tool Assemblage: Designers in the Big Data World." *Journal of Digital Landscape Architecture* 2–2017 (May): 397–405. https://doi.org/10.14627/537642042 | Double-blind peer-reviewed | Major / Lead Author |
+| 2018 | **Zhang, Zihao**, Andrew Mondschein, and Mona El Khafif. "Human-Tool Assemblage: Designers in the Big Data World." *Journal of Digital Landscape Architecture* 3–2018 (May): 397–405. https://doi.org/10.14627/537642042 | Double-blind peer-reviewed | Major / Lead Author |
 | 2018 | Mondschein, Andrew, **Zihao Zhang**, and Mona El Khafif. "Community-Centered Urban Sensing: Smart Engaged Planning and Design in a Dysfunctional Urban Context." *International Journal of E-Planning Research* 8 (4): 1–16. https://doi.org/10.4018/IJEPR.2019100101 | Double-blind peer-reviewed | Second Author |
 | 2017 | **Zhang, Zihao**. "Human Factors in Responsive Landscapes: Importance and Method." *Journal of Digital Landscape Architecture* 2–2017: 10–17. https://doi.org/10.14627/537629002 | Double-blind peer-reviewed | Solo |
 
@@ -225,9 +225,9 @@ Zihao Zhang studies landscape as a product of technology and labor through both 
 |------|-------|
 | 2024 | "The New Frontier." *Oculus*, Summer 2024. https://www.aiany.org/membership/oculus-magazine/article/summer-2024/the-new-frontier/ |
 | 2022 | "Reappraising Urban Gardens." *IRCC*, April 28, 2022. https://thericc.com/reappraising-urban-gardens-dr-zihao-zhang/ |
-| 2021 | Multiple articles in *Landscape Architecture Frontier* WeChat Official Account (Chinese), covering: "A Third Intelligence," "Cultivating wilderness with machines," "Urban Wilderness and Planting Design." |
-| 2020 | Multiple articles in *Landscape Architecture Frontier* WeChat Official Account (Chinese), covering: "Beyond Models: Rethink Uncertainty In Design," "Prototype Study in Landscape Architecture." |
-| 2018 | "Artificial Intelligence and Future Landscape." *Landscape Architecture Frontier* WeChat (Chinese). |
+| 2021 | Multiple articles in *Landscape Architecture Frontiers* WeChat Official Account (Chinese), covering: "A Third Intelligence," "Cultivating wilderness with machines," "Urban Wilderness and Planting Design." |
+| 2020 | Multiple articles in *Landscape Architecture Frontiers* WeChat Official Account (Chinese), covering: "Beyond Models: Rethink Uncertainty In Design," "Prototype Study in Landscape Architecture." |
+| 2018 | "Artificial Intelligence and Future Landscape." *Landscape Architecture Frontiers* WeChat (Chinese). |
 
 ---
 
@@ -248,7 +248,7 @@ Zihao Zhang studies landscape as a product of technology and labor through both 
 | 2022–2025 (ended) | **CCNY College-wide Research Vision — Energizing Equity.** PI: Yana Kucheva. Co-PI: **Zihao Zhang** et al. Budget: $600,000. |
 | 2022–2023 (ended) | **CUNY Interdisciplinary Research Grant — Synergistic Agriculture.** PI: **Zihao Zhang**. Co-Is: Susan L. Epstein, Christian Volkmann, Zhigang Zhu. Budget: $40,000. |
 | 2023–2024 (ended) | **PSC-CUNY Research Award — Robots in the Garden.** PI: **Zihao Zhang**. Co-PI: Susan Epstein. Budget: $6,000. |
-| 2022–2024 (ended) | **PSC-CUNY Research Award — Rooftop Thermodynamics.** PI: **Zihao Zhang**. Co-PI: Ricardo Toledo-Crow. Budget: $6,000. |
+| 2022–2023 (ended) | **PSC-CUNY Research Award — Rooftop Thermodynamics.** PI: **Zihao Zhang**. Co-PI: Ricardo Toledo-Crow. Budget: $6,000. |
 | 2022 | **Spitzer Faculty Book Project Award.** Grantor: Spitzer School of Architecture. Amount: $4,000. |
 
 ### Rejected Grant Applications
@@ -280,14 +280,14 @@ Zihao Zhang studies landscape as a product of technology and labor through both 
 
 | Year | Role |
 |------|------|
-| 2025–present | Executive Editorial Board, *Landscape Architecture Frontier* |
+| 2025–present | Executive Editorial Board, *Landscape Architecture Frontiers* |
 | 2023–present | Editorial Board, *Journal of Digital Landscape Architecture* |
 | 2023–2024 | Editorial Board, *PLOS ONE* |
 
 ### Peer Review (Journals & Conferences)
 
 Regular manuscript and abstract reviewer (2018–present):
-- *Landscape Architecture Frontier* (2023, 2024, 2025, 2026)
+- *Landscape Architecture Frontiers* (2023, 2024, 2025, 2026)
 - *The Plan Journal* (2023, 2025)
 - *PLOS ONE* (2023)
 - *Journal of Digital Landscape Architecture* (2023, 2024, 2025)
