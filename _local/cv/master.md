@@ -428,8 +428,8 @@ Regular manuscript and abstract reviewer (2018–present):
 | Year | Role |
 |------|------|
 | 2025–present | Executive Committee, Sustainability in the Urban Environment Master Program |
-| 2023–present | Personnel and Budget Committee, Curriculum Committee, Graduate Programs Steering Committee — Department of Architecture |
-| 2022–present | Course and Standing Committee, Department of Architecture |
+| 2023–2026 | Personnel and Budget Committee, Curriculum Committee, Graduate Programs Steering Committee — Department of Architecture |
+| 2022–2023 | Course and Standing Committee, Department of Architecture |
 | 2022–2023 | Faculty Secretary, Department of Architecture |
 | 2021–present | Graduate Program Admission Committee, Department of Architecture |
 

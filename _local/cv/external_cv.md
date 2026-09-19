@@ -264,8 +264,8 @@ Zhang, Shurui, and **Zihao Zhang**. "Resilient Schist: Crafting Harlem's Corrido
 
 | 2025–present | Executive Committee, Sustainability in the Urban Environment Master Program |
 |-----------|---|
-| 2023–present | Personnel and Budget; Curriculum; Graduate Programs Steering Committees, Dept. of Architecture |
-| 2022–present | Course and Standing Committee, Dept. of Architecture |
+| 2023–2026 | Personnel and Budget; Curriculum; Graduate Programs Steering Committees, Dept. of Architecture |
+| 2022–2023 | Course and Standing Committee, Dept. of Architecture |
 | 2022–2023 | Faculty Secretary, Dept. of Architecture |
 | 2021–present | Graduate Program Admission Committee, Dept. of Architecture |
 
