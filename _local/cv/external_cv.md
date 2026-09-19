@@ -80,7 +80,7 @@ Committee: Michael Lee, Nana Last, Bradley Cantrell, Michael Gorman
 
 **(Forthcoming)** **Zhang, Zihao**, and Shurui Zhang. "One Prompt, Job Done: A Syndrome." In *Representing Landscapes: AI, Machine Vision, and Climate Futures*, edited by Nadia Amoroso. New York: Routledge, 2027.
 
-Macwillie, Elizabeth, Shawn Rickenbacker, and **Zihao Zhang**. "Strengthening Local Ecologies of Care Through Art and Activism in Harlem, NYC." In *Activism in Design Education: Health, Equity, and Climate Action*, edited by Claire Latane and Jean Yang, 95–108. New York: Routledge, 2027. https://doi.org/10.4324/9781003666073
+Macwillie, Elizabeth, Shawn Rickenbacker, and **Zihao Zhang**. "Strengthening Local Ecologies of Care Through Art and Activism in Harlem, NYC." In *Activism in Design Education: Health, Equity, and Climate Action*, edited by Claire Latane and Jean Yang, 95–108. New York: Routledge, 2027. https://doi.org/10.4324/9781003666073-10
 
 **Zhang, Zihao**, and Shurui Zhang. "Before the After: Representing Climate Actions in the Age of AI." In *Representing Landscapes: Visualizing Climate Action*, edited by Nadia Amoroso. Routledge, 2024. https://doi.org/10.4324/9781003404798 *(Peer-reviewed; Major contribution)*
 

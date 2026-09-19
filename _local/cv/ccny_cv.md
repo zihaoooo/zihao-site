@@ -81,7 +81,7 @@ N/A
 
 **2027**
 
-Macwillie, Elizabeth, Shawn Rickenbacker, and **Zihao Zhang**. 2027. "Strengthening Local Ecologies of Care Through Art and Activism in Harlem, NYC." In *Activism in Design Education: Health, Equity, and Climate Action*, edited by Claire Latane and Jean Yang, 95–108. New York: Routledge. ISBN 9781041118640. https://doi.org/10.4324/9781003666073
+Macwillie, Elizabeth, Shawn Rickenbacker, and **Zihao Zhang**. 2027. "Strengthening Local Ecologies of Care Through Art and Activism in Harlem, NYC." In *Activism in Design Education: Health, Equity, and Climate Action*, edited by Claire Latane and Jean Yang, 95–108. New York: Routledge. ISBN 9781041118640. https://doi.org/10.4324/9781003666073-10
 *Editor-reviewed. Co-authored. Contribution: Major*
 
 (Forthcoming) **Zhang, Zihao**. 2027. "Do Machines Care? Posthuman Labor in the Design Professions." In *The Routledge Companion to Artificial Intelligence in Architecture*, 2nd ed., edited by Imdat As. New York: Routledge.
