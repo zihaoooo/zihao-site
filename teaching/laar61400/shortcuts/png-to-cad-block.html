@@ -96,6 +96,8 @@
   .pb-warn { background: #fbf3e8; border: 1px solid #e6d2b0; border-radius: 4px; padding: 10px 14px; font-size: 12px; color: #6a4a1a; margin: 10px 0 14px; line-height: 1.6; }
   .pb-note strong, .pb-warn strong { font-weight: 700; }
 
+  .pb-eg-title { font-size: 12.5px; font-weight: 700; margin: 18px 0 8px; }
+
   .pb-table { width: 100%; border-collapse: collapse; margin-bottom: 10px; }
   .pb-table th { font-family: 'DM Mono', monospace; font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: #999; padding: 6px 10px 5px; border-bottom: 1px solid #e8e8e8; text-align: left; background: #faf9f7; }
   .pb-table td { padding: 7px 10px; vertical-align: top; font-size: 12.5px; border-bottom: 1px solid #f0eeeb; color: #444; }
@@ -310,6 +312,41 @@ Do every PNG in this folder, all 12 m wide.</div>
   <tr><td>Canopy holes come in filled</td><td>The trace kept outer contours only. In Illustrator select all paths and use <strong>Object → Compound Path → Make</strong>.</td></tr>
 </table>
 
+<hr class="pb-divider">
+<span class="pb-label">Worked examples</span>
+
+<p>Two trees run through Route C, from the file you start with to the outlines you insert.</p>
+
+<h4 class="pb-eg-title">One photographic tree</h4>
+<div class="wf-example-grid">
+  <figure>
+    <img src="/teaching/laar61400/assets/img/PNG2CAD/01-source-tree.avif" width="500" height="781" loading="lazy" alt="Photographic elevation of a tree on a transparent background">
+    <figcaption>The source: a cut-out photograph with a transparent background, about 1500&nbsp;px tall.</figcaption>
+  </figure>
+  <figure>
+    <img src="/teaching/laar61400/assets/img/PNG2CAD/02-trace-settings.avif" width="1170" height="780" loading="lazy" alt="The same tree traced at three settings, showing 55, 2 and 1 closed loops">
+    <figcaption>Three settings from the same file. Raw keeps every leaf gap: 55 loops, 1695 vertices. Closing the mask by 9&nbsp;px gives 2 loops and 271 vertices. At 15&nbsp;px it drops to a single outline of 148.</figcaption>
+  </figure>
+</div>
+
+<p>The raw version is honest to the photograph and useless in a drawing — every one of those specks is a polyline AutoCAD redraws on every zoom. The middle one keeps the lobed edge and weighs almost nothing. Scaled to 9&nbsp;m tall it measures 4.86&nbsp;m across.</p>
+
+<h4 class="pb-eg-title">Four trees in one image</h4>
+<div class="wf-example-grid">
+  <figure>
+    <img src="/teaching/laar61400/assets/img/PNG2CAD/03-amelanchier-source.avif" width="1040" height="250" loading="lazy" alt="Stock illustration strip of four multi-stem amelanchier trees on white">
+    <figcaption>The source: four amelanchier on a white background, each only about 220&nbsp;px tall.</figcaption>
+  </figure>
+  <figure>
+    <img src="/teaching/laar61400/assets/img/PNG2CAD/04-amelanchier-blocks.avif" width="1440" height="480" loading="lazy" alt="The four amelanchier traced into separate CAD blocks, five metres tall">
+    <figcaption>Four separate blocks, each 5&nbsp;m tall with its base point at the trunk, 500 to 630 vertices apiece.</figcaption>
+  </figure>
+</div>
+
+<p>Two things made this one harder than it looks, and both are worth naming. The trees had to be split apart first, since one image holds four blocks. And the setting that worked for the photograph fused the multiple stems into a single thick trunk — which is precisely what makes an amelanchier look like an amelanchier. A lighter close keeps the stems open at roughly twice the vertex count, still light for a block.</p>
+
+<div class="pb-warn"><strong>Source your images the way you source a citation.</strong> Both files here are examples, not library stock: one is a cut-out of unknown origin, the other a watermarked preview. Trace them to learn the method, and for work you publish, use an image you have the rights to.</div>
+
 </div><!-- /pb-wrap -->
 
         <div class="sc-footer">
@@ -322,6 +359,25 @@ Do every PNG in this folder, all 12 m wide.</div>
     </div>
   </main>
 
+  <div class="wf-lightbox" id="lightbox"><img alt=""></div>
+
   <script src="/teaching/laar61400/assets/js/nav.js"></script>
+  <script>
+    (function () {
+      var box = document.getElementById('lightbox');
+      var boxImg = box.querySelector('img');
+      document.querySelectorAll('.wf-example-grid img').forEach(function (img) {
+        img.addEventListener('click', function () {
+          boxImg.src = img.src;
+          boxImg.alt = img.alt;
+          box.classList.add('open');
+        });
+      });
+      box.addEventListener('click', function () { box.classList.remove('open'); });
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') box.classList.remove('open');
+      });
+    })();
+  </script>
 </body>
 </html>
