@@ -152,7 +152,11 @@
              <div class="toc-row"><span class="toc-n">Part II</span><h2 class="toc-h">…</h2></div>
            </div></div></div> */
 .toc{width:min(820px,94%);display:grid;grid-template-columns:auto 1fr;
-  row-gap:clamp(10px,2cqw,22px);column-gap:clamp(16px,3cqw,34px);text-align:left;}
+  row-gap:clamp(10px,2cqw,22px);column-gap:clamp(16px,3cqw,34px);text-align:left;
+  /* vertical breathing room: a short TOC is centred with room to spare so this is invisible,
+     but a long one (9 rows in what-is-research) would otherwise sit flush against the stage
+     edges — the padding pushes it past the fit script's ceiling so it scales down slightly. */
+  padding:1.6cqw 0;}
 .toc .toc-row{display:grid;grid-template-columns:subgrid;grid-column:1/-1;align-items:baseline;
   padding-bottom:clamp(10px,1.8cqw,20px);border-bottom:1px solid var(--line);opacity:.3;transition:opacity .2s;}
 .toc .toc-row:last-child{border-bottom:0;padding-bottom:0;}

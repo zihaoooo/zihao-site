@@ -86,7 +86,10 @@ Recurring section divider that lists the lecture's parts and highlights the one 
 instance at each part transition; give the row for the part being entered `.active` (full opacity +
 accent), the rest dim. Each row is a mono `.toc-n` "Part N" label + a `.toc-h` heading. Scales to any
 part count. Sits inside the page's typeset `.embed` wrapper (the fit script scales it to the stage); the
-`.toc` styles live in shared deck.css — never re-declare per page.
+`.toc` styles live in shared deck.css — never re-declare per page. It carries a little vertical
+padding so a long agenda (nine rows in laar64150's `what-is-research`) is pushed past the fit
+script's ceiling and scales down instead of sitting flush against the stage edges; a short one is
+centred with room to spare, so the padding is invisible there.
 ```html
 <div class="slide" data-cap="…"><div class="embed"><div class="toc">
   <div class="toc-row active"><span class="toc-n">Part I</span><h2 class="toc-h">…</h2></div>
