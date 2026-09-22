@@ -102,10 +102,17 @@
   <div style="background:#f5f3f0; border-radius:4px; padding:16px 18px; margin-bottom:28px;">
     <div class="wf-step-desc">A surface is a function. Every point has a position, a normal vector, and a slope. You will write a Grasshopper Python script that queries your WF04 Patch surface and colors it by slope — not from scratch, but by specifying what you want precisely enough that Claude can write it.</div>
     <div class="wf-step-desc">The central skill is <strong>converting intention into specification</strong>. Students who get bad scripts back under-specified the geometry.</div>
+    <div class="wf-step-desc"><strong>Part 2</strong> removes the carrying. You install an MCP bridge so Claude works inside Rhino directly, reading your model and checking its own results.</div>
   </div>
 
   <!-- Steps grid -->
   <div class="wf-steps">
+
+    <div class="wf-session">
+      <span class="wf-session-num">Part 1</span>
+      <span class="wf-session-label">Specify It, Then Carry the Code</span>
+      <span class="wf-session-rule"></span>
+    </div>
 
     <!-- Stage 1 — full width -->
     <div class="wf-step wf-full">
@@ -186,7 +193,122 @@
       </div>
     </div>
 
+
+    <!-- Part 2 — MCP -->
+    <div class="wf-session">
+      <span class="wf-session-num">Part 2</span>
+      <span class="wf-session-label">Give Claude the Keyboard — MCP</span>
+      <span class="wf-session-rule"></span>
+    </div>
+
+    <!-- Stage 5 — full width -->
+    <div class="wf-step wf-full">
+      <div class="wf-step-head">
+        <span class="wf-step-num">05</span>
+        <span class="wf-step-label">What MCP Is</span>
+        <span class="wf-badge wf-badge-neutral">Read first</span>
+      </div>
+      <div class="wf-step-body">
+        <div class="wf-step-desc">In Stages 02–04 you were the courier. Claude wrote the code, you carried it to Grasshopper, ran it, and carried the error back. Claude never saw your model — it worked from your description of it.</div>
+        <div class="wf-step-desc"><strong>MCP — Model Context Protocol</strong> — is an open standard for connecting an AI assistant directly to other software. An <em>MCP server</em> is a small adapter that sits beside a program and publishes what that program can do as a list of tools the assistant is allowed to call. Install the Rhino one and Claude can read your document, query object properties, build geometry, and capture the viewport to <em>see</em> what it made.</div>
+        <div class="wf-step-desc">Same instructions, different channel. Part 1 is directing someone over the phone. MCP hands them the keyboard.</div>
+        <ul class="wf-tips">
+          <li><strong>It is a standard, not a Claude feature.</strong> Servers exist for Blender, QGIS, Figma, spreadsheets, browsers. Learn the pattern once and it carries to all of them.</li>
+          <li><strong>Everything runs on your machine.</strong> The server talks to Rhino locally; your model stays where it is.</li>
+          <li><strong>You stay responsible for the output.</strong> Claude now edits your real document, so save before you start and check what changed.</li>
+        </ul>
+        <div class="wf-note">The standard is young — published late 2024. Some servers are excellent, many are abandoned prototypes. Rhino’s is one of the good ones.</div>
+      </div>
+    </div>
+
+    <!-- Stage 6 -->
+    <div class="wf-step">
+      <div class="wf-step-head">
+        <span class="wf-step-num">06</span>
+        <span class="wf-step-label">Install the Rhino Bridge</span>
+        <span class="wf-badge wf-badge-rh">RH</span>
+        <span class="wf-badge wf-badge-code" style="margin-left:4px;">SETUP</span>
+      </div>
+      <div class="wf-step-body">
+        <div class="wf-step-desc">Four one-time steps, Windows or macOS. Then one command each time you open Rhino.</div>
+        <ul class="wf-tips">
+          <li><strong>1 · Claude Desktop.</strong> Install from <kbd>claude.com/download</kbd>. Same app WF07 uses — you are installing it a week early.</li>
+          <li><strong>2 · The Rhino plug-in.</strong> In Rhino 8: <strong>Tools → Package Manager</strong>, search <kbd>rhinomcp</kbd>, click <strong>Install</strong>, restart Rhino.</li>
+          <li><strong>3 · The launcher.</strong> The server runs through a tool called <kbd>uv</kbd>. Windows: <kbd>winget install astral-sh.uv</kbd> · macOS: <kbd>brew install uv</kbd>.</li>
+          <li><strong>4 · Register the server.</strong> Open Claude Desktop → <strong>Code</strong> tab → pick any folder, then paste the line below and let it do the wiring.</li>
+        </ul>
+        <div style="background:#f3ece4; border-left:3px solid #c8a97a; border-radius:0 4px 4px 0; padding:10px 14px; margin:8px 0; font-size:13px; font-style:italic; color:#5a3a1a;">Please install https://github.com/jingcheng-chen/rhinomcp as a local MCP server named `rhino`.</div>
+        <div class="wf-step-desc">To do step 4 by hand instead: <strong>Settings → Developer → Edit Config</strong>, and add —</div>
+        <pre class="wf-code">{
+  "mcpServers": {
+    "rhino": {
+      "command": "uvx",
+      "args": ["rhinomcp@latest"],
+      "env": {
+        "RHINO_MCP_HOST": "127.0.0.1"
+      }
+    }
+  }
+}</pre>
+        <div class="wf-alert">
+          <span class="wf-alert-icon">⚠</span>
+          <div class="wf-alert-body"><strong>Type <kbd>mcpstart</kbd> in Rhino's command line every session.</strong> That opens the bridge on port 1999. Restart Rhino and you type it again. Keep one MCP client connected at a time.</div>
+        </div>
+        <div class="wf-step-desc"><strong>Confirm it works.</strong> Ask Claude <em>"what's in my Rhino document?"</em> — a correct answer lists your layers and object counts.</div>
+      </div>
+    </div>
+
+    <!-- Stage 7 -->
+    <div class="wf-step">
+      <div class="wf-step-head">
+        <span class="wf-step-num">07</span>
+        <span class="wf-step-label">Run the Analysis Again — Claude Driving</span>
+        <span class="wf-badge wf-badge-rh">RH</span>
+      </div>
+      <div class="wf-step-body">
+        <div class="wf-step-desc">Open your WF04 terrain, hand Claude the spec you wrote in Stage 02, and let it work in the document:</div>
+        <div style="background:#f3ece4; border-left:3px solid #c8a97a; border-radius:0 4px 4px 0; padding:10px 14px; margin:8px 0; font-size:13px; font-style:italic; color:#5a3a1a;">Read the surface on my Terrain layer. Analyze it against this spec, bake the result as a colored mesh on a new layer, then capture the perspective viewport and check whether the steep zones read correctly.</div>
+        <div class="wf-step-desc">That last clause is the new move: <strong>Claude can look at its own output.</strong> It captures the viewport, sees the colors, and corrects itself before you have to describe the problem. A loop that closes on its own — which is the Week 11 lecture, running in front of you.</div>
+        <ul class="wf-tips">
+          <li><strong>Save first.</strong> These edits land in your real file.</li>
+          <li><strong>Name things precisely.</strong> "the surface on my Terrain layer" beats "my surface" — the same specification skill from Part 1, now with consequences.</li>
+          <li><strong>Ask to see the code.</strong> The server can run RhinoScript-Python; ask Claude for the script it ran so you keep reading what you are shipping.</li>
+          <li><strong>Two routes skip the copying, one does not.</strong> Claude can run Python inside Rhino directly, and it can assemble a Grasshopper canvas from stock components and wire it. Writing source into a Python 3 Script component stays manual — see <em>What You Actually Installed</em> below.</li>
+        </ul>
+        <div class="wf-note">Worth noticing: which route did you understand better? Copy-paste made you read every line. This does not. Speed and comprehension pull against each other here — that tension is the point.</div>
+      </div>
+    </div>
+
   </div><!-- /steps -->
+
+  <div style="background:#f5f3f0; border-left:3px solid #1a1a1a; border-radius:0 4px 4px 0; padding:14px; margin-top:28px;">
+    <div style="font-weight:700; text-transform:uppercase; letter-spacing:0.05em; font-size:10px; color:#1a1a1a; margin-bottom:6px;">What You Actually Installed</div>
+    <div class="wf-step-desc">Two questions sit behind this, and mixing them up is what makes MCP confusing. <strong>How does Claude know what Rhino can do?</strong> That is MCP — the protocol. <strong>How does a command actually reach Rhino?</strong> That is a plug-in. MCP is not the part doing the reaching; it is the layer that hands Claude the list of tools.</div>
+    <div class="wf-step-desc">Which is why Stage 06 had you install two things, not one:</div>
+    <pre class="wf-code">   Claude
+     |  speaks MCP
+   rhinomcp server    a program on your
+     |                computer, started
+     |                by Claude Desktop
+     |  port 1999
+   rhinomcp.rhp       a plug-in loaded
+     |                INSIDE Rhino;
+     |                mcpstart opens
+     |                the port
+   your model</pre>
+    <div class="wf-step-desc"><kbd>.rhp</kbd> is simply a Rhino plug-in — the same kind of thing as Human or Bowerbird, sitting in the same plug-in folder beside them. Neither half works alone: close Rhino and the server is still running but has nothing to talk to, which is why the connection dies the moment Rhino quits.</div>
+    <div class="wf-alert">
+      <span class="wf-alert-icon">⚠</span>
+      <div class="wf-alert-body"><strong>Grasshopper is the gap — and it is why Stages 03–04 still say copy and paste.</strong> The Rhino MCP has no tool for writing source into a Python 3 Script component, so the one step you might most want automated is the one that stays manual. Claude can build a Grasshopper canvas out of stock components and wire it, and it can run Python inside Rhino directly — but putting code <em>into that component</em> is still your hands on the keyboard.</div>
+    </div>
+    <div class="wf-step-desc">A gap like that is rarely permanent and rarely accidental — it is a seam nobody has built across yet. Noticing where the seams are is most of what it takes to work with tools this young.</div>
+  </div>
+
+  <div style="background:#f5f3f0; border-left:3px solid #1a1a1a; border-radius:0 4px 4px 0; padding:14px; margin-top:16px;">
+    <div style="font-weight:700; text-transform:uppercase; letter-spacing:0.05em; font-size:10px; color:#1a1a1a; margin-bottom:6px;">Other Software — Optional</div>
+    <div class="wf-step-desc">MCP servers exist for AutoCAD, Blender, QGIS and plenty more. Almost all are written by the community rather than by the software vendors, and quality varies sharply — Rhino’s is one of the good ones. If you want to try another, search GitHub for the program’s name plus <kbd>MCP</kbd>, expect to do some repair work to get it running, and read the code with Claude before you trust it.</div>
+    <div class="wf-step-desc"><strong>A note on COM.</strong> Rhino’s server gets in through a plug-in. Most servers for older programs, AutoCAD included, use <strong>COM</strong> instead — a Windows mechanism from the 1990s that lets one application drive another from outside, with nothing installed inside it. Convenient to set up, and more fragile: the version has to match and every value crosses a boundary where it can be misread. That is usually what you are repairing.</div>
+  </div>
 
   <!-- Tips -->
   <div style="background:#f5f3f0; border-left:3px solid #1a1a1a; border-radius:0 4px 4px 0; padding:14px; margin-top:16px;">
@@ -196,6 +318,7 @@
       <li>A vague prompt gets a generic script. The model isn't the problem.</li>
       <li>Describe <em>what must be true when it works</em>, not how the code should work.</li>
       <li>Patch extends beyond your boundary. Tell Claude to exclude faces outside it — you don't need to know how, just that the problem exists.</li>
+      <li>In Part 2, judge the result by looking at the geometry, not by the tool saying it worked.</li>
     </ul>
   </div>
 
