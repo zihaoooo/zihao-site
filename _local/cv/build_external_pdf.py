@@ -191,7 +191,9 @@ def header(story, lines):
         story.append(Paragraph(ink(l), contact_style))
 
 
-PROSE_SECTIONS = {"SUMMARY", "HIGHER EDUCATION"}
+# Sections whose paragraphs are prose, set flush. Everywhere else a paragraph is a
+# citation and takes the hanging indent of cite_style.
+PROSE_SECTIONS = {"SUMMARY", "HIGHER EDUCATION", "PROFESSIONAL ACTIVITIES"}
 MINOR_HEAD = re.compile(r"\*\*[^*]+\*\*(\s*\*\([^)]*\)\*)?")  # "**2024**", "**2022–2018** *(selected)*"
 
 

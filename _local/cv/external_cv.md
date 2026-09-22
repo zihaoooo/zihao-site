@@ -1,5 +1,5 @@
 # ZIHAO ZHANG, PH.D.
-**Curriculum Vitae** | Updated: September 19, 2026
+**Curriculum Vitae** | Updated: September 21, 2026
 
 City College of New York, Spitzer School of Architecture  
 141 Convent Avenue, New York, NY 10031  
@@ -80,7 +80,7 @@ Committee: Michael Lee, Nana Last, Bradley Cantrell, Michael Gorman
 
 **(Forthcoming)** **Zhang, Zihao**, and Shurui Zhang. "One Prompt, Job Done: A Syndrome." In *Representing Landscapes: AI, Machine Vision, and Climate Futures*, edited by Nadia Amoroso. New York: Routledge, 2027.
 
-Macwillie, Elizabeth, Shawn Rickenbacker, and **Zihao Zhang**. "Strengthening Local Ecologies of Care Through Art and Activism in Harlem, NYC." In *Activism in Design Education: Health, Equity, and Climate Action*, edited by Claire Latane and Jean Yang, 95–108. New York: Routledge, 2027. https://doi.org/10.4324/9781003666073-10
+MacWillie, Elizabeth, Shawn Rickenbacker, and **Zihao Zhang**. "Strengthening Local Ecologies of Care Through Art and Activism in Harlem, NYC." In *Activism in Design Education: Health, Equity, and Climate Action*, edited by Claire Latané and Jean Yang, 95–108. New York: Routledge, 2027. https://doi.org/10.4324/9781003666073-10
 
 **Zhang, Zihao**, and Shurui Zhang. "Before the After: Representing Climate Actions in the Age of AI." In *Representing Landscapes: Visualizing Climate Action*, edited by Nadia Amoroso. Routledge, 2024. https://doi.org/10.4324/9781003404798 *(Peer-reviewed; Major contribution)*
 
@@ -98,17 +98,25 @@ Fernberg, Phillip, and **Zihao Zhang**. "Problematizing AI Omnipresence in Lands
 
 **Zhang, Zihao**. "Post-Digital Landscape and Post-Digital Culture." *Journal of Digital Landscape Architecture* 7 (2022): 26–35. *(Double-blind peer-reviewed)*
 
+Chen, Alexander B., Jonathan L. Goodall, T. Donna Chen, and **Zihao Zhang**. "Flood Resilience through Crowdsourced Rainfall Data Collection." *Journal of Hydrology* 609 (2022): 127724. https://doi.org/10.1016/j.jhydrol.2022.127724 *(Double-blind peer-reviewed)*
+
 **Zhang, Zihao**, and Bradley Cantrell. "Cultivated Wildness: Towards Technodiversity and Wildness in Machines." *Landscape Architecture Frontiers* 9.1 (2021): 52–65. *(Peer-reviewed; Lead author)*
 
 **Zhang, Zihao**, and Xun Liu. "Control and Uncertainty: Towards a Paradigm of Prototyping." *Landscape Architecture Frontiers* 8.4 (2020): 10–25. *(Double-blind peer-reviewed; Lead author)*
 
 **Zhang, Zihao**. "Cybernetic Environment: A Historical Reflection on System, Design, and Machine Intelligence." *Journal of Digital Landscape Architecture* 5 (2020). *(Double-blind peer-reviewed)*
 
+**Zhang, Zihao**, and Shurui Zhang. "The Cybernetic Environment as a New Frontier." *Lunch Journal* 14 (2020): 149. *(Peer-reviewed; Lead author)*
+
 **Zhang, Zihao**, and Ben Bowes. "The Future of Artificial Intelligence (AI) and Machine Learning (ML) in Landscape Design: A Case Study in Coastal Virginia, USA." *Journal of Digital Landscape Architecture* 4 (2019): 2–9. *(Double-blind peer-reviewed; Lead author)*
+
+Davies-Vollum, K. Sian, **Zihao Zhang**, and Andrews Agyekumhene. "Impacts of Lagoon Opening and Implications for Coastal Management: Case Study from Muni-Pomadze Lagoon, Ghana." *Journal of Coastal Conservation* 23.2 (2019): 293–301. https://doi.org/10.1007/s11852-018-0658-1 *(Double-blind peer-reviewed)*
 
 Cantrell, Bradley, and **Zihao Zhang**. "A Third Intelligence." *Landscape Architecture Frontiers* 6.2 (2018): 42–51. *(Peer-reviewed; Equal authorship)*
 
 **Zhang, Zihao**, Andrew Mondschein, and Mona El Khafif. "Human-Tool Assemblage: Designers in the Big Data World." *Journal of Digital Landscape Architecture* 3 (2018): 397–405. *(Double-blind peer-reviewed; Lead author)*
+
+Mondschein, Andrew, **Zihao Zhang**, and Mona El Khafif. "Community-Centered Urban Sensing: Smart Engaged Planning and Design in a Dysfunctional Urban Context." *International Journal of E-Planning Research* 8.4 (2018): 1–16. https://doi.org/10.4018/IJEPR.2019100101 *(Double-blind peer-reviewed)*
 
 **Zhang, Zihao**. "Human Factors in Responsive Landscapes: Importance and Method." *Journal of Digital Landscape Architecture* 2 (2017): 10–17. *(Double-blind peer-reviewed)*
 
@@ -118,13 +126,15 @@ Cantrell, Bradley, and **Zihao Zhang**. "A Third Intelligence." *Landscape Archi
 
 ### Conference Proceedings
 
+Chen, G.Q., N. Kashyap, **Z. Zhang**, et al. "Predicting Building Energy Efficiency with Multi-Task Learning and Classification on Multimedia Data." *International Conference on SMART MULTIMEDIA*, 2024. *(Double-blind peer-reviewed)*
+
 **Zhang, Zihao**. "On Laboratories and Machines: Interfacing with Landscape Processes." *CELA 2023 Annual Conference Proceedings*. *(Double-blind peer-reviewed)*
 
 Karkut, Nicholas, Alexey Kiriluk, **Zihao Zhang**, Zhigang Zhu. "Vegetation Coverage and Urban Amenity Mapping Using Computer Vision and Machine Learning." *International Conference on Image Processing and Vision Engineering*, 2023. *(Double-blind peer-reviewed)*
 
-Chen, G.Q., N. Kashyap, **Z. Zhang**, et al. "Predicting Building Energy Efficiency with Multi-Task Learning and Classification on Multimedia Data." *International Conference on SMART MULTIMEDIA*, 2024. *(Double-blind peer-reviewed)*
-
 Cantrell, Bradley, and **Zihao Zhang**. "Choreographing Intelligent Agents." *107th ACSA Annual Meeting Proceedings*, 2018.
+
+El Khafif, Mona, **Zihao Zhang**, and Andrew Mondschein. "Mapping the Nocturnal City: Community-Centered Urban Sensing, Charlottesville, VA." *City Street3 Conference Proceedings*, 2018: 73–85.
 
 ### Book Reviews
 
@@ -147,13 +157,14 @@ Zhang, Shurui, and **Zihao Zhang**. "Resilient Schist: Crafting Harlem's Corrido
 - Invited lecture. University of Colorado Boulder. September 10, 2024
 - Invited lecture. "Of Bicycles and Artificial Intelligence." CCNY/CWE. March 25, 2024
 - Invited lecture. University of Pennsylvania Stuart Weitzman School of Design. February 28, 2024
+- Poster. "Urban Polder Landscape in East Harlem, NYC." Transportation Research Board 103rd Annual Meeting, Washington, DC. January 10, 2024
 
 **2023**
 - Invited panelist. ASLA 2023 Annual Conference, Minneapolis. October 29, 2023
 - Invited webinar. Landscape Architecture Foundation. August 29, 2023 *(1000+ live attendees, LAF record)*
 - Invited panelist. Bi-City Biennale of Urbanism\Architecture (UABB), Shenzhen. January 7, 2023
 
-**2018–2022** *(selected)*
+**2017–2022** *(selected)*
 - "Post-Digital Landscape and Post-Digital Culture." Digital Landscape Architecture Conference, Harvard GSD, 2022
 - "Cybernetic Environment." Digital Landscape Architecture Conference (virtual), 2020
 - Invited respondent for N. Katherine Hayles' lecture, UVA, 2020
@@ -161,12 +172,16 @@ Zhang, Shurui, and **Zihao Zhang**. "Resilient Schist: Crafting Harlem's Corrido
 
 ### Other Scholarly and Creative Work
 
-| 2023–present | **Laboratory for Living Systems**, NYC. Co-director |
+| 2025 | **Hydroponics!**, NYC. Designer |
 |-----------|---|
-| 2022 | **Ecological Laboratory for Urban Agriculture (ELUA)**, NYC. Designer, PI. https://ce-lab.one/ELUA |
-| 2020 | **Ostenda illuminata** — Public installation, Charlottesville, VA. Research associate: conceptual design, software development, and early prototyping (with Mona El Khafif, Andrew Mondschein, Eric Field) |
-| 2018 | **CyborgBloom** — Digital Art Installation, Charlottesville, VA |
-| 2018 | **"Forming Atmosphere"** — Landscape design research featured in *Codify* (Routledge) |
+| 2024–2027 | **Co-Map: Participatory Mapping Application** and **Thresholds of Winter**. Participatory mapping tool and climate data visualization for the DOE Climate Lighthouse, NYC. Designer. https://resiliencelighthouse.cargo.site/thresholds-of-winter |
+| 2023–present | **Harlem Lane Activation**, Harlem, NYC. Designer and academic partner, with West Harlem Art Fund, J. Max Bond Center for Urban Futures, and OSE. Includes **A Hole in the Park** (2025), land art for the Harlem Sculpture Gardens |
+| 2023–present | **Laboratory for Living Systems**, NYC. Co-director |
+| 2022–2025 | **Ecological Laboratory for Urban Agriculture (ELUA)**, NYC. Research lead, designer, construction lead. https://ce-lab.one/ELUA |
+| 2020 | **Ostenda illuminata**. Public installation, Charlottesville, VA. Research associate: conceptual design, software development, and early prototyping (with Mona El Khafif, Andrew Mondschein, Eric Field) |
+| 2018 | **CyborgBloom**. Digital Art Installation, Charlottesville, VA |
+| 2018 | **"Forming Atmosphere"**. Landscape design research featured in *Codify* (Routledge) |
+| 2017–present | **Responsive Landscapes**. Custom sensors, physical computing, and responsive prototypes as design instruments |
 
 ### Public Scholarship
 
@@ -179,14 +194,14 @@ Zhang, Shurui, and **Zihao Zhang**. "Resilient Schist: Crafting Harlem's Corrido
 
 ### Grants
 
-| 2024–2027 | **DOE Climate Lighthouse.** Co-PI. $1,000,000. |
+| 2024–2027 | **DOE Climate Lighthouse.** Co-I. $1,000,000. |
 |-----------|---|
 | 2024–2025 | **Architectural League Independent Projects Grant.** PI (with Shurui Zhang). $10,000. |
 | 2024 | **CUNY GRTI Round 24.** PI. $9,538.67. |
+| 2023–2024 | **PSC-CUNY Research Award — Robots in the Garden.** PI. $6,000. *(ended)* |
 | 2022–2025 | **CCNY Energizing Equity.** Co-PI. $600,000. *(ended)* |
 | 2022–2023 | **CUNY Interdisciplinary Research Grant — Synergistic Agriculture.** PI. $40,000. *(ended)* |
-| 2023–2024 | **PSC-CUNY — Robots in the Garden.** PI. $6,000. *(ended)* |
-| 2022–2023 | **PSC-CUNY — Rooftop Thermodynamics.** PI. $6,000. *(ended)* |
+| 2022–2023 | **PSC-CUNY Research Award — Rooftop Thermodynamics.** PI. $6,000. *(ended)* |
 | 2022 | **Spitzer Faculty Book Project Award.** $4,000. |
 
 ### Fellowships
@@ -202,7 +217,7 @@ Zhang, Shurui, and **Zihao Zhang**. "Resilient Schist: Crafting Harlem's Corrido
 
 ## PROFESSIONAL ACTIVITIES
 
-### Boards, Workshops, and Committees
+### Editorial Boards and Committees
 
 | 2025–present | Executive Editorial Board, *Landscape Architecture Frontiers* |
 |-----------|---|
@@ -210,6 +225,13 @@ Zhang, Shurui, and **Zihao Zhang**. "Resilient Schist: Crafting Harlem's Corrido
 | 2023–2026 | Board member (ex officio), ASLA-NY |
 | 2023–present | Editorial Board, *Journal of Digital Landscape Architecture* |
 | 2023–2024 | Editorial Board, *PLOS ONE* |
+| 2022–2023 | Mentorship Program Administrator, Digital Landscape Architecture Conference |
+| 2021 | Planning committee, 2022 Digital Landscape Architecture Conference, Harvard GSD |
+| 2018–2021 | Member, Human-Machine Intelligence Research Group, UVA Department of Philosophy |
+
+### Peer Review
+
+Manuscript and abstract reviewer, 2018–present: *Landscape Architecture Frontiers* (2023–2026); *Journal of Digital Landscape Architecture* (2023–2025); *The Plan Journal* (2023, 2025); *PLOS ONE* (2023); *Technology|Architecture+Design* (2018, 2021); *Buildings*, *Applied Sciences*, *Processes* (2023); *Sustainability* (2022, 2023); *Mathematics* (2021); *Landscape Research Record* (2020); CELA Annual Conference (2023).
 
 ### Funding Proposal Reviewer
 
@@ -217,6 +239,16 @@ Zhang, Shurui, and **Zihao Zhang**. "Resilient Schist: Crafting Harlem's Corrido
 |-----------|---|
 | 2024 | Austrian Science Fund |
 | 2023 | European Commission's European Research Council |
+
+### Guest Critic and Review Panels
+
+| 2024, 2025 | University of Pennsylvania, Stuart Weitzman School of Design |
+|-----------|---|
+| 2025 | University of Virginia, School of Architecture |
+| 2024 | Juror, Maryland ASLA Chesapeake Bay Climate Action Challenge |
+| 2024 | Pratt Institute |
+| 2021–present | City College of New York, design studios and theses |
+| 2016–2021 | University of Virginia, School of Architecture, architecture and landscape studios |
 
 ### Consulting
 
@@ -253,8 +285,28 @@ Zhang, Shurui, and **Zihao Zhang**. "Resilient Schist: Crafting Harlem's Corrido
 | Fall 2020 | SARC/LAR6710 — Design Computation (Co-instructor) |
 |-----------|---|
 | Fall 2019 | LAR6010 — MLA Foundation Studio (Section instructor) |
+| Fall 2019 | LAR6710 — Design Computation 1 |
 | Spring 2019 | LAR7020 — Foundation Studio 4 (Teaching Fellow) |
-| Spring 2018 | LAR 8020 — Landscape Manifesto Studio (Teaching Fellow) |
+| Spring 2018 | LAR8020 — Landscape Manifesto Studio (Teaching Fellow) |
+
+### Workshops
+
+| Summer 2020 | Instructor, Atoms Atelier Summer Workshop on Responsive Landscapes |
+|-----------|---|
+| 2018 | Instructor, "AutoCAD for Planners" workshop series, UVA School of Architecture |
+
+---
+
+## ADVISING AND MENTORING
+
+| 2024–present | PhD mentor, Gong Qi Chen (Computer Science, CUNY Graduate Center), computer vision and the urban environment |
+|-----------|---|
+| 2023–2025 | Faculty advisor, SUS 7501 capstone projects: *Green Roofs in New York City*; *Climate Justice in New York City* |
+| 2023 | ORCA faculty advisor, green roof technologies. Students: Mouhamadou Dieng, Gildalis Torres |
+| 2022–2023 | Capstone advisor, Grove School of Engineering: reinforcement learning for polyculture gardens, L-system plant morphology, computer vision for streetscapes, and building energy efficiency. Students: Gong Qi Chen, Juan Guerrero, Nicholas Karkut, Alexey Kiriluk |
+| 2022 | ORCA faculty advisor, robots and green roofs. Students: Kaitlin Labatt, Nicole Girdo, Aparna Ramanathan |
+| 2021 | Capstone mentor, *Outreach3D* community website. Students: Siddharth Rane, Akash Ahuja, Jennifer Caceres |
+| 2017–2020 | USOAR mentor, University of Virginia. Mentee: Gabriel I. Castro-Andrade (BS Arch '21 UVA; MArch '24 MIT) |
 
 ---
 
@@ -271,10 +323,10 @@ Zhang, Shurui, and **Zihao Zhang**. "Resilient Schist: Crafting Harlem's Corrido
 
 ### Search Committees
 
-| 2026 | Chair, search committee for Associate/Full Professor of Architecture and Urban AI, Dept. of Architecture |
+| 2026–present | Chair, search committee for Associate/Full Professor of Architecture and Urban AI, Dept. of Architecture |
 |-----------|---|
-| 2026 | Member, search committees for Lecturer, Sustainability MUE Program; Lab Technician, Robotics Lab; Assistant Professor of LA |
-| 2024 | Member, search committees for Professor and Director of MLA Program; Assistant Professor of LA |
+| 2025–2026 | Member, search committees for Lecturer, Sustainability MUE Program; Lab Technician, Robotics Lab; Assistant Professor of LA |
+| 2024 | Member, search committee for Associate/Full Professor and Director of MLA Program |
 | 2022–2023 | Member, search committee for Assistant Director, Bond Center for Urban Futures |
 
 ---

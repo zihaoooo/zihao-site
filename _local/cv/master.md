@@ -1,5 +1,5 @@
 # ZIHAO ZHANG — MASTER CV DATABASE
-> Single source of truth. Last updated: 2026-03-14
+> Single source of truth. Last updated: 2026-09-21
 > Output targets: ccny_cv.md (CCNY promotion format) | external_cv.md (external/creative)
 
 ---
@@ -93,7 +93,7 @@ Zihao Zhang studies landscape as a product of technology and labor through both 
 | 2027 (forthcoming) | **Zhang, Zihao**. "Do Machines Care? Posthuman Labor in the Design Professions." In *The Routledge Companion to Artificial Intelligence in Architecture*, 2nd ed., edited by Imdat As. New York: Routledge. | Editor-reviewed | Solo |
 | 2027 (forthcoming) | **Zhang, Zihao**, and Shurui Zhang. "Escaping Western Gaze: Chinese Diasporic Urbanism in Flushing." In *Becoming Chinatown: An Anthology of Interiors*, edited by Leyuan Li and Tairan An. Berlin: Jovis. | Editor-reviewed | Equal |
 | 2027 (forthcoming) | **Zhang, Zihao**, and Shurui Zhang. "One Prompt, Job Done: A Syndrome." In *Representing Landscapes: AI, Machine Vision, and Climate Futures*, edited by Nadia Amoroso. New York: Routledge. | Editor-reviewed | Lead Author |
-| 2027 | Macwillie, Elizabeth, Shawn Rickenbacker, and **Zihao Zhang**. "Strengthening Local Ecologies of Care Through Art and Activism in Harlem, NYC." In *Activism in Design Education: Health, Equity, and Climate Action*, edited by Claire Latane and Jean Yang, 95–108. New York: Routledge, 2027. ISBN 9781041118640. https://doi.org/10.4324/9781003666073-10 | Editor-reviewed | Major |
+| 2027 | MacWillie, Elizabeth, Shawn Rickenbacker, and **Zihao Zhang**. "Strengthening Local Ecologies of Care Through Art and Activism in Harlem, NYC." In *Activism in Design Education: Health, Equity, and Climate Action*, edited by Claire Latané and Jean Yang, 95–108. New York: Routledge, 2027. ISBN 9781041118640. https://doi.org/10.4324/9781003666073-10 | Editor-reviewed | Major |
 | 2024 | **Zhang, Zihao**, and Shurui Zhang. "Before the After: Representing Climate Actions in the Age of AI." In *Representing Landscapes: Visualizing Climate Action*, edited by Nadia Amoroso. Routledge. https://doi.org/10.4324/9781003404798 | Peer-reviewed | Major, co-authored |
 | 2021 | Cantrell, Bradley, **Zihao Zhang**, and Xun Liu. "Artificial intelligence and machine learning in landscape architecture." In *The Routledge Companion to Artificial Intelligence in Architecture*, edited by Imdat As & Prithwish Basu. Taylor & Francis Group. DOI: 10.4324/9780367824259-15 | Peer-reviewed | Equal, co-authored |
 | 2019 | Gorman, Michael E., **Zihao Zhang**, Kristina D. Fauss, and Benjamin D. Bowes. "Collaboration Among Apparently Incommensurable Expertises: A Case Study of Combining Expertises and Perspectives to Manage Climate Change in Coastal Virginia." In *The Third Wave in Science and Technology Studies: Future Research Directions on Expertise and Experience*, edited by Caudill et al., 255–72. Springer. https://doi.org/10.1007/978-3-030-14335-0_14 | Peer-reviewed | Major, co-authored |
@@ -201,11 +201,15 @@ Zihao Zhang studies landscape as a product of technology and labor through both 
 
 | Year | Entry |
 |------|-------|
+| 2025 | **A Hole in the Park**, Harlem, NY. Land art for the Harlem Sculpture Gardens, part of Harlem Lane Activation. Collaborators: West Harlem Art Fund; Shurui Zhang, OSE. Role: Designer. |
 | 2025 | **Harlem Sculpture Gardens**, Harlem, NY. Role: Academic Partner. Collaborator: The Bond Center for Urban Futures. |
 | 2025 | **Hydroponics!** New York City. Role: Designer. |
+| 2024–2027 | **Co-Map: Participatory Mapping Application** and **Thresholds of Winter**, New York City. Participatory mapping tool and climate data visualization for the DOE Climate Lighthouse. Role: Designer. https://resiliencelighthouse.cargo.site/thresholds-of-winter |
+| 2023–present | **Harlem Lane Activation**, Harlem, NY. Collaborators: West Harlem Art Fund; J. Max Bond Center for Urban Futures; Shurui Zhang, OSE. Role: Designer and academic partner. |
 | 2023–present | **Laboratory for Living Systems**, New York City. Role: Co-director. |
 | 2022–2024 | **AI Image Generator for Landscape Representation**, Discord. Role: Curator. |
-| 2022 | **Ecological Laboratory for Urban Agriculture (ELUA) — Rooftop Robotic Garden and Indoor Robotic Cultivation Platform**, New York City. Role: Research lead, designer, construction lead. https://ce-lab.one/ELUA |
+| 2022–2025 | **Ecological Laboratory for Urban Agriculture (ELUA) — Rooftop Robotic Garden and Indoor Robotic Cultivation Platform**, New York City. Role: Research lead, designer, construction lead. https://ce-lab.one/ELUA |
+| 2017–present | **Responsive Landscapes**. Custom sensors, physical computing, and responsive prototypes as design instruments. Role: Designer, PI. |
 | 2020 | **Smart Environments Exhibition**, Charlottesville, VA. Role: Curator. Collaborator: Xun Liu. https://smartenvironments.cargo.site/ |
 | 2020 | **Ostenda illuminata — Public installation**, Charlottesville, VA. Collaborators: Mona El Khafif, Andrew Mondschein, Eric Field. Role: Research associate, conceptual design, software development. https://www.networkedpublicspace.org/ostenda-illuminata-prototype |
 | 2020 | **Networked Public Space (NPS)**, Charlottesville, VA. PI: Ila Berman. Role: Research associate. |
@@ -237,7 +241,7 @@ Zihao Zhang studies landscape as a product of technology and labor through both 
 
 | Year | Entry |
 |------|-------|
-| 2024–2027 | **DOE Funding for Climate Resilience Centers — Climate Lighthouse.** Grantor: Department of Energy. PI: James Booth. Co-PI: **Zihao Zhang** (SSA), Yana Kucheva, Prathap Ramamurthy, Naresh Devineni, Spencer Hill, Rachael Piltch-Loeb. Budget: $1,000,000. |
+| 2024–2027 | **DOE Funding for Climate Resilience Centers — Climate Lighthouse.** Grantor: Department of Energy. PI: James Booth. Co-Is: **Zihao Zhang** (SSA), Yana Kucheva, Prathap Ramamurthy, Naresh Devineni, Spencer Hill, Rachael Piltch-Loeb. Budget: $1,000,000. |
 | 2024–2025 | **Architectural League 2024 Independent Projects Grant.** Project: "Chinatown is Chinatown; Flushing is China": Defining Chinese Diasporic Urbanism in Emerging Chinatowns. PIs: **Zihao Zhang** & Shurui Zhang. Budget: $10,000. |
 | 2024 | **CUNY Graduate Research Technology Initiative – Round 24.** Project: Equitable, AI-enabled Design Workflow with Open-source Generative AI algorithms. PI: **Zihao Zhang**. Co-Is: Camille Hall, Muhammad Ahmad, Sean Weiss. Budget: $9,538.67. |
 
@@ -437,10 +441,10 @@ Regular manuscript and abstract reviewer (2018–present):
 
 | Year | Role |
 |------|------|
-| 2026 | Chair, Search Committee: Associate/Full Professor of Architecture and Urban AI, Department of Architecture (CUNY Martin S. Spergel Initiative in Computational Science) |
-| 2026 | Search Committee: Lecturer (Sustainability MUE); Lab Technician (Robotics Lab); Assistant Professor of Landscape Architecture |
-| 2024 | Search Committee: Professor and Director of MLA program; Assistant Professor of Landscape Architecture |
-| 2022–2023 | Search Committee: Assistant Director, Bond Center for Urban Futures |
+| 2026–present | Chair, search committee for Associate/Full Professor of Architecture and Urban AI, Dept. of Architecture |
+| 2025–2026 | Member, search committees for Lecturer, Sustainability MUE Program; Lab Technician, Robotics Lab; Assistant Professor of LA |
+| 2024 | Member, search committee for Associate/Full Professor and Director of MLA Program |
+| 2022–2023 | Member, search committee for Assistant Director, Bond Center for Urban Futures |
 
 ### Student Recruitment
 

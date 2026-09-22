@@ -81,7 +81,7 @@ N/A
 
 **2027**
 
-Macwillie, Elizabeth, Shawn Rickenbacker, and **Zihao Zhang**. 2027. "Strengthening Local Ecologies of Care Through Art and Activism in Harlem, NYC." In *Activism in Design Education: Health, Equity, and Climate Action*, edited by Claire Latane and Jean Yang, 95–108. New York: Routledge. ISBN 9781041118640. https://doi.org/10.4324/9781003666073-10
+MacWillie, Elizabeth, Shawn Rickenbacker, and **Zihao Zhang**. 2027. "Strengthening Local Ecologies of Care Through Art and Activism in Harlem, NYC." In *Activism in Design Education: Health, Equity, and Climate Action*, edited by Claire Latané and Jean Yang, 95–108. New York: Routledge. ISBN 9781041118640. https://doi.org/10.4324/9781003666073-10
 *Editor-reviewed. Co-authored. Contribution: Major*
 
 (Forthcoming) **Zhang, Zihao**. 2027. "Do Machines Care? Posthuman Labor in the Design Professions." In *The Routledge Companion to Artificial Intelligence in Architecture*, 2nd ed., edited by Imdat As. New York: Routledge.
@@ -344,9 +344,15 @@ Presentation. "Grid and Its Instruments: Unearthing Ecological Wisdoms in Grid S
 
 **2025**
 
+**A Hole in the Park**, Harlem, New York. Land art for the Harlem Sculpture Gardens, part of Harlem Lane Activation. Collaborators: West Harlem Art Fund; Shurui Zhang, OSE. Role: Designer.
+
 **Harlem Sculpture Gardens**, Harlem, New York. Collaborator: The Bond Center for Urban Futures. Role: Academic Partner.
 
 **Hydroponics!** New York City. Role: Designer.
+
+**2024–2027**
+
+**Co-Map: Participatory Mapping Application** and **Thresholds of Winter**, New York City. Participatory mapping tool and climate data visualization for the DOE Climate Lighthouse. Role: Designer. https://resiliencelighthouse.cargo.site/thresholds-of-winter
 
 **2024–present**
 
@@ -354,15 +360,21 @@ Presentation. "Grid and Its Instruments: Unearthing Ecological Wisdoms in Grid S
 
 **2023–present**
 
+**Harlem Lane Activation**, Harlem, New York. Collaborators: West Harlem Art Fund; J. Max Bond Center for Urban Futures; Shurui Zhang, OSE. Role: Designer and academic partner.
+
 **Laboratory for Living Systems**, New York City. Role: Co-director.
 
 **2022–2024**
 
 **AI Image Generator for Landscape Representation**, Discord. Role: Curator.
 
-**2022**
+**2022–2025**
 
 **Ecological Laboratory for Urban Agriculture (ELUA) — Rooftop Robotic Garden and Indoor Robotic Cultivation Platform**, New York City. Role: Research lead, designer, construction lead. https://ce-lab.one/ELUA
+
+**2017–present**
+
+**Responsive Landscapes**. Custom sensors, physical computing, and responsive prototypes as design instruments. Role: Designer, PI.
 
 **2020**
 
@@ -402,7 +414,7 @@ Grantor: Department of Energy
 PI: James Booth (CCNY Division of Science)
 Co-Is: **Zihao Zhang** (SSA), Yana Kucheva, Prathap Ramamurthy, Naresh Devineni, Spencer Hill, Rachael Piltch-Loeb
 Grant total budget: $1,000,000 | Grant period: 2024–2027
-Role: Co-PI. Participated in conceptualization, grant writing, and led participatory mapping and community engagement.
+Role: Co-I. Participated in conceptualization, grant writing, and led participatory mapping and community engagement.
 
 **Graduate Research Technology Initiative – Round 24**
 Project title: Equitable, AI-enabled Design Workflow with Open-source Generative AI algorithms
@@ -633,11 +645,11 @@ Amount: $4,000
 
 **Search Committees:**
 
-| 2026 | Chair, Search Committee: Associate/Full Professor of Architecture and Urban AI, Department of Architecture (CUNY Martin S. Spergel Initiative in Computational Science) |
+| 2026–present | Chair, search committee for Associate/Full Professor of Architecture and Urban AI, Dept. of Architecture |
 |---|---|
-| 2026 | Search Committee: Lecturer for Sustainability in the Urban Environment Master Program; Laboratory Technician for Robotics Lab; Assistant Professor of Landscape Architecture |
-| 2024 | Search Committee: Professor and Director of Master of Landscape Architecture program; Assistant Professor of Landscape Architecture |
-| 2022–2023 | Search Committee: Assistant Director, Bond Center for Urban Futures |
+| 2025–2026 | Member, search committees for Lecturer, Sustainability MUE Program; Lab Technician, Robotics Lab; Assistant Professor of LA |
+| 2024 | Member, search committee for Associate/Full Professor and Director of MLA Program |
+| 2022–2023 | Member, search committee for Assistant Director, Bond Center for Urban Futures |
 
 ## Student Recruitment Activities
 
