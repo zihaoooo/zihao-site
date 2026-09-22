@@ -24,7 +24,7 @@ highlighted `.panel-announce` block sitting directly under the brand block in ev
 - WF03 `wf03-urban-context.html` — Urban Context Mapping (Week 5)
 - WF04 `wf04-landform-design.html` — Rhino Landform Modeling (Weeks 7–8)
 - WF05 `wf05-meadow-parametric.html` — Attractor Fields (Grasshopper meadow; Weeks 9–10)
-- WF06 `wf06-slope-analysis.html` — Slope Analysis with Python + Claude (Week 11)
+- WF06 `wf06-slope-analysis.html` — MCP — Claude Inside Rhino (slope analysis exercise; Week 11)
 - WF07 `wf07-claude-code-site.html` — Website with Claude Code (Weeks 12–13)
 
 WF pages are hand-authored HTML only — the old per-workflow `.md` sources were deleted
