@@ -94,6 +94,40 @@ part count. Sits inside the page's typeset `.embed` wrapper (the fit script scal
 </div></div></div>
 ```
 
+### Typeset text cards — `txt-card` · `stmt` · `cmp` (shared)
+Three typeset cards in deck.css, promoted out of laar64150's lectures (2026-09) once a third deck
+needed them. All sit inside the page's `.embed` wrapper, which the page's fit script scales down to
+the stage. **Author them wide** — the fit script never upscales, so a card authored narrow leaves
+wide margins on a fullscreen stage. Presenter View mirrors all three under `.pv-deck .*` in
+deck.js — change both.
+
+| Card | Shape | Use for |
+|---|---|---|
+| `txt-card` | `<h3>` + mono `+` bullets, one level of `–` sub-bullets, optional `.lead` accent line | the workhorse: a heading and its points |
+| `stmt` | one sentence carried large and centered, optional `.sub` under it | a claim to land on, a section hinge, a closing line |
+| `cmp` | `<h3>` + `<table>`; first cell of each row is its `<th scope="row">` label | comparing 2–3 cases across the same rows |
+
+Inside a `txt-card` bullet: `<b>` for the ink-weight lead-in, `<span class="src">` for a mono
+attribution. `cmp` takes a trailing `<span class="note">` for a caveat under the table — and keep it
+to ~4 columns and ~6 rows, past which the fit script shrinks it below reading size.
+```html
+<div class="slide" data-cap="…"><div class="embed">
+  <div class="txt-card"><h3>…</h3><ul><li><b>Lead-in</b> — body. <span class="src">Source</span>
+    <ul><li>sub-point</li></ul></li></ul></div>
+</div></div>
+
+<div class="slide" data-cap="…"><div class="embed">
+  <div class="stmt"><p>One sentence.</p><p class="sub">The qualifier under it.</p></div>
+</div></div>
+
+<div class="slide" data-cap="…"><div class="embed">
+  <div class="cmp"><h3>…</h3><table>
+    <thead><tr><th></th><th>Case A</th><th>Case B</th></tr></thead>
+    <tbody><tr><th scope="row">Row label</th><td>…</td><td>…</td></tr></tbody>
+  </table><span class="note">optional caveat</span></div>
+</div></div>
+```
+
 ### Multi-column text card — `m7-cols` (page-local, week07)
 A typeset card of 2–3 parallel text columns (no images) — e.g. "three types of models",
 "plan+section can't / operations are logics". Lives inside the page's `.embed` wrapper (the fit

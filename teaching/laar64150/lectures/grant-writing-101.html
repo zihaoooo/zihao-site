@@ -15,34 +15,6 @@
     .slide .embed{width:100%;height:100%;display:flex;align-items:center;justify-content:center;
       overflow:hidden;padding:14px;box-sizing:border-box;}
     .slide .embed>*{transform-origin:center center;}
-
-    /* ── text card: heading + bullets, no image (page-local; mirrors week07's m7-cols
-       tokens). Authored wide so it fills a large stage — the fit script only scales down. ── */
-    .txt-card{width:min(1180px,94%);display:flex;flex-direction:column;gap:1.1em;text-align:left;}
-    .txt-card h3{margin:0;font-family:"DM Sans",sans-serif;font-weight:700;color:var(--ink);
-      font-size:clamp(22px,3cqw,52px);letter-spacing:-.01em;line-height:1.1;}
-    .txt-card .lead{font-family:"DM Sans",sans-serif;font-weight:600;color:var(--accent);
-      font-size:clamp(15px,1.9cqw,28px);line-height:1.35;}
-    .txt-card ul{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:.62em;}
-    .txt-card li{font-family:"DM Sans",sans-serif;color:var(--mute);
-      font-size:clamp(14px,1.95cqw,30px);line-height:1.45;padding-left:1.05em;position:relative;}
-    .txt-card li::before{content:"+";position:absolute;left:0;color:var(--accent);
-      font-family:"DM Mono",ui-monospace,monospace;}
-    .txt-card li b{color:var(--ink);font-weight:600;}
-    .txt-card li .src{font-family:"DM Mono",ui-monospace,monospace;font-size:.8em;
-      letter-spacing:.04em;color:#a39c92;}
-    .txt-card ul ul{margin:.5em 0 0;gap:.45em;}
-    .txt-card ul ul li{font-size:clamp(13px,1.65cqw,25px);}
-    .txt-card ul ul li::before{content:"–";}
-    .txt-card a{color:inherit;text-decoration:underline;text-underline-offset:2px;
-      text-decoration-color:#cfc8bd;word-break:break-all;}
-
-    /* ── statement card: one sentence, carried large ── */
-    .stmt{width:min(1100px,94%);text-align:center;}
-    .stmt p{margin:0;font-family:"DM Sans",sans-serif;font-weight:700;color:var(--ink);
-      font-size:clamp(22px,3.1cqw,56px);line-height:1.18;letter-spacing:-.01em;text-wrap:balance;}
-    .stmt .sub{margin-top:.6em;font-weight:400;color:var(--mute);
-      font-size:clamp(15px,1.9cqw,30px);line-height:1.45;}
   </style>
 </head>
 <body>
@@ -57,6 +29,10 @@
       <span class="panel-section-label">Lectures</span>
       <a class="panel-link" href="/teaching/laar64150/lectures/what-is-research.html">What is Research</a>
       <a class="panel-link" href="/teaching/laar64150/lectures/what-is-research-for-designers.html">What is Research for Designers</a>
+      <a class="panel-link" href="/teaching/laar64150/lectures/asking-research-questions.html">Asking Research Questions</a>
+      <a class="panel-link" href="/teaching/laar64150/lectures/why-theory-matters.html">Why Theory Matters</a>
+      <a class="panel-link" href="/teaching/laar64150/lectures/paradigms-and-incommensurability.html">Paradigms and Incommensurability</a>
+      <a class="panel-link" href="/teaching/laar64150/lectures/how-disciplines-do-research.html">How Disciplines Do Research</a>
       <a class="panel-link active" href="/teaching/laar64150/lectures/grant-writing-101.html">Grant Writing 101</a>
     </div>
   </nav>

@@ -224,6 +224,38 @@
     line-height:1.05;color:#e8e3da;}
   .pv-stage .pv-deck .toc .toc-row.active{opacity:1;}
   .pv-stage .pv-deck .toc .toc-row.active .toc-n,.pv-stage .pv-deck .toc .toc-row.active .toc-h{color:#d98a63;}
+  /* typeset text cards (dark mirror of deck.css .txt-card / .stmt / .cmp — change both) */
+  .pv-stage .pv-deck .embed{display:flex;align-items:center;justify-content:center;
+    width:100%;height:100%;overflow:hidden;}
+  .pv-stage .pv-deck .txt-card{width:90%;display:flex;flex-direction:column;gap:5px;text-align:left;}
+  .pv-stage .pv-deck .txt-card h3{margin:0;font-weight:700;font-size:14px;line-height:1.1;color:#f5f3f0;}
+  .pv-stage .pv-deck .txt-card .lead{font-weight:600;font-size:9px;line-height:1.3;color:#d98a63;}
+  .pv-stage .pv-deck .txt-card ul{margin:0;padding:0;list-style:none;display:flex;
+    flex-direction:column;gap:3px;}
+  .pv-stage .pv-deck .txt-card li{font-size:9px;line-height:1.35;color:#b8b2a8;
+    padding-left:.9em;position:relative;}
+  .pv-stage .pv-deck .txt-card li::before{content:"+";position:absolute;left:0;color:#d98a63;
+    font-family:'DM Mono',monospace;}
+  .pv-stage .pv-deck .txt-card li b{color:#e8e3da;font-weight:600;}
+  .pv-stage .pv-deck .txt-card .src{font-family:'DM Mono',monospace;font-size:.8em;color:#7d776e;}
+  .pv-stage .pv-deck .txt-card ul ul{margin:2px 0 0;gap:2px;}
+  .pv-stage .pv-deck .txt-card ul ul li{font-size:8px;}
+  .pv-stage .pv-deck .txt-card ul ul li::before{content:"–";}
+  .pv-stage .pv-deck .txt-card a{color:inherit;text-decoration:underline;}
+  .pv-stage .pv-deck .stmt{width:88%;text-align:center;}
+  .pv-stage .pv-deck .stmt p{margin:0;font-weight:700;font-size:15px;line-height:1.2;color:#f5f3f0;}
+  .pv-stage .pv-deck .stmt .sub{margin-top:5px;font-weight:400;font-size:10px;line-height:1.35;color:#b8b2a8;}
+  .pv-stage .pv-deck .cmp{width:92%;display:flex;flex-direction:column;gap:5px;text-align:left;}
+  .pv-stage .pv-deck .cmp h3{margin:0;font-weight:700;font-size:13px;line-height:1.1;color:#f5f3f0;}
+  .pv-stage .pv-deck .cmp table{border-collapse:collapse;width:100%;table-layout:fixed;}
+  .pv-stage .pv-deck .cmp th,.pv-stage .pv-deck .cmp td{text-align:left;vertical-align:top;
+    padding:3px 5px 3px 0;border-bottom:1px solid #333;font-size:8px;line-height:1.3;color:#b8b2a8;}
+  .pv-stage .pv-deck .cmp thead th{font-family:'DM Mono',monospace;font-size:7px;letter-spacing:.12em;
+    text-transform:uppercase;color:#d98a63;border-bottom:1px solid #8a847c;}
+  .pv-stage .pv-deck .cmp tbody th{font-weight:600;color:#e8e3da;}
+  .pv-stage .pv-deck .cmp tbody tr:last-child th,.pv-stage .pv-deck .cmp tbody tr:last-child td{border-bottom:0;}
+  .pv-stage .pv-deck .cmp td b{color:#e8e3da;font-weight:600;}
+  .pv-stage .pv-deck .cmp .note{font-size:8px;line-height:1.35;color:#b8b2a8;}
   .pv-stage .ph{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;
     width:calc(100% - 16px);height:calc(100% - 16px);border:1.5px dashed #555;border-radius:6px;
     text-align:center;padding:10px;}

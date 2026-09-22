@@ -180,6 +180,60 @@
   font-family:"DM Mono",ui-monospace,monospace;font-size:9.5px;letter-spacing:.04em;
   color:#4a463f;background:rgba(251,250,248,.82);padding:2px 6px;border-radius:3px;}
 
+/* ── typeset text cards — .txt-card / .stmt / .cmp ──
+   Promoted out of laar64150's lectures (2026-09) once a third deck needed them; built from
+   week07's `m7-cols` tokens. All three live inside the page's `.embed` wrapper, which the page's
+   fit script scales down to the stage — so author them WIDE: the script only ever scales down,
+   never up, and a card authored narrow leaves wide margins on a fullscreen stage.
+     .txt-card  heading + `+` bullets, one level of `–` sub-bullets. The workhorse.
+     .stmt      one sentence carried large, centered, with an optional `.sub` line under it.
+     .cmp       a compact comparison table — first column is the row label, the rest are cases.
+   Markup: <div class="slide" data-cap="…"><div class="embed"><div class="txt-card">…</div></div></div>
+   Mirrored for Presenter View under `.pv-deck .txt-card` etc. in deck.js — change both. */
+.txt-card{width:min(1180px,94%);display:flex;flex-direction:column;gap:1.1em;text-align:left;}
+.txt-card h3{margin:0;font-family:"DM Sans",sans-serif;font-weight:700;color:var(--ink);
+  font-size:clamp(22px,3cqw,52px);letter-spacing:-.01em;line-height:1.1;}
+.txt-card .lead{font-family:"DM Sans",sans-serif;font-weight:600;color:var(--accent);
+  font-size:clamp(15px,1.9cqw,28px);line-height:1.35;}
+.txt-card ul{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:.62em;}
+.txt-card li{font-family:"DM Sans",sans-serif;color:var(--mute);
+  font-size:clamp(14px,1.95cqw,30px);line-height:1.45;padding-left:1.05em;position:relative;}
+.txt-card li::before{content:"+";position:absolute;left:0;color:var(--accent);
+  font-family:"DM Mono",ui-monospace,monospace;}
+.txt-card li b{color:var(--ink);font-weight:600;}
+.txt-card li .src{font-family:"DM Mono",ui-monospace,monospace;font-size:.8em;
+  letter-spacing:.04em;color:#a39c92;}
+.txt-card ul ul{margin:.5em 0 0;gap:.45em;}
+.txt-card ul ul li{font-size:clamp(13px,1.65cqw,25px);}
+.txt-card ul ul li::before{content:"\2013";}
+.txt-card a{color:inherit;text-decoration:underline;text-underline-offset:2px;
+  text-decoration-color:#cfc8bd;word-break:break-all;}
+
+/* one sentence, carried large */
+.stmt{width:min(1100px,94%);text-align:center;}
+.stmt p{margin:0;font-family:"DM Sans",sans-serif;font-weight:700;color:var(--ink);
+  font-size:clamp(22px,3.1cqw,56px);line-height:1.18;letter-spacing:-.01em;text-wrap:balance;}
+.stmt .sub{margin-top:.6em;font-weight:400;color:var(--mute);
+  font-size:clamp(15px,1.9cqw,30px);line-height:1.45;}
+
+/* comparison table: <h3> + <table>; thead labels the cases, each row's first cell is its label.
+   Keep it to ~4 columns and ~6 rows — past that the fit script shrinks it below reading size. */
+.cmp{width:min(1280px,96%);display:flex;flex-direction:column;gap:.9em;text-align:left;}
+.cmp h3{margin:0;font-family:"DM Sans",sans-serif;font-weight:700;color:var(--ink);
+  font-size:clamp(20px,2.7cqw,46px);letter-spacing:-.01em;line-height:1.1;}
+.cmp table{border-collapse:collapse;width:100%;table-layout:fixed;}
+.cmp th,.cmp td{text-align:left;vertical-align:top;padding:.5em .75em .5em 0;
+  border-bottom:1px solid var(--line);font-family:"DM Sans",sans-serif;color:var(--mute);
+  font-size:clamp(12px,1.5cqw,23px);line-height:1.32;}
+.cmp thead th{font-family:"DM Mono",ui-monospace,monospace;color:var(--accent);
+  font-size:clamp(10px,1.05cqw,15px);letter-spacing:.13em;text-transform:uppercase;
+  border-bottom:1px solid var(--ink);}
+.cmp tbody th{font-weight:600;color:var(--ink);}
+.cmp tbody tr:last-child th,.cmp tbody tr:last-child td{border-bottom:0;}
+.cmp td b,.cmp td strong{color:var(--ink);font-weight:600;}
+.cmp .note{font-family:"DM Sans",sans-serif;color:var(--mute);line-height:1.4;
+  font-size:clamp(12px,1.4cqw,21px);}
+
 /* ── title slide ── */
 .slide--title{flex-direction:column;text-align:center;gap:14px;background:var(--ink);
   display:flex;align-items:center;justify-content:center;}

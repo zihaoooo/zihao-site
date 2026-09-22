@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Asking Research Questions — LAAR 64150</title>
+  <link rel="stylesheet" href="/teaching/laar61400/assets/css/main.css">
+  <link rel="stylesheet" href="/teaching/laar61400/assets/css/workflow-shared.css">
+  <link rel="stylesheet" href="/assets/deck/deck.css">
+  <style>
+    /* palette tokens and the .txt-card / .stmt / .cmp cards live in deck.css */
+
+    /* a typeset card living inside a carousel slide: centered, clipped; JS scales the
+       child to fit the fixed 16:9 stage (see fit script) so nothing scrolls. */
+    .slide .embed{width:100%;height:100%;display:flex;align-items:center;justify-content:center;
+      overflow:hidden;padding:14px;box-sizing:border-box;}
+    .slide .embed>*{transform-origin:center center;}
+  </style>
+</head>
+<body>
+
+  <!-- Side panel -->
+  <nav id="sidepanel">
+    <a class="panel-brand" href="/teaching/laar64150/index.html">
+      <span class="panel-brand-title">LAAR 64150</span>
+      <span class="panel-brand-sub">Design Research</span>
+    </a>
+    <div class="panel-section">
+      <span class="panel-section-label">Lectures</span>
+      <a class="panel-link" href="/teaching/laar64150/lectures/what-is-research.html">What is Research</a>
+      <a class="panel-link" href="/teaching/laar64150/lectures/what-is-research-for-designers.html">What is Research for Designers</a>
+      <a class="panel-link active" href="/teaching/laar64150/lectures/asking-research-questions.html">Asking Research Questions</a>
+      <a class="panel-link" href="/teaching/laar64150/lectures/why-theory-matters.html">Why Theory Matters</a>
+      <a class="panel-link" href="/teaching/laar64150/lectures/paradigms-and-incommensurability.html">Paradigms and Incommensurability</a>
+      <a class="panel-link" href="/teaching/laar64150/lectures/how-disciplines-do-research.html">How Disciplines Do Research</a>
+      <a class="panel-link" href="/teaching/laar64150/lectures/grant-writing-101.html">Grant Writing 101</a>
+    </div>
+  </nav>
+
+  <!-- Main content -->
+  <main id="main-content">
+    <div class="page-inner">
+
+      <div class="wf-wrap">
+        <div class="wf-header">
+          <div class="wf-index">LEC</div>
+          <div class="wf-header-text">
+            <div class="wf-title">Asking Research Questions</div>
+            <div class="wf-subtitle">How to turn a topic into a question evidence can answer</div>
+          </div>
+        </div>
+
+        <!-- ── Slides ── -->
+        <span class="section-label">Lecture Slides</span>
+        <div class="deck" id="deck" data-deck-id="arq" data-deck-title="Asking Research Questions">
+          <div class="deck-stage" id="deck-stage">
+
+            <div class="slide slide--title" data-cap="" data-notes="">
+              <div class="tt">Asking Research Questions</div>
+              <div class="ts">LAAR 64150 · Design Research</div>
+            </div>
+            <div class="slide" data-cap="The question is the design" data-notes="Opening claim, and the reason this gets a whole lecture. Everything downstream — method, evidence, reader, scope, whether you finish — is already decided by the question. Students treat the question as a formality to get past on the way to the interesting part. It IS the interesting part.">
+              <div class="embed">
+                <div class="stmt">
+                  <p>Your question is the design of your project.</p>
+                  <p class="sub">Method, evidence, scope and reader are all downstream of it. Change the question and you have changed the whole project.</p>
+                </div>
+              </div>
+            </div>
+            <div class="slide" data-cap="Part I — What a question does" data-notes="">
+              <div class="embed">
+                <div class="toc">
+                  <div class="toc-row active"><span class="toc-n">Part I</span><h2 class="toc-h">What a question does</h2></div>
+                  <div class="toc-row"><span class="toc-n">Part II</span><h2 class="toc-h">How to ask one</h2></div>
+                  <div class="toc-row"><span class="toc-n">Part III</span><h2 class="toc-h">Testing and revising</h2></div>
+                </div>
+              </div>
+            </div>
+            <div class="slide" data-cap="What a research question is for" data-notes="Four jobs. The last one is the one students underrate — a question is what lets you stop. Without one there is no principled reason to stop reading, stop collecting, or stop drawing, which is why open-ended projects sprawl until the deadline ends them.">
+              <div class="embed">
+                <div class="txt-card">
+                  <h3>What a research question is for</h3>
+                  <ul>
+                    <li><b>It picks your method.</b> A question about meaning needs interviews; a question about distribution needs data; a question about how something came to be needs an archive.</li>
+                    <li><b>It picks your evidence.</b> Once the question is fixed, you can name the documents, the dataset, the people, the site. If you cannot, the question is still too vague.</li>
+                    <li><b>It picks your reader.</b> It says which conversation you are joining, and therefore who is qualified to disagree with you.</li>
+                    <li><b>It tells you when to stop.</b> This is the one nobody mentions. A project without a question has no reason to stop collecting — so it sprawls until the deadline ends it.</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="slide" data-cap="Four things students confuse" data-notes="Draw this table out slowly. The most common error in a first proposal is a topic wearing a question mark. The second most common is a thesis submitted as a question — the student already knows the answer and is planning to go collect decoration for it.">
+              <div class="embed">
+                <div class="cmp">
+                  <h3>Topic, question, hypothesis, thesis</h3>
+                  <table>
+                    <thead>
+                      <tr><th></th><th>What it is</th><th>Example</th><th>When you have it</th></tr>
+                    </thead>
+                    <tbody>
+                      <tr><th scope="row">Topic</th><td>A subject area. A noun.</td><td>Urban heat.</td><td>Day one.</td></tr>
+                      <tr><th scope="row">Question</th><td>Something evidence can answer, that a reasonable person could answer differently.</td><td>How does canopy loss track with heat complaints across a city&rsquo;s districts?</td><td>After the narrowing. This is the work.</td></tr>
+                      <tr><th scope="row">Hypothesis</th><td>A stated expected answer, framed so it could turn out false.</td><td>Districts that lost canopy since 2010 show higher heat complaints.</td><td>Only when the field already has enough theory to predict.</td></tr>
+                      <tr><th scope="row">Thesis</th><td>The answer you will argue, with the evidence behind it.</td><td>Canopy loss tracks with complaints, but tenure, not tree count, explains who complains.</td><td>At the <b>end</b>. Not the start.</td></tr>
+                    </tbody>
+                  </table>
+                  <span class="note">A topic with a question mark on it is still a topic. A thesis submitted as a question means you have stopped looking.</span>
+                </div>
+              </div>
+            </div>
+            <div class="slide" data-cap="Part II — How to ask one" data-notes="">
+              <div class="embed">
+                <div class="toc">
+                  <div class="toc-row"><span class="toc-n">Part I</span><h2 class="toc-h">What a question does</h2></div>
+                  <div class="toc-row active"><span class="toc-n">Part II</span><h2 class="toc-h">How to ask one</h2></div>
+                  <div class="toc-row"><span class="toc-n">Part III</span><h2 class="toc-h">Testing and revising</h2></div>
+                </div>
+              </div>
+            </div>
+            <div class="slide" data-cap="Ask a how question" data-notes="The central slide of the lecture. Say it plainly: when a student is stuck, the fix is almost always to convert the question to a how. A how-question names a process, and a process has parts you can go and look at. A why-question names a cause, and a cause has to be isolated from every other cause — which one semester and one researcher cannot do.">
+              <div class="embed">
+                <div class="txt-card">
+                  <h3>Ask a <i>how</i> question</h3>
+                  <ul>
+                    <li>When a project is stuck, the fix is nearly always the same: <b>turn the question into a how.</b></li>
+                    <li><b>Why</b> asks for a cause. To answer it you have to rule out the other causes — which one researcher, in one semester, with one case, cannot do. So the answers come out either obvious or unprovable.</li>
+                    <li><b>What</b> asks for a description. You will get one, and then you will be sitting on a description wondering what the argument was.</li>
+                    <li><b>How</b> asks for a process — a sequence, a mechanism, an unfolding. A process <b>has parts</b>, and the parts are things you can go and look at.</li>
+                    <li>Keep the <i>why</i>. It is your significance section, not your question.</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="slide" data-cap="Converting a why into a how" data-notes="Work these live, and then take one from the room. The move is always the same: find the process hiding inside the causal claim, and name its parts. Note that the how-versions are also more interesting — they promise a mechanism rather than a verdict.">
+              <div class="embed">
+                <div class="txt-card">
+                  <h3>Converting a <i>why</i> into a <i>how</i></h3>
+                  <ul>
+                    <li><i>Why did the neighborhood gentrify?</i>
+                      <ul>
+                        <li>&rarr; <b>How</b> did rezoning, lending and marketing work on each other to change who could afford to stay?</li>
+                      </ul>
+                    </li>
+                    <li><i>Why is the river polluted?</i>
+                      <ul>
+                        <li>&rarr; <b>How</b> does the permitting system distribute discharge along the river, and who ends up downstream of whom?</li>
+                      </ul>
+                    </li>
+                    <li><i>Why don&rsquo;t residents trust the agency?</i>
+                      <ul>
+                        <li>&rarr; <b>How</b> do residents describe their encounters with the agency, and where in those accounts does the trust break?</li>
+                      </ul>
+                    </li>
+                    <li>Notice what happened: each rewrite named a <b>process with parts</b>, and each part is a place to go collect something.</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="slide" data-cap="What each stem commits you to" data-notes="The honest caveat belongs here: how-questions are the default fix, not a universal law. Experimental and quantitative work asks &ldquo;what is the effect of&rdquo; and answers it properly, because the design does the ruling-out that a single interpretive project cannot. Choose the stem that matches the evidence you can actually get.">
+              <div class="embed">
+                <div class="cmp">
+                  <h3>What each question stem commits you to</h3>
+                  <table>
+                    <thead>
+                      <tr><th>Stem</th><th>You are promising</th><th>Evidence it needs</th><th>Its typical trap</th></tr>
+                    </thead>
+                    <tbody>
+                      <tr><th scope="row">What is / are&hellip;</th><td>A description or a map.</td><td>A sample, a survey, a catalog.</td><td>Stops at description and never argues.</td></tr>
+                      <tr><th scope="row">How does / did&hellip;</th><td>A process or mechanism.</td><td>A sequence you can trace: records, accounts, steps.</td><td>Too many moving parts; bound it.</td></tr>
+                      <tr><th scope="row">Why does&hellip;</th><td>A cause.</td><td>Comparison and control; ruling out rivals.</td><td>Unanswerable at one project&rsquo;s scale &mdash; unless your design can isolate.</td></tr>
+                      <tr><th scope="row">Under what conditions&hellip;</th><td>A boundary on a known claim.</td><td>Cases that differ on one thing.</td><td>Needs real contrast cases, not examples.</td></tr>
+                      <tr><th scope="row">What is the relationship between&hellip;</th><td>A correlation or a tension.</td><td>Two things you can actually measure or read.</td><td>Reporting correlation as cause.</td></tr>
+                    </tbody>
+                  </table>
+                  <span class="note">Experimental work asks &ldquo;what is the effect of&rdquo; and answers it, because the design does the ruling-out. Match the stem to the evidence you can get.</span>
+                </div>
+              </div>
+            </div>
+            <div class="slide" data-cap="The four dials" data-notes="Narrowing is not one decision, it is four, and students usually turn only the first. Turn them one at a time and stop the moment you can picture the evidence. Over-narrowing is a real failure too: a question about one block in one month has nobody to talk to.">
+              <div class="embed">
+                <div class="txt-card">
+                  <h3>The four dials</h3>
+                  <ul>
+                    <li><b>Place</b> &mdash; where? A country, a watershed, a corridor, a building, a single room.</li>
+                    <li><b>Time</b> &mdash; when? A century, a decade, a season, the week of the storm.</li>
+                    <li><b>Population or object</b> &mdash; who or what, exactly? Which people, which documents, which species, which files.</li>
+                    <li><b>Comparison</b> &mdash; against what? Before and after, here and there, this group and that one. Comparison is the cheapest way to turn a description into an argument.</li>
+                    <li>Turn them one at a time. <b>Stop when you can picture the evidence</b> &mdash; the actual folder, dataset or list of names.</li>
+                    <li>You can over-narrow. A question about one block in one month has no one to talk to and nothing to compare.</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="slide" data-cap="One question, five drafts" data-notes="The point of showing the whole ladder is that no one writes draft five first. Each step is a small decision, and the student can see that the work was ordinary. Ask the room which draft they would stop at, and why.">
+              <div class="embed">
+                <div class="txt-card">
+                  <h3>One question, five drafts</h3>
+                  <ul>
+                    <li><b>1.</b> <i>Housing.</i> &mdash; A topic.</li>
+                    <li><b>2.</b> <i>Why is housing unaffordable?</i> &mdash; A why, and one nobody could answer in a lifetime.</li>
+                    <li><b>3.</b> <i>How has housing become unaffordable in this city?</i> &mdash; Better. A process, and a place. Still a century wide.</li>
+                    <li><b>4.</b> <i>How did conversions of rent-stabilized units change who lives in this district since 2010?</i> &mdash; Place, time, population, and a process.</li>
+                    <li><b>5.</b> <i>How did conversions of rent-stabilized units change who lives in this district since 2010, compared with the district next to it that saw no conversions?</i> &mdash; And now a comparison, which is where the argument comes from.</li>
+                    <li>Nobody writes draft five first. You get there by writing draft two badly and looking at it.</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="slide" data-cap="The question and the gap must fit" data-notes="A callback to the background section from Grant Writing 101, and the place where a lot of otherwise good proposals come apart. The two failures are symmetrical: a big gap answered by a small question, or a small gap dressed up to justify a big question.">
+              <div class="embed">
+                <div class="txt-card">
+                  <h3>The question and the gap have to fit each other</h3>
+                  <ul>
+                    <li>You found a gap in the literature. Your question has to be the <b>right size</b> for it.</li>
+                    <li>Two symmetrical failures:
+                      <ul>
+                        <li><b>Gap too big for the question</b> &mdash; &ldquo;nobody understands urban heat, so I will interview six people.&rdquo; The reader cannot see how you get from one to the other.</li>
+                        <li><b>Gap too small for the question</b> &mdash; a genuinely narrow hole in the literature, inflated into a claim about civilization. Reviewers read the inflation as inexperience.</li>
+                      </ul>
+                    </li>
+                    <li>The test: <b>write the finding you hope to report, in one sentence.</b> Does it close the gap you named? If not, one of the two has to move.</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="slide" data-cap="Part III — Testing and revising" data-notes="">
+              <div class="embed">
+                <div class="toc">
+                  <div class="toc-row"><span class="toc-n">Part I</span><h2 class="toc-h">What a question does</h2></div>
+                  <div class="toc-row"><span class="toc-n">Part II</span><h2 class="toc-h">How to ask one</h2></div>
+                  <div class="toc-row active"><span class="toc-n">Part III</span><h2 class="toc-h">Testing and revising</h2></div>
+                </div>
+              </div>
+            </div>
+            <div class="slide" data-cap="FINER" data-notes="A checklist out of the clinical research literature, and the most useful import from medicine into everything else. Its real use is diagnostic: it tells you which dimension is weakest so you know what to fix. Feasibility is almost always the one that is failing, and almost always the one students defend hardest.">
+              <div class="embed">
+                <div class="txt-card">
+                  <h3>FINER &mdash; a checklist for a draft question</h3>
+                  <ul>
+                    <li><b>F</b>easible &mdash; can you get the data, the access, the people, the time? Be brutal here.</li>
+                    <li><b>I</b>nteresting &mdash; to you, and to somebody else. Name the somebody.</li>
+                    <li><b>N</b>ovel &mdash; it confirms, extends, or contests something. It does not simply repeat it.</li>
+                    <li><b>E</b>thical &mdash; it can be answered without harming the people it is about, and consent is possible.</li>
+                    <li><b>R</b>elevant &mdash; the answer changes something: a practice, a policy, a debate, a design.</li>
+                    <li>Use it as a <b>diagnostic, not a grade</b>. No first draft scores well on all five. Find the weakest letter and fix that one.</li>
+                    <li>It is usually F. <span class="src">Hulley et al., Designing Clinical Research</span></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="slide" data-cap="Borrow a framework" data-notes="These come out of evidence-based medicine but the discipline they impose travels. Even if you never write the letters down, running your question through the slots exposes the one you left blank — and the blank slot is usually the comparison, which is exactly the one that would have made it an argument.">
+              <div class="embed">
+                <div class="txt-card">
+                  <h3>Borrow a framework to find the blank slot</h3>
+                  <ul>
+                    <li><b>PICO</b> &mdash; Population, Intervention, Comparison, Outcome. Built for clinical questions, useful anywhere something is being done to something.</li>
+                    <li><b>PEO</b> &mdash; Population, Exposure, Outcome. For when nothing is being done on purpose &mdash; people are simply exposed to a condition.</li>
+                    <li><b>SPIDER</b> &mdash; Sample, Phenomenon of Interest, Design, Evaluation, Research type. The qualitative cousin, for questions about experience and meaning.</li>
+                    <li>You do not have to write the letters into the proposal. Run your question through the slots and <b>see which one you left blank.</b></li>
+                    <li>It is usually the <b>C</b> &mdash; the comparison. Which is exactly the slot that would have made it an argument.</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="slide" data-cap="Seven ways a question fails" data-notes="Read these out and let people recognize their own. The last one is the most common in seminars: two questions joined by an &ldquo;and,&rdquo; each of which needs a different method, neither of which gets done properly.">
+              <div class="embed">
+                <div class="txt-card">
+                  <h3>Seven ways a question fails</h3>
+                  <ul>
+                    <li><b>Too broad</b> &mdash; no place, no time, no population. The dials are all at zero.</li>
+                    <li><b>Too narrow</b> &mdash; technically answerable, but nobody outside the case cares, and there is nothing to compare it to.</li>
+                    <li><b>Already answered</b> &mdash; and you would know, if you had worked the citation graph.</li>
+                    <li><b>Unanswerable</b> &mdash; the evidence does not exist, is sealed, or would take a decade and a team.</li>
+                    <li><b>Smuggles the answer</b> &mdash; <i>how can we fix the failure of x?</i> assumes the failure, names the villain, and fixes the finding in advance.</li>
+                    <li><b>Not arguable</b> &mdash; it has one obvious answer, or it is really a definition question.</li>
+                    <li><b>Two questions in a trench coat</b> &mdash; joined by an &ldquo;and,&rdquo; needing two methods, getting neither. Pick one; the other is your next project.</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="slide" data-cap="The question will change" data-notes="Reassurance, and a warning. The question moving is the method working — evidence pushed back. What is not fine is the question moving silently, so that the proposal answers one question and the paper answers another. Write down the version you started with.">
+              <div class="embed">
+                <div class="txt-card">
+                  <h3>Your question will change. Say so.</h3>
+                  <ul>
+                    <li>You will revise it when the archive turns out to hold something else, when the data has a hole, when the first five interviews go somewhere you did not expect.</li>
+                    <li><b>That is the method working.</b> Evidence pushed back, and you listened.</li>
+                    <li>What is not fine is the question moving <b>silently</b> &mdash; so the proposal answers one question and the final paper answers another, and neither reader can tell what happened.</li>
+                    <li>Keep the drafts. Date them. A paragraph on how the question changed, and why, is one of the strongest things you can put in a methods section.</li>
+                    <li>Say it out loud to someone who is not in your field. If they can repeat it back, it is clear. If they ask &ldquo;so what?&rdquo;, the relevance is not in it yet.</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="slide" data-cap="The test" data-notes="The closing line. If they remember one sentence from this lecture, it should be this one.">
+              <div class="embed">
+                <div class="stmt">
+                  <p>If you cannot name the evidence that would answer it, you do not have a question yet.</p>
+                  <p class="sub">You have a topic, and a feeling about it.</p>
+                </div>
+              </div>
+            </div>
+            <div class="slide" data-cap="Before next week" data-notes="The assignment. Three versions is the important instruction — a single draft cannot be evaluated, three can be compared, and the comparison is what teaches the skill.">
+              <div class="embed">
+                <div class="txt-card">
+                  <h3>Before next week</h3>
+                  <ul>
+                    <li>Write your question in <b>three versions</b> &mdash; one too broad, one you think is right, one too narrow. Bring all three.</li>
+                    <li>Make at least one of them a <b>how</b> question.</li>
+                    <li>Under each, write the <b>one sentence of evidence</b> that would answer it. Name the archive, the dataset, the people.</li>
+                    <li>Run the middle one through <b>FINER</b> and mark the weakest letter.</li>
+                    <li>Say it to someone outside your field and write down the first thing they ask you.</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+          </div>
+          <div class="deck-bar">
+            <button class="deck-btn" id="deck-prev" aria-label="Previous slide">&lsaquo;</button>
+            <div class="deck-count"><input id="deck-jump" type="text" inputmode="numeric" aria-label="Jump to slide" value="1"><span id="deck-total"> / 19</span></div>
+            <button class="deck-btn" id="deck-next" aria-label="Next slide">&rsaquo;</button>
+            <div class="deck-meta"><span class="deck-cap" id="deck-cap"></span><span id="deck-credit"></span></div>
+            <button class="deck-btn" id="deck-notes-toggle" aria-expanded="false" aria-controls="deck-notes" aria-label="Toggle speaker notes" title="Speaker notes"><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="2" y="2" width="12" height="12" rx="1.5"/><line x1="4.5" y1="5.5" x2="11.5" y2="5.5"/><line x1="4.5" y1="8" x2="11.5" y2="8"/><line x1="4.5" y1="10.5" x2="8.5" y2="10.5"/></svg></button>
+            <button class="deck-btn" id="deck-present" aria-label="Open Presenter View" title="Presenter View (synced second window)"><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="2" width="9" height="7" rx="1.2"/><path d="M3 11h5M5.5 9v2"/><rect x="11" y="5" width="4" height="4" rx="1" stroke-dasharray="1.8 1.2"/></svg></button>
+            <button class="deck-btn deck-fs" id="deck-fs" aria-label="Present full screen" title="Present (full screen)">&#x26F6;</button>
+          </div>
+          <div class="deck-notes" id="deck-notes" hidden></div>
+        </div>
+
+      </div>
+
+    </div>
+  </main>
+
+  <script src="/teaching/laar61400/assets/js/nav.js"></script>
+
+  <!-- ── deck carousel controller (shared, page-agnostic) ── -->
+  <script src="/assets/deck/deck.js"></script>
+
+  <!-- ── scale each typeset embed (text cards, dividers) to fit the fixed 16:9 stage ── -->
+  <script>
+  (function(){
+    var stage=document.getElementById('deck-stage');
+    if(!stage) return;
+    var embeds=[].slice.call(document.querySelectorAll('#deck-stage .slide .embed'));
+    function fit(){
+      var SW=stage.clientWidth, SH=stage.clientHeight;
+      if(!SW||!SH) return;
+      embeds.forEach(function(e){
+        var c=e.firstElementChild; if(!c) return;
+        c.style.transform='none';
+        var w=c.offsetWidth, h=c.offsetHeight;
+        if(!w||!h) return;
+        var avW=SW-28, avH=SH-28;               // minus .embed padding (14px each side)
+        var s=Math.min(1, avW/w, avH/h);
+        c.style.transform = s<1 ? 'scale('+s+')' : 'none';
+      });
+    }
+    window.addEventListener('load',fit);
+    if(document.readyState==='complete') fit();
+    var t; window.addEventListener('resize',function(){clearTimeout(t);t=setTimeout(fit,80);});
+    document.addEventListener('fullscreenchange',function(){setTimeout(fit,80);});
+    document.addEventListener('webkitfullscreenchange',function(){setTimeout(fit,80);});
+  })();
+  </script>
+</body>
+</html>
