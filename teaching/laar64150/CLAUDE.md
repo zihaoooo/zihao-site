@@ -6,24 +6,33 @@ The page serves as the lecture home for the course while the seminar is redevelo
 Factory output of `../../../course-prep/laar64150/`; same authoring rules as laar61400
 (see `../laar61400/CLAUDE.md`, "Factory output").
 
-- `index.html` carries a course header, an Overview written from the three lectures, and the
-  lecture table — no weekly schedule, by choice. The Fall 2025 syllabus was combined with the
+- `index.html` carries a course header, an Overview written from the three lectures, a
+  Where to Find Information source list (the general lecture links to it), and the lecture
+  table — no weekly schedule, by choice. The Fall 2025 syllabus was combined with the
   studio (studio–research seminar pair); this course is being redeveloped as a standalone seminar.
 - Styles and nav script borrow laar61400's `assets/css/` and `assets/js/nav.js`.
 - `lectures/` holds reusable research lectures, named by topic (no week prefix) so other courses
   can link them:
-  - `what-is-research.html` (68 slides, nine parts) — the **general** version, for students from
+  - `what-is-research.html` (41 slides, eight parts) — the **general** version, for students from
     any discipline. Parts: what is research · asking the question · methods and evidence · why
-    theory matters · paradigms and incommensurability · how disciplines differ · research is
-    never neutral · where to find information · writing about your research. Parts I/VII/VIII
-    rework the designer lecture, Part IX borrows Grant Writing 101, and Parts II and IV–VI were
-    authored here (2026-09) with no factory source.
+    theory matters · paradigms and incommensurability · disciplines and trading zones · research
+    is never neutral · finding it, and writing it up.
+    - **Brief by design** (cut from 68 slides / 5,800 words to 41 / 2,300 in 2026-09). The rule
+      is ~90 words and ~5 bullets a slide; **detail lives in `data-notes`, not on the slide.**
+      When adding to this deck, put the elaboration in the speaker notes and keep the card short.
+    - No images: it is text-only by choice. The six plates it used to carry are still in
+      `assets/img/what-is-research/` and still used by the designers lecture.
     - Part II's argument is **ask a *how* question**: a why needs a cause isolated from its
       rivals, a what stops at description, a how names a process with parts you can go look at.
     - Part V reads Kuhn for what he actually claimed — the 1969 postscript's disciplinary matrix
       vs exemplar, the taxonomic incommensurability he kept, Kuhn-loss, the 1977 five values as
-      values rather than rules — and hands off to Galison's trading zones in Part VI.
-    - It is long by design: nine parts meant to be taught across several sessions, not one.
+      values rather than rules. Part VI answers it with Galison's **trading zones**, which has
+      its own slide.
+    - Part VIII is deliberately thin on proposal-writing: it is a pointer, because
+      `grant-writing-101.html` teaches each move properly. Don't re-expand it here.
+    - Its "Where to find information" slide says the full link list is on the course page —
+      that list lives in `index.html`'s **Where to Find Information** section. Keep the two in
+      sync; if you cut the section, fix the slide.
   - `what-is-research-for-designers.html` (42 slides) — the original lecture, renamed 2026-09.
     Making and theorizing as methods, with graphic references.
   - `grant-writing-101.html` (15 slides). Rebuilt, with the designer lecture, from the Dropbox
