@@ -221,7 +221,9 @@
 }
 .wf-step.wf-full .wf-steps-row {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  /* minmax(0,...) lets each column shrink below its table's natural width;
+     with plain 1fr the CTB tables overflow the card and get clipped */
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
 }
 .wf-step.wf-full .wf-step-body {
   border-right: 1px solid #e8e8e8;
@@ -510,6 +512,9 @@
   border: 1px solid rgba(0,0,0,0.1);
 }
 .wf-ctb .wf-use { font-size: 11px; color: #888; }
+/* the Typical Use column wraps at every width so the table fits its column */
+.wf-ctb th:last-child,
+.wf-ctb td:last-child { white-space: normal; }
 
 /* ── Footer ── */
 .wf-footer {
