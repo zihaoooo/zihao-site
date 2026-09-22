@@ -16,7 +16,7 @@ Factory output of `../../../course-prep/laar64150/`; same authoring rules as laa
   - `what-is-research.html` (41 slides, eight parts) — the **general** version, for students from
     any discipline. Parts: what is research · asking the question · methods and evidence · why
     theory matters · paradigms and incommensurability · disciplines and trading zones · research
-    is never neutral · finding it, and writing it up.
+    is never neutral · finding it, and making it public.
     - **Brief by design** (cut from 68 slides / 5,800 words to 41 / 2,300 in 2026-09). The rule
       is ~90 words and ~5 bullets a slide; **detail lives in `data-notes`, not on the slide.**
       When adding to this deck, put the elaboration in the speaker notes and keep the card short.
@@ -28,8 +28,13 @@ Factory output of `../../../course-prep/laar64150/`; same authoring rules as laa
       vs exemplar, the taxonomic incommensurability he kept, Kuhn-loss, the 1977 five values as
       values rather than rules. Part VI answers it with Galison's **trading zones**, which has
       its own slide.
-    - Part VIII is deliberately thin on proposal-writing: it is a pointer, because
-      `grant-writing-101.html` teaches each move properly. Don't re-expand it here.
+    - **Part VIII carries no proposal skeleton** — that is `grant-writing-101.html`'s job and
+      it stays a separate lecture. What was extracted from it are the ideas that are about
+      research rather than about formatting: the **gap** (now in Part II, as a property of a
+      good question), the **"explore" caution** (Part III, with naming your method), and the
+      "Making it public" slide — say who the answer is for, your reader is in the field next
+      door, the clearest version wins, one diagram beats a paragraph. Don't re-expand it into
+      abstract / objectives / work plan / merit / budget; link out instead.
     - Its "Where to find information" slide says the full link list is on the course page —
       that list lives in `index.html`'s **Where to Find Information** section. Keep the two in
       sync; if you cut the section, fix the slide.
