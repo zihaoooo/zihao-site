@@ -53,7 +53,7 @@
 .sc-icon-ai  { background: #FF9A00; color: var(--gray-900); }
 .sc-icon-id  { background: #49021F; color: #FF3366; }
 .sc-icon-cad { background: #E51937; color: #fff; font-size: 9px; }
-.sc-icon-rh  { background: var(--accent-course); color: #fff; font-size: 10px; }
+.sc-icon-rh  { background: var(--accent); color: #fff; font-size: 10px; }
 
 .sc-header-text {}
 

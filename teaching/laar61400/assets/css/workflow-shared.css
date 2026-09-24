@@ -57,7 +57,7 @@
 
 /* ── Outcome bar ── */
 .wf-outcome {
-  background: var(--warm-100);
+  background: var(--gray-100);
   border-left: 3px solid var(--gray-900);
   padding: 11px 14px;
   font-size: 12px;
@@ -193,7 +193,7 @@
   align-items: center;
   gap: 10px;
   padding: 10px 14px;
-  background: var(--warm-50);
+  background: var(--gray-50);
   border-bottom: 1px solid #e8e8e8;
 }
 .wf-step-num {
@@ -424,13 +424,13 @@
 .wf-badge-ai      { background: #fff0e0; color: #cc5500; }
 .wf-badge-ps      { background: #e8f0fe; color: #1a56cc; }
 .wf-badge-id      { background: #fce8f0; color: #b5004a; }
-.wf-badge-rh      { background: var(--accent-course-tint); color: var(--accent-course); }
+.wf-badge-rh      { background: #f3e6e6; color: #801010; }
 .wf-badge-gh      { background: #e8f5e8; color: #2a6a2a; }
 .wf-badge-osm     { background: #e8f4ea; color: #2a7a3a; }
 .wf-badge-ge      { background: #fef3e2; color: #a06020; }
 .wf-badge-neutral { background: #f0f0f0; color: var(--gray-700); }
-.wf-badge-chat    { background: var(--note-bg); color: #9a6a3c; }
-.wf-badge-code    { background: #ebdcc9; color: #7a4a1e; }
+.wf-badge-chat    { background: var(--accent-tint); color: var(--accent); }
+.wf-badge-code    { background: var(--gray-150); color: var(--gray-800); }
 
 /* ── Alert / critical notice ── */
 .wf-alert {
@@ -577,7 +577,7 @@
   margin-bottom: 24px;
 }
 .wf-spec-item {
-  background: var(--warm-100);
+  background: var(--gray-100);
   border-radius: 4px;
   padding: 8px 12px;
   display: flex;
@@ -597,7 +597,7 @@
   box-shadow: inset 0 0 0 1px #f0d4d4;
 }
 .wf-spec-due .wf-spec-label { color: #b05a5a; }
-.wf-spec-due .wf-spec-value { color: var(--accent-course); font-weight: 700; }
+.wf-spec-due .wf-spec-value { color: var(--accent); font-weight: 700; }
 
 /* List */
 .wf-ref-list { display: flex; flex-direction: column; }
@@ -605,7 +605,7 @@
   display: flex;
   gap: 14px;
   padding: 16px 0;
-  border-top: 1px solid var(--warm-150);
+  border-top: 1px solid var(--gray-150);
 }
 .wf-ref-item:first-child { border-top: none; padding-top: 0; }
 .wf-ref-num {
@@ -664,19 +664,19 @@
 
 /* ── Prompt callout: a prompt the student types to Claude, quoted in italics ── */
 .wf-prompt {
-  background: var(--note-bg);
-  border-left: 3px solid var(--note-line);
+  background: var(--gray-100);
+  border-left: 3px solid var(--accent);
   border-radius: 0 4px 4px 0;
   padding: 10px 14px;
   margin: 8px 0;
   font-size: 13px;
   font-style: italic;
-  color: var(--note-text);
+  color: var(--gray-800);
 }
 
 /* ── Aside box: a short explainer set off from the steps ── */
 .wf-aside {
-  background: var(--warm-100);
+  background: var(--gray-100);
   border-left: 3px solid var(--gray-900);
   border-radius: 0 4px 4px 0;
   padding: 14px;

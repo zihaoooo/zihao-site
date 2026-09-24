@@ -18,7 +18,7 @@
 
 /* Deck palette roles. Values come from /assets/css/tokens.css; a page may override or extend. */
 :root{ --deck-gutter:6px;
-  --ink:var(--gray-900); --paper:var(--warm-50); --line:var(--warm-200); --mute:var(--warm-500); --accent:var(--accent-deck); }
+  --ink:var(--gray-900); --paper:var(--gray-50); --line:var(--gray-200); --mute:var(--gray-500); }
 
 /* ── stage + carousel mechanics ── */
 .deck{margin-top:10px;}
@@ -134,13 +134,13 @@
   width:auto;height:auto;object-fit:contain;display:block;}
 .pts{display:flex;flex-direction:column;justify-content:center;min-width:0;}
 .pts h3{font-family:var(--font-sans);font-weight:700;letter-spacing:-.01em;
-  font-size:clamp(15px,2.4cqw,24px);color:var(--warm-800);line-height:1.2;margin:0 0 .7em;}
+  font-size:clamp(15px,2.4cqw,24px);color:var(--gray-800);line-height:1.2;margin:0 0 .7em;}
 .pts ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:.6em;}
 .pts li{font-family:var(--font-sans);font-size:clamp(12px,1.7cqw,17px);line-height:1.45;
-  color:var(--warm-700);padding-left:1.15em;position:relative;}
+  color:var(--gray-750);padding-left:1.15em;position:relative;}
 .pts li::before{content:"+";position:absolute;left:0;top:0;line-height:1.45;
   font-family:var(--font-mono);font-weight:500;font-size:.95em;
-  color:var(--accent-deck-2);}
+  color:var(--accent);}
 
 /* ── part TOC / agenda divider — list the parts, highlight the one being entered ──
    A recurring divider: one instance per part transition; the row for the part being entered gets
@@ -182,7 +182,7 @@
 /* optional caption chip, bottom-left of a cell (used sparingly) */
 .slide figure figcaption{position:absolute;left:8px;bottom:7px;
   font-family:var(--font-mono);font-size:9.5px;letter-spacing:.04em;
-  color:var(--warm-700);background:color-mix(in srgb, var(--warm-50) 82%, transparent);padding:2px 6px;border-radius:3px;}
+  color:var(--gray-750);background:color-mix(in srgb, var(--gray-50) 82%, transparent);padding:2px 6px;border-radius:3px;}
 
 /* ── typeset text cards — .txt-card / .stmt / .cmp ──
    Promoted out of laar64150's lectures (2026-09) once a third deck needed them; built from
@@ -206,12 +206,12 @@
   font-family:var(--font-mono);}
 .txt-card li b{color:var(--ink);font-weight:600;}
 .txt-card li .src{font-family:var(--font-mono);font-size:.8em;
-  letter-spacing:.04em;color:var(--warm-400);}
+  letter-spacing:.04em;color:var(--gray-400);}
 .txt-card ul ul{margin:.5em 0 0;gap:.45em;}
 .txt-card ul ul li{font-size:clamp(13px,1.65cqw,25px);}
 .txt-card ul ul li::before{content:"\2013";}
 .txt-card a{color:inherit;text-decoration:underline;text-underline-offset:2px;
-  text-decoration-color:var(--warm-300);word-break:break-all;}
+  text-decoration-color:var(--gray-250);word-break:break-all;}
 
 /* one sentence, carried large */
 .stmt{width:min(1100px,94%);text-align:center;}
@@ -248,18 +248,18 @@
 .slide--title{flex-direction:column;text-align:center;gap:14px;background:var(--ink);
   display:flex;align-items:center;justify-content:center;}
 .slide--title .tt{font-family:var(--font-sans);font-weight:700;
-  font-size:clamp(16px,2.6cqw,46px);color:var(--warm-50);letter-spacing:-.01em;line-height:1.1;}
+  font-size:clamp(16px,2.6cqw,46px);color:var(--gray-50);letter-spacing:-.01em;line-height:1.1;}
 .slide--title .ts{font-family:var(--font-mono);font-size:11px;
-  letter-spacing:.14em;text-transform:uppercase;color:var(--warm-400);}
+  letter-spacing:.14em;text-transform:uppercase;color:var(--gray-400);}
 
 /* ── placeholder slide (image still to source) ── */
 .slide .ph{display:flex;flex-direction:column;align-items:center;justify-content:center;
   gap:9px;width:calc(100% - 28px);height:calc(100% - 28px);
-  border:1.5px dashed var(--warm-300);border-radius:8px;text-align:center;padding:18px;}
+  border:1.5px dashed var(--gray-250);border-radius:8px;text-align:center;padding:18px;}
 .slide .ph .ph-tag{font-family:var(--font-mono);font-size:9px;
   letter-spacing:.14em;text-transform:uppercase;color:var(--gray-300);}
 .slide .ph .ph-desc{font-family:var(--font-sans);font-size:13px;
-  color:var(--warm-500);max-width:48ch;line-height:1.5;}
+  color:var(--gray-500);max-width:48ch;line-height:1.5;}
 
 /* ── talk pages: the deck stands in for the project hero, full width at the top ── */
 #site-main .deck{margin-top:0;margin-bottom:40px;}
@@ -276,7 +276,7 @@
 /* ── control bar ── */
 .deck-bar{display:flex;align-items:center;gap:14px;margin-top:12px;}
 .deck-btn{appearance:none;border:1px solid var(--line);background:var(--paper);
-  width:34px;height:34px;border-radius:8px;cursor:pointer;color:var(--warm-700);font-size:16px;
+  width:34px;height:34px;border-radius:8px;cursor:pointer;color:var(--gray-750);font-size:16px;
   line-height:1;display:flex;align-items:center;justify-content:center;flex:0 0 auto;
   transition:border-color .12s,background .12s;}
 .deck-btn:hover{border-color:var(--gray-300);background:#fff;}
@@ -284,19 +284,19 @@
 .deck-count{font-family:var(--font-mono);font-size:11px;letter-spacing:.06em;
   color:var(--mute);flex:0 0 auto;min-width:54px;text-align:center;
   display:flex;align-items:baseline;justify-content:center;}
-#deck-jump{font:inherit;color:var(--warm-800);width:2.2em;text-align:right;padding:1px 3px;
+#deck-jump{font:inherit;color:var(--gray-800);width:2.2em;text-align:right;padding:1px 3px;
   border:1px solid transparent;border-radius:4px;background:transparent;-moz-appearance:textfield;}
 #deck-jump:hover{border-color:var(--line);}
 #deck-jump:focus{outline:none;border-color:var(--gray-300);background:#fff;}
-.deck:fullscreen #deck-jump{color:var(--warm-150);}
+.deck:fullscreen #deck-jump{color:var(--gray-150);}
 .deck:fullscreen #deck-jump:focus{background:#1c1c1c;border-color:var(--gray-700);}
 .deck-meta{flex:1;min-width:0;}
-.deck-cap{font-family:var(--font-sans);font-size:13.5px;color:var(--warm-800);
+.deck-cap{font-family:var(--font-sans);font-size:13.5px;color:var(--gray-800);
   font-weight:500;line-height:1.4;display:block;}
-#deck-credit{font-family:var(--font-sans);font-size:10.5px;color:var(--warm-500);
+#deck-credit{font-family:var(--font-sans);font-size:10.5px;color:var(--gray-500);
   line-height:1.35;display:none;margin-top:2px;}
 #deck-credit:not(:empty){display:block;}
-.deck:fullscreen #deck-credit{color:var(--warm-500);}
+.deck:fullscreen #deck-credit{color:var(--gray-500);}
 .deck-hint{font-family:var(--font-mono);font-size:10px;letter-spacing:.05em;
   color:var(--mute);margin-top:6px;}
 .deck-fs{margin-left:auto;flex:0 0 auto;font-size:14px;}
@@ -356,24 +356,24 @@
 .deck:fullscreen #deck-thumbs-toggle{display:none;}
 .deck:fullscreen .deck-bar{width:min(100vw, calc((100vh - 76px) * 16 / 9));
   padding:0 4px;margin-top:0;}
-.deck:fullscreen .deck-btn{background:#1c1c1c;border-color:#3a3a3a;color:var(--warm-150);}
+.deck:fullscreen .deck-btn{background:#1c1c1c;border-color:#3a3a3a;color:var(--gray-150);}
 .deck:fullscreen .deck-btn:hover{background:#262626;border-color:var(--gray-700);}
-.deck:fullscreen .deck-count{color:var(--warm-400);}
-.deck:fullscreen .deck-cap{color:var(--warm-150);}
+.deck:fullscreen .deck-count{color:var(--gray-400);}
+.deck:fullscreen .deck-cap{color:var(--gray-150);}
 
 /* ── text buttons + notes disclosure ── */
 .deck-btn--text{width:auto;padding:0 12px;font-family:var(--font-mono);
   font-size:10px;letter-spacing:.08em;text-transform:uppercase;}
 .deck-notes{margin-top:9px;padding:11px 14px;border:1px solid var(--line);border-radius:8px;
   background:var(--paper);font-family:var(--font-sans);font-size:13px;line-height:1.55;
-  color:var(--warm-700);max-width:82ch;}
+  color:var(--gray-750);max-width:82ch;}
 .deck-notes[hidden]{display:none;}
 .deck-notes .nn-empty{color:var(--mute);font-style:italic;}
 .deck-notes ul{margin:0;padding-left:1.1em;list-style:disc;}
 .deck-notes ul ul{margin:2px 0;list-style:circle;}
 .deck-notes li{margin:0 0 4px;}
 .deck-notes li:last-child{margin-bottom:0;}
-.deck-notes b{font-weight:600;color:var(--warm-800);}
+.deck-notes b{font-weight:600;color:var(--gray-800);}
 /* phone: notes set for glancing while presenting (must follow the base rules above) */
 @media (max-width:560px){
   .deck-notes{margin-top:12px;padding:14px 16px;font-size:17px;line-height:1.62;}
@@ -407,7 +407,7 @@
 .deck-thumbs-title{font-family:var(--font-mono);font-size:9.5px;
   letter-spacing:.16em;text-transform:uppercase;color:var(--mute);}
 .deck-thumbs-close{margin-left:auto;appearance:none;border:0;background:transparent;
-  color:var(--warm-700);font-size:15px;line-height:1;cursor:pointer;padding:3px 5px;border-radius:5px;}
+  color:var(--gray-750);font-size:15px;line-height:1;cursor:pointer;padding:3px 5px;border-radius:5px;}
 .deck-thumbs-close:hover{background:rgba(0,0,0,.06);}
 .deck-thumbs-list{flex:1;min-height:0;overflow-y:auto;overscroll-behavior:contain;
   padding:8px;display:flex;flex-direction:column;gap:8px;}
@@ -431,6 +431,6 @@
 /* fullscreen: dark to match the stage */
 .deck:fullscreen .deck-thumbs{background:#121212;border-color:var(--gray-800);}
 .deck:fullscreen .deck-thumbs-head{border-bottom-color:#2a2a2a;}
-.deck:fullscreen .deck-thumbs-close{color:var(--warm-150);}
+.deck:fullscreen .deck-thumbs-close{color:var(--gray-150);}
 .deck:fullscreen .deck-thumbs-close:hover{background:rgba(255,255,255,.09);}
 .deck:fullscreen .deck-thumb-frame{border-color:#3a3a3a;}

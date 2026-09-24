@@ -88,8 +88,8 @@
   <div class="wf-pipeline">
     <div class="wf-pipe-step"><div class="wf-pipe-node">Setup</div><div class="wf-pipe-arrow">→</div></div>
     <div class="wf-pipe-step"><div class="wf-pipe-node">Plan</div><div class="wf-pipe-arrow">→</div></div>
-    <div class="wf-pipe-step"><div class="wf-pipe-node" style="background:var(--note-bg);color:#9a6a3c;">Claude Chat</div><div class="wf-pipe-arrow">→</div></div>
-    <div class="wf-pipe-step"><div class="wf-pipe-node" style="background:#ebdcc9;color:#7a4a1e;">Claude Code</div><div class="wf-pipe-arrow">→</div></div>
+    <div class="wf-pipe-step"><div class="wf-pipe-node" style="background:var(--accent-tint);color:var(--accent);">Claude Chat</div><div class="wf-pipe-arrow">→</div></div>
+    <div class="wf-pipe-step"><div class="wf-pipe-node" style="background:var(--gray-150);color:var(--gray-800);">Claude Code</div><div class="wf-pipe-arrow">→</div></div>
     <div class="wf-pipe-step"><div class="wf-pipe-node wf-pipe-tool">localhost</div><div class="wf-pipe-arrow">→</div></div>
     <div class="wf-pipe-step"><div class="wf-pipe-node wf-pipe-tool">GitHub</div><div class="wf-pipe-arrow">→</div></div>
     <div class="wf-pipe-step"><div class="wf-pipe-node">Live</div></div>
@@ -186,7 +186,7 @@
       <div class="wf-step-body">
         <div class="wf-step-desc"><strong>Create an empty repository on GitHub.</strong> Click <strong>+</strong> → <strong>New repository</strong>, name it <kbd>my-portfolio</kbd>, leave all defaults, click <strong>Create repository</strong>. Don't add any files.</div>
         <div class="wf-step-desc"><strong>Push from Claude Code.</strong> Copy the repo URL (e.g. <kbd>https://github.com/yourname/my-portfolio.git</kbd>) and type:</div>
-        <div style="background:#f0ede8; border-left:3px solid var(--note-line); border-radius:0 4px 4px 0; padding:10px 14px; margin:8px 0; font-family:monospace; font-size:13px;">Commit all my files and push to https://github.com/yourname/my-portfolio.git</div>
+        <div style="background:var(--gray-100); border-left:3px solid var(--accent); border-radius:0 4px 4px 0; padding:10px 14px; margin:8px 0; font-family:monospace; font-size:13px;">Commit all my files and push to https://github.com/yourname/my-portfolio.git</div>
         <div class="wf-step-desc"><strong>Enable GitHub Pages.</strong> In your repo on github.com: <strong>Settings → Pages</strong> → deploy from <kbd>main</kbd> branch, root folder.</div>
       </div>
     </div>

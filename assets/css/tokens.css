@@ -8,49 +8,35 @@
    in their pages -- they depict something, they are not the site palette.
    ============================================================ */
 
-@import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;700&family=DM+Serif+Display&family=Noto+Serif+SC:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Noto+Serif+SC:wght@300&display=swap');
 
 :root {
-  /* ── type ── */
-  --font-sans:    'DM Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  --font-display: 'DM Serif Display', Georgia, serif;
-  --font-mono:    'DM Mono', ui-monospace, monospace;
+  /* ── type: one family, sans for text and titles, mono for labels and code ── */
+  --font-sans:    'IBM Plex Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  --font-display: 'IBM Plex Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  --font-mono:    'IBM Plex Mono', ui-monospace, monospace;
   --font-zh:      'Noto Serif SC', serif;
 
   /* ── neutral grays, dark to light ── */
   --gray-900: #1a1a1a;
   --gray-800: #333;
+  --gray-750: #474747;
   --gray-700: #555;
+  --gray-600: #6b6b6b;
   --gray-500: #888;
   --gray-400: #aaa;
   --gray-300: #bbb;
+  --gray-250: #ccc;
   --gray-200: #e0e0e0;
+  --gray-150: #ebebeb;
+  --gray-100: #f4f4f4;
+  --gray-50:  #fafafa;
 
-  /* ── warm grays, dark to light (deck surfaces, course panel, notes) ── */
-  --warm-800: #2e2a24;
-  --warm-700: #4a463f;
-  --warm-600: #6f6a62;
-  --warm-500: #8a847c;
-  --warm-400: #b0a898;
-  --warm-300: #cfc8bd;
-  --warm-200: #e0dbd3;
-  --warm-150: #ede9e4;
-  --warm-100: #f5f3f0;
-  --warm-50:  #fbfaf8;
-
-  /* ── accents ── */
-  --link:        #b94030;   /* site links */
-  --link-hover:  #8a2e22;
-  --link-soft:   #dcb9b2;   /* resting underline */
-  --accent-deck:    #b87333;   /* deck.css reads this as --accent */
-  --accent-deck-2:  #b9532e;   /* bullet marks */
-  --accent-deck-lt: #d98a63;   /* accent on dark (presenter window) */
-  --accent-course:      #801010;   /* LAAR 61400 panel + workflows */
-  --accent-course-tint: #f3e6e6;
-  --accent-course-line: #d8c9c9;
-
-  /* ── prompt callout in workflows (a quoted prompt to type) ── */
-  --note-bg:   #f3ece4;
-  --note-line: #c8a97a;
-  --note-text: #5a3a1a;
+  /* ── accent: one blue, site-wide (links, deck highlights, course panel) ── */
+  --accent:         #1f3fbf;
+  --accent-dark:    #152c86;   /* link hover */
+  --accent-soft:    #b8c3ec;   /* resting underline */
+  --accent-line:    #c5cdef;   /* borders on tinted panels */
+  --accent-tint:    #eaeefb;   /* active-row background */
+  --accent-on-dark: #8fa3f2;   /* accent on the dark presenter window */
 }

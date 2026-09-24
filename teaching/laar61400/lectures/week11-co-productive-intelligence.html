@@ -17,9 +17,9 @@
     .cyb-card__main .q{color:#534AB7;}
     .cyb-ph{width:1000px;max-width:100%;min-height:420px;display:flex;flex-direction:column;
             align-items:center;justify-content:center;gap:14px;text-align:center;padding:48px;
-            border:2px dashed var(--warm-300);border-radius:14px;background:rgba(0,0,0,0.015);}
+            border:2px dashed var(--gray-250);border-radius:14px;background:rgba(0,0,0,0.015);}
     .cyb-ph__tag{font-size:12px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#a89ff5;}
-    .cyb-ph__desc{font-size:22px;line-height:1.5;color:var(--warm-600);max-width:44ch;}
+    .cyb-ph__desc{font-size:22px;line-height:1.5;color:var(--gray-600);max-width:44ch;}
 
     /* ── full-bleed hero image with a quote overlaid (cover-cropped to the stage) ── */
     .cyb-hero{position:absolute;inset:0;overflow:hidden;background:#111;}
@@ -41,12 +41,12 @@
       font-weight:700;margin:0 0 7px;}
     .cyb-life__btns{display:flex;flex-wrap:wrap;gap:7px;}
     .cyb-life__btns button{font:600 12px var(--font-sans);padding:6px 11px;border:1px solid var(--line);
-      border-radius:6px;background:#fff;cursor:pointer;color:var(--warm-700);}
+      border-radius:6px;background:#fff;cursor:pointer;color:var(--gray-750);}
     .cyb-life__btns button:hover{border-color:var(--gray-300);}
     .cyb-life__btns button.is-on{background:var(--ink);color:var(--paper);border-color:var(--ink);}
     .cyb-life__speed{display:flex;align-items:center;gap:8px;}
     .cyb-life__speed input{flex:1;accent-color:var(--accent);}
-    .cyb-life__meta{font:600 12px var(--font-mono);color:var(--warm-700);}
+    .cyb-life__meta{font:600 12px var(--font-mono);color:var(--gray-750);}
     .cyb-life__hint{font-size:11px;line-height:1.4;color:var(--mute);}
     .cyb-life__canvas{flex:1;min-width:0;border:1px solid var(--line);background:var(--paper);overflow:hidden;}
     .cyb-life__canvas canvas{display:block;width:100%;height:100%;cursor:crosshair;}
@@ -63,8 +63,8 @@
     .cyb-life__pop-grid{display:grid;grid-template-columns:1fr 1fr;gap:15px 16px;}
     .cyb-life__rule{display:flex;flex-direction:column;gap:6px;}
     .cyb-life__rule .row{display:flex;align-items:center;gap:7px;}
-    .cyb-life__rule .arr{color:var(--warm-400);font-size:15px;}
-    .cyb-life__rule .cap{font-size:11.5px;line-height:1.35;color:var(--warm-700);}
+    .cyb-life__rule .arr{color:var(--gray-400);font-size:15px;}
+    .cyb-life__rule .cap{font-size:11.5px;line-height:1.35;color:var(--gray-750);}
     .cyb-life__rule .cap b{color:var(--accent);font-weight:700;}
 
     /* ── Tools strip (below the deck) — matches week04 .gd-tools convention ── */
@@ -95,13 +95,13 @@
     .cyb-cmp__grid>div:nth-child(-n+3){border-top:0;}
     .cyb-cmp__grid>div:nth-child(3n+1){border-left:0;}
     .cyb-cmp__h{font:700 12px/1 var(--font-mono);letter-spacing:.13em;
-      text-transform:uppercase;background:var(--warm-100);color:var(--mute);}
+      text-transform:uppercase;background:var(--gray-100);color:var(--mute);}
     .cyb-cmp__h--a{color:#534AB7;}
     .cyb-cmp__h--b{color:var(--accent);}
     .cyb-cmp__lab{font-weight:700;font-size:12px;letter-spacing:.02em;color:var(--mute);
-      background:var(--warm-50);}
-    .cyb-cmp__b{background:color-mix(in srgb, var(--accent-deck) 5%, transparent);}
-    .cyb-cmp__cap{margin:0 2px 14px;font-size:14px;line-height:1.4;color:var(--warm-600);max-width:1120px;}
+      background:var(--gray-50);}
+    .cyb-cmp__b{background:color-mix(in srgb, var(--accent) 5%, transparent);}
+    .cyb-cmp__cap{margin:0 2px 14px;font-size:14px;line-height:1.4;color:var(--gray-600);max-width:1120px;}
     .cyb-cmp__cap b{color:var(--ink);}
   </style>
 </head>
@@ -485,7 +485,7 @@
         var x=1+(i%3)*(s+g), y=1+((i/3)|0)*(s+g);
         var on=(i===4)?centerAlive:(live.indexOf(i)>=0), isC=(i===4);
         svg+='<rect x="'+x+'" y="'+y+'" width="'+s+'" height="'+s+'" rx="2" fill="'
-          +(on?INK:'#fff')+'" stroke="'+(isC?ACCENT:'#d8d2c8')+'" stroke-width="'+(isC?2:1)+'"/>';
+          +(on?INK:'#fff')+'" stroke="'+(isC?ACCENT:'#ccc')+'" stroke-width="'+(isC?2:1)+'"/>';
       }
       return svg+'</svg>';
     }
@@ -493,7 +493,7 @@
       var s=13,y=(47-s)/2;
       return '<svg width="15" height="47" viewBox="0 0 15 47" aria-hidden="true"><rect x="1" y="'+y
         +'" width="'+s+'" height="'+s+'" rx="2" fill="'+(alive?INK:'#fff')+'" stroke="'
-        +(alive?INK:'#d8d2c8')+'" stroke-width="1"/></svg>';
+        +(alive?INK:'#ccc')+'" stroke-width="1"/></svg>';
     }
     var RULES=[
       {live:[1,7],   c:1,o:1,cap:'A live cell with <b>2&ndash;3</b> live neighbours <b>survives</b>'},

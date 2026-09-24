@@ -67,7 +67,7 @@
 <style>
   .rh-nav { font-family: 'Helvetica Neue', Arial, sans-serif; font-size: 14px; color: var(--gray-900); padding: 24px; box-sizing: border-box; }
   .rh-nav h1 { font-size: 18px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
-  .rh-nav .rh-icon { display: inline-flex; align-items: center; justify-content: center; width: 32px; height: 32px; border-radius: 5px; font-size: 12px; font-weight: 700; background: var(--accent-course); color: #fff; flex-shrink: 0; }
+  .rh-nav .rh-icon { display: inline-flex; align-items: center; justify-content: center; width: 32px; height: 32px; border-radius: 5px; font-size: 12px; font-weight: 700; background: var(--accent); color: #fff; flex-shrink: 0; }
   .rh-nav .rh-sub { font-size: 12px; color: #999; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 20px; }
   .rh-nav .rh-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: var(--gray-400); margin-bottom: 12px; padding-top: 18px; border-top: 1px solid var(--gray-200); }
   .rh-nav .rh-label:first-of-type { padding-top: 0; border-top: none; }
@@ -84,7 +84,7 @@
   .rh-vp-item strong { color: var(--gray-900); }
   .rh-toggles { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 4px; }
   .rh-toggle { border: 1px solid #ddd; border-radius: 4px; padding: 8px 12px; line-height: 1.5; background: #fafafa; }
-  .rh-toggle .rh-toggle-key { display: block; font-family: 'SF Mono', Consolas, monospace; font-size: 11px; font-weight: 700; color: var(--accent-course); margin-bottom: 3px; }
+  .rh-toggle .rh-toggle-key { display: block; font-family: 'SF Mono', Consolas, monospace; font-size: 11px; font-weight: 700; color: var(--accent); margin-bottom: 3px; }
   .rh-toggle .rh-toggle-name { display: block; font-weight: 700; font-size: 13px; color: var(--gray-900); }
   .rh-toggle .rh-toggle-desc { display: block; font-size: 12px; color: #777; }
   .rh-modes { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; margin-bottom: 4px; }
@@ -100,9 +100,9 @@
   .rh-panel-section td:first-child { color: var(--gray-700); width: 55%; }
   .rh-panel-section td:last-child { text-align: right; }
   kbd { display: inline-block; background: #f3f3f3; border: 1px solid #ddd; border-radius: 3px; padding: 2px 6px; font-family: 'SF Mono', Consolas, monospace; font-size: 11px; white-space: nowrap; }
-  .rh-tip { background: var(--warm-100); border-left: 3px solid var(--accent-course); padding: 12px 16px; font-size: 13px; line-height: 1.7; color: #444; border-radius: 0 4px 4px 0; }
+  .rh-tip { background: var(--gray-100); border-left: 3px solid var(--accent); padding: 12px 16px; font-size: 13px; line-height: 1.7; color: #444; border-radius: 0 4px 4px 0; }
   .rh-tip strong { color: var(--gray-900); }
-  .rh-tip code { font-family: 'SF Mono', Consolas, monospace; font-size: 12px; background: var(--warm-150); border-radius: 3px; padding: 0 4px; }
+  .rh-tip code { font-family: 'SF Mono', Consolas, monospace; font-size: 12px; background: var(--gray-150); border-radius: 3px; padding: 0 4px; }
   .rh-nav .rh-footer { margin-top: 20px; border-top: 1px solid var(--gray-200); padding-top: 8px; font-size: 11px; color: var(--gray-400); }
   @media (max-width: 700px) {
     .rh-modes { grid-template-columns: repeat(3, 1fr); }
@@ -137,24 +137,24 @@
     <summary style="display:none">Mouse Controls</summary>
     <div class="rh-mouse-row">
       <svg class="rh-mouse-diagram" viewBox="0 0 120 170" width="120" xmlns="http://www.w3.org/2000/svg">
-        <rect x="20" y="40" width="80" height="110" rx="40" stroke="#ccc" stroke-width="1.5" style="fill:var(--warm-100)" />
+        <rect x="20" y="40" width="80" height="110" rx="40" stroke="#ccc" stroke-width="1.5" style="fill:var(--gray-100)" />
         <line x1="60" y1="40" x2="60" y2="95" stroke="#ccc" stroke-width="1"/>
         <path d="M20,80 Q20,40 60,40 L60,95 Q40,95 20,95 Z" fill="#e8e4df" stroke="#ccc" stroke-width="1"/>
         <path d="M100,80 Q100,40 60,40 L60,95 Q80,95 100,95 Z" fill="#e8e4df" stroke="#ccc" stroke-width="1"/>
         <rect x="52" y="55" width="16" height="26" rx="8" fill="#ccc" stroke-width="1" style="stroke:var(--gray-300)" />
-        <text x="37" y="76" font-family="'Helvetica Neue', Arial, sans-serif" font-size="9" font-weight="700" text-anchor="middle" style="fill:var(--accent-course)">L</text>
-        <text x="83" y="76" font-family="'Helvetica Neue', Arial, sans-serif" font-size="9" font-weight="700" text-anchor="middle" style="fill:var(--accent-course)">R</text>
+        <text x="37" y="76" font-family="'Helvetica Neue', Arial, sans-serif" font-size="9" font-weight="700" text-anchor="middle" style="fill:var(--accent)">L</text>
+        <text x="83" y="76" font-family="'Helvetica Neue', Arial, sans-serif" font-size="9" font-weight="700" text-anchor="middle" style="fill:var(--accent)">R</text>
         <text x="60" y="72" font-family="'Helvetica Neue', Arial, sans-serif" font-size="7.5" fill="#666" text-anchor="middle">scroll</text>
         <line x1="37" y1="80" x2="10" y2="110" stroke="#ddd" stroke-width="0.8"/>
         <line x1="83" y1="80" x2="110" y2="110" stroke="#ddd" stroke-width="0.8"/>
         <line x1="60" y1="95" x2="60" y2="130" stroke="#ddd" stroke-width="0.8"/>
-        <circle cx="10" cy="110" r="3" style="fill:var(--accent-course)" />
+        <circle cx="10" cy="110" r="3" style="fill:var(--accent)" />
         <circle cx="110" cy="110" r="3" fill="#444"/>
         <circle cx="60" cy="130" r="3" style="fill:var(--gray-700)" />
       </svg>
       <div class="rh-mouse-legend">
         <div class="rh-mouse-item">
-          <div class="rh-mouse-dot" style="background:var(--accent-course)"></div>
+          <div class="rh-mouse-dot" style="background:var(--accent)"></div>
           <div class="rh-mouse-text"><strong>Left click</strong> — Select object<br>
           <strong>Left drag</strong> — Window select (L→R solid, R→L crossing)</div>
         </div>
@@ -182,15 +182,15 @@
     <summary style="display:none">Viewport Layout</summary>
     <div class="rh-vp-row">
       <svg viewBox="0 0 150 110" width="150" xmlns="http://www.w3.org/2000/svg">
-        <rect width="150" height="110" rx="4" stroke="#ccc" stroke-width="1" style="fill:var(--warm-100)" />
+        <rect width="150" height="110" rx="4" stroke="#ccc" stroke-width="1" style="fill:var(--gray-100)" />
         <rect x="4" y="18" width="68" height="42" rx="2" fill="#e2dfd9" stroke-width="0.8" style="stroke:var(--gray-300)" />
         <rect x="78" y="18" width="68" height="42" rx="2" fill="#e2dfd9" stroke-width="0.8" style="stroke:var(--gray-300)" />
         <rect x="4" y="64" width="68" height="42" rx="2" fill="#e2dfd9" stroke-width="0.8" style="stroke:var(--gray-300)" />
-        <rect x="78" y="64" width="68" height="42" rx="2" fill="#ddd8cf" stroke-width="1.2" style="stroke:var(--accent-course)" />
+        <rect x="78" y="64" width="68" height="42" rx="2" fill="#ddd8cf" stroke-width="1.2" style="stroke:var(--accent)" />
         <text x="38" y="13" font-family="'Helvetica Neue', Arial, sans-serif" font-size="7" text-anchor="middle" style="fill:var(--gray-500)">Top</text>
         <text x="112" y="13" font-family="'Helvetica Neue', Arial, sans-serif" font-size="7" text-anchor="middle" style="fill:var(--gray-500)">Front</text>
         <text x="38" y="60" font-family="'Helvetica Neue', Arial, sans-serif" font-size="7" text-anchor="middle" style="fill:var(--gray-500)">Right</text>
-        <text x="112" y="60" font-family="'Helvetica Neue', Arial, sans-serif" font-size="7" font-weight="700" text-anchor="middle" style="fill:var(--accent-course)">Perspective ★</text>
+        <text x="112" y="60" font-family="'Helvetica Neue', Arial, sans-serif" font-size="7" font-weight="700" text-anchor="middle" style="fill:var(--accent)">Perspective ★</text>
         <line x1="8" y1="30" x2="68" y2="30" stroke="#ccc" stroke-width="0.5"/>
         <line x1="8" y1="39" x2="68" y2="39" stroke="#ccc" stroke-width="0.5"/>
         <line x1="8" y1="48" x2="68" y2="48" stroke="#ccc" stroke-width="0.5"/>

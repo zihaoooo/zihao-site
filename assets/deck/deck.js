@@ -160,12 +160,12 @@
 <style>
   @import url('${location.origin}/assets/css/tokens.css');
   :root{color-scheme:dark;} *{box-sizing:border-box;}
-  body{margin:0;height:100vh;display:flex;flex-direction:column;background:#0e0e0e;color:var(--warm-150);
+  body{margin:0;height:100vh;display:flex;flex-direction:column;background:#0e0e0e;color:var(--gray-150);
     font-family:var(--font-sans);}
   .pv-top{display:flex;gap:12px;padding:12px 14px 4px;}
   .pv-col{flex:1;min-width:0;}
   .pv-tag{font-family:var(--font-mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;
-    color:var(--warm-500);margin:0 0 4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+    color:var(--gray-500);margin:0 0 4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
   .pv-stage{aspect-ratio:16/9;width:100%;background:var(--gray-900);border:1px solid var(--gray-800);border-radius:6px;
     overflow:hidden;display:flex;align-items:center;justify-content:center;}
   .pv-stage img{max-width:100%;max-height:100%;object-fit:contain;}
@@ -219,57 +219,57 @@
     align-items:baseline;padding-bottom:5px;border-bottom:1px solid var(--gray-800);opacity:.4;}
   .pv-stage .pv-deck .toc .toc-row:last-child{border-bottom:0;padding-bottom:0;}
   .pv-stage .pv-deck .toc .toc-n{grid-column:1;grid-row:1;font-family:var(--font-mono);font-size:8px;
-    letter-spacing:.16em;text-transform:uppercase;color:var(--warm-500);}
+    letter-spacing:.16em;text-transform:uppercase;color:var(--gray-500);}
   .pv-stage .pv-deck .toc .toc-h{grid-column:2;grid-row:1;margin:0;font-weight:700;font-size:14px;
-    line-height:1.05;color:var(--warm-150);}
+    line-height:1.05;color:var(--gray-150);}
   .pv-stage .pv-deck .toc .toc-row.active{opacity:1;}
-  .pv-stage .pv-deck .toc .toc-row.active .toc-n,.pv-stage .pv-deck .toc .toc-row.active .toc-h{color:var(--accent-deck-lt);}
+  .pv-stage .pv-deck .toc .toc-row.active .toc-n,.pv-stage .pv-deck .toc .toc-row.active .toc-h{color:var(--accent-on-dark);}
   /* typeset text cards (dark mirror of deck.css .txt-card / .stmt / .cmp — change both) */
   .pv-stage .pv-deck .embed{display:flex;align-items:center;justify-content:center;
     width:100%;height:100%;overflow:hidden;}
   .pv-stage .pv-deck .txt-card{width:90%;display:flex;flex-direction:column;gap:5px;text-align:left;}
-  .pv-stage .pv-deck .txt-card h3{margin:0;font-weight:700;font-size:14px;line-height:1.1;color:var(--warm-100);}
-  .pv-stage .pv-deck .txt-card .lead{font-weight:600;font-size:9px;line-height:1.3;color:var(--accent-deck-lt);}
+  .pv-stage .pv-deck .txt-card h3{margin:0;font-weight:700;font-size:14px;line-height:1.1;color:var(--gray-100);}
+  .pv-stage .pv-deck .txt-card .lead{font-weight:600;font-size:9px;line-height:1.3;color:var(--accent-on-dark);}
   .pv-stage .pv-deck .txt-card ul{margin:0;padding:0;list-style:none;display:flex;
     flex-direction:column;gap:3px;}
-  .pv-stage .pv-deck .txt-card li{font-size:9px;line-height:1.35;color:var(--warm-400);
+  .pv-stage .pv-deck .txt-card li{font-size:9px;line-height:1.35;color:var(--gray-400);
     padding-left:.9em;position:relative;}
-  .pv-stage .pv-deck .txt-card li::before{content:"+";position:absolute;left:0;color:var(--accent-deck-lt);
+  .pv-stage .pv-deck .txt-card li::before{content:"+";position:absolute;left:0;color:var(--accent-on-dark);
     font-family:var(--font-mono);}
-  .pv-stage .pv-deck .txt-card li b{color:var(--warm-150);font-weight:600;}
-  .pv-stage .pv-deck .txt-card .src{font-family:var(--font-mono);font-size:.8em;color:var(--warm-500);}
+  .pv-stage .pv-deck .txt-card li b{color:var(--gray-150);font-weight:600;}
+  .pv-stage .pv-deck .txt-card .src{font-family:var(--font-mono);font-size:.8em;color:var(--gray-500);}
   .pv-stage .pv-deck .txt-card ul ul{margin:2px 0 0;gap:2px;}
   .pv-stage .pv-deck .txt-card ul ul li{font-size:8px;}
   .pv-stage .pv-deck .txt-card ul ul li::before{content:"–";}
   .pv-stage .pv-deck .txt-card a{color:inherit;text-decoration:underline;}
   .pv-stage .pv-deck .stmt{width:88%;text-align:center;}
-  .pv-stage .pv-deck .stmt p{margin:0;font-weight:700;font-size:15px;line-height:1.2;color:var(--warm-100);}
-  .pv-stage .pv-deck .stmt .sub{margin-top:5px;font-weight:400;font-size:10px;line-height:1.35;color:var(--warm-400);}
+  .pv-stage .pv-deck .stmt p{margin:0;font-weight:700;font-size:15px;line-height:1.2;color:var(--gray-100);}
+  .pv-stage .pv-deck .stmt .sub{margin-top:5px;font-weight:400;font-size:10px;line-height:1.35;color:var(--gray-400);}
   .pv-stage .pv-deck .cmp{width:92%;display:flex;flex-direction:column;gap:5px;text-align:left;}
-  .pv-stage .pv-deck .cmp h3{margin:0;font-weight:700;font-size:13px;line-height:1.1;color:var(--warm-100);}
+  .pv-stage .pv-deck .cmp h3{margin:0;font-weight:700;font-size:13px;line-height:1.1;color:var(--gray-100);}
   .pv-stage .pv-deck .cmp table{border-collapse:collapse;width:100%;table-layout:fixed;}
   .pv-stage .pv-deck .cmp th,.pv-stage .pv-deck .cmp td{text-align:left;vertical-align:top;
-    padding:3px 5px 3px 0;border-bottom:1px solid var(--gray-800);font-size:8px;line-height:1.3;color:var(--warm-400);}
+    padding:3px 5px 3px 0;border-bottom:1px solid var(--gray-800);font-size:8px;line-height:1.3;color:var(--gray-400);}
   .pv-stage .pv-deck .cmp thead th{font-family:var(--font-mono);font-size:7px;letter-spacing:.12em;
-    text-transform:uppercase;color:var(--accent-deck-lt);border-bottom:1px solid var(--warm-500);}
-  .pv-stage .pv-deck .cmp tbody th{font-weight:600;color:var(--warm-150);}
+    text-transform:uppercase;color:var(--accent-on-dark);border-bottom:1px solid var(--gray-500);}
+  .pv-stage .pv-deck .cmp tbody th{font-weight:600;color:var(--gray-150);}
   .pv-stage .pv-deck .cmp tbody tr:last-child th,.pv-stage .pv-deck .cmp tbody tr:last-child td{border-bottom:0;}
-  .pv-stage .pv-deck .cmp td b{color:var(--warm-150);font-weight:600;}
-  .pv-stage .pv-deck .cmp .note{font-size:8px;line-height:1.35;color:var(--warm-400);}
+  .pv-stage .pv-deck .cmp td b{color:var(--gray-150);font-weight:600;}
+  .pv-stage .pv-deck .cmp .note{font-size:8px;line-height:1.35;color:var(--gray-400);}
   .pv-stage .ph{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;
     width:calc(100% - 16px);height:calc(100% - 16px);border:1.5px dashed var(--gray-700);border-radius:6px;
     text-align:center;padding:10px;}
   .pv-stage .ph-tag{font-family:var(--font-mono);font-size:8px;letter-spacing:.14em;
     text-transform:uppercase;color:#777;}
   .pv-stage .ph-desc{font-size:11px;color:var(--gray-400);line-height:1.4;max-width:40ch;}
-  .pv-stage .tt{font-family:var(--font-sans);font-weight:700;font-size:clamp(13px,2.4vw,24px);color:var(--warm-100);
+  .pv-stage .tt{font-family:var(--font-sans);font-weight:700;font-size:clamp(13px,2.4vw,24px);color:var(--gray-100);
     text-align:center;line-height:1.12;}
   .pv-stage .ts{font-family:var(--font-mono);font-size:8px;letter-spacing:.14em;
-    text-transform:uppercase;color:var(--warm-400);text-align:center;}
-  .pv-vid{font-family:var(--font-mono);font-size:12px;color:var(--accent-deck-lt);letter-spacing:.06em;}
+    text-transform:uppercase;color:var(--gray-400);text-align:center;}
+  .pv-vid{font-family:var(--font-mono);font-size:12px;color:var(--accent-on-dark);letter-spacing:.06em;}
   .pv-noteswrap{flex:1;min-height:0;padding:6px 16px 10px;display:flex;flex-direction:column;}
-  .pv-cap{font-size:15px;font-style:italic;color:var(--warm-300);margin:4px 0 8px;}
-  .pv-notes{flex:1;overflow:auto;font-size:19px;line-height:1.6;color:var(--warm-150);
+  .pv-cap{font-size:15px;font-style:italic;color:var(--gray-250);margin:4px 0 8px;}
+  .pv-notes{flex:1;overflow:auto;font-size:19px;line-height:1.6;color:var(--gray-150);
     border-top:1px solid #2a2a2a;padding-top:10px;}
   .pv-notes .empty{color:#777;font-style:italic;font-size:15px;}
   .pv-notes ul{margin:0;padding-left:1.1em;list-style:disc;}
@@ -277,12 +277,12 @@
   .pv-notes li{margin:0 0 7px;}
   .pv-notes b{color:#fff;font-weight:600;}
   .pv-bar{display:flex;align-items:center;gap:12px;padding:10px 16px;border-top:1px solid #222;background:#141414;}
-  .pv-btn{appearance:none;background:#1f1f1f;border:1px solid #3a3a3a;color:var(--warm-150);border-radius:7px;
+  .pv-btn{appearance:none;background:#1f1f1f;border:1px solid #3a3a3a;color:var(--gray-150);border-radius:7px;
     padding:7px 13px;font-size:13px;cursor:pointer;white-space:nowrap;}
   .pv-btn:hover{background:#292929;}
-  .pv-count{font-family:var(--font-mono);font-size:13px;color:var(--warm-400);}
-  .pv-mini{font-family:var(--font-mono);font-size:10px;color:var(--warm-600);}
-  .pv-timer{font-family:var(--font-mono);font-size:16px;color:var(--warm-150);margin-left:auto;}
+  .pv-count{font-family:var(--font-mono);font-size:13px;color:var(--gray-400);}
+  .pv-mini{font-family:var(--font-mono);font-size:10px;color:var(--gray-600);}
+  .pv-timer{font-family:var(--font-mono);font-size:16px;color:var(--gray-150);margin-left:auto;}
   /* ── phone: this window IS the speaker-note view, held at arm's length ──
      Drop the Next preview (no room for two 16:9 frames), give the notes the
      screen, and pin the controls in thumb reach. dvh so the bar clears the
