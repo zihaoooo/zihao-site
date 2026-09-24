@@ -32,11 +32,11 @@
   --gray-100: #f4f4f4;
   --gray-50:  #fafafa;
 
-  /* ── accent: one ochre, site-wide (links, deck highlights, course panel) ── */
-  --accent:         #9a6a00;   /* 4.7:1 on white, readable as link text */
-  --accent-dark:    #6f4c00;   /* link hover */
-  --accent-soft:    #e3cf9f;   /* resting underline */
-  --accent-line:    #e2d3a8;   /* borders on tinted panels */
-  --accent-tint:    #f7f0dc;   /* active-row background */
-  --accent-on-dark: #e0b04a;   /* accent on the dark presenter window */
+  /* ── accent: one red, site-wide (links, deck highlights, course panel) ── */
+  --accent:         #b94030;
+  --accent-dark:    #8a2e22;   /* link hover */
+  --accent-soft:    #dcb9b2;   /* resting underline */
+  --accent-line:    #e8c9c2;   /* borders on tinted panels */
+  --accent-tint:    #f8ebe8;   /* active-row background */
+  --accent-on-dark: #e0806f;   /* accent on the dark presenter window */
 }
