@@ -6,16 +6,12 @@
    reference material, not workflow guide.
    ============================================ */
 
-/* No font import — inherited from main.css or workflow-shared.css.
-   If used standalone (e.g. Cargo), uncomment the line below:
-   @import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;700&display=swap');
-*/
 
 /* ── Page wrapper ── */
 .sc-wrap {
-  font-family: 'DM Sans', sans-serif;
+  font-family: var(--font-sans);
   font-size: 13px;
-  color: #1a1a1a;
+  color: var(--gray-900);
   padding: 28px;
   box-sizing: border-box;
   max-width: 900px;
@@ -30,7 +26,7 @@
   gap: 16px;
   margin-bottom: 24px;
   padding-bottom: 18px;
-  border-bottom: 2px solid #1a1a1a;
+  border-bottom: 2px solid var(--gray-900);
 }
 
 .sc-header-left {
@@ -54,10 +50,10 @@
   margin-top: 2px;
 }
 .sc-icon-ps  { background: #001E36; color: #31A8FF; }
-.sc-icon-ai  { background: #FF9A00; color: #1a1a1a; }
+.sc-icon-ai  { background: #FF9A00; color: var(--gray-900); }
 .sc-icon-id  { background: #49021F; color: #FF3366; }
 .sc-icon-cad { background: #E51937; color: #fff; font-size: 9px; }
-.sc-icon-rh  { background: #801010; color: #fff; font-size: 10px; }
+.sc-icon-rh  { background: var(--accent-course); color: #fff; font-size: 10px; }
 
 .sc-header-text {}
 
@@ -71,20 +67,20 @@
 }
 
 .sc-subtitle {
-  font-family: 'DM Mono', monospace;
+  font-family: var(--font-mono);
   font-size: 11px;
-  color: #888;
+  color: var(--gray-500);
   letter-spacing: 0.08em;
   text-transform: uppercase;
 }
 
 /* Course tag — top right */
 .sc-course-tag {
-  font-family: 'DM Mono', monospace;
+  font-family: var(--font-mono);
   font-size: 9px;
   font-weight: 500;
   color: #fff;
-  background: #1a1a1a;
+  background: var(--gray-900);
   padding: 3px 8px;
   border-radius: 3px;
   letter-spacing: 0.08em;
@@ -99,28 +95,28 @@
 .sc-platform-note {
   font-size: 10px;
   color: #666;
-  border-left: 2px solid #e0e0e0;
+  border-left: 2px solid var(--gray-200);
   padding: 6px 10px;
   line-height: 1.6;
   margin-bottom: 20px;
-  font-family: 'DM Mono', monospace;
+  font-family: var(--font-mono);
 }
 
 /* ── Divider between stacked snippets (e.g. Rhino pipeline + UI) ── */
 .sc-divider {
   border: none;
-  border-top: 1px solid #e0e0e0;
+  border-top: 1px solid var(--gray-200);
   margin: 32px 0;
 }
 
 /* ── Section label — matches wf- register ── */
 .sc-section-label {
-  font-family: 'DM Mono', monospace;
+  font-family: var(--font-mono);
   font-size: 9px;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.12em;
-  color: #aaa;
+  color: var(--gray-400);
   margin-bottom: 12px;
   display: block;
 }
@@ -128,11 +124,11 @@
 /* ── Footer ── */
 .sc-footer {
   margin-top: 24px;
-  border-top: 1px solid #e0e0e0;
+  border-top: 1px solid var(--gray-200);
   padding-top: 10px;
   font-size: 10px;
-  color: #aaa;
-  font-family: 'DM Mono', monospace;
+  color: var(--gray-400);
+  font-family: var(--font-mono);
   display: flex;
   justify-content: space-between;
 }

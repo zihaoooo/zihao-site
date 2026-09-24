@@ -8,37 +8,30 @@
   <link rel="stylesheet" href="/teaching/laar61400/assets/css/workflow-shared.css">
   <link rel="stylesheet" href="/assets/deck/deck.css">
   <style>
-    /* palette tokens live in deck.css :root */
-
-    /* a typeset card living inside a carousel slide: centered, clipped; JS scales the
-       child to fit the fixed 16:9 stage (see fit script) so nothing scrolls. */
-    .slide .embed{width:100%;height:100%;display:flex;align-items:center;justify-content:center;
-      overflow:hidden;padding:14px;box-sizing:border-box;}
-    .slide .embed>*{transform-origin:center center;}
 
     /* ── epigraph divider (slides 5 & 24) — dark, quote-led, mirrors the title card ── */
     .slide--epi{background:var(--ink);}
-    .gis-epi{width:min(740px,92%);text-align:center;color:#fbfaf8;}
+    .gis-epi{width:min(740px,92%);text-align:center;color:var(--warm-50);}
     .gis-epi blockquote{margin:0;font-family:Georgia,"Times New Roman",Times,serif;
       font-size:clamp(22px,2.35cqw,42px);line-height:1.22;font-weight:500;letter-spacing:-.01em;}
     /* wide variant for a long passage (slide 5): wider box, smaller type, looser leading */
     .gis-epi--wide{width:min(1060px,96%);}
     .gis-epi--wide blockquote{font-size:clamp(15px,2.05cqw,24px);line-height:1.45;
       font-weight:400;letter-spacing:0;text-align:left;}
-    .gis-epi cite{display:block;margin-top:24px;font-style:normal;font-family:"DM Mono",ui-monospace,monospace;
-      font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#b0a898;}
+    .gis-epi cite{display:block;margin-top:24px;font-style:normal;font-family:var(--font-mono);
+      font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--warm-400);}
 
     /* ── section divider (slides 13 & 18) — big terms ── */
     .gis-div{width:min(860px,94%);text-align:center;}
-    .gis-div h2{margin:0;font-family:"DM Sans",sans-serif;font-weight:700;color:var(--ink);
+    .gis-div h2{margin:0;font-family:var(--font-sans);font-weight:700;color:var(--ink);
       font-size:clamp(26px,3cqw,54px);letter-spacing:-.01em;line-height:1.08;}
     .gis-div .terms{display:flex;align-items:center;justify-content:center;gap:clamp(14px,3cqw,34px);
       flex-wrap:wrap;}
-    .gis-div .term{font-family:"DM Sans",sans-serif;font-weight:700;color:var(--ink);
+    .gis-div .term{font-family:var(--font-sans);font-weight:700;color:var(--ink);
       font-size:clamp(24px,2.8cqw,50px);letter-spacing:-.01em;}
-    .gis-div .vs{font-family:"DM Mono",ui-monospace,monospace;font-size:13px;letter-spacing:.14em;
+    .gis-div .vs{font-family:var(--font-mono);font-size:13px;letter-spacing:.14em;
       text-transform:uppercase;color:var(--mute);}
-    .gis-div .sub{margin:18px auto 0;font-family:"DM Sans",sans-serif;font-size:14px;color:var(--mute);
+    .gis-div .sub{margin:18px auto 0;font-family:var(--font-sans);font-size:14px;color:var(--mute);
       line-height:1.5;max-width:56ch;text-wrap:balance;}
     .gis-div .sub b{color:var(--ink);font-weight:600;}
 
@@ -49,8 +42,8 @@
       background:none;overflow:visible;}
     .gis-tri figure img{display:block;height:300px;width:auto;}
     .gis-tri figure figcaption{position:static;left:auto;bottom:auto;background:none;padding:0;
-      width:100%;font-family:"DM Sans",sans-serif;font-size:17px;font-weight:600;letter-spacing:0;
-      text-transform:none;color:#3a352f;text-align:center;margin-top:10px;line-height:1.3;}
+      width:100%;font-family:var(--font-sans);font-size:17px;font-weight:600;letter-spacing:0;
+      text-transform:none;color:var(--warm-700);text-align:center;margin-top:10px;line-height:1.3;}
 
     /* ── worked-example + pseudocode (slide 23) ── */
     .gis-code{width:min(940px,95%);display:grid;grid-template-columns:0.8fr 1fr;
@@ -59,12 +52,12 @@
     .gis-code figure img{width:100%;height:auto;display:block;border:1px solid var(--line);
       border-radius:6px;background:#fff;}
     .gis-code figcaption{position:static;left:auto;bottom:auto;background:none;padding:0;
-      font-family:"DM Mono",ui-monospace,monospace;font-size:9.5px;letter-spacing:.05em;
+      font-family:var(--font-mono);font-size:9.5px;letter-spacing:.05em;
       text-transform:uppercase;color:var(--mute);text-align:center;margin-top:8px;}
-    .gis-code pre{margin:0;background:#1e1c1a;color:#e8e2d8;border-radius:8px;
-      padding:18px 20px;font-family:ui-monospace,"DM Mono",Menlo,Consolas,monospace;
+    .gis-code pre{margin:0;background:var(--warm-800);color:var(--warm-150);border-radius:8px;
+      padding:18px 20px;font-family:var(--font-mono);
       font-size:12px;line-height:1.6;overflow:auto;}
-    .gis-code pre .cm{color:#8f8a80;}
+    .gis-code pre .cm{color:var(--warm-500);}
     .gis-code pre .kw{color:#d9a066;}
     .gis-code pre .fn{color:#9bb3c4;}
     @media(max-width:640px){.gis-code{grid-template-columns:1fr;}}

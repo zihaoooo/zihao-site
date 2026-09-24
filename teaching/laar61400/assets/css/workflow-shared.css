@@ -4,13 +4,13 @@
    Cargo-compatible: scoped classes, no globals
    ============================================ */
 
-@import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;700&display=swap');
+@import url('/assets/css/tokens.css');   /* fonts + color tokens */
 
 /* ── Wrapper ── */
 .wf-wrap {
-  font-family: 'DM Sans', sans-serif;
+  font-family: var(--font-sans);
   font-size: 13px;
-  color: #1a1a1a;
+  color: var(--gray-900);
   padding: 28px;
   box-sizing: border-box;
   max-width: 900px;
@@ -24,14 +24,14 @@
   gap: 16px;
   margin-bottom: 28px;
   padding-bottom: 20px;
-  border-bottom: 2px solid #1a1a1a;
+  border-bottom: 2px solid var(--gray-900);
 }
 .wf-index {
-  font-family: 'DM Mono', monospace;
+  font-family: var(--font-mono);
   font-size: 11px;
   font-weight: 500;
   color: #fff;
-  background: #1a1a1a;
+  background: var(--gray-900);
   padding: 3px 8px;
   border-radius: 3px;
   letter-spacing: 0.08em;
@@ -48,21 +48,21 @@
   line-height: 1.1;
 }
 .wf-subtitle {
-  font-family: 'DM Mono', monospace;
+  font-family: var(--font-mono);
   font-size: 11px;
-  color: #888;
+  color: var(--gray-500);
   letter-spacing: 0.08em;
   text-transform: uppercase;
 }
 
 /* ── Outcome bar ── */
 .wf-outcome {
-  background: #f5f3f0;
-  border-left: 3px solid #1a1a1a;
+  background: var(--warm-100);
+  border-left: 3px solid var(--gray-900);
   padding: 11px 14px;
   font-size: 12px;
   line-height: 1.6;
-  color: #333;
+  color: var(--gray-800);
   margin-bottom: 28px;
   border-radius: 0 4px 4px 0;
 }
@@ -80,9 +80,9 @@
   gap: 8px;
   margin-top: 14px;
   padding: 8px 16px;
-  background: #1a1a1a;
+  background: var(--gray-900);
   color: #fff;
-  font-family: 'DM Mono', monospace;
+  font-family: var(--font-mono);
   font-size: 11px;
   font-weight: 500;
   letter-spacing: 0.04em;
@@ -100,7 +100,7 @@
 .wf-btn:hover .wf-btn-arrow { transform: translateY(2px); }
 .wf-outcome > strong {
   font-weight: 700;
-  color: #1a1a1a;
+  color: var(--gray-900);
   text-transform: uppercase;
   letter-spacing: 0.05em;
   font-size: 10px;
@@ -125,9 +125,9 @@
   flex-shrink: 0;
 }
 .wf-pipe-node {
-  background: #1a1a1a;
+  background: var(--gray-900);
   color: #fff;
-  font-family: 'DM Mono', monospace;
+  font-family: var(--font-mono);
   font-size: 10px;
   font-weight: 500;
   letter-spacing: 0.06em;
@@ -137,14 +137,14 @@
 }
 .wf-pipe-node.wf-pipe-tool {
   background: #fff;
-  color: #1a1a1a;
+  color: var(--gray-900);
   border: 1px solid #ddd;
 }
 .wf-pipe-arrow {
   font-size: 14px;
-  color: #bbb;
+  color: var(--gray-300);
   padding: 0 6px;
-  font-family: 'DM Mono', monospace;
+  font-family: var(--font-mono);
 }
 
 /* ── Steps grid ── */
@@ -163,10 +163,10 @@
   margin: 4px 0 -6px;
 }
 .wf-session-num {
-  font-family: 'DM Mono', monospace;
+  font-family: var(--font-mono);
   font-size: 10px;
   font-weight: 500;
-  color: #aaa;
+  color: var(--gray-400);
   flex-shrink: 0;
 }
 .wf-session-label {
@@ -174,7 +174,7 @@
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.07em;
-  color: #1a1a1a;
+  color: var(--gray-900);
 }
 .wf-session-rule {
   flex: 1;
@@ -193,14 +193,14 @@
   align-items: center;
   gap: 10px;
   padding: 10px 14px;
-  background: #f9f8f7;
+  background: var(--warm-50);
   border-bottom: 1px solid #e8e8e8;
 }
 .wf-step-num {
-  font-family: 'DM Mono', monospace;
+  font-family: var(--font-mono);
   font-size: 10px;
   font-weight: 500;
-  color: #aaa;
+  color: var(--gray-400);
   flex-shrink: 0;
 }
 .wf-step-label {
@@ -208,7 +208,7 @@
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.07em;
-  color: #1a1a1a;
+  color: var(--gray-900);
   line-height: 1.3;
 }
 .wf-step-body {
@@ -244,7 +244,7 @@
 .wf-step-desc b, .wf-tips b {
   font-weight: 600;
   font-size: inherit;
-  color: #1a1a1a;
+  color: var(--gray-900);
 }
 .wf-step-desc em, .wf-tips em {
   font-style: italic;
@@ -253,7 +253,7 @@
 .wf-note {
   font-size: 11px;
   line-height: 1.6;
-  color: #888;
+  color: var(--gray-500);
   font-style: italic;
   margin-top: 6px;
 }
@@ -270,7 +270,7 @@
 .wf-tips li {
   font-size: 11.5px;
   line-height: 1.5;
-  color: #555;
+  color: var(--gray-700);
   padding-left: 14px;
   position: relative;
 }
@@ -278,7 +278,7 @@
   content: '›';
   position: absolute;
   left: 0;
-  color: #bbb;
+  color: var(--gray-300);
   font-size: 13px;
   line-height: 1.4;
 }
@@ -288,10 +288,10 @@
   border: 1px solid #ddd;
   border-radius: 3px;
   padding: 0 5px;
-  font-family: 'DM Mono', monospace;
+  font-family: var(--font-mono);
   font-size: 10px;
   white-space: nowrap;
-  color: #1a1a1a;
+  color: var(--gray-900);
 }
 
 /* ── Expandable examples card ── */
@@ -314,7 +314,7 @@
 .wf-example-grid img {
   width: 100%;
   height: auto;
-  border: 1px solid #e0e0e0;
+  border: 1px solid var(--gray-200);
   border-radius: 4px;
   display: block;
   cursor: zoom-in;
@@ -339,33 +339,33 @@
 }
 .wf-example-grid figcaption {
   font-size: 11px;
-  color: #888;
+  color: var(--gray-500);
   margin-top: 5px;
 }
 .wf-download {
   display: inline-block;
-  background: #1a1a1a;
+  background: var(--gray-900);
   color: #fff;
   text-decoration: none;
-  font-family: 'DM Mono', monospace;
+  font-family: var(--font-mono);
   font-size: 11px;
   letter-spacing: 0.03em;
   padding: 7px 13px;
   border-radius: 4px;
 }
-.wf-download:hover { background: #333; }
+.wf-download:hover { background: var(--gray-800); }
 @media (max-width: 640px) {
   .wf-example-grid { grid-template-columns: 1fr; }
 }
 
 /* ── Pseudocode block ── */
 .wf-code {
-  background: #1a1a1a;
+  background: var(--gray-900);
   color: #e8e8e8;
   border-radius: 4px;
   padding: 12px 14px;
   margin: 8px 0;
-  font-family: 'DM Mono', monospace;
+  font-family: var(--font-mono);
   font-size: 12px;
   line-height: 1.6;
   white-space: pre;
@@ -380,20 +380,20 @@
 }
 .wf-table th {
   text-align: left;
-  font-family: 'DM Mono', monospace;
+  font-family: var(--font-mono);
   font-size: 9px;
   font-weight: 700;
   letter-spacing: 0.06em;
   text-transform: uppercase;
   color: #999;
   padding: 6px 10px;
-  border-bottom: 1px solid #e0e0e0;
+  border-bottom: 1px solid var(--gray-200);
 }
 .wf-table td {
   padding: 7px 10px;
   border-bottom: 1px solid #f0f0f0;
   vertical-align: top;
-  color: #333;
+  color: var(--gray-800);
 }
 .wf-table tr:last-child td { border-bottom: none; }
 .wf-table kbd {
@@ -402,16 +402,16 @@
   border: 1px solid #ddd;
   border-radius: 3px;
   padding: 0 5px;
-  font-family: 'DM Mono', monospace;
+  font-family: var(--font-mono);
   font-size: 10px;
   white-space: nowrap;
-  color: #1a1a1a;
+  color: var(--gray-900);
 }
 
 /* ── Tool badges ── */
 .wf-badge {
   margin-left: auto;
-  font-family: 'DM Mono', monospace;
+  font-family: var(--font-mono);
   font-size: 9px;
   font-weight: 500;
   letter-spacing: 0.05em;
@@ -424,12 +424,12 @@
 .wf-badge-ai      { background: #fff0e0; color: #cc5500; }
 .wf-badge-ps      { background: #e8f0fe; color: #1a56cc; }
 .wf-badge-id      { background: #fce8f0; color: #b5004a; }
-.wf-badge-rh      { background: #f0e8e8; color: #801010; }
+.wf-badge-rh      { background: var(--accent-course-tint); color: var(--accent-course); }
 .wf-badge-gh      { background: #e8f5e8; color: #2a6a2a; }
 .wf-badge-osm     { background: #e8f4ea; color: #2a7a3a; }
 .wf-badge-ge      { background: #fef3e2; color: #a06020; }
-.wf-badge-neutral { background: #f0f0f0; color: #555; }
-.wf-badge-chat    { background: #f3ece4; color: #9a6a3c; }
+.wf-badge-neutral { background: #f0f0f0; color: var(--gray-700); }
+.wf-badge-chat    { background: var(--note-bg); color: #9a6a3c; }
 .wf-badge-code    { background: #ebdcc9; color: #7a4a1e; }
 
 /* ── Alert / critical notice ── */
@@ -452,7 +452,7 @@
 .wf-alert-body {
   font-size: 13px;
   line-height: 1.5;
-  color: #1a1a1a;
+  color: var(--gray-900);
 }
 .wf-alert-body strong {
   color: #c0000a;
@@ -489,9 +489,9 @@
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  color: #888;
+  color: var(--gray-500);
   padding: 4px 8px;
-  border-bottom: 2px solid #1a1a1a;
+  border-bottom: 2px solid var(--gray-900);
   text-align: left;
 }
 .wf-ctb td {
@@ -511,7 +511,7 @@
   margin-right: 6px;
   border: 1px solid rgba(0,0,0,0.1);
 }
-.wf-ctb .wf-use { font-size: 11px; color: #888; }
+.wf-ctb .wf-use { font-size: 11px; color: var(--gray-500); }
 /* the Typical Use column wraps at every width so the table fits its column */
 .wf-ctb th:last-child,
 .wf-ctb td:last-child { white-space: normal; }
@@ -519,11 +519,11 @@
 /* ── Footer ── */
 .wf-footer {
   margin-top: 24px;
-  border-top: 1px solid #e0e0e0;
+  border-top: 1px solid var(--gray-200);
   padding-top: 10px;
   font-size: 10px;
-  color: #aaa;
-  font-family: 'DM Mono', monospace;
+  color: var(--gray-400);
+  font-family: var(--font-mono);
   display: flex;
   justify-content: space-between;
 }
@@ -565,7 +565,7 @@
 #precedents {
   margin-top: 44px;
   padding-top: 32px;
-  border-top: 2px solid #1a1a1a;
+  border-top: 2px solid var(--gray-900);
   scroll-margin-top: 16px;
 }
 
@@ -577,7 +577,7 @@
   margin-bottom: 24px;
 }
 .wf-spec-item {
-  background: #f5f3f0;
+  background: var(--warm-100);
   border-radius: 4px;
   padding: 8px 12px;
   display: flex;
@@ -585,9 +585,9 @@
   gap: 2px;
 }
 .wf-spec-label {
-  font-family: 'DM Mono', monospace;
+  font-family: var(--font-mono);
   font-size: 9px;
-  color: #888;
+  color: var(--gray-500);
   letter-spacing: 0.08em;
   text-transform: uppercase;
 }
@@ -597,7 +597,7 @@
   box-shadow: inset 0 0 0 1px #f0d4d4;
 }
 .wf-spec-due .wf-spec-label { color: #b05a5a; }
-.wf-spec-due .wf-spec-value { color: #801010; font-weight: 700; }
+.wf-spec-due .wf-spec-value { color: var(--accent-course); font-weight: 700; }
 
 /* List */
 .wf-ref-list { display: flex; flex-direction: column; }
@@ -605,14 +605,14 @@
   display: flex;
   gap: 14px;
   padding: 16px 0;
-  border-top: 1px solid #e8e4de;
+  border-top: 1px solid var(--warm-150);
 }
 .wf-ref-item:first-child { border-top: none; padding-top: 0; }
 .wf-ref-num {
-  font-family: 'DM Mono', monospace;
+  font-family: var(--font-mono);
   font-size: 13px;
   font-weight: 500;
-  color: #bbb;
+  color: var(--gray-300);
   flex-shrink: 0;
   width: 24px;
 }
@@ -626,19 +626,19 @@
 }
 .wf-ref-title { font-size: 14px; font-weight: 700; }
 .wf-ref-tag {
-  font-family: 'DM Mono', monospace;
+  font-family: var(--font-mono);
   font-size: 9px;
   letter-spacing: 0.06em;
   text-transform: uppercase;
   background: #f0f0f0;
-  color: #555;
+  color: var(--gray-700);
   padding: 2px 7px;
   border-radius: 3px;
 }
 .wf-ref-meta {
-  font-family: 'DM Mono', monospace;
+  font-family: var(--font-mono);
   font-size: 11px;
-  color: #888;
+  color: var(--gray-500);
   margin-bottom: 6px;
 }
 .wf-ref-notes {
@@ -654,10 +654,50 @@
   margin-bottom: 6px;
 }
 .wf-ref-link {
-  font-family: 'DM Mono', monospace;
+  font-family: var(--font-mono);
   font-size: 11px;
-  color: #1a1a1a;
+  color: var(--gray-900);
   text-decoration: none;
-  border-bottom: 1px solid #1a1a1a;
+  border-bottom: 1px solid var(--gray-900);
 }
-.wf-ref-link:hover { color: #888; border-color: #888; }
+.wf-ref-link:hover { color: var(--gray-500); border-color: var(--gray-500); }
+
+/* ── Prompt callout: a prompt the student types to Claude, quoted in italics ── */
+.wf-prompt {
+  background: var(--note-bg);
+  border-left: 3px solid var(--note-line);
+  border-radius: 0 4px 4px 0;
+  padding: 10px 14px;
+  margin: 8px 0;
+  font-size: 13px;
+  font-style: italic;
+  color: var(--note-text);
+}
+
+/* ── Aside box: a short explainer set off from the steps ── */
+.wf-aside {
+  background: var(--warm-100);
+  border-left: 3px solid var(--gray-900);
+  border-radius: 0 4px 4px 0;
+  padding: 14px;
+  margin-top: 16px;
+}
+.wf-aside-title {
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-size: 10px;
+  color: var(--gray-900);
+  margin-bottom: 6px;
+}
+
+/* ── Week label above a group of steps ── */
+.wf-week-label {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--gray-400);
+  padding: 0 0 2px 0;
+}

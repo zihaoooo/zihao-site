@@ -16,9 +16,9 @@
        .fit              whole image shown, scaled to fit — uncropped.
    ============================================================ */
 
-/* Shared lecture palette — single source of truth; a page may override or extend. */
+/* Deck palette roles. Values come from /assets/css/tokens.css; a page may override or extend. */
 :root{ --deck-gutter:6px;
-  --ink:#1a1a1a; --paper:#fbfaf8; --line:#e0dbd3; --mute:#8a847c; --accent:#b87333; }
+  --ink:var(--gray-900); --paper:var(--warm-50); --line:var(--warm-200); --mute:var(--warm-500); --accent:var(--accent-deck); }
 
 /* ── stage + carousel mechanics ── */
 .deck{margin-top:10px;}
@@ -133,14 +133,14 @@
 .slide.points-l figure img,.slide.points-r figure img{max-width:100%;max-height:100%;
   width:auto;height:auto;object-fit:contain;display:block;}
 .pts{display:flex;flex-direction:column;justify-content:center;min-width:0;}
-.pts h3{font-family:"DM Sans",sans-serif;font-weight:700;letter-spacing:-.01em;
-  font-size:clamp(15px,2.4cqw,24px);color:#2e2a24;line-height:1.2;margin:0 0 .7em;}
+.pts h3{font-family:var(--font-sans);font-weight:700;letter-spacing:-.01em;
+  font-size:clamp(15px,2.4cqw,24px);color:var(--warm-800);line-height:1.2;margin:0 0 .7em;}
 .pts ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:.6em;}
-.pts li{font-family:"DM Sans",sans-serif;font-size:clamp(12px,1.7cqw,17px);line-height:1.45;
-  color:#4a463f;padding-left:1.15em;position:relative;}
+.pts li{font-family:var(--font-sans);font-size:clamp(12px,1.7cqw,17px);line-height:1.45;
+  color:var(--warm-700);padding-left:1.15em;position:relative;}
 .pts li::before{content:"+";position:absolute;left:0;top:0;line-height:1.45;
-  font-family:"DM Mono",ui-monospace,monospace;font-weight:500;font-size:.95em;
-  color:#b9532e;}
+  font-family:var(--font-mono);font-weight:500;font-size:.95em;
+  color:var(--accent-deck-2);}
 
 /* ── part TOC / agenda divider — list the parts, highlight the one being entered ──
    A recurring divider: one instance per part transition; the row for the part being entered gets
@@ -160,9 +160,9 @@
 .toc .toc-row{display:grid;grid-template-columns:subgrid;grid-column:1/-1;align-items:baseline;
   padding-bottom:clamp(10px,1.8cqw,20px);border-bottom:1px solid var(--line);opacity:.3;transition:opacity .2s;}
 .toc .toc-row:last-child{border-bottom:0;padding-bottom:0;}
-.toc .toc-n{grid-column:1;grid-row:1;font-family:"DM Mono",ui-monospace,monospace;
+.toc .toc-n{grid-column:1;grid-row:1;font-family:var(--font-mono);
   font-size:clamp(11px,1.3cqw,14px);letter-spacing:.2em;text-transform:uppercase;color:var(--mute);}
-.toc .toc-h{grid-column:2;grid-row:1;margin:0;font-family:"DM Sans",sans-serif;font-weight:700;
+.toc .toc-h{grid-column:2;grid-row:1;margin:0;font-family:var(--font-sans);font-weight:700;
   color:var(--ink);font-size:clamp(16px,2.2cqw,36px);letter-spacing:-.01em;line-height:1.05;}
 .toc .toc-row.active{opacity:1;}
 .toc .toc-row.active .toc-n,.toc .toc-row.active .toc-h{color:var(--accent);}
@@ -175,14 +175,14 @@
 .toc--split .toc-h{font-size:clamp(13px,1.6cqw,26px);}
 .toc--split .toc-k{grid-column:3;grid-row:1;margin:0;padding:0;list-style:none;
   display:grid;row-gap:clamp(3px,.6cqw,7px);align-self:start;}
-.toc--split .toc-k li{font-family:"DM Sans",sans-serif;color:var(--ink);
+.toc--split .toc-k li{font-family:var(--font-sans);color:var(--ink);
   font-size:clamp(11px,1.25cqw,19px);line-height:1.25;}
 .toc--split .toc-k li::before{content:"—";color:var(--accent);margin-right:.55em;}
 
 /* optional caption chip, bottom-left of a cell (used sparingly) */
 .slide figure figcaption{position:absolute;left:8px;bottom:7px;
-  font-family:"DM Mono",ui-monospace,monospace;font-size:9.5px;letter-spacing:.04em;
-  color:#4a463f;background:rgba(251,250,248,.82);padding:2px 6px;border-radius:3px;}
+  font-family:var(--font-mono);font-size:9.5px;letter-spacing:.04em;
+  color:var(--warm-700);background:color-mix(in srgb, var(--warm-50) 82%, transparent);padding:2px 6px;border-radius:3px;}
 
 /* ── typeset text cards — .txt-card / .stmt / .cmp ──
    Promoted out of laar64150's lectures (2026-09) once a third deck needed them; built from
@@ -195,27 +195,27 @@
    Markup: <div class="slide" data-cap="…"><div class="embed"><div class="txt-card">…</div></div></div>
    Mirrored for Presenter View under `.pv-deck .txt-card` etc. in deck.js — change both. */
 .txt-card{width:min(1180px,94%);display:flex;flex-direction:column;gap:1.1em;text-align:left;}
-.txt-card h3{margin:0;font-family:"DM Sans",sans-serif;font-weight:700;color:var(--ink);
+.txt-card h3{margin:0;font-family:var(--font-sans);font-weight:700;color:var(--ink);
   font-size:clamp(22px,3cqw,52px);letter-spacing:-.01em;line-height:1.1;}
-.txt-card .lead{font-family:"DM Sans",sans-serif;font-weight:600;color:var(--accent);
+.txt-card .lead{font-family:var(--font-sans);font-weight:600;color:var(--accent);
   font-size:clamp(15px,1.9cqw,28px);line-height:1.35;}
 .txt-card ul{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:.62em;}
-.txt-card li{font-family:"DM Sans",sans-serif;color:var(--mute);
+.txt-card li{font-family:var(--font-sans);color:var(--mute);
   font-size:clamp(14px,1.95cqw,30px);line-height:1.45;padding-left:1.05em;position:relative;}
 .txt-card li::before{content:"+";position:absolute;left:0;color:var(--accent);
-  font-family:"DM Mono",ui-monospace,monospace;}
+  font-family:var(--font-mono);}
 .txt-card li b{color:var(--ink);font-weight:600;}
-.txt-card li .src{font-family:"DM Mono",ui-monospace,monospace;font-size:.8em;
-  letter-spacing:.04em;color:#a39c92;}
+.txt-card li .src{font-family:var(--font-mono);font-size:.8em;
+  letter-spacing:.04em;color:var(--warm-400);}
 .txt-card ul ul{margin:.5em 0 0;gap:.45em;}
 .txt-card ul ul li{font-size:clamp(13px,1.65cqw,25px);}
 .txt-card ul ul li::before{content:"\2013";}
 .txt-card a{color:inherit;text-decoration:underline;text-underline-offset:2px;
-  text-decoration-color:#cfc8bd;word-break:break-all;}
+  text-decoration-color:var(--warm-300);word-break:break-all;}
 
 /* one sentence, carried large */
 .stmt{width:min(1100px,94%);text-align:center;}
-.stmt p{margin:0;font-family:"DM Sans",sans-serif;font-weight:700;color:var(--ink);
+.stmt p{margin:0;font-family:var(--font-sans);font-weight:700;color:var(--ink);
   font-size:clamp(22px,3.1cqw,56px);line-height:1.18;letter-spacing:-.01em;text-wrap:balance;}
 .stmt .sub{margin-top:.6em;font-weight:400;color:var(--mute);
   font-size:clamp(15px,1.9cqw,30px);line-height:1.45;}
@@ -223,63 +223,81 @@
 /* comparison table: <h3> + <table>; thead labels the cases, each row's first cell is its label.
    Keep it to ~4 columns and ~6 rows — past that the fit script shrinks it below reading size. */
 .cmp{width:min(1280px,96%);display:flex;flex-direction:column;gap:.9em;text-align:left;}
-.cmp h3{margin:0;font-family:"DM Sans",sans-serif;font-weight:700;color:var(--ink);
+.cmp h3{margin:0;font-family:var(--font-sans);font-weight:700;color:var(--ink);
   font-size:clamp(20px,2.7cqw,46px);letter-spacing:-.01em;line-height:1.1;}
 .cmp table{border-collapse:collapse;width:100%;table-layout:fixed;}
 .cmp th,.cmp td{text-align:left;vertical-align:top;padding:.5em .75em .5em 0;
-  border-bottom:1px solid var(--line);font-family:"DM Sans",sans-serif;color:var(--mute);
+  border-bottom:1px solid var(--line);font-family:var(--font-sans);color:var(--mute);
   font-size:clamp(12px,1.5cqw,23px);line-height:1.32;}
-.cmp thead th{font-family:"DM Mono",ui-monospace,monospace;color:var(--accent);
+.cmp thead th{font-family:var(--font-mono);color:var(--accent);
   font-size:clamp(10px,1.05cqw,15px);letter-spacing:.13em;text-transform:uppercase;
   border-bottom:1px solid var(--ink);}
 .cmp tbody th{font-weight:600;color:var(--ink);}
 .cmp tbody tr:last-child th,.cmp tbody tr:last-child td{border-bottom:0;}
 .cmp td b,.cmp td strong{color:var(--ink);font-weight:600;}
-.cmp .note{font-family:"DM Sans",sans-serif;color:var(--mute);line-height:1.4;
+.cmp .note{font-family:var(--font-sans);color:var(--mute);line-height:1.4;
   font-size:clamp(12px,1.4cqw,21px);}
+
+/* ── typeset wrapper: a card inside a carousel slide, centered and clipped; the page's fit
+   script scales the child to the fixed 16:9 stage so nothing scrolls. ── */
+.slide .embed{width:100%;height:100%;display:flex;align-items:center;justify-content:center;
+  overflow:hidden;padding:14px;box-sizing:border-box;}
+.slide .embed>*{transform-origin:center center;}
 
 /* ── title slide ── */
 .slide--title{flex-direction:column;text-align:center;gap:14px;background:var(--ink);
   display:flex;align-items:center;justify-content:center;}
-.slide--title .tt{font-family:"DM Sans",sans-serif;font-weight:700;
-  font-size:clamp(16px,2.6cqw,46px);color:#fbfaf8;letter-spacing:-.01em;line-height:1.1;}
-.slide--title .ts{font-family:"DM Mono",ui-monospace,monospace;font-size:11px;
-  letter-spacing:.14em;text-transform:uppercase;color:#b0a898;}
+.slide--title .tt{font-family:var(--font-sans);font-weight:700;
+  font-size:clamp(16px,2.6cqw,46px);color:var(--warm-50);letter-spacing:-.01em;line-height:1.1;}
+.slide--title .ts{font-family:var(--font-mono);font-size:11px;
+  letter-spacing:.14em;text-transform:uppercase;color:var(--warm-400);}
 
 /* ── placeholder slide (image still to source) ── */
 .slide .ph{display:flex;flex-direction:column;align-items:center;justify-content:center;
   gap:9px;width:calc(100% - 28px);height:calc(100% - 28px);
-  border:1.5px dashed #cfc8bd;border-radius:8px;text-align:center;padding:18px;}
-.slide .ph .ph-tag{font-family:"DM Mono",ui-monospace,monospace;font-size:9px;
-  letter-spacing:.14em;text-transform:uppercase;color:#bbb;}
-.slide .ph .ph-desc{font-family:"DM Sans",sans-serif;font-size:13px;
-  color:#8a847c;max-width:48ch;line-height:1.5;}
+  border:1.5px dashed var(--warm-300);border-radius:8px;text-align:center;padding:18px;}
+.slide .ph .ph-tag{font-family:var(--font-mono);font-size:9px;
+  letter-spacing:.14em;text-transform:uppercase;color:var(--gray-300);}
+.slide .ph .ph-desc{font-family:var(--font-sans);font-size:13px;
+  color:var(--warm-500);max-width:48ch;line-height:1.5;}
+
+/* ── talk pages: the deck stands in for the project hero, full width at the top ── */
+#site-main .deck{margin-top:0;margin-bottom:40px;}
+/* site.css sets body line-height 1.7; the stage sets its own per element */
+#site-main .deck-stage{line-height:1.35;}
+/* bare deck: the slide images carry themselves, so no caption strip and no notes.
+   The elements stay in the DOM because deck.js addresses them by id. */
+.deck--bare .deck-stage{background:#111;}
+.deck--bare .deck-meta,
+.deck--bare #deck-notes-toggle,
+.deck--bare #deck-present,
+.deck--bare .deck-notes{display:none;}
 
 /* ── control bar ── */
 .deck-bar{display:flex;align-items:center;gap:14px;margin-top:12px;}
 .deck-btn{appearance:none;border:1px solid var(--line);background:var(--paper);
-  width:34px;height:34px;border-radius:8px;cursor:pointer;color:#4a463f;font-size:16px;
+  width:34px;height:34px;border-radius:8px;cursor:pointer;color:var(--warm-700);font-size:16px;
   line-height:1;display:flex;align-items:center;justify-content:center;flex:0 0 auto;
   transition:border-color .12s,background .12s;}
-.deck-btn:hover{border-color:#bbb;background:#fff;}
+.deck-btn:hover{border-color:var(--gray-300);background:#fff;}
 .deck-btn:disabled{opacity:.32;cursor:default;}
-.deck-count{font-family:"DM Mono",ui-monospace,monospace;font-size:11px;letter-spacing:.06em;
+.deck-count{font-family:var(--font-mono);font-size:11px;letter-spacing:.06em;
   color:var(--mute);flex:0 0 auto;min-width:54px;text-align:center;
   display:flex;align-items:baseline;justify-content:center;}
-#deck-jump{font:inherit;color:#2e2a24;width:2.2em;text-align:right;padding:1px 3px;
+#deck-jump{font:inherit;color:var(--warm-800);width:2.2em;text-align:right;padding:1px 3px;
   border:1px solid transparent;border-radius:4px;background:transparent;-moz-appearance:textfield;}
 #deck-jump:hover{border-color:var(--line);}
-#deck-jump:focus{outline:none;border-color:#bbb;background:#fff;}
-.deck:fullscreen #deck-jump{color:#e4ded5;}
-.deck:fullscreen #deck-jump:focus{background:#1c1c1c;border-color:#555;}
+#deck-jump:focus{outline:none;border-color:var(--gray-300);background:#fff;}
+.deck:fullscreen #deck-jump{color:var(--warm-150);}
+.deck:fullscreen #deck-jump:focus{background:#1c1c1c;border-color:var(--gray-700);}
 .deck-meta{flex:1;min-width:0;}
-.deck-cap{font-family:"DM Sans",sans-serif;font-size:13.5px;color:#2e2a24;
+.deck-cap{font-family:var(--font-sans);font-size:13.5px;color:var(--warm-800);
   font-weight:500;line-height:1.4;display:block;}
-#deck-credit{font-family:"DM Sans",sans-serif;font-size:10.5px;color:#8a8273;
+#deck-credit{font-family:var(--font-sans);font-size:10.5px;color:var(--warm-500);
   line-height:1.35;display:none;margin-top:2px;}
 #deck-credit:not(:empty){display:block;}
-.deck:fullscreen #deck-credit{color:#9a948a;}
-.deck-hint{font-family:"DM Mono",ui-monospace,monospace;font-size:10px;letter-spacing:.05em;
+.deck:fullscreen #deck-credit{color:var(--warm-500);}
+.deck-hint{font-family:var(--font-mono);font-size:10px;letter-spacing:.05em;
   color:var(--mute);margin-top:6px;}
 .deck-fs{margin-left:auto;flex:0 0 auto;font-size:14px;}
 
@@ -338,24 +356,24 @@
 .deck:fullscreen #deck-thumbs-toggle{display:none;}
 .deck:fullscreen .deck-bar{width:min(100vw, calc((100vh - 76px) * 16 / 9));
   padding:0 4px;margin-top:0;}
-.deck:fullscreen .deck-btn{background:#1c1c1c;border-color:#3a3a3a;color:#e4ded5;}
-.deck:fullscreen .deck-btn:hover{background:#262626;border-color:#555;}
-.deck:fullscreen .deck-count{color:#b8b0a6;}
-.deck:fullscreen .deck-cap{color:#e4ded5;}
+.deck:fullscreen .deck-btn{background:#1c1c1c;border-color:#3a3a3a;color:var(--warm-150);}
+.deck:fullscreen .deck-btn:hover{background:#262626;border-color:var(--gray-700);}
+.deck:fullscreen .deck-count{color:var(--warm-400);}
+.deck:fullscreen .deck-cap{color:var(--warm-150);}
 
 /* ── text buttons + notes disclosure ── */
-.deck-btn--text{width:auto;padding:0 12px;font-family:"DM Mono",ui-monospace,monospace;
+.deck-btn--text{width:auto;padding:0 12px;font-family:var(--font-mono);
   font-size:10px;letter-spacing:.08em;text-transform:uppercase;}
 .deck-notes{margin-top:9px;padding:11px 14px;border:1px solid var(--line);border-radius:8px;
-  background:var(--paper);font-family:"DM Sans",sans-serif;font-size:13px;line-height:1.55;
-  color:#4a463f;max-width:82ch;}
+  background:var(--paper);font-family:var(--font-sans);font-size:13px;line-height:1.55;
+  color:var(--warm-700);max-width:82ch;}
 .deck-notes[hidden]{display:none;}
 .deck-notes .nn-empty{color:var(--mute);font-style:italic;}
 .deck-notes ul{margin:0;padding-left:1.1em;list-style:disc;}
 .deck-notes ul ul{margin:2px 0;list-style:circle;}
 .deck-notes li{margin:0 0 4px;}
 .deck-notes li:last-child{margin-bottom:0;}
-.deck-notes b{font-weight:600;color:#2b2823;}
+.deck-notes b{font-weight:600;color:var(--warm-800);}
 /* phone: notes set for glancing while presenting (must follow the base rules above) */
 @media (max-width:560px){
   .deck-notes{margin-top:12px;padding:14px 16px;font-size:17px;line-height:1.62;}
@@ -386,21 +404,21 @@
 .deck-thumbs-inner{position:absolute;inset:0;display:flex;flex-direction:column;}
 .deck-thumbs-head{flex:0 0 auto;display:flex;align-items:center;gap:8px;
   padding:9px 10px;border-bottom:1px solid var(--line);}
-.deck-thumbs-title{font-family:"DM Mono",ui-monospace,monospace;font-size:9.5px;
+.deck-thumbs-title{font-family:var(--font-mono);font-size:9.5px;
   letter-spacing:.16em;text-transform:uppercase;color:var(--mute);}
 .deck-thumbs-close{margin-left:auto;appearance:none;border:0;background:transparent;
-  color:#4a463f;font-size:15px;line-height:1;cursor:pointer;padding:3px 5px;border-radius:5px;}
+  color:var(--warm-700);font-size:15px;line-height:1;cursor:pointer;padding:3px 5px;border-radius:5px;}
 .deck-thumbs-close:hover{background:rgba(0,0,0,.06);}
 .deck-thumbs-list{flex:1;min-height:0;overflow-y:auto;overscroll-behavior:contain;
   padding:8px;display:flex;flex-direction:column;gap:8px;}
 .deck-thumb{flex:0 0 auto;display:flex;gap:7px;align-items:flex-start;
   background:none;border:0;padding:0;cursor:pointer;text-align:left;font:inherit;}
-.deck-thumb-n{font-family:"DM Mono",ui-monospace,monospace;font-size:9px;color:var(--mute);
+.deck-thumb-n{font-family:var(--font-mono);font-size:9px;color:var(--mute);
   width:1.9em;flex:0 0 auto;padding-top:3px;text-align:right;}
 .deck-thumb-frame{flex:1;min-width:0;aspect-ratio:16/9;position:relative;overflow:hidden;
   background:var(--paper);border:1px solid var(--line);border-radius:3px;
   transition:border-color .12s,box-shadow .12s;}
-.deck-thumb:hover .deck-thumb-frame{border-color:#bbb;}
+.deck-thumb:hover .deck-thumb-frame{border-color:var(--gray-300);}
 .deck-thumb.active .deck-thumb-n{color:var(--accent);}
 .deck-thumb.active .deck-thumb-frame{border-color:var(--accent);
   box-shadow:0 0 0 1.5px var(--accent);}
@@ -409,10 +427,10 @@
   container-type:inline-size;pointer-events:none;}
 .deck-thumb-scale .slide{position:absolute;inset:0;opacity:1;visibility:visible;transition:none;}
 .deck-thumb-vid{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
-  font-family:"DM Mono",ui-monospace,monospace;font-size:11px;color:var(--accent);}
+  font-family:var(--font-mono);font-size:11px;color:var(--accent);}
 /* fullscreen: dark to match the stage */
-.deck:fullscreen .deck-thumbs{background:#121212;border-color:#333;}
+.deck:fullscreen .deck-thumbs{background:#121212;border-color:var(--gray-800);}
 .deck:fullscreen .deck-thumbs-head{border-bottom-color:#2a2a2a;}
-.deck:fullscreen .deck-thumbs-close{color:#e4ded5;}
+.deck:fullscreen .deck-thumbs-close{color:var(--warm-150);}
 .deck:fullscreen .deck-thumbs-close:hover{background:rgba(255,255,255,.09);}
 .deck:fullscreen .deck-thumb-frame{border-color:#3a3a3a;}

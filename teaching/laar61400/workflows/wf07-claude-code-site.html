@@ -88,7 +88,7 @@
   <div class="wf-pipeline">
     <div class="wf-pipe-step"><div class="wf-pipe-node">Setup</div><div class="wf-pipe-arrow">→</div></div>
     <div class="wf-pipe-step"><div class="wf-pipe-node">Plan</div><div class="wf-pipe-arrow">→</div></div>
-    <div class="wf-pipe-step"><div class="wf-pipe-node" style="background:#f3ece4;color:#9a6a3c;">Claude Chat</div><div class="wf-pipe-arrow">→</div></div>
+    <div class="wf-pipe-step"><div class="wf-pipe-node" style="background:var(--note-bg);color:#9a6a3c;">Claude Chat</div><div class="wf-pipe-arrow">→</div></div>
     <div class="wf-pipe-step"><div class="wf-pipe-node" style="background:#ebdcc9;color:#7a4a1e;">Claude Code</div><div class="wf-pipe-arrow">→</div></div>
     <div class="wf-pipe-step"><div class="wf-pipe-node wf-pipe-tool">localhost</div><div class="wf-pipe-arrow">→</div></div>
     <div class="wf-pipe-step"><div class="wf-pipe-node wf-pipe-tool">GitHub</div><div class="wf-pipe-arrow">→</div></div>
@@ -186,7 +186,7 @@
       <div class="wf-step-body">
         <div class="wf-step-desc"><strong>Create an empty repository on GitHub.</strong> Click <strong>+</strong> → <strong>New repository</strong>, name it <kbd>my-portfolio</kbd>, leave all defaults, click <strong>Create repository</strong>. Don't add any files.</div>
         <div class="wf-step-desc"><strong>Push from Claude Code.</strong> Copy the repo URL (e.g. <kbd>https://github.com/yourname/my-portfolio.git</kbd>) and type:</div>
-        <div style="background:#f0ede8; border-left:3px solid #c8a97a; border-radius:0 4px 4px 0; padding:10px 14px; margin:8px 0; font-family:monospace; font-size:13px;">Commit all my files and push to https://github.com/yourname/my-portfolio.git</div>
+        <div style="background:#f0ede8; border-left:3px solid var(--note-line); border-radius:0 4px 4px 0; padding:10px 14px; margin:8px 0; font-family:monospace; font-size:13px;">Commit all my files and push to https://github.com/yourname/my-portfolio.git</div>
         <div class="wf-step-desc"><strong>Enable GitHub Pages.</strong> In your repo on github.com: <strong>Settings → Pages</strong> → deploy from <kbd>main</kbd> branch, root folder.</div>
       </div>
     </div>
@@ -206,8 +206,8 @@
   </div><!-- /steps -->
 
   <!-- Explainers -->
-  <div style="background:#f5f3f0; border-left:3px solid #1a1a1a; border-radius:0 4px 4px 0; padding:14px; margin-top:28px;">
-    <div style="font-weight:700; text-transform:uppercase; letter-spacing:0.05em; font-size:10px; color:#1a1a1a; margin-bottom:6px;">What is Git?</div>
+  <div class="wf-aside" style="margin-top:28px;">
+    <div class="wf-aside-title">What is Git?</div>
     <div class="wf-step-desc">Git keeps a history of every saved version of your files — like version history in InDesign or Photoshop, but for your whole project folder, and the snapshots are deliberate. Instead of <em>site_final_v2_REALLY_final</em>, you keep one folder and Git remembers each saved state, so you can always go back.</div>
     <div class="wf-step-desc">Three names that get mixed up:</div>
     <ul class="wf-tips">
@@ -218,8 +218,8 @@
     <div class="wf-step-desc">You won't operate Git by hand — Claude Code does the snapshots and uploads. You just need the idea: deliberate saves you can return to, backed up online, served as a site.</div>
   </div>
 
-  <div style="background:#f5f3f0; border-left:3px solid #1a1a1a; border-radius:0 4px 4px 0; padding:14px; margin-top:16px;">
-    <div style="font-weight:700; text-transform:uppercase; letter-spacing:0.05em; font-size:10px; color:#1a1a1a; margin-bottom:6px;">Chat vs. Code</div>
+  <div class="wf-aside">
+    <div class="wf-aside-title">Chat vs. Code</div>
     <div class="wf-step-desc">You used two different tools in this workflow, and the difference is the point:</div>
     <ul class="wf-tips">
       <li><strong>Claude Chat</strong> is for <em>deciding</em>. Thinking through what you want, planning, writing the spec. No files are touched.</li>

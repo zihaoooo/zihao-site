@@ -11,6 +11,15 @@ Used by BOTH sections of the site, which differ only in the chrome above the dec
 Both `<link>` `deck.css` and `<script>` `deck.js` from `/assets/deck/`. Never copy either into a
 factory or a page — extend here, and the whole site follows.
 
+## Fonts and colors
+Every font and UI color is a variable in `/assets/css/tokens.css` (the chrome stylesheet
+imports it). Page `<style>` blocks, `style=""` attributes and SVG diagrams write
+`var(--font-sans)`, `var(--font-mono)`, `var(--ink)`, `var(--mute)`, `var(--line)`,
+`var(--accent)`, `var(--paper)` and the gray scales — in SVG put them in `style=""`, since
+presentation attributes like `fill=` only take var() in some browsers. Write a literal hex
+only for a content color: data series, brand logos, type or color specimens.
+The `.slide .embed` wrapper for typeset cards is in deck.css; pages keep only their own fit script.
+
 ## Deck layout system
 CSS lives in shared `/assets/deck/deck.css` (one file, all decks) — `<link>` it,
 never copy. Markup is uniform: `.slide` + a system class + plain `<figure><img></figure>` cells

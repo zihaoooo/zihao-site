@@ -94,14 +94,14 @@
 
   <!-- Pipeline strip -->
   <div class="wf-pipeline">
-    <div class="wf-pipe-step"><div class="wf-pipe-node" style="background:#f0e8e8;color:#801010;">Rhino</div><div class="wf-pipe-arrow">→</div></div>
+    <div class="wf-pipe-step"><div class="wf-pipe-node" style="background:var(--accent-course-tint);color:var(--accent-course);">Rhino</div><div class="wf-pipe-arrow">→</div></div>
     <div class="wf-pipe-step"><div class="wf-pipe-node" style="background:#e8f5e8;color:#2a6a2a;">Populate 2D</div><div class="wf-pipe-arrow">→</div></div>
     <div class="wf-pipe-step"><div class="wf-pipe-node wf-pipe-tool">Rule</div><div class="wf-pipe-arrow">→</div></div>
     <div class="wf-pipe-step"><div class="wf-pipe-node">Line Field</div></div>
   </div>
 
   <!-- Intro -->
-  <div style="background:#f5f3f0; border-radius:4px; padding:16px 18px; margin-bottom:28px;">
+  <div style="background:var(--warm-100); border-radius:4px; padding:16px 18px; margin-bottom:28px;">
     <div class="wf-step-desc">A flat meadow. Two parametric rules encode two landscape conditions — a mown path, and wet areas. The same field, two rules, two spatial readings.</div>
     <div class="wf-step-desc">This workflow introduces the core logic of parametric design: <strong>write the rule first, then build it in nodes.</strong></div>
   </div>
@@ -111,7 +111,7 @@
 
     <!-- Week 9 label -->
     <div class="wf-step wf-full" style="background:none;border:none;padding:0;margin-top:4px;">
-      <div style="font-size:9px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#aaa;font-family:'DM Mono',monospace;padding:0 0 2px 0;">Week 9 — Mowing Path</div>
+      <div class="wf-week-label">Week 9 — Mowing Path</div>
     </div>
 
     <!-- Pseudocode 9 -->
@@ -227,7 +227,7 @@
 
     <!-- Week 10 label -->
     <div class="wf-step wf-full" style="background:none;border:none;padding:0;margin-top:4px;">
-      <div style="font-size:9px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#aaa;font-family:'DM Mono',monospace;padding:0 0 2px 0;">Week 10 — Wet Areas</div>
+      <div class="wf-week-label">Week 10 — Wet Areas</div>
     </div>
 
     <!-- Pseudocode 10 -->
@@ -375,8 +375,8 @@
   </div>
 
   <!-- Tips -->
-  <div style="background:#f5f3f0; border-left:3px solid #1a1a1a; border-radius:0 4px 4px 0; padding:14px; margin-top:16px;">
-    <div style="font-weight:700; text-transform:uppercase; letter-spacing:0.05em; font-size:10px; color:#1a1a1a; margin-bottom:8px;">Tips</div>
+  <div class="wf-aside">
+    <div style="font-weight:700; text-transform:uppercase; letter-spacing:0.05em; font-size:10px; color:var(--gray-900); margin-bottom:8px;">Tips</div>
     <ul class="wf-tips">
       <li>Write the rule on paper before touching a node. The pseudocode is the design.</li>
       <li>Dispatch is the readable edge; Remap is the gradient. Know which one the condition wants.</li>

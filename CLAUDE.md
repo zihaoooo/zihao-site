@@ -2,6 +2,8 @@
 
 Repo layout:
 - _local/ — committed backup; unlinked, never on the live site.
+- assets/css/tokens.css — every font and UI color as a variable; imported by site.css and the
+  course main.css. Pages write var(--…), never a font name or UI hex (deck-spec.md § Fonts and colors).
 - assets/css/site.css — shared styles. assets/js/site.js — nav active-state by URL.
 - assets/deck/ — deck.{css,js} = slide-deck layout system + carousel controller; deck-spec.md = the
   spec for both (source of truth, edit it here). Shared by

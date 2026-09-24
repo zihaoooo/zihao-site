@@ -68,34 +68,34 @@
   .ft-category { margin-bottom: 28px; }
   .ft-cat-head { display: flex; align-items: baseline; gap: 10px; padding: 7px 12px; border-radius: 4px 4px 0 0; }
   .ft-cat-head h2 { font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #fff; margin: 0; }
-  .ft-cat-sub { font-size: 10px; color: rgba(255,255,255,0.65); font-family: 'DM Mono', monospace; margin: 0; }
+  .ft-cat-sub { font-size: 10px; color: rgba(255,255,255,0.65); font-family: var(--font-mono); margin: 0; }
 
   .ft-table { width: 100%; border-collapse: collapse; }
-  .ft-table thead th { font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: #999; padding: 6px 10px 5px; border-bottom: 1px solid #e8e8e8; text-align: left; font-family: 'DM Mono', monospace; background: #faf9f7; }
-  .ft-table tbody tr { border-bottom: 1px solid #f0eeeb; }
+  .ft-table thead th { font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: #999; padding: 6px 10px 5px; border-bottom: 1px solid #e8e8e8; text-align: left; font-family: var(--font-mono); background: var(--warm-50); }
+  .ft-table tbody tr { border-bottom: 1px solid var(--warm-100); }
   .ft-table tbody tr:last-child { border-bottom: none; }
   .ft-table tbody td { padding: 8px 10px; vertical-align: top; font-size: 13px; line-height: 1.5; }
 
-  .ft-tag { font-family: 'DM Mono', monospace; font-size: 11px; font-weight: 700; display: inline-block; padding: 2px 7px; border-radius: 3px; color: #fff; white-space: nowrap; }
-  .ft-name { font-weight: 600; color: #1a1a1a; }
-  .ft-note { color: #777; font-size: 11px; font-family: 'DM Mono', monospace; display: block; margin-top: 1px; }
-  .ft-use { color: #333; }
-  .ft-fact { color: #555; font-size: 12.5px; line-height: 1.6; }
-  .ft-fact strong { color: #1a1a1a; font-weight: 600; }
+  .ft-tag { font-family: var(--font-mono); font-size: 11px; font-weight: 700; display: inline-block; padding: 2px 7px; border-radius: 3px; color: #fff; white-space: nowrap; }
+  .ft-name { font-weight: 600; color: var(--gray-900); }
+  .ft-note { color: #777; font-size: 11px; font-family: var(--font-mono); display: block; margin-top: 1px; }
+  .ft-use { color: var(--gray-800); }
+  .ft-fact { color: var(--gray-700); font-size: 12.5px; line-height: 1.6; }
+  .ft-fact strong { color: var(--gray-900); font-weight: 600; }
   .ft-alert { color: #b05000; }
 
-  .ft-divider { border: none; border-top: 2px solid #1a1a1a; margin: 28px 0 20px; }
-  .ft-section-label { font-family: 'DM Mono', monospace; font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: #aaa; margin-bottom: 14px; display: block; }
+  .ft-divider { border: none; border-top: 2px solid var(--gray-900); margin: 28px 0 20px; }
+  .ft-section-label { font-family: var(--font-mono); font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: var(--gray-400); margin-bottom: 14px; display: block; }
 
   .ft-concepts { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
-  .ft-concept { background: #f7f5f2; border-left: 3px solid #1a1a1a; padding: 10px 14px; border-radius: 0 4px 4px 0; }
-  .ft-concept strong { font-size: 12px; font-weight: 700; display: block; margin-bottom: 3px; color: #1a1a1a; }
+  .ft-concept { background: var(--warm-100); border-left: 3px solid var(--gray-900); padding: 10px 14px; border-radius: 0 4px 4px 0; }
+  .ft-concept strong { font-size: 12px; font-weight: 700; display: block; margin-bottom: 3px; color: var(--gray-900); }
   .ft-concept p { font-size: 12px; color: #444; line-height: 1.6; margin: 0; }
 
-  .ft-nurbs-note { background: #f0eee8; border: 1px solid #ddd; border-radius: 4px; padding: 10px 14px; font-size: 12px; color: #444; line-height: 1.6; margin-top: 6px; }
-  .ft-nurbs-note strong { color: #1a1a1a; }
+  .ft-nurbs-note { background: var(--warm-100); border: 1px solid #ddd; border-radius: 4px; padding: 10px 14px; font-size: 12px; color: #444; line-height: 1.6; margin-top: 6px; }
+  .ft-nurbs-note strong { color: var(--gray-900); }
 
-  .ft-shp-note { background: #f0f4f0; border: 1px solid #c8dac8; border-radius: 4px; padding: 8px 12px; font-size: 11.5px; color: #3a5a3a; font-family: 'DM Mono', monospace; margin-top: 4px; line-height: 1.7; }
+  .ft-shp-note { background: #f0f4f0; border: 1px solid #c8dac8; border-radius: 4px; padding: 8px 12px; font-size: 11.5px; color: #3a5a3a; font-family: var(--font-mono); margin-top: 4px; line-height: 1.7; }
 
   @media (max-width: 640px) {
     .ft-concepts { grid-template-columns: 1fr; }
@@ -245,7 +245,7 @@
 
 <!-- ═══════════════════════════════════════════════════ 3D ══ -->
 <div class="ft-category">
-  <div class="ft-cat-head" style="background:#801010;">
+  <div class="ft-cat-head" style="background:var(--accent-course);">
     <h2>3D Models</h2>
     <span class="ft-cat-sub">geometry · NURBS vs mesh · fabrication &amp; rendering</span>
   </div>
@@ -260,37 +260,37 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="ft-tag" style="background:#801010;">.3dm</span></td>
+        <td><span class="ft-tag" style="background:var(--accent-course);">.3dm</span></td>
         <td><span class="ft-name">Rhino 3DM</span></td>
         <td class="ft-use">Rhino working file</td>
         <td class="ft-fact">Native NURBS + mesh geometry. Preserves layers, materials, history. The format to work in — only export to others for delivery.</td>
       </tr>
       <tr>
-        <td><span class="ft-tag" style="background:#801010;">.gh</span><span class="ft-note">.ghx</span></td>
+        <td><span class="ft-tag" style="background:var(--accent-course);">.gh</span><span class="ft-note">.ghx</span></td>
         <td><span class="ft-name">Grasshopper Definition</span></td>
         <td class="ft-use">Parametric scripts (the recipe, not the model)</td>
         <td class="ft-fact"><strong>Stores logic, not geometry.</strong> A <kbd>.gh</kbd> is the node graph — the rules that <em>generate</em> form — and runs on top of an open Rhino file. <kbd>.gh</kbd> is binary; <kbd>.ghx</kbd> is the same as readable XML. Share both the .gh and the .3dm it drives; the .gh alone produces nothing.</td>
       </tr>
       <tr>
-        <td><span class="ft-tag" style="background:#801010;">.obj</span></td>
+        <td><span class="ft-tag" style="background:var(--accent-course);">.obj</span></td>
         <td><span class="ft-name">Wavefront OBJ</span></td>
         <td class="ft-use">3D mesh exchange (renderers, Illustrator)</td>
         <td class="ft-fact">Universal mesh format. Text-based. Carries mesh only — no NURBS. Pairs with .mtl file for materials. Exporting Rhino → OBJ converts NURBS to mesh: an <span class="ft-alert">irreversible approximation</span>.</td>
       </tr>
       <tr>
-        <td><span class="ft-tag" style="background:#801010;">.fbx</span></td>
+        <td><span class="ft-tag" style="background:var(--accent-course);">.fbx</span></td>
         <td><span class="ft-name">Filmbox (Autodesk)</span></td>
         <td class="ft-use">Game engines, animation, SketchUp handoff</td>
         <td class="ft-fact">Carries mesh + materials + animation + hierarchy. Use for Unity, Unreal, or exchanging with SketchUp / 3ds Max. Autodesk proprietary.</td>
       </tr>
       <tr>
-        <td><span class="ft-tag" style="background:#801010;">.stl</span></td>
+        <td><span class="ft-tag" style="background:var(--accent-course);">.stl</span></td>
         <td><span class="ft-name">Stereolithography</span></td>
         <td class="ft-use">3D printing / fabrication</td>
         <td class="ft-fact">Mesh only (triangulated surfaces). No color, materials, or hierarchy. The universal fabrication format. Geometry must be a closed solid — open surfaces won't print.</td>
       </tr>
       <tr>
-        <td><span class="ft-tag" style="background:#801010;">.skp</span></td>
+        <td><span class="ft-tag" style="background:var(--accent-course);">.skp</span></td>
         <td><span class="ft-name">SketchUp</span></td>
         <td class="ft-use">Massing models, quick architecture</td>
         <td class="ft-fact">Proprietary. Common in architecture offices for quick massing. Imports into Rhino with some data loss (mesh only, no NURBS). Avoid as a final deliverable if Rhino is the project standard.</td>

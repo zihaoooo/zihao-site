@@ -1,0 +1,56 @@
+/* ============================================================
+   Design tokens -- the one place the site's fonts and colors are set.
+   Imported by assets/css/site.css, teaching/laar61400/assets/css/main.css and
+   workflow-shared.css, so every page has them, and by the presenter window that
+   deck.js writes. deck.css and page <style> blocks read these variables instead
+   of naming a font or a UI color.
+   Content colors (diagram swatches, brand logos, type specimens) stay literal
+   in their pages -- they depict something, they are not the site palette.
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;700&family=DM+Serif+Display&family=Noto+Serif+SC:wght@300&display=swap');
+
+:root {
+  /* ── type ── */
+  --font-sans:    'DM Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  --font-display: 'DM Serif Display', Georgia, serif;
+  --font-mono:    'DM Mono', ui-monospace, monospace;
+  --font-zh:      'Noto Serif SC', serif;
+
+  /* ── neutral grays, dark to light ── */
+  --gray-900: #1a1a1a;
+  --gray-800: #333;
+  --gray-700: #555;
+  --gray-500: #888;
+  --gray-400: #aaa;
+  --gray-300: #bbb;
+  --gray-200: #e0e0e0;
+
+  /* ── warm grays, dark to light (deck surfaces, course panel, notes) ── */
+  --warm-800: #2e2a24;
+  --warm-700: #4a463f;
+  --warm-600: #6f6a62;
+  --warm-500: #8a847c;
+  --warm-400: #b0a898;
+  --warm-300: #cfc8bd;
+  --warm-200: #e0dbd3;
+  --warm-150: #ede9e4;
+  --warm-100: #f5f3f0;
+  --warm-50:  #fbfaf8;
+
+  /* ── accents ── */
+  --link:        #b94030;   /* site links */
+  --link-hover:  #8a2e22;
+  --link-soft:   #dcb9b2;   /* resting underline */
+  --accent-deck:    #b87333;   /* deck.css reads this as --accent */
+  --accent-deck-2:  #b9532e;   /* bullet marks */
+  --accent-deck-lt: #d98a63;   /* accent on dark (presenter window) */
+  --accent-course:      #801010;   /* LAAR 61400 panel + workflows */
+  --accent-course-tint: #f3e6e6;
+  --accent-course-line: #d8c9c9;
+
+  /* ── prompt callout in workflows (a quoted prompt to type) ── */
+  --note-bg:   #f3ece4;
+  --note-line: #c8a97a;
+  --note-text: #5a3a1a;
+}

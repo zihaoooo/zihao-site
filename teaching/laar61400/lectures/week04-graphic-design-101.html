@@ -8,13 +8,6 @@
   <link rel="stylesheet" href="/teaching/laar61400/assets/css/workflow-shared.css">
   <link rel="stylesheet" href="/assets/deck/deck.css">
   <style>
-    /* palette tokens live in deck.css :root */
-
-    /* a widget/diagram living inside a carousel slide: centered, clipped; JS scales the
-       child to fit the fixed 16:9 stage (see fitEmbeds) so nothing scrolls. */
-    .slide .embed{width:100%;height:100%;display:flex;align-items:center;justify-content:center;
-      overflow:hidden;padding:14px;box-sizing:border-box;}
-    .slide .embed>*{transform-origin:center center;}
     /* neutralize deck.css's .slide figure / figcaption rules inside embeds (they collapse
        widget boards & template tiles and absolutely-position our captions) */
     .slide .embed figure{display:block;margin:0;overflow:visible;background:none;
@@ -27,13 +20,13 @@
 
     /* ── text slide (checklist) ── */
     .slide.textslide{display:flex;align-items:center;justify-content:center;background:var(--paper);}
-    .gd-checklist{width:min(640px,90%);font-family:"DM Sans",sans-serif;color:var(--ink);}
+    .gd-checklist{width:min(640px,90%);font-family:var(--font-sans);color:var(--ink);}
     .gd-checklist h3{font-size:clamp(18px,2.6cqw,26px);margin:0 0 18px;font-weight:700;}
     .gd-checklist ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:11px;}
-    .gd-checklist li{font-size:clamp(13px,1.8cqw,16px);line-height:1.4;padding-left:26px;position:relative;color:#3a352f;}
+    .gd-checklist li{font-size:clamp(13px,1.8cqw,16px);line-height:1.4;padding-left:26px;position:relative;color:var(--warm-700);}
     .gd-checklist li::before{content:"";position:absolute;left:0;top:.35em;width:13px;height:13px;
       border:2px solid var(--accent);border-radius:3px;}
-    .gd-checklist li b{color:var(--mute);font-weight:600;font-family:"DM Mono",monospace;font-size:.82em;}
+    .gd-checklist li b{color:var(--mute);font-weight:600;font-family:var(--font-mono);font-size:.82em;}
 
     /* ── schematic two-up mocks (slides 9 & 12), d1-fix-it page idiom ── */
     .gd-mock{width:min(860px,94%);display:grid;grid-template-columns:1fr 1fr;gap:clamp(16px,3cqw,38px);align-items:start;}
@@ -54,11 +47,11 @@
     .al-good .e3{top:50%;left:7%;width:40%;height:42%;background:#2f6d68;}
     .al-good .e4{top:50%;left:53%;width:40%;height:42%;background:#243b3a;}
     /* slide 12 — balance, grey masses */
-    .bal .m{position:absolute;background:#8a847c;border-radius:3px;opacity:.85;}
+    .bal .m{position:absolute;background:var(--warm-500);border-radius:3px;opacity:.85;}
     .bal-sym .m1{top:10%;left:32%;width:36%;height:40%;}
     .bal-sym .m2{top:58%;left:18%;width:28%;height:28%;}
     .bal-sym .m3{top:58%;left:54%;width:28%;height:28%;}
-    .bal-asym .m1{top:10%;left:8%;width:50%;height:62%;background:#3a352f;}
+    .bal-asym .m1{top:10%;left:8%;width:50%;height:62%;background:var(--warm-700);}
     .bal-asym .m2{top:16%;left:64%;width:26%;height:20%;}
     .bal-asym .m3{top:62%;left:64%;width:26%;height:24%;opacity:.6;}
 
@@ -82,7 +75,7 @@
       gap:5%;}
     .lt-sm span{position:static;width:auto;height:auto;}
     /* T4 left text, right image */
-    .lt-lr .a{left:7%;top:7%;bottom:7%;width:34%;background:#e3ddd2;}
+    .lt-lr .a{left:7%;top:7%;bottom:7%;width:34%;background:var(--warm-200);}
     .lt-lr .b{right:7%;top:7%;bottom:7%;width:46%;}
     /* T5 full bleed — image fills the tile, title floats on top */
     .lt-fb .a{inset:0;border-radius:0;} .lt-fb .b{left:7%;top:10%;width:50%;height:9%;
@@ -101,8 +94,8 @@
     .gd-tools{display:flex;flex-direction:column;gap:18px;margin-top:14px;}
     .gd-tools__card{border:1px solid var(--line);border-radius:12px;background:#fff;
       padding:20px 22px 24px;box-shadow:0 4px 16px rgba(0,0,0,.05);overflow:hidden;}
-    .gd-tools__card h4{margin:0 0 4px;font-family:"DM Sans",sans-serif;font-size:15px;color:var(--ink);}
-    .gd-tools__card p.k{margin:0 0 16px;font-family:"DM Mono",monospace;font-size:10.5px;
+    .gd-tools__card h4{margin:0 0 4px;font-family:var(--font-sans);font-size:15px;color:var(--ink);}
+    .gd-tools__card p.k{margin:0 0 16px;font-family:var(--font-mono);font-size:10.5px;
       letter-spacing:.06em;text-transform:uppercase;color:var(--mute);}
     /* widgets fill the card width (override their min(...,92cqw) standalone sizing) so the page never scrolls sideways */
     .gd-tools__card>.gd-hsv,.gd-tools__card>.gd-mix,.gd-tools__card>.gd-val,
@@ -112,14 +105,14 @@
     .gd-scroll{margin-top:14px;border:1px solid var(--line);border-radius:10px;background:var(--paper);
       overflow:hidden;}
     .gd-scroll__bar{display:flex;align-items:baseline;gap:10px;padding:12px 16px 0;}
-    .gd-scroll__bar b{font-family:"DM Sans",sans-serif;font-size:14px;color:var(--ink);}
-    .gd-scroll__bar span{font-family:"DM Mono",monospace;font-size:10px;letter-spacing:.05em;color:var(--mute);}
+    .gd-scroll__bar b{font-family:var(--font-sans);font-size:14px;color:var(--ink);}
+    .gd-scroll__bar span{font-family:var(--font-mono);font-size:10px;letter-spacing:.05em;color:var(--mute);}
     .gd-scroll__viewport{overflow-x:auto;overflow-y:hidden;-webkit-overflow-scrolling:touch;
       margin:12px 0 0;cursor:grab;}
     .gd-scroll__viewport.dragging{cursor:grabbing;scroll-behavior:auto;}
     .gd-scroll__viewport.dragging img{pointer-events:none;}
     .gd-scroll__viewport img{display:block;height:360px;width:auto;max-width:none;}
-    .gd-scroll__hint{font-family:"DM Mono",monospace;font-size:10px;letter-spacing:.05em;color:var(--mute);
+    .gd-scroll__hint{font-family:var(--font-mono);font-size:10px;letter-spacing:.05em;color:var(--mute);
       padding:8px 16px 12px;}
 
     /* ===== widget: C1 HSV ===== */
@@ -178,7 +171,7 @@
       color:var(--mute);margin-bottom:8px;text-align:center;}
     .gd-val__board{aspect-ratio:11/8.5;border-radius:10px;border:1px solid var(--line);
       overflow:hidden;position:relative;box-shadow:0 6px 22px rgba(0,0,0,.10);}
-    .board-good{background:#f4efe6;}
+    .board-good{background:var(--warm-100);}
     .board-good .sky{position:absolute;inset:0 0 46% 0;background:#1d3a52;}
     .board-good .ground{position:absolute;inset:54% 0 0 0;background:#e7decb;}
     .board-good .mass{position:absolute;left:12%;bottom:14%;width:30%;height:52%;background:#0f1a14;border-radius:4px;}
@@ -202,18 +195,18 @@
     .gd-t1__demo{width:100%;border:1px solid var(--line);border-radius:8px;overflow:hidden;
       box-shadow:0 6px 22px rgba(0,0,0,.10);background:#fff;}
     .gd-t1__band{padding:26px 30px;transition:background .4s ease;}
-    .gd-t1__band--a{background:#6f6358;}
+    .gd-t1__band--a{background:var(--warm-600);}
     .gd-t1__band--b{background:#ffffff;padding:34px 30px;}
-    .gd-t1__band--c{background:#6f6358;padding:30px;}
+    .gd-t1__band--c{background:var(--warm-600);padding:30px;}
     .gd-t1__line{margin:0;line-height:1.05;transition:font-size .4s ease,color .4s ease,font-weight .4s ease;}
-    .gd-t1 .l-last {font-size:15px;font-weight:600;color:#efe9e2;}
+    .gd-t1 .l-last {font-size:15px;font-weight:600;color:var(--warm-100);}
     .gd-t1 .l-first{font-size:clamp(40px,4.7cqw,84px);font-weight:800;color:#111;letter-spacing:-.01em;}
-    .gd-t1 .l-then {font-size:26px;font-weight:700;color:#f3eee8;}
-    .gd-t1 .l-thenmin{font-size:16px;font-weight:600;color:#d6ccc2;margin-top:12px;}
-    .gd-t1.is-flat .gd-t1__band{background:#e8e3dc;}
-    .gd-t1.is-flat .gd-t1__band--b{background:#e8e3dc;}
+    .gd-t1 .l-then {font-size:26px;font-weight:700;color:var(--warm-100);}
+    .gd-t1 .l-thenmin{font-size:16px;font-weight:600;color:var(--warm-200);margin-top:12px;}
+    .gd-t1.is-flat .gd-t1__band{background:var(--warm-150);}
+    .gd-t1.is-flat .gd-t1__band--b{background:var(--warm-150);}
     .gd-t1.is-flat .gd-t1__line{font-size:19px!important;font-weight:600!important;
-      color:#5a554f!important;letter-spacing:0!important;margin-top:0!important;}
+      color:var(--warm-600)!important;letter-spacing:0!important;margin-top:0!important;}
     .gd-t1.is-flat .l-thenmin{margin-top:10px!important;}
     .gd-t1__btn{appearance:none;border:1.5px solid var(--ink);background:var(--ink);color:var(--paper);
       font:600 14px/1 inherit;letter-spacing:.04em;padding:12px 22px;border-radius:999px;cursor:pointer;
@@ -226,7 +219,7 @@
     .gd-type__sample{
       font-family:var(--family,-apple-system,"Segoe UI",Helvetica,Arial,sans-serif);
       font-size:var(--size,17px);font-weight:var(--weight,400);font-style:var(--style,normal);
-      line-height:var(--lead,1.4);letter-spacing:var(--track,0em);color:var(--col,#1a1a1a);
+      line-height:var(--lead,1.4);letter-spacing:var(--track,0em);color:var(--col,var(--gray-900));
       width:var(--meas,60ch);max-width:100%;}
     .gd-type__sample p{margin:0;}
     .gd-type__toggles{display:flex;gap:10px;flex-wrap:wrap;}
@@ -262,8 +255,8 @@
     .gd-fix .el-hero {top:19%;left:8%;width:40%;height:30%;transform:rotate(-3deg);background:#e0452f;}
     .gd-fix .el-a    {top:14%;left:54%;width:40%;height:30%;transform:rotate(2.5deg);background:#1f8fd6;}
     .gd-fix .el-b    {top:55%;left:16%;width:40%;height:30%;transform:rotate(-1deg);background:#2fae5a;}
-    .gd-fix .el-body {top:50%;left:56%;width:38%;height:36%;transform:rotate(1.5deg);background:#f2efe9;
-      background-image:repeating-linear-gradient(#c4bdb2 0 5px,transparent 5px 13px);
+    .gd-fix .el-body {top:50%;left:56%;width:38%;height:36%;transform:rotate(1.5deg);background:var(--warm-100);
+      background-image:repeating-linear-gradient(var(--warm-300) 0 5px,transparent 5px 13px);
       background-size:100% 100%;background-position:8px 10px;background-repeat:no-repeat;}
     .gd-fix .is-align.gd-fix__page .el-title,.gd-fix__page.is-align .el-title{top:5%;left:6%;width:88%;height:8%;transform:none;}
     .gd-fix__page.is-align .el-title{top:5%;left:6%;width:88%;height:8%;transform:none;}
@@ -727,7 +720,7 @@
             <!-- 16 · T2 readability -->
             <div class="slide" data-cap="The readability rules" data-notes="The few mechanical settings that make type legible — every one a slider here. Size; weight (bold for emphasis, sparingly); leading = space between lines, body ≈ 1.3–1.5×; measure = characters per line, comfortable 45–75; tracking = run-wide letter-spacing, leave body near 0 (different from kerning, which is per-pair); contrast = text vs background — drop it and the text dissolves (the value lesson again). Toggle serif/sans too. Then lock these as paragraph/character styles in InDesign so the whole deck stays consistent.">
               <div class="embed">
-                <div class="gd-type" style="--size:17px;--weight:400;--lead:1.4;--track:0em;--meas:60ch;--col:#1a1a1a;--style:normal;">
+                <div class="gd-type" style="--size:17px;--weight:400;--lead:1.4;--track:0em;--meas:60ch;--col:var(--gray-900);--style:normal;">
                   <div class="gd-type__sample">
                     <p>Typography is what language looks like. The same words can invite you in or push you away, depending only on how the type is set. Spacing, line length, and rhythm do the quiet work of making a paragraph easy — or tiring — to read.</p>
                   </div>
@@ -1012,7 +1005,7 @@
           <div class="gd-tools__card">
             <h4>The readability rules</h4>
             <p class="k">Size · weight · leading · measure · tracking · contrast</p>
-            <div class="gd-type" style="--size:17px;--weight:400;--lead:1.4;--track:0em;--meas:60ch;--col:#1a1a1a;--style:normal;">
+            <div class="gd-type" style="--size:17px;--weight:400;--lead:1.4;--track:0em;--meas:60ch;--col:var(--gray-900);--style:normal;">
               <div class="gd-type__sample"><p>Typography is what language looks like. The same words can invite you in or push you away, depending only on how the type is set. Spacing, line length, and rhythm do the quiet work of making a paragraph easy — or tiring — to read.</p></div>
               <div class="gd-type__toggles">
                 <button class="gd-type__tog" data-tog="family" aria-pressed="false" data-on="Serif" data-off="Sans-serif">Sans-serif</button>

@@ -6,8 +6,6 @@
   <title>Thresholds of Winter &mdash; Zihao Zhang</title>
   <link rel="stylesheet" href="/assets/css/site.css">
   <style>
-    #site-main { max-width: 100%; }
-
     /* ── Visualization ── */
     .viz { margin: 24px 0 8px; }
 
@@ -17,9 +15,9 @@
       align-items: center;
       gap: 10px 22px;
       font-size: 11px;
-      color: #555;
+      color: var(--gray-700);
       padding-bottom: 14px;
-      border-bottom: 1px solid #e0e0e0;
+      border-bottom: 1px solid var(--gray-200);
       margin-bottom: 18px;
     }
     .viz-controls label { letter-spacing: 0.03em; }
@@ -27,18 +25,18 @@
     .viz-controls button {
       font: inherit;
       font-size: 11px;
-      color: #333;
+      color: var(--gray-800);
       background: #fff;
       border: 1px solid #d5d5d5;
       border-radius: 3px;
       padding: 4px 7px;
     }
     .viz-controls button { cursor: pointer; }
-    .viz-controls button:hover { border-color: #1a1a1a; }
-    .viz-controls button.on { background: #1a1a1a; border-color: #1a1a1a; color: #fff; }
+    .viz-controls button:hover { border-color: var(--gray-900); }
+    .viz-controls button.on { background: var(--gray-900); border-color: var(--gray-900); color: #fff; }
     .viz-slider { display: flex; align-items: center; gap: 8px; flex: 1 1 300px; min-width: 240px; }
-    .viz-slider input[type=range] { flex: 1; accent-color: #1a1a1a; }
-    #thresholdValue { font-variant-numeric: tabular-nums; min-width: 62px; color: #1a1a1a; }
+    .viz-slider input[type=range] { flex: 1; accent-color: var(--gray-900); }
+    #thresholdValue { font-variant-numeric: tabular-nums; min-width: 62px; color: var(--gray-900); }
     .viz-unit { display: flex; gap: 10px; }
     .viz-unit label { display: flex; align-items: center; gap: 4px; }
 
@@ -48,7 +46,7 @@
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 0.14em;
-      color: #aaa;
+      color: var(--gray-400);
       margin-bottom: 10px;
       display: block;
     }
@@ -60,13 +58,13 @@
       align-items: center;
       gap: 8px;
       font-size: 10px;
-      color: #aaa;
+      color: var(--gray-400);
       margin-top: 22px;
     }
     .viz-legend .ramp {
       height: 8px;
       width: 180px;
-      border: 1px solid #e0e0e0;
+      border: 1px solid var(--gray-200);
     }
 
     .viz-tip {
@@ -84,7 +82,7 @@
       z-index: 20;
     }
 
-    .viz-note { font-size: 11px; color: #aaa; line-height: 1.8; margin-top: 14px; max-width: 580px; }
+    .viz-note { font-size: 11px; color: var(--gray-400); line-height: 1.8; margin-top: 14px; max-width: 580px; }
 
     @media (max-width: 700px) {
       .viz-panels { grid-template-columns: 1fr; gap: 32px; }

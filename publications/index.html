@@ -13,8 +13,8 @@
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 0.14em;
-      color: #aaa;
-      border-top: 1px solid #e0e0e0;
+      color: var(--gray-400);
+      border-top: 1px solid var(--gray-200);
       padding-top: 20px;
       margin-bottom: 20px;
       display: block;
@@ -23,10 +23,10 @@
     .pub-year-group { margin-bottom: 20px; }
 
     .pub-year {
-      font-family: 'DM Mono', monospace;
+      font-family: var(--font-mono);
       font-size: 10px;
       font-weight: 700;
-      color: #bbb;
+      color: var(--gray-300);
       letter-spacing: 0.1em;
       margin-bottom: 10px;
       display: block;
@@ -43,26 +43,26 @@
     .pub-item {
       font-size: 13px;
       line-height: 1.7;
-      color: #333;
+      color: var(--gray-800);
       padding-left: 2em;
       text-indent: -2em;
     }
 
     .pub-item em { font-style: italic; }
-    .pub-item strong { color: #1a1a1a; font-weight: 600; }
+    .pub-item strong { color: var(--gray-900); font-weight: 600; }
 
     .pub-doi {
       font-size: 11px;
-      color: #888;
+      color: var(--gray-500);
       text-decoration: none;
-      border-bottom: 1px solid #e0e0e0;
+      border-bottom: 1px solid var(--gray-200);
       word-break: break-all;
     }
-    .pub-doi:hover { color: #1a1a1a; border-bottom-color: #1a1a1a; }
+    .pub-doi:hover { color: var(--gray-900); border-bottom-color: var(--gray-900); }
 
     .pub-forthcoming {
       font-size: 11px;
-      color: #aaa;
+      color: var(--gray-400);
       font-style: italic;
     }
   </style>
@@ -100,7 +100,7 @@
       </div>
     </nav>
 
-    <main id="site-main">
+    <main id="site-main" class="site-main--narrow">
       <h1 class="site-title">Publications</h1>
 
       <!-- BOOKS -->
