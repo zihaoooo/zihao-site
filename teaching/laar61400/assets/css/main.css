@@ -54,14 +54,13 @@ body { font-family: var(--font-sans); background: #fff; color: var(--gray-900); 
   color: var(--accent); font-weight: 600; background: var(--accent-tint);
   border-left: 3px solid var(--accent); padding-left: 17px;
 }
-.panel-link.active .panel-link-num, .panel-link.active .panel-link-wk { color: var(--accent); }
+.panel-link.active .panel-link-num { color: var(--accent); }
 .panel-link.placeholder { color: var(--gray-300); cursor: default; pointer-events: none; }
-.panel-link-num, .panel-link-wk {
+.panel-link-num {
   font-family: var(--font-mono); font-size: 10px;
   flex: 0 0 auto;
 }
 .panel-link-num { color: var(--gray-500); }
-.panel-link-wk { color: var(--gray-500); }
 
 /* Main content */
 #main-content { margin-left: 260px; min-height: 100vh; }

@@ -19,13 +19,13 @@ highlighted `.panel-announce` block sitting directly under the brand block in ev
 (propagate nav edits with sed, as elsewhere). Styles live at the end of `assets/css/main.css`.
 
 ## Workflows (`workflows/`)
-- WF01 `wf01-autocad.html` — AutoCAD Site Drafting (Weeks 2–3)
-- WF02 `wf02-sketch-portfolio.html` — Hybrid Drawing + Layout (Weeks 4–5; Part 1 Photoshop joiner + trace, Part 2 InDesign deck)
-- WF03 `wf03-urban-context.html` — Urban Context Mapping (Week 5)
-- WF04 `wf04-landform-design.html` — Rhino Landform Modeling (Weeks 7–8)
-- WF05 `wf05-meadow-parametric.html` — Attractor Fields (Grasshopper meadow; Weeks 9–10)
-- WF06 `wf06-slope-analysis.html` — MCP — Claude Inside Rhino (slope analysis exercise; Week 11)
-- WF07 `wf07-claude-code-site.html` — Context Engineering — A Website with Claude Code (Weeks 12–13)
+- WF01 `wf01-autocad.html` — AutoCAD Site Drafting
+- WF02 `wf02-sketch-portfolio.html` — Hybrid Drawing + Layout (Part 1 Photoshop joiner + trace, Part 2 InDesign deck)
+- WF03 `wf03-urban-context.html` — Urban Context Mapping
+- WF04 `wf04-landform-design.html` — Rhino Landform Modeling
+- WF05 `wf05-meadow-parametric.html` — Attractor Fields (Grasshopper meadow)
+- WF06 `wf06-slope-analysis.html` — MCP — Claude Inside Rhino (slope analysis exercise)
+- WF07 `wf07-claude-code-site.html` — Context Engineering — A Website with Claude Code
 
 WF pages are hand-authored HTML only — the old per-workflow `.md` sources were deleted
 (2026-06). Edit the `.html` directly; don't recreate or look for markdown sources.
@@ -34,8 +34,10 @@ WF pages are hand-authored HTML only — the old per-workflow `.md` sources were
 - Layout: `<div class="wf-wrap wf-doc">` (single-column steps, number in the margin, ~64ch text;
   styles at the end of `workflow-shared.css`) and `<script src="…/assets/js/wf-progress.js">` after
   nav.js (done checks that fold a step; state in the student's localStorage). Every step needs a
-  `.wf-step-head` to get a check; a `.wf-step` without one is treated as a week divider.
-- Spec strip (`.wf-spec`): first chip is always Week/Weeks, derived from syllabus schedule in `index.html`
+  `.wf-step-head` to get a check; a `.wf-step` without one is treated as a session divider.
+- Weeks and dates live only in the syllabus Weekly Schedule (`index.html`). WF pages carry no week
+  numbers: the first spec chip is Length ("2 sessions"), parts are labeled Session 1, Session 2,
+  and the Due chip is the one date a WF page repeats. The lecture nav carries no week labels.
 - Learning objectives box (`.wf-objectives`): between the spec strip and the assignment; one to three
   short `<li>` phrases, only as many as the workflow really teaches. Each names the idea that transfers
   beyond the software ("How drafting standards encode meaning", "Design as a rule"). The steps
