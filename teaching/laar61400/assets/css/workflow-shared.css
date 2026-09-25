@@ -720,11 +720,14 @@
    finds the next line while following along; code, tables and figures run full width. */
 .wf-doc .wf-steps { display: block; border-top: 1px solid var(--gray-900); }
 .wf-doc .wf-step { position: relative; border: 0; border-radius: 0; border-bottom: 1px solid var(--gray-200);
-  padding: 22px 0 22px 72px; overflow: visible; }
+  padding: 22px 0 22px 64px; overflow: visible; }
 .wf-doc .wf-step-head { display: flex; align-items: center; gap: 10px; background: none; border: 0; padding: 0; }
-/* the page's own step number (00, 01–02, A, ▸ …), set large in the margin */
-.wf-doc .wf-step-num { position: absolute; left: 0; top: 22px; width: 64px;
-  font-family: var(--font-display); font-size: 22px; line-height: 1; color: var(--gray-300); }
+/* the page's own step number (00, 01–02, A, ▸ …) as a small black tile, the same
+   mark the shortcut guides use (see shortcuts/png-to-cad-block.html .pb-num) */
+.wf-doc .wf-step-head > .wf-step-num { position: absolute; left: 0; top: 23px; min-width: 22px; height: 22px; padding: 0 5px;
+  display: flex; align-items: center; justify-content: center; box-sizing: border-box;
+  font-family: var(--font-mono); font-size: 11px; font-weight: 700; line-height: 1;
+  color: #fff; background: var(--gray-900); border-radius: 3px; }
 .wf-doc .wf-step-label { font-size: 17px; font-weight: 700; letter-spacing: 0; text-transform: none; line-height: 1.3; }
 .wf-doc .wf-step-head .wf-badge { margin-left: 0; }   /* pill sits right after the title */
 .wf-doc .wf-step-body { padding: 10px 0 0; }
@@ -743,7 +746,7 @@
 
 /* asides (background explainers after the steps): keep the framed box so they read as
    notes, aligned to the step text column */
-.wf-doc .wf-aside { margin: 20px 0 0 72px; max-width: none; }
+.wf-doc .wf-aside { margin: 20px 0 0 64px; max-width: none; }
 .wf-doc .wf-aside .wf-step-desc,
 .wf-doc .wf-aside .wf-tips { max-width: 64ch; }
 
@@ -777,7 +780,7 @@
 .wf-doc .wf-step.wf-done .wf-step-label { color: var(--gray-500); }
 .wf-doc .wf-step.wf-done:not(.wf-open) > :not(.wf-step-head):not(.wf-step-num) { display: none; }
 .wf-doc .wf-step.wf-done:not(.wf-open) { padding-bottom: 16px; padding-top: 16px; }
-.wf-doc .wf-step.wf-done:not(.wf-open) .wf-step-num { top: 16px; }
+.wf-doc .wf-step.wf-done:not(.wf-open) .wf-step-head > .wf-step-num { top: 17px; background: var(--gray-400); }
 @media print {
   .wf-progress, .wf-check { display: none; }
   .wf-doc .wf-step.wf-done > * { display: revert !important; }
