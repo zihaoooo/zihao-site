@@ -115,9 +115,8 @@
   display: flex;
   align-items: center;
   margin-bottom: 32px;
-  overflow-x: auto;
-  padding-bottom: 4px;
-  flex-wrap: nowrap;
+  flex-wrap: wrap;        /* a long sequence folds onto a second line instead of scrolling */
+  row-gap: 8px;
 }
 .wf-pipe-step {
   display: flex;
@@ -550,7 +549,7 @@
 @media (max-width: 420px) {
   .wf-wrap { padding: 16px; }
   .wf-title { font-size: 15px; }
-  .wf-pipeline { gap: 0; }
+  .wf-pipeline { column-gap: 0; }
   .wf-ctb { font-size: 10.5px; }
   .wf-ctb th { padding: 4px 5px; }
   .wf-ctb td { padding: 5px 5px; }
