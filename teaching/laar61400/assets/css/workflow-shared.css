@@ -785,3 +785,12 @@
   .wf-progress, .wf-check { display: none; }
   .wf-doc .wf-step.wf-done > * { display: revert !important; }
 }
+
+/* phone: the number tile moves into the title line and the text takes the full width */
+@media (max-width: 600px) {
+  .wf-doc .wf-step { padding-left: 0; }
+  .wf-doc .wf-step-head { flex-wrap: wrap; row-gap: 6px; }
+  .wf-doc .wf-step-head > .wf-step-num,
+  .wf-doc .wf-step.wf-done:not(.wf-open) .wf-step-head > .wf-step-num { position: static; }
+  .wf-doc .wf-aside { margin-left: 0; }
+}
