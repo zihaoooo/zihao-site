@@ -746,3 +746,15 @@
 .wf-doc .wf-aside { margin: 20px 0 0 72px; max-width: none; }
 .wf-doc .wf-aside .wf-step-desc,
 .wf-doc .wf-aside .wf-tips { max-width: 64ch; }
+
+/* full-width steps with two body columns stack in the document layout,
+   so every step reads the same way, top to bottom */
+.wf-doc .wf-step.wf-full .wf-steps-row { grid-template-columns: minmax(0, 1fr); }
+.wf-doc .wf-step.wf-full .wf-steps-row > .wf-step-body + .wf-step-body { padding-top: 14px; }
+
+/* text links inside a workflow read in the site accent, not browser blue */
+.wf-doc .wf-step-body a:not(.wf-btn),
+.wf-doc .wf-aside a { color: var(--accent); text-decoration: underline;
+  text-decoration-color: var(--accent-soft); text-underline-offset: 3px; }
+.wf-doc .wf-step-body a:not(.wf-btn):hover,
+.wf-doc .wf-aside a:hover { color: var(--accent-dark); text-decoration-color: var(--accent-dark); }
