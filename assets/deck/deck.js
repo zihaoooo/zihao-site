@@ -3,7 +3,7 @@
    Used by teaching/<course>/lectures/ AND talks/<topic>/ — site-wide, not
    teaching-only, which is why it lives under /assets/.
    Page-agnostic: reads #deck data attributes.
-     <div class="deck" id="deck" data-deck-id="w04" data-deck-title="Week 04">
+     <div class="deck" id="deck" data-deck-id="w04" data-deck-title="Graphic Design 101">
    Include AFTER nav.js:  <script src="/assets/deck/deck.js"></script>
    Does NOT include buildChart (timeline) — that stays inline per page.
    ============================================================ */

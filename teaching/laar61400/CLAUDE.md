@@ -37,7 +37,10 @@ WF pages are hand-authored HTML only — the old per-workflow `.md` sources were
   `.wf-step-head` to get a check; a `.wf-step` without one is treated as a session divider.
 - Weeks and dates live only in the syllabus Weekly Schedule (`index.html`). WF pages carry no week
   numbers: the first spec chip is Length ("2 sessions"), parts are labeled Session 1, Session 2,
-  and the Due chip is the one date a WF page repeats. The lecture nav carries no week labels.
+  and the Due chip is the one date a WF page repeats. Lectures are standalone: no week labels
+  in the nav, page title, header chip (`LECTURE`), deck title, title-slide stamp, or slide text and
+  notes (refer to another lecture by its title). Filenames and `assets/img/WeekNN/` keep their
+  numbers as stable URLs.
 - Learning objectives box (`.wf-objectives`): between the spec strip and the assignment; one to three
   short `<li>` phrases, only as many as the workflow really teaches. Each names the idea that transfers
   beyond the software ("How drafting standards encode meaning", "Design as a rule"). The steps
