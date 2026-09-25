@@ -41,6 +41,8 @@ WF pages are hand-authored HTML only — the old per-workflow `.md` sources were
   beyond the software ("How drafting standards encode meaning", "Design as a rule"). The steps
   say what to do; the assignment says what they make.
 - Assignment box (`.wf-outcome`): single `<strong>Assignment</strong>` label, one sentence, product-framed, format folded in. No separate Deliverable section.
+- Ongoing box (`.wf-ongoing`): optional, directly under the assignment — a semester-long deliverable
+  this workflow feeds (e.g. WF02 starts the Final Integrated Drawing Set in InDesign).
 - `.wf-outcome > strong` is `display:block` in `workflow-shared.css` — scope to `>` to avoid breaking `<strong>` inside `.wf-tips` list items
 - Copy style: match WF07 tone — short, imperative, no AI-sounding parallel structures
 - Example images (see WF05): collapsible `<details class="wf-examples">` "Hint" card + a
