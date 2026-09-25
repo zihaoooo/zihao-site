@@ -31,6 +31,10 @@ WF pages are hand-authored HTML only — the old per-workflow `.md` sources were
 (2026-06). Edit the `.html` directly; don't recreate or look for markdown sources.
 
 ## WF page conventions
+- Layout: `<div class="wf-wrap wf-doc">` (single-column steps, number in the margin, ~64ch text;
+  styles at the end of `workflow-shared.css`) and `<script src="…/assets/js/wf-progress.js">` after
+  nav.js (done checks that fold a step; state in the student's localStorage). Every step needs a
+  `.wf-step-head` to get a check; a `.wf-step` without one is treated as a week divider.
 - Spec strip (`.wf-spec`): first chip is always Week/Weeks, derived from syllabus schedule in `index.html`
 - Assignment box (`.wf-outcome`): single `<strong>Assignment</strong>` label, one sentence, product-framed, format folded in. No separate Deliverable section.
 - `.wf-outcome > strong` is `display:block` in `workflow-shared.css` — scope to `>` to avoid breaking `<strong>` inside `.wf-tips` list items
