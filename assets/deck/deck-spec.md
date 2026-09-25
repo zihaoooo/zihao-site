@@ -140,7 +140,7 @@ to ~4 columns and ~6 rows, past which the fit script shrinks it below reading si
 </div></div>
 ```
 
-### Multi-column text card — `m7-cols` (page-local, week07)
+### Multi-column text card — `m7-cols` (page-local, modeling-as-thinking)
 A typeset card of 2–3 parallel text columns (no images) — e.g. "three types of models",
 "plan+section can't / operations are logics". Lives inside the page's `.embed` wrapper (the fit
 script scales it). Each `.col` = `<h3>` + optional `.lead` (accent sub-line) + `<ul>` of `<li>`
@@ -159,7 +159,7 @@ stays 980px on a large/fullscreen stage, leaving wide side margins and forcing w
 card's natural width wide (`width:min(1280px,96%)`) so it fills big screens; the script only ever
 scales *down* on small ones.
 
-### Points + two stacked images, equal width — `points-l` + `.pts-imgs` (page-local, week07)
+### Points + two stacked images, equal width — `points-l` + `.pts-imgs` (page-local, modeling-as-thinking)
 `points-l` normally takes one `<figure>`; two bare figures land in the same grid column and stack at
 *unequal* widths. Wrap them in `.pts-imgs` and put the width on the **wrapper** (not each figure) so
 both share it. Stage is `container-type:inline-size`, so size with `cqw` (no `cqh`); pick a width
@@ -173,7 +173,7 @@ whose stacked heights still fit the panel — for ~1.1 + ~1.8 aspect images, `38
   </div>
 </div>
 ```
-(All three `m7-*` recipes are page-local inline `<style>` in week07, not yet in shared deck.css —
+(All three `m7-*` recipes are page-local inline `<style>` in modeling-as-thinking, not yet in shared deck.css —
 copy the snippet, or promote to deck.css + a `.pv-deck.*` mirror when a second lecture reuses them.)
 
 Presenter View mirrors these under `.pv-deck.*` in the page's PRESENTER_DOC `<style>` (static, no JS).

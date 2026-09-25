@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Drawing as Thinking Tool — LAAR 61400</title>
+  <link rel="stylesheet" href="/teaching/laar61400/assets/css/main.css">
+  <link rel="stylesheet" href="/teaching/laar61400/assets/css/workflow-shared.css">
+  <link rel="stylesheet" href="/assets/deck/deck.css">
+  <style>
+    /* Closing slide: the sketchbook assignment (page-local, one slide) */
+    .sk{width:92cqw;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);
+      column-gap:clamp(22px,4.5cqw,58px);row-gap:clamp(10px,1.6cqw,18px);text-align:left;}
+    .sk-h{grid-column:1/-1;margin:0;font-family:var(--font-sans);font-weight:700;
+      color:var(--ink);font-size:clamp(16px,2.4cqw,34px);letter-spacing:-.01em;line-height:1.1;}
+    .sk-sub{grid-column:1/-1;font-family:var(--font-mono);
+      font-size:clamp(9px,1.05cqw,13px);letter-spacing:.16em;text-transform:uppercase;
+      color:var(--mute);margin-top:-.4em;}
+    .sk h4{margin:0 0 .55em;font-family:var(--font-mono);
+      font-size:clamp(9px,1.05cqw,13px);letter-spacing:.14em;text-transform:uppercase;
+      color:var(--accent);}
+    .sk ul{list-style:none;margin:0;padding:0;display:grid;row-gap:clamp(5px,.8cqw,10px);}
+    .sk li{font-family:var(--font-sans);color:var(--gray-750);line-height:1.4;
+      font-size:clamp(11px,1.3cqw,18px);padding-left:1.1em;position:relative;}
+    .sk li::before{content:"+";position:absolute;left:0;color:var(--accent);
+      font-family:var(--font-mono);}
+    .sk-when{display:grid;grid-template-columns:max-content minmax(0,1fr);
+      column-gap:clamp(12px,2cqw,26px);row-gap:clamp(6px,1cqw,12px);}
+    .sk-when dt{font-family:var(--font-mono);color:var(--accent);
+      font-size:clamp(9px,1.1cqw,14px);letter-spacing:.06em;padding-top:.15em;}
+    .sk-when dd{margin:0;font-family:var(--font-sans);color:var(--gray-750);line-height:1.4;
+      font-size:clamp(11px,1.3cqw,18px);}
+
+    /* Slide 2: who the drawing is for (page-local, one slide) */
+    .aud{width:92cqw;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);
+      column-gap:clamp(22px,4.5cqw,58px);row-gap:clamp(8px,1.4cqw,18px);text-align:left;}
+    .aud-h{grid-column:1/-1;margin:0;font-family:var(--font-sans);font-weight:700;
+      color:var(--ink);font-size:clamp(16px,2.4cqw,34px);letter-spacing:-.01em;line-height:1.1;}
+    .aud-sub{grid-column:1/-1;font-family:var(--font-mono);
+      font-size:clamp(9px,1.05cqw,13px);letter-spacing:.16em;text-transform:uppercase;
+      color:var(--mute);margin-top:-.4em;}
+    .aud-row{border-top:1px solid var(--line);padding-top:clamp(5px,.9cqw,12px);}
+    .aud-to{display:block;font-family:var(--font-mono);color:var(--accent);
+      font-size:clamp(9px,1.05cqw,13px);letter-spacing:.14em;text-transform:uppercase;
+      margin-bottom:.35em;}
+    .aud-row b{display:block;font-family:var(--font-sans);font-weight:700;color:var(--ink);
+      font-size:clamp(12px,1.5cqw,21px);line-height:1.15;}
+    .aud-row span:not(.aud-to){display:block;font-family:var(--font-sans);color:var(--gray-750);
+      line-height:1.4;font-size:clamp(10px,1.2cqw,17px);margin-top:.25em;}
+    .aud-row i{display:block;font-family:var(--font-mono);font-style:normal;
+      color:var(--mute);font-size:clamp(8px,.95cqw,12px);letter-spacing:.05em;margin-top:.35em;}
+    .aud-end{grid-column:1/-1;margin:0;font-family:var(--font-sans);color:var(--gray-750);
+      font-size:clamp(10px,1.2cqw,17px);line-height:1.4;border-top:1px solid var(--line);
+      padding-top:clamp(5px,.9cqw,12px);}
+
+    /* phone: both blocks drop to one column — the stage goes 4:5 (deck.css) and two
+       ~150px columns would break every line. */
+    @media (max-width:560px){
+      /* four stacked rows need more than the 4:5 phone stage deck.css gives typeset slides */
+      .deck-stage:has(.slide.on .aud){aspect-ratio:12/25;}
+      .sk,.aud{grid-template-columns:minmax(0,1fr);row-gap:8px;}
+      .aud-row,.aud-end{padding-top:6px;}
+      .aud-to{margin-bottom:.2em;}
+      .aud-h,.sk-h{font-size:16px;}
+      .aud-row b{font-size:14px;}
+      .aud-row span:not(.aud-to){font-size:12.5px;line-height:1.35;margin-top:.15em;}
+      .aud-row i,.aud-end,.sk li,.sk-when dd{font-size:11px;line-height:1.3;}
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Side panel -->
+  <nav id="sidepanel">
+    <a class="panel-brand" href="/teaching/laar61400/index.html">
+      <span class="panel-brand-title">LAAR 61400</span>
+      <span class="panel-brand-sub">Representation + Computation</span>
+    </a>
+    <a class="panel-announce" href="/teaching/laar61400/announcements.html"><span class="panel-announce-tag">New</span>Announcements</a>
+    <div class="panel-section">
+      <span class="panel-section-label">Workflows</span>
+      <a class="panel-link" href="/teaching/laar61400/workflows/wf01-autocad.html"><span class="panel-link-num">01</span>AutoCAD Site Drafting</a>
+      <a class="panel-link" href="/teaching/laar61400/workflows/wf02-sketch-portfolio.html"><span class="panel-link-num">02</span>Hybrid Drawing + Layout</a>
+      <a class="panel-link" href="/teaching/laar61400/workflows/wf03-urban-context.html"><span class="panel-link-num">03</span>Urban Context Mapping</a>
+      <a class="panel-link" href="/teaching/laar61400/workflows/wf04-landform-design.html"><span class="panel-link-num">04</span>Rhino Landform Modeling</a>
+      <a class="panel-link" href="/teaching/laar61400/workflows/wf05-meadow-parametric.html"><span class="panel-link-num">05</span>Attractor Fields</a>
+      <a class="panel-link" href="/teaching/laar61400/workflows/wf06-slope-analysis.html"><span class="panel-link-num">06</span>MCP — Claude in Rhino</a>
+      <a class="panel-link" href="/teaching/laar61400/workflows/wf07-claude-code-site.html"><span class="panel-link-num">07</span>Context Engineering</a>
+    </div>
+    <div class="panel-section">
+      <span class="panel-section-label">Lectures</span>
+      <a class="panel-link active" href="/teaching/laar61400/lectures/drawing-as-thinking.html">Drawing as Thinking Tool</a>
+      <a class="panel-link" href="/teaching/laar61400/lectures/computational-thinking.html">Computational Thinking</a>
+      <a class="panel-link" href="/teaching/laar61400/lectures/graphic-design-101.html">Graphic Design 101</a>
+      <a class="panel-link" href="/teaching/laar61400/lectures/gis-spatial-data.html">Intro to GIS / Spatial Data</a>
+      <a class="panel-link" href="/teaching/laar61400/lectures/modeling-as-thinking.html">Modeling as Thinking</a>
+      <a class="panel-link" href="/teaching/laar61400/lectures/cybernetics-and-design.html">Cybernetics and Design</a>
+      <a class="panel-link" href="/teaching/laar61400/lectures/web-coding-literacy.html">Web Coding Literacy</a>
+    </div>
+    <div class="panel-section">
+      <span class="panel-section-label">Shortcuts &amp; Reference</span>
+      <a class="panel-link" href="/teaching/laar61400/shortcuts/file-types.html">File Types Reference</a>
+      <a class="panel-link" href="/teaching/laar61400/shortcuts/adobe.html">Adobe Ps / Ai / Id</a>
+      <a class="panel-link" href="/teaching/laar61400/shortcuts/autocad.html">AutoCAD</a>
+      <a class="panel-link" href="/teaching/laar61400/shortcuts/rhino-pipeline.html">Rhino — Pipeline</a>
+      <a class="panel-link" href="/teaching/laar61400/shortcuts/rhino-ui.html">Rhino — Navigation &amp; UI</a>
+      <a class="panel-link" href="/teaching/laar61400/shortcuts/png-to-cad-block.html">PNG → CAD Block</a>
+    </div>
+  </nav>
+
+  <!-- Main content -->
+  <main id="main-content">
+    <div class="page-inner">
+
+      <div class="wf-wrap">
+        <div class="wf-header">
+          <div class="wf-index">LECTURE</div>
+          <div class="wf-header-text">
+            <div class="wf-title">Drawing as Thinking Tool</div>
+            <div class="wf-subtitle">A visual survey of representational modes in landscape architecture</div>
+          </div>
+        </div>
+
+        <!-- ── Slides ── -->
+        <span class="section-label">Lecture Slides</span>
+        <div class="deck" id="deck" data-deck-id="w01" data-deck-title="Drawing as Thinking Tool">
+          <div class="deck-stage" id="deck-stage">
+
+            <!-- 1 · Title -->
+            <div class="slide slide--title" data-cap="">
+              <div class="tt">Drawings as Tools</div>
+              <div class="ts">LAAR 61400</div>
+            </div>
+
+            <!-- 2 · who the drawing is for -->
+            <div class="slide" data-cap="">
+              <div class="embed">
+                <div class="aud">
+                  <h2 class="aud-h">Who is the drawing for?</h2>
+                  <span class="aud-sub">Audience decides the mode</span>
+
+                  <div class="aud-row">
+                    <span class="aud-to">To the client</span>
+                    <b>Persuade</b>
+                    <span>Make the idea desirable to someone who reads no plans. Warm, resolved, legible at a glance, honest about what it promises.</span>
+                    <i>Renderings · illustrative plans · before-and-after</i>
+                  </div>
+
+                  <div class="aud-row">
+                    <span class="aud-to">To peers</span>
+                    <b>Clarify</b>
+                    <span>Make your thinking legible to instructors and colleagues so they can work on it with you. Clear, comparative, open about what is still unresolved.</span>
+                    <i>Diagrams · sections · analysis · iteration series</i>
+                  </div>
+
+                  <div class="aud-row">
+                    <span class="aud-to">To the builder</span>
+                    <b>Instruct</b>
+                    <span>Tell someone exactly what to build. Dimensioned, measurable, contractual — one reading only.</span>
+                    <i>Grading · layout · planting · construction details</i>
+                  </div>
+
+                  <div class="aud-row">
+                    <span class="aud-to">To yourself</span>
+                    <b>Discover</b>
+                    <span>Draw to find out what you think. Fast, private, disposable — the drawing earns the right to be wrong.</span>
+                    <i>Parti · sketch · study model · trace overlay</i>
+                  </div>
+
+                  <p class="aud-end">One site, four drawings. This survey moves through those registers.</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Section · Thinking -->
+            <div class="slide" data-era="Thinking" data-cap="">
+              <div class="embed">
+                <div class="toc toc--split">
+                  <div class="toc-row active"><span class="toc-n">One</span><h2 class="toc-h">Thinking</h2><ul class="toc-k"><li>Parti</li><li>sketch</li><li>process drawing</li><li>freehand ideation</li><li>study models</li></ul></div>
+                  <div class="toc-row"><span class="toc-n">Two</span><h2 class="toc-h">Analyzing</h2></div>
+                  <div class="toc-row"><span class="toc-n">Three</span><h2 class="toc-h">Communicating Space</h2></div>
+                  <div class="toc-row"><span class="toc-n">Four</span><h2 class="toc-h">Communicating Experience</h2></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 3 · slide 3 -->
+            <div class="slide single" data-era="Thinking" data-cap="Lawrence Halprin, RSVP Cycles / Notebooks 1959–1971" data-credit="https://lawrencehalprin.com">
+              <img src="/teaching/laar61400/assets/img/drawing-as-thinking/s03_1.avif" alt="Lawrence Halprin, RSVP Cycles / Notebooks 1959–1971">
+            </div>
+
+            <!-- 4 · slide 4 -->
+            <div class="slide single" data-era="Thinking" data-cap="Lawrence Halprin, Ira Keller Forecourt Fountain" data-credit="https://lawrencehalprin.com">
+              <img src="/teaching/laar61400/assets/img/drawing-as-thinking/s04_1.avif" alt="Lawrence Halprin, Ira Keller Forecourt Fountain">
+            </div>
+
+            <!-- 5 · slide 5 -->
+            <div class="slide auto" data-era="Thinking" data-cap="Lawrence Halprin, Ira Keller Forecourt Fountain" data-credit="https://lawrencehalprin.com">
+              <figure><img src="/teaching/laar61400/assets/img/drawing-as-thinking/s05_1.avif" alt="Lawrence Halprin, Ira Keller Forecourt Fountain"></figure>
+              <figure><img src="/teaching/laar61400/assets/img/drawing-as-thinking/s05_2.avif" alt="Lawrence Halprin, Ira Keller Forecourt Fountain"></figure>
+            </div>
+
+            <!-- 6 · slide 6 -->
+            <div class="slide auto" data-era="Thinking" data-cap="Lawrence Halprin, Notebooks" data-credit="https://lawrencehalprin.com">
+              <figure><img src="/teaching/laar61400/assets/img/drawing-as-thinking/s06_1.avif" alt="Lawrence Halprin, Notebooks"></figure>
+              <figure><img src="/teaching/laar61400/assets/img/drawing-as-thinking/s06_2.avif" alt="Lawrence Halprin, Notebooks"></figure>
+            </div>
+
+            <!-- 7 · slide 7 -->
+            <div class="slide auto" data-era="Thinking" data-cap="Adriaan Geuze / West 8, The Hills, Governors Island, New York, 2007">
+              <figure><img src="/teaching/laar61400/assets/img/drawing-as-thinking/s07_1.avif" alt="Adriaan Geuze / West 8, The Hills, Governors Island, New York, 2007"></figure>
+              <figure><img src="/teaching/laar61400/assets/img/drawing-as-thinking/s07_2.avif" alt="Adriaan Geuze / West 8, The Hills, Governors Island, New York, 2007"></figure>
+            </div>
+
+            <!-- 8 · slide 8 -->
+            <div class="slide single" data-era="Thinking" data-cap="Adriaan Geuze / West 8, The Hills, Governors Island, New York, 2007">
+              <img src="/teaching/laar61400/assets/img/drawing-as-thinking/s08_1.avif" alt="Adriaan Geuze / West 8, The Hills, Governors Island, New York, 2007">
+            </div>
+
+            <!-- 9 · slide 9 -->
+            <div class="slide auto" data-era="Thinking" data-cap="Julie Bargmann / D.I.R.T. Studio URBAN OUTFITTERS HEADQUARTERS, Philadelphia, Pennsylvania, 2005 – 2011">
+              <figure><img src="/teaching/laar61400/assets/img/drawing-as-thinking/s09_1.avif" alt="Julie Bargmann / D.I.R.T. Studio URBAN OUTFITTERS HEADQUARTERS, Philadelphia, Pennsylvania, 2005 – 2011"></figure>
+              <figure><img src="/teaching/laar61400/assets/img/drawing-as-thinking/s09_2.avif" alt="Julie Bargmann / D.I.R.T. Studio URBAN OUTFITTERS HEADQUARTERS, Philadelphia, Pennsylvania, 2005 – 2011"></figure>
+            </div>
+
+            <!-- 10 · slide 10 -->
+            <div class="slide auto" data-era="Thinking" data-cap="Julie Bargmann / D.I.R.T. Studio">
+              <figure><img src="/teaching/laar61400/assets/img/drawing-as-thinking/s10_1.avif" alt="Julie Bargmann / D.I.R.T. Studio"></figure>
+              <figure><img src="/teaching/laar61400/assets/img/drawing-as-thinking/s10_2.avif" alt="Julie Bargmann / D.I.R.T. Studio"></figure>
+            </div>
+
+            <!-- 11 · slide 11 -->
+            <div class="slide single" data-era="Thinking" data-cap="Julie Bargmann / D.I.R.T. Studio">
+              <img src="/teaching/laar61400/assets/img/drawing-as-thinking/s11_1.avif" alt="Julie Bargmann / D.I.R.T. Studio">
+            </div>
+
+            <!-- 12 · slide 12 -->
+            <div class="slide auto" data-era="Thinking" data-cap="Kathryn Gustafson, Diana, Princess of Wales Memorial Fountain">
+              <figure><img src="/teaching/laar61400/assets/img/drawing-as-thinking/s12_1.avif" alt="Kathryn Gustafson, Diana, Princess of Wales Memorial Fountain"></figure>
+              <figure><img src="/teaching/laar61400/assets/img/drawing-as-thinking/s12_2.avif" alt="Kathryn Gustafson, Diana, Princess of Wales Memorial Fountain"></figure>
+            </div>
+
+            <!-- 13 · slide 13 -->
+            <div class="slide auto" data-era="Thinking" data-cap="Kathryn Gustafson, Diana, Princess of Wales Memorial Fountain">
+              <figure><img src="/teaching/laar61400/assets/img/drawing-as-thinking/s13_1.avif" alt="Kathryn Gustafson, Diana, Princess of Wales Memorial Fountain"></figure>
+              <figure><img src="/teaching/laar61400/assets/img/drawing-as-thinking/s13_2.avif" alt="Kathryn Gustafson, Diana, Princess of Wales Memorial Fountain"></figure>
+            </div>
+
+            <!-- 14 · slide 14 -->
+            <div class="slide auto" data-era="Thinking" data-cap="Kathryn Gustafson, Diana, Princess of Wales Memorial Fountain">
+              <figure><img src="/teaching/laar61400/assets/img/drawing-as-thinking/s14_1.avif" alt="Kathryn Gustafson, Diana, Princess of Wales Memorial Fountain"></figure>
+              <figure><img src="/teaching/laar61400/assets/img/drawing-as-thinking/s14_2.avif" alt="Kathryn Gustafson, Diana, Princess of Wales Memorial Fountain"></figure>
+            </div>
+
+            <!-- 15 · slide 15 -->
+            <div class="slide auto" data-era="Thinking" data-cap="Kongjian Yu / Turenscape, Harbin Qunli Stormwater Park" data-credit="https://www.turenscape.com/en/project/detail/435.html">
+              <figure><img src="/teaching/laar61400/assets/img/drawing-as-thinking/s15_1.avif" alt="Kongjian Yu / Turenscape, Harbin Qunli Stormwater Park"></figure>
+              <figure><img src="/teaching/laar61400/assets/img/drawing-as-thinking/s15_2.avif" alt="Kongjian Yu / Turenscape, Harbin Qunli Stormwater Park"></figure>
+            </div>
+
+            <!-- 16 · slide 16 -->
+            <div class="slide auto" data-era="Thinking" data-cap="Kongjian Yu / Turenscape, Harbin Qunli Stormwater Park" data-credit="https://www.turenscape.com/en/project/detail/435.html">
+              <figure><img src="/teaching/laar61400/assets/img/drawing-as-thinking/s16_1.avif" alt="Kongjian Yu / Turenscape, Harbin Qunli Stormwater Park"></figure>
+              <figure><img src="/teaching/laar61400/assets/img/drawing-as-thinking/s16_2.avif" alt="Kongjian Yu / Turenscape, Harbin Qunli Stormwater Park"></figure>
+            </div>
+
+            <!-- 17 · slide 17 -->
+            <div class="slide auto" data-era="Thinking" data-cap="Julie Bargmann / D.I.R.T. Studio">
+              <figure><img src="/teaching/laar61400/assets/img/drawing-as-thinking/s17_1.avif" alt="Julie Bargmann / D.I.R.T. Studio"></figure>
+              <figure><img src="/teaching/laar61400/assets/img/drawing-as-thinking/s17_2.avif" alt="Julie Bargmann / D.I.R.T. Studio"></figure>
+            </div>
+
+            <!-- Section · Analyzing -->
+            <div class="slide" data-era="Analyzing" data-cap="">
+              <div class="embed">
+                <div class="toc toc--split">
+                  <div class="toc-row"><span class="toc-n">One</span><h2 class="toc-h">Thinking</h2></div>
+                  <div class="toc-row active"><span class="toc-n">Two</span><h2 class="toc-h">Analyzing</h2><ul class="toc-k"><li>Site analysis</li><li>ecological mapping</li><li>diagrams</li></ul></div>
+                  <div class="toc-row"><span class="toc-n">Three</span><h2 class="toc-h">Communicating Space</h2></div>
+                  <div class="toc-row"><span class="toc-n">Four</span><h2 class="toc-h">Communicating Experience</h2></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 19 · slide 19 -->
+            <div class="slide auto" data-era="Analyzing" data-cap="Ian McHarg, Design with Nature, 1969">
+              <figure><img src="/teaching/laar61400/assets/img/drawing-as-thinking/s19_1.avif" alt="Ian McHarg, Design with Nature, 1969"></figure>
+              <figure><img src="/teaching/laar61400/assets/img/drawing-as-thinking/s19_2.avif" alt="Ian McHarg, Design with Nature, 1969"></figure>
+            </div>
+
+            <!-- 20 · slide 20 -->
+            <div class="slide single" data-era="Analyzing" data-cap="Ian McHarg, Staten Island Study, 1960s">
+              <img src="/teaching/laar61400/assets/img/drawing-as-thinking/s20_1.avif" alt="Ian McHarg, Staten Island Study, 1960s">
+            </div>
+
+            <!-- 21 · slide 21 -->
+            <div class="slide auto" data-era="Analyzing" data-cap="James Corner, Taking Measures Across the American Landscape, 1996">
+              <figure><img src="/teaching/laar61400/assets/img/drawing-as-thinking/s21_1.avif" alt="James Corner, Taking Measures Across the American Landscape, 1996"></figure>
+              <figure><img src="/teaching/laar61400/assets/img/drawing-as-thinking/s21_2.avif" alt="James Corner, Taking Measures Across the American Landscape, 1996"></figure>
+            </div>
+
+            <!-- 22 · slide 22 -->
+            <div class="slide auto" data-era="Analyzing" data-cap="James Corner, Taking Measures Across the American Landscape, 1996">
+              <figure><img src="/teaching/laar61400/assets/img/drawing-as-thinking/s22_1.avif" alt="James Corner, Taking Measures Across the American Landscape, 1996"></figure>
+              <figure><img src="/teaching/laar61400/assets/img/drawing-as-thinking/s22_2.avif" alt="James Corner, Taking Measures Across the American Landscape, 1996"></figure>
+            </div>
+
+            <!-- 23 · slide 23 -->
+            <div class="slide single" data-era="Analyzing" data-cap="James Corner / Field Operations, Downsview, Toronto (1999) Freshkills Park, Staten Island, 2006">
+              <img src="/teaching/laar61400/assets/img/drawing-as-thinking/s23_1.avif" alt="James Corner / Field Operations, Downsview, Toronto (1999) Freshkills Park, Staten Island, 2006">
+            </div>
+
+            <!-- 24 · slide 24 -->
+            <div class="slide single" data-era="Analyzing" data-cap="James Corner / Field Operations, Downsview, Toronto (1999) Freshkills Park, Staten Island, 2006">
+              <img src="/teaching/laar61400/assets/img/drawing-as-thinking/s24_1.avif" alt="James Corner / Field Operations, Downsview, Toronto (1999) Freshkills Park, Staten Island, 2006">
+            </div>
+
+            <!-- 25 · slide 25 -->
+            <div class="slide single" data-era="Analyzing" data-cap="James Corner / Field Operations, The High Line, New York, 2004">
+              <img src="/teaching/laar61400/assets/img/drawing-as-thinking/s25_1.avif" alt="James Corner / Field Operations, The High Line, New York, 2004">
+            </div>
+
+            <!-- 26 · slide 26 -->
+            <div class="slide single" data-era="Analyzing" data-cap="Kongjian Yu / Turenscape" data-credit="https://www.turenscape.com/en/project/detail/435.html">
+              <img src="/teaching/laar61400/assets/img/drawing-as-thinking/s26_1.avif" alt="Kongjian Yu / Turenscape">
+            </div>
+
+            <!-- 27 · slide 27 -->
+            <div class="slide auto" data-era="Analyzing" data-cap="Kongjian Yu / Turenscape" data-credit="https://www.turenscape.com/en/project/detail/435.html">
+              <figure><img src="/teaching/laar61400/assets/img/drawing-as-thinking/s27_1.avif" alt="Kongjian Yu / Turenscape"></figure>
+              <figure><img src="/teaching/laar61400/assets/img/drawing-as-thinking/s27_2.avif" alt="Kongjian Yu / Turenscape"></figure>
+            </div>
+
+            <!-- 28 · slide 28 -->
+            <div class="slide auto" data-era="Analyzing" data-cap="Teresa Galí-Izard, Various, 2000s–present" data-credit="https://arquitecturaagronomia.net">
+              <figure><img src="/teaching/laar61400/assets/img/drawing-as-thinking/s28_1.avif" alt="Teresa Galí-Izard, Various, 2000s–present"></figure>
+              <figure><img src="/teaching/laar61400/assets/img/drawing-as-thinking/s28_2.avif" alt="Teresa Galí-Izard, Various, 2000s–present"></figure>
+            </div>
+
+            <!-- 29 · slide 29 -->
+            <div class="slide auto-rows" data-era="Analyzing" data-cap="Teresa Galí-Izard, Various, 2000s–present" data-credit="https://arquitecturaagronomia.net">
+              <div class="row"><figure><img src="/teaching/laar61400/assets/img/drawing-as-thinking/s29_1.avif" alt="Teresa Galí-Izard, Various, 2000s–present"></figure><figure><img src="/teaching/laar61400/assets/img/drawing-as-thinking/s29_2.avif" alt="Teresa Galí-Izard, Various, 2000s–present"></figure><figure><img src="/teaching/laar61400/assets/img/drawing-as-thinking/s29_3.avif" alt="Teresa Galí-Izard, Various, 2000s–present"></figure></div>
+              <div class="row"><figure><img src="/teaching/laar61400/assets/img/drawing-as-thinking/s29_4.avif" alt="Teresa Galí-Izard, Various, 2000s–present"></figure><figure><img src="/teaching/laar61400/assets/img/drawing-as-thinking/s29_5.avif" alt="Teresa Galí-Izard, Various, 2000s–present"></figure></div>
+            </div>
+
+            <!-- 30 · slide 30 -->
+            <div class="slide auto-rows" data-era="Analyzing" data-cap="Teresa Galí-Izard, Various, 2000s–present" data-credit="https://arquitecturaagronomia.net">
+              <div class="row"><figure><img src="/teaching/laar61400/assets/img/drawing-as-thinking/s30_1.avif" alt="Teresa Galí-Izard, Various, 2000s–present"></figure><figure><img src="/teaching/laar61400/assets/img/drawing-as-thinking/s30_2.avif" alt="Teresa Galí-Izard, Various, 2000s–present"></figure></div>
+              <div class="row"><figure><img src="/teaching/laar61400/assets/img/drawing-as-thinking/s30_3.avif" alt="Teresa Galí-Izard, Various, 2000s–present"></figure><figure><img src="/teaching/laar61400/assets/img/drawing-as-thinking/s30_4.avif" alt="Teresa Galí-Izard, Various, 2000s–present"></figure></div>
+            </div>
+
+            <!-- 31 · slide 31 -->
+            <div class="slide auto" data-era="Analyzing" data-cap="Teresa Galí-Izard, Various, 2000s–present" data-credit="https://arquitecturaagronomia.net">
+              <figure><img src="/teaching/laar61400/assets/img/drawing-as-thinking/s31_1.avif" alt="Teresa Galí-Izard, Various, 2000s–present"></figure>
+              <figure><img src="/teaching/laar61400/assets/img/drawing-as-thinking/s31_2.avif" alt="Teresa Galí-Izard, Various, 2000s–present"></figure>
+              <figure><img src="/teaching/laar61400/assets/img/drawing-as-thinking/s31_3.avif" alt="Teresa Galí-Izard, Various, 2000s–present"></figure>
+            </div>
+
+            <!-- 32 · slide 32 -->
+            <div class="slide auto" data-era="Analyzing" data-cap="Teresa Galí-Izard, Various, 2000s–present" data-credit="https://arquitecturaagronomia.net">
+              <figure><img src="/teaching/laar61400/assets/img/drawing-as-thinking/s32_1.avif" alt="Teresa Galí-Izard, Various, 2000s–present"></figure>
+              <figure><img src="/teaching/laar61400/assets/img/drawing-as-thinking/s32_2.avif" alt="Teresa Galí-Izard, Various, 2000s–present"></figure>
+            </div>
+
+            <!-- Section · Communicating Space -->
+            <div class="slide" data-era="Communicating Space" data-cap="">
+              <div class="embed">
+                <div class="toc toc--split">
+                  <div class="toc-row"><span class="toc-n">One</span><h2 class="toc-h">Thinking</h2></div>
+                  <div class="toc-row"><span class="toc-n">Two</span><h2 class="toc-h">Analyzing</h2></div>
+                  <div class="toc-row active"><span class="toc-n">Three</span><h2 class="toc-h">Communicating Space</h2><ul class="toc-k"><li>Plan</li><li>section</li><li>elevation</li><li>axonometric</li><li>isometric</li><li>hybrid</li><li>detail</li></ul></div>
+                  <div class="toc-row"><span class="toc-n">Four</span><h2 class="toc-h">Communicating Experience</h2></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 34 · slide 34 -->
+            <div class="slide auto" data-era="Communicating Space" data-cap="Álvaro Siza, Piscina de Marés, 1970s–2000s">
+              <figure><img src="/teaching/laar61400/assets/img/drawing-as-thinking/s34_1.avif" alt="Álvaro Siza, Piscina de Marés, 1970s–2000s"></figure>
+              <figure><img src="/teaching/laar61400/assets/img/drawing-as-thinking/s34_2.avif" alt="Álvaro Siza, Piscina de Marés, 1970s–2000s"></figure>
+            </div>
+
+            <!-- 35 · slide 35 -->
+            <div class="slide auto" data-era="Communicating Space" data-cap="Enric Miralles &amp; Carme Pinós, Igualada Cemetery, Barcelona, 1984">
+              <figure><img src="/teaching/laar61400/assets/img/drawing-as-thinking/s35_1.avif" alt="Enric Miralles &amp; Carme Pinós, Igualada Cemetery, Barcelona, 1984"></figure>
+              <figure><img src="/teaching/laar61400/assets/img/drawing-as-thinking/s35_2.avif" alt="Enric Miralles &amp; Carme Pinós, Igualada Cemetery, Barcelona, 1984"></figure>
+            </div>
+
+            <!-- 36 · slide 36 -->
+            <div class="slide auto" data-era="Communicating Space" data-cap="Enric Miralles &amp; Carme Pinós, Igualada Cemetery, Barcelona, 1984">
+              <figure><img src="/teaching/laar61400/assets/img/drawing-as-thinking/s36_1.avif" alt="Enric Miralles &amp; Carme Pinós, Igualada Cemetery, Barcelona, 1984"></figure>
+              <figure><img src="/teaching/laar61400/assets/img/drawing-as-thinking/s36_2.avif" alt="Enric Miralles &amp; Carme Pinós, Igualada Cemetery, Barcelona, 1984"></figure>
+            </div>
+
+            <!-- 37 · slide 37 -->
+            <div class="slide auto" data-era="Communicating Space" data-cap="Enric Miralles &amp; Carme Pinós, Igualada Cemetery, Barcelona, 1984">
+              <figure><img src="/teaching/laar61400/assets/img/drawing-as-thinking/s37_1.avif" alt="Enric Miralles &amp; Carme Pinós, Igualada Cemetery, Barcelona, 1984"></figure>
+              <figure><img src="/teaching/laar61400/assets/img/drawing-as-thinking/s37_2.avif" alt="Enric Miralles &amp; Carme Pinós, Igualada Cemetery, Barcelona, 1984"></figure>
+            </div>
+
+            <!-- 38 · slide 38 -->
+            <div class="slide auto" data-era="Communicating Space" data-cap="Thomas Church / Lawrence Halprin, Donnell Garden, Sonoma, California, 1947">
+              <figure><img src="/teaching/laar61400/assets/img/drawing-as-thinking/s38_1.avif" alt="Thomas Church / Lawrence Halprin, Donnell Garden, Sonoma, California, 1947"></figure>
+              <figure><img src="/teaching/laar61400/assets/img/drawing-as-thinking/s38_2.avif" alt="Thomas Church / Lawrence Halprin, Donnell Garden, Sonoma, California, 1947"></figure>
+            </div>
+
+            <!-- 39 · slide 39 -->
+            <div class="slide auto" data-era="Communicating Space" data-cap="Julie Bargmann / D.I.R.T. Studio Core City Park, Detroit, Michigan, 2019">
+              <figure><img src="/teaching/laar61400/assets/img/drawing-as-thinking/s39_1.avif" alt="Julie Bargmann / D.I.R.T. Studio Core City Park, Detroit, Michigan, 2019"></figure>
+              <figure><img src="/teaching/laar61400/assets/img/drawing-as-thinking/s39_2.avif" alt="Julie Bargmann / D.I.R.T. Studio Core City Park, Detroit, Michigan, 2019"></figure>
+            </div>
+
+            <!-- 40 · slide 40 -->
+            <div class="slide auto" data-era="Communicating Space" data-cap="Julie Bargmann / D.I.R.T. Studio Core City Park, Detroit, Michigan, 2019">
+              <figure><img src="/teaching/laar61400/assets/img/drawing-as-thinking/s40_1.avif" alt="Julie Bargmann / D.I.R.T. Studio Core City Park, Detroit, Michigan, 2019"></figure>
+              <figure><img src="/teaching/laar61400/assets/img/drawing-as-thinking/s40_2.avif" alt="Julie Bargmann / D.I.R.T. Studio Core City Park, Detroit, Michigan, 2019"></figure>
+            </div>
+
+            <!-- 41 · slide 41 -->
+            <div class="slide auto" data-era="Communicating Space" data-cap="Julie Bargmann / D.I.R.T. Studio Core City Park, Detroit, Michigan, 2019">
+              <figure><img src="/teaching/laar61400/assets/img/drawing-as-thinking/s41_1.avif" alt="Julie Bargmann / D.I.R.T. Studio Core City Park, Detroit, Michigan, 2019"></figure>
+              <figure><img src="/teaching/laar61400/assets/img/drawing-as-thinking/s41_2.avif" alt="Julie Bargmann / D.I.R.T. Studio Core City Park, Detroit, Michigan, 2019"></figure>
+            </div>
+
+            <!-- 42 · slide 42 -->
+            <div class="slide auto" data-era="Communicating Space" data-cap="Garrett Eckbo, Perspective and Oblique Drawings">
+              <figure><img src="/teaching/laar61400/assets/img/drawing-as-thinking/s42_1.avif" alt="Garrett Eckbo, perspective drawing"></figure>
+              <figure><img src="/teaching/laar61400/assets/img/drawing-as-thinking/s42_2.avif" alt="Garrett Eckbo, oblique drawing"></figure>
+            </div>
+
+            <!-- 43 · slide 43 -->
+            <div class="slide auto" data-era="Communicating Space" data-cap="Julie Bargmann / D.I.R.T. Studio, BROOKLYN NAVY YARD, 2009 – 2011">
+              <figure><img src="/teaching/laar61400/assets/img/drawing-as-thinking/s43_1.avif" alt="Julie Bargmann / D.I.R.T. Studio, BROOKLYN NAVY YARD, 2009 – 2011"></figure>
+              <figure><img src="/teaching/laar61400/assets/img/drawing-as-thinking/s43_2.avif" alt="Julie Bargmann / D.I.R.T. Studio, BROOKLYN NAVY YARD, 2009 – 2011"></figure>
+            </div>
+
+            <!-- 44 · slide 44 -->
+            <div class="slide auto" data-era="Communicating Space" data-cap="Julie Bargmann / D.I.R.T. Studio, BROOKLYN NAVY YARD, 2009 – 2011">
+              <figure><img src="/teaching/laar61400/assets/img/drawing-as-thinking/s44_1.avif" alt="Julie Bargmann / D.I.R.T. Studio, BROOKLYN NAVY YARD, 2009 – 2011"></figure>
+              <figure><img src="/teaching/laar61400/assets/img/drawing-as-thinking/s44_2.avif" alt="Julie Bargmann / D.I.R.T. Studio, BROOKLYN NAVY YARD, 2009 – 2011"></figure>
+            </div>
+
+            <!-- 45 · slide 45 -->
+            <div class="slide auto" data-era="Communicating Space" data-cap="Julie Bargmann / D.I.R.T. Studio, BROOKLYN NAVY YARD, 2009 – 2011">
+              <figure><img src="/teaching/laar61400/assets/img/drawing-as-thinking/s45_1.avif" alt="Julie Bargmann / D.I.R.T. Studio, BROOKLYN NAVY YARD, 2009 – 2011"></figure>
+              <figure><img src="/teaching/laar61400/assets/img/drawing-as-thinking/s45_2.avif" alt="Julie Bargmann / D.I.R.T. Studio, BROOKLYN NAVY YARD, 2009 – 2011"></figure>
+            </div>
+
+            <!-- 46 · slide 46 -->
+            <div class="slide auto" data-era="Communicating Space" data-cap="Dan Kiley, Miller House and Garden, Columbus, Indiana, 1957">
+              <figure><img src="/teaching/laar61400/assets/img/drawing-as-thinking/s46_1.avif" alt="Dan Kiley, Miller House and Garden, Columbus, Indiana, 1957"></figure>
+              <figure><img src="/teaching/laar61400/assets/img/drawing-as-thinking/s46_2.avif" alt="Dan Kiley, Miller House and Garden, Columbus, Indiana, 1957"></figure>
+            </div>
+
+            <!-- 47 · slide 47 -->
+            <div class="slide auto" data-era="Communicating Space" data-cap="Dan Kiley, Fountain Place / Kiley Walker, Dallas, TX, 1985">
+              <figure><img src="/teaching/laar61400/assets/img/drawing-as-thinking/s47_1.avif" alt="Dan Kiley, Fountain Place / Kiley Walker, Dallas, TX, 1985"></figure>
+              <figure><img src="/teaching/laar61400/assets/img/drawing-as-thinking/s47_2.avif" alt="Dan Kiley, Fountain Place / Kiley Walker, Dallas, TX, 1985"></figure>
+            </div>
+
+            <!-- 48 · slide 48 -->
+            <div class="slide auto" data-era="Communicating Space" data-cap="Roberto Burle Marx, Mineral Roof Garden, Banco Safra headquarters, São Paulo, 1983">
+              <figure><img src="/teaching/laar61400/assets/img/drawing-as-thinking/s48_1.avif" alt="Roberto Burle Marx, Mineral Roof Garden, Banco Safra headquarters, São Paulo, 1983"></figure>
+              <figure><img src="/teaching/laar61400/assets/img/drawing-as-thinking/s48_2.avif" alt="Roberto Burle Marx, Mineral Roof Garden, Banco Safra headquarters, São Paulo, 1983"></figure>
+            </div>
+
+            <!-- 49 · slide 49 -->
+            <div class="slide auto" data-era="Communicating Space" data-cap="Roberto Burle Marx">
+              <figure><img src="/teaching/laar61400/assets/img/drawing-as-thinking/s49_1.avif" alt="Roberto Burle Marx"></figure>
+              <figure><img src="/teaching/laar61400/assets/img/drawing-as-thinking/s49_2.avif" alt="Roberto Burle Marx"></figure>
+            </div>
+
+            <!-- 50 · slide 50 -->
+            <div class="slide auto" data-era="Communicating Space" data-cap="Sasaki, Professional Rendered Plans and Isometrics">
+              <figure><img src="/teaching/laar61400/assets/img/drawing-as-thinking/s50_1.avif" alt="Professional Rendered Plans and Isometrics, Sasaki"></figure>
+              <figure><img src="/teaching/laar61400/assets/img/drawing-as-thinking/s50_2.avif" alt="Professional Rendered Plans and Isometrics, Sasaki"></figure>
+            </div>
+
+            <!-- 51 · slide 51 -->
+            <div class="slide auto" data-era="Communicating Space" data-cap="Sasaki, Professional Rendered Plans and Isometrics">
+              <figure><img src="/teaching/laar61400/assets/img/drawing-as-thinking/s51_1.avif" alt="Professional Rendered Plans and Isometrics, Sasaki"></figure>
+              <figure><img src="/teaching/laar61400/assets/img/drawing-as-thinking/s51_2.avif" alt="Professional Rendered Plans and Isometrics, Sasaki"></figure>
+            </div>
+
+            <!-- 52 · slide 52 -->
+            <div class="slide auto" data-era="Communicating Space" data-cap="Hand sketch, Pinterest, source unknown">
+              <figure><img src="/teaching/laar61400/assets/img/drawing-as-thinking/s52_1.avif" alt="Hand sketch, Pinterest, source unknown"></figure>
+              <figure><img src="/teaching/laar61400/assets/img/drawing-as-thinking/s52_2.avif" alt="Hand sketch, Pinterest, source unknown"></figure>
+            </div>
+
+            <!-- Section · Communicating Experience -->
+            <div class="slide" data-era="Communicating Experience" data-cap="">
+              <div class="embed">
+                <div class="toc toc--split">
+                  <div class="toc-row"><span class="toc-n">One</span><h2 class="toc-h">Thinking</h2></div>
+                  <div class="toc-row"><span class="toc-n">Two</span><h2 class="toc-h">Analyzing</h2></div>
+                  <div class="toc-row"><span class="toc-n">Three</span><h2 class="toc-h">Communicating Space</h2></div>
+                  <div class="toc-row active"><span class="toc-n">Four</span><h2 class="toc-h">Communicating Experience</h2><ul class="toc-k"><li>Perspective</li><li>rendering</li><li>photomontage</li><li>collage</li><li>storyboard</li></ul></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 54 · slide 54 -->
+            <div class="slide auto-rows" data-era="Communicating Experience" data-cap="Julie Bargmann / D.I.R.T. Studio">
+              <div class="row"><figure><img src="/teaching/laar61400/assets/img/drawing-as-thinking/s54_1.avif" alt="Julie Bargmann / D.I.R.T. Studio"></figure></div>
+              <div class="row"><figure><img src="/teaching/laar61400/assets/img/drawing-as-thinking/s54_2.avif" alt="Julie Bargmann / D.I.R.T. Studio"></figure></div>
+            </div>
+
+            <!-- 55 · slide 55 -->
+            <div class="slide auto" data-era="Communicating Experience" data-cap="James Corner / Field Operations, The High Line, New York, 2004">
+              <figure><img src="/teaching/laar61400/assets/img/drawing-as-thinking/s55_1.avif" alt="James Corner / Field Operations, The High Line, New York, 2004"></figure>
+              <figure><img src="/teaching/laar61400/assets/img/drawing-as-thinking/s55_2.avif" alt="James Corner / Field Operations, The High Line, New York, 2004"></figure>
+            </div>
+
+            <!-- 56 · slide 56 -->
+            <div class="slide auto" data-era="Communicating Experience" data-cap="Field Operations, The High Line, New York, 2004">
+              <figure><img src="/teaching/laar61400/assets/img/drawing-as-thinking/s56_1.avif" alt="Field Operations, The High Line, New York, 2004"></figure>
+              <figure><img src="/teaching/laar61400/assets/img/drawing-as-thinking/s56_2.avif" alt="Field Operations, The High Line, New York, 2004"></figure>
+            </div>
+
+            <!-- 57 · slide 57 -->
+            <div class="slide auto" data-era="Communicating Experience" data-cap="Julie Bargmann / D.I.R.T. Studio, The High Line">
+              <figure><img src="/teaching/laar61400/assets/img/drawing-as-thinking/s57_1.avif" alt="Julie Bargmann / D.I.R.T. Studio, The High Line"></figure>
+              <figure><img src="/teaching/laar61400/assets/img/drawing-as-thinking/s57_2.avif" alt="Julie Bargmann / D.I.R.T. Studio, The High Line"></figure>
+              <figure><img src="/teaching/laar61400/assets/img/drawing-as-thinking/s57_3.avif" alt="Julie Bargmann / D.I.R.T. Studio, The High Line"></figure>
+            </div>
+
+            <!-- 58 · slide 58 -->
+            <div class="slide auto" data-era="Communicating Experience" data-cap="Sasaki, Professional Renderings">
+              <figure><img src="/teaching/laar61400/assets/img/drawing-as-thinking/s58_1.avif" alt="Professional Renderings, Sasaki"></figure>
+              <figure><img src="/teaching/laar61400/assets/img/drawing-as-thinking/s58_2.avif" alt="Professional Renderings, Sasaki"></figure>
+            </div>
+
+            <!-- 59 · slide 59 -->
+            <div class="slide auto" data-era="Communicating Experience" data-cap="Sasaki, Professional Renderings">
+              <figure><img src="/teaching/laar61400/assets/img/drawing-as-thinking/s59_1.avif" alt="Professional Renderings, Sasaki"></figure>
+              <figure><img src="/teaching/laar61400/assets/img/drawing-as-thinking/s59_2.avif" alt="Professional Renderings, Sasaki"></figure>
+            </div>
+
+            <!-- 60 · slide 60 -->
+            <div class="slide auto-rows" data-era="Communicating Experience" data-cap="Snøhetta, Various">
+              <div class="row"><figure><img src="/teaching/laar61400/assets/img/drawing-as-thinking/s60_1.avif" alt="Snøhetta, Various"></figure><figure><img src="/teaching/laar61400/assets/img/drawing-as-thinking/s60_2.avif" alt="Snøhetta, Various"></figure></div>
+              <div class="row"><figure><img src="/teaching/laar61400/assets/img/drawing-as-thinking/s60_3.avif" alt="Snøhetta, Various"></figure><figure><img src="/teaching/laar61400/assets/img/drawing-as-thinking/s60_4.avif" alt="Snøhetta, Various"></figure></div>
+            </div>
+
+            <!-- 61 · slide 61 -->
+            <div class="slide auto" data-era="Communicating Experience" data-cap="Sasaki, Professional Renderings">
+              <figure><img src="/teaching/laar61400/assets/img/drawing-as-thinking/s61_1.avif" alt="Professional Renderings, Sasaki"></figure>
+              <figure><img src="/teaching/laar61400/assets/img/drawing-as-thinking/s61_2.avif" alt="Professional Renderings, Sasaki"></figure>
+            </div>
+
+            <!-- 62 · slide 62 -->
+            <div class="slide single" data-era="Communicating Experience" data-cap="Sasaki, Professional Renderings">
+              <img src="/teaching/laar61400/assets/img/drawing-as-thinking/s62_1.avif" alt="Professional Renderings, Sasaki">
+            </div>
+
+            <!-- 63 · slide 63 -->
+            <div class="slide auto" data-era="Communicating Experience" data-cap="EDSA and others, hand sketch + watercolor">
+              <figure><img src="/teaching/laar61400/assets/img/drawing-as-thinking/s63_1.avif" alt="Hand sketch + watercolor, EDSA and others"></figure>
+              <figure><img src="/teaching/laar61400/assets/img/drawing-as-thinking/s63_2.avif" alt="Hand sketch + watercolor, EDSA and others"></figure>
+            </div>
+
+            <!-- 64 · slide 64 -->
+            <div class="slide auto" data-era="Communicating Experience" data-cap="Hand sketch + watercolor, Pinterest, source unknown">
+              <figure><img src="/teaching/laar61400/assets/img/drawing-as-thinking/s64_1.avif" alt="Hand sketch + watercolor, Pinterest, source unknown"></figure>
+              <figure><img src="/teaching/laar61400/assets/img/drawing-as-thinking/s64_2.avif" alt="Hand sketch + watercolor, Pinterest, source unknown"></figure>
+            </div>
+
+            <!-- 65 · slide 65 -->
+            <div class="slide auto" data-era="Communicating Experience" data-cap="Hand sketch + Markers, Pinterest, source unknown">
+              <figure><img src="/teaching/laar61400/assets/img/drawing-as-thinking/s65_1.avif" alt="Hand sketch + Markers, Pinterest, source unknown"></figure>
+              <figure><img src="/teaching/laar61400/assets/img/drawing-as-thinking/s65_2.avif" alt="Hand sketch + Markers, Pinterest, source unknown"></figure>
+            </div>
+
+            <!-- 66 · slide 66 -->
+            <div class="slide auto" data-era="Communicating Experience" data-cap="Atelier le balto, Garten zum Wohnen">
+              <figure><img src="/teaching/laar61400/assets/img/drawing-as-thinking/s66_1.avif" alt="Atelier le balto, Garten zum Wohnen"></figure>
+              <figure><img src="/teaching/laar61400/assets/img/drawing-as-thinking/s66_2.avif" alt="Atelier le balto, Garten zum Wohnen"></figure>
+              <figure><img src="/teaching/laar61400/assets/img/drawing-as-thinking/s66_3.avif" alt="Atelier le balto, Garten zum Wohnen"></figure>
+            </div>
+
+            <!-- 67 · slide 67 -->
+            <div class="slide auto" data-era="Communicating Experience" data-cap="Hand sketch, Pinterest, source unknown">
+              <figure><img src="/teaching/laar61400/assets/img/drawing-as-thinking/s67_1.avif" alt="Hand sketch, Pinterest, source unknown"></figure>
+              <figure><img src="/teaching/laar61400/assets/img/drawing-as-thinking/s67_2.avif" alt="Hand sketch, Pinterest, source unknown"></figure>
+              <figure><img src="/teaching/laar61400/assets/img/drawing-as-thinking/s67_3.avif" alt="Hand sketch, Pinterest, source unknown"></figure>
+            </div>
+
+            <!-- 68 · sketchbook assignment -->
+            <div class="slide" data-cap="Sketchbook — ongoing assignment, 10% of the final grade">
+              <div class="embed">
+                <div class="sk">
+                  <h2 class="sk-h">The Sketchbook</h2>
+                  <span class="sk-sub">Ongoing · 10% · due Dec 21</span>
+                  <div>
+                    <h4>The practice</h4>
+                    <ul>
+                      <li>A physical sketchbook, kept all semester — start it now.</li>
+                      <li>At least one sketch each week, tied to what we cover in class.</li>
+                      <li>Observation, site sketching, diagramming, analog ideation.</li>
+                      <li>Drawing to think: the modes we just surveyed, in your own hand.</li>
+                    </ul>
+                  </div>
+                  <div>
+                    <h4>Milestones</h4>
+                    <dl class="sk-when">
+                      <dt>Weekly</dt><dd>One sketch minimum, dated.</dd>
+                      <dt>Oct 8</dt><dd>Bring the sketchbook to the Part I Pin-Up — informal review alongside WF01–WF03.</dd>
+                      <dt>Dec 21</dt><dd>Full review. Select and scan your 10 best sketches; submit them with the Final Integrated Drawing Set.</dd>
+                    </dl>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+          <div class="deck-bar">
+            <button class="deck-btn" id="deck-prev" aria-label="Previous slide">&lsaquo;</button>
+            <div class="deck-count"><input id="deck-jump" type="text" inputmode="numeric" aria-label="Jump to slide" value="1"><span id="deck-total"> / 69</span></div>
+            <button class="deck-btn" id="deck-next" aria-label="Next slide">&rsaquo;</button>
+            <div class="deck-meta"><span class="deck-cap" id="deck-cap"></span><span id="deck-credit"></span></div>
+            <button class="deck-btn" id="deck-notes-toggle" aria-expanded="false" aria-controls="deck-notes" aria-label="Toggle speaker notes" title="Speaker notes"><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="2" y="2" width="12" height="12" rx="1.5"/><line x1="4.5" y1="5.5" x2="11.5" y2="5.5"/><line x1="4.5" y1="8" x2="11.5" y2="8"/><line x1="4.5" y1="10.5" x2="8.5" y2="10.5"/></svg></button>
+            <button class="deck-btn" id="deck-present" aria-label="Open Presenter View" title="Presenter View (synced second window)"><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="2" width="9" height="7" rx="1.2"/><path d="M3 11h5M5.5 9v2"/><rect x="11" y="5" width="4" height="4" rx="1" stroke-dasharray="1.8 1.2"/></svg></button>
+            <button class="deck-btn deck-fs" id="deck-fs" aria-label="Present full screen" title="Present (full screen)">&#x26F6;</button>
+          </div>
+          <div class="deck-notes" id="deck-notes" hidden></div>
+        </div>
+
+      </div>
+
+    </div>
+  </main>
+
+<script src="/teaching/laar61400/assets/js/nav.js"></script>
+<script src="/assets/deck/deck.js"></script>
+</body>
+</html>

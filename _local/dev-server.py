@@ -4,7 +4,7 @@ Serves the site root with Cache-Control: no-store so edits to deck.js / deck.css
 deck-editor.js are always picked up — the `?edit` auto-loader in deck.js then fires reliably.
 
 Run from the repo root:  py _local/dev-server.py [port]   (else $PORT, else 8137)
-Then open:  http://localhost:8137/teaching/laar61400/lectures/week04-graphic-design-101.html?edit
+Then open:  http://localhost:8137/teaching/laar61400/lectures/graphic-design-101.html?edit
 """
 import os
 import sys

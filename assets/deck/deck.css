@@ -186,7 +186,7 @@
 
 /* ── typeset text cards — .txt-card / .stmt / .cmp ──
    Promoted out of laar64150's lectures (2026-09) once a third deck needed them; built from
-   week07's `m7-cols` tokens. All three live inside the page's `.embed` wrapper, which the page's
+   modeling-as-thinking's `m7-cols` tokens. All three live inside the page's `.embed` wrapper, which the page's
    fit script scales down to the stage — so author them WIDE: the script only ever scales down,
    never up, and a card authored narrow leaves wide margins on a fullscreen stage.
      .txt-card  heading + `+` bullets, one level of `–` sub-bullets. The workhorse.
@@ -313,7 +313,7 @@
   .deck-stage:has(.slide.on img){aspect-ratio:16/9;}   /* a picture keeps the wide box */
   .deck-stage:has(.slide.on .pts){aspect-ratio:3/4;}   /* copy stacked over a picture */
   /* a page whose typeset block needs more than 4:5 asks for its own ratio the same way,
-     keyed to that block's class (see week01 `.aud`) */
+     keyed to that block's class (see drawing-as-thinking `.aud`) */
   .slide{overflow-y:auto;overscroll-behavior:contain;align-items:safe center;}
   /* text beside an image stacks: a 5-of-12 column is ~140px at phone width */
   .slide.points-l,.slide.points-r{grid-template-columns:minmax(0,1fr);
