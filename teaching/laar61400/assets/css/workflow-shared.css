@@ -759,3 +759,26 @@
   text-decoration-color: var(--accent-soft); text-underline-offset: 3px; }
 .wf-doc .wf-step-body a:not([class]):hover,
 .wf-doc .wf-aside a:not([class]):hover { color: var(--accent-dark); text-decoration-color: var(--accent-dark); }
+
+/* ── progress checks (assets/js/wf-progress.js): a done step folds to its title ── */
+.wf-progress { display: flex; align-items: center; gap: 14px; margin: 0 0 10px;
+  font-family: var(--font-mono); font-size: 11px; color: var(--gray-500); }
+.wf-progress-count { margin-right: auto; }
+.wf-progress-btn { appearance: none; border: 0; background: none; padding: 0; cursor: pointer;
+  font: inherit; color: var(--gray-500); text-decoration: underline; text-underline-offset: 3px; }
+.wf-progress-btn:hover { color: var(--gray-900); }
+.wf-check { appearance: none; margin-left: auto; flex-shrink: 0; width: 20px; height: 20px; cursor: pointer;
+  border: 1.5px solid var(--gray-300); border-radius: 4px; background: #fff; position: relative; }
+.wf-check:hover { border-color: var(--gray-700); }
+.wf-check[aria-pressed="true"] { background: var(--gray-900); border-color: var(--gray-900); }
+.wf-check[aria-pressed="true"]::after { content: ""; position: absolute; left: 6px; top: 2px; width: 5px; height: 10px;
+  border: solid #fff; border-width: 0 2px 2px 0; transform: rotate(45deg); }
+.wf-doc .wf-step.wf-done .wf-step-head { cursor: pointer; }
+.wf-doc .wf-step.wf-done .wf-step-label { color: var(--gray-500); }
+.wf-doc .wf-step.wf-done:not(.wf-open) > :not(.wf-step-head):not(.wf-step-num) { display: none; }
+.wf-doc .wf-step.wf-done:not(.wf-open) { padding-bottom: 16px; padding-top: 16px; }
+.wf-doc .wf-step.wf-done:not(.wf-open) .wf-step-num { top: 16px; }
+@media print {
+  .wf-progress, .wf-check { display: none; }
+  .wf-doc .wf-step.wf-done > * { display: revert !important; }
+}

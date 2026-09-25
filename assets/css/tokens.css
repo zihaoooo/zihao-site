@@ -56,12 +56,9 @@
   --tool-osm: #549688;   /* 铜绿 OpenStreetMap */
   --tool-ge:  #ae7000;   /* 棕黄 Google Earth */
 
-  /* ── page ground, after the ink-wash wallpaper (workflows/wallpaper-maker/themes/ink-wash.css):
-     a small survey cross at every intersection of an implied 40px grid, in the wallpaper's
-     line color #867a63, over its fine horizontal paper striation. No full grid lines: the page
-     scrolls over a fixed ground, so lines could never sit on the content. White underneath.
-     Slides and panels stay solid. The cross is drawn at the tile centre and the tile is
-     shifted half a cell, so crosses land on the grid points. ── */
+  /* ── page ground for site pages, after the ink-wash wallpaper
+     (workflows/wallpaper-maker/themes/ink-wash.css): its fine horizontal paper
+     striation on white. Teaching pages and slides stay plain white. ── */
   --page-ground:
     repeating-linear-gradient(0deg, rgba(120,105,80,.022) 0 1px, transparent 1px 5px),
     #fff;
