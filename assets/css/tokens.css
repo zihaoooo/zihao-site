@@ -17,26 +17,52 @@
   --font-mono:    'DM Mono', ui-monospace, monospace;
   --font-zh:      'Noto Serif SC', serif;
 
-  /* ── neutral grays, dark to light ── */
-  --gray-900: #1a1a1a;
-  --gray-800: #333;
-  --gray-750: #474747;
-  --gray-700: #555;
-  --gray-600: #6b6b6b;
-  --gray-500: #888;
-  --gray-400: #aaa;
-  --gray-300: #bbb;
-  --gray-250: #ccc;
-  --gray-200: #e0e0e0;
-  --gray-150: #ebebeb;
-  --gray-100: #f4f4f4;
-  --gray-50:  #fafafa;
+  /* ── 墨 ink grays (traditional-chinese-colors 灰色系), dark to light ── */
+  --gray-900: #161823;   /* 漆黑 — text */
+  --gray-800: #2e3438;
+  --gray-750: #3d4549;
+  --gray-700: #424c50;   /* 鸦青 — secondary text */
+  --gray-600: #5f6d70;
+  --gray-500: #75878a;   /* 苍 — notes, captions */
+  --gray-400: #9aa7a9;
+  --gray-300: #b3bdbf;
+  --gray-250: #c7cfd1;
+  --gray-200: #e9e7ef;   /* 银白 — rules, borders */
+  --gray-150: #eeedf2;
+  --gray-100: #f0f0f4;   /* 铅白 — panels */
+  --gray-50:  #f8f8fa;
 
-  /* ── accent: one red, site-wide (links, deck highlights, course panel) ── */
-  --accent:         #b94030;
-  --accent-dark:    #8a2e22;   /* link hover */
-  --accent-soft:    #dcb9b2;   /* resting underline */
-  --accent-line:    #e8c9c2;   /* borders on tinted panels */
-  --accent-tint:    #f8ebe8;   /* active-row background */
-  --accent-on-dark: #e0806f;   /* accent on the dark presenter window */
+  /* ── accent: 大繎 #822327, a deep red with no brown ── */
+  --accent:         #822327;   /* 大繎; 9.4:1 on white */
+  --accent-dark:    #5e181c;   /* link hover */
+  --accent-soft:    #d8b0b2;   /* resting underline */
+  --accent-line:    #e5c7c9;   /* borders on tinted panels */
+  --accent-tint:    #f6eaeb;   /* active-row background */
+  --accent-on-dark: #d9727a;   /* accent on the dark presenter window */
+
+  /* ── teaching semantics: deadlines and warnings ── */
+  --alert:      #c3272b;   /* 赤 */
+  --alert-bg:   #fcefe8;   /* 鱼肚白 */
+  --alert-line: #f0c4be;
+  --alert-soft: #b36d61;   /* 檀 — secondary reminder */
+
+  /* ── software colors for tool badges: each tool's hue, nearest traditional color ── */
+  --tool-cad: #c32136;   /* 枣红 AutoCAD */
+  --tool-ai:  #ca6924;   /* 琥珀 Illustrator */
+  --tool-ps:  #177cb0;   /* 靛青 Photoshop */
+  --tool-id:  #cb3a56;   /* 茜色 InDesign */
+  --tool-rh:  #9d2933;   /* 胭脂 Rhino */
+  --tool-gh:  #057748;   /* 松花绿 Grasshopper */
+  --tool-osm: #549688;   /* 铜绿 OpenStreetMap */
+  --tool-ge:  #ae7000;   /* 棕黄 Google Earth */
+
+  /* ── page ground, after the ink-wash wallpaper (workflows/wallpaper-maker/themes/ink-wash.css):
+     a small survey cross at every intersection of an implied 40px grid, in the wallpaper's
+     line color #867a63, over its fine horizontal paper striation. No full grid lines: the page
+     scrolls over a fixed ground, so lines could never sit on the content. White underneath.
+     Slides and panels stay solid. The cross is drawn at the tile centre and the tile is
+     shifted half a cell, so crosses land on the grid points. ── */
+  --page-ground:
+    repeating-linear-gradient(0deg, rgba(120,105,80,.022) 0 1px, transparent 1px 5px),
+    #fff;
 }

@@ -18,7 +18,7 @@
 
 /* Deck palette roles. Values come from /assets/css/tokens.css; a page may override or extend. */
 :root{ --deck-gutter:6px;
-  --ink:var(--gray-900); --paper:var(--gray-50); --line:var(--gray-200); --mute:var(--gray-500); }
+  --ink:var(--gray-900); --paper:#fff; --line:var(--gray-200); --mute:var(--gray-500); }
 
 /* ── stage + carousel mechanics ── */
 .deck{margin-top:10px;}

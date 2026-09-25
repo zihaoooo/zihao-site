@@ -179,12 +179,12 @@ body { font-family: var(--font-sans); background: #fff; color: var(--gray-900); 
   background: #f0f0f0; color: var(--gray-700); margin: 1px 1px 1px 0;
   white-space: nowrap;
 }
-.tool-badge.cad { background: #fde8e8; color: #c0000a; }
-.tool-badge.ps  { background: #e8f0fe; color: #1a56cc; }
-.tool-badge.ai  { background: #fff0e0; color: #cc5500; }
-.tool-badge.id  { background: #fce8f0; color: #b5004a; }
-.tool-badge.rh  { background: var(--accent-tint); color: var(--accent); }
-.tool-badge.gh  { background: #e8f5e8; color: #2a6a2a; }
+.tool-badge.cad { background: color-mix(in srgb, var(--tool-cad) 11%, #fff); color: var(--tool-cad); }
+.tool-badge.ps  { background: color-mix(in srgb, var(--tool-ps) 11%, #fff); color: var(--tool-ps); }
+.tool-badge.ai  { background: color-mix(in srgb, var(--tool-ai) 11%, #fff); color: var(--tool-ai); }
+.tool-badge.id  { background: color-mix(in srgb, var(--tool-id) 11%, #fff); color: var(--tool-id); }
+.tool-badge.rh  { background: color-mix(in srgb, var(--tool-rh) 11%, #fff); color: var(--tool-rh); }
+.tool-badge.gh  { background: color-mix(in srgb, var(--tool-gh) 11%, #fff); color: var(--tool-gh); }
 
 /* Grading breakdown */
 .grade-breakdown {
@@ -384,7 +384,7 @@ body { font-family: var(--font-sans); background: #fff; color: var(--gray-900); 
 /* Workflow topic links in the weekly schedule */
 .schedule-table .wf-link {
   color: var(--accent); text-decoration: none;
-  border-bottom: 1px dotted #c09090;
+  border-bottom: 1px dotted var(--alert-line);
 }
 .schedule-table .wf-link:hover { border-bottom-style: solid; }
 html { scroll-behavior: smooth; }
