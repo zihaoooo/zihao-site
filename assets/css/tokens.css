@@ -17,20 +17,21 @@
   --font-mono:    'DM Mono', ui-monospace, monospace;
   --font-zh:      'Noto Serif SC', serif;
 
-  /* ── 墨 ink grays (traditional-chinese-colors 灰色系), dark to light ── */
-  --gray-900: #161823;   /* 漆黑 — text */
-  --gray-800: #2e3438;
-  --gray-750: #3d4549;
-  --gray-700: #424c50;   /* 鸦青 — secondary text */
-  --gray-600: #5f6d70;
-  --gray-500: #75878a;   /* 苍 — notes, captions */
-  --gray-400: #9aa7a9;
-  --gray-300: #b3bdbf;
-  --gray-250: #c7cfd1;
-  --gray-200: #e9e7ef;   /* 银白 — rules, borders */
-  --gray-150: #eeedf2;
-  --gray-100: #f0f0f4;   /* 铅白 — panels */
-  --gray-50:  #f8f8fa;
+  /* ── neutral grays, dark to light. Kept free of hue: tinted grays read oddly
+     on the dark title slides and presenter window. ── */
+  --gray-900: #1a1a1a;   /* text */
+  --gray-800: #333;
+  --gray-750: #474747;
+  --gray-700: #555;      /* secondary text */
+  --gray-600: #6b6b6b;
+  --gray-500: #888;      /* notes, captions */
+  --gray-400: #aaa;
+  --gray-300: #bbb;
+  --gray-250: #ccc;
+  --gray-200: #e0e0e0;   /* rules, borders */
+  --gray-150: #ebebeb;
+  --gray-100: #f4f4f4;   /* panels */
+  --gray-50:  #fafafa;
 
   /* ── accent: 大繎 #822327, a deep red with no brown ── */
   --accent:         #822327;   /* 大繎; 9.4:1 on white */
