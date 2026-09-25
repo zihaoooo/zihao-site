@@ -25,7 +25,7 @@ highlighted `.panel-announce` block sitting directly under the brand block in ev
 - WF04 `wf04-landform-design.html` — Rhino Landform Modeling (Weeks 7–8)
 - WF05 `wf05-meadow-parametric.html` — Attractor Fields (Grasshopper meadow; Weeks 9–10)
 - WF06 `wf06-slope-analysis.html` — MCP — Claude Inside Rhino (slope analysis exercise; Week 11)
-- WF07 `wf07-claude-code-site.html` — Website with Claude Code (Weeks 12–13)
+- WF07 `wf07-claude-code-site.html` — Context Engineering — A Website with Claude Code (Weeks 12–13)
 
 WF pages are hand-authored HTML only — the old per-workflow `.md` sources were deleted
 (2026-06). Edit the `.html` directly; don't recreate or look for markdown sources.
@@ -36,6 +36,10 @@ WF pages are hand-authored HTML only — the old per-workflow `.md` sources were
   nav.js (done checks that fold a step; state in the student's localStorage). Every step needs a
   `.wf-step-head` to get a check; a `.wf-step` without one is treated as a week divider.
 - Spec strip (`.wf-spec`): first chip is always Week/Weeks, derived from syllabus schedule in `index.html`
+- Learning objectives box (`.wf-objectives`): between the spec strip and the assignment; one to three
+  short `<li>` phrases, only as many as the workflow really teaches. Each names the idea that transfers
+  beyond the software ("How drafting standards encode meaning", "Design as a rule"). The steps
+  say what to do; the assignment says what they make.
 - Assignment box (`.wf-outcome`): single `<strong>Assignment</strong>` label, one sentence, product-framed, format folded in. No separate Deliverable section.
 - `.wf-outcome > strong` is `display:block` in `workflow-shared.css` — scope to `>` to avoid breaking `<strong>` inside `.wf-tips` list items
 - Copy style: match WF07 tone — short, imperative, no AI-sounding parallel structures

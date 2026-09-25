@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>WF 07 Build a Personal Website with Claude Code — LAAR 61400</title>
+  <title>WF 07 Context Engineering — A Website with Claude Code — LAAR 61400</title>
   <link rel="stylesheet" href="/teaching/laar61400/assets/css/main.css">
-  <link rel="stylesheet" href="/teaching/laar61400/assets/css/workflow-shared.css?v=4">
+  <link rel="stylesheet" href="/teaching/laar61400/assets/css/workflow-shared.css?v=5">
 </head>
 <body>
 
@@ -31,7 +31,7 @@
       <a class="panel-link" href="/teaching/laar61400/workflows/wf05-meadow-parametric.html"><span class="panel-link-num">05</span>Attractor Fields</a>
       <a class="panel-link" href="/teaching/laar61400/workflows/wf06-slope-analysis.html"><span class="panel-link-num">06</span>MCP — Claude in Rhino</a>
       <a class="panel-link active" href="/teaching/laar61400/workflows/wf07-claude-code-site.html">
-        <span class="panel-link-num">07</span>Website with Claude Code
+        <span class="panel-link-num">07</span>Context Engineering
       </a>
     </div>
 <div class="panel-section">
@@ -59,26 +59,38 @@
   <main id="main-content">
     <div class="page-inner">
 
+
 <div class="wf-wrap wf-doc">
 
   <!-- Header -->
   <div class="wf-header">
-    <div class="wf-index">WF07</div>
+    <div class="wf-index">WF 07</div>
     <div class="wf-header-text">
-      <div class="wf-title">Build Your Own Website</div>
-      <div class="wf-subtitle">Claude Code · GitHub Pages · No coding required</div>
+      <div class="wf-title">Context Engineering — A Website with Claude Code</div>
+      <div class="wf-subtitle">Claude Code · CLAUDE.md · Folders · GitHub Pages</div>
     </div>
   </div>
 
-  <!-- Assignment -->
+  <!-- Spec strip -->
   <div class="wf-spec">
     <div class="wf-spec-item"><span class="wf-spec-label">Week</span><span class="wf-spec-value">12</span></div>
-    <div class="wf-spec-item"><span class="wf-spec-label">Output</span><span class="wf-spec-value">Live website</span></div>
+    <div class="wf-spec-item"><span class="wf-spec-label">Output</span><span class="wf-spec-value">Live site + repo</span></div>
     <div class="wf-spec-item"><span class="wf-spec-label">Hosting</span><span class="wf-spec-value">GitHub Pages (free)</span></div>
     <div class="wf-spec-item wf-spec-due"><span class="wf-spec-label">Due</span><span class="wf-spec-value">Thu Dec 3</span></div>
   </div>
+
+  <!-- Learning objectives -->
+  <div class="wf-objectives">
+    <strong>Learning Objectives</strong>
+    <ul>
+      <li>How a coding agent's context works</li>
+      <li>Keeping instructions maintainable: DRY, single source of truth, positive framing</li>
+    </ul>
+  </div>
+
+  <!-- Assignment -->
   <div class="wf-outcome">
-    <strong>Assignment</strong><span>A live personal portfolio site on GitHub Pages — about page, at least one project, and a resume. You direct; the agent builds. Share the public URL.</span>
+    <strong>Assignment</strong><span>A portfolio site on GitHub Pages — about page, at least one project, and a resume — built by Claude Code from a folder you organized. Submit the live URL, the public repo URL where your CLAUDE.md files can be read, and a screenshot of your cold-start answer from Step 08.</span>
     <div class="wf-actions">
       <a class="wf-btn" href="https://miro.com/app/board/uXjVH3zpADk=/?share_link_id=448418088180" target="_blank" rel="noopener">Submit to Miro board<span class="wf-btn-arrow" aria-hidden="true">↗</span></a>
     </div>
@@ -86,53 +98,46 @@
 
   <!-- Pipeline strip -->
   <div class="wf-pipeline">
-    <div class="wf-pipe-step"><div class="wf-pipe-node">Setup</div><div class="wf-pipe-arrow">→</div></div>
-    <div class="wf-pipe-step"><div class="wf-pipe-node">Plan</div><div class="wf-pipe-arrow">→</div></div>
-    <div class="wf-pipe-step"><div class="wf-pipe-node" style="background:var(--accent-tint);color:var(--accent);">Claude Chat</div><div class="wf-pipe-arrow">→</div></div>
+    <div class="wf-pipe-step"><div class="wf-pipe-node">Folder</div><div class="wf-pipe-arrow">→</div></div>
+    <div class="wf-pipe-step"><div class="wf-pipe-node" style="background:var(--accent-tint);color:var(--accent);">CLAUDE.md</div><div class="wf-pipe-arrow">→</div></div>
     <div class="wf-pipe-step"><div class="wf-pipe-node" style="background:var(--gray-150);color:var(--gray-800);">Claude Code</div><div class="wf-pipe-arrow">→</div></div>
-    <div class="wf-pipe-step"><div class="wf-pipe-node wf-pipe-tool">localhost</div><div class="wf-pipe-arrow">→</div></div>
+    <div class="wf-pipe-step"><div class="wf-pipe-node wf-pipe-tool">Preview</div><div class="wf-pipe-arrow">→</div></div>
     <div class="wf-pipe-step"><div class="wf-pipe-node wf-pipe-tool">GitHub</div><div class="wf-pipe-arrow">→</div></div>
     <div class="wf-pipe-step"><div class="wf-pipe-node">Live</div></div>
+  </div>
+
+  <!-- Intro -->
+  <div style="background:var(--gray-100); border-radius:4px; padding:16px 18px; margin-bottom:28px;">
+    <div class="wf-step-desc">This week you build and publish a portfolio site. The site is the outcome. The skill is <strong>context engineering</strong>: deciding what a coding agent reads, in what order, and where that information lives so it lasts beyond a single conversation.</div>
+    <div class="wf-step-desc">In WF06 you moved the slope code out of the <kbd>.gh</kbd> file and into a <kbd>.py</kbd> that sat in a folder where Claude could read it. This week the whole project works that way. You set up the folder and write down what matters in it. Claude reads the folder at the start of every session and builds from there.</div>
   </div>
 
   <!-- Steps grid -->
   <div class="wf-steps">
 
-    <!-- Step 0 — full-width gate card -->
-    <div class="wf-step wf-full">
-      <div class="wf-step-head">
-        <span class="wf-step-num">00</span>
-        <span class="wf-step-label">Set Up Your Machine</span>
-      </div>
-      <div class="wf-step-body">
-        <div class="wf-step-desc">One-time installs. Work through them in order.</div>
-        <ul class="wf-tips">
-          <li><strong>Claude Desktop</strong> — claude.com/download. Includes Claude Code. Requires a paid plan (Pro or above).</li>
-          <li><strong>GitHub account</strong> — github.com. Free. This is where your site lives.</li>
-          <li><strong>Git for Windows</strong> — git-scm.com. Click Next through the installer; leave all defaults.</li>
-        </ul>
-      </div>
+    <div class="wf-session">
+      <span class="wf-session-num">Part 1</span>
+      <span class="wf-session-label">The Folder Is the Context</span>
+      <span class="wf-session-rule"></span>
     </div>
 
     <!-- Step 1 -->
-    <div class="wf-step">
+    <div class="wf-step wf-full">
       <div class="wf-step-head">
         <span class="wf-step-num">01</span>
-        <span class="wf-step-label">Gather Your Material</span>
+        <span class="wf-step-label">What Claude Knows</span>
+        <span class="wf-badge wf-badge-neutral">Read first</span>
       </div>
       <div class="wf-step-body">
+        <div class="wf-step-desc">Every Claude Code session starts knowing nothing about your project. All it has to work with is its <strong>context window</strong>: its own instructions, any CLAUDE.md files, the files it has opened, and the conversation so far. Anything outside that window simply isn't there for it.</div>
+        <div class="wf-step-desc">The window has a limit. When a session runs long, Claude Code summarizes the older turns to make room. Details you only said once in conversation are the first to blur. When you close the session, the conversation is gone. The files stay.</div>
+        <div class="wf-step-desc"><strong>Context engineering</strong> is managing that window on purpose: choosing what goes in, what stays out, and what gets written down so the next session starts from it.</div>
         <ul class="wf-tips">
-          <li>A short <strong>about</strong> text — who you are, what you do.</li>
-          <li>Your <strong>resume</strong> file.</li>
-          <li>A few <strong>project images</strong> — three to six to start.</li>
+          <li><strong>The conversation</strong> is short-term memory. Use it to steer the work you're doing right now.</li>
+          <li><strong>The folder</strong> is long-term memory. Decisions you want to keep go into files.</li>
+          <li><strong>CLAUDE.md</strong> is the note Claude reads first. It says what the project is and where everything lives.</li>
         </ul>
-        <div class="wf-step-desc"><strong>Resize images before you build.</strong> Print-resolution exports are far too heavy for the web.</div>
-        <ul class="wf-tips">
-          <li><strong>Feature images:</strong> 1600–2000 px on the long edge, under 500 KB.</li>
-          <li><strong>Gallery images:</strong> 1000–1200 px, under 300 KB.</li>
-          <li><strong>Format:</strong> JPG for photos and renders; PNG only for transparent backgrounds.</li>
-        </ul>
-        <div class="wf-note">Too-large exports? Ask Claude Code to batch-resize them in Step 3.</div>
+        <div class="wf-note">A simple test: if you'd have to say something again next session, write it into a file.</div>
       </div>
     </div>
 
@@ -140,54 +145,104 @@
     <div class="wf-step">
       <div class="wf-step-head">
         <span class="wf-step-num">02</span>
-        <span class="wf-step-label">Write the Spec in Claude Chat</span>
-        <span class="wf-badge wf-badge-chat">CHAT</span>
+        <span class="wf-step-label">Set Up</span>
+        <span class="wf-badge wf-badge-code">SETUP</span>
       </div>
       <div class="wf-step-body">
-        <div class="wf-step-desc">Open a Claude chat (not the Code tab) and talk through your site — pages, sections, style. When you have a clear plan, ask Claude to write it into a file called <strong>BUILDSPEC.md</strong>.</div>
-        <div class="wf-step-desc">Create a new folder on your computer and save <strong>BUILDSPEC.md</strong> inside it. This folder becomes your website.</div>
-        <div class="wf-note">Chat is for planning — nothing is built yet.</div>
+        <div class="wf-step-desc">You already have Claude Desktop from WF06. Add two things:</div>
+        <ul class="wf-tips">
+          <li><strong>GitHub account</strong>: sign up free at github.com. This is where your site lives.</li>
+          <li><strong>Git for Windows</strong>: download from git-scm.com, click Next through the installer, and leave all defaults. On a Mac, Claude will install Git for you the first time it needs it.</li>
+        </ul>
       </div>
     </div>
 
-    <!-- Step 3 -->
-    <div class="wf-step">
+    <!-- Step 3 — full width -->
+    <div class="wf-step wf-full">
       <div class="wf-step-head">
         <span class="wf-step-num">03</span>
-        <span class="wf-step-label">Build in Claude Code</span>
-        <span class="wf-badge wf-badge-code">CODE</span>
+        <span class="wf-step-label">Build the Folder</span>
       </div>
       <div class="wf-step-body">
-        <div class="wf-step-desc">Open Claude Desktop → <strong>Code</strong> tab → <strong>Local</strong> → select your folder. Tell it to read <strong>BUILDSPEC.md</strong> and build the site.</div>
-        <div class="wf-step-desc">Iterate in plain language: <em>"make the header bigger," "use a darker background."</em> Code edits the real files in your folder.</div>
+        <div class="wf-step-desc">In File Explorer, make a folder called <kbd>my-portfolio</kbd>. Inside it, make <kbd>_source</kbd> and put your material there: a short about text, your resume, and three to six project images at full size. Leave the rest empty. Claude builds it.</div>
+        <pre class="wf-code">my-portfolio\
+│
+├─ CLAUDE.md          read at the start of every session
+├─ .gitignore         keeps _source\ off GitHub (Step 09)
+│
+├─ _source\           YOUR MATERIAL — you put it here
+│   ├─ about.txt
+│   ├─ resume.pdf
+│   └─ images\        full-size exports, any size
+│
+├─ index.html         THE SITE — Claude builds these
+├─ resume.html
+├─ assets\img\        web-sized copies of your images
+└─ projects\
+    ├─ CLAUDE.md      read when Claude works in projects\
+    └─ riverside.html</pre>
+        <div class="wf-step-desc">Claude explores a folder by listing names before it opens anything. Clear names tell it where to look, and every file it doesn't have to open leaves more room in the window for your actual work. <kbd>riverside.html</kbd> tells Claude more than <kbd>page3_final_v2.html</kbd>.</div>
+        <div class="wf-step-desc">Open Claude Desktop → <strong>Code</strong> tab → select <kbd>my-portfolio</kbd>. From now on, that folder is Claude's world.</div>
       </div>
     </div>
 
-    <!-- Step 4 -->
-    <div class="wf-step">
+    <!-- Step 4 — full width -->
+    <div class="wf-step wf-full">
       <div class="wf-step-head">
         <span class="wf-step-num">04</span>
-        <span class="wf-step-label">Preview Locally</span>
-        <span class="wf-badge wf-badge-neutral">localhost</span>
+        <span class="wf-step-label">Write CLAUDE.md</span>
       </div>
       <div class="wf-step-body">
-        <div class="wf-step-desc">Claude Code runs a live preview inside the app. You can also open <kbd>localhost:3000</kbd> in your browser for a full-size view.</div>
-        <div class="wf-step-desc">The preview only works while Claude Code is running — your files aren't hosted anywhere yet. Step 5 fixes that.</div>
+        <div class="wf-step-desc">CLAUDE.md is a plain text file at the root of the folder. Claude Code loads it automatically whenever a session opens this folder. Have Claude draft it from your material:</div>
+        <div class="wf-prompt">Read everything in _source. Then write a CLAUDE.md at the root of this folder: who I am, what the site is for, which pages it has, what each folder holds, and the rules for web images. Keep it under 40 lines. Show it to me before you build anything.</div>
+        <div class="wf-step-desc">Open it and edit it yourself. It's your file, and a short one. Something like:</div>
+        <pre class="wf-code"># my-portfolio
+
+Portfolio site for Jane Doe, MLA student at CCNY.
+Plain HTML and CSS, published on GitHub Pages.
+
+## Folders
+- _source/     my raw material. Read it; keep it off the site.
+- assets/img/  web copies, built from _source/images/
+- projects/    one page per project. See projects/CLAUDE.md.
+
+## Pages
+index.html (about) · projects/ · resume.html
+
+## Images
+Feature: 1600–2000 px long edge, under 500 KB.
+Gallery: 1000–1200 px, under 300 KB.
+JPG for photos and renders; PNG only for transparency.
+
+## Style decisions
+Serif headings, gray on white, generous margins.</pre>
+        <ul class="wf-tips">
+          <li><strong>Put in it</strong> what Claude can't work out by reading the files: purpose, folder map, rules, decisions you've made.</li>
+          <li><strong>Keep it short.</strong> It loads into every session, so every line costs context every time. Put long reference material in its own file and have CLAUDE.md point to it.</li>
+          <li><strong>Each rule lives in one place.</strong> The image sizes are written here and nowhere else. Step 07 comes back to this.</li>
+        </ul>
       </div>
+    </div>
+
+    <div class="wf-session">
+      <span class="wf-session-num">Part 2</span>
+      <span class="wf-session-label">Build, and Keep the Memory in Files</span>
+      <span class="wf-session-rule"></span>
     </div>
 
     <!-- Step 5 -->
     <div class="wf-step">
       <div class="wf-step-head">
         <span class="wf-step-num">05</span>
-        <span class="wf-step-label">Publish to GitHub</span>
-        <span class="wf-badge wf-badge-neutral">GitHub</span>
+        <span class="wf-step-label">Build the First Version</span>
+        <span class="wf-badge wf-badge-code">CODE</span>
       </div>
       <div class="wf-step-body">
-        <div class="wf-step-desc"><strong>Create an empty repository on GitHub.</strong> Click <strong>+</strong> → <strong>New repository</strong>, name it <kbd>my-portfolio</kbd>, leave all defaults, click <strong>Create repository</strong>. Don't add any files.</div>
-        <div class="wf-step-desc"><strong>Push from Claude Code.</strong> Copy the repo URL (e.g. <kbd>https://github.com/yourname/my-portfolio.git</kbd>) and type:</div>
-        <div style="background:var(--gray-100); border-left:3px solid var(--accent); border-radius:0 4px 4px 0; padding:10px 14px; margin:8px 0; font-family:monospace; font-size:13px;">Commit all my files and push to https://github.com/yourname/my-portfolio.git</div>
-        <div class="wf-step-desc"><strong>Enable GitHub Pages.</strong> In your repo on github.com: <strong>Settings → Pages</strong> → deploy from <kbd>main</kbd> branch, root folder.</div>
+        <div class="wf-prompt">Following CLAUDE.md, resize my images into assets/img, then build the about page, one project page, and the resume page. Open a preview when it's ready.</div>
+        <div class="wf-step-desc">The preview opens in a pane inside the app. Iterate in plain language: <em>"make the header bigger," "use a darker background."</em> Claude edits the real files in your folder.</div>
+        <div class="wf-step-desc">When you settle something you want to keep, send it to the file:</div>
+        <div class="wf-prompt">Add that to the style decisions in CLAUDE.md.</div>
+        <div class="wf-note">The preview only runs while the app is open. Nothing is online yet. That comes in Part 3.</div>
       </div>
     </div>
 
@@ -195,11 +250,85 @@
     <div class="wf-step">
       <div class="wf-step-head">
         <span class="wf-step-num">06</span>
+        <span class="wf-step-label">One CLAUDE.md per Folder</span>
+      </div>
+      <div class="wf-step-body">
+        <div class="wf-step-desc">The root CLAUDE.md loads when the session starts. A CLAUDE.md inside a subfolder loads only when Claude starts working with files in that folder. That lets the root file stay short: it points, and the details sit next to the files they govern.</div>
+        <div class="wf-prompt">Write projects/CLAUDE.md describing the template every project page follows — sections, image sizes, caption style. Then use it to add a second project from _source.</div>
+        <div class="wf-step-desc">Claude never needs the project template while it's editing your resume, so the template stays out of the window until Claude needs it.</div>
+      </div>
+    </div>
+
+    <!-- Step 7 — full width -->
+    <div class="wf-step wf-full">
+      <div class="wf-step-head">
+        <span class="wf-step-num">07</span>
+        <span class="wf-step-label">Revise Against Three Rules</span>
+      </div>
+      <div class="wf-step-body">
+        <div class="wf-step-desc">Your CLAUDE.md files have grown as you built. Before you test them, check them against three habits from software practice.</div>
+
+        <div class="wf-step-desc"><strong>DRY — Don't Repeat Yourself.</strong> Write each fact once. Say you put the image sizes in the root CLAUDE.md and again in <kbd>projects/CLAUDE.md</kbd>. Later you change one copy and forget the other. Claude now has two answers, and it has to guess which one you meant. Write the rule once and point to it from everywhere else:</div>
+        <pre class="wf-code">projects/CLAUDE.md
+  Image sizes: see the root CLAUDE.md.</pre>
+
+        <div class="wf-step-desc"><strong>SSOT — Single Source of Truth.</strong> For each thing in the project, decide which file is the original and which files are built from it. Your resume PDF in <kbd>_source</kbd> is the original, and <kbd>resume.html</kbd> is built from it. To update your resume, edit the PDF and ask Claude to rebuild the page. If you edit the HTML directly, the two drift apart and nothing tells you which one is current. State the originals in CLAUDE.md so Claude knows which file to change.</div>
+
+        <div class="wf-step-desc"><strong>Don't think of an elephant.</strong> The linguist George Lakoff made the point that naming something puts it in the listener's mind, even when you name it to rule it out. Language models behave the same way: <em>"don't use Comic Sans"</em> brings Comic Sans into the context. Write the thing you want instead.</div>
+        <pre class="wf-code">✗  Don't use Comic Sans. Never center body text.
+✓  Serif for headings, sans for body. Body text left-aligned.</pre>
+        <div class="wf-step-desc">Keep the negative wording only for hard limits that have no positive form. The rewrite usually turns out clearer for you as well as for Claude.</div>
+
+        <div class="wf-step-desc">Then have Claude audit the files, and approve each fix yourself:</div>
+        <div class="wf-prompt">Check every CLAUDE.md in this folder against three rules: each fact written once, the original file named for anything that gets built, and every rule phrased as what to do. List what breaks a rule and propose a fix for each. Change nothing until I approve.</div>
+      </div>
+    </div>
+
+    <!-- Step 8 -->
+    <div class="wf-step wf-full">
+      <div class="wf-step-head">
+        <span class="wf-step-num">08</span>
+        <span class="wf-step-label">The Cold-Start Test</span>
+      </div>
+      <div class="wf-step-body">
+        <div class="wf-step-desc">Close the session and start a new one in the same folder. Claude now knows only what the folder tells it. Ask:</div>
+        <div class="wf-prompt">What is this project, how is it organized, and what's left to do?</div>
+        <div class="wf-step-desc">If the answer is right, your files are carrying the project. If Claude gets something wrong or misses a decision, fix CLAUDE.md, then start another session and ask again. Leave the conversation out of it: the next session won't see anything you explain there.</div>
+        <div class="wf-step-desc">When the answer is right, take a screenshot of it. That goes in your submission.</div>
+        <div class="wf-note">Use this whenever a long session starts forgetting things you settled an hour ago. Save the decisions to CLAUDE.md, open a fresh session, and keep going. Starting over costs you nothing, because the folder carries the project.</div>
+      </div>
+    </div>
+
+    <div class="wf-session">
+      <span class="wf-session-num">Part 3</span>
+      <span class="wf-session-label">Publish</span>
+      <span class="wf-session-rule"></span>
+    </div>
+
+    <!-- Step 9 -->
+    <div class="wf-step">
+      <div class="wf-step-head">
+        <span class="wf-step-num">09</span>
+        <span class="wf-step-label">Publish to GitHub</span>
+        <span class="wf-badge wf-badge-neutral">GitHub</span>
+      </div>
+      <div class="wf-step-body">
+        <div class="wf-step-desc"><strong>Create an empty repository on GitHub.</strong> Click <strong>+</strong> → <strong>New repository</strong>, name it <kbd>my-portfolio</kbd>, leave all defaults, and click <strong>Create repository</strong>. Leave it empty. Your files come from your folder.</div>
+        <div class="wf-step-desc"><strong>Push from Claude Code.</strong> Copy the repo URL and ask:</div>
+        <div class="wf-prompt">Add a .gitignore that keeps _source out, then commit everything else and push to https://github.com/yourname/my-portfolio.git</div>
+        <div class="wf-step-desc"><strong>Enable GitHub Pages.</strong> In your repo on github.com: <strong>Settings → Pages</strong> → deploy from the <kbd>main</kbd> branch, root folder.</div>
+      </div>
+    </div>
+
+    <!-- Step 10 -->
+    <div class="wf-step">
+      <div class="wf-step-head">
+        <span class="wf-step-num">10</span>
         <span class="wf-step-label">Your Site Is Live</span>
       </div>
       <div class="wf-step-body">
-        <div class="wf-step-desc">Your site is now public at <strong>yourname.github.io</strong> — the same files as your local preview, but hosted in the cloud permanently.</div>
-        <div class="wf-step-desc"><strong>To update:</strong> make changes in Claude Code, then ask it to commit and push. Your live site refreshes.</div>
+        <div class="wf-step-desc">Your site is public at <strong>yourname.github.io/my-portfolio</strong>. It's the same files as your preview, hosted online.</div>
+        <div class="wf-step-desc"><strong>To update:</strong> open a session in the folder, make the change, and ask Claude to commit and push. The live site refreshes within a minute or two. CLAUDE.md goes up with the site, so the project also works on any other computer you clone it to.</div>
       </div>
     </div>
 
@@ -207,25 +336,29 @@
 
   <!-- Explainers -->
   <div class="wf-aside">
-    <div class="wf-aside-title">What is Git?</div>
-    <div class="wf-step-desc">Git keeps a history of every saved version of your files — like version history in InDesign or Photoshop, but for your whole project folder, and the snapshots are deliberate. Instead of <em>site_final_v2_REALLY_final</em>, you keep one folder and Git remembers each saved state, so you can always go back.</div>
-    <div class="wf-step-desc">Three names that get mixed up:</div>
-    <ul class="wf-tips">
-      <li><strong>Git</strong> tracks the snapshots, on your own computer.</li>
-      <li><strong>GitHub</strong> stores a copy online, so it's backed up and shareable.</li>
-      <li><strong>GitHub Pages</strong> turns the files in your GitHub repo into a live public website, free.</li>
-    </ul>
-    <div class="wf-step-desc">You won't operate Git by hand — Claude Code does the snapshots and uploads. You just need the idea: deliberate saves you can return to, backed up online, served as a site.</div>
+    <div class="wf-aside-title">Where Claude Looks</div>
+    <div class="wf-step-desc">CLAUDE.md files stack. Claude Code reads every one on the path from your user folder down to the folder you opened, then picks up deeper ones as it works.</div>
+    <pre class="wf-code">C:\Users\you\.claude\CLAUDE.md     you, in every project
+Documents\CLAUDE.md                any folder above, if present
+my-portfolio\CLAUDE.md             this project
+        ── all loaded when the session starts ──
+
+my-portfolio\projects\CLAUDE.md    loaded when Claude opens
+                                   a file in projects\</pre>
+    <div class="wf-step-desc">The top one is for things true everywhere — your name, the language you want replies in, how you like to work. A folder that holds several projects can carry one CLAUDE.md they all share. Each level says only what applies at that level.</div>
+    <div class="wf-step-desc">This is how larger projects stay manageable. The top files are short and point downward. Claude follows the pointers the way you would follow a drawing index to the one sheet you need.</div>
   </div>
 
   <div class="wf-aside">
-    <div class="wf-aside-title">Chat vs. Code</div>
-    <div class="wf-step-desc">You used two different tools in this workflow, and the difference is the point:</div>
+    <div class="wf-aside-title">What Is Git?</div>
+    <div class="wf-step-desc">Git keeps a history of every saved version of your files. It works like version history in InDesign or Photoshop, but for the whole project folder, and you choose when each snapshot is taken. You keep one folder instead of <em>site_final_v2_REALLY_final</em>, and Git remembers each saved state so you can always go back.</div>
+    <div class="wf-step-desc">Three names that get mixed up:</div>
     <ul class="wf-tips">
-      <li><strong>Claude Chat</strong> is for <em>deciding</em>. Thinking through what you want, planning, writing the spec. No files are touched.</li>
-      <li><strong>Claude Code</strong> is for <em>doing</em>. It works on the real files in your folder — building, editing, resizing, publishing.</li>
+      <li><strong>Git</strong> tracks the snapshots on your own computer.</li>
+      <li><strong>GitHub</strong> stores a copy online, so it's backed up and shareable.</li>
+      <li><strong>GitHub Pages</strong> serves the files in a GitHub repo as a free public website.</li>
     </ul>
-    <div class="wf-step-desc">The <strong>BUILDSPEC.md</strong> file is the handoff between them: you figure out <em>what</em> in Chat, then Code makes it real.</div>
+    <div class="wf-step-desc">Claude Code runs Git for you. The idea is what matters: saves you take on purpose and can return to, backed up online and served as a site.</div>
   </div>
 
   <!-- Footer -->

@@ -110,6 +110,28 @@
 .wf-outcome > strong + * {
   margin-bottom: 8px;
 }
+/* ── Learning objectives: what the workflow teaches, above the assignment (what it produces) ── */
+.wf-objectives {
+  border: 1px solid var(--gray-200);
+  border-radius: 4px;
+  padding: 11px 14px;
+  margin-bottom: 12px;
+  font-size: 12px;
+  line-height: 1.6;
+  color: var(--gray-800);
+}
+.wf-objectives > strong {
+  display: block;
+  margin-bottom: 3px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--gray-900);
+}
+.wf-objectives ul { margin: 0; padding-left: 18px; }
+.wf-objectives li + li { margin-top: 2px; }
+.wf-doc .wf-objectives ul { max-width: 64ch; }
 /* ── Pipeline strip ── */
 .wf-pipeline {
   display: flex;
