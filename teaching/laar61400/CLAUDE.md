@@ -20,7 +20,7 @@ highlighted `.panel-announce` block sitting directly under the brand block in ev
 
 ## Workflows (`workflows/`)
 - WF01 `wf01-autocad.html` — AutoCAD Site Drafting (Weeks 2–3)
-- WF02 `wf02-sketch-portfolio.html` — Hand Sketch → Hybrid Drawing (Week 4)
+- WF02 `wf02-sketch-portfolio.html` — Hybrid Drawing + Layout (Weeks 4–5; Part 1 Photoshop joiner + trace, Part 2 InDesign deck)
 - WF03 `wf03-urban-context.html` — Urban Context Mapping (Week 5)
 - WF04 `wf04-landform-design.html` — Rhino Landform Modeling (Weeks 7–8)
 - WF05 `wf05-meadow-parametric.html` — Attractor Fields (Grasshopper meadow; Weeks 9–10)
