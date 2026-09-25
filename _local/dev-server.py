@@ -3,9 +3,10 @@
 Serves the site root with Cache-Control: no-store so edits to deck.js / deck.css /
 deck-editor.js are always picked up — the `?edit` auto-loader in deck.js then fires reliably.
 
-Run from the repo root:  py _local/dev-server.py [port]
+Run from the repo root:  py _local/dev-server.py [port]   (else $PORT, else 8137)
 Then open:  http://localhost:8137/teaching/laar61400/lectures/week04-graphic-design-101.html?edit
 """
+import os
 import sys
 from functools import partial
 from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
@@ -23,7 +24,7 @@ class NoCacheHandler(SimpleHTTPRequestHandler):
 
 
 def main():
-    port = int(sys.argv[1]) if len(sys.argv) > 1 else 8137
+    port = int(sys.argv[1]) if len(sys.argv) > 1 else int(os.environ.get("PORT", 8137))
     handler = partial(NoCacheHandler, directory=".")
     httpd = ThreadingHTTPServer(("127.0.0.1", port), handler)
     print(f"Deck dev server (no-cache) on http://localhost:{port}  —  Ctrl+C to stop")
