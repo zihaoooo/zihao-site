@@ -701,3 +701,48 @@
   color: var(--gray-400);
   padding: 0 0 2px 0;
 }
+
+/* ============================================================
+   .wf-doc — document layout for a workflow page (trial on wf07).
+   Reads as a procedure sheet rather than a dashboard: one column,
+   steps divided by hairlines, step number in the left margin,
+   sentence-weight titles, tools named as text. Boxes stay only
+   where they do a job (the assignment, code to copy).
+   ============================================================ */
+.wf-doc .wf-index { background: none; color: var(--gray-500); padding: 0; font-size: 12px; margin-top: 6px; }
+.wf-doc .wf-title { font-size: 26px; font-weight: 700; letter-spacing: -0.01em; text-transform: none; line-height: 1.15; }
+.wf-doc .wf-subtitle { font-family: var(--font-sans); font-size: 13px; letter-spacing: 0; text-transform: none; color: var(--gray-500); margin-top: 4px; }
+.wf-doc .wf-header { border-bottom: 1px solid var(--gray-900); }
+
+
+/* steps: one column so the order reads top to bottom; hairline between steps,
+   number in the left margin. Running text keeps a ~68-character measure so the eye
+   finds the next line while following along; code, tables and figures run full width. */
+.wf-doc .wf-steps { display: block; border-top: 1px solid var(--gray-900); }
+.wf-doc .wf-step { position: relative; border: 0; border-radius: 0; border-bottom: 1px solid var(--gray-200);
+  padding: 22px 0 22px 72px; overflow: visible; }
+.wf-doc .wf-step-head { display: flex; align-items: center; gap: 10px; background: none; border: 0; padding: 0; }
+/* the page's own step number (00, 01–02, A, ▸ …), set large in the margin */
+.wf-doc .wf-step-num { position: absolute; left: 0; top: 22px; width: 64px;
+  font-family: var(--font-display); font-size: 22px; line-height: 1; color: var(--gray-300); }
+.wf-doc .wf-step-label { font-size: 17px; font-weight: 700; letter-spacing: 0; text-transform: none; line-height: 1.3; }
+.wf-doc .wf-step-head .wf-badge { margin-left: 0; }   /* pill sits right after the title */
+.wf-doc .wf-step-body { padding: 10px 0 0; }
+.wf-doc .wf-step-desc,
+.wf-doc .wf-tips,
+.wf-doc .wf-note,
+.wf-doc .wf-prompt,
+.wf-doc .wf-aside,
+.wf-doc .wf-outcome > span { max-width: 64ch; }
+/* the page itself narrows to the reading column, so the rules and the assignment
+   frame end where the text ends */
+.wf-doc { max-width: 780px; margin-left: 0; }
+.wf-doc .wf-step-desc { font-size: 14px; line-height: 1.65; color: var(--gray-800); }
+.wf-doc .wf-tips li { font-size: 14px; line-height: 1.6; }
+.wf-doc .wf-step.wf-full .wf-step-body { border-right: 0; }
+
+/* asides (background explainers after the steps): keep the framed box so they read as
+   notes, aligned to the step text column */
+.wf-doc .wf-aside { margin: 20px 0 0 72px; max-width: none; }
+.wf-doc .wf-aside .wf-step-desc,
+.wf-doc .wf-aside .wf-tips { max-width: 64ch; }
