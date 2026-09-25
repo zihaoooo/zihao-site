@@ -229,6 +229,18 @@
 
   </div><!-- /steps -->
 
+  <div class="wf-aside">
+    <div class="wf-aside-title">Further Reading — GIS Concepts</div>
+    <div class="wf-step-desc">OSM and Google Earth hide the GIS underneath. These are the concepts behind them, each with an Esri reference. Start with <a href="https://doc.esri.com/en/arcgis-pro/latest/help/mapping/properties/coordinate-systems-and-projections.html" target="_blank" rel="noopener">Coordinate systems, map projections, and transformations</a>.</div>
+    <ul class="wf-tips">
+      <li><strong>Datum</strong> — the model of the Earth's shape that coordinates are measured from. Google Earth and GPS use WGS84; US survey data uses NAD83. The same point can sit a meter or more apart under two datums. <a href="https://desktop.arcgis.com/en/arcmap/latest/map/projections/datums.htm" target="_blank" rel="noopener">Datums</a></li>
+      <li><strong>Geographic vs. projected coordinates</strong> — latitude and longitude in degrees on a round Earth, or x and y in feet or meters on a flat sheet. <a href="https://www.esri.com/arcgis-blog/products/arcgis-pro/mapping/gcs_vs_pcs" target="_blank" rel="noopener">Geographic vs Projected Coordinate Systems</a></li>
+      <li><strong>Map projection</strong> — the math that flattens the globe. Every projection distorts area, shape, distance, or direction; you choose which. OSM uses Web Mercator, which inflates area toward the poles. At the scale of one site the distortion is negligible. <a href="https://doc.esri.com/en/arcgis-pro/latest/help/mapping/properties/pdf/quick_notes_on_map_projections.pdf" target="_blank" rel="noopener">Quick notes on map projections (PDF poster)</a></li>
+      <li><strong>State Plane</strong> — a US system of flat zones, each projected to keep distortion small. NYC city data usually comes in NAD83 / New York Long Island, in feet. <a href="https://support.esri.com/en-us/gis-dictionary/state-plane-coordinate-system" target="_blank" rel="noopener">State Plane Coordinate System</a></li>
+      <li><strong>Vector vs. raster</strong> — the OSM export is vector: points, lines, and shapes. The Google Earth image is raster: a grid of pixels. Your map layers one over the other. <a href="https://doc.esri.com/en/arcgis-pro/latest/help/data/imagery/introduction-to-raster-data.html" target="_blank" rel="noopener">Introduction to image and raster data</a></li>
+    </ul>
+  </div>
+
   <!-- Footer -->
   <div class="wf-footer">
     <span>LAAR 61400 — Representation &amp; Computation I</span><span>Workflow 03 of 07</span>
