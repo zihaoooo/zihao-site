@@ -19,8 +19,7 @@ imports it). Page `<style>` blocks, `style=""` attributes and SVG diagrams write
 presentation attributes like `fill=` only take var() in some browsers. Write a literal hex
 only for a content color: data series, brand logos, type or color specimens.
 The `.slide .embed` wrapper for typeset cards is in deck.css, and deck.js scales each card to its
-slide (`fitEmbeds`). Pages carry no fit script of their own; talks/bedac still has the old inline
-copy, which deck.js overrides. Drop it on its next rebuild.
+slide (`fitEmbeds`). Pages carry no fit script of their own.
 
 ## Deck layout system
 CSS lives in shared `/assets/deck/deck.css` (one file, all decks) — `<link>` it,

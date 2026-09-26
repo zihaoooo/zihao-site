@@ -257,29 +257,5 @@
 
 <script src="/assets/js/site.js"></script>
 <script src="/assets/deck/deck.js"></script>
-<script>
-(function(){
-  var stage=document.getElementById('deck-stage');
-  if(!stage) return;
-  var embeds=[].slice.call(document.querySelectorAll('#deck-stage .slide .embed'));
-  function fit(){
-    var SW=stage.clientWidth, SH=stage.clientHeight;
-    if(!SW||!SH) return;
-    embeds.forEach(function(e){
-      var c=e.firstElementChild; if(!c) return;
-      c.style.transform='none';
-      var w=c.offsetWidth, h=c.offsetHeight;
-      if(!w||!h) return;
-      var s=Math.min(1,(SW-28)/w,(SH-28)/h);
-      c.style.transform = s<1 ? 'scale('+s+')' : 'none';
-    });
-  }
-  window.addEventListener('load',fit);
-  if(document.readyState==='complete') fit();
-  var t; window.addEventListener('resize',function(){clearTimeout(t);t=setTimeout(fit,80);});
-  document.addEventListener('fullscreenchange',function(){setTimeout(fit,80);});
-  document.addEventListener('webkitfullscreenchange',function(){setTimeout(fit,80);});
-})();
-</script>
 </body>
 </html>

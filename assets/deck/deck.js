@@ -742,8 +742,6 @@
   // Cards are authored wide and scaled down, never up. In the carousel a card fits the
   // slide both ways; in the scroll view it fits the width and the slide grows to the
   // scaled card (never shorter than 16:9), so copy is never clipped or scrolled.
-  // Lecture pages used to carry their own copy of this; talks/bedac still does, and this
-  // runs after it (load + a longer resize debounce) so the scroll view wins there too.
   const embeds = [...deck.querySelectorAll('.slide .embed')];
   function fitEmbeds(){
     embeds.forEach(e=>{
