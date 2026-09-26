@@ -53,11 +53,8 @@
       font-size:clamp(10px,1.2cqw,17px);line-height:1.4;border-top:1px solid var(--line);
       padding-top:clamp(5px,.9cqw,12px);}
 
-    /* phone: both blocks drop to one column — the stage goes 4:5 (deck.css) and two
-       ~150px columns would break every line. */
+    /* phone: both blocks drop to one column — two ~150px columns would break every line */
     @media (max-width:560px){
-      /* four stacked rows need more than the 4:5 phone stage deck.css gives typeset slides */
-      .deck-stage:has(.slide.on .aud){aspect-ratio:12/25;}
       .sk,.aud{grid-template-columns:minmax(0,1fr);row-gap:8px;}
       .aud-row,.aud-end{padding-top:6px;}
       .aud-to{margin-bottom:.2em;}

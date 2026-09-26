@@ -186,8 +186,8 @@
 
 /* ── typeset text cards — .txt-card / .stmt / .cmp ──
    Promoted out of laar64150's lectures (2026-09) once a third deck needed them; built from
-   modeling-as-thinking's `m7-cols` tokens. All three live inside the page's `.embed` wrapper, which the page's
-   fit script scales down to the stage — so author them WIDE: the script only ever scales down,
+   modeling-as-thinking's `m7-cols` tokens. All three live inside the page's `.embed` wrapper, which deck.js
+   scales down to the stage — so author them WIDE: the script only ever scales down,
    never up, and a card authored narrow leaves wide margins on a fullscreen stage.
      .txt-card  heading + `+` bullets, one level of `–` sub-bullets. The workhorse.
      .stmt      one sentence carried large, centered, with an optional `.sub` line under it.
@@ -238,8 +238,8 @@
 .cmp .note{font-family:var(--font-sans);color:var(--mute);line-height:1.4;
   font-size:clamp(12px,1.4cqw,21px);}
 
-/* ── typeset wrapper: a card inside a carousel slide, centered and clipped; the page's fit
-   script scales the child to the fixed 16:9 stage so nothing scrolls. ── */
+/* ── typeset wrapper: a card inside a carousel slide, centered and clipped; deck.js
+   (fitEmbeds) scales the child to its slide so nothing scrolls. ── */
 .slide .embed{width:100%;height:100%;display:flex;align-items:center;justify-content:center;
   overflow:hidden;padding:14px;box-sizing:border-box;}
 .slide .embed>*{transform-origin:center center;}
@@ -301,21 +301,49 @@
   color:var(--mute);margin-top:6px;}
 .deck-fs{margin-left:auto;flex:0 0 auto;font-size:14px;}
 
-/* ── phone: typeset slides get a taller stage ──
-   Every typeset size is a clamp whose px floor is tuned for a laptop-width stage. On a
-   375px phone the floors all bind at once while a 16:9 stage is only ~170px tall, so a
-   text slide overflows and gets clipped. Image slides keep 16:9 (a taller box would just
-   letterbox them); the stage grows only while a typeset slide is showing, and anything
-   still past the taller box scrolls inside the stage rather than clipping.
-   Fullscreen present mode keeps 16:9 — its own rule below is more specific. */
+/* ── phone scroll view (deck.js adds .deck--scroll below 560px, outside fullscreen) ──
+   Borrowed from reveal.js's scroll view: on a phone the carousel becomes one long column,
+   every slide stacked in order at full width. Picture and video slides keep a fixed 16:9
+   box; typeset slides grow to fit their copy (deck.js sizes .embed slides to their scaled
+   card), so nothing scrolls inside a slide. Captions sit under each slide; the control bar
+   and notes ride in a dock pinned to the bottom of the screen while the deck is in view.
+   Fullscreen drops back to the carousel. */
+.deck--scroll .deck-stage{aspect-ratio:auto;border:0;background:none;overflow:visible;
+  padding-bottom:84px;}                                /* clears the dock over the last slide */
+.deck--scroll .slide{position:relative;inset:auto;width:100%;box-sizing:border-box;
+  opacity:1;visibility:visible;transition:none;
+  aspect-ratio:16/9;overflow:hidden;border:1px solid var(--line);scroll-margin-top:64px;}
+.deck--scroll .slide:has(.pts){aspect-ratio:3/4;}      /* copy stacked over a picture */
+/* typeset slides with no picture, video or scaled card: let the copy set the height */
+.deck--scroll .slide:not(:has(img,iframe,video,canvas,.embed)){overflow:visible;}
+.deck-scap{display:none;}
+.deck--scroll .deck-scap{display:block;margin:7px 1px 22px;}
+.deck-scap .deck-cap{font-size:13px;}
+.deck-scap .deck-credit{display:block;font-family:var(--font-sans);font-size:10.5px;
+  color:var(--gray-500);line-height:1.35;margin-top:2px;}
+.deck--scroll .deck-thumbs,
+.deck--scroll #deck-thumbs-toggle,
+.deck--scroll #deck-present,
+.deck--scroll .deck-meta,
+.deck--scroll .deck-hint{display:none;}
+/* the dock: bar + notes, floating over the page while the deck is in view */
+.deck-dock{position:fixed;left:12px;right:12px;bottom:calc(12px + env(safe-area-inset-bottom));
+  z-index:150;max-width:520px;margin:0 auto;padding:8px;box-sizing:border-box;
+  background:color-mix(in srgb, var(--paper) 94%, transparent);
+  -webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);
+  border:1px solid var(--line);border-radius:14px;box-shadow:0 6px 24px rgba(0,0,0,.12);
+  opacity:0;visibility:hidden;transform:translateY(12px);
+  transition:opacity .2s ease,transform .2s ease,visibility 0s linear .2s;}
+.deck-dock.show{opacity:1;visibility:visible;transform:none;transition-delay:0s;}
+/* progress hairline along the dock's top edge */
+.deck-dock::before{content:"";position:absolute;left:14px;top:-1px;height:2px;border-radius:2px;
+  width:calc((100% - 28px) * var(--deck-p, 0));background:var(--accent);transition:width .2s ease;}
+.deck-dock .deck-bar{margin:0;flex-wrap:nowrap;gap:6px;}
+.deck-dock .deck-count{flex:1 1 auto;}
+.deck-dock .deck-notes{margin:0 0 8px;max-height:42vh;overflow-y:auto;overscroll-behavior:contain;
+  max-width:none;border-radius:10px;}
+/* text beside an image stacks: a 5-of-12 column is ~140px at phone width */
 @media (max-width:560px){
-  .deck-stage{aspect-ratio:4/5;}                       /* typeset slide: room for the copy */
-  .deck-stage:has(.slide.on img){aspect-ratio:16/9;}   /* a picture keeps the wide box */
-  .deck-stage:has(.slide.on .pts){aspect-ratio:3/4;}   /* copy stacked over a picture */
-  /* a page whose typeset block needs more than 4:5 asks for its own ratio the same way,
-     keyed to that block's class (see drawing-as-thinking `.aud`) */
-  .slide{overflow-y:auto;overscroll-behavior:contain;align-items:safe center;}
-  /* text beside an image stacks: a 5-of-12 column is ~140px at phone width */
   .slide.points-l,.slide.points-r{grid-template-columns:minmax(0,1fr);
     grid-template-rows:auto minmax(0,1fr);gap:clamp(8px,2.5cqw,14px);padding:14px;}
   .slide.points-l .pts,.slide.points-r .pts{grid-column:1;grid-row:1;}
@@ -399,7 +427,9 @@
   margin-left:10px;box-sizing:border-box;overflow:hidden;z-index:5;
   background:var(--paper);border:1px solid var(--line);border-radius:3px;
   opacity:0;visibility:hidden;transform:translateX(-14px);
-  transition:opacity .18s ease,transform .22s ease,visibility 0s linear .22s;}
+  transition:opacity .18s ease,transform .22s ease,visibility 0s linear .22s;
+  display:none;}                                       /* .open while shown or fading (deck.js) */
+.deck-thumbs.open{display:block;}
 .deck-thumbs.on{opacity:1;visibility:visible;transform:none;transition-delay:0s;}
 .deck-thumbs-inner{position:absolute;inset:0;display:flex;flex-direction:column;}
 .deck-thumbs-head{flex:0 0 auto;display:flex;align-items:center;gap:8px;

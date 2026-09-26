@@ -77,13 +77,18 @@
     /* the widget fills the card and gets an explicit height (it is height:100% by default) */
     .cyb-life--play{height:min(58vh,440px);padding:0;}
 
+    /* phone scroll view: controls stack over the board, and the slide grows to fit both */
+    .deck--scroll .slide:has(.cyb-life){aspect-ratio:3/4;}
+    @media (max-width:560px){
+      .cyb-life{flex-direction:column;gap:12px;padding:12px;}
+      .cyb-life__panel{flex:0 0 auto;gap:10px;overflow:visible;}
+      .cyb-life__hint{display:none;}
+      .cyb-life__canvas{flex:1 1 auto;min-height:0;}
+    }
     /* ── two-column comparison table (slides 18 + 19; scaled to the stage via .embed) ── */
     /* oversized embeds left-align in the slide's grid; flex unsafe-centers them so the
        fit-scaler's transform (around the element centre) keeps them centred on the stage */
     .slide:has(.cyb-cmp){display:flex;align-items:center;justify-content:center;}
-    /* phone: this block is scaled to the stage width by the fit script below, so the taller
-       typeset stage deck.css gives text slides would only add letterbox */
-    @media (max-width:560px){ .deck-stage:has(.slide.on .cyb-cmp){aspect-ratio:16/9;} }
     .cyb-cmp{width:1120px;flex-shrink:0;display:flex;flex-direction:column;align-items:center;
       font-family:var(--font-sans);color:var(--ink);}
     .cyb-cmp__grid{width:100%;display:grid;grid-template-columns:132px 1fr 1fr;
@@ -418,32 +423,6 @@
   <!-- ── deck carousel controller (shared, page-agnostic) ── -->
   <script src="/assets/deck/deck.js"></script>
 
-  <!-- ── scale each typeset embed (text cards, placeholders) to fit the fixed 16:9 stage ── -->
-  <script>
-  (function(){
-    var stage=document.getElementById('deck-stage');
-    if(!stage) return;
-    var embeds=[].slice.call(document.querySelectorAll('#deck-stage .slide .embed'));
-    function fit(){
-      var SW=stage.clientWidth, SH=stage.clientHeight;
-      if(!SW||!SH) return;
-      embeds.forEach(function(e){
-        var c=e.firstElementChild; if(!c) return;
-        c.style.transform='none';
-        var w=c.offsetWidth, h=c.offsetHeight;
-        if(!w||!h) return;
-        var avW=SW-28, avH=SH-28;
-        var s=Math.min(1, avW/w, avH/h);
-        c.style.transform = s<1 ? 'scale('+s+')' : 'none';
-      });
-    }
-    window.addEventListener('load',fit);
-    if(document.readyState==='complete') fit();
-    var t; window.addEventListener('resize',function(){clearTimeout(t);t=setTimeout(fit,80);});
-    document.addEventListener('fullscreenchange',function(){setTimeout(fit,80);});
-    document.addEventListener('webkitfullscreenchange',function(){setTimeout(fit,80);});
-  })();
-  </script>
 
   <!-- ── interactive Conway's Game of Life — Gosper glider gun (reusable widget) ── -->
   <script>

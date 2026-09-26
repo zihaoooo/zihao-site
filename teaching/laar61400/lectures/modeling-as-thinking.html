@@ -51,8 +51,11 @@
     .slide.points-l .pts-imgs figure{margin:0;width:100%;height:auto;display:block;}
     .slide.points-l .pts-imgs img{width:100%;height:auto;display:block;border-radius:4px;}
     /* phone: deck.css stacks .points-l into one column; this page-local image column
-       has to follow it down */
+       has to follow it down. The text columns stack too: three ~110px columns break
+       every line, and the split variant's max-content columns run off the slide. */
     @media (max-width:560px){
+      .m7-cols{flex-direction:column;gap:22px;}
+      .m7-cols--split .col{align-items:flex-start;}
       .slide.points-l .pts-imgs{grid-column:1;grid-row:2;flex-direction:row;gap:8px;
         align-items:center;justify-content:center;min-height:0;}
       .slide.points-l .pts-imgs figure{flex:1 1 0;min-width:0;height:100%;
@@ -407,31 +410,5 @@
   <!-- ── deck carousel controller (shared, page-agnostic) ── -->
   <script src="/assets/deck/deck.js"></script>
 
-  <!-- ── scale each typeset embed (dividers, render grid) to fit the fixed 16:9 stage ── -->
-  <script>
-  (function(){
-    var stage=document.getElementById('deck-stage');
-    if(!stage) return;
-    var embeds=[].slice.call(document.querySelectorAll('#deck-stage .slide .embed'));
-    function fit(){
-      var SW=stage.clientWidth, SH=stage.clientHeight;
-      if(!SW||!SH) return;
-      embeds.forEach(function(e){
-        var c=e.firstElementChild; if(!c) return;
-        c.style.transform='none';
-        var w=c.offsetWidth, h=c.offsetHeight;
-        if(!w||!h) return;
-        var avW=SW-28, avH=SH-28;
-        var s=Math.min(1, avW/w, avH/h);
-        c.style.transform = s<1 ? 'scale('+s+')' : 'none';
-      });
-    }
-    window.addEventListener('load',fit);
-    if(document.readyState==='complete') fit();
-    var t; window.addEventListener('resize',function(){clearTimeout(t);t=setTimeout(fit,80);});
-    document.addEventListener('fullscreenchange',function(){setTimeout(fit,80);});
-    document.addEventListener('webkitfullscreenchange',function(){setTimeout(fit,80);});
-  })();
-  </script>
 </body>
 </html>

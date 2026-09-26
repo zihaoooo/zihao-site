@@ -18,18 +18,36 @@ imports it). Page `<style>` blocks, `style=""` attributes and SVG diagrams write
 `var(--accent)`, `var(--paper)` and the gray scales — in SVG put them in `style=""`, since
 presentation attributes like `fill=` only take var() in some browsers. Write a literal hex
 only for a content color: data series, brand logos, type or color specimens.
-The `.slide .embed` wrapper for typeset cards is in deck.css; pages keep only their own fit script.
+The `.slide .embed` wrapper for typeset cards is in deck.css, and deck.js scales each card to its
+slide (`fitEmbeds`). Pages carry no fit script of their own; talks/bedac still has the old inline
+copy, which deck.js overrides. Drop it on its next rebuild.
 
 ## Deck layout system
 CSS lives in shared `/assets/deck/deck.css` (one file, all decks) — `<link>` it,
 never copy. Markup is uniform: `.slide` + a system class + plain `<figure><img></figure>` cells
-(no wrapper divs, no inline styles). Stage is a 16:9 box, except on phones (≤560px) where a
-typeset slide gets a taller one so the clamp px floors still fit — deck.css keys that off whether
-the showing slide has an `<img>`; captions/credit in data-cap/data-credit.
+(no wrapper divs, no inline styles). Stage is a 16:9 box; captions/credit in data-cap/data-credit.
+On phones (≤560px, outside fullscreen) the deck switches to the **scroll view** — see below.
 Choosing: one image → `single`. Multiple → `auto` family when boxes should follow the images (whole,
 uncropped); `frame` family (`sq`/bleed grids) to impose a uniform frame and crop into it. Default
 `auto` unless images are uniform and a clean crop is wanted. (Spacing, borders, background, gutter
 are all in `deck.css`.)
+
+### Phone scroll view — `.deck--scroll`
+After reveal.js's scroll view. deck.js adds `.deck--scroll` below 560px (not in fullscreen, which is
+the carousel again). Every slide is stacked in order at full width, its caption and credit under it
+(`.deck-scap`, built from data-cap/data-credit). No buttons on the slides themselves.
+- **Heights.** Picture, video and canvas slides keep a fixed 16:9 box (`points-l/-r`: 3:4). `.embed`
+  slides are scaled to the width and the slide grows to the scaled card, never below 16:9. Typeset
+  slides with neither grow to fit their copy. Nothing scrolls inside a slide.
+- **Dock.** The control bar and the notes panel move into `.deck-dock`, pinned to the bottom of the
+  screen while any of the deck is on screen, with a progress hairline on its top edge. Thumbnails,
+  Presenter View and the caption line are hidden there; fullscreen is hidden where the browser has no
+  fullscreen API (iPhone).
+- **Current slide** = the one crossing the middle of the screen (IntersectionObserver). Prev/next and
+  a jump scroll to that slide (centred; a slide taller than 80% of the screen goes to the top).
+- **Page-local layouts** that need a phone shape add it under `@media (max-width:560px)`
+  (column layouts stack — see `m7-cols`) or key a ratio off `.deck--scroll .slide:has(.block)`
+  (see cybernetics-and-design `.cyb-life`).
 
 ### Single — `single`
 One `<img>` directly in the slide, shown whole and centered (contained to stage). Use for any solo
@@ -108,7 +126,7 @@ centred with room to spare, so the padding is invisible there.
 
 ### Typeset text cards — `txt-card` · `stmt` · `cmp` (shared)
 Three typeset cards in deck.css, promoted out of laar64150's lectures (2026-09) once a third deck
-needed them. All sit inside the page's `.embed` wrapper, which the page's fit script scales down to
+needed them. All sit inside the page's `.embed` wrapper, which deck.js scales down to
 the stage. **Author them wide** — the fit script never upscales, so a card authored narrow leaves
 wide margins on a fullscreen stage. Presenter View mirrors all three under `.pv-deck .*` in
 deck.js — change both.
@@ -142,8 +160,7 @@ to ~4 columns and ~6 rows, past which the fit script shrinks it below reading si
 
 ### Multi-column text card — `m7-cols` (page-local, modeling-as-thinking)
 A typeset card of 2–3 parallel text columns (no images) — e.g. "three types of models",
-"plan+section can't / operations are logics". Lives inside the page's `.embed` wrapper (the fit
-script scales it). Each `.col` = `<h3>` + optional `.lead` (accent sub-line) + `<ul>` of `<li>`
+"plan+section can't / operations are logics". Lives inside the page's `.embed` wrapper (deck.js scales it). Each `.col` = `<h3>` + optional `.lead` (accent sub-line) + `<ul>` of `<li>`
 (mono `+` bullet). Add `m7-cols--split` to center each column's block within its own half/third
 while keeping the text left-justified (use for the 2-col "own half" look).
 ```html
@@ -154,9 +171,10 @@ while keeping the text left-justified (use for the 2-col "own half" look).
   </div>
 </div></div>
 ```
-Gotcha — **the fit script never upscales** (`s = Math.min(1, …)`): a card authored at e.g. 980px
+On phones the columns stack into one (page-local `@media (max-width:560px)` rule).
+Gotcha — **the fit never upscales** (`k = Math.min(1, …)`): a card authored at e.g. 980px
 stays 980px on a large/fullscreen stage, leaving wide side margins and forcing wraps. Author the
-card's natural width wide (`width:min(1280px,96%)`) so it fills big screens; the script only ever
+card's natural width wide (`width:min(1280px,96%)`) so it fills big screens; the fit only ever
 scales *down* on small ones.
 
 ### Points + two stacked images, equal width — `points-l` + `.pts-imgs` (page-local, modeling-as-thinking)

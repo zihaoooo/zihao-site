@@ -24,6 +24,7 @@
   const notesToggle = document.getElementById('deck-notes-toggle');
   const presentBtn = document.getElementById('deck-present');
   let i = 0, hot = false, bc = null, lbOpen = false;
+  let scrollView = false;                       // phone scroll view (below); set by setView()
   let syncThumbs = null, toggleThumbs = null;   // wired up by the thumbnail navigator, below
   // decrypted verbatim notes, per slide (null until unlocked); Presenter View reads this
   const fullNotes = window.__deckNotesFull = new Array(slides.length).fill(null);
@@ -39,11 +40,23 @@
     notesEl.innerHTML = note ? note : '<span class="nn-empty">No notes for this slide yet.</span>';
     prev.disabled = (i === 0);
     next.disabled = (i === slides.length - 1);
+    deck.style.setProperty('--deck-p', slides.length > 1 ? i/(slides.length-1) : 1);  // scroll-view dock
     if(bc) bc.postMessage({ type:'idx', i:i });
     if(syncThumbs) syncThumbs();
   }
-  function go(d){ i = Math.min(slides.length-1, Math.max(0, i+d)); render(); }
-  function goTo(n){ i = Math.min(slides.length-1, Math.max(0, n)); render(); }
+  function goTo(n){
+    i = Math.min(slides.length-1, Math.max(0, n)); render();
+    // scroll view: every slide is on the page, so moving means scrolling to it. Centre it
+    // (the current slide is the one on the middle line); a slide taller than most of the
+    // screen goes to the top instead so its start is not cut off.
+    if(scrollView) showSlide(i, true);
+  }
+  function showSlide(n, smooth){
+    const s = slides[n];
+    s.scrollIntoView({behavior: smooth ? 'smooth' : 'auto',
+      block: s.offsetHeight < innerHeight*0.8 ? 'center' : 'start'});
+  }
+  function go(d){ goTo(i+d); }
   prev.addEventListener('click', ()=>go(-1));
   next.addEventListener('click', ()=>go(1));
   function commitJump(){
@@ -150,7 +163,7 @@
     bc.onmessage = (ev)=>{
       const m = ev.data || {};
       if(m.type === 'go'){ go(m.d); }
-      else if(m.type === 'goto'){ i = Math.min(slides.length-1, Math.max(0, m.i)); render(); }
+      else if(m.type === 'goto'){ goTo(m.i); }
       else if(m.type === 'req'){ bc.postMessage({ type:'idx', i:i }); }
     };
   }
@@ -380,13 +393,15 @@
 
   // ── justified "fit-to-box" layout for .auto slides (equal height, no crop, PPT-style) ──
   const stage = document.getElementById('deck-stage');
+  // Each slide is measured on its own: in the carousel it fills the stage (same numbers),
+  // in the phone scroll view each slide is its own box.
   function layoutAuto(){
     if(!stage) return;
-    const W = stage.clientWidth, H = stage.clientHeight;
-    if(!W || !H) return;
     const FILL_W = 1.00;  // full-bleed left/right → width-bound groups align with the 12-col content edge
     const FILL_H = 0.90;  // breathing margin top/bottom
     deck.querySelectorAll('.slide.auto').forEach(s=>{
+      const W = s.clientWidth, H = s.clientHeight;
+      if(!W || !H) return;
       const figs = [...s.querySelectorAll(':scope > figure')];
       if(!figs.length) return;
       const gap = parseFloat(getComputedStyle(s).columnGap) || 0;
@@ -406,6 +421,8 @@
     const arOf = fig => { const im = fig.querySelector('img');
       return (im && im.naturalWidth && im.naturalHeight) ? im.naturalWidth/im.naturalHeight : 1; };
     deck.querySelectorAll('.slide.hero-l, .slide.hero-r').forEach(s=>{
+      const W = s.clientWidth, H = s.clientHeight;
+      if(!W || !H) return;
       const heroLeft = s.classList.contains('hero-l');
       const fit = s.classList.contains('fit');   // hero reads whole (contained) vs. cover-cropped
       // hero + ROWS variant: the non-hero side is a multi-row gallery (each row wrapped in <div class="row">,
@@ -464,6 +481,8 @@
     });
     // auto-rows: each .row justified to box width; rows stacked, whole block scaled to 90% height
     deck.querySelectorAll('.slide.auto-rows').forEach(s=>{
+      const W = s.clientWidth, H = s.clientHeight;
+      if(!W || !H) return;
       const rows = [...s.querySelectorAll(':scope > .row')];
       if(!rows.length) return;
       const rowGap = parseFloat(getComputedStyle(s).rowGap) || 0;
@@ -590,7 +609,7 @@
       + '</div><div class="deck-thumbs-list" id="deck-thumbs-list"></div></div>';
     row.appendChild(panel);
     const list = panel.querySelector('#deck-thumbs-list');
-    let thumbs = [], built = false, builtW = 0;
+    let thumbs = [], built = false, builtW = 0, _park;
 
     // the clones are laid out at full stage size; scale each into its 16:9 frame
     function fitThumbs(){
@@ -651,8 +670,17 @@
     };
     toggleThumbs = function(force){
       const open = (force === undefined) ? !panel.classList.contains('on') : force;
-      if(open){ place(); if(!built || builtW !== stage.clientWidth) build(); }
-      else { row.style.transform = ''; }
+      // closed, the strip is display:none: parked beside the stage it would still widen the page
+      clearTimeout(_park);
+      if(open){
+        panel.classList.add('open');
+        place();
+        if(!built || builtW !== stage.clientWidth) build(); else fitThumbs();
+        void panel.offsetWidth;                         // commit display before the fade-in
+      } else {
+        row.style.transform = '';
+        _park = setTimeout(()=>{ if(!panel.classList.contains('on')) panel.classList.remove('open'); }, 230);
+      }
       panel.classList.toggle('on', open);
       thumbBtn.setAttribute('aria-expanded', String(open));
       if(open) syncThumbs();
@@ -710,8 +738,121 @@
     document.addEventListener('webkitfullscreenchange', reflow);
   }
 
+  // ── fit typeset cards (.embed) to their slide ──────────────────────────
+  // Cards are authored wide and scaled down, never up. In the carousel a card fits the
+  // slide both ways; in the scroll view it fits the width and the slide grows to the
+  // scaled card (never shorter than 16:9), so copy is never clipped or scrolled.
+  // Lecture pages used to carry their own copy of this; talks/bedac still does, and this
+  // runs after it (load + a longer resize debounce) so the scroll view wins there too.
+  const embeds = [...deck.querySelectorAll('.slide .embed')];
+  function fitEmbeds(){
+    embeds.forEach(e=>{
+      const c = e.firstElementChild, s = e.closest('.slide');
+      if(!c || !s) return;
+      s.style.height = '';
+      c.style.transform = 'none';
+      const SW = s.clientWidth, SH = s.clientHeight, w = c.offsetWidth, h = c.offsetHeight;
+      if(!SW || !SH || !w || !h) return;
+      let k;
+      if(scrollView){
+        k = Math.min(1, (SW-28)/w);
+        s.style.height = Math.ceil(Math.max(SW*9/16, h*k + 28)) + 'px';
+      } else {
+        k = Math.min(1, (SW-28)/w, (SH-28)/h);   // minus .embed padding (14px each side)
+      }
+      c.style.transform = k < 1 ? 'scale(' + k + ')' : 'none';
+    });
+  }
+  window.addEventListener('load', ()=>setTimeout(fitEmbeds, 0));
+  let _fe; window.addEventListener('resize', ()=>{ clearTimeout(_fe); _fe = setTimeout(fitEmbeds, 120); });
+  document.addEventListener('fullscreenchange', ()=>setTimeout(fitEmbeds, 100));
+  document.addEventListener('webkitfullscreenchange', ()=>setTimeout(fitEmbeds, 100));
+
+  // ── phone scroll view ────────────────────────────────────────────────────
+  // Below 560px the carousel becomes one long column (after reveal.js's scroll view):
+  // every slide stacked at full width with its caption under it, and the control bar +
+  // notes moved into a dock pinned to the bottom of the screen while the deck is in view.
+  // The slide crossing the middle of the screen is the current one; prev/next scroll to
+  // the neighbours. Fullscreen present mode is the carousel again. CSS: .deck--scroll.
+  const bar = deck.querySelector('.deck-bar');
+  if(stage && bar){
+    const phone = window.matchMedia('(max-width:560px)');
+    // captions under each slide (hidden outside the scroll view)
+    slides.forEach(s=>{
+      const cap = s.getAttribute('data-cap') || '', credit = s.getAttribute('data-credit') || '';
+      if(!cap && !credit) return;
+      const p = document.createElement('div');
+      p.className = 'deck-scap';
+      p.innerHTML = (cap ? '<span class="deck-cap">' + cap + '</span>' : '')
+        + (credit ? '<span class="deck-credit"></span>' : '');
+      if(credit) p.querySelector('.deck-credit').textContent = credit;
+      s.after(p);
+    });
+    // the dock; bar and notes move in and out of it, back to where they were
+    const dock = document.createElement('div');
+    dock.className = 'deck-dock';
+    deck.appendChild(dock);
+    const barHome = document.createComment('deck-bar'), notesHome = document.createComment('deck-notes');
+    bar.before(barHome);
+    notesEl.before(notesHome);
+    // the current slide is the one crossing the middle of the screen
+    const current = new IntersectionObserver(entries=>{
+      entries.forEach(en=>{
+        if(!en.isIntersecting) return;
+        const n = slides.indexOf(en.target);
+        if(n > -1 && n !== i){ i = n; render(); }
+      });
+    }, { rootMargin:'-50% 0px -50% 0px' });
+    // the page can end before the last slide reaches the middle line: at the very bottom,
+    // a last slide that is on screen is the current one
+    let _atEnd = 0;
+    window.addEventListener('scroll', ()=>{
+      if(!scrollView || _atEnd) return;
+      _atEnd = requestAnimationFrame(()=>{
+        _atEnd = 0;
+        const last = slides.length - 1;
+        if(i === last || innerHeight + scrollY < document.documentElement.scrollHeight - 2) return;
+        if(slides[last].getBoundingClientRect().top < innerHeight){ i = last; render(); }
+      });
+    }, {passive:true});
+    // the dock shows while any of the deck is on screen
+    const inView = new IntersectionObserver(entries=>{
+      entries.forEach(en=>dock.classList.toggle('show', en.isIntersecting));
+    });
+    function setView(){
+      const on = phone.matches && !inFS();
+      if(on === scrollView) return;
+      scrollView = on;
+      if(on){
+        if(toggleThumbs) toggleThumbs(false);
+        dock.append(notesEl, bar);
+        slides.forEach(s=>current.observe(s));
+        inView.observe(stage);
+      } else {
+        barHome.after(bar);
+        notesHome.after(notesEl);
+        current.disconnect();
+        inView.disconnect();
+        dock.classList.remove('show');
+      }
+      deck.classList.toggle('deck--scroll', on);
+      fitEmbeds();
+      layoutAuto();
+      render();
+      // back from fullscreen: land on the slide that was being presented
+      if(on && i > 0) showSlide(i, false);
+    }
+    (phone.addEventListener ? phone.addEventListener('change', setView) : phone.addListener(setView));
+    document.addEventListener('fullscreenchange', ()=>setTimeout(setView, 0));
+    document.addEventListener('webkitfullscreenchange', ()=>setTimeout(setView, 0));
+    setView();
+  }
+  // no fullscreen API (iPhone Safari): drop the button rather than offer a dead one
+  if(!(document.fullscreenEnabled || document.webkitFullscreenEnabled)) fsBtn.style.display = 'none';
+
   render();
   layoutAuto();
+  fitEmbeds();
 })();
 
 /* Local-only editor auto-loader. Inert on the live site: the hostname check fails
