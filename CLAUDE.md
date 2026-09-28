@@ -1,7 +1,7 @@
 # zihao-site
 
 Repo layout:
-- _local/ — committed backup; unlinked, never on the live site.
+- _local/ — committed backup, unlinked from the site but public: GitHub shows it and the live site serves it by URL. Keep it to files fine to share.
 - assets/css/tokens.css — every font and UI color as a variable; imported by site.css and the
   course main.css. Pages write var(--…), never a font name or UI hex (deck-spec.md § Fonts and colors).
 - assets/css/site.css — shared styles. assets/js/site.js — nav active-state by URL.
@@ -27,7 +27,7 @@ Don't hand-edit modules — regenerate from the factory.
 
 Architecture: hand-authored static HTML, served as-is from main/root via .nojekyll — keep it. Shared chrome (head, nav, wrappers) is duplicated per page by design; propagate nav edits across pages with sed.
 
-Tooling (all in `_local/` — committed, never served; check here before writing a new script):
+Tooling (all in `_local/` — committed and public; check here before writing a new script):
 - `tools/encode_images.py` — the one encoder, shared by both factories (they call it across
   `../`, and their old copies are now signposts). `dir` mode = page images, AVIF q65, long
   edge ≤1920. `slides` mode = talks slides only (a module's `slides/` folder), AVIF q80,
