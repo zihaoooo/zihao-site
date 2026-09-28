@@ -13,31 +13,22 @@ Factory output of `../../../course-prep/laar64150/`; same authoring rules as laa
 - Styles and nav script borrow laar61400's `assets/css/` and `assets/js/nav.js`.
 - `lectures/` holds reusable research lectures, named by topic (no week prefix) so other courses
   can link them:
-  - `what-is-research.html` (41 slides, eight parts) — the **general** version, for students from
+  - `what-is-research.html` (30 slides, seven parts) — the **general** version, for students from
     any discipline. Parts: what is research · asking the question · methods and evidence · why
-    theory matters · paradigms and incommensurability · disciplines and trading zones · research
-    is never neutral · finding it, and making it public.
-    - **Brief by design** (cut from 68 slides / 5,800 words to 41 / 2,300 in 2026-09). The rule
+    theory matters · paradigms and incommensurability · disciplines and working across · research
+    is never neutral (one slide, Haraway's situated knowledges).
+    - **Brief by design** (cut from 68 slides / 5,800 words to 41 / 2,300, then to 30 in 2026-09). The rule
       is ~90 words and ~5 bullets a slide; **detail lives in `data-notes`, not on the slide.**
       When adding to this deck, put the elaboration in the speaker notes and keep the card short.
     - No images: it is text-only by choice. The six plates it used to carry are still in
       `assets/img/what-is-research/` and still used by the designers lecture.
     - Part II's argument is **ask a *how* question**: a why needs a cause isolated from its
       rivals, a what stops at description, a how names a process with parts you can go look at.
-    - Part V reads Kuhn for what he actually claimed — the 1969 postscript's disciplinary matrix
-      vs exemplar, the taxonomic incommensurability he kept, Kuhn-loss, the 1977 five values as
-      values rather than rules. Part VI answers it with Galison's **trading zones**, which has
-      its own slide.
-    - **Part VIII carries no proposal skeleton** — that is `grant-writing-101.html`'s job and
-      it stays a separate lecture. What was extracted from it are the ideas that are about
-      research rather than about formatting: the **gap** (now in Part II, as a property of a
-      good question), the **"explore" caution** (Part III, with naming your method), and the
-      "Making it public" slide — say who the answer is for, your reader is in the field next
-      door, the clearest version wins, one diagram beats a paragraph. Don't re-expand it into
-      abstract / objectives / work plan / merit / budget; link out instead.
-    - Its "Where to find information" slide says the full link list is on the course page —
-      that list lives in `index.html`'s **Where to Find Information** section. Keep the two in
-      sync; if you cut the section, fix the slide.
+    - Part V is two slides: normal science / anomaly / paradigm, and incommensurability
+      (what it does and does not mean, the five values). Part VI has no trading-zones slide.
+    - **No Part VIII.** Finding sources and making it public were cut (2026-09); the source
+      list lives only in `index.html`'s **Where to Find Information** section, and the
+      proposal skeleton stays in `grant-writing-101.html`. The deck ends on "Before next week".
   - `what-is-research-for-designers.html` (42 slides) — the original lecture, renamed 2026-09.
     Making and theorizing as methods, with graphic references.
   - `grant-writing-101.html` (15 slides). Rebuilt, with the designer lecture, from the Dropbox
