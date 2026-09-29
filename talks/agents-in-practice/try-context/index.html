@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Try It: Folder Context and a Website &mdash; Zihao Zhang</title>
+  <link rel="stylesheet" href="/assets/css/site.css">
+  <link rel="stylesheet" href="/teaching/laar61400/assets/css/workflow-shared.css">
+  <style>
+    /* page-local: the talk's two flow diagrams, drawn at 16:9 */
+    .ap-fig{margin:0 0 28px;border:1px solid var(--gray-200);border-radius:4px;overflow:hidden;aspect-ratio:16/9}
+    .ap-fig svg{display:block}
+    #site-main .wf-wrap{padding:0}
+  </style>
+</head>
+<body>
+
+  <div id="site-wrap">
+
+    <nav id="site-nav">
+      <a class="site-nav-name" href="/">Zihao Zhang</a>
+      <span class="site-nav-zh">张子豪</span>
+      <p class="site-nav-meta">Associate Professor<br>Landscape Architecture<br>City College of New York</p>
+      <div class="site-nav-links">
+        <a class="site-nav-link" href="/projects/">Projects</a>
+        <a class="site-nav-link" href="/publications/">Publications</a>
+        <a class="site-nav-link" href="/teaching/">Teaching</a>
+        <a class="site-nav-link" href="/talks/">Talks</a>
+      </div>
+    </nav>
+
+    <main id="site-main">
+
+      <a class="project-back" href="/talks/agents-in-practice/">&larr; From Overlay to Agent</a>
+
+<div class="wf-wrap wf-doc">
+
+  <div class="wf-header">
+    <div class="wf-index">GUIDE B</div>
+    <div class="wf-header-text">
+      <div class="wf-title">Try It: Folder Context and a Website</div>
+      <div class="wf-subtitle">Context files · Git · GitHub Pages · for designers and students</div>
+    </div>
+  </div>
+
+  <div class="wf-spec">
+    <div class="wf-spec-item"><span class="wf-spec-label">Length</span><span class="wf-spec-value">An afternoon, once</span></div>
+    <div class="wf-spec-item"><span class="wf-spec-label">Needs</span><span class="wf-spec-value">Any coding agent</span></div>
+    <div class="wf-spec-item"><span class="wf-spec-label">Hosting</span><span class="wf-spec-value">GitHub Pages (free)</span></div>
+  </div>
+
+  <div class="wf-objectives">
+    <strong>What you will be able to do</strong>
+    <ul>
+      <li>Have an agent write and maintain the context file for a project folder, and review it</li>
+      <li>Publish a personal, studio or firm website from a folder, and keep it up to date by asking</li>
+    </ul>
+  </div>
+
+  <div style="background:var(--gray-100); border-radius:4px; padding:16px 18px; margin-bottom:28px;">
+    <div class="wf-step-desc">You don’t need to remember any of this. Install Git and an agent, then ask it: <em>“Walk me through connecting you to my GitHub account and publishing a website with GitHub Pages, one step at a time, and check each step before the next.”</em> The steps below are the reference for what it will walk you through.</div>
+    <div class="wf-step-desc">The same goes for the context file. You rarely write it yourself. You talk; the agent writes it down; you review it and ask for audits.</div>
+  </div>
+
+  <div class="wf-steps">
+
+    <div class="wf-session">
+      <span class="wf-session-num">Part 1</span>
+      <span class="wf-session-label">Set up, once</span>
+      <span class="wf-session-rule"></span>
+    </div>
+
+
+    <div class="wf-step wf-full">
+      <div class="wf-step-head">
+        <span class="wf-step-num">01</span>
+        <span class="wf-step-label">The Idea, in Two Pictures</span> <span class="wf-badge wf-badge-neutral">Read first</span>
+      </div>
+      <div class="wf-step-body">
+        <div class="wf-step-desc"><strong>Git</strong> keeps dated revisions of a folder on your computer, like a drawing set’s revision history. <strong>GitHub</strong> is the shared plan room online. <strong>GitHub Pages</strong> turns what is in the plan room into a public website. You do the steps in the tinted boxes, because they involve your accounts. The agent does the rest.</div>
+        <figure class="ap-fig"><svg viewBox="0 0 960 540" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;display:block;background:var(--paper);font-family:var(--font-sans)"><defs><marker id="ah6" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M1 1L9 5L1 9" style="fill:none;stroke:var(--gray-400);stroke-width:1.5"/></marker><marker id="aa6" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M1 1L9 5L1 9" style="fill:none;stroke:var(--accent);stroke-width:1.5"/></marker></defs><rect x="150" y="34" width="200" height="62" rx="8" style="fill:var(--gray-50);stroke:var(--gray-250)"/><text x="250" y="60" text-anchor="middle" font-size="16" style="fill:var(--gray-900);font-weight:600">Git</text><text x="250" y="80" text-anchor="middle" font-size="12" style="fill:var(--gray-600)">revisions, on your computer</text><rect x="380" y="34" width="200" height="62" rx="8" style="fill:var(--gray-50);stroke:var(--gray-250)"/><text x="480" y="60" text-anchor="middle" font-size="16" style="fill:var(--gray-900);font-weight:600">GitHub</text><text x="480" y="80" text-anchor="middle" font-size="12" style="fill:var(--gray-600)">shared plan room, online</text><rect x="610" y="34" width="200" height="62" rx="8" style="fill:var(--gray-50);stroke:var(--gray-250)"/><text x="710" y="60" text-anchor="middle" font-size="16" style="fill:var(--gray-900);font-weight:600">GitHub Pages</text><text x="710" y="80" text-anchor="middle" font-size="12" style="fill:var(--gray-600)">your public website</text><path d="M350 65 L376 65" style="stroke:var(--gray-400);stroke-width:1.5;fill:none" marker-end="url(#ah6)"/><path d="M580 65 L606 65" style="stroke:var(--gray-400);stroke-width:1.5;fill:none" marker-end="url(#ah6)"/><text x="24" y="204" text-anchor="start" font-size="12" style="font-family:var(--font-mono);letter-spacing:.12em;fill:var(--accent)">YOU</text><text x="24" y="384" text-anchor="start" font-size="12" style="font-family:var(--font-mono);letter-spacing:.12em;fill:var(--gray-500)">AGENT</text><rect x="90" y="150" width="128" height="96" rx="8" style="fill:var(--accent-tint);stroke:var(--accent-line)"/><text x="102" y="170" text-anchor="start" font-size="11" style="font-family:var(--font-mono);fill:var(--gray-500)">01</text><text x="154" y="194" text-anchor="middle" font-size="15" style="fill:var(--accent-dark);font-weight:600">Install Git</text><text x="154" y="212" text-anchor="middle" font-size="15" style="fill:var(--accent-dark);font-weight:600">+ your agent</text><text x="154" y="234" text-anchor="middle" font-size="12" style="fill:var(--gray-600)">one-time download</text><rect x="232" y="150" width="128" height="96" rx="8" style="fill:var(--accent-tint);stroke:var(--accent-line)"/><text x="244" y="170" text-anchor="start" font-size="11" style="font-family:var(--font-mono);fill:var(--gray-500)">02</text><text x="296" y="194" text-anchor="middle" font-size="15" style="fill:var(--accent-dark);font-weight:600">GitHub</text><text x="296" y="212" text-anchor="middle" font-size="15" style="fill:var(--accent-dark);font-weight:600">account</text><text x="296" y="234" text-anchor="middle" font-size="12" style="fill:var(--gray-600)">turn on two-factor</text><rect x="374" y="150" width="128" height="96" rx="8" style="fill:var(--accent-tint);stroke:var(--accent-line);stroke-dasharray:5 4"/><text x="386" y="170" text-anchor="start" font-size="11" style="font-family:var(--font-mono);fill:var(--gray-500)">03</text><text x="438" y="194" text-anchor="middle" font-size="15" style="fill:var(--accent-dark);font-weight:600">Organization</text><text x="438" y="234" text-anchor="middle" font-size="12" style="fill:var(--gray-600)">for a shared site</text><rect x="516" y="150" width="128" height="96" rx="8" style="fill:var(--accent-tint);stroke:var(--accent-line)"/><text x="528" y="170" text-anchor="start" font-size="11" style="font-family:var(--font-mono);fill:var(--gray-500)">04</text><text x="580" y="194" text-anchor="middle" font-size="15" style="fill:var(--accent-dark);font-weight:600">Sign in</text><text x="580" y="212" text-anchor="middle" font-size="15" style="fill:var(--accent-dark);font-weight:600">this computer</text><text x="580" y="234" text-anchor="middle" font-size="12" style="fill:var(--gray-600)">normal terminal</text><rect x="516" y="330" width="128" height="96" rx="8" style="fill:var(--gray-100);stroke:var(--gray-300)"/><text x="528" y="350" text-anchor="start" font-size="11" style="font-family:var(--font-mono);fill:var(--gray-500)">05</text><text x="580" y="374" text-anchor="middle" font-size="15" style="fill:var(--gray-900);font-weight:600">Create</text><text x="580" y="392" text-anchor="middle" font-size="15" style="fill:var(--gray-900);font-weight:600">the repo</text><text x="580" y="414" text-anchor="middle" font-size="12" style="fill:var(--gray-600)">the online folder</text><rect x="658" y="330" width="128" height="96" rx="8" style="fill:var(--gray-100);stroke:var(--gray-300)"/><text x="670" y="350" text-anchor="start" font-size="11" style="font-family:var(--font-mono);fill:var(--gray-500)">06</text><text x="722" y="374" text-anchor="middle" font-size="15" style="fill:var(--gray-900);font-weight:600">Upload</text><text x="722" y="392" text-anchor="middle" font-size="15" style="fill:var(--gray-900);font-weight:600">the folder</text><text x="722" y="414" text-anchor="middle" font-size="12" style="fill:var(--gray-600)">a dated version</text><rect x="800" y="330" width="128" height="96" rx="8" style="fill:var(--gray-100);stroke:var(--gray-300)"/><text x="812" y="350" text-anchor="start" font-size="11" style="font-family:var(--font-mono);fill:var(--gray-500)">07</text><text x="864" y="374" text-anchor="middle" font-size="15" style="fill:var(--gray-900);font-weight:600">Turn on</text><text x="864" y="392" text-anchor="middle" font-size="15" style="fill:var(--gray-900);font-weight:600">Pages</text><text x="864" y="414" text-anchor="middle" font-size="12" style="fill:var(--gray-600)">live in a minute</text><rect x="800" y="150" width="128" height="96" rx="8" style="fill:var(--accent-tint);stroke:var(--accent-line);stroke-dasharray:5 4"/><text x="812" y="170" text-anchor="start" font-size="11" style="font-family:var(--font-mono);fill:var(--gray-500)">08</text><text x="864" y="194" text-anchor="middle" font-size="15" style="fill:var(--accent-dark);font-weight:600">Own domain</text><text x="864" y="234" text-anchor="middle" font-size="12" style="fill:var(--gray-600)">optional</text><path d="M218 198 L228 198" style="stroke:var(--gray-400);stroke-width:1.5;fill:none" marker-end="url(#ah6)"/><path d="M360 198 L370 198" style="stroke:var(--gray-400);stroke-width:1.5;fill:none" marker-end="url(#ah6)"/><path d="M502 198 L512 198" style="stroke:var(--gray-400);stroke-width:1.5;fill:none" marker-end="url(#ah6)"/><path d="M580 246 L580 326" style="stroke:var(--gray-400);stroke-width:1.5;fill:none" marker-end="url(#ah6)"/><path d="M644 378 L654 378" style="stroke:var(--gray-400);stroke-width:1.5;fill:none" marker-end="url(#ah6)"/><path d="M786 378 L796 378" style="stroke:var(--gray-400);stroke-width:1.5;fill:none" marker-end="url(#ah6)"/><path d="M864 330 L864 250" style="stroke:var(--gray-400);stroke-width:1.5;fill:none" marker-end="url(#ah6)"/><text x="480" y="490" text-anchor="middle" font-size="15" style="fill:var(--gray-600);font-style:italic">Stuck at any step? Paste the error to the agent and ask it to walk you through.</text></svg></figure>
+        <figure class="ap-fig"><svg viewBox="0 0 960 540" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;display:block;background:var(--paper);font-family:var(--font-sans)"><defs><marker id="ah7" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M1 1L9 5L1 9" style="fill:none;stroke:var(--gray-400);stroke-width:1.5"/></marker><marker id="aa7" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M1 1L9 5L1 9" style="fill:none;stroke:var(--accent);stroke-width:1.5"/></marker></defs><text x="40" y="50" text-anchor="start" font-size="12" style="font-family:var(--font-mono);letter-spacing:.12em;fill:var(--gray-500)">EVERY DAY</text><rect x="60" y="170" width="180" height="120" rx="8" style="fill:var(--accent-tint);stroke:var(--accent-line)"/><text x="150" y="212" text-anchor="middle" font-size="17" style="fill:var(--accent-dark);font-weight:600">You ask</text><text x="150" y="240" text-anchor="middle" font-size="13" style="fill:var(--gray-600)">“Add the Riverside</text><text x="150" y="258" text-anchor="middle" font-size="13" style="fill:var(--gray-600)">project.”</text><rect x="280" y="170" width="180" height="120" rx="8" style="fill:var(--gray-100);stroke:var(--gray-300)"/><text x="370" y="212" text-anchor="middle" font-size="17" style="fill:var(--gray-900);font-weight:600">Agent edits</text><text x="370" y="240" text-anchor="middle" font-size="13" style="fill:var(--gray-600)">and previews, following</text><text x="370" y="258" text-anchor="middle" font-size="13" style="fill:var(--gray-600)">AGENTS.md</text><rect x="500" y="170" width="180" height="120" rx="8" style="fill:var(--accent-tint);stroke:var(--accent-line)"/><text x="590" y="212" text-anchor="middle" font-size="17" style="fill:var(--accent-dark);font-weight:600">You review</text><text x="590" y="240" text-anchor="middle" font-size="13" style="fill:var(--gray-600)">approve it,</text><text x="590" y="258" text-anchor="middle" font-size="13" style="fill:var(--gray-600)">or correct it</text><rect x="720" y="170" width="180" height="120" rx="8" style="fill:var(--gray-100);stroke:var(--gray-300)"/><text x="810" y="212" text-anchor="middle" font-size="17" style="fill:var(--gray-900);font-weight:600">Agent publishes</text><text x="810" y="240" text-anchor="middle" font-size="13" style="fill:var(--gray-600)">the site updates</text><text x="810" y="258" text-anchor="middle" font-size="13" style="fill:var(--gray-600)">in a minute</text><path d="M240 230 L276 230" style="stroke:var(--gray-400);stroke-width:1.5;fill:none" marker-end="url(#ah7)"/><path d="M460 230 L496 230" style="stroke:var(--gray-400);stroke-width:1.5;fill:none" marker-end="url(#ah7)"/><path d="M680 230 L716 230" style="stroke:var(--gray-400);stroke-width:1.5;fill:none" marker-end="url(#ah7)"/><path d="M810 290 L810 350 L150 350 L150 294" style="stroke:var(--gray-400);stroke-width:1.5;fill:none" marker-end="url(#ah7)"/><text x="480" y="340" text-anchor="middle" font-size="12" style="font-family:var(--font-mono);letter-spacing:.12em;fill:var(--gray-500)">next change</text><text x="480" y="430" text-anchor="middle" font-size="15" style="fill:var(--gray-600);font-style:italic">Correct the same thing twice? Ask the agent to write the rule into AGENTS.md.</text><text x="480" y="456" text-anchor="middle" font-size="15" style="fill:var(--gray-600);font-style:italic">The daily loop is where the context file grows.</text></svg></figure>
+      </div>
+    </div>
+
+
+    <div class="wf-step wf-full">
+      <div class="wf-step-head">
+        <span class="wf-step-num">02</span>
+        <span class="wf-step-label">Your Accounts</span> <span class="wf-badge wf-badge-code">SETUP</span>
+      </div>
+      <div class="wf-step-body">
+        <ul class="wf-tips"><li><strong>Install Git</strong> from git-scm.com with all the default options. On Windows your agent needs it to run; on a Mac, typing <kbd>git --version</kbd> in Terminal offers to install it.</li><li><strong>Install your agent.</strong> Any of them works for this guide.</li><li><strong>Make a GitHub account</strong> at github.com. The username appears in your web address, so choose it with care.</li><li><strong>Turn on two-factor authentication</strong>: Settings → Password and authentication. Save the recovery codes somewhere safe, such as a password manager.</li><li><strong>For a shared site</strong> (a firm, a studio, a lab), create an organization: profile picture → Your organizations → New organization → Free. Repos then belong to the group, not to one person. A personal site skips this.</li></ul>
+      </div>
+    </div>
+
+
+    <div class="wf-step wf-full">
+      <div class="wf-step-head">
+        <span class="wf-step-num">03</span>
+        <span class="wf-step-label">Sign In This Computer</span> <span class="wf-badge wf-badge-code">SETUP</span>
+      </div>
+      <div class="wf-step-body">
+        <div class="wf-step-desc">Ask the agent to install the GitHub command-line tool. Then open a <strong>normal</strong> PowerShell or Terminal window, not one inside the agent’s app, and run:</div>
+        <pre class="wf-code">gh auth login</pre>
+        <div class="wf-step-desc">Choose GitHub.com, HTTPS, and log in with a web browser. Paste the one-time code, approve, and click <strong>Grant</strong> next to your organization if it is listed. Wait for <kbd>✓ Logged in as …</kbd>.</div>
+        <div class="wf-note">This is the one step the agent cannot do for you: the approval happens in your browser, on your account. The sign-in is saved for your whole computer, so the agent can use it from then on.</div>
+      </div>
+    </div>
+
+
+    <div class="wf-session">
+      <span class="wf-session-num">Part 2</span>
+      <span class="wf-session-label">The context file</span>
+      <span class="wf-session-rule"></span>
+    </div>
+
+
+    <div class="wf-step wf-full">
+      <div class="wf-step-head">
+        <span class="wf-step-num">C1</span>
+        <span class="wf-step-label">Let the Agent Write It</span>
+      </div>
+      <div class="wf-step-body">
+        <div class="wf-step-desc">Make a folder for the project and put your raw material in a <kbd>_source</kbd> folder inside it: photos, a paragraph about you or your practice, anything the site should draw on. Open the agent in that folder and ask:</div>
+        <div class="wf-prompt">Interview me about this project, one question at a time: who we are, what the site is for, which pages it needs, how the folders are organized, and any rules. Then write an AGENTS.md at the root of this folder. Keep it under 40 lines and show it to me before you build anything.</div>
+        <div class="wf-step-desc">Read it and correct it in words. The file is yours; the agent is the one typing.</div>
+        <ul class="wf-tips"><li><strong>What belongs in it:</strong> what the agent cannot work out by reading the files. Purpose, folder map, rules, decisions you have made.</li><li><strong>Some tools read a differently named file</strong>, such as CLAUDE.md. Ask your agent which one it loads.</li></ul>
+        <div class="wf-alert"><span class="wf-alert-icon">✓</span><div class="wf-alert-body"><strong>Check.</strong> Close the session, open a new one in the same folder, and ask: <em>“What is this project, how is it organized, and what’s left to do?”</em> If the answer is wrong, fix the file, not the conversation.</div></div>
+      </div>
+    </div>
+
+
+    <div class="wf-step wf-full">
+      <div class="wf-step-head">
+        <span class="wf-step-num">C2</span>
+        <span class="wf-step-label">Run a Task, Record the Corrections</span>
+      </div>
+      <div class="wf-step-body">
+        <div class="wf-step-desc">Give it real work:</div>
+        <div class="wf-prompt">Following AGENTS.md, resize the photos in _source for the web and build the home page and one project page. Open a preview.</div>
+        <div class="wf-step-desc">Correct it in plain words: a bigger header, a quieter color. When you settle something you want kept, send it to the file:</div>
+        <div class="wf-prompt">Add that to AGENTS.md.</div>
+        <div class="wf-note">If you correct the same thing twice, it belongs in the file. The next session will not remember the conversation; it will read the file.</div>
+      </div>
+    </div>
+
+
+    <div class="wf-step wf-full">
+      <div class="wf-step-head">
+        <span class="wf-step-num">C3</span>
+        <span class="wf-step-label">Ask for an Audit</span>
+      </div>
+      <div class="wf-step-body">
+        <div class="wf-step-desc">Every line of the file loads into every session, so a long file costs attention and tokens every time. Every few weeks, ask:</div>
+        <div class="wf-prompt">Audit every AGENTS.md in this folder. Cut anything you could learn by reading the files. Make sure each fact is written once and everything else points to it. Name the original file for anything that gets built. Phrase every rule as what to do. Flag facts that look stale. List your changes and how many lines they save, and change nothing until I approve.</div>
+        <div class="wf-step-desc">Review its cuts before you accept them. An audit that removes a rule you rely on is the one to catch.</div>
+      </div>
+    </div>
+
+
+    <div class="wf-session">
+      <span class="wf-session-num">Part 3</span>
+      <span class="wf-session-label">Publish and keep it current</span>
+      <span class="wf-session-rule"></span>
+    </div>
+
+
+    <div class="wf-step wf-full">
+      <div class="wf-step-head">
+        <span class="wf-step-num">04</span>
+        <span class="wf-step-label">Create the Repo, Turn On Pages</span>
+      </div>
+      <div class="wf-step-body">
+        <div class="wf-step-desc">Ask:</div>
+        <div class="wf-prompt">Create a public repo called website in my GitHub account (or in our organization), keep _source out of it, push this folder, turn on GitHub Pages from the main branch, and give me the link.</div>
+        <div class="wf-step-desc">The site is live within a minute or two, at <kbd>yourname.github.io/website</kbd> or <kbd>orgname.github.io/website</kbd>.</div>
+        <div class="wf-note">A public repo shows every file in it. Keep client material and anything confidential out of the folder you publish; the <kbd>_source</kbd> exclusion is there for that.</div>
+      </div>
+    </div>
+
+
+    <div class="wf-step">
+      <div class="wf-step-head">
+        <span class="wf-step-num">05</span>
+        <span class="wf-step-label">Your Own Domain (Optional)</span>
+      </div>
+      <div class="wf-step-body">
+        <div class="wf-step-desc">Ask the agent to set up your domain. It adds the file GitHub needs and tells you which DNS records to enter at your registrar. You enter them; then tick <strong>Enforce HTTPS</strong> in the repo’s Pages settings once GitHub offers it, which can take up to a day.</div>
+      </div>
+    </div>
+
+
+    <div class="wf-step">
+      <div class="wf-step-head">
+        <span class="wf-step-num">06</span>
+        <span class="wf-step-label">Every Day</span>
+      </div>
+      <div class="wf-step-body">
+        <div class="wf-step-desc">Open the agent in the folder and ask for the change: a new project, an updated bio, a new menu item on every page. Review what changed. Ask it to publish. That is the whole routine.</div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="wf-aside">
+    <div class="wf-aside-title">Where the Agent Looks</div>
+    <div class="wf-step-desc">Context files stack. Most agents read one in your user folder (for things true in every project), one at the project root, and deeper ones when they start working in a subfolder. Keep each short and let the top ones point down, the way a drawing index points to the one sheet you need.</div>
+  </div>
+
+  <div class="wf-footer">
+    <span>From Overlay to Agent &middot; ASLA-NY 2026</span><span>GUIDE B</span>
+  </div>
+
+</div>
+
+    </main>
+  </div>
+
+<script src="/assets/js/site.js"></script>
+</body>
+</html>

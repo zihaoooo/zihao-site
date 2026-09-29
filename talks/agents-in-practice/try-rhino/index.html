@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Try It: An Agent Inside Rhino &mdash; Zihao Zhang</title>
+  <link rel="stylesheet" href="/assets/css/site.css">
+  <link rel="stylesheet" href="/teaching/laar61400/assets/css/workflow-shared.css">
+  <style>
+    /* page-local: the talk's two flow diagrams, drawn at 16:9 */
+    .ap-fig{margin:0 0 28px;border:1px solid var(--gray-200);border-radius:4px;overflow:hidden;aspect-ratio:16/9}
+    .ap-fig svg{display:block}
+    #site-main .wf-wrap{padding:0}
+  </style>
+</head>
+<body>
+
+  <div id="site-wrap">
+
+    <nav id="site-nav">
+      <a class="site-nav-name" href="/">Zihao Zhang</a>
+      <span class="site-nav-zh">张子豪</span>
+      <p class="site-nav-meta">Associate Professor<br>Landscape Architecture<br>City College of New York</p>
+      <div class="site-nav-links">
+        <a class="site-nav-link" href="/projects/">Projects</a>
+        <a class="site-nav-link" href="/publications/">Publications</a>
+        <a class="site-nav-link" href="/teaching/">Teaching</a>
+        <a class="site-nav-link" href="/talks/">Talks</a>
+      </div>
+    </nav>
+
+    <main id="site-main">
+
+      <a class="project-back" href="/talks/agents-in-practice/">&larr; From Overlay to Agent</a>
+
+<div class="wf-wrap wf-doc">
+
+  <div class="wf-header">
+    <div class="wf-index">GUIDE A</div>
+    <div class="wf-header-text">
+      <div class="wf-title">Try It: An Agent Inside Rhino</div>
+      <div class="wf-subtitle">MCP · Rhino · Grasshopper · for designers and students</div>
+    </div>
+  </div>
+
+  <div class="wf-spec">
+    <div class="wf-spec-item"><span class="wf-spec-label">Length</span><span class="wf-spec-value">1–2 hours</span></div>
+    <div class="wf-spec-item"><span class="wf-spec-label">Needs</span><span class="wf-spec-value">Rhino 7 or 8 · an agent</span></div>
+    <div class="wf-spec-item"><span class="wf-spec-label">Files</span><span class="wf-spec-value">A copy of a real project</span></div>
+  </div>
+
+  <div class="wf-objectives">
+    <strong>What you will be able to do</strong>
+    <ul>
+      <li>Connect an agent to Rhino through MCP, and say in plain words what you installed</li>
+      <li>Direct an agent through three tasks from daily work, and check each result</li>
+    </ul>
+  </div>
+
+  <div style="background:var(--gray-100); border-radius:4px; padding:16px 18px; margin-bottom:28px;">
+    <div class="wf-step-desc">This guide adapts a studio exercise for anyone who already works in Rhino, in an office, a studio or on their own. It assumes you know the program and skips the basics. You write no code: the agent writes and runs every script. You set the task and check the result, the way you would check a colleague’s work.</div>
+    <div class="wf-step-desc">Any step you get stuck on, paste the error to the agent and ask it to walk you through. That is how most of this gets set up in practice.</div>
+  </div>
+
+  <div class="wf-pipeline">
+    <div class="wf-pipe-step"><div class="wf-pipe-node" style="background:var(--accent-tint);color:var(--accent);">Your agent</div><div class="wf-pipe-arrow">→</div></div>
+    <div class="wf-pipe-step"><div class="wf-pipe-node wf-pipe-tool">MCP</div><div class="wf-pipe-arrow">→</div></div>
+    <div class="wf-pipe-step"><div class="wf-pipe-node" style="background:var(--accent-tint);color:var(--accent);">Rhino</div><div class="wf-pipe-arrow">→</div></div>
+    <div class="wf-pipe-step"><div class="wf-pipe-node">Checked result</div></div>
+  </div>
+
+  <div class="wf-steps">
+
+    <div class="wf-session">
+      <span class="wf-session-num">Part 1</span>
+      <span class="wf-session-label">Connect the agent to Rhino</span>
+      <span class="wf-session-rule"></span>
+    </div>
+
+
+    <div class="wf-step wf-full">
+      <div class="wf-step-head">
+        <span class="wf-step-num">01</span>
+        <span class="wf-step-label">What MCP Is</span> <span class="wf-badge wf-badge-neutral">Read first</span>
+      </div>
+      <div class="wf-step-body">
+        <div class="wf-step-desc">A chat assistant works from your description of a model; it never sees the file. <strong>MCP, the Model Context Protocol</strong>, is an open standard that changes that. A small adapter sits beside a program and publishes what the program can do as a list of tools the agent may call. With the Rhino adapter installed, the agent reads your document, queries objects, builds geometry, and captures the viewport to see what it made.</div>
+        <ul class="wf-tips"><li><strong>A standard, not one vendor’s feature.</strong> Most current agents support it: an agent that supports MCP (Claude Code, Codex, Cursor, Gemini CLI and others).</li><li><strong>The adapter runs on your machine.</strong> The .3dm stays where it is. Whatever the agent reads from it, though, goes to the AI provider as part of the conversation. Check your provider’s data terms before you open client or confidential work.</li><li><strong>You stay responsible for the output.</strong> The agent edits your real document. Work on a copy and check what changed.</li></ul>
+        <div class="wf-note">MCP was published in late 2024. Some adapters are excellent and many are prototypes. The Rhino one is among the better ones.</div>
+      </div>
+    </div>
+
+
+    <div class="wf-step">
+      <div class="wf-step-head">
+        <span class="wf-step-num">02</span>
+        <span class="wf-step-label">Install the Bridge</span> <span class="wf-badge wf-badge-rh">RH</span> <span class="wf-badge wf-badge-code">SETUP</span>
+      </div>
+      <div class="wf-step-body">
+        <div class="wf-step-desc">Open your agent in any folder and ask:</div>
+        <div class="wf-prompt">Research the available Rhino MCP servers, install the best-maintained one for me, and tell me in plain language what you put on my computer.</div>
+        <div class="wf-step-desc">The agent searches, most likely picks the community server <kbd>rhinomcp</kbd>, installs what it needs and writes its configuration. Approve the steps it asks about.</div>
+        <div class="wf-step-desc">One part it hands back to you: the Rhino plug-in installs from inside Rhino. <strong>Tools → Package Manager</strong>, search <kbd>rhinomcp</kbd>, <strong>Install</strong>, restart Rhino.</div>
+        <div class="wf-note">Read its plain-language answer before you move on, and ask follow-up questions until it makes sense. Knowing what landed on your machine is what lets you install the next adapter, for QGIS or anything else, on your own.</div>
+      </div>
+    </div>
+
+
+    <div class="wf-step">
+      <div class="wf-step-head">
+        <span class="wf-step-num">03</span>
+        <span class="wf-step-label">Open the Port, Confirm the Link</span> <span class="wf-badge wf-badge-rh">RH</span>
+      </div>
+      <div class="wf-step-body">
+        <div class="wf-alert"><span class="wf-alert-icon">⚠</span><div class="wf-alert-body"><strong>Type <kbd>mcpstart</kbd> in Rhino’s command line every session.</strong> It opens the bridge. Restart Rhino and you type it again. Keep one agent connected at a time.</div></div>
+        <div class="wf-step-desc">Then ask the agent:</div>
+        <div class="wf-prompt">What’s in my Rhino document?</div>
+        <div class="wf-step-desc">A correct answer lists your layers and object counts. If the agent says it has no Rhino tools, restart the agent. If it says the connection failed, run <kbd>mcpstart</kbd> again.</div>
+      </div>
+    </div>
+
+
+    <div class="wf-session">
+      <span class="wf-session-num">Part 2</span>
+      <span class="wf-session-label">Three tasks from daily work</span>
+      <span class="wf-session-rule"></span>
+    </div>
+
+
+    <div class="wf-step wf-full">
+      <div class="wf-step-head">
+        <span class="wf-step-num">T1</span>
+        <span class="wf-step-label">Slope Bands on Your Own Terrain</span> <span class="wf-badge wf-badge-rh">RH</span>
+      </div>
+      <div class="wf-step-body">
+        <div class="wf-step-desc">Open a copy of a project with a terrain surface or mesh, then ask with your own thresholds:</div>
+        <div class="wf-prompt">Read the surface on my Existing Grade layer. Color it by slope in four bands: under 2%, 2–5%, 5–8.33%, over 8.33%. Bake the result as a mesh on a new layer called Slope Analysis, add a legend, then capture the top viewport and check that the steep zones read correctly.</div>
+        <div class="wf-step-desc">The bands above are one common set: minimum for drainage, the accessible-route limit, the ramp limit. Use the ones your project needs and be ready to say why.</div>
+        <ul class="wf-tips"><li><strong>Name layers exactly.</strong> “The surface on my Existing Grade layer” beats “my terrain.” Precise names are most of the specification.</li><li><strong>Clip to the site.</strong> If the surface runs past your property line, tell the agent to ignore faces outside the boundary curve on your Limit of Work layer.</li></ul>
+        <div class="wf-alert"><span class="wf-alert-icon">✓</span><div class="wf-alert-body"><strong>Check.</strong> Pick three spots, measure the slope yourself between two contour points, and compare with the color the agent gave them.</div></div>
+      </div>
+    </div>
+
+
+    <div class="wf-step wf-full">
+      <div class="wf-step-head">
+        <span class="wf-step-num">T2</span>
+        <span class="wf-step-label">Layer Audit Against Your Standard</span> <span class="wf-badge wf-badge-rh">RH</span>
+      </div>
+      <div class="wf-step-body">
+        <div class="wf-step-desc">Save a copy of a messy project file. Paste your layer standard (your office’s, your studio’s, or your own) into the conversation, or point the agent to the file that holds it, and ask for a report before any change:</div>
+        <div class="wf-prompt">Here is our layer standard. Compare every layer in this document against it. List the layers that do not match, what you would rename or merge each one to, and any objects on layer 0. Change nothing yet.</div>
+        <div class="wf-step-desc">Read the list. Correct what it got wrong. Then:</div>
+        <div class="wf-prompt">Apply the changes you listed, except the ones I crossed out. Delete no objects. Report what you did.</div>
+        <div class="wf-alert"><span class="wf-alert-icon">✓</span><div class="wf-alert-body"><strong>Check.</strong> Compare the object count before and after; it should not change. Open the layer panel and spot-check five layers against the standard.</div></div>
+      </div>
+    </div>
+
+
+    <div class="wf-step wf-full">
+      <div class="wf-step-head">
+        <span class="wf-step-num">T3</span>
+        <span class="wf-step-label">Block Count to a Plant Schedule</span> <span class="wf-badge wf-badge-rh">RH</span>
+      </div>
+      <div class="wf-step-body">
+        <div class="wf-step-desc">In a planting plan where each species is a block:</div>
+        <div class="wf-prompt">Count every block instance by block name, grouped by layer. Write a CSV plant schedule with columns for symbol, block name, quantity and layer, save it next to this file, and show me the table.</div>
+        <div class="wf-step-desc">If your blocks carry botanical names or sizes as attributes, ask the agent to include them.</div>
+        <div class="wf-alert"><span class="wf-alert-icon">✓</span><div class="wf-alert-body"><strong>Check.</strong> Pick one species and count it yourself with <kbd>SelBlockInstanceNamed</kbd>. The numbers should match. If they do not, ask the agent why before you trust the rest.</div></div>
+      </div>
+    </div>
+
+
+    <div class="wf-step">
+      <div class="wf-step-head">
+        <span class="wf-step-num">+</span>
+        <span class="wf-step-label">Stretch: a Grasshopper Definition You Can Read</span> <span class="wf-badge wf-badge-gh">GH</span>
+      </div>
+      <div class="wf-step-body">
+        <div class="wf-step-desc">Ask the agent to turn T1 into a Grasshopper definition with sliders for the thresholds, with the code kept in a separate <kbd>.py</kbd> file next to the <kbd>.gh</kbd>. Then open the <kbd>.py</kbd> and read it. You will not follow every line; you will see where the thresholds live and what the script does with them.</div>
+        <div class="wf-note">The studio version of this step, with the three-line “shim” that keeps the code outside the <kbd>.gh</kbd>, is in <a href="/teaching/laar61400/workflows/wf06-slope-analysis.html">WF06</a>.</div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="wf-aside">
+    <div class="wf-aside-title">What You Installed</div>
+    <div class="wf-step-desc">Two halves. The <strong>MCP server</strong> is a small program your agent starts; it tells the agent which Rhino tools exist. The <strong>plug-in</strong> is loaded inside Rhino; <kbd>mcpstart</kbd> opens its door. Neither works alone, which is why the connection drops when Rhino closes. Expect this shape for every program you connect next: an adapter outside, and a way in.</div>
+  </div>
+
+  <div class="wf-aside">
+    <div class="wf-aside-title">Before You Use It on Real Projects</div>
+    <ul class="wf-tips">
+      <li><strong>Work on copies.</strong> Save As before each session. The agent edits the open document.</li>
+      <li><strong>Know where the data goes.</strong> What the agent reads from the model is sent to the AI provider. Check the provider’s terms, and any client contract or school policy, first.</li>
+      <li><strong>A person checks it.</strong> Treat every result as a draft, looked over before it goes out.</li>
+    </ul>
+  </div>
+
+  <div class="wf-footer">
+    <span>From Overlay to Agent &middot; ASLA-NY 2026</span><span>GUIDE A</span>
+  </div>
+
+</div>
+
+    </main>
+  </div>
+
+<script src="/assets/js/site.js"></script>
+</body>
+</html>
