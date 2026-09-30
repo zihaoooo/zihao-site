@@ -24,7 +24,8 @@ slide (`fitEmbeds`). Pages carry no fit script of their own.
 ## Deck layout system
 CSS lives in shared `/assets/deck/deck.css` (one file, all decks) — `<link>` it,
 never copy. Markup is uniform: `.slide` + a system class + plain `<figure><img></figure>` cells
-(no wrapper divs, no inline styles). Stage is a 16:9 box; captions/credit in data-cap/data-credit.
+(no wrapper divs, no inline styles). Stage is a 16:9 box; captions/credit in data-cap/data-credit;
+add `data-credit-href="…"` to make the credit a link (e.g. a source video shown as stills).
 On phones (≤560px, outside fullscreen) the deck switches to the **scroll view** — see below.
 Choosing: one image → `single`. Multiple → `auto` family when boxes should follow the images (whole,
 uncropped); `frame` family (`sq`/bleed grids) to impose a uniform frame and crop into it. Default

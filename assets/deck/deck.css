@@ -296,6 +296,8 @@
   line-height:1.35;display:none;margin-top:2px;}
 #deck-credit:not(:empty){display:block;}
 .deck:fullscreen #deck-credit{color:var(--gray-500);}
+#deck-credit a,.deck-scap .deck-credit a{color:inherit;text-decoration:underline;text-underline-offset:2px;}
+#deck-credit a:hover,.deck-scap .deck-credit a:hover{color:var(--accent);}
 .deck-hint{font-family:var(--font-mono);font-size:10px;letter-spacing:.05em;
   color:var(--mute);margin-top:6px;}
 .deck-fs{margin-left:auto;flex:0 0 auto;font-size:14px;}

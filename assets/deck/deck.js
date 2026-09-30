@@ -29,13 +29,23 @@
   // decrypted verbatim notes, per slide (null until unlocked); Presenter View reads this
   const fullNotes = window.__deckNotesFull = new Array(slides.length).fill(null);
   try { bc = new BroadcastChannel('laar61400-' + DECK_ID + '-deck'); } catch(e){}
+  // credit line; data-credit-href turns it into a link (e.g. the source video)
+  function setCredit(el, s){
+    const credit = s.getAttribute('data-credit') || '', href = s.getAttribute('data-credit-href');
+    el.textContent = '';
+    if(!href){ el.textContent = credit; return; }
+    const a = document.createElement('a');
+    a.href = href; a.target = '_blank'; a.rel = 'noopener';
+    a.textContent = credit || href;
+    el.appendChild(a);
+  }
   function render(){
     slides.forEach((s,n)=>s.classList.toggle('on', n===i));
     if(jump !== document.activeElement) jump.value = (i+1);
     total.textContent = ' / ' + slides.length;
     const s = slides[i];
     capEl.innerHTML    = s.getAttribute('data-cap') || '';
-    creditEl.textContent = s.getAttribute('data-credit') || '';
+    setCredit(creditEl, s);
     const note = (s.getAttribute('data-notes') || '').trim();
     notesEl.innerHTML = note ? note : '<span class="nn-empty">No notes for this slide yet.</span>';
     prev.disabled = (i === 0);
@@ -715,7 +725,7 @@ ${PAGE_CSS}
       p.className = 'deck-scap';
       p.innerHTML = (cap ? '<span class="deck-cap">' + cap + '</span>' : '')
         + (credit ? '<span class="deck-credit"></span>' : '');
-      if(credit) p.querySelector('.deck-credit').textContent = credit;
+      if(credit) setCredit(p.querySelector('.deck-credit'), s);
       s.after(p);
     });
     // the dock; bar and notes move in and out of it, back to where they were
