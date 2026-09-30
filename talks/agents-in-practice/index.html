@@ -11,15 +11,16 @@
     .ap-split{width:min(1280px,96%);display:grid;grid-template-columns:1fr 1fr;gap:2.4em;align-items:center;text-align:left}
     .ap-split .txt-card{width:auto}
     .ap-split--code-l{grid-template-columns:1fr 1.1fr}
-    .ap-code{margin:0;font-family:var(--font-mono);font-size:clamp(11px,1.3cqw,19px);line-height:1.5;color:var(--gray-800);
+    .ap-split--code-r{grid-template-columns:minmax(0,1fr) max-content}
+    .ap-code{margin:0;font-family:var(--font-mono);font-size:clamp(11px,1.55cqw,28px);line-height:1.5;color:var(--gray-800);
       background:var(--gray-50);border:1px solid var(--line);border-radius:6px;padding:1em 1.3em;white-space:pre;overflow:hidden}
     .ap-code-h{display:block;font-size:.72em;letter-spacing:.13em;text-transform:uppercase;color:var(--accent);margin-bottom:.4em}
     .ap-qrs{display:flex;gap:3em;justify-content:center;align-items:flex-start}
     .ap-qr{display:flex;flex-direction:column;align-items:center;gap:.5em;text-align:center;font-family:var(--font-sans);
-      color:var(--mute);font-size:clamp(13px,1.5cqw,22px);line-height:1.35;max-width:18em}
+      color:var(--mute);font-size:clamp(13px,1.7cqw,30px);line-height:1.35;max-width:18em}
     .ap-qr img{width:clamp(110px,15cqw,230px);height:auto}
     .ap-qr b{color:var(--ink)}
-    .ap-qr .url,.ap-qr-link .url{font-family:var(--font-mono);font-size:.68em;color:var(--gray-500);text-decoration:underline;text-underline-offset:2px;text-decoration-color:var(--gray-250)}
+    .ap-qr .url,.ap-qr-link .url{font-family:var(--font-mono);font-size:.8em;color:var(--gray-500);text-decoration:underline;text-underline-offset:2px;text-decoration-color:var(--gray-250)}
     .ap-qr-link{display:flex;align-items:flex-end;gap:1em;font-size:clamp(13px,1.5cqw,22px)}
     .ap-qr-link .ap-qr-sm{margin-top:0}
     .ap-qr-sm{width:clamp(64px,8.5cqw,120px);height:auto;margin-top:1em}
@@ -35,6 +36,14 @@
     .ap-stack img{display:block;width:100%;height:auto;border:1px solid var(--line)}
     .ap-try-thanks{margin:.8em 0 0;font-family:var(--font-sans);font-weight:700;color:var(--accent);font-size:clamp(18px,2.2cqw,34px)}
     .tbd{font-family:var(--font-mono);font-size:.85em;color:var(--accent);border-bottom:1px dashed var(--accent-soft)}
+    /* readable in fullscreen: lift the shared caps for this talk */
+    .slide--title .ts{font-size:clamp(11px,1.25cqw,22px)}
+    .toc .toc-n{font-size:clamp(10px,1.1cqw,19px)}
+    .pts h3{font-size:clamp(15px,2.6cqw,44px)}
+    .pts li{font-size:clamp(12px,1.85cqw,32px)}
+    .cmp th,.cmp td{font-size:clamp(12px,1.75cqw,31px)}
+    .cmp thead th{font-size:clamp(10px,1.15cqw,20px)}
+    .cmp .note{font-size:clamp(12px,1.5cqw,26px)}
     @media (max-width:560px){ .ap-split,.ap-split--code-l{grid-template-columns:1fr} .ap-qrs{flex-wrap:wrap;gap:1.5em} }
   </style>
 </head>
@@ -323,7 +332,7 @@
             <div class="embed"><div class="cmp"><h3>Two kinds of memory</h3><table><thead><tr><th></th><th>The conversation</th><th>The folder</th></tr></thead><tbody><tr><th scope="row">Lasts</th><td>This session</td><td><b>As long as the project</b></td></tr><tr><th scope="row">Use it for</th><td>Steering today’s work</td><td><b>Decisions that should outlive today</b></td></tr><tr><th scope="row">Everyday equivalent</th><td>A phone call</td><td><b>The project folder, the standards binder</b></td></tr></tbody></table><span class="note">Said it twice? Ask the agent to write it into the file.</span></div></div>
           </div>
           <div class="slide" data-era="Context" data-cap="The project’s standards manual" data-notes="The context file is a standards manual for an assistant who forgets everything overnight — and the assistant writes it." data-notes-full="enc:v1:/7q82pBeOrlZOAa5LtYD5Pef3taudMae1f22L9DMKM2tGHWnU84XUm5fFohMKFVTfTfYUUdM+m/YwebDZhlk6nWBoSXqR9DlFkeJYmIkiPSZNBImt5K2MkhHsz0t3vIMfh3ck7bivY5351p2WaWZEGTIGUY4v7+F/e4zFoJJ+N1L8Ma9AmbmMyT/RSkEf1iqfjIwiXG9svoTnJzSeWEK+HwqFeyWI8f7ZKeOeeECfFZHlrl6SCYDfRpkw45GDytIppDfZGBfSnYufgxf+kbWkA7iJkZ1JcUzcfbuOwGDu4+Gq6841k7rAXggEWxNhi5iwGOSurqFQrfvSyURII47Ev54QAQxmwNFIBM3pAxAlM+r6WO3VFxGkKi4b0Z2CtXTHag2Z1xdjrAvcaxXvprz4kTz4p3aJRurbn6wTgTzLm9ZJ2wmMsXzqUDIkSt6A5ZRA4DJOg9D/bCe8Jo=">
-            <div class="embed"><div class="ap-split"><div class="txt-card"><h3>The project’s standards manual</h3><ul><li>An assistant who forgets everything overnight. <b>AGENTS.md</b> (some tools read CLAUDE.md) is the manual it reads each morning.</li><li><b>You talk; the agent writes it.</b> “Add that to AGENTS.md.”</li><li>Your job: judge what belongs, what it cannot learn from the files.</li><li>Every line loads every session. Ask it to <b>audit and shorten</b> the file.</li></ul></div><pre class="ap-code"><span class="ap-code-h">AGENTS.md</span>
+            <div class="embed"><div class="ap-split ap-split--code-r"><div class="txt-card"><h3>The project’s standards manual</h3><ul><li>An assistant who forgets everything overnight. <b>AGENTS.md</b> (some tools read CLAUDE.md) is the manual it reads each morning.</li><li><b>You talk; the agent writes it.</b> “Add that to AGENTS.md.”</li><li>Your job: judge what belongs, what it cannot learn from the files.</li><li>Every line loads every session. Ask it to <b>audit and shorten</b> the file.</li></ul></div><pre class="ap-code"><span class="ap-code-h">AGENTS.md</span>
 # Riverside Studio website
 
 Small LA practice, 8 people, Queens.
