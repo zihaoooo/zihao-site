@@ -10,30 +10,7 @@
   <style>
     /* palette tokens live in deck.css :root (--ink/--paper/--line/--mute/--accent) */
 
-    /* ── typeset text cards + placeholders (inside a carousel slide; fitEmbeds scales
-       each .embed child to the fixed 16:9 stage so nothing scrolls) ── */
-    .cyb-card{max-width:960px;padding:0 48px;text-align:center;}
-    .cyb-card__main{font-size:42px;line-height:1.28;font-weight:600;color:var(--ink);letter-spacing:-0.01em;}
-    .cyb-card__main .q{color:#534AB7;}
-    .cyb-ph{width:1000px;max-width:100%;min-height:420px;display:flex;flex-direction:column;
-            align-items:center;justify-content:center;gap:14px;text-align:center;padding:48px;
-            border:2px dashed var(--gray-250);border-radius:14px;background:rgba(0,0,0,0.015);}
-    .cyb-ph__tag{font-size:12px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#a89ff5;}
-    .cyb-ph__desc{font-size:22px;line-height:1.5;color:var(--gray-600);max-width:44ch;}
-
-    /* ── full-bleed hero image with a quote overlaid (cover-cropped to the stage) ── */
-    .cyb-hero{position:absolute;inset:0;overflow:hidden;background:#111;}
-    .cyb-hero__img{width:100%;height:100%;object-fit:cover;display:block;}
-    .cyb-hero__q{position:absolute;left:0;right:0;bottom:0;padding:14% 7% 6%;
-      background:linear-gradient(to top,rgba(0,0,0,.74),rgba(0,0,0,.34) 55%,transparent);}
-    .cyb-hero__q q{display:block;quotes:none;color:#fff;font-family:var(--font-sans);
-      font-weight:600;font-size:clamp(20px,3.4cqw,54px);line-height:1.14;letter-spacing:-0.01em;
-      text-shadow:0 1px 18px rgba(0,0,0,.35);}
-    .cyb-hero__q cite{display:block;margin-top:.7em;font-style:normal;
-      font-family:var(--font-mono);font-size:clamp(10px,1.15cqw,15px);
-      letter-spacing:.08em;color:rgba(255,255,255,.82);}
-
-    /* ── interactive Conway's Game of Life (slide 12 + playground) ── */
+    /* ── interactive Conway's Game of Life (Part 2 slide + playground) ── */
     .cyb-life{position:relative;width:100%;height:100%;display:flex;gap:16px;padding:16px;
       box-sizing:border-box;font-family:var(--font-sans);color:var(--ink);}
     .cyb-life__panel{flex:0 0 200px;display:flex;flex-direction:column;gap:16px;overflow:auto;}
@@ -85,29 +62,26 @@
       .cyb-life__hint{display:none;}
       .cyb-life__canvas{flex:1 1 auto;min-height:0;}
     }
-    /* ── two-column comparison table (slides 18 + 19; scaled to the stage via .embed) ── */
-    /* oversized embeds left-align in the slide's grid; flex unsafe-centers them so the
-       fit-scaler's transform (around the element centre) keeps them centred on the stage */
-    .slide:has(.cyb-cmp){display:flex;align-items:center;justify-content:center;}
-    .cyb-cmp{width:1120px;flex-shrink:0;display:flex;flex-direction:column;align-items:center;
-      font-family:var(--font-sans);color:var(--ink);}
-    .cyb-cmp__grid{width:100%;display:grid;grid-template-columns:132px 1fr 1fr;
-      border:1px solid var(--line);border-radius:12px;overflow:hidden;background:#fff;}
-    .cyb-cmp__grid>div{padding:11px 16px;border-top:1px solid var(--line);
-      border-left:1px solid var(--line);display:flex;align-items:center;
-      font-size:16px;line-height:1.34;}
-    /* first row + first column carry no inner rule (outer border only) */
-    .cyb-cmp__grid>div:nth-child(-n+3){border-top:0;}
-    .cyb-cmp__grid>div:nth-child(3n+1){border-left:0;}
-    .cyb-cmp__h{font:700 12px/1 var(--font-mono);letter-spacing:.13em;
-      text-transform:uppercase;background:var(--gray-100);color:var(--mute);}
-    .cyb-cmp__h--a{color:#534AB7;}
-    .cyb-cmp__h--b{color:var(--accent);}
-    .cyb-cmp__lab{font-weight:700;font-size:12px;letter-spacing:.02em;color:var(--mute);
-      background:var(--gray-50);}
-    .cyb-cmp__b{background:color-mix(in srgb, var(--accent) 5%, transparent);}
-    .cyb-cmp__cap{margin:0 2px 14px;font-size:14px;line-height:1.4;color:var(--gray-600);max-width:1120px;}
-    .cyb-cmp__cap b{color:var(--ink);}
+    /* ── ported from talks/agents-in-practice: text + code splits (Part 4 context slides) ── */
+    .ap-split{width:min(1280px,96%);display:grid;grid-template-columns:1fr 1fr;gap:2.4em;align-items:center;text-align:left}
+    .ap-split .txt-card{width:auto}
+    .ap-split--code-r{grid-template-columns:minmax(0,1fr) max-content}
+    .ap-code{margin:0;font-family:var(--font-mono);font-size:clamp(11px,1.55cqw,28px);line-height:1.5;color:var(--gray-800);
+      background:var(--gray-50);border:1px solid var(--line);border-radius:6px;padding:1em 1.3em;white-space:pre;overflow:hidden}
+    .ap-code-h{display:block;font-size:.72em;letter-spacing:.13em;text-transform:uppercase;color:var(--accent);margin-bottom:.4em}
+    .ap-code-h .ap-mark{font-family:var(--font-sans);font-size:2.2em;font-weight:700;letter-spacing:0;vertical-align:-.28em;margin-right:.35em}
+    .ap-good,.ap-good .ap-mark{color:var(--gray-800)}
+    .ap-bad,.ap-bad .ap-mark{color:var(--alert)}
+    .ap-bad-box{border-color:var(--alert-line)!important;background:var(--alert-bg)!important}
+    /* readable in fullscreen: lift the shared caps */
+    .slide--title .ts{font-size:clamp(11px,1.25cqw,22px)}
+    .toc .toc-n{font-size:clamp(10px,1.1cqw,19px)}
+    .pts h3{font-size:clamp(15px,2.6cqw,44px)}
+    .pts li{font-size:clamp(12px,1.85cqw,32px)}
+    .cmp th,.cmp td{font-size:clamp(12px,1.75cqw,31px)}
+    .cmp thead th{font-size:clamp(10px,1.15cqw,20px)}
+    .cmp .note{font-size:clamp(12px,1.5cqw,26px)}
+    @media (max-width:560px){ .ap-split{grid-template-columns:1fr} }
   </style>
 </head>
 <body>
@@ -159,241 +133,207 @@
           <div class="wf-index">LECTURE</div>
           <div class="wf-header-text">
             <div class="wf-title">Cybernetics and Design</div>
-            <div class="wf-subtitle">from alternative cybernetics to co-productive intelligence · control → co-becoming · OPJD · technodiversity</div>
+            <div class="wf-subtitle">y = f(y) · reinforcement learning · an alternative cybernetics · the score · agents and MCP · context</div>
           </div>
         </div>
 
         <div class="deck" id="deck" data-deck-id="w11" data-deck-title="Cybernetics and Design">
           <div class="deck-stage" id="deck-stage">
 
-            <!-- 0 · Title -->
-            <div class="slide slide--title" data-cap="" data-notes="Title card. Cybernetics and Design — a single continuous thesis: from mainstream cybernetics (control through communication) to an alternative cybernetics (co-becoming), and its living payoff for working with AI, co-productive intelligence.">
+            <div class="slide slide--title" data-era="Opening" data-cap="" data-notes="Title. Cybernetics, the loop behind today&#x27;s machines; an alternative reading of it, built on the score; and what that means for working with AI agents.">
               <div class="tt">Cybernetics and Design</div>
               <div class="ts">LAAR 61400</div>
             </div>
 
-            <!-- ACT I — Alternative Cybernetics (reused talk, notes verbatim) -->
-
-            <!-- Part I divider (TOC) -->
-            <div class="slide" data-cap="An alternative cybernetics" data-notes="Part I. Cybernetics — the study of control through communication — and an alternative reading of it that starts not from control but from co-becoming. Wiener to Sougwen to Halprin; the loop, reinterpreted.">
-              <div class="embed">
-                <div class="toc">
-                  <div class="toc-row active">
-                    <span class="toc-n">Part I</span><h2 class="toc-h">An alternative cybernetics</h2>
-                  </div>
-                  <div class="toc-row">
-                    <span class="toc-n">Part II</span><h2 class="toc-h">Co-productive intelligence</h2>
-                  </div>
-                </div>
-              </div>
+            <div class="slide" data-era="Opening" data-cap="Learning objectives" data-notes="Read them briefly. The first is Part 1, the second Part 2, the third Part 3, the last Part 4. WF06 this week puts Part 3 to work in Rhino.">
+              <div class="embed"><div class="txt-card"><h3>By the end of this lecture, you will be able to</h3><ul><li><b>Explain</b> cybernetics as control through communication, and reinforcement learning as the form it takes in today’s machines.</li><li><b>Describe</b> an alternative cybernetics built on attuning, coding and choreographing, and Halprin’s score as a way to direct work you do not fully control.</li><li><b>Explain</b> how an agent differs from a chat assistant, and how MCP connects it to software such as Rhino.</li><li><b>Apply</b> folder structure and a written context file to control what an agent knows from one session to the next.</li></ul></div></div>
             </div>
 
-            <!-- 1 -->
-            <div class="slide single" data-cap="What is cybernetics?" data-credit="Norbert Wiener, Cybernetics, 1948." data-notes="Norbert Wiener's 1948 book first publicly used the term cybernetics to refer to recursive processes and self-regulation behavior found in machines and animals. As plainly stated by the title, Wiener envisioned cybernetics to be a study of Control and Communication across different entities.">
+            <div class="slide" data-era="Cybernetics" data-cap="Part 1 — Cybernetics, a short history" data-notes="Part 1. Cybernetics, the study of control through communication, from Wiener to the machines that learn today.">
+              <div class="embed"><div class="toc"><div class="toc-row active"><span class="toc-n">Part 1</span><h2 class="toc-h">Cybernetics, a short history</h2></div><div class="toc-row"><span class="toc-n">Part 2</span><h2 class="toc-h">An alternative cybernetics</h2></div><div class="toc-row"><span class="toc-n">Part 3</span><h2 class="toc-h">How agents work, and MCP</h2></div><div class="toc-row"><span class="toc-n">Part 4</span><h2 class="toc-h">Context through folder structure</h2></div></div></div>
+            </div>
+
+            <div class="slide single" data-era="Cybernetics" data-cap="What is cybernetics?" data-credit="Norbert Wiener, Cybernetics, 1948." data-notes="Norbert Wiener's 1948 book first publicly used the term cybernetics to refer to recursive processes and self-regulation behavior found in machines and animals. As plainly stated by the title, Wiener envisioned cybernetics to be a study of Control and Communication across different entities.">
               <img src="/teaching/laar61400/assets/img/cybernetics-and-design/01.avif" alt="Norbert Wiener, Cybernetics, 1948 — title slide">
             </div>
 
-            <!-- 2 -->
-            <div class="slide single" data-cap="The black box" data-notes="Cybernetics positions communication — the exchange of information — at the center of control. Before cybernetics, you needed to understand the internal structure of a machine to control it. Cybernetics turns the system into a black box: by measuring its input and output — the exchange of information, i.e. communication — we can start to control the system.">
+            <div class="slide" data-era="Cybernetics" data-cap="y = f(y) — the cybernetic loop" data-credit="Right: Wiener’s moth, built at MIT by Norbert Wiener, Jerome Wiesner and Henry Singleton, 1949. Life magazine." data-notes="y = f(y): a function whose output is fed back as its own input. Recursion, feedback, self-regulation: the core of cybernetic thinking, in one line. On the right, the loop built as a machine: Wiener&#x27;s moth, a small tricycle cart made at MIT around 1949 with Jerome Wiesner and Henry Singleton. Two photocells steer it toward light, like a moth; reverse the polarity and it flees light, like a bedbug. The long exposure traces its path: it never goes straight, it corrects, overshoots and corrects again. Turn the amplification up and it oscillates, which Wiener used to model the intention tremor of a human hand.">
+              <svg viewBox="0 0 960 540" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;display:block;background:var(--paper);font-family:var(--font-sans)"><defs><marker id="yf-ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M1 1L9 5L1 9" style="fill:none;stroke:var(--gray-500);stroke-width:1.5"/></marker><marker id="yf-aa" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M1 1L9 5L1 9" style="fill:none;stroke:var(--accent);stroke-width:1.5"/></marker></defs><text x="40" y="50" text-anchor="start" font-size="12" style="font-family:var(--font-mono);letter-spacing:.12em;fill:var(--gray-500)">THE CYBERNETIC LOOP</text><g transform="translate(0 44)"><text x="245" y="128" text-anchor="middle" font-size="58" style="font-family:var(--font-math);fill:var(--gray-900)"><tspan style="font-style:italic">y</tspan> = <tspan style="font-style:italic">f</tspan><tspan dx="5">(</tspan><tspan style="font-style:italic">y</tspan>)</text><path d="M315 240 H363 A22 22 0 0 1 385 262 V298 A22 22 0 0 1 363 320 H245" style="stroke:var(--accent);stroke-width:2;fill:none" marker-end="url(#yf-aa)"/><path d="M245 320 H127 A22 22 0 0 1 105 298 V262 A22 22 0 0 1 127 240 H171" style="stroke:var(--accent);stroke-width:2;fill:none" marker-end="url(#yf-aa)"/><rect x="175" y="200" width="140" height="80" rx="14" style="fill:var(--accent-tint);stroke:var(--accent-line);stroke-width:1.5"/><text x="245" y="255" text-anchor="middle" font-size="44" style="font-family:var(--font-math);font-style:italic;fill:var(--accent-dark)">f</text><text x="345" y="228" text-anchor="middle" font-size="28" style="font-family:var(--font-math);font-style:italic;fill:var(--gray-900)">y</text><text x="145" y="228" text-anchor="middle" font-size="28" style="font-family:var(--font-math);font-style:italic;fill:var(--gray-900)">y</text><text x="245" y="392" text-anchor="middle" font-size="15" style="fill:var(--gray-600);font-style:italic">The output is fed back as the input.</text></g><image href="/teaching/laar61400/assets/img/cybernetics-and-design/wiener-moth.avif" x="530" y="40" width="369" height="470" preserveAspectRatio="xMidYMid meet"><title>Wiener’s moth: a long exposure traces the light-seeking cart’s wandering path down a dark corridor</title></image></svg>
+            </div>
+
+            <div class="slide single" data-era="Cybernetics" data-cap="The black box" data-notes="Cybernetics positions communication — the exchange of information — at the center of control. Before cybernetics, you needed to understand the internal structure of a machine to control it. Cybernetics turns the system into a black box: by measuring its input and output — the exchange of information, i.e. communication — we can start to control the system.">
               <img src="/teaching/laar61400/assets/img/cybernetics-and-design/02.avif" alt="The black box — communication at the center of control">
             </div>
 
-            <!-- 3 -->
-            <div class="slide single" data-cap="All modern machines are cybernetic" data-notes="This underpins all modern machines, including the most advanced machine learning algorithms such as AlphaGo. By measuring the output with sensors, we feed the signal into a controller to compute control laws and deploy them with actuators to change system dynamics. This is why sensing, modeling, and actuating are regarded as fundamental processes in feedback mechanisms — and why mainstream technological development has focused on advancing these three fronts.">
-              <img src="/teaching/laar61400/assets/img/cybernetics-and-design/03.avif" alt="Sensing, modeling, actuating — the feedback mechanism of modern machines">
-            </div>
-
-            <!-- 4 -->
-            <div class="slide single" data-cap="The smart city as cybernetic project" data-notes="In the past decade, the smart city has become the most ambitious cybernetic project, mobilizing different social sectors to develop technologies that could make cities 'smarter.' Sensors, platforms, crowd-sourced data, machine learning algorithms, AI — myriads of new tools are being developed every day to experiment with feedback loops between urban systems. But what counts as 'smart'? It is often narrowly defined as more efficient and more connected.">
-              <img src="/teaching/laar61400/assets/img/cybernetics-and-design/04.avif" alt="The smart city as the most ambitious cybernetic project">
-            </div>
-
-            <!-- 5 -->
-            <div class="slide single" data-cap="Cybernetics as a universal mode of thinking" data-credit="Yuk Hui." data-notes="This is why Yuk Hui acutely points out: 'We are more than ever in an epoch of cybernetics, since cybernetics was not a discipline parallel to other disciplines such as philosophy and psychology, but rather it aimed to be a universal discipline, able to unite all other disciplines — a universal mode of thinking par excellence.' Cybernetics is not just a technology; it is a worldview.">
+            <div class="slide single" data-era="Cybernetics" data-cap="Cybernetics as a universal mode of thinking" data-credit="Yuk Hui." data-notes="This is why Yuk Hui acutely points out: 'We are more than ever in an epoch of cybernetics, since cybernetics was not a discipline parallel to other disciplines such as philosophy and psychology, but rather it aimed to be a universal discipline, able to unite all other disciplines — a universal mode of thinking par excellence.' Cybernetics is not just a technology; it is a worldview.">
               <img src="/teaching/laar61400/assets/img/cybernetics-and-design/05.avif" alt="Yuk Hui — cybernetics as a universal mode of thinking">
             </div>
 
-            <!-- 6 -->
-            <div class="slide" data-cap="Sougwen Chung's drawing duets" data-credit="Sougwen Chung." data-notes="Here is an example that challenges the standard cybernetic assumption. Artist Sougwen Chung's drawing duets pair the artist with a robotic arm that mimics her gestures via an overhead camera. The robot tracks her linework perfectly in digital simulation — but the movement is dramatically altered when translated to the physical robotic arm. There is no perfect communication, no real control. And yet something interesting emerges.">
+            <div class="slide single" data-era="Cybernetics" data-cap="The smart city as cybernetic project" data-notes="In the past decade, the smart city has become the most ambitious cybernetic project, mobilizing different social sectors to develop technologies that could make cities 'smarter.' Sensors, platforms, crowd-sourced data, machine learning algorithms, AI — myriads of new tools are being developed every day to experiment with feedback loops between urban systems. But what counts as 'smart'? It is often narrowly defined as more efficient and more connected.">
+              <img src="/teaching/laar61400/assets/img/cybernetics-and-design/04.avif" alt="The smart city as the most ambitious cybernetic project">
+            </div>
+
+            <div class="slide single" data-era="Cybernetics" data-cap="All modern machines are cybernetic" data-notes="All modern machines run on this loop. Sensors measure the output, a controller computes what to do, actuators change the system. That is why sensing, modeling and actuating are the three fronts mainstream technology keeps pushing. The most advanced version today is a machine that learns its own controller: reinforcement learning.">
+              <img src="/teaching/laar61400/assets/img/cybernetics-and-design/03.avif" alt="Sensing, modeling, actuating — the feedback mechanism of modern machines">
+            </div>
+
+            <div class="slide" data-era="Cybernetics" data-cap="Reinforcement learning — cybernetics in practice" data-credit="After Sutton &amp; Barto, Reinforcement Learning: An Introduction, 1998." data-notes="Reinforcement learning is Wiener&#x27;s loop, running on its own. The agent observes a state, its policy picks an action, the environment answers with a new state and a reward, and the policy shifts toward whatever earned reward. Nobody writes the moves; you write the reward. AlphaGo learned Go this way, much of it by playing itself. Chat assistants are tuned with reinforcement learning from human feedback, and today&#x27;s coding agents are trained on tasks whose results can be checked, such as whether the tests pass. Hold on to the reward: the goal has to be written as a number, and a number never says everything we mean. That gap is where Part 2 starts.">
+              <svg viewBox="0 0 960 540" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;display:block;background:var(--paper);font-family:var(--font-sans)"><defs><marker id="rl-ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M1 1L9 5L1 9" style="fill:none;stroke:var(--gray-400);stroke-width:1.5"/></marker><marker id="rl-aa" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M1 1L9 5L1 9" style="fill:none;stroke:var(--accent);stroke-width:1.5"/></marker></defs><text x="40" y="50" text-anchor="start" font-size="12" style="font-family:var(--font-mono);letter-spacing:.12em;fill:var(--gray-500)">REINFORCEMENT LEARNING</text><rect x="120" y="200" width="240" height="100" rx="8" style="fill:var(--accent-tint);stroke:var(--accent-line)"/><text x="240" y="240" text-anchor="middle" font-size="20" style="fill:var(--accent-dark);font-weight:600">Agent</text><text x="240" y="264" text-anchor="middle" font-size="13" style="fill:var(--gray-600)">a policy: what to do</text><text x="240" y="282" text-anchor="middle" font-size="13" style="fill:var(--gray-600)">in each state</text><rect x="600" y="200" width="240" height="100" rx="8" style="fill:var(--gray-50);stroke:var(--gray-250)"/><text x="720" y="240" text-anchor="middle" font-size="20" style="fill:var(--gray-900);font-weight:600">Environment</text><text x="720" y="264" text-anchor="middle" font-size="13" style="fill:var(--gray-600)">a Go board, a road,</text><text x="720" y="282" text-anchor="middle" font-size="13" style="fill:var(--gray-600)">a folder of code</text><path d="M240 200 L240 140 L720 140 L720 196" style="stroke:var(--gray-400);stroke-width:1.5;fill:none" marker-end="url(#rl-ah)"/><text x="480" y="108" text-anchor="middle" font-size="17" style="fill:var(--gray-900);font-weight:600">Action</text><text x="480" y="128" text-anchor="middle" font-size="12.5" style="fill:var(--gray-600)">a move, a turn of the wheel, a tool call</text><path d="M680 300 L680 360 L280 360 L280 304" style="stroke:var(--gray-400);stroke-width:1.5;fill:none" marker-end="url(#rl-ah)"/><text x="480" y="386" text-anchor="middle" font-size="17" style="fill:var(--gray-900);font-weight:600">State</text><text x="480" y="405" text-anchor="middle" font-size="12.5" style="fill:var(--gray-600)">what the agent observes next</text><path d="M760 300 L760 430 L200 430 L200 304" style="stroke:var(--accent);stroke-width:1.5;fill:none" marker-end="url(#rl-aa)"/><text x="480" y="456" text-anchor="middle" font-size="17" style="fill:var(--accent-dark);font-weight:600">Reward</text><text x="480" y="475" text-anchor="middle" font-size="12.5" style="fill:var(--gray-600)">a number: win or lose, the tests pass or fail</text><text x="480" y="516" text-anchor="middle" font-size="14" style="fill:var(--gray-600);font-style:italic">Repeat millions of times; keep what earns reward. Nobody writes the moves, only the reward.</text></svg>
+            </div>
+
+            <div class="slide" data-era="Alternative cybernetics" data-cap="Part 2 — An alternative cybernetics" data-notes="Part 2. An alternative reading of cybernetics that starts from what cannot be controlled: Sougwen Chung, attuning, coding, choreographing, and Halprin&#x27;s score.">
+              <div class="embed"><div class="toc"><div class="toc-row"><span class="toc-n">Part 1</span><h2 class="toc-h">Cybernetics, a short history</h2></div><div class="toc-row active"><span class="toc-n">Part 2</span><h2 class="toc-h">An alternative cybernetics</h2></div><div class="toc-row"><span class="toc-n">Part 3</span><h2 class="toc-h">How agents work, and MCP</h2></div><div class="toc-row"><span class="toc-n">Part 4</span><h2 class="toc-h">Context through folder structure</h2></div></div></div>
+            </div>
+
+            <div class="slide" data-era="Alternative cybernetics" data-cap="Sougwen Chung's drawing duets" data-credit="Sougwen Chung." data-notes="Here is an example that challenges the standard cybernetic assumption. Artist Sougwen Chung's drawing duets pair the artist with a robotic arm that mimics her gestures via an overhead camera. The robot tracks her linework perfectly in digital simulation — but the movement is dramatically altered when translated to the physical robotic arm. There is no perfect communication, no real control. And yet something interesting emerges.">
               <iframe src="https://player.vimeo.com/video/138487938" title="Sougwen Chung — drawing duet with a robotic arm" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
             </div>
 
-            <!-- 7 -->
-            <div class="slide single" data-cap="Withdrawn, non-communicative, uncontrollable" data-credit="after Object-Oriented Ontology." data-notes="The feedback loop in standard cybernetics always presumes things are accessible, communicative, and thus controllable. But in Sougwen's case, you can read the recursive mechanism differently. If we take Object-Oriented Ontology's lens — starting from the premise that things are withdrawn and non-communicative, and thus uncontrollable — what does cybernetics mean? This is the generative question.">
+            <div class="slide single" data-era="Alternative cybernetics" data-cap="Withdrawn, non-communicative, uncontrollable" data-credit="after Object-Oriented Ontology." data-notes="The feedback loop in standard cybernetics always presumes things are accessible, communicative, and thus controllable. But in Sougwen's case, you can read the recursive mechanism differently. If we take Object-Oriented Ontology's lens — starting from the premise that things are withdrawn and non-communicative, and thus uncontrollable — what does cybernetics mean? This is the generative question.">
               <img src="/teaching/laar61400/assets/img/cybernetics-and-design/07.avif" alt="Object-Oriented Ontology — things as withdrawn and uncontrollable">
             </div>
 
-            <!-- 8 -->
-            <div class="slide single" data-cap="Coding · Choreographing · Attuning" data-notes="By collecting a range of emerging cybernetic practices across art, science, engineering, and design, we can map out an alternative interpretation of cybernetic thinking centered on uncontrollability and non-communication. Instead of sensing, modeling, and actuating — three alternative terms: Coding, Choreographing, and Attuning.">
+            <div class="slide single" data-era="Alternative cybernetics" data-cap="Coding · Choreographing · Attuning" data-notes="By collecting emerging cybernetic practices across art, science, engineering and design, we can map an alternative reading of cybernetic thinking centered on uncontrollability and non-communication. In place of sensing, modeling and actuating, three terms: attuning, coding and choreographing.">
               <img src="/teaching/laar61400/assets/img/cybernetics-and-design/08.avif" alt="An alternative framework — Coding, Choreographing, Attuning">
             </div>
 
-            <!-- 9 -->
-            <div class="slide" data-cap="Attuning — reinterpreting sensing" data-credit="David Bowen, &quot;tele-present wind.&quot;" data-notes="First, reinterpreting sensing. David Bowen's 'tele-present wind': an accelerometer on a dried plant stalk outdoors captures wind movement; the signal is transmitted to tilting devices in a gallery, each made of a dried plant stalk. The exact movement is replicated inside. Rather than sensing as data extraction for control, here sensing is about attunement — registering the world as it is, not as we want to manage it.">
+            <div class="slide" data-era="Alternative cybernetics" data-cap="Attuning — reinterpreting sensing" data-credit="David Bowen, &quot;tele-present wind.&quot;" data-notes="First, reinterpreting sensing. David Bowen's 'tele-present wind': an accelerometer on a dried plant stalk outdoors captures wind movement; the signal is transmitted to tilting devices in a gallery, each made of a dried plant stalk. The exact movement is replicated inside. Rather than sensing as data extraction for control, here sensing is about attunement — registering the world as it is, not as we want to manage it.">
               <iframe src="https://player.vimeo.com/video/274553374" title="David Bowen — tele-present wind" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
             </div>
 
-            <!-- 10 -->
-            <div class="slide single" data-cap="Choreographing — setting conditions in motion" data-notes="Our relationship with a model is changing. We render our intention through objective functions that will never be comprehensive. Choreographing describes this better than controlling: the designer sets conditions in motion rather than dictating outcomes. Think of possibilities like AI agents that cause flooding to promote emergent ecologies — design as score, not blueprint.">
+            <div class="slide" data-era="Alternative cybernetics" data-cap="Coding — Conway&#x27;s Game of Life: rule-setting, not outcome-control" data-notes="Coding, reinterpreted: the cellular automaton, a classic idea from early cybernetics. Conway&#x27;s Game of Life runs four small rules on a grid (a live cell with 2–3 live neighbours survives; a dead cell with exactly 3 is born; everything else dies). From those rules alone, structure emerges that no one wrote: the Gosper glider gun shown here fires gliders across the grid forever. You author the rules; the behaviour is emergent, not prescribed. Click the grid to draw cells, or load a random field and watch it organise itself.">
+              <div class="cyb-life" data-life></div>
+            </div>
+
+            <div class="slide single" data-era="Alternative cybernetics" data-cap="An alternative cybernetics: co-becoming, not control" data-notes="Mainstream cybernetics is about control through communication — through the exchange of information, one reaches controlled stability. But in Sougwen's drawing duet, the artist and robot are not in good communication, and there is no control. Yet the underlying thinking is deeply cybernetic: recursive causality and self-regulation, found in both human and machine. An alternative cybernetics starts not from control, but from co-becoming.">
+              <img src="/teaching/laar61400/assets/img/cybernetics-and-design/13.avif" alt="Alternative cybernetics — from control to co-becoming">
+            </div>
+
+            <div class="slide single" data-era="Alternative cybernetics" data-cap="Choreographing — setting conditions in motion" data-notes="Choreographing, reinterpreted. Our relationship with a model is changing: we render our intention through objective functions that will never be comprehensive, the reward from Part 1. Choreographing describes this better than controlling: the designer sets conditions in motion rather than dictating outcomes. Think of AI agents that cause flooding to promote emergent ecologies. For landscape architects the word is inseparable from Lawrence Halprin.">
               <img src="/teaching/laar61400/assets/img/cybernetics-and-design/10.avif" alt="Choreographing — AI agents and emergent ecologies">
             </div>
 
-            <!-- 11 · full-bleed RSVP diagram + quote -->
-            <div class="slide" data-cap="&quot;Scores communicate but do not control.&quot;" data-credit="Lawrence Halprin, RSVP Cycles, 1970s." data-notes="The term choreograph is gaining traction among landscape architects, inseparable from Lawrence Halprin's theory. In the 1970s, Halprin introduced RSVP cycles: S stands for Score — a series of instructions for setting things in motion, akin to musical scores. He writes: 'Scores communicate but do not control.' This apparent wordplay on Wiener's book title suggests Halprin found in recursive thinking a design philosophy grounded in openness rather than optimization.">
-              <div class="cyb-hero">
-                <img class="cyb-hero__img" src="/teaching/laar61400/assets/img/cybernetics-and-design/11-rsvp.avif" alt="Lawrence Halprin's hand-drawn RSVP Cycles diagram — Resources, Scores, Valuaction, Performance">
-                <div class="cyb-hero__q"><q>Scores communicate but do not control.</q><cite>Lawrence Halprin · The RSVP Cycles, 1970s</cite></div>
-              </div>
-            </div>
-
-            <!-- 11b · a score and its performance -->
-            <div class="slide auto" data-cap="A score, and its enactment" data-credit="Anna &amp; Lawrence Halprin — movement scores." data-notes="The Score is only half the cycle. Left: a drawn movement score, held up like a musical notation. Right: people enacting it in the open — the Performance. Between them sits Valuaction, the feedback that reads the result back into the next score. The instruction sets bodies in motion; it does not dictate what they do. Choreography, not control — the loop, made literal.">
+            <div class="slide auto" data-era="Alternative cybernetics" data-cap="A score, and its enactment" data-credit="Anna &amp; Lawrence Halprin — movement scores." data-notes="Anna and Lawrence Halprin&#x27;s movement scores. Left: a drawn score, held up like musical notation. Right: people enacting it in the open. The score sets bodies in motion; it does not dictate what they do.">
               <figure><img src="/teaching/laar61400/assets/img/cybernetics-and-design/11-score.avif" alt="A person holding up a drawn circular movement score"></figure>
               <figure><img src="/teaching/laar61400/assets/img/cybernetics-and-design/11-perform.avif" alt="People enacting the score, moving through a park"></figure>
             </div>
 
-            <!-- 12 · interactive Conway's Game of Life (Gosper glider gun) -->
-            <div class="slide" data-cap="Conway's Game of Life — rule-setting, not outcome-control" data-notes="A more technical example: the cellular automaton — a classic idea from early cybernetics. Conway's Game of Life runs four tiny rules on a grid (a live cell with 2–3 live neighbours survives; a dead cell with exactly 3 is born; everything else dies). From those rules alone, structure emerges that no one wrote: the Gosper glider gun shown here endlessly fires 'gliders' that crawl across the grid forever. This is the point — rule-setting rather than outcome-controlling. You author the four rules; the behaviour is emergent, not prescribed. Click the grid to draw your own cells, or load a random field and watch it self-organise.">
-              <div class="cyb-life" data-life></div>
+            <div class="slide points-l" data-era="Alternative cybernetics" data-cap="“Scores communicate but do not control.”" data-credit="Lawrence Halprin, The RSVP Cycles, 1970s." data-notes="In the 1970s Halprin introduced the RSVP Cycles: Resources, Scores, Valuaction, Performance. A score is a set of instructions for setting things in motion, like a musical score. He writes that scores communicate but do not control, a play on Wiener&#x27;s title. A score sets conditions for a performance; it does not dictate it. Directing an agent is writing a score: intent, resources, limits, then reading the performance back. The rest of the lecture is how that works in practice.">
+              <div class="pts"><h3>“Scores communicate but do not control.”</h3><ul><li>Halprin’s RSVP Cycles: Resources, Scores, Valuaction, Performance.</li><li>A score sets conditions; the performance is not the score.</li><li>Directing an agent is writing a score, then reading the performance back.</li></ul></div><figure><img src="/teaching/laar61400/assets/img/cybernetics-and-design/11-rsvp.avif" alt="Lawrence Halprin’s hand-drawn RSVP Cycles diagram" width="1280" height="720" loading="lazy"></figure>
             </div>
 
-            <!-- 13 -->
-            <div class="slide single" data-cap="An alternative cybernetics: co-becoming, not control" data-notes="Mainstream cybernetics is about control through communication — through the exchange of information, one reaches controlled stability. But in Sougwen's drawing duet, the artist and robot are not in good communication, and there is no control. Yet the underlying thinking is deeply cybernetic: recursive causality and self-regulation, found in both human and machine. An alternative cybernetics starts not from control, but from co-becoming.">
-              <img src="/teaching/laar61400/assets/img/cybernetics-and-design/13.avif" alt="Alternative cybernetics — from control to co-becoming">
+            <div class="slide" data-era="Agents" data-cap="Part 3 — How agents work, and MCP" data-notes="Part 3. What an agent is, how it works, and how MCP connects it to the software you already use.">
+              <div class="embed"><div class="toc"><div class="toc-row"><span class="toc-n">Part 1</span><h2 class="toc-h">Cybernetics, a short history</h2></div><div class="toc-row"><span class="toc-n">Part 2</span><h2 class="toc-h">An alternative cybernetics</h2></div><div class="toc-row active"><span class="toc-n">Part 3</span><h2 class="toc-h">How agents work, and MCP</h2></div><div class="toc-row"><span class="toc-n">Part 4</span><h2 class="toc-h">Context through folder structure</h2></div></div></div>
             </div>
 
-            <!-- ACT II — From Co-becoming to Co-productive Intelligence (course extension) -->
-
-            <!-- Part II divider (TOC) -->
-            <div class="slide" data-cap="Co-productive intelligence" data-notes="Part II. The same argument, now with an AI on the other side of the loop. Co-becoming named as a framework, against the control-fantasy of One Prompt, Job Done — skill-in-chatting, the labor stakes, technodiversity.">
-              <div class="embed">
-                <div class="toc">
-                  <div class="toc-row">
-                    <span class="toc-n">Part I</span><h2 class="toc-h">An alternative cybernetics</h2>
-                  </div>
-                  <div class="toc-row active">
-                    <span class="toc-n">Part II</span><h2 class="toc-h">Co-productive intelligence</h2>
-                  </div>
-                </div>
-              </div>
+            <div class="slide auto-rows" data-era="Agents" data-cap="One prompt, job done?" data-credit="Top: AI product advertising. Bottom: four-prompt illustrative-plan experiment, Zhang." data-notes="The ads promise one prompt in, finished job out. Four prompts gave me these boards: fast, and lifeless, with no conversation behind them. For offices, and for anyone starting out, the question is sharper: who does the entry-level work, a junior designer or the tokens?">
+              <div class="row"><figure><img src="/teaching/laar61400/assets/img/cybernetics-and-design/16-a.avif" alt="A subway-map path beside the line “One prompt, job done.”" width="516" height="387" loading="lazy"></figure><figure><img src="/teaching/laar61400/assets/img/cybernetics-and-design/16-b.avif" alt="“Slides in 10 minutes. Not 10 PM.”" width="800" height="600" loading="lazy"></figure></div><div class="row"><figure><img src="/teaching/laar61400/assets/img/cybernetics-and-design/17-a.avif" alt="GPT-generated presentation board, waterfront wetland" width="1693" height="929" loading="lazy"></figure><figure><img src="/teaching/laar61400/assets/img/cybernetics-and-design/17-b.avif" alt="GPT-generated presentation board, seasonal wetland" width="1536" height="1024" loading="lazy"></figure><figure><img src="/teaching/laar61400/assets/img/cybernetics-and-design/17-c.avif" alt="GPT-generated presentation board, post-industrial landscape" width="1536" height="1024" loading="lazy"></figure><figure><img src="/teaching/laar61400/assets/img/cybernetics-and-design/17-d.avif" alt="GPT-generated presentation board, access map" width="1536" height="1024" loading="lazy"></figure></div>
             </div>
 
-            <!-- 14 -->
-            <div class="slide single" data-cap="Co-productive intelligence — what if intelligence is an effect, not a cause? Something we produce together, rather than a thing one side owns." data-credit="Zhang." data-notes="Bridge from the talk into the course thesis. Co-becoming IS co-productive intelligence: human and machine intelligences are not stable categories that meet in the middle — they are produced through entanglement; intelligence as effect, not cause. &quot;The designer who thinks with AI is not the designer who thinks with tracing paper.&quot; Everything the talk just argued about control vs. co-becoming now applies to working with an AI.">
-              <img src="/teaching/laar61400/assets/img/cybernetics-and-design/14.avif" alt="A hand-drawn entanglement diagram — a human figure holding a phone, wired by dotted lines to a brain, gut microbes, a circuit board, a drone, birds, a tree and its roots, a wolf, a hare, a crab and an oyster.">
+            <div class="slide" data-era="Agents" data-cap="The locked room" data-notes="Walk the table row by row. A chat assistant passes notes under a door; an agent walks the corridor and picks up tools. Land on the last row: you delegate a goal, not a sentence.">
+              <div class="embed"><div class="cmp"><h3>A chatbot is a person in a locked room</h3><table><thead><tr><th></th><th>Chat assistant</th><th>Agent</th></tr></thead><tbody><tr><th scope="row">Interaction</th><td>One prompt, one response</td><td><b>Breaks a task apart, acts, checks, repeats</b></td></tr><tr><th scope="row">Reach</th><td>Text out; no hands, no eyes</td><td><b>Files, a terminal, a browser, connected software</b></td></tr><tr><th scope="row">Memory</th><td>What you pasted in</td><td><b>The folder it works in</b></td></tr><tr><th scope="row">Your role</th><td>Word each question well</td><td><b>Delegate a goal; review the result</b></td></tr></tbody></table><span class="note">MCP is the key to the door.</span></div></div>
             </div>
 
-            <!-- 15+16 · "One Prompt, Job Done" — the ad makes the point -->
-            <div class="slide auto" data-cap="The other story — “One Prompt, Job Done.” One prompt in, finished job out. What happens to everything in the middle?" data-notes="OPJD as syndrome — name it. The dominant story about AI is pure control-fantasy: one prompt in, finished job out, delete the messy middle. The ad sells that middle as waste — the detour you'd skip if you could. But the middle is the choreography; the winding path was the thinking. It is the ANTI-cybernetic story — no loop, no attunement — exactly the control cybernetics the talk spent 13 slides dismantling. Straightening the line deletes the co-becoming, not the drudgery.">
-              <figure><img src="/teaching/laar61400/assets/img/cybernetics-and-design/16-a.avif" alt="A winding subway-map path (Draft Slides → Add Charts → Polish → Final Deck) beside the line ‘One prompt, job done.’"></figure>
-              <figure><img src="/teaching/laar61400/assets/img/cybernetics-and-design/16-b.avif" alt="‘Slides in 10 minutes. Not 10 PM.’"></figure>
+            <div class="slide" data-era="Agents" data-cap="The agent loop" data-notes="Read, plan, act, check, repeat, until the check passes or it needs you. It is a feedback loop. The ask-you exit is where you stay in charge: you set when it must stop and ask.">
+              <svg viewBox="0 0 960 540" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;display:block;background:var(--paper);font-family:var(--font-sans)"><defs><marker id="ah1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M1 1L9 5L1 9" style="fill:none;stroke:var(--gray-400);stroke-width:1.5"/></marker><marker id="aa1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M1 1L9 5L1 9" style="fill:none;stroke:var(--accent);stroke-width:1.5"/></marker></defs><text x="40" y="50" text-anchor="start" font-size="12" style="font-family:var(--font-mono);letter-spacing:.12em;fill:var(--gray-500)">THE AGENT LOOP</text><rect x="60" y="238" width="150" height="64" rx="8" style="fill:var(--accent-tint);stroke:var(--accent-line)"/><text x="135" y="267" text-anchor="middle" font-size="16" style="fill:var(--accent-dark);font-weight:600">Your task</text><text x="135" y="287" text-anchor="middle" font-size="12" style="fill:var(--gray-600)">a goal, not a sentence</text><rect x="300" y="120" width="190" height="70" rx="8" style="fill:var(--gray-50);stroke:var(--gray-250)"/><text x="395" y="152" text-anchor="middle" font-size="17" style="fill:var(--gray-900);font-weight:600">Read</text><text x="395" y="173" text-anchor="middle" font-size="12.5" style="fill:var(--gray-600)">files, context, the goal</text><rect x="580" y="120" width="190" height="70" rx="8" style="fill:var(--gray-50);stroke:var(--gray-250)"/><text x="675" y="152" text-anchor="middle" font-size="17" style="fill:var(--gray-900);font-weight:600">Plan</text><text x="675" y="173" text-anchor="middle" font-size="12.5" style="fill:var(--gray-600)">break it into steps</text><rect x="580" y="320" width="190" height="70" rx="8" style="fill:var(--gray-50);stroke:var(--gray-250)"/><text x="675" y="352" text-anchor="middle" font-size="17" style="fill:var(--gray-900);font-weight:600">Act</text><text x="675" y="373" text-anchor="middle" font-size="12.5" style="fill:var(--gray-600)">edit, run, call a tool</text><rect x="300" y="320" width="190" height="70" rx="8" style="fill:var(--gray-50);stroke:var(--gray-250)"/><text x="395" y="352" text-anchor="middle" font-size="17" style="fill:var(--gray-900);font-weight:600">Check</text><text x="395" y="373" text-anchor="middle" font-size="12.5" style="fill:var(--gray-600)">did that work?</text><path d="M210 270 L250 270 L250 155 L296 155" style="stroke:var(--gray-400);stroke-width:1.5;fill:none" marker-end="url(#ah1)"/><path d="M490 155 L576 155" style="stroke:var(--gray-400);stroke-width:1.5;fill:none" marker-end="url(#ah1)"/><path d="M675 190 L675 316" style="stroke:var(--gray-400);stroke-width:1.5;fill:none" marker-end="url(#ah1)"/><path d="M580 355 L494 355" style="stroke:var(--gray-400);stroke-width:1.5;fill:none" marker-end="url(#ah1)"/><path d="M395 320 L395 194" style="stroke:var(--gray-400);stroke-width:1.5;fill:none" marker-end="url(#ah1)"/><rect x="300" y="446" width="190" height="58" rx="8" style="fill:var(--accent-tint);stroke:var(--accent-line)"/><text x="395" y="472" text-anchor="middle" font-size="16" style="fill:var(--accent-dark);font-weight:600">Ask you</text><text x="395" y="491" text-anchor="middle" font-size="12" style="fill:var(--gray-600)">unsure, or needs approval</text><path d="M395 390 L395 442" style="stroke:var(--accent);stroke-width:1.5;fill:none" marker-end="url(#aa1)"/><rect x="580" y="446" width="190" height="58" rx="8" style="fill:var(--gray-50);stroke:var(--gray-250)"/><text x="675" y="472" text-anchor="middle" font-size="16" style="fill:var(--gray-900);font-weight:600">Done</text><text x="675" y="491" text-anchor="middle" font-size="12" style="fill:var(--gray-600)">reports what changed</text><path d="M490 380 L535 380 L535 475 L576 475" style="stroke:var(--gray-400);stroke-width:1.5;fill:none" marker-end="url(#ah1)"/><text x="830" y="255" text-anchor="middle" font-size="13" style="fill:var(--gray-600)">Loops until</text><text x="830" y="273" text-anchor="middle" font-size="13" style="fill:var(--gray-600)">the check passes</text><text x="830" y="291" text-anchor="middle" font-size="13" style="fill:var(--gray-600)">or it needs you</text></svg>
             </div>
 
-            <!-- 17 -->
-            <div class="slide auto-rows" data-cap="Four prompts, a lifeless-but-fast plan" data-credit="GPT illustrative-plan experiment, Zhang." data-notes="Escalating-prompt sequence + the dead result. Fast, competent, says nothing — because there was no loop, no conversation, no attunement to intent. The real question: do we pay the entry-level designer, or the AI tokens? What's lost is where a designer would have learned to steer.">
-              <div class="row">
-                <figure><img src="/teaching/laar61400/assets/img/cybernetics-and-design/17-a.avif" alt="GPT-generated presentation board — ‘One Place. Four Seasons’ waterfront wetland"></figure>
-                <figure><img src="/teaching/laar61400/assets/img/cybernetics-and-design/17-b.avif" alt="GPT-generated presentation board — ‘One Landscape. Four Seasons’ seasonal wetland"></figure>
-              </div>
-              <div class="row">
-                <figure><img src="/teaching/laar61400/assets/img/cybernetics-and-design/17-c.avif" alt="GPT-generated presentation board — ‘Reclaimed Ground’ post-industrial landscape"></figure>
-                <figure><img src="/teaching/laar61400/assets/img/cybernetics-and-design/17-d.avif" alt="GPT-generated presentation board — ‘Educational Access’ Harlem & South Bronx map"></figure>
-              </div>
+            <div class="slide" data-era="Agents" data-cap="What an agent can touch" data-notes="Files, a terminal, a browser, connected software. You decide which doors open and whether it asks before each step. Most tools ask by default.">
+              <svg viewBox="0 0 960 540" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;display:block;background:var(--paper);font-family:var(--font-sans)"><defs><marker id="ah2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M1 1L9 5L1 9" style="fill:none;stroke:var(--gray-400);stroke-width:1.5"/></marker><marker id="aa2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M1 1L9 5L1 9" style="fill:none;stroke:var(--accent);stroke-width:1.5"/></marker></defs><text x="40" y="50" text-anchor="start" font-size="12" style="font-family:var(--font-mono);letter-spacing:.12em;fill:var(--gray-500)">WHAT AN AGENT CAN TOUCH</text><circle cx="480" cy="270" r="66" style="fill:var(--paper);stroke:var(--accent);stroke-width:1.5"/><text x="480" y="266" text-anchor="middle" font-size="20" style="fill:var(--gray-900);font-weight:600">Agent</text><text x="480" y="288" text-anchor="middle" font-size="12" style="fill:var(--gray-600)">on your computer</text><rect x="90" y="80" width="240" height="76" rx="8" style="fill:var(--gray-50);stroke:var(--gray-250)"/><text x="210" y="113" text-anchor="middle" font-size="17" style="fill:var(--gray-900);font-weight:600">Files</text><text x="210" y="135" text-anchor="middle" font-size="12.5" style="fill:var(--gray-600)">the project folder, standards</text><rect x="630" y="80" width="240" height="76" rx="8" style="fill:var(--gray-50);stroke:var(--gray-250)"/><text x="750" y="113" text-anchor="middle" font-size="17" style="fill:var(--gray-900);font-weight:600">Terminal</text><text x="750" y="135" text-anchor="middle" font-size="12.5" style="fill:var(--gray-600)">batch-rename 400 site photos</text><rect x="90" y="384" width="240" height="76" rx="8" style="fill:var(--gray-50);stroke:var(--gray-250)"/><text x="210" y="417" text-anchor="middle" font-size="17" style="fill:var(--gray-900);font-weight:600">Browser</text><text x="210" y="439" text-anchor="middle" font-size="12.5" style="fill:var(--gray-600)">look up a code section</text><rect x="630" y="384" width="240" height="76" rx="8" style="fill:var(--gray-50);stroke:var(--gray-250)"/><text x="750" y="417" text-anchor="middle" font-size="17" style="fill:var(--gray-900);font-weight:600">Connected software</text><text x="750" y="439" text-anchor="middle" font-size="12.5" style="fill:var(--gray-600)">Rhino, QGIS, a spreadsheet</text><line x1="430" y1="228" x2="332" y2="158" style="stroke:var(--gray-400);stroke-width:1.5;fill:none"/><line x1="530" y1="228" x2="628" y2="158" style="stroke:var(--gray-400);stroke-width:1.5;fill:none"/><line x1="430" y1="312" x2="332" y2="382" style="stroke:var(--gray-400);stroke-width:1.5;fill:none"/><line x1="530" y1="312" x2="628" y2="382" style="stroke:var(--gray-400);stroke-width:1.5;fill:none"/><text x="480" y="378" text-anchor="middle" font-size="14" style="fill:var(--gray-600);font-style:italic">You decide which doors open,</text><text x="480" y="398" text-anchor="middle" font-size="14" style="fill:var(--gray-600);font-style:italic">and whether it asks first.</text></svg>
             </div>
 
-            <!-- 18 · chatbot vs agent comparison -->
-            <div class="slide" data-cap="Chatbot vs. agent — the door opens. A prompt-in, response-out box becomes a partner that acts." data-notes="The chatbot→agent shift, named. Chatbot = a person in a locked room: you slip a prompt under the door, it slips a response back — text only, one turn, no hands, no eyes. Agent = MCP unlocks the door: it walks the corridor, opens rooms, picks up tools (terminal, files, connectors), takes a task apart, spawns subagents, checks its own work. The technique moved with it: from engineering the prompt to engineering the context, the harness, the loop. This sets up the labor + care stakes on the next slides — the automated middle is the choreography; you can only co-become with a partner you know how to reach. (Bridges to Web Coding Literacy + the Claude Code workshop.)">
-              <div class="embed">
-                <div class="cyb-cmp">
-                  <p class="cyb-cmp__cap">A <b>chatbot</b> is a person in a locked room — a prompt in exchange for a response. <b>MCP</b> unlocks the door: the <b>agent</b> walks the corridor, opens rooms, and picks up tools.</p>
-                  <div class="cyb-cmp__grid">
-                    <div class="cyb-cmp__h"></div>
-                    <div class="cyb-cmp__h cyb-cmp__h--a">Chatbot</div>
-                    <div class="cyb-cmp__h cyb-cmp__h--b">Agent</div>
-
-                    <div class="cyb-cmp__lab">Interaction</div>
-                    <div>One prompt → one response</div>
-                    <div class="cyb-cmp__b">Takes a task apart, acts, self-corrects in a loop</div>
-
-                    <div class="cyb-cmp__lab">Room analogy</div>
-                    <div>Sealed room; you pass notes under the door</div>
-                    <div class="cyb-cmp__b">MCP unlocks the door — walks the corridor, opens other rooms</div>
-
-                    <div class="cyb-cmp__lab">Reach</div>
-                    <div>Text out; no hands, no eyes</div>
-                    <div class="cyb-cmp__b">Tools: terminal, files, software, connectors (MCP)</div>
-
-                    <div class="cyb-cmp__lab">Memory</div>
-                    <div>Stateless turn</div>
-                    <div class="cyb-cmp__b">Managed context across many steps</div>
-
-                    <div class="cyb-cmp__lab">The craft</div>
-                    <div>Prompt engineering — word the question well</div>
-                    <div class="cyb-cmp__b">Context / harness / loop engineering — choreograph the work</div>
-
-                    <div class="cyb-cmp__lab">Autonomy</div>
-                    <div>You steer every step</div>
-                    <div class="cyb-cmp__b">You delegate a goal; it plans, spawns subagents, evaluates</div>
-
-                    <div class="cyb-cmp__lab">Cybernetic reading</div>
-                    <div>A message exchanged</div>
-                    <div class="cyb-cmp__b">A loop that acts back on the world</div>
-                  </div>
-                </div>
-              </div>
+            <div class="slide" data-era="Agents" data-cap="MCP: a standard plug" data-notes="A small adapter sits beside a program and publishes what it can do. MCP is an open standard, not one vendor&#x27;s feature, published late 2024. The adapter runs locally and the file stays on your machine, but whatever the agent reads from it is sent to the AI provider as part of the conversation. That matters for client and confidential work. Some adapters are excellent; many are prototypes.">
+              <svg viewBox="0 0 960 540" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;display:block;background:var(--paper);font-family:var(--font-sans)"><defs><marker id="ah3" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M1 1L9 5L1 9" style="fill:none;stroke:var(--gray-400);stroke-width:1.5"/></marker><marker id="aa3" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M1 1L9 5L1 9" style="fill:none;stroke:var(--accent);stroke-width:1.5"/></marker></defs><text x="40" y="50" text-anchor="start" font-size="12" style="font-family:var(--font-mono);letter-spacing:.12em;fill:var(--gray-500)">MCP — ONE STANDARD PLUG</text><rect x="50" y="215" width="160" height="110" rx="8" style="fill:var(--paper);stroke:var(--accent);stroke-width:1.5"/><text x="130" y="265" text-anchor="middle" font-size="20" style="fill:var(--gray-900);font-weight:600">Agent</text><text x="130" y="287" text-anchor="middle" font-size="12" style="fill:var(--gray-600)">any MCP client</text><line x1="290" y1="102" x2="290" y2="438" style="stroke:var(--accent);stroke-width:3"/><path d="M210 270 L286 270" style="stroke:var(--accent);stroke-width:1.5;fill:none" marker-end="url(#aa3)"/><text x="290" y="468" text-anchor="middle" font-size="13" style="font-family:var(--font-mono);letter-spacing:.12em;fill:var(--accent)">MCP</text><path d="M290 122 L336 122" style="stroke:var(--accent);stroke-width:1.5;fill:none" marker-end="url(#aa3)"/><rect x="340" y="96" width="170" height="52" rx="8" style="fill:var(--paper);stroke:var(--accent);stroke-dasharray:5 4"/><text x="425" y="127" text-anchor="middle" font-size="14" style="fill:var(--accent)">adapter</text><path d="M510 122 L566 122" style="stroke:var(--gray-400);stroke-width:1.5;fill:none" marker-end="url(#ah3)"/><rect x="570" y="96" width="190" height="52" rx="8" style="fill:var(--gray-50);stroke:var(--gray-250)"/><text x="665" y="120" text-anchor="middle" font-size="16" style="fill:var(--gray-900);font-weight:600">Rhino</text><text x="665" y="138" text-anchor="middle" font-size="12" style="fill:var(--gray-600)">your 3D model</text><path d="M290 208 L336 208" style="stroke:var(--accent);stroke-width:1.5;fill:none" marker-end="url(#aa3)"/><rect x="340" y="182" width="170" height="52" rx="8" style="fill:var(--paper);stroke:var(--accent);stroke-dasharray:5 4"/><text x="425" y="213" text-anchor="middle" font-size="14" style="fill:var(--accent)">adapter</text><path d="M510 208 L566 208" style="stroke:var(--gray-400);stroke-width:1.5;fill:none" marker-end="url(#ah3)"/><rect x="570" y="182" width="190" height="52" rx="8" style="fill:var(--gray-50);stroke:var(--gray-250)"/><text x="665" y="206" text-anchor="middle" font-size="16" style="fill:var(--gray-900);font-weight:600">QGIS</text><text x="665" y="224" text-anchor="middle" font-size="12" style="fill:var(--gray-600)">site data</text><path d="M290 294 L336 294" style="stroke:var(--accent);stroke-width:1.5;fill:none" marker-end="url(#aa3)"/><rect x="340" y="268" width="170" height="52" rx="8" style="fill:var(--paper);stroke:var(--accent);stroke-dasharray:5 4"/><text x="425" y="299" text-anchor="middle" font-size="14" style="fill:var(--accent)">adapter</text><path d="M510 294 L566 294" style="stroke:var(--gray-400);stroke-width:1.5;fill:none" marker-end="url(#ah3)"/><rect x="570" y="268" width="190" height="52" rx="8" style="fill:var(--gray-50);stroke:var(--gray-250)"/><text x="665" y="292" text-anchor="middle" font-size="16" style="fill:var(--gray-900);font-weight:600">Blender</text><text x="665" y="310" text-anchor="middle" font-size="12" style="fill:var(--gray-600)">renders</text><path d="M290 380 L336 380" style="stroke:var(--accent);stroke-width:1.5;fill:none" marker-end="url(#aa3)"/><rect x="340" y="354" width="170" height="52" rx="8" style="fill:var(--paper);stroke:var(--accent);stroke-dasharray:5 4"/><text x="425" y="385" text-anchor="middle" font-size="14" style="fill:var(--accent)">adapter</text><path d="M510 380 L566 380" style="stroke:var(--gray-400);stroke-width:1.5;fill:none" marker-end="url(#ah3)"/><rect x="570" y="354" width="190" height="52" rx="8" style="fill:var(--gray-50);stroke:var(--gray-250)"/><text x="665" y="378" text-anchor="middle" font-size="16" style="fill:var(--gray-900);font-weight:600">Spreadsheet</text><text x="665" y="396" text-anchor="middle" font-size="12" style="fill:var(--gray-600)">plant schedule</text><text x="790" y="190" text-anchor="start" font-size="13" style="fill:var(--gray-600)">An open standard,</text><text x="790" y="208" text-anchor="start" font-size="13" style="fill:var(--gray-600)">published late 2024.</text><text x="790" y="250" text-anchor="start" font-size="13" style="fill:var(--gray-600)">The adapter runs on</text><text x="790" y="268" text-anchor="start" font-size="13" style="fill:var(--gray-600)">your machine; what the</text><text x="790" y="286" text-anchor="start" font-size="13" style="fill:var(--gray-600)">agent reads goes to</text><text x="790" y="304" text-anchor="start" font-size="13" style="fill:var(--gray-600)">the AI provider.</text><text x="790" y="346" text-anchor="start" font-size="13" style="fill:var(--gray-600)">Some adapters are</text><text x="790" y="364" text-anchor="start" font-size="13" style="fill:var(--gray-600)">excellent; many are</text><text x="790" y="382" text-anchor="start" font-size="13" style="fill:var(--gray-600)">prototypes.</text></svg>
             </div>
 
-            <!-- 19 · care vs care-less comparison -->
-            <div class="slide" data-cap="Care vs. care-less — draw a line between them and you've already conceded the handed-off half is care-less." data-credit="after Tronto; Puig de la Bellacasa; Žižek; ASLA 2025." data-notes="Do machines care? The ASLA irony: to say &quot;AI is a tool only, it lacks empathetic site-based care&quot; is to concede that the work we DO hand to AI is care-less — labor with the affect already subtracted. Split the effect of care (the labor executed — taking care of, caregiving) from its affect (the toll, the noticing — caring about, care receiving). Machines keep the effect at no cost; capitalism was already stripping the affect long before AI (&quot;decaffeinated care&quot; — the form kept, the active ingredient removed). The danger is not deception but normalization: once simulated care is ordinary, we stop wanting to know the difference — we don't care that we don't care. The double shot: keep the &quot;human +&quot; in the loop — do the care and care about doing it. Same bet as the talk's co-becoming.">
-              <div class="embed">
-                <div class="cyb-cmp">
-                  <p class="cyb-cmp__cap">Split care into its <b>effect</b> (the labor executed) and its <b>affect</b> (the toll, the noticing). Machines keep the effect at no cost — but drawing the line concedes the handed-off half is <b>care-less</b>.</p>
-                  <div class="cyb-cmp__grid">
-                    <div class="cyb-cmp__h"></div>
-                    <div class="cyb-cmp__h cyb-cmp__h--a">Care</div>
-                    <div class="cyb-cmp__h cyb-cmp__h--b">Care-less</div>
-
-                    <div class="cyb-cmp__lab">Tronto's phases</div>
-                    <div>Caring about + care receiving — notice, be affected</div>
-                    <div class="cyb-cmp__b">Taking care of + caregiving — assume + execute the task</div>
-
-                    <div class="cyb-cmp__lab">Dimensions</div>
-                    <div>Act + affect + ethics, held together</div>
-                    <div class="cyb-cmp__b">The act alone, sliced off</div>
-
-                    <div class="cyb-cmp__lab">Žižek</div>
-                    <div>The double shot — full intensity, presence, cost</div>
-                    <div class="cyb-cmp__b">Decaffeinated — form kept, active ingredient removed</div>
-
-                    <div class="cyb-cmp__lab">Toll</div>
-                    <div>Friction, struggle — the toll that keeps it human</div>
-                    <div class="cyb-cmp__b">Smooth, frictionless — no cost to anyone</div>
-
-                    <div class="cyb-cmp__lab">Obligation</div>
-                    <div>Reciprocal — you owe it something, you stay with the trouble</div>
-                    <div class="cyb-cmp__b">None — delivered and done, no strings</div>
-
-                    <div class="cyb-cmp__lab">The worker</div>
-                    <div>A present, accountable subject</div>
-                    <div class="cyb-cmp__b">A bundle of functions — intern = renderer = agent</div>
-
-                    <div class="cyb-cmp__lab">Landscape</div>
-                    <div>Continuous noticing of land, labor, evolving lives</div>
-                    <div class="cyb-cmp__b">A one-time deliverable, handed over</div>
-                  </div>
-                </div>
-              </div>
+            <div class="slide auto" data-era="Agents" data-cap="An agent inside Rhino: the request, and the result" data-credit="Left: the request and the agent’s work log. Right: the slope mesh it baked and captured." data-notes="One request, three steps: build an imaginary landform after Maya Lin&#x27;s Wave Field, color it by slope in three bands, and capture an isometric view. Read the left side as a work log: it wrote and ran its own scripts, hit a black capture, diagnosed it, and fixed it without being told how. Work on a copy and check what changed; the result is a draft until a person has looked at it. This is WF06.">
+              <figure><img src="/teaching/laar61400/assets/img/cybernetics-and-design/rhino-request.avif" alt="The request typed to the agent and the start of its work log: build a landform, run a slope analysis, capture an isometric view" width="790" height="480" loading="lazy"></figure><figure><img src="/teaching/laar61400/assets/img/cybernetics-and-design/rhino-slope-iso.avif" alt="Isometric view of the landform, colored green, yellow and red by slope band" width="1560" height="950" loading="lazy"></figure>
             </div>
 
-            <!-- 20 -->
-            <div class="slide single" data-cap="Technodiversity — many cybernetics, many futures. How many ways of thinking-with do we want to keep open?" data-credit="Cover, Jugaad Innovation (Radjou, Prabhu &amp; Ahuja, 2012)." data-notes="Close the loop opened at slide 5. Yuk Hui returns: what's at stake is the RANGE of possible futures. The talk's alternative cybernetics and this course's wager are the same bet — resist the single control-story (OPJD), keep many ways of thinking-with plural. The course's open question (posed in A History of Computational Thinking): there could be a NEW representation native to this tool — if we don't let OPJD flatten the field first. Hold jugaad alongside technodiversity: the frugal, improvised workaround — making do with what's at hand — is another way of thinking-with, a vernacular where the messy middle IS the invention (the anti-OPJD move). Draw the parallel, leave it open — jugaad also carries its own costs (constraint, precarity, safety); it names a different cosmotechnics, not a verdict on it.">
+            <div class="slide" data-era="Agents" data-cap="Several companies make coding agents" data-notes="None of this is an endorsement; the examples use one of them. Check-in, one minute: what would you want an agent to open for you first?">
+              <div class="embed"><div class="txt-card"><h3>Several companies make coding agents</h3><ul><li><b>Claude Code</b> (Anthropic), <b>Codex</b> (OpenAI), <b>Cursor</b> (Anysphere), <b>Gemini CLI</b> (Google), and others. All of them work inside a folder on your computer.</li><li>They share open standards: <b>MCP</b> to connect software, <b>AGENTS.md</b> for a project’s instructions.</li><li>The examples today use one of them. Naming them is not an endorsement.</li></ul><p class="lead">Check-in: what would you want an agent to open for you first?</p></div></div>
+            </div>
+
+            <div class="slide" data-era="Context" data-cap="Part 4 — Context through folder structure" data-notes="Part 4. The practical part, and it works with any tool: what the agent knows, and how a folder and a context file carry it from one session to the next.">
+              <div class="embed"><div class="toc"><div class="toc-row"><span class="toc-n">Part 1</span><h2 class="toc-h">Cybernetics, a short history</h2></div><div class="toc-row"><span class="toc-n">Part 2</span><h2 class="toc-h">An alternative cybernetics</h2></div><div class="toc-row"><span class="toc-n">Part 3</span><h2 class="toc-h">How agents work, and MCP</h2></div><div class="toc-row active"><span class="toc-n">Part 4</span><h2 class="toc-h">Context through folder structure</h2></div></div></div>
+            </div>
+
+            <div class="slide" data-era="Context" data-cap="Every session starts blank" data-notes="An agent knows its instructions, the files it has opened, and the conversation. Long sessions get summarized, and details said once blur. Close the session and the conversation is gone; the files stay.">
+              <svg viewBox="0 0 960 540" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;display:block;background:var(--paper);font-family:var(--font-sans)"><defs><marker id="ah4" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M1 1L9 5L1 9" style="fill:none;stroke:var(--gray-400);stroke-width:1.5"/></marker><marker id="aa4" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M1 1L9 5L1 9" style="fill:none;stroke:var(--accent);stroke-width:1.5"/></marker></defs><text x="40" y="50" text-anchor="start" font-size="12" style="font-family:var(--font-mono);letter-spacing:.12em;fill:var(--gray-500)">WHAT THE AGENT KNOWS</text><rect x="40" y="110" width="200" height="290" rx="8" style="fill:var(--gray-50);stroke:var(--gray-250);stroke-dasharray:5 4"/><text x="140" y="142" text-anchor="middle" font-size="15" style="fill:var(--gray-500);font-weight:600">Not in the window</text><text x="140" y="182" text-anchor="middle" font-size="14" style="fill:var(--gray-400)">last week’s session</text><text x="140" y="224" text-anchor="middle" font-size="14" style="fill:var(--gray-400)">the shared drive</text><text x="140" y="266" text-anchor="middle" font-size="14" style="fill:var(--gray-400)">what you meant</text><text x="140" y="308" text-anchor="middle" font-size="14" style="fill:var(--gray-400)">the drawing set</text><text x="140" y="350" text-anchor="middle" font-size="14" style="fill:var(--gray-400)">your phone call</text><rect x="290" y="90" width="420" height="340" rx="12" style="fill:var(--paper);stroke:var(--accent);stroke-width:1.5"/><text x="310" y="118" text-anchor="start" font-size="12" style="font-family:var(--font-mono);letter-spacing:.12em;fill:var(--accent)">CONTEXT WINDOW</text><rect x="320" y="140" width="360" height="72" rx="8" style="fill:var(--gray-50);stroke:var(--gray-250)"/><text x="500" y="172" text-anchor="middle" font-size="17" style="fill:var(--gray-900);font-weight:600">Its instructions</text><text x="500" y="193" text-anchor="middle" font-size="12.5" style="fill:var(--gray-600)">AGENTS.md, loaded every session</text><rect x="320" y="228" width="360" height="72" rx="8" style="fill:var(--gray-50);stroke:var(--gray-250)"/><text x="500" y="260" text-anchor="middle" font-size="17" style="fill:var(--gray-900);font-weight:600">Files it has opened</text><text x="500" y="281" text-anchor="middle" font-size="12.5" style="fill:var(--gray-600)">what it read in this session</text><rect x="320" y="316" width="360" height="72" rx="8" style="fill:var(--gray-50);stroke:var(--gray-250)"/><text x="500" y="348" text-anchor="middle" font-size="17" style="fill:var(--gray-900);font-weight:600">The conversation</text><text x="500" y="369" text-anchor="middle" font-size="12.5" style="fill:var(--gray-600)">summarized when it runs long</text><text x="750" y="200" text-anchor="start" font-size="14" style="fill:var(--gray-900);font-weight:600">Close the session:</text><text x="750" y="222" text-anchor="start" font-size="14" style="fill:var(--gray-600)">the conversation</text><text x="750" y="240" text-anchor="start" font-size="14" style="fill:var(--gray-600)">is gone.</text><text x="750" y="290" text-anchor="start" font-size="14" style="fill:var(--gray-900);font-weight:600">The files stay.</text><text x="480" y="480" text-anchor="middle" font-size="15" style="fill:var(--gray-600);font-style:italic">Anything outside the window is not there for the agent.</text></svg>
+            </div>
+
+            <div class="slide" data-era="Context" data-cap="Two kinds of memory" data-notes="Design work already runs on long-term memory: the project folder, the standards binder. The habit to take home: if you would have to say it again next session, tell the agent to write it into the file.">
+              <div class="embed"><div class="cmp"><h3>Two kinds of memory</h3><table><thead><tr><th></th><th>The conversation</th><th>The folder</th></tr></thead><tbody><tr><th scope="row">Lasts</th><td>This session</td><td><b>As long as the project</b></td></tr><tr><th scope="row">Use it for</th><td>Steering today’s work</td><td><b>Decisions that should outlive today</b></td></tr><tr><th scope="row">Everyday equivalent</th><td>A phone call</td><td><b>The project folder, the standards binder</b></td></tr></tbody></table><span class="note">Said it twice? Ask the agent to write it into the file.</span></div></div>
+            </div>
+
+            <div class="slide" data-era="Context" data-cap="The project’s standards manual" data-notes="I write none of these by hand. Decisions made in conversation get written into the file by the agent when I ask. My job is judging what belongs: what the agent cannot work out by reading the files. It loads every session, so every line costs attention; every so often, ask the agent to audit and shorten it.">
+              <div class="embed"><div class="ap-split ap-split--code-r"><div class="txt-card"><h3>The project’s standards manual</h3><ul><li>An assistant who forgets everything overnight. <b>AGENTS.md</b> (some tools read CLAUDE.md) is the manual it reads each morning.</li><li><b>You talk; the agent writes it.</b> “Add that to AGENTS.md.”</li><li>Your job: judge what belongs, what it cannot learn from the files.</li><li>Every line loads every session. Ask it to <b>audit and shorten</b> the file.</li></ul></div><pre class="ap-code"><span class="ap-code-h">AGENTS.md</span>
+# Riverside Studio website
+
+Small LA practice, 8 people, Queens.
+Plain HTML, published on GitHub Pages.
+
+## Folders
+_source/    photos + text from the team;
+              read, never publish
+projects/   one page per project
+assets/     images, built from _source/
+
+## Rules
+Images: long edge 1920 px.
+Office facts live in office.md.
+Ask before deleting anything.</pre></div></div>
+            </div>
+
+            <div class="slide" data-era="Context" data-cap="Names are context" data-notes="The agent lists names before it opens anything. riverside-park.html tells it more than page3_final_v2.html. Your CAD layer-naming standard is the same discipline.">
+              <div class="embed"><div class="ap-split"><pre class="ap-code"><span class="ap-code-h ap-good"><span class="ap-mark">✓</span>Clear names: read at a glance</span>
+website/
+├─ AGENTS.md
+├─ office.md
+├─ index.html
+├─ projects/
+│   ├─ riverside-park.html
+│   └─ astoria-schoolyard.html
+└─ _source/
+    └─ riverside-park/
+        ├─ 01-plaza-dusk.jpg
+        └─ description.md</pre><pre class="ap-code ap-bad-box"><span class="ap-code-h ap-bad"><span class="ap-mark">✗</span>Vague names: opened one by one</span>
+website/
+├─ notes.txt
+├─ page3_final_v2.html
+├─ page3_final_v2 (1).html
+├─ NEW/
+│   ├─ IMG_4471.jpg
+│   ├─ IMG_4472.jpg
+│   └─ Untitled-1.html
+└─ old stuff/
+    └─ use this one.docx</pre></div></div>
+            </div>
+
+            <div class="slide" data-era="Context" data-cap="Single source of truth" data-notes="When a studio&#x27;s phone number changes, one edit should fix the whole site. Copies drift; pointers do not. Same idea as an external reference in CAD.">
+              <svg viewBox="0 0 960 540" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;display:block;background:var(--paper);font-family:var(--font-sans)"><defs><marker id="ah5" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M1 1L9 5L1 9" style="fill:none;stroke:var(--gray-400);stroke-width:1.5"/></marker><marker id="aa5" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M1 1L9 5L1 9" style="fill:none;stroke:var(--accent);stroke-width:1.5"/></marker></defs><text x="40" y="46" text-anchor="start" font-size="24" style="fill:var(--gray-900);font-weight:700">Single source of truth</text><text x="40" y="82" text-anchor="start" font-size="12" style="font-family:var(--font-mono);letter-spacing:.12em;fill:var(--gray-500)">COPIES DRIFT</text><text x="500" y="82" text-anchor="start" font-size="12" style="font-family:var(--font-mono);letter-spacing:.12em;fill:var(--accent)">POINTERS DO NOT</text><rect x="40" y="100" width="380" height="70" rx="8" style="fill:var(--gray-50);stroke:var(--gray-250)"/><text x="64" y="142" text-anchor="start" font-size="16" style="fill:var(--gray-900);font-weight:600">index.html</text><text x="396" y="142" text-anchor="end" font-size="15" style="font-family:var(--font-mono);fill:var(--gray-600)">212-555-0142</text><rect x="40" y="192" width="380" height="70" rx="8" style="fill:var(--gray-50);stroke:var(--gray-250)"/><text x="64" y="234" text-anchor="start" font-size="16" style="fill:var(--gray-900);font-weight:600">contact.html</text><text x="396" y="234" text-anchor="end" font-size="15" style="font-family:var(--font-mono);fill:var(--gray-600)">212-555-0142</text><rect x="40" y="284" width="380" height="70" rx="8" style="fill:var(--gray-50);stroke:var(--gray-250)"/><text x="64" y="326" text-anchor="start" font-size="16" style="fill:var(--gray-900);font-weight:600">footer</text><text x="396" y="326" text-anchor="end" font-size="15" style="font-family:var(--font-mono);fill:var(--alert)">212-555-0198 (old)</text><text x="230" y="420" text-anchor="middle" font-size="15" style="fill:var(--gray-600);font-style:italic">Three copies, one already wrong.</text><rect x="500" y="190" width="180" height="110" rx="8" style="fill:var(--paper);stroke:var(--accent);stroke-width:1.5"/><text x="590" y="232" text-anchor="middle" font-size="17" style="fill:var(--gray-900);font-weight:600">office.md</text><text x="590" y="256" text-anchor="middle" font-size="13" style="fill:var(--gray-600)">phone:</text><text x="590" y="276" text-anchor="middle" font-size="13" style="font-family:var(--font-mono);fill:var(--accent)">212-555-0142</text><rect x="740" y="96" width="180" height="56" rx="8" style="fill:var(--gray-50);stroke:var(--gray-250)"/><text x="830" y="121" text-anchor="middle" font-size="15" style="fill:var(--gray-900);font-weight:600">index.html</text><text x="830" y="140" text-anchor="middle" font-size="12" style="font-family:var(--font-mono);fill:var(--gray-500)">see office.md</text><path d="M740 124 L684 215" style="stroke:var(--accent);stroke-width:1.5;fill:none" marker-end="url(#aa5)"/><rect x="740" y="172" width="180" height="56" rx="8" style="fill:var(--gray-50);stroke:var(--gray-250)"/><text x="830" y="197" text-anchor="middle" font-size="15" style="fill:var(--gray-900);font-weight:600">contact.html</text><text x="830" y="216" text-anchor="middle" font-size="12" style="font-family:var(--font-mono);fill:var(--gray-500)">see office.md</text><path d="M740 200 L684 240" style="stroke:var(--accent);stroke-width:1.5;fill:none" marker-end="url(#aa5)"/><rect x="740" y="248" width="180" height="56" rx="8" style="fill:var(--gray-50);stroke:var(--gray-250)"/><text x="830" y="273" text-anchor="middle" font-size="15" style="fill:var(--gray-900);font-weight:600">footer</text><text x="830" y="292" text-anchor="middle" font-size="12" style="font-family:var(--font-mono);fill:var(--gray-500)">see office.md</text><path d="M740 276 L684 265" style="stroke:var(--accent);stroke-width:1.5;fill:none" marker-end="url(#aa5)"/><rect x="740" y="324" width="180" height="56" rx="8" style="fill:var(--gray-50);stroke:var(--gray-250)"/><text x="830" y="349" text-anchor="middle" font-size="15" style="fill:var(--gray-900);font-weight:600">proposal template</text><text x="830" y="368" text-anchor="middle" font-size="12" style="font-family:var(--font-mono);fill:var(--gray-500)">see office.md</text><path d="M740 352 L684 290" style="stroke:var(--accent);stroke-width:1.5;fill:none" marker-end="url(#aa5)"/><text x="710" y="420" text-anchor="middle" font-size="15" style="fill:var(--gray-600);font-style:italic">One edit fixes every page.</text></svg>
+            </div>
+
+            <div class="slide" data-era="Context" data-cap="Every day" data-notes="The daily loop: you ask, the agent edits, you review, the agent publishes. Correct the same thing twice and ask the agent to write the rule into AGENTS.md. That is how the context file grows.">
+              <svg viewBox="0 0 960 540" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;display:block;background:var(--paper);font-family:var(--font-sans)"><defs><marker id="ah7" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M1 1L9 5L1 9" style="fill:none;stroke:var(--gray-400);stroke-width:1.5"/></marker><marker id="aa7" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M1 1L9 5L1 9" style="fill:none;stroke:var(--accent);stroke-width:1.5"/></marker></defs><text x="40" y="50" text-anchor="start" font-size="12" style="font-family:var(--font-mono);letter-spacing:.12em;fill:var(--gray-500)">EVERY DAY</text><rect x="60" y="170" width="180" height="120" rx="8" style="fill:var(--accent-tint);stroke:var(--accent-line)"/><text x="150" y="212" text-anchor="middle" font-size="17" style="fill:var(--accent-dark);font-weight:600">You ask</text><text x="150" y="240" text-anchor="middle" font-size="13" style="fill:var(--gray-600)">“Add the Riverside</text><text x="150" y="258" text-anchor="middle" font-size="13" style="fill:var(--gray-600)">project.”</text><rect x="280" y="170" width="180" height="120" rx="8" style="fill:var(--gray-100);stroke:var(--gray-300)"/><text x="370" y="212" text-anchor="middle" font-size="17" style="fill:var(--gray-900);font-weight:600">Agent edits</text><text x="370" y="240" text-anchor="middle" font-size="13" style="fill:var(--gray-600)">and previews, following</text><text x="370" y="258" text-anchor="middle" font-size="13" style="fill:var(--gray-600)">AGENTS.md</text><rect x="500" y="170" width="180" height="120" rx="8" style="fill:var(--accent-tint);stroke:var(--accent-line)"/><text x="590" y="212" text-anchor="middle" font-size="17" style="fill:var(--accent-dark);font-weight:600">You review</text><text x="590" y="240" text-anchor="middle" font-size="13" style="fill:var(--gray-600)">approve it,</text><text x="590" y="258" text-anchor="middle" font-size="13" style="fill:var(--gray-600)">or correct it</text><rect x="720" y="170" width="180" height="120" rx="8" style="fill:var(--gray-100);stroke:var(--gray-300)"/><text x="810" y="212" text-anchor="middle" font-size="17" style="fill:var(--gray-900);font-weight:600">Agent publishes</text><text x="810" y="240" text-anchor="middle" font-size="13" style="fill:var(--gray-600)">the site updates</text><text x="810" y="258" text-anchor="middle" font-size="13" style="fill:var(--gray-600)">in a minute</text><path d="M240 230 L276 230" style="stroke:var(--gray-400);stroke-width:1.5;fill:none" marker-end="url(#ah7)"/><path d="M460 230 L496 230" style="stroke:var(--gray-400);stroke-width:1.5;fill:none" marker-end="url(#ah7)"/><path d="M680 230 L716 230" style="stroke:var(--gray-400);stroke-width:1.5;fill:none" marker-end="url(#ah7)"/><path d="M810 290 L810 350 L150 350 L150 294" style="stroke:var(--gray-400);stroke-width:1.5;fill:none" marker-end="url(#ah7)"/><text x="480" y="340" text-anchor="middle" font-size="12" style="font-family:var(--font-mono);letter-spacing:.12em;fill:var(--gray-500)">next change</text><text x="480" y="430" text-anchor="middle" font-size="15" style="fill:var(--gray-600);font-style:italic">Correct the same thing twice? Ask the agent to write the rule into AGENTS.md.</text><text x="480" y="456" text-anchor="middle" font-size="15" style="fill:var(--gray-600);font-style:italic">The daily loop is where the context file grows.</text></svg>
+            </div>
+
+            <div class="slide" data-era="Close" data-cap="Data, liability and cost" data-notes="Open it to the room. Where does the data go, who checks, who keeps the context files current, what does it cost? Listen more than answer.">
+              <div class="embed"><div class="txt-card"><h3>Before an agent touches project files</h3><p class="lead">What would your conditions be?</p><ul><li><b>Where does the data go?</b> Which files leave the machine, to whom, under what terms.</li><li><b>Who checks?</b> Which outputs a person must review before they go out.</li><li><b>Who owns the context files?</b> Someone keeps the manual current, or it drifts.</li><li><b>What does it cost?</b> A subscription, and someone’s hours to set up and keep it current.</li></ul></div></div>
+            </div>
+
+            <div class="slide single" data-era="Close" data-cap="Technodiversity — many cybernetics, many futures. How many ways of thinking-with do we want to keep open?" data-credit="Cover, Jugaad Innovation (Radjou, Prabhu &amp; Ahuja, 2012)." data-notes="Yuk Hui returns: what is at stake is the range of possible futures. The alternative cybernetics and this course make the same bet: resist the single control-story of one prompt, job done, and keep many ways of thinking-with. Jugaad, the frugal improvised workaround, is another way of thinking-with, a vernacular where the messy middle is the invention. Leave it open; jugaad carries its own costs too.">
               <img src="/teaching/laar61400/assets/img/cybernetics-and-design/20.avif" alt="Jugaad Innovation book cover — the word JUGAAD spelled out from improvised objects">
+            </div>
+
+            <div class="slide" data-era="Close" data-cap="Next: WF06 — MCP, Claude inside Rhino" data-notes="This week&#x27;s workflow puts Part 3 to work: connect Claude to Rhino through MCP, describe a landform, and run a slope analysis two ways. WF07 next week puts Part 4 to work on a website.">
+              <div class="embed"><div class="txt-card"><h3>Next: WF06 — MCP, Claude inside Rhino</h3><ul><li>Install an MCP server so Claude operates Rhino directly.</li><li>Build a landform by describing it, then check what it made.</li><li>Run a slope analysis two ways: through MCP, and through a Grasshopper definition whose Python Claude edits.</li><li>WF07 next week: a project folder and a context file, for a website.</li></ul><p class="lead"><a href="/teaching/laar61400/workflows/wf06-slope-analysis.html">Open WF06</a></p></div></div>
             </div>
 
           </div>
           <div class="deck-bar">
             <button class="deck-btn" id="deck-prev" aria-label="Previous slide">&lsaquo;</button>
-            <div class="deck-count"><input id="deck-jump" type="text" inputmode="numeric" aria-label="Jump to slide" value="1"><span id="deck-total"> / 23</span></div>
+            <div class="deck-count"><input id="deck-jump" type="text" inputmode="numeric" aria-label="Jump to slide" value="1"><span id="deck-total"> / 38</span></div>
             <button class="deck-btn" id="deck-next" aria-label="Next slide">&rsaquo;</button>
             <div class="deck-meta"><span class="deck-cap" id="deck-cap"></span><span id="deck-credit"></span></div>
             <button class="deck-btn" id="deck-notes-toggle" aria-expanded="false" aria-controls="deck-notes" aria-label="Toggle speaker notes" title="Speaker notes"><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="2" y="2" width="12" height="12" rx="1.5"/><line x1="4.5" y1="5.5" x2="11.5" y2="5.5"/><line x1="4.5" y1="8" x2="11.5" y2="8"/><line x1="4.5" y1="10.5" x2="8.5" y2="10.5"/></svg></button>

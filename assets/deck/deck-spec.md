@@ -14,7 +14,7 @@ factory or a page — extend here, and the whole site follows.
 ## Fonts and colors
 Every font and UI color is a variable in `/assets/css/tokens.css` (the chrome stylesheet
 imports it). Page `<style>` blocks, `style=""` attributes and SVG diagrams write
-`var(--font-sans)`, `var(--font-mono)`, `var(--ink)`, `var(--mute)`, `var(--line)`,
+`var(--font-sans)`, `var(--font-mono)`, `var(--font-math)` (equations), `var(--ink)`, `var(--mute)`, `var(--line)`,
 `var(--accent)`, `var(--paper)` and the gray scales — in SVG put them in `style=""`, since
 presentation attributes like `fill=` only take var() in some browsers. Write a literal hex
 only for a content color: data series, brand logos, type or color specimens.
