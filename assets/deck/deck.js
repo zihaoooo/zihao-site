@@ -523,7 +523,7 @@
       + '.deck-lightbox.on{display:flex;}'
       + '.deck-lightbox img{max-width:100%;max-height:100%;object-fit:contain;transform-origin:0 0;'
       + 'box-shadow:0 10px 40px rgba(0,0,0,.5);border-radius:2px;}'
-      + '#deck-stage img{cursor:zoom-in;}';
+      + '#deck-stage img{cursor:pointer;}';
     deck.appendChild(st);
     lbEl = document.createElement('div');
     lbEl.className = 'deck-lightbox';

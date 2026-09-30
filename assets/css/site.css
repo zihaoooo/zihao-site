@@ -439,7 +439,7 @@ body {
 }
 
 /* Cursor hint on clickable images */
-.lb-trigger { cursor: zoom-in; }
+.lb-trigger { cursor: pointer; }
 
 /* ============================================
    Project pages (shared across all project pages)
