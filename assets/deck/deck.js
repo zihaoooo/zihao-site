@@ -167,118 +167,35 @@
       else if(m.type === 'req'){ bc.postMessage({ type:'idx', i:i }); }
     };
   }
+  // the page's own stylesheets come first, so slide clones render exactly as on the page;
+  // the presenter chrome below overrides them for the window itself
+  const PAGE_CSS = [...document.querySelectorAll('link[rel="stylesheet"], style')]
+    .map(el => el.tagName === 'LINK' ? '<link rel="stylesheet" href="' + el.href + '">' : el.outerHTML).join('');
   const PRESENTER_DOC = `<!DOCTYPE html><html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Presenter — ${DECK_TITLE}</title>
+${PAGE_CSS}
 <style>
   @import url('${location.origin}/assets/css/tokens.css');
   :root{color-scheme:dark;} *{box-sizing:border-box;}
-  body{margin:0;height:100vh;display:flex;flex-direction:column;background:#0e0e0e;color:var(--gray-150);
-    font-family:var(--font-sans);}
-  .pv-top{display:flex;gap:12px;padding:12px 14px 4px;}
-  .pv-col{flex:1;min-width:0;}
-  .pv-tag{font-family:var(--font-mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;
-    color:var(--gray-500);margin:0 0 4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
-  .pv-stage{aspect-ratio:16/9;width:100%;background:var(--gray-900);border:1px solid var(--gray-800);border-radius:6px;
+  body{margin:0;padding:0;height:100vh;display:flex;flex-direction:column;background:#0e0e0e;color:var(--gray-150);
+    font-family:var(--font-sans);line-height:1.4;}
+  /* Now is the big frame; Next is smaller and dimmed, so the two never read as a pair */
+  .pv-top{display:grid;grid-template-columns:minmax(0,1.9fr) minmax(0,1fr);gap:16px;align-items:start;
+    padding:12px 14px 4px;}
+  .pv-col{min-width:0;}
+  .pv-tag{font-family:var(--font-mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--gray-500);margin:0 0 5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+  .pv-now .pv-tag{color:var(--accent-on-dark);}
+  .pv-stage{position:relative;aspect-ratio:16/9;width:100%;background:var(--paper);border-radius:4px;
     overflow:hidden;display:flex;align-items:center;justify-content:center;}
-  .pv-stage img{max-width:100%;max-height:100%;object-fit:contain;}
-  /* mirror of /assets/deck/deck.css layout system, scoped + dark */
-  .pv-stage .pv-deck{display:flex;align-items:center;justify-content:center;width:100%;height:100%;}
-  .pv-stage .pv-deck.single>img{max-width:100%;max-height:100%;object-fit:contain;}
-  .pv-stage .pv-deck.slide--title{flex-direction:column;gap:6px;}
-  .pv-stage .pv-deck.two-3-3,.pv-stage .pv-deck.grid-4{display:grid;gap:2px;background:var(--gray-800);}
-  .pv-stage .pv-deck figure{margin:0;min-width:0;min-height:0;display:flex;align-items:center;
-    justify-content:center;background:var(--gray-900);overflow:hidden;}
-  .pv-stage .pv-deck figure img{width:100%;height:100%;object-fit:cover;}
-  .pv-stage .pv-deck.sq{display:grid;grid-template-columns:repeat(12,1fr);align-items:center;gap:2px;}
-  .pv-stage .pv-deck.sq figure{width:100%;aspect-ratio:1;overflow:hidden;margin:0;}
-  .pv-stage .pv-deck.sq figure img{width:100%;height:100%;object-fit:cover;}
-  .pv-stage .c1-4{grid-column:1/5;} .pv-stage .c5-8{grid-column:5/9;} .pv-stage .c9-12{grid-column:9/13;}
-  .pv-stage .c1-6{grid-column:1/7;} .pv-stage .c7-12{grid-column:7/13;}
-  .pv-stage .c2-5{grid-column:2/6;} .pv-stage .c8-11{grid-column:8/12;}
-  .pv-stage .c2-6{grid-column:2/7;} .pv-stage .c7-11{grid-column:7/12;}
-  .pv-stage .c3-6{grid-column:3/7;} .pv-stage .c7-10{grid-column:7/11;}
-  .pv-stage .pv-deck.hero-l,.pv-stage .pv-deck.hero-r{display:grid;grid-template-columns:2fr 1fr;
-    grid-template-rows:1fr 1fr;gap:2px;width:100%;height:100%;}
-  .pv-stage .pv-deck.hero-l figure:nth-child(1){grid-column:1;grid-row:1/3;}
-  .pv-stage .pv-deck.hero-l figure:nth-child(2){grid-column:2;grid-row:1;}
-  .pv-stage .pv-deck.hero-l figure:nth-child(3){grid-column:2;grid-row:2;}
-  .pv-stage .pv-deck.hero-r{grid-template-columns:1fr 2fr;}
-  .pv-stage .pv-deck.hero-r figure:nth-child(1){grid-column:2;grid-row:1/3;}
-  .pv-stage .pv-deck.hero-r figure:nth-child(2){grid-column:1;grid-row:1;}
-  .pv-stage .pv-deck.hero-r figure:nth-child(3){grid-column:1;grid-row:2;}
-  .pv-stage .pv-deck.hero-l figure,.pv-stage .pv-deck.hero-r figure{margin:0;overflow:hidden;}
-  .pv-stage .pv-deck.hero-l figure img,.pv-stage .pv-deck.hero-r figure img{width:100%;height:100%;object-fit:cover;}
-  .pv-stage .pv-deck.hero-l.fit figure:nth-child(1) img,.pv-stage .pv-deck.hero-r.fit figure:nth-child(1) img{object-fit:contain;}
-  /* hero + rows (static approximation): hero column spans, .row divs stack in the other column */
-  .pv-stage .pv-deck.hero-l:has(>.row)>figure:first-child{grid-column:1;grid-row:1/99;}
-  .pv-stage .pv-deck.hero-r:has(>.row)>figure:first-child{grid-column:2;grid-row:1/99;}
-  .pv-stage .pv-deck.hero-l:has(>.row)>.row{grid-column:2;}
-  .pv-stage .pv-deck.hero-r:has(>.row)>.row{grid-column:1;}
-  .pv-stage .pv-deck.hero-l>.row,.pv-stage .pv-deck.hero-r>.row{display:flex;gap:2px;align-items:center;justify-content:center;}
-  .pv-stage .pv-deck.hero-l>.row img,.pv-stage .pv-deck.hero-r>.row img{width:100%;height:100%;object-fit:cover;}
-  .pv-stage .pv-deck.auto-rows{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;height:100%;}
-  .pv-stage .pv-deck.auto-rows .row{display:flex;align-items:center;justify-content:center;gap:2px;flex:1;min-height:0;}
-  .pv-stage .pv-deck.auto-rows figure{height:100%;flex:0 1 auto;margin:0;}
-  .pv-stage .pv-deck.auto-rows figure img{height:100%;width:auto;max-width:100%;object-fit:contain;}
-  .pv-stage .pv-deck.auto{display:flex;align-items:center;justify-content:center;gap:2px;}
-  .pv-stage .pv-deck.auto figure{height:100%;flex:0 1 auto;}
-  .pv-stage .pv-deck.auto figure img{height:100%;width:auto;max-width:100%;object-fit:contain;}
-  .pv-stage .pv-deck.two-3-3{grid-template-columns:3fr 3fr;}
-  .pv-stage .pv-deck.grid-4{grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;}
-  /* part TOC / agenda divider (dark mirror) */
-  .pv-stage .pv-deck .toc{display:grid;grid-template-columns:auto 1fr;row-gap:5px;column-gap:12px;width:86%;text-align:left;}
-  .pv-stage .pv-deck .toc .toc-row{display:grid;grid-template-columns:subgrid;grid-column:1/-1;
-    align-items:baseline;padding-bottom:5px;border-bottom:1px solid var(--gray-800);opacity:.4;}
-  .pv-stage .pv-deck .toc .toc-row:last-child{border-bottom:0;padding-bottom:0;}
-  .pv-stage .pv-deck .toc .toc-n{grid-column:1;grid-row:1;font-family:var(--font-mono);font-size:8px;
-    letter-spacing:.16em;text-transform:uppercase;color:var(--gray-500);}
-  .pv-stage .pv-deck .toc .toc-h{grid-column:2;grid-row:1;margin:0;font-weight:700;font-size:14px;
-    line-height:1.05;color:var(--gray-150);}
-  .pv-stage .pv-deck .toc .toc-row.active{opacity:1;}
-  .pv-stage .pv-deck .toc .toc-row.active .toc-n,.pv-stage .pv-deck .toc .toc-row.active .toc-h{color:var(--accent-on-dark);}
-  /* typeset text cards (dark mirror of deck.css .txt-card / .stmt / .cmp — change both) */
-  .pv-stage .pv-deck .embed{display:flex;align-items:center;justify-content:center;
-    width:100%;height:100%;overflow:hidden;}
-  .pv-stage .pv-deck .txt-card{width:90%;display:flex;flex-direction:column;gap:5px;text-align:left;}
-  .pv-stage .pv-deck .txt-card h3{margin:0;font-weight:700;font-size:14px;line-height:1.1;color:var(--gray-100);}
-  .pv-stage .pv-deck .txt-card .lead{font-weight:600;font-size:9px;line-height:1.3;color:var(--accent-on-dark);}
-  .pv-stage .pv-deck .txt-card ul{margin:0;padding:0;list-style:none;display:flex;
-    flex-direction:column;gap:3px;}
-  .pv-stage .pv-deck .txt-card li{font-size:9px;line-height:1.35;color:var(--gray-400);
-    padding-left:.9em;position:relative;}
-  .pv-stage .pv-deck .txt-card li::before{content:"+";position:absolute;left:0;color:var(--accent-on-dark);
-    font-family:var(--font-mono);}
-  .pv-stage .pv-deck .txt-card li b{color:var(--gray-150);font-weight:600;}
-  .pv-stage .pv-deck .txt-card .src{font-family:var(--font-mono);font-size:.8em;color:var(--gray-500);}
-  .pv-stage .pv-deck .txt-card ul ul{margin:2px 0 0;gap:2px;}
-  .pv-stage .pv-deck .txt-card ul ul li{font-size:8px;}
-  .pv-stage .pv-deck .txt-card ul ul li::before{content:"–";}
-  .pv-stage .pv-deck .txt-card a{color:inherit;text-decoration:underline;}
-  .pv-stage .pv-deck .stmt{width:88%;text-align:center;}
-  .pv-stage .pv-deck .stmt p{margin:0;font-weight:700;font-size:15px;line-height:1.2;color:var(--gray-100);}
-  .pv-stage .pv-deck .stmt .sub{margin-top:5px;font-weight:400;font-size:10px;line-height:1.35;color:var(--gray-400);}
-  .pv-stage .pv-deck .cmp{width:92%;display:flex;flex-direction:column;gap:5px;text-align:left;}
-  .pv-stage .pv-deck .cmp h3{margin:0;font-weight:700;font-size:13px;line-height:1.1;color:var(--gray-100);}
-  .pv-stage .pv-deck .cmp table{border-collapse:collapse;width:100%;table-layout:fixed;}
-  .pv-stage .pv-deck .cmp th,.pv-stage .pv-deck .cmp td{text-align:left;vertical-align:top;
-    padding:3px 5px 3px 0;border-bottom:1px solid var(--gray-800);font-size:8px;line-height:1.3;color:var(--gray-400);}
-  .pv-stage .pv-deck .cmp thead th{font-family:var(--font-mono);font-size:7px;letter-spacing:.12em;
-    text-transform:uppercase;color:var(--accent-on-dark);border-bottom:1px solid var(--gray-500);}
-  .pv-stage .pv-deck .cmp tbody th{font-weight:600;color:var(--gray-150);}
-  .pv-stage .pv-deck .cmp tbody tr:last-child th,.pv-stage .pv-deck .cmp tbody tr:last-child td{border-bottom:0;}
-  .pv-stage .pv-deck .cmp td b{color:var(--gray-150);font-weight:600;}
-  .pv-stage .pv-deck .cmp .note{font-size:8px;line-height:1.35;color:var(--gray-400);}
-  .pv-stage .ph{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;
-    width:calc(100% - 16px);height:calc(100% - 16px);border:1.5px dashed var(--gray-700);border-radius:6px;
-    text-align:center;padding:10px;}
-  .pv-stage .ph-tag{font-family:var(--font-mono);font-size:8px;letter-spacing:.14em;
-    text-transform:uppercase;color:#777;}
-  .pv-stage .ph-desc{font-size:11px;color:var(--gray-400);line-height:1.4;max-width:40ch;}
-  .pv-stage .tt{font-family:var(--font-sans);font-weight:700;font-size:clamp(13px,2.4vw,24px);color:var(--gray-100);
-    text-align:center;line-height:1.12;}
-  .pv-stage .ts{font-family:var(--font-mono);font-size:8px;letter-spacing:.14em;
-    text-transform:uppercase;color:var(--gray-400);text-align:center;}
+  .pv-now .pv-stage{max-width:calc(56vh * 16 / 9);box-shadow:0 0 0 2px var(--accent-on-dark);}
+  .pv-next .pv-stage{opacity:.7;}
+  .pv-next .pv-stage.end{background:#1a1a1a;}
+  /* the real slide, cloned at the page's stage size and scaled into the frame (as the
+     thumbnail strip does), so it looks exactly as the room sees it */
+  .pv-scale{position:absolute;top:0;left:0;transform-origin:0 0;container-type:inline-size;pointer-events:none;}
+  .pv-scale .slide{position:absolute;inset:0;opacity:1;visibility:visible;transition:none;}
   .pv-vid{font-family:var(--font-mono);font-size:12px;color:var(--accent-on-dark);letter-spacing:.06em;}
   .pv-noteswrap{flex:1;min-height:0;padding:6px 16px 10px;display:flex;flex-direction:column;}
   .pv-cap{font-size:15px;font-style:italic;color:var(--gray-250);margin:4px 0 8px;}
@@ -319,8 +236,8 @@
   }
 </style></head><body>
   <div class="pv-top">
-    <div class="pv-col"><p class="pv-tag" id="pvCurTag">Current</p><div class="pv-stage" id="pvCur"></div></div>
-    <div class="pv-col"><p class="pv-tag">Next &rarr;</p><div class="pv-stage" id="pvNext"></div></div>
+    <div class="pv-col pv-now"><p class="pv-tag" id="pvCurTag">Now</p><div class="pv-stage" id="pvCur"></div></div>
+    <div class="pv-col pv-next"><p class="pv-tag">Next &rarr;</p><div class="pv-stage" id="pvNext"></div></div>
   </div>
   <div class="pv-noteswrap">
     <div class="pv-cap" id="pvCap"></div>
@@ -339,12 +256,27 @@
   var op = window.opener;
   if(!op){ document.getElementById('pvNotes').textContent = 'Opener window lost — close this and reopen Presenter from the page.'; return; }
   var vb = op.__deckNotesFull || [];   // verbatim notes, if the page has been unlocked
+  var stageEl = op.document.getElementById('deck-stage');
   var slides = [].slice.call(op.document.querySelectorAll('#deck-stage .slide')).map(function(s,ix){
-    return { era:s.getAttribute('data-era')||'', cap:s.getAttribute('data-cap')||'',
-      notes:(vb[ix] || s.getAttribute('data-notes')||'').trim(),
-      html: s.querySelector('iframe') ? '<div class="pv-vid">&#9654; video slide</div>'
-        : '<div class="pv-deck '+s.className.replace(/\bslide\b/g,'').replace(/\bon\b/g,'').trim()+'">'+s.innerHTML+'</div>' };
+    return { el:s, era:s.getAttribute('data-era')||'', cap:s.getAttribute('data-cap')||'',
+      notes:(vb[ix] || s.getAttribute('data-notes')||'').trim() };
   });
+  // clone the live slide at paint time (so the layout the page computed for its stage
+  // comes along) at that stage size, then scale the clone into the frame
+  function show(frame, s){
+    frame.innerHTML = ''; frame.classList.toggle('end', !s);
+    if(!s){ frame.innerHTML = '<div class="pv-vid" style="color:var(--gray-700)">&mdash; end &mdash;</div>'; return; }
+    if(s.el.querySelector('iframe')){ frame.innerHTML = '<div class="pv-vid">&#9654; video slide</div>'; return; }
+    var SW = (stageEl && stageEl.clientWidth) || 1280, SH = (stageEl && stageEl.clientHeight) || 720;
+    var sc = document.createElement('div');
+    sc.className = 'pv-scale'; sc.style.width = SW+'px'; sc.style.height = SH+'px'; sc.dataset.w = SW;
+    var c = s.el.cloneNode(true); c.removeAttribute('id');
+    sc.appendChild(c); frame.appendChild(sc); fit(frame);
+  }
+  function fit(frame){
+    var sc = frame.querySelector('.pv-scale');
+    if(sc) sc.style.transform = 'scale(' + (frame.clientWidth / sc.dataset.w) + ')';
+  }
   var total = slides.length, cur = 0;
   var bc = null; try{ bc = new BroadcastChannel('laar61400-${DECK_ID}-deck'); }catch(e){}
   var elCur=document.getElementById('pvCur'), elNext=document.getElementById('pvNext'),
@@ -352,13 +284,13 @@
       elCount=document.getElementById('pvCount'), elCurTag=document.getElementById('pvCurTag');
   function paint(){
     var s = slides[cur]||{}, n = slides[cur+1];
-    elCur.innerHTML = s.html||'';
-    elNext.innerHTML = n ? n.html : '<div class="pv-vid" style="color:var(--gray-700)">&mdash; end &mdash;</div>';
+    show(elCur, slides[cur]); show(elNext, n);
     elCap.textContent = s.cap||'';
-    elCurTag.textContent = s.era || 'Current';
+    elCurTag.textContent = 'Now' + (s.era ? ' · ' + s.era : '');
     elNotes.innerHTML = s.notes ? s.notes : '<span class="empty">No notes for this slide yet.</span>';
     elCount.textContent = (cur+1)+' / '+total;
   }
+  window.addEventListener('resize', function(){ fit(elCur); fit(elNext); });
   function send(d){ if(bc) bc.postMessage({ type:'go', d:d }); }
   document.getElementById('pvPrev').onclick = function(){ send(-1); };
   document.getElementById('pvNext2').onclick = function(){ send(1); };

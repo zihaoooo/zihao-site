@@ -127,8 +127,7 @@ centred with room to spare, so the padding is invisible there.
 Three typeset cards in deck.css, promoted out of laar64150's lectures (2026-09) once a third deck
 needed them. All sit inside the page's `.embed` wrapper, which deck.js scales down to
 the stage. **Author them wide** — the fit script never upscales, so a card authored narrow leaves
-wide margins on a fullscreen stage. Presenter View mirrors all three under `.pv-deck .*` in
-deck.js — change both.
+wide margins on a fullscreen stage.
 
 | Card | Shape | Use for |
 |---|---|---|
@@ -191,7 +190,7 @@ whose stacked heights still fit the panel — for ~1.1 + ~1.8 aspect images, `38
 </div>
 ```
 (All three `m7-*` recipes are page-local inline `<style>` in modeling-as-thinking, not yet in shared deck.css —
-copy the snippet, or promote to deck.css + a `.pv-deck.*` mirror when a second lecture reuses them.)
+copy the snippet, or promote to deck.css when a second lecture reuses them.)
 
-Presenter View mirrors these under `.pv-deck.*` in the page's PRESENTER_DOC `<style>` (static, no JS).
-When you add/change a class in deck.css, update the matching `.pv-deck.<name>` rule too.
+Presenter View renders the real slides: it loads the page's own stylesheets and scales a clone of
+each slide (the thumbnail strip's method), so any class in deck.css or page `<style>` shows there as-is.
