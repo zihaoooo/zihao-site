@@ -135,17 +135,16 @@
     <div class="wf-step">
       <div class="wf-step-head">
         <span class="wf-step-num">02</span>
-        <span class="wf-step-label">Reference Surface + Contour Preview</span>
-        <span class="wf-badge wf-badge-gh">Grasshopper</span>
+        <span class="wf-step-label">Draw a Footprint + Control Point</span>
+        <span class="wf-badge wf-badge-rh">Rhino</span>
       </div>
       <div class="wf-step-body">
-        <div class="wf-step-desc">Open Grasshopper (<kbd>Grasshopper</kbd> command). Wire up a live contour preview of your base slope:</div>
+        <div class="wf-step-desc">In the Top viewport, draw a closed curve: <kbd>InterpCrv</kbd>, <kbd>Ellipse</kbd>, or freehand. Then place a <kbd>Point</kbd> inside it.</div>
         <ul class="wf-tips">
-          <li><strong>Surface</strong> param → Set One Surface → click the base slope</li>
-          <li><strong>Contour</strong> component → wire Surface → <kbd>Shape</kbd> input</li>
-          <li><strong>Number Slider</strong> (0.5–5) → wire → <kbd>Distance</kbd> input (contour interval)</li>
+          <li>Select the point → <strong>Gumball Z</strong> → drag up for a mound, down for a bowl or swale</li>
+          <li>Check its height in the Front or Right viewport against the slope</li>
         </ul>
-        <div class="wf-note">Parallel evenly-spaced contours confirm the slope is reading correctly. This is your base terrain.</div>
+        <div class="wf-note">The curve is the <strong>breakline</strong>: where the landform begins and the base field ends. The point is the peak or low point. Together they are the whole design move.</div>
       </div>
     </div>
 
@@ -153,12 +152,20 @@
     <div class="wf-step">
       <div class="wf-step-head">
         <span class="wf-step-num">03</span>
-        <span class="wf-step-label">Draw a Plan Footprint</span>
-        <span class="wf-badge wf-badge-rh">Rhino</span>
+        <span class="wf-step-label">Patch Definition + Contours</span>
+        <span class="wf-badge wf-badge-gh">Grasshopper</span>
       </div>
       <div class="wf-step-body">
-        <div class="wf-step-desc">In the Top viewport, draw a closed curve — <kbd>InterpCrv</kbd>, <kbd>Ellipse</kbd>, or freehand. Draw flat at Z = 0.</div>
-        <div class="wf-note">This curve is the <strong>breakline</strong>: where the landform begins and the base field ends. Its shape, size, and placement directly determine how the landform reads in section and how water moves across the site.</div>
+        <div class="wf-step-desc">Open Grasshopper (<kbd>Grasshopper</kbd> command). One Patch builds the whole terrain from curves and points:</div>
+        <ul class="wf-tips">
+          <li><strong>Surface</strong> param → Set One Surface → click the base slope → wire into a <strong>Curve</strong> param (gives the site boundary at grade)</li>
+          <li><strong>Curve</strong> param → Set One Curve → the footprint curve</li>
+          <li><strong>Merge</strong> → boundary → <kbd>D1</kbd> input, footprint → <kbd>D2</kbd> input</li>
+          <li><strong>Point</strong> param → Set One Point → the control point</li>
+          <li><strong>Patch</strong> → Merge <kbd>Result</kbd> → <kbd>Curves</kbd> input, Point → <kbd>Points</kbd> input</li>
+          <li><strong>Contour</strong> → Patch output → <kbd>Shape</kbd> input; <strong>Number Slider</strong> (0.5–5 ft) → <kbd>Distance</kbd> input (contour interval)</li>
+        </ul>
+        <div class="wf-note">No Split, no Join. The site boundary and the footprint both become edges the Patch must pass through, so the terrain stays continuous across the site.</div>
       </div>
     </div>
 
@@ -166,41 +173,29 @@
     <div class="wf-step wf-full">
       <div class="wf-step-head">
         <span class="wf-step-num">04</span>
-        <span class="wf-step-label">Project → Split → Patch → Join</span>
+        <span class="wf-step-label">Shape the Landform</span>
+        <span class="wf-badge wf-badge-rh">Rhino</span>
         <span class="wf-badge wf-badge-gh">Grasshopper</span>
       </div>
       <div class="wf-steps-row">
         <div class="wf-step-body">
-          <div class="wf-step-desc"><strong>Project</strong> the footprint onto the base slope:</div>
+          <div class="wf-step-desc"><strong>Edit in Rhino</strong>, watch the contours update live:</div>
           <ul class="wf-tips">
-            <li><strong>Curve</strong> param → Set One Curve → footprint curve</li>
-            <li><strong>Project</strong> component → footprint → <kbd>Curve</kbd> input, base surface → <kbd>Brep</kbd> input, <strong>Unit Z</strong> → <kbd>Direction</kbd> input</li>
-          </ul>
-          <div class="wf-step-desc" style="margin-top:10px;"><strong>Split</strong> the base surface:</div>
-          <ul class="wf-tips">
-            <li><strong>Surface Split</strong> component → base surface → <kbd>Surface</kbd> input, projected curve → <kbd>Curves</kbd> input</li>
-            <li><kbd>Fragments</kbd> output = two pieces: the base with a hole, and the cut-out disc</li>
-            <li><strong>List Item</strong> → wire <kbd>Fragments</kbd> → <kbd>List</kbd> input; set <kbd>Index</kbd> to whichever previews as the base with the hole</li>
+            <li>Move the control point up or down → taller mound, deeper bowl</li>
+            <li>Move it off-center → one steep side, one gentle side</li>
+            <li>Edit the footprint (<kbd>F10</kbd> control points) → change where the landform starts</li>
           </ul>
         </div>
         <div class="wf-step-body">
-          <div class="wf-step-desc"><strong>Patch</strong> the landform surface:</div>
+          <div class="wf-step-desc"><strong>Tune the Patch</strong> in Grasshopper:</div>
           <ul class="wf-tips">
-            <li><strong>Patch</strong> component → projected curve → <kbd>Curves</kbd> input (boundary)</li>
-            <li>Add a <strong>Point</strong> param → set a point inside the footprint → <kbd>Points</kbd> input → controls peak or valley</li>
-            <li><strong>Number Slider</strong> (−10 to +10) → move point Z → positive = mound, negative = bowl/swale</li>
-            <li>Patch <kbd>Flexibility</kbd> input: try 3–5 for organic forms</li>
-          </ul>
-          <div class="wf-step-desc" style="margin-top:10px;"><strong>Join:</strong></div>
-          <ul class="wf-tips">
-            <li><strong>Join Breps</strong> → split base + Patch surface. Edges are coincident — Join succeeds cleanly.</li>
-            <li>Wire joined surface to <strong>Contour</strong> → contours read across the full site</li>
+            <li><kbd>Flexibility</kbd> input: higher = looser, more organic; try 3–5</li>
+            <li><kbd>Spans</kbd> input: higher = more detail around curves and points</li>
           </ul>
         </div>
       </div>
       <div class="wf-note" style="padding:0 14px 14px;">End of Session 1. Before next session: sketch two more landform operations on paper. Think about where water flows and where a hard edge is needed.</div>
     </div>
-
     <!-- Session 2 label -->
     <div class="wf-step wf-full" style="background:none;border:none;padding:0;margin-top:4px;">
       <div class="wf-week-label">Session 2 — Full Site + Deliverable</div>
@@ -210,18 +205,18 @@
     <div class="wf-step">
       <div class="wf-step-head">
         <span class="wf-step-num">05</span>
-        <span class="wf-step-label">Add More Smooth Landforms</span>
+        <span class="wf-step-label">Add More Landforms</span>
         <span class="wf-badge wf-badge-gh">Grasshopper</span>
       </div>
       <div class="wf-step-body">
-        <div class="wf-step-desc">Repeat the Step 03–04 loop for each additional Patch landform. Each is a separate GH branch.</div>
+        <div class="wf-step-desc">Draw more footprints and control points in Rhino. They all feed the same Patch.</div>
         <ul class="wf-tips">
-          <li>Right-click the canvas → Group each branch and label it</li>
-          <li>Collect all joined surfaces into a final <strong>Join Breps</strong></li>
+          <li>Footprint Curve param → right-click → <strong>Set Multiple Curves</strong> → select all footprints</li>
+          <li>Point param → right-click → <strong>Set Multiple Points</strong> → select all control points</li>
+          <li>Keep footprints from crossing each other; Patch can't resolve overlapping breaklines</li>
         </ul>
       </div>
     </div>
-
     <!-- Step 06 -->
     <div class="wf-step">
       <div class="wf-step-head">
