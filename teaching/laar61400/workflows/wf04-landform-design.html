@@ -90,7 +90,7 @@
   </div>
 
   <div class="wf-outcome">
-    <strong>Assignment</strong><span>A landform on the 180×300 ft site, built by hand in Rhino, then rebuilt as a live Grasshopper definition: an isometric view and a contour plan PDF at 1"=20'.</span>
+    <strong>Assignment</strong><span>A catalog of three landform types built by hand in Rhino, then combined on the 180×300 ft site as a live Grasshopper definition: a catalog isometric, plus a contour plan PDF at 1"=20' and an isometric of the combined site.</span>
     <div class="wf-actions">
       <a class="wf-btn" href="https://miro.com/app/board/uXjVH3zpADk=/?share_link_id=760271312933" target="_blank" rel="noopener">Submit to Miro board<span class="wf-btn-arrow" aria-hidden="true">↗</span></a>
       <span class="wf-btn-note">Password: &quot;c*****2026&quot;, shared via email</span>
@@ -111,7 +111,7 @@
 
     <!-- Session 1 label -->
     <div class="wf-step wf-full" style="background:none;border:none;padding:0;margin-top:4px;">
-      <div class="wf-week-label">Session 1 — Build It by Hand in Rhino</div>
+      <div class="wf-week-label">Session 1 — A Catalog of Landforms, by Hand</div>
     </div>
 
     <!-- Steps 00 & 01 -->
@@ -163,10 +163,11 @@
       <div class="wf-step-body">
         <div class="wf-step-desc">In the Top viewport, draw a closed curve, flat: <kbd>InterpCrv</kbd>, <kbd>Ellipse</kbd>, or freehand. Place a <kbd>Point</kbd> inside it.</div>
         <ul class="wf-tips">
-          <li>Select the point → <strong>Gumball Z</strong> → drag above the slope for a mound, below it for a bowl or swale</li>
+          <li>Select the point → <strong>Gumball Z</strong> → drag above the slope for a mound</li>
           <li>Check its height in the Front or Right viewport</li>
+          <li>Copy the slope, curve, and point 400 ft to the right (<kbd>Copy</kbd>, Ortho on). You will build the same mound two ways, side by side.</li>
         </ul>
-        <div class="wf-note">The curve is the <strong>breakline</strong>: where the landform stops and existing grade continues. The point is the peak or low point.</div>
+        <div class="wf-note">The curve is the <strong>breakline</strong>: where the landform stops and existing grade continues. The point is the peak.</div>
       </div>
     </div>
 
@@ -174,16 +175,18 @@
     <div class="wf-step">
       <div class="wf-step-head">
         <span class="wf-step-num">03</span>
-        <span class="wf-step-label">Project + Split</span>
+        <span class="wf-step-label">Method A: Patch Everything</span>
         <span class="wf-badge wf-badge-rh">Rhino</span>
       </div>
       <div class="wf-step-body">
-        <div class="wf-step-desc">Cut a hole in the slope where the landform goes:</div>
+        <div class="wf-step-desc">On the left copy, rebuild the whole slope as one Patch:</div>
         <ul class="wf-tips">
-          <li>In the Top viewport: <kbd>Project</kbd> → select the footprint → Enter → select the slope → Enter. The curve now sits on existing grade.</li>
-          <li><kbd>Split</kbd> → select the slope → Enter → select the projected curve → Enter</li>
-          <li>Delete the cut-out piece inside the curve. Keep the slope with the hole.</li>
+          <li><kbd>DupBorder</kbd> → select the slope → its edge as a curve</li>
+          <li>In the Top viewport: <kbd>Project</kbd> → the footprint → onto the slope. The curve now sits on existing grade.</li>
+          <li><kbd>Patch</kbd> → the border, the projected curve, and the point → Enter → Surface U/V spans <kbd>10</kbd> → OK</li>
+          <li>Hide the original slope</li>
         </ul>
+        <div class="wf-note">One surface, nothing to join. But the mound is part of the whole field, so it can shift grade outside its footprint.</div>
       </div>
     </div>
 
@@ -191,18 +194,19 @@
     <div class="wf-step">
       <div class="wf-step-head">
         <span class="wf-step-num">04</span>
-        <span class="wf-step-label">Patch + Join</span>
+        <span class="wf-step-label">Method B: Split → Patch → Join</span>
         <span class="wf-badge wf-badge-rh">Rhino</span>
       </div>
       <div class="wf-step-body">
-        <div class="wf-step-desc">Fill the hole with the new landform:</div>
+        <div class="wf-step-desc">On the right copy, change the ground only inside the footprint:</div>
         <ul class="wf-tips">
-          <li><kbd>Patch</kbd> → select the projected curve and the control point → Enter</li>
-          <li>In the dialog: Surface U/V spans → <kbd>10</kbd>; lower <strong>Stiffness</strong> for a looser, more organic form → OK</li>
-          <li><kbd>Join</kbd> → the slope with the hole + the Patch. The command line should read "joined into one polysurface".</li>
+          <li><kbd>Project</kbd> → the footprint → onto the slope</li>
+          <li><kbd>Split</kbd> → the slope → with the projected curve. Delete the cut-out piece.</li>
+          <li><kbd>Patch</kbd> → the projected curve and the point → Enter → spans <kbd>10</kbd> → OK</li>
+          <li><kbd>Join</kbd> → the slope with the hole + the Patch → "joined into one polysurface"</li>
           <li>Check: <kbd>ShowEdges</kbd> → Naked edges. Only the site boundary should highlight.</li>
         </ul>
-        <div class="wf-note">If Join leaves two pieces, check the 0.1 ft tolerance from Step 00.</div>
+        <div class="wf-note">More steps, but existing grade stays untouched outside the curve, the way a real landform stops at a curb. If Join fails, check the 0.1 ft tolerance from Step 00.</div>
       </div>
     </div>
 
@@ -210,17 +214,17 @@
     <div class="wf-step">
       <div class="wf-step-head">
         <span class="wf-step-num">05</span>
-        <span class="wf-step-label">Contour + Read</span>
-        <span class="wf-badge wf-badge-rh">Rhino</span>
+        <span class="wf-step-label">Contour Both: A First Look at Grasshopper</span>
+        <span class="wf-badge wf-badge-gh">Grasshopper</span>
       </div>
       <div class="wf-step-body">
-        <div class="wf-step-desc"><kbd>Contour</kbd> → select the joined surface → Enter → base point <kbd>0,0,0</kbd> → direction point <kbd>0,0,1</kbd> → distance <kbd>1</kbd> → Enter.</div>
+        <div class="wf-step-desc">Rhino's <kbd>Contour</kbd> command draws contours once. In Grasshopper they stay live. Type <kbd>Grasshopper</kbd>:</div>
         <ul class="wf-tips">
-          <li>Contours that <strong>V upstream</strong> → valley or drainage path. <strong>V downstream</strong> → ridge.</li>
-          <li>Contours <strong>kink</strong> at the breakline: the landform stops there, like at a curb</li>
-          <li>Where does water go? Where does it collect?</li>
+          <li>Double-click the canvas → type <kbd>Brep</kbd> → Enter. Right-click it → <strong>Set Multiple Breps</strong> → select both results</li>
+          <li>Double-click → <kbd>Contour</kbd>. Wire Brep → <kbd>Shape</kbd> input</li>
+          <li>Double-click → <kbd>Number Slider</kbd> (0.5–5) → <kbd>Distance</kbd> input. Drag it and watch.</li>
         </ul>
-        <div class="wf-note">Want a taller mound? Delete the Patch and the contours, move the point, and redo Steps 04–05. Session 2 removes that loop.</div>
+        <div class="wf-note">Compare A and B. In A, contours bend outside the footprint. In B, they kink at the breakline and stay straight beyond it. Session 2 builds the whole model this way.</div>
       </div>
     </div>
 
@@ -228,61 +232,58 @@
     <div class="wf-step">
       <div class="wf-step-head">
         <span class="wf-step-num">06</span>
-        <span class="wf-step-label">Capture the Isometric View</span>
+        <span class="wf-step-label">Build the Catalog</span>
         <span class="wf-badge wf-badge-rh">Rhino</span>
       </div>
       <div class="wf-step-body">
-        <div class="wf-step-desc">Set up a standard isometric view and save it directly from Rhino:</div>
+        <div class="wf-step-desc">Repeat Steps 02–04 for three landform types, each on its own copy of the slope, side by side. Pick Method A or B for each.</div>
         <ul class="wf-tips">
-          <li>In any viewport title, right-click → <strong>Set View</strong> → <strong>Isometric</strong> → choose SW, SE, NE, or NW, whichever shows the landform most clearly</li>
-          <li>Type <kbd>PrintDisplay</kbd> → On, to show lineweights in the viewport</li>
-          <li>Type <kbd>PrintScreen</kbd> → File → save as PNG or JPEG</li>
+          <li><strong>Mound</strong> → control point above the slope. Sheds water.</li>
+          <li><strong>Basin</strong> → control point below the slope. Holds water.</li>
+          <li><strong>Swale or ridge</strong> → an open curve inside the footprint, moved below or above the slope, instead of a point. Directs water.</li>
         </ul>
-        <div class="wf-note">PrintScreen to File captures exactly what you see in the viewport at screen resolution. No layout or PDF needed for this view.</div>
+        <div class="wf-note">Add all three to the Brep param (Set Multiple Breps) and read the contours. Where does water go on each?</div>
       </div>
-    </div>
-
-    <!-- Session 2 label -->
-    <div class="wf-step wf-full" style="background:none;border:none;padding:0;margin-top:4px;">
-      <div class="wf-week-label">Session 2 — Rebuild It in Grasshopper</div>
     </div>
 
     <!-- Step 07 -->
     <div class="wf-step">
       <div class="wf-step-head">
         <span class="wf-step-num">07</span>
-        <span class="wf-step-label">Grasshopper Basics</span>
-        <span class="wf-badge wf-badge-gh">Grasshopper</span>
+        <span class="wf-step-label">Capture the Catalog Isometric</span>
+        <span class="wf-badge wf-badge-rh">Rhino</span>
       </div>
       <div class="wf-step-body">
-        <div class="wf-step-desc">Session 2 builds the same landform again. Every Rhino command from Session 1 becomes a component (see the reference table below). Type <kbd>Grasshopper</kbd> to open the canvas.</div>
+        <div class="wf-step-desc">One isometric view with all three landforms and their contours:</div>
         <ul class="wf-tips">
-          <li><strong>Add a component</strong>: double-click the empty canvas → type its name → Enter</li>
-          <li><strong>Inputs</strong> on the left, <strong>outputs</strong> on the right. Drag a wire from an output to an input.</li>
-          <li><strong>Params</strong> (Surface, Curve, Point) hold Rhino geometry: right-click → <strong>Set One …</strong> → click it in Rhino</li>
-          <li>Hover any input to see what it expects. Orange = warning, red = error.</li>
-          <li>Grasshopper geometry is a preview only. It becomes real Rhino geometry when you <strong>Bake</strong> it.</li>
+          <li>Right-click the Contour <kbd>Contours</kbd> output → <strong>Bake</strong>, so the contours are real Rhino curves</li>
+          <li>In any viewport title, right-click → <strong>Set View</strong> → <strong>Isometric</strong> → SW, SE, NE, or NW, whichever reads best</li>
+          <li>Type <kbd>PrintDisplay</kbd> → On, to show lineweights in the viewport</li>
+          <li>Type <kbd>PrintScreen</kbd> → File → save as PNG or JPEG</li>
         </ul>
-        <div class="wf-note">Start from scratch: a new Rhino file, saved as <kbd>wf04-landform-gh.3dm</kbd>. Redo Steps 00–02 (setup, slope, footprint, point). Rhino only holds these inputs; everything after happens in Grasshopper. Save the definition as <kbd>wf04-landform.gh</kbd>.</div>
+        <div class="wf-note">This is Part 1 of the assignment. Want to change a landform now? Delete it and redo its steps by hand. Session 2 removes that loop.</div>
       </div>
+    </div>
+
+    <!-- Session 2 label -->
+    <div class="wf-step wf-full" style="background:none;border:none;padding:0;margin-top:4px;">
+      <div class="wf-week-label">Session 2 — Combine Them in Grasshopper</div>
     </div>
 
     <!-- Step 08 -->
     <div class="wf-step">
       <div class="wf-step-head">
         <span class="wf-step-num">08</span>
-        <span class="wf-step-label">Reference → Project → Split</span>
-        <span class="wf-badge wf-badge-gh">Grasshopper</span>
+        <span class="wf-step-label">Set Up the Site</span>
+        <span class="wf-badge wf-badge-rh">Rhino</span>
       </div>
       <div class="wf-step-body">
+        <div class="wf-step-desc">Start from scratch: a new Rhino file, saved as <kbd>wf04-site.3dm</kbd>. Redo Steps 00–01 (setup, slope).</div>
         <ul class="wf-tips">
-          <li><strong>Surface</strong> param → Set One Surface → the slope</li>
-          <li><strong>Curve</strong> param → Set One Curve → the footprint</li>
-          <li><strong>Project</strong> → footprint → <kbd>Curve</kbd> input, slope → <kbd>Brep</kbd> input, <strong>Unit Z</strong> → <kbd>Direction</kbd> input</li>
-          <li><strong>Surface Split</strong> → slope → <kbd>Surface</kbd> input, projected curve → <kbd>Curves</kbd> input</li>
-          <li><strong>List Item</strong> → <kbd>Fragments</kbd> → <kbd>List</kbd> input; set <kbd>Index</kbd> to whichever previews as the slope with the hole</li>
+          <li>Draw the three footprints from your catalog on the one slope. Keep them from touching.</li>
+          <li>Add each one's control: a point for the mound and basin, a curve for the swale or ridge</li>
         </ul>
-        <div class="wf-note">List Item replaces "delete the cut-out piece": Surface Split returns both pieces, and you pick the one to keep.</div>
+        <div class="wf-note">Rhino only holds these inputs. Everything after happens in Grasshopper. Save the definition as <kbd>wf04-site.gh</kbd>.</div>
       </div>
     </div>
 
@@ -290,17 +291,18 @@
     <div class="wf-step">
       <div class="wf-step-head">
         <span class="wf-step-num">09</span>
-        <span class="wf-step-label">Patch → Join → Contour</span>
+        <span class="wf-step-label">Grasshopper Basics</span>
         <span class="wf-badge wf-badge-gh">Grasshopper</span>
       </div>
       <div class="wf-step-body">
+        <div class="wf-step-desc">Every Rhino command from Session 1 becomes a component (see the reference table below).</div>
         <ul class="wf-tips">
-          <li><strong>Point</strong> param → Set One Point → the control point</li>
-          <li><strong>Patch</strong> → projected curve → <kbd>Curves</kbd> input, Point → <kbd>Points</kbd> input</li>
-          <li><strong>Join Breps</strong> → List Item output + Patch output → <kbd>Breps</kbd> input (hold Shift while dragging the second wire)</li>
-          <li><strong>Contour</strong> → joined terrain → <kbd>Shape</kbd> input; <strong>Number Slider</strong> (0.5–5 ft) → <kbd>Distance</kbd> input (contour interval)</li>
+          <li><strong>Add a component</strong>: double-click the empty canvas → type its name → Enter</li>
+          <li><strong>Inputs</strong> on the left, <strong>outputs</strong> on the right. Drag a wire from an output to an input.</li>
+          <li><strong>Params</strong> (Surface, Curve, Point) hold Rhino geometry: right-click → <strong>Set One …</strong> → click it in Rhino</li>
+          <li>Hover any input to see what it expects. Orange = warning, red = error.</li>
+          <li>Grasshopper geometry is a preview only. It becomes real Rhino geometry when you <strong>Bake</strong> it.</li>
         </ul>
-        <div class="wf-note">Compare with Session 1: same model, same contours. The difference is in the next step.</div>
       </div>
     </div>
 
@@ -308,20 +310,19 @@
     <div class="wf-step">
       <div class="wf-step-head">
         <span class="wf-step-num">10</span>
-        <span class="wf-step-label">Make It Live</span>
-        <span class="wf-badge wf-badge-rh">Rhino</span>
+        <span class="wf-step-label">Project → Split</span>
         <span class="wf-badge wf-badge-gh">Grasshopper</span>
       </div>
       <div class="wf-step-body">
-        <div class="wf-step-desc">Edit the inputs in Rhino and watch everything downstream update. No redoing steps.</div>
+        <div class="wf-step-desc">Cut all three holes with one split (Method B):</div>
         <ul class="wf-tips">
-          <li>Move the control point up or down → taller mound, deeper bowl</li>
-          <li>Move it off-center → one steep side, one gentle side</li>
-          <li>Edit the footprint (<kbd>F10</kbd> control points) → change where the landform stops</li>
-          <li>Patch <kbd>Spans</kbd> and <kbd>Flexibility</kbd> inputs: more detail, looser form</li>
-          <li>Drag the contour slider → finer or coarser interval</li>
+          <li><strong>Surface</strong> param → Set One Surface → the slope</li>
+          <li>For each landform: <strong>Curve</strong> param → its footprint → <strong>Project</strong> (footprint → <kbd>Curve</kbd> input, slope → <kbd>Brep</kbd> input, <strong>Unit Z</strong> → <kbd>Direction</kbd> input). Group the pair and label it.</li>
+          <li><strong>Merge</strong> → the three projected curves → <kbd>D1</kbd>, <kbd>D2</kbd>, <kbd>D3</kbd> inputs</li>
+          <li><strong>Surface Split</strong> → slope → <kbd>Surface</kbd> input, Merge <kbd>Result</kbd> → <kbd>Curves</kbd> input</li>
+          <li><strong>List Item</strong> → <kbd>Fragments</kbd> → <kbd>List</kbd> input; set <kbd>Index</kbd> to whichever previews as the slope with three holes</li>
         </ul>
-        <div class="wf-note">Iterate until the contours read as a deliberate landform, then capture a new isometric of the final version (Step 06).</div>
+        <div class="wf-note">Split once with all the curves. Splitting separately for each landform makes overlapping copies of the slope.</div>
       </div>
     </div>
 
@@ -329,17 +330,52 @@
     <div class="wf-step">
       <div class="wf-step-head">
         <span class="wf-step-num">11</span>
-        <span class="wf-step-label">Bake + Produce the Contour Plan</span>
+        <span class="wf-step-label">Patch → Join → Contour</span>
+        <span class="wf-badge wf-badge-gh">Grasshopper</span>
+      </div>
+      <div class="wf-step-body">
+        <ul class="wf-tips">
+          <li>In each group: <strong>Patch</strong> → projected curve → <kbd>Curves</kbd> input; control <strong>Point</strong> param → <kbd>Points</kbd> input (for the swale or ridge, Merge its curve into <kbd>Curves</kbd> instead)</li>
+          <li><strong>Merge</strong> → List Item output + the three Patches</li>
+          <li><strong>Join Breps</strong> → Merge <kbd>Result</kbd> → <kbd>Breps</kbd> input</li>
+          <li><strong>Contour</strong> → joined terrain → <kbd>Shape</kbd> input; <strong>Number Slider</strong> → <kbd>Distance</kbd> input</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Step 12 -->
+    <div class="wf-step">
+      <div class="wf-step-head">
+        <span class="wf-step-num">12</span>
+        <span class="wf-step-label">Compose + Iterate</span>
+        <span class="wf-badge wf-badge-rh">Rhino</span>
+        <span class="wf-badge wf-badge-gh">Grasshopper</span>
+      </div>
+      <div class="wf-step-body">
+        <div class="wf-step-desc">Edit the inputs in Rhino and watch everything update. No redoing steps.</div>
+        <ul class="wf-tips">
+          <li>Move a footprint and its control → reposition a landform on the site</li>
+          <li>Move a control point up or down → taller mound, deeper basin</li>
+          <li>Edit a footprint (<kbd>F10</kbd> control points) → change where it stops</li>
+          <li>Read the whole site: does water shed off the mound, run down the swale, collect in the basin?</li>
+        </ul>
+        <div class="wf-note">The three landforms are now one system. Iterate until the contours read as a deliberate site.</div>
+      </div>
+    </div>
+
+    <!-- Step 13 -->
+    <div class="wf-step">
+      <div class="wf-step-head">
+        <span class="wf-step-num">13</span>
+        <span class="wf-step-label">Bake + Produce the Deliverables</span>
         <span class="wf-badge wf-badge-rh">Rhino</span>
       </div>
       <div class="wf-step-body">
-        <div class="wf-step-desc">Bake the finished geometry and produce a print-ready layout:</div>
         <ul class="wf-tips">
-          <li>Right-click the Contour <kbd>Contours</kbd> output → <strong>Bake</strong> → layer <kbd>CONTOURS-DESIGN</kbd></li>
+          <li>Right-click the Contour <kbd>Contours</kbd> output → <strong>Bake</strong> → layer <kbd>CONTOURS-DESIGN</kbd>. Bake the terrain too.</li>
           <li><kbd>Make2D</kbd> → Top viewport → flat linework</li>
-          <li><kbd>Layout</kbd> → 1" = 20' (1:240) on 11 × 17</li>
-          <li>Add: north arrow, scale bar, contour interval note, title block</li>
-          <li>Plot to PDF</li>
+          <li><kbd>Layout</kbd> → 1" = 20' (1:240) on 11 × 17. Add north arrow, scale bar, contour interval note, title block. Plot to PDF.</li>
+          <li>Capture an isometric of the combined site (as in Step 07)</li>
         </ul>
       </div>
     </div>
@@ -360,7 +396,7 @@
           <tr><td><kbd>Split</kbd> + delete the cut-out</td><td><kbd>Surface Split</kbd> + <kbd>List Item</kbd></td></tr>
           <tr><td><kbd>Patch</kbd></td><td><kbd>Patch</kbd></td></tr>
           <tr><td><kbd>Join</kbd></td><td><kbd>Join Breps</kbd></td></tr>
-          <tr><td><kbd>Contour</kbd></td><td><kbd>Contour</kbd> + <kbd>Number Slider</kbd></td></tr>
+          <tr><td>repeat for each landform</td><td>one group per landform + <kbd>Merge</kbd></td></tr>
         </tbody>
       </table>
     </div>
