@@ -122,7 +122,8 @@
       </div>
       <div class="wf-steps-row">
         <div class="wf-step-body">
-          <div class="wf-step-desc"><strong>File setup</strong> — <kbd>DocumentProperties</kbd> → Units → <strong>Feet</strong>. Save as <kbd>wf04-landform.3dm</kbd>.</div>
+          <div class="wf-step-desc"><strong>File setup</strong> — <kbd>DocumentProperties</kbd> → Units → <strong>Feet</strong>, Absolute tolerance → <kbd>0.1</kbd>. Save as <kbd>wf04-landform.3dm</kbd>.</div>
+          <div class="wf-note"><strong>Tolerance</strong> = how far apart two edges can be and still join. Patch only approximates its edge, so 0.01 ft is too tight; 0.1 ft (about 1") joins and is invisible at 1"=20'.</div>
         </div>
         <div class="wf-step-body">
           <div class="wf-step-desc"><strong>Build the base slope</strong> — <kbd>Rectangle</kbd> → <kbd>0,0</kbd> to <kbd>300,180</kbd>. <kbd>PlanarSrf</kbd> from the rectangle. Press <kbd>F10</kbd> to show control points. <kbd>Ctrl+Shift+click</kbd> one short edge to sub-object select it. <strong>Gumball Z</strong> → type <kbd>10</kbd> → Enter. <kbd>F11</kbd> to hide points.</div>
@@ -196,8 +197,35 @@
           </ul>
         </div>
       </div>
+    </div>
+    <!-- Step 04b -->
+    <div class="wf-step wf-full">
+      <div class="wf-step-head">
+        <span class="wf-step-num">04b</span>
+        <span class="wf-step-label">Variant: Local Edit (Split → Patch → Join)</span>
+        <span class="wf-badge wf-badge-gh">Grasshopper</span>
+      </div>
+      <div class="wf-steps-row">
+        <div class="wf-step-body">
+          <div class="wf-step-desc">The single Patch can shift grade outside the footprint. To change the ground <strong>only inside</strong> it, cut a hole and patch just the hole:</div>
+          <ul class="wf-tips">
+            <li><strong>Project</strong> → footprint → <kbd>Curve</kbd> input, base slope → <kbd>Brep</kbd> input, <strong>Unit Z</strong> → <kbd>Direction</kbd> input</li>
+            <li><strong>Surface Split</strong> → base slope → <kbd>Surface</kbd> input, projected curve → <kbd>Curves</kbd> input</li>
+            <li><strong>List Item</strong> → <kbd>Fragments</kbd> → <kbd>List</kbd> input; set <kbd>Index</kbd> to the base with the hole</li>
+          </ul>
+        </div>
+        <div class="wf-step-body">
+          <ul class="wf-tips">
+            <li><strong>Patch</strong> → projected curve only → <kbd>Curves</kbd> input, control point → <kbd>Points</kbd> input</li>
+            <li><strong>Join Breps</strong> → List Item output + Patch output → <kbd>Breps</kbd> input (Shift-drag the second wire)</li>
+            <li><strong>Contour</strong> → joined terrain → <kbd>Shape</kbd> input</li>
+          </ul>
+          <div class="wf-note">Join needs the 0.1 ft tolerance from Step 00. Compare the contours with Step 04: here they kink at the breakline, where the landform stops like a curb.</div>
+        </div>
+      </div>
       <div class="wf-note" style="padding:0 14px 14px;">End of Session 1. Before next session: sketch two more landform operations on paper. Think about where water flows and where a hard edge is needed.</div>
     </div>
+
     <!-- Session 2 label -->
     <div class="wf-step wf-full" style="background:none;border:none;padding:0;margin-top:4px;">
       <div class="wf-week-label">Session 2 — Full Site + Deliverable</div>
