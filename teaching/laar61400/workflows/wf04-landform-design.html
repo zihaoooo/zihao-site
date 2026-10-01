@@ -166,7 +166,7 @@
     <div class="wf-step wf-full">
       <div class="wf-step-head">
         <span class="wf-step-num">04</span>
-        <span class="wf-step-label">Project → Trim → Patch → Join</span>
+        <span class="wf-step-label">Project → Split → Patch → Join</span>
         <span class="wf-badge wf-badge-gh">Grasshopper</span>
       </div>
       <div class="wf-steps-row">
@@ -174,24 +174,26 @@
           <div class="wf-step-desc"><strong>Project</strong> the footprint onto the base slope:</div>
           <ul class="wf-tips">
             <li><strong>Curve</strong> param → Set One Curve → footprint curve</li>
-            <li><strong>Project</strong> component → Curve, Surface, Direction (Unit Z vector)</li>
+            <li><strong>Project</strong> component → footprint → <kbd>Curve</kbd> input, base surface → <kbd>Brep</kbd> input, <strong>Unit Z</strong> → <kbd>Direction</kbd> input</li>
           </ul>
-          <div class="wf-step-desc" style="margin-top:10px;"><strong>Trim</strong> the base surface:</div>
+          <div class="wf-step-desc" style="margin-top:10px;"><strong>Split</strong> the base surface:</div>
           <ul class="wf-tips">
-            <li><strong>Trim</strong> (or <strong>Brep | Curve</strong>) → base surface + projected curve → surface with hole</li>
+            <li><strong>Surface Split</strong> component → base surface → <kbd>Surface</kbd> input, projected curve → <kbd>Curves</kbd> input</li>
+            <li><kbd>Fragments</kbd> output = two pieces: the base with a hole, and the cut-out disc</li>
+            <li><strong>List Item</strong> → wire <kbd>Fragments</kbd> → <kbd>List</kbd> input; set <kbd>Index</kbd> to whichever previews as the base with the hole</li>
           </ul>
         </div>
         <div class="wf-step-body">
           <div class="wf-step-desc"><strong>Patch</strong> the landform surface:</div>
           <ul class="wf-tips">
-            <li><strong>Patch</strong> component → projected curve as boundary</li>
-            <li>Add a <strong>Point</strong> param → set a point inside the footprint → controls peak or valley</li>
+            <li><strong>Patch</strong> component → projected curve → <kbd>Curves</kbd> input (boundary)</li>
+            <li>Add a <strong>Point</strong> param → set a point inside the footprint → <kbd>Points</kbd> input → controls peak or valley</li>
             <li><strong>Number Slider</strong> (−10 to +10) → move point Z → positive = mound, negative = bowl/swale</li>
-            <li>Patch <strong>Flexibility</strong> input: try 3–5 for organic forms</li>
+            <li>Patch <kbd>Flexibility</kbd> input: try 3–5 for organic forms</li>
           </ul>
           <div class="wf-step-desc" style="margin-top:10px;"><strong>Join:</strong></div>
           <ul class="wf-tips">
-            <li><strong>Join Breps</strong> → trimmed base + Patch surface. Edges are coincident — Join succeeds cleanly.</li>
+            <li><strong>Join Breps</strong> → split base + Patch surface. Edges are coincident — Join succeeds cleanly.</li>
             <li>Wire joined surface to <strong>Contour</strong> → contours read across the full site</li>
           </ul>
         </div>
