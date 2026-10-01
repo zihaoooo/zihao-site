@@ -172,7 +172,7 @@
     <div class="wf-step wf-full">
       <div class="wf-step-head">
         <span class="wf-step-num">04</span>
-        <span class="wf-step-label">Patch → Join → Contour</span>
+        <span class="wf-step-label">Patch → Merge → Contour</span>
         <span class="wf-badge wf-badge-gh">Grasshopper</span>
       </div>
       <div class="wf-steps-row">
@@ -183,11 +183,11 @@
             <li><strong>Patch</strong> → projected curve → <kbd>Curves</kbd> input, Point → <kbd>Points</kbd> input</li>
             <li><kbd>Flexibility</kbd> input: higher = looser, more organic; try 3–5. <kbd>Spans</kbd> input: higher = more detail</li>
           </ul>
-          <div class="wf-step-desc" style="margin-top:10px;"><strong>Join</strong> and read the contours:</div>
+          <div class="wf-step-desc" style="margin-top:10px;"><strong>Merge</strong> and read the contours:</div>
           <ul class="wf-tips">
-            <li><strong>Join Breps</strong> → List Item output + Patch output → <kbd>Breps</kbd> input</li>
-            <li><strong>Contour</strong> → joined terrain → <kbd>Shape</kbd> input; <strong>Number Slider</strong> (0.5–5 ft) → <kbd>Distance</kbd> input (contour interval)</li>
-            <li>Check: <strong>Brep Edges</strong> → <kbd>Naked</kbd> output should show only the site boundary. Edges at the breakline mean the Join failed; raise <kbd>Spans</kbd></li>
+            <li><strong>Merge</strong> → List Item output → <kbd>D1</kbd> input, Patch output → <kbd>D2</kbd> input</li>
+            <li><strong>Contour</strong> → Merge <kbd>Result</kbd> → <kbd>Shape</kbd> input; <strong>Number Slider</strong> (0.5–5 ft) → <kbd>Distance</kbd> input (contour interval)</li>
+            <li>Don't use <strong>Join Breps</strong>: Patch only approximates its boundary, so its edge misses the hole by more than tolerance and the join fails. Contour doesn't need one surface; the contours still meet at the breakline</li>
           </ul>
         </div>
         <div class="wf-step-body">
@@ -220,7 +220,7 @@
         <ul class="wf-tips">
           <li>Copy the Curve → Project → Patch group (with its Point) for each landform; right-click → Group and label it</li>
           <li><strong>Merge</strong> all projected curves → Surface Split <kbd>Curves</kbd> input, so one split cuts every hole</li>
-          <li>Join Breps <kbd>Breps</kbd> input: the base with holes + every Patch (Shift-drag to add wires)</li>
+          <li>Merge: the base with holes + every Patch (zoom in on Merge to add more <kbd>D</kbd> inputs) → Contour</li>
           <li>Keep footprints from touching or crossing</li>
         </ul>
         <div class="wf-note">Don't split the base separately for each landform. Each split makes its own copy of the base, and the copies overlap.</div>
