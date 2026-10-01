@@ -142,8 +142,8 @@
         <div class="wf-step-desc">Open Grasshopper (<kbd>Grasshopper</kbd> command). Wire up a live contour preview of your base slope:</div>
         <ul class="wf-tips">
           <li><strong>Surface</strong> param → Set One Surface → click the base slope</li>
-          <li><strong>Contour</strong> component → wire Surface → <kbd>S</kbd></li>
-          <li><strong>Number Slider</strong> (0.5–5) → wire → <kbd>N</kbd> (contour interval)</li>
+          <li><strong>Contour</strong> component → wire Surface → <kbd>Shape</kbd> input</li>
+          <li><strong>Number Slider</strong> (0.5–5) → wire → <kbd>Distance</kbd> input (contour interval)</li>
         </ul>
         <div class="wf-note">Parallel evenly-spaced contours confirm the slope is reading correctly. This is your base terrain.</div>
       </div>
@@ -268,7 +268,7 @@
       <div class="wf-step-body">
         <div class="wf-step-desc">Bake the finished geometry and produce a print-ready layout:</div>
         <ul class="wf-tips">
-          <li>Right-click Contour output → <strong>Bake</strong> → layer <kbd>CONTOURS-DESIGN</kbd></li>
+          <li>Right-click the Contour <kbd>Contours</kbd> output → <strong>Bake</strong> → layer <kbd>CONTOURS-DESIGN</kbd></li>
           <li><kbd>Make2D</kbd> → Top viewport → flat linework</li>
           <li><kbd>Layout</kbd> → 1" = 20' (1:240) on 11 × 17</li>
           <li>Add: north arrow, scale bar, contour interval note, title block</li>
