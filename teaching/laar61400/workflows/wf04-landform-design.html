@@ -143,6 +143,7 @@
         <ul class="wf-tips">
           <li>Select the point → <strong>Gumball Z</strong> → drag up for a mound, down for a bowl or swale</li>
           <li>Check its height in the Front or Right viewport against the slope</li>
+          <li>The curve's height is the grade along that edge. Flat at Z = 0 cuts a level edge into the slope; Gumball it up for a level terrace or berm edge; project it (Step 03) to follow existing grade</li>
         </ul>
         <div class="wf-note">The curve is the <strong>breakline</strong>: where the landform begins and the base field ends. The point is the peak or low point. Together they are the whole design move.</div>
       </div>
@@ -160,7 +161,8 @@
         <ul class="wf-tips">
           <li><strong>Surface</strong> param → Set One Surface → click the base slope → wire into a <strong>Curve</strong> param (gives the site boundary at grade)</li>
           <li><strong>Curve</strong> param → Set One Curve → the footprint curve</li>
-          <li><strong>Merge</strong> → boundary → <kbd>D1</kbd> input, footprint → <kbd>D2</kbd> input</li>
+          <li>Optional, to follow existing grade: <strong>Project</strong> → footprint → <kbd>Curve</kbd> input, base slope → <kbd>Brep</kbd> input, <strong>Unit Z</strong> → <kbd>Direction</kbd> input</li>
+          <li><strong>Merge</strong> → boundary → <kbd>D1</kbd> input, footprint (or the projected curve) → <kbd>D2</kbd> input</li>
           <li><strong>Point</strong> param → Set One Point → the control point</li>
           <li><strong>Patch</strong> → Merge <kbd>Result</kbd> → <kbd>Curves</kbd> input, Point → <kbd>Points</kbd> input</li>
           <li><strong>Contour</strong> → Patch output → <kbd>Shape</kbd> input; <strong>Number Slider</strong> (0.5–5 ft) → <kbd>Distance</kbd> input (contour interval)</li>
