@@ -145,28 +145,29 @@
           <tbody>
             <tr><td><kbd>Loft</kbd></td><td>two or more section curves</td><td>ramp, terrace edge, wall face</td></tr>
             <tr><td><kbd>Sweep1</kbd> / <kbd>Sweep2</kbd></td><td>a profile + one or two rails (paths)</td><td>berm or swale along a path, channel</td></tr>
-            <tr><td><kbd>Patch</kbd></td><td>a boundary curve + points or curves inside it</td><td>mound or bowl inside a footprint</td></tr>
+            <tr><td><kbd>Patch</kbd></td><td>a boundary curve + points or section curves inside it</td><td>mound or bowl inside a footprint</td></tr>
           </tbody>
         </table>
       </div>
-      <div class="wf-note" style="padding:0 14px 14px;">This exercise uses <strong>Patch</strong>: a mound is defined by its edge and its peak, not by sections or a path.</div>
+      <div class="wf-note" style="padding:0 14px 14px;">This exercise uses <strong>Patch</strong>: a landform is defined by its edge plus a peak point or a section curve across it.</div>
     </div>
 
     <!-- Step 02 -->
     <div class="wf-step">
       <div class="wf-step-head">
         <span class="wf-step-num">02</span>
-        <span class="wf-step-label">Draw a Footprint + Control Point</span>
+        <span class="wf-step-label">Draw a Footprint + Control</span>
         <span class="wf-badge wf-badge-rh">Rhino</span>
       </div>
       <div class="wf-step-body">
-        <div class="wf-step-desc">In the Top viewport, draw a closed curve, flat: <kbd>InterpCrv</kbd>, <kbd>Ellipse</kbd>, or freehand. Place a <kbd>Point</kbd> inside it.</div>
+        <div class="wf-step-desc">In the Top viewport, draw a closed curve, flat: <kbd>InterpCrv</kbd>, <kbd>Ellipse</kbd>, or freehand. Then add a control inside it: a point or a section curve.</div>
         <ul class="wf-tips">
-          <li>Select the point → <strong>Gumball Z</strong> → drag above the slope for a mound</li>
-          <li>Check its height in the Front or Right viewport</li>
-          <li>Copy the slope, curve, and point 400 ft to the right (<kbd>Copy</kbd>, Ortho on). You will build the same mound two ways, side by side.</li>
+          <li><strong>Point</strong> → place it inside the footprint → <strong>Gumball Z</strong> → drag above the slope for a mound</li>
+          <li><strong>Section curve</strong> → in the Front or Right viewport, draw an <kbd>InterpCrv</kbd> across the footprint, edge to edge, tracing the profile you want. Patch passes through it, so it shapes the whole cut, not just the peak.</li>
+          <li>Check heights in the Front or Right viewport</li>
+          <li>Copy the slope, footprint, and control 400 ft to the right (<kbd>Copy</kbd>, Ortho on). You will build the same landform two ways, side by side.</li>
         </ul>
-        <div class="wf-note">The curve is the <strong>breakline</strong>: where the landform stops and existing grade continues. The point is the peak.</div>
+        <div class="wf-note">The footprint is the <strong>breakline</strong>: where the landform stops and existing grade continues. The control sets its height: a point fixes the peak, a section curve fixes a whole profile.</div>
       </div>
     </div>
 
@@ -182,7 +183,7 @@
         <ul class="wf-tips">
           <li><kbd>DupBorder</kbd> → select the slope → its edge as a curve</li>
           <li>In the Top viewport: <kbd>Project</kbd> → the footprint → onto the slope. The curve now sits on existing grade.</li>
-          <li><kbd>Patch</kbd> → the border, the projected curve, and the point → Enter → Surface U/V spans <kbd>10</kbd> → OK</li>
+          <li><kbd>Patch</kbd> → the border, the projected curve, and the control → Enter → Surface U/V spans <kbd>10</kbd> → OK</li>
           <li>Hide the original slope</li>
         </ul>
         <div class="wf-note">One surface, nothing to join. But the mound is part of the whole field, so it can shift grade outside its footprint.</div>
@@ -201,7 +202,7 @@
         <ul class="wf-tips">
           <li><kbd>Project</kbd> → the footprint → onto the slope</li>
           <li><kbd>Split</kbd> → the slope → with the projected curve. Delete the cut-out piece.</li>
-          <li><kbd>Patch</kbd> → the projected curve and the point → Enter → spans <kbd>10</kbd> → OK</li>
+          <li><kbd>Patch</kbd> → the projected curve and the control → Enter → spans <kbd>10</kbd> → OK</li>
           <li><kbd>Join</kbd> → the slope with the hole + the Patch → "joined into one polysurface"</li>
           <li>Check: <kbd>ShowEdges</kbd> → Naked edges. Only the site boundary should highlight.</li>
         </ul>
@@ -223,7 +224,7 @@
           <li>Double-click → <kbd>Contour</kbd>. Wire Brep → <kbd>Shape</kbd> input</li>
           <li>Double-click → <kbd>Number Slider</kbd> (0.5–5) → <kbd>Distance</kbd> input. Drag it and watch.</li>
         </ul>
-        <div class="wf-note">Compare A and B. In A, contours bend outside the footprint. In B, they kink at the breakline and stay straight beyond it. Session 2 builds the whole model this way.</div>
+        <div class="wf-note">Compare A and B. In A, contours bend outside the footprint. In B, they kink at the breakline and stay straight beyond it. Session 2 builds the whole site with Method A.</div>
       </div>
     </div>
 
@@ -282,7 +283,8 @@
         <div class="wf-step-desc">Start from scratch: a new Rhino file, saved as <kbd>wf04-site.3dm</kbd>. Redo Steps 00–01 (setup, slope).</div>
         <ul class="wf-tips">
           <li>Draw the three footprints from your catalog on the one slope. Keep them from touching.</li>
-          <li>Add each one's control: a point for the mound and basin, a curve for the swale or ridge</li>
+          <li>Add each one's control: a point or a section curve</li>
+          <li><kbd>DupBorder</kbd> → the slope → its edge as a curve</li>
         </ul>
         <div class="wf-note">Rhino only holds these inputs. Everything after happens in Grasshopper. Save the definition as <kbd>wf04-site.gh</kbd>.</div>
       </div>
@@ -311,19 +313,17 @@
     <div class="wf-step">
       <div class="wf-step-head">
         <span class="wf-step-num">10</span>
-        <span class="wf-step-label">Project → Split</span>
+        <span class="wf-step-label">Project the Footprints</span>
         <span class="wf-badge wf-badge-gh">Grasshopper</span>
       </div>
       <div class="wf-step-body">
-        <div class="wf-step-desc">Cut all three holes with one split (Method B):</div>
+        <div class="wf-step-desc">Set each footprint on existing grade (Method A):</div>
         <ul class="wf-tips">
           <li><strong>Surface</strong> param → Set One Surface → the slope</li>
-          <li>For each landform: <strong>Curve</strong> param → its footprint → <strong>Project</strong> (footprint → <kbd>Curve</kbd> input, slope → <kbd>Brep</kbd> input, <strong>Unit Z</strong> → <kbd>Direction</kbd> input). Group the pair and label it.</li>
-          <li><strong>Merge</strong> → the three projected curves → <kbd>D1</kbd>, <kbd>D2</kbd>, <kbd>D3</kbd> inputs</li>
-          <li><strong>Surface Split</strong> → slope → <kbd>Surface</kbd> input, Merge <kbd>Result</kbd> → <kbd>Curves</kbd> input</li>
-          <li><strong>List Item</strong> → <kbd>Fragments</kbd> → <kbd>List</kbd> input; set <kbd>Index</kbd> to whichever previews as the slope with three holes</li>
+          <li><strong>Curve</strong> param → Set One Curve → the border</li>
+          <li>For each landform: <strong>Curve</strong> param → its footprint → <strong>Project</strong> (footprint → <kbd>Curve</kbd> input, slope → <kbd>Brep</kbd> input, <strong>Unit Z</strong> → <kbd>Direction</kbd> input). Add a param for its control: <strong>Point</strong> or <strong>Curve</strong>. Group them and label the group.</li>
         </ul>
-        <div class="wf-note">Split once with all the curves. Splitting separately for each landform makes overlapping copies of the slope.</div>
+        <div class="wf-note">The slope is only a reference here: Project needs it to find existing grade. The final terrain is one new surface.</div>
       </div>
     </div>
 
@@ -331,16 +331,18 @@
     <div class="wf-step">
       <div class="wf-step-head">
         <span class="wf-step-num">11</span>
-        <span class="wf-step-label">Patch → Join → Contour</span>
+        <span class="wf-step-label">Patch Everything → Contour</span>
         <span class="wf-badge wf-badge-gh">Grasshopper</span>
       </div>
       <div class="wf-step-body">
+        <div class="wf-step-desc">One Patch builds the whole site:</div>
         <ul class="wf-tips">
-          <li>In each group: <strong>Patch</strong> → projected curve → <kbd>Curves</kbd> input; control <strong>Point</strong> param → <kbd>Points</kbd> input (for the swale or ridge, Merge its curve into <kbd>Curves</kbd> instead)</li>
-          <li><strong>Merge</strong> → List Item output + the three Patches</li>
-          <li><strong>Join Breps</strong> → Merge <kbd>Result</kbd> → <kbd>Breps</kbd> input</li>
-          <li><strong>Contour</strong> → joined terrain → <kbd>Shape</kbd> input; <strong>Number Slider</strong> → <kbd>Distance</kbd> input</li>
+          <li><strong>Merge</strong> → the border, the three projected footprints, and any section curves → <strong>Patch</strong> <kbd>Curves</kbd> input</li>
+          <li><strong>Merge</strong> → the control points → <strong>Patch</strong> <kbd>Points</kbd> input</li>
+          <li><strong>Number Slider</strong> (integer, 5–30) → <kbd>Spans</kbd> input. More spans follow the inputs more closely.</li>
+          <li><strong>Contour</strong> → Patch output → <kbd>Shape</kbd> input; <strong>Number Slider</strong> (0.5–5) → <kbd>Distance</kbd> input</li>
         </ul>
+        <div class="wf-note">One surface, so there is nothing to split or join. The landforms share one field: each one pulls grade around it, and two close together blend.</div>
       </div>
     </div>
 
@@ -357,7 +359,9 @@
         <ul class="wf-tips">
           <li>Move a footprint and its control → reposition a landform on the site</li>
           <li>Move a control point up or down → taller mound, deeper basin</li>
+          <li>Edit a section curve (<kbd>F10</kbd> control points) → reshape its profile</li>
           <li>Edit a footprint (<kbd>F10</kbd> control points) → change where it stops</li>
+          <li>Move two landforms closer → watch them merge into one form</li>
           <li>Read the whole site: does water shed off the mound, run down the swale, collect in the basin?</li>
         </ul>
         <div class="wf-note">The three landforms are now one system. Iterate until the contours read as a deliberate site.</div>
@@ -389,19 +393,43 @@
     </div>
     <div class="wf-step-body">
       <table class="wf-table">
-        <thead><tr><th>Session 1 (Rhino)</th><th>Session 2 (Grasshopper)</th></tr></thead>
+        <thead><tr><th>Session 1 (Rhino, Method A)</th><th>Session 2 (Grasshopper)</th></tr></thead>
         <tbody>
-          <tr><td>click the slope, curve, point</td><td><kbd>Surface</kbd> / <kbd>Curve</kbd> / <kbd>Point</kbd> params → Set One</td></tr>
+          <tr><td>click the slope, border, footprint, control</td><td><kbd>Surface</kbd> / <kbd>Curve</kbd> / <kbd>Point</kbd> params → Set One</td></tr>
           <tr><td><kbd>Project</kbd></td><td><kbd>Project</kbd></td></tr>
-          <tr><td><kbd>Split</kbd> + delete the cut-out</td><td><kbd>Surface Split</kbd> + <kbd>List Item</kbd></td></tr>
-          <tr><td><kbd>Patch</kbd></td><td><kbd>Patch</kbd></td></tr>
-          <tr><td><kbd>Join</kbd></td><td><kbd>Join Breps</kbd></td></tr>
-          <tr><td>repeat for each landform</td><td>one group per landform + <kbd>Merge</kbd></td></tr>
+          <tr><td><kbd>Patch</kbd> (border + footprint + control)</td><td><kbd>Merge</kbd> → <kbd>Patch</kbd></td></tr>
+          <tr><td>repeat for each landform</td><td>one group per landform, all into one Patch</td></tr>
         </tbody>
       </table>
     </div>
     <div class="wf-note" style="padding:0 14px 14px;"><strong>Same steps, different medium.</strong> In Rhino each command runs once. In Grasshopper the steps stay connected, so changing an input reruns them all.</div>
   </div>
+
+  <!-- Optional: retaining wall -->
+  <details class="wf-step wf-full wf-examples" style="margin-top:24px;">
+    <summary class="wf-step-head">
+      <span class="wf-step-num">▸</span>
+      <span class="wf-step-label">Optional — Add a Retaining Wall</span>
+      <span class="wf-badge wf-badge-gh">Grasshopper</span>
+    </summary>
+    <div class="wf-step-body">
+      <div class="wf-step-desc">A smooth landform blends into grade. A retaining wall stops it with a hard edge. This example combines Method B with a wall:</div>
+      <ul class="wf-tips">
+        <li><strong>In Rhino</strong>: <kbd>Split</kbd> the slope with the projected footprint and delete the cut-out. The <strong>Surface</strong> param holds the slope with its hole.</li>
+        <li><strong>Wall face</strong>: <strong>Loft</strong> → two curves, the wall's foot on existing grade and its top edge raised to the wall height</li>
+        <li><strong>Landform</strong>: <strong>Patch</strong> → the wall's top edge + the rest of the footprint + a section curve across it</li>
+        <li><strong>Join Breps</strong> → slope + wall + Patch → <strong>Contour</strong></li>
+      </ul>
+      <div class="wf-note">At the wall face, contours crowd into a tight band; on a vertical wall they stack exactly. That band is how a wall reads in a contour drawing. Patch only approximates its edges, so it joins at the 0.1 ft tolerance from Step 00. If its edges stay naked, raise the Patch spans. The geometry is stored inside the definition, so it opens without a Rhino file.</div>
+      <div class="wf-example-grid">
+        <figure>
+          <img src="/teaching/laar61400/assets/img/WF04/example-retaining-wall.png" alt="SE isometric of the slope with a landform whose east edge is a retaining wall; contours crowd into a band at the wall">
+          <figcaption>SE isometric: contours crowd at the wall on the east edge</figcaption>
+        </figure>
+      </div>
+      <a class="wf-download" href="/teaching/laar61400/assets/img/WF04/WF04_retaining-wall.gh" download>↓ Download example definition — WF04_retaining-wall.gh</a>
+    </div>
+  </details>
 
   <!-- Footer -->
   <div class="wf-footer">
