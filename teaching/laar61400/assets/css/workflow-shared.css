@@ -140,6 +140,8 @@
 .wf-objectives ul { margin: 0; padding-left: 18px; }
 .wf-objectives li + li { margin-top: 2px; }
 .wf-doc .wf-objectives ul { max-width: 64ch; }
+/* optional framing paragraph above the list */
+.wf-objectives p { margin: 0 0 8px; max-width: 64ch; }
 /* ── Ongoing work: a semester-long deliverable this workflow feeds, directly under the assignment ── */
 .wf-ongoing { margin: -16px 0 28px; }
 .wf-ongoing > strong { color: var(--accent); }
