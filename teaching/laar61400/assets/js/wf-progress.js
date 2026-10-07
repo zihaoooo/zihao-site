@@ -7,9 +7,11 @@
   var doc = document.querySelector('.wf-doc');
   if (!doc) return;
   // steps are the blocks with a title line; week dividers reuse .wf-step without one,
-  // and the Hint cards (.wf-examples) already open and close on their own
+  // the Hint cards (.wf-examples) already open and close on their own, and
+  // .wf-nocheck cards (a walkthrough video) are references, not steps to finish
   var steps = [].slice.call(doc.querySelectorAll('.wf-step')).filter(function (s) {
-    return s.querySelector('.wf-step-head') && !s.classList.contains('wf-examples');
+    return s.querySelector('.wf-step-head') && !s.classList.contains('wf-examples')
+      && !s.classList.contains('wf-nocheck');
   });
   if (!steps.length) return;
 

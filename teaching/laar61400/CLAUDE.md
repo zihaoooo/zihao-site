@@ -51,6 +51,10 @@ WF pages are hand-authored HTML only — the old per-workflow `.md` sources were
   this workflow feeds (e.g. WF02 starts the Final Integrated Drawing Set in InDesign).
 - `.wf-outcome > strong` is `display:block` in `workflow-shared.css` — scope to `>` to avoid breaking `<strong>` inside `.wf-tips` list items
 - Copy style: match WF07 tone — short, imperative, no AI-sounding parallel structures
+- Walkthrough video (see WF04): a `.wf-step wf-full wf-nocheck` card right under its Session
+  label, `▶` as the step number, YouTube iframe in `.wf-video` with `aspect-ratio` set inline to
+  the recording's size. `wf-nocheck` keeps it out of the done checks, so saved checks keep their
+  positions. Video sources and YouTube text live in `course-prep/laar61400/workflows/<slug>/`.
 - Example images (see WF05): collapsible `<details class="wf-examples">` "Hint" card + a
   click-to-enlarge lightbox (markup + inline script at end of page; styles in `workflow-shared.css`).
   Images live in `assets/img/WF05/`. Use PNG for flat UI/viewport screenshots (compresses smaller
