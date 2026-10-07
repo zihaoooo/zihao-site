@@ -52,8 +52,8 @@ WF pages are hand-authored HTML only — the old per-workflow `.md` sources were
 - `.wf-outcome > strong` is `display:block` in `workflow-shared.css` — scope to `>` to avoid breaking `<strong>` inside `.wf-tips` list items
 - Copy style: match WF07 tone — short, imperative, no AI-sounding parallel structures
 - Walkthrough video (see WF04): a `.wf-step wf-full wf-nocheck` card right under its Session
-  label, `▶` as the step number, YouTube iframe in `.wf-video` with `aspect-ratio` set inline to
-  the recording's size. `wf-nocheck` keeps it out of the done checks, so saved checks keep their
+  label, `▶` as the step number, YouTube iframe in `.wf-video` (16:9; videos are padded
+  to 16:9 by `video_subs.py --strip`, so no inline size is needed). `wf-nocheck` keeps it out of the done checks, so saved checks keep their
   positions. Video sources and YouTube text live in `course-prep/laar61400/workflows/<slug>/`.
 - Example images (see WF05): collapsible `<details class="wf-examples">` "Hint" card + a
   click-to-enlarge lightbox (markup + inline script at end of page; styles in `workflow-shared.css`).
