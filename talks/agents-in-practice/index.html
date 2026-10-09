@@ -35,6 +35,12 @@
     .ap-stack{display:flex;flex-direction:column;gap:1em}
     .ap-stack img{display:block;width:100%;height:auto;border:1px solid var(--line)}
     .ap-try-thanks{margin:.8em 0 0;font-family:var(--font-sans);font-weight:700;color:var(--accent);font-size:clamp(18px,2.2cqw,34px)}
+    .ap-guides{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px;margin-top:12px}
+    .ap-guide{position:relative;display:flex;flex-direction:column;gap:4px;padding:16px 44px 16px 18px;border:1px solid var(--accent-line);border-radius:8px;background:var(--accent-tint);color:var(--gray-900);text-decoration:none;transition:border-color .15s,background .15s}
+    .ap-guide:hover{border-color:var(--accent);background:var(--page-ground,#fff)}
+    .ap-guide b{font-family:var(--font-sans);font-size:17px;color:var(--accent)}
+    .ap-guide span{font-size:14px;color:var(--gray-700)}
+    .ap-guide i{position:absolute;right:18px;top:50%;transform:translateY(-50%);font-style:normal;font-size:20px;color:var(--accent)}
     .tbd{font-family:var(--font-mono);font-size:.85em;color:var(--accent);border-bottom:1px dashed var(--accent-soft)}
     /* readable in fullscreen: lift the shared caps for this talk */
     .slide--title .ts{font-size:clamp(11px,1.25cqw,22px)}
@@ -429,7 +435,11 @@ website/
       <div class="project-description">
         <p>A talk for landscape architects, designers and students on AI agents: tools that work inside a project folder, read and edit its files, and connect to software you already use. It starts from a claim about the profession. Landscape architects have always done computation, first on layers of mylar and later in GIS, CAD and Grasshopper, and almost none of those tools were built for the discipline. Agents are the first tools a designer can reshape around their own work by describing what they want.</p>
         <p>The talk looks at computational thinking in the design professions, from Eliot’s and McHarg’s overlays through SYMAP, AutoCAD and parametric modeling; explains how an agent differs from a chat assistant and how the Model Context Protocol connects it to programs like Rhino; and shows how folder structure and a short context file, written and maintained by the agent itself, carry a project across working sessions. It closes Part 3 with the workflow behind this website, from setup to the daily routine. A discussion follows on what designers would hand over, what they would keep, and the conditions an agent must meet before it touches client or confidential files. The last part points to two hands-on guides, for anyone who wants to try it in the room or later.</p>
-        <p>Two step-by-step guides continue the hands-on work: <a href="try-rhino/">an agent inside Rhino</a> and <a href="try-context/">folder context and a website on GitHub</a>.</p>
+        <p>Two step-by-step guides continue the hands-on work:</p>
+        <div class="ap-guides">
+          <a class="ap-guide" href="try-rhino/"><b>An agent inside Rhino</b><span>Rhino + MCP: slope bands, a layer audit, a plant schedule</span><i aria-hidden="true">→</i></a>
+          <a class="ap-guide" href="try-context/"><b>Folder context and a website on GitHub</b><span>GitHub setup, then a context file the agent writes and audits</span><i aria-hidden="true">→</i></a>
+        </div>
       </div>
 
     </main>

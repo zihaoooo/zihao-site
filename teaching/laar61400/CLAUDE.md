@@ -24,8 +24,8 @@ highlighted `.panel-announce` block sitting directly under the brand block in ev
 - WF03 `wf03-urban-context.html` — Urban Context Mapping
 - WF04 `wf04-landform-design.html` — Rhino Landform Modeling
 - WF05 `wf05-meadow-parametric.html` — Attractor Fields (Grasshopper meadow)
-- WF06 `wf06-slope-analysis.html` — MCP — Claude Inside Rhino (slope analysis exercise)
-- WF07 `wf07-claude-code-site.html` — Context Engineering — A Website with Claude Code
+- WF06 `wf06-sketch-charrette.html` — Back to Basics, a hand charrette (street-corner plaza, 11×17, plan 1"=20', sections 1"=10')
+- AI workflows are optional and ungraded; their guides live only in `/talks/agents-in-practice/` (try-rhino, try-context).
 
 WF pages are hand-authored HTML only — the old per-workflow `.md` sources were deleted
 (2026-06). Edit the `.html` directly; don't recreate or look for markdown sources.

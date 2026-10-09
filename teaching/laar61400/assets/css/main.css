@@ -281,12 +281,46 @@ body { font-family: var(--font-sans); background: #fff; color: var(--gray-900); 
   text-transform: uppercase; letter-spacing: 0.08em;
 }
 
-/* ── Hamburger button (hidden on desktop) ── */
+/* ── Nav toggle: shows/hides the side panel. Desktop: sits at the panel's top-right
+   while shown, at the page's top-left while hidden (html.nav-hidden, remembered). ── */
 #nav-toggle {
-  display: none;
+  display: flex;
+  position: fixed;
+  top: 14px;
+  left: 214px;
+  z-index: 300;
+  width: 32px;
+  height: 32px;
+  background: var(--gray-100);
+  border: 1px solid var(--gray-200);
+  border-radius: 6px;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 4px;
+  padding: 8px;
+  cursor: pointer;
 }
+#nav-toggle span {
+  display: block;
+  width: 14px;
+  height: 2px;
+  background: var(--gray-900);
+  border-radius: 1px;
+}
+#nav-toggle:hover { border-color: var(--gray-400); }
+#nav-toggle .nav-arrow { display: none; width: 16px; height: 16px; color: var(--gray-900); }
+#nav-toggle.is-open span { display: none; }
+#nav-toggle.is-open .nav-arrow { display: block; }
 #nav-overlay {
   display: none;
+}
+@media (min-width: 769px) {
+  .nav-ready #sidepanel { transition: transform 0.25s ease; }
+  .nav-ready #main-content { transition: margin-left 0.25s ease; }
+  .nav-hidden #sidepanel { transform: translateX(-100%); }
+  .nav-hidden #main-content { margin-left: 0; }
+  .nav-hidden #nav-toggle { left: 14px; }
 }
 
 /* ── Mobile ── */
@@ -320,31 +354,13 @@ body { font-family: var(--font-sans); background: #fff; color: var(--gray-900); 
 
   /* Hamburger button */
   #nav-toggle {
-    display: flex;
-    position: fixed;
-    top: 14px;
     left: 14px;
-    z-index: 300;
     width: 40px;
     height: 40px;
-    background: var(--gray-100);
-    border: 1px solid var(--gray-200);
-    border-radius: 6px;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
     gap: 5px;
     padding: 10px;
-    cursor: pointer;
   }
-  #nav-toggle span {
-    display: block;
-    width: 18px;
-    height: 2px;
-    background: var(--gray-900);
-    border-radius: 1px;
-    transition: opacity 0.15s;
-  }
+  #nav-toggle span { width: 18px; }
 
   /* Main content full width, extra top padding for hamburger */
   #main-content {

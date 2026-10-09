@@ -26,7 +26,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const toggle = document.createElement('button');
   toggle.id = 'nav-toggle';
   toggle.setAttribute('aria-label', 'Open navigation');
-  toggle.innerHTML = '<span></span><span></span><span></span>';
+  toggle.innerHTML = '<span></span><span></span><span></span>'
+    + '<svg class="nav-arrow" viewBox="0 0 16 16" aria-hidden="true"><path d="M14 8H3M7.5 3.5 3 8l4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>';
   document.body.appendChild(toggle);
 
   const overlay = document.createElement('div');
@@ -37,16 +38,39 @@ document.addEventListener('DOMContentLoaded', () => {
     sidepanel.classList.add('open');
     overlay.classList.add('open');
     toggle.setAttribute('aria-label', 'Close navigation');
+    toggle.classList.add('is-open');
   }
 
   function closeNav() {
     sidepanel.classList.remove('open');
     overlay.classList.remove('open');
     toggle.setAttribute('aria-label', 'Open navigation');
+    toggle.classList.remove('is-open');
   }
 
+  // Desktop: hide/show the panel; shown by default, choice remembered
+  const root = document.documentElement;
+  const isMobile = () => window.innerWidth <= 768;
+  function setDesktopLabel() {
+    if (isMobile()) return;
+    const hidden = root.classList.contains('nav-hidden');
+    toggle.setAttribute('aria-label', hidden ? 'Show navigation' : 'Hide navigation');
+    toggle.classList.toggle('is-open', !hidden);
+  }
+  try { if (localStorage.getItem('nav-hidden') === '1') root.classList.add('nav-hidden'); } catch (e) {}
+  setDesktopLabel();
+  requestAnimationFrame(() => root.classList.add('nav-ready'));
+
   toggle.addEventListener('click', () => {
-    sidepanel.classList.contains('open') ? closeNav() : openNav();
+    if (isMobile()) {
+      sidepanel.classList.contains('open') ? closeNav() : openNav();
+      return;
+    }
+    const hidden = root.classList.toggle('nav-hidden');
+    try { localStorage.setItem('nav-hidden', hidden ? '1' : '0'); } catch (e) {}
+    setDesktopLabel();
+    // let decks and carousels re-measure once the slide finishes
+    setTimeout(() => window.dispatchEvent(new Event('resize')), 260);
   });
 
   overlay.addEventListener('click', closeNav);
