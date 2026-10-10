@@ -24,7 +24,7 @@ highlighted `.panel-announce` block sitting directly under the brand block in ev
 - WF03 `wf03-urban-context.html` — Urban Context Mapping
 - WF04 `wf04-landform-design.html` — Rhino Landform Modeling
 - WF05 `wf05-meadow-parametric.html` — Attractor Fields (Grasshopper meadow)
-- WF06 `wf06-sketch-charrette.html` — Back to Basics, a hand charrette (street-corner plaza, 11×17, plan 1"=20', sections 1"=10')
+- WF06 `wf06-sketch-charrette.html` — Back to Basics, a hand charrette at A. Philip Randolph Square, kept anonymous to students (11×17, plan 1"=20', sections 1"=10'). Base plan PDF in assets/downloads/, built by ../workflows/osm-map/scripts/base_plan.py
 - AI workflows are optional and ungraded; their guides live only in `/talks/agents-in-practice/` (try-rhino, try-context).
 
 WF pages are hand-authored HTML only — the old per-workflow `.md` sources were deleted
