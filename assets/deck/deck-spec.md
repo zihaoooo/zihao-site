@@ -58,8 +58,10 @@ Video / drawn SVG go bare in `.slide` (no class): `<iframe>`/`<svg>`, centered &
 ```
 
 ### Auto — `auto` · `hero-l`/`hero-r` · `auto-rows`
-JS (`layoutAuto()` in the page) sizes each `<figure>` to its image's aspect and fits the group to the
-stage — every box matches its image, so images read whole. Use for landscapes, maps, drawings, collages, mixed sizes.
+JS (`layoutAuto()` in deck.js) sizes each `<figure>` to its image's aspect and fits the group to the
+stage — every box matches its image, so images read whole. The aspect comes from the loaded image,
+else from the `<img>` `width`/`height` attributes, so declared sizes let `loading="lazy"` images on
+hidden slides lay out before they load. Use for landscapes, maps, drawings, collages, mixed sizes.
 
 | Say | Class | Shape |
 |---|---|---|

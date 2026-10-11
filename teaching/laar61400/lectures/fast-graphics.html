@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fast Graphics — LAAR 61400</title>
+  <link rel="stylesheet" href="/teaching/laar61400/assets/css/main.css">
+  <link rel="stylesheet" href="/teaching/laar61400/assets/css/workflow-shared.css">
+  <link rel="stylesheet" href="/assets/deck/deck.css">
+  <style>
+    /* ── do / avoid mark on a figure: <figure data-mark="✓"> or "✗" ── */
+    .slide figure[data-mark]::after{content:attr(data-mark);position:absolute;right:.25em;bottom:.1em;
+      font-family:var(--font-sans);font-weight:700;line-height:1;font-size:clamp(16px,2.6cqw,40px);
+      color:var(--ink);}
+    .slide figure[data-mark="✗"]::after{color:var(--accent);}
+  </style>
+</head>
+<body>
+
+  <!-- Side panel -->
+  <nav id="sidepanel">
+    <a class="panel-brand" href="/teaching/laar61400/index.html">
+      <span class="panel-brand-title">LAAR 61400</span>
+      <span class="panel-brand-sub">Representation + Computation</span>
+    </a>
+    <a class="panel-announce" href="/teaching/laar61400/announcements.html"><span class="panel-announce-tag">New</span>Announcements</a>
+    <div class="panel-section">
+      <span class="panel-section-label">Workflows</span>
+      <a class="panel-link" href="/teaching/laar61400/workflows/wf01-autocad.html"><span class="panel-link-num">01</span>AutoCAD Site Drafting</a>
+      <a class="panel-link" href="/teaching/laar61400/workflows/wf02-sketch-portfolio.html"><span class="panel-link-num">02</span>Hybrid Drawing + Layout</a>
+      <a class="panel-link" href="/teaching/laar61400/workflows/wf03-urban-context.html"><span class="panel-link-num">03</span>Urban Context Mapping</a>
+      <a class="panel-link" href="/teaching/laar61400/workflows/wf04-landform-design.html"><span class="panel-link-num">04</span>Rhino Landform Modeling</a>
+      <a class="panel-link" href="/teaching/laar61400/workflows/wf05-meadow-parametric.html"><span class="panel-link-num">05</span>Attractor Fields</a>
+      <a class="panel-link" href="/teaching/laar61400/workflows/wf06-sketch-charrette.html"><span class="panel-link-num">06</span>Back to Basics</a>
+    </div>
+    <div class="panel-section">
+      <span class="panel-section-label">Lectures</span>
+      <a class="panel-link" href="/teaching/laar61400/lectures/drawing-as-thinking.html">Drawing as Thinking Tool</a>
+      <a class="panel-link" href="/teaching/laar61400/lectures/computational-thinking.html">Computational Thinking</a>
+      <a class="panel-link" href="/teaching/laar61400/lectures/graphic-design-101.html">Graphic Design 101</a>
+      <a class="panel-link" href="/teaching/laar61400/lectures/gis-spatial-data.html">Intro to GIS / Spatial Data</a>
+      <a class="panel-link" href="/teaching/laar61400/lectures/modeling-as-thinking.html">Modeling as Thinking</a>
+      <a class="panel-link" href="/teaching/laar61400/lectures/cybernetics-and-design.html">Cybernetics and Design</a>
+      <a class="panel-link active" href="/teaching/laar61400/lectures/fast-graphics.html">Fast Graphics</a>
+      <a class="panel-link" href="/teaching/laar61400/lectures/web-coding-literacy.html">Web Coding Literacy (optional)</a>
+    </div>
+    <div class="panel-section">
+      <span class="panel-section-label">Shortcuts &amp; Reference</span>
+      <a class="panel-link" href="/teaching/laar61400/shortcuts/file-types.html">File Types Reference</a>
+      <a class="panel-link" href="/teaching/laar61400/shortcuts/adobe.html">Adobe Ps / Ai / Id</a>
+      <a class="panel-link" href="/teaching/laar61400/shortcuts/autocad.html">AutoCAD</a>
+      <a class="panel-link" href="/teaching/laar61400/shortcuts/rhino-pipeline.html">Rhino — Pipeline</a>
+      <a class="panel-link" href="/teaching/laar61400/shortcuts/rhino-ui.html">Rhino — Navigation &amp; UI</a>
+      <a class="panel-link" href="/teaching/laar61400/shortcuts/png-to-cad-block.html">PNG → CAD Block</a>
+    </div>
+  </nav>
+
+  <!-- Main content -->
+  <main id="main-content">
+    <div class="page-inner">
+
+      <div class="wf-wrap">
+        <div class="wf-header">
+          <div class="wf-index">LECTURE</div>
+          <div class="wf-header-text">
+            <div class="wf-title">Fast Graphics</div>
+            <div class="wf-subtitle">Lines, plants, figures, sections, and perspective, drawn by hand against the clock. Adapted from Hui Gao.</div>
+          </div>
+        </div>
+
+        <!-- ── Slides ── -->
+        <span class="section-label">Lecture Slides</span>
+        <div class="deck" id="deck" data-deck-id="fast-graphics" data-deck-title="Fast Graphics">
+          <div class="deck-stage" id="deck-stage">
+
+            <div class="slide slide--title" data-cap="" data-credit="Adapted from Hui Gao" data-notes="Today is about speed. In a charrette you have minutes, not hours, for each drawing, so every mark has to carry information. We go through five things you draw over and over in landscape: lines, plants, figures, sections, and perspective. For each one there is a fast way and a slow way, and most slides put them side by side. Fast drawing is not careless drawing: it means knowing what to leave out, so the few lines you draw say where the ground is, how big the trees are, and where people sit. These slides are adapted from a workshop by Hui Gao, a visiting lecturer, shared with her permission.">
+              <div class="tt">Fast Graphics</div>
+              <div class="ts">LAAR 61400 · Adapted from Hui Gao</div>
+            </div>
+
+
+            <div class="slide" data-cap="Lines" data-notes="Part I. Everything starts with the line itself. A confident line reads faster than a careful, hairy one.">
+              <div class="embed"><div class="toc"><div class="toc-row active"><span class="toc-n">Part I</span><h2 class="toc-h">Lines</h2></div><div class="toc-row"><span class="toc-n">Part II</span><h2 class="toc-h">Plants</h2></div><div class="toc-row"><span class="toc-n">Part III</span><h2 class="toc-h">Figures</h2></div><div class="toc-row"><span class="toc-n">Part IV</span><h2 class="toc-h">Sections</h2></div><div class="toc-row"><span class="toc-n">Part V</span><h2 class="toc-h">Perspective</h2></div></div></div>
+            </div>
+
+            <div class="slide points-l" data-cap="Lines: vary them" data-notes="Four habits for a better line. Add variation: thick and thin, dark and light. Add slight pauses: lift the pen at a corner or a junction instead of drawing one continuous scribble, so the corner reads. Combine slow and fast lines: slow for the structure you need to get right, fast for texture and vegetation. Differentiate line types, so a cut line, an edge, and a texture each look different. In the bridge, the structure is drawn with steady, straight strokes, the trees and water with quick, loose ones.">
+              <div class="pts"><h3>Four habits</h3><ul><li>Add variation</li><li>Add slight pauses</li><li>Combine slow and fast lines</li><li>Differentiate line types</li></ul></div><figure><img src="/teaching/laar61400/assets/img/fast-graphics/03-bridge.avif" alt="Pen drawing looking up at a cable bridge, steady structural lines with loose trees and water" width="1572" height="1099" loading="lazy"></figure>
+            </div>
+
+            <div class="slide auto-rows" data-cap="The same habits in elevation, plan, and perspective" data-notes="The same four habits in three drawing types. In the elevation, repeated parallel lines build a tone. In the plan, a heavy outline sets off the trees and the labels sit outside the drawing on leader lines. In the perspective, the building is drawn with a steady hand and the palms are quick and loose.">
+              <div class="row"><figure><img src="/teaching/laar61400/assets/img/fast-graphics/04-a.avif" alt="Elevation of a roof built from dense parallel lines" width="733" height="590" loading="lazy"></figure><figure><img src="/teaching/laar61400/assets/img/fast-graphics/04-b.avif" alt="Hand plan of a small garden with trees, deck, and handwritten labels" width="392" height="304" loading="lazy"></figure></div><div class="row"><figure><img src="/teaching/laar61400/assets/img/fast-graphics/04-c.avif" alt="Quick perspective of a curved glass building with palms and notes" width="1359" height="409" loading="lazy"></figure></div>
+            </div>
+
+            <div class="slide" data-cap="Plants" data-notes="Part II. Plants take most of the time in a landscape drawing, and they are where most drawings slow down. The fix is to draw less.">
+              <div class="embed"><div class="toc"><div class="toc-row"><span class="toc-n">Part I</span><h2 class="toc-h">Lines</h2></div><div class="toc-row active"><span class="toc-n">Part II</span><h2 class="toc-h">Plants</h2></div><div class="toc-row"><span class="toc-n">Part III</span><h2 class="toc-h">Figures</h2></div><div class="toc-row"><span class="toc-n">Part IV</span><h2 class="toc-h">Sections</h2></div><div class="toc-row"><span class="toc-n">Part V</span><h2 class="toc-h">Perspective</h2></div></div></div>
+            </div>
+
+            <div class="slide auto" data-cap="Trees: draw only the outline" data-notes="The photo has thousands of leaves. Drawing them all, as in the second image, takes a long time and turns the tree into a dark mass that fights everything around it. Draw only the outline of the crown and a few branches, as in the two drawings on the right. The tree reads instantly, stays white, and leaves room for the things you designed.">
+              <figure><img src="/teaching/laar61400/assets/img/fast-graphics/05-photo.avif" alt="Photo of a broad deciduous tree" width="521" height="546" loading="lazy"></figure><figure data-mark="✗"><img src="/teaching/laar61400/assets/img/fast-graphics/05-detail.avif" alt="Tree drawn leaf by leaf, dense and dark" width="735" height="898" loading="lazy"></figure><figure data-mark="✓"><img src="/teaching/laar61400/assets/img/fast-graphics/05-outline.avif" alt="Trees drawn as outlines over a section" width="347" height="430" loading="lazy"></figure><figure data-mark="✓"><img src="/teaching/laar61400/assets/img/fast-graphics/05-section.avif" alt="Outline trees along a sectional edge" width="503" height="256" loading="lazy"></figure>
+            </div>
+
+            <div class="slide auto-rows" data-cap="The outline stroke: sharp angles, mostly horizontal, with breaks" data-notes="How to draw the crown outline fast. Use sharp angles, not round scallops. Keep the strokes running mostly horizontal, the way leaf masses sit in layers. Add break points: leave small gaps so the outline is not one closed line. The spiky, radiating stroke at top right is the common mistake; it reads as a starburst, not foliage. Compare the photos with the sketches next to them: the drawing catches the leaf masses, not the leaves.">
+              <div class="row"><figure><img src="/teaching/laar61400/assets/img/fast-graphics/06-a.avif" alt="Sample outline stroke with sharp angles" width="219" height="94" loading="lazy"></figure><figure><img src="/teaching/laar61400/assets/img/fast-graphics/06-b.avif" alt="Sample outline strokes with break points" width="270" height="149" loading="lazy"></figure><figure data-mark="✗"><img src="/teaching/laar61400/assets/img/fast-graphics/06-c.avif" alt="Spiky radiating stroke" width="502" height="455" loading="lazy"></figure></div><div class="row"><figure><img src="/teaching/laar61400/assets/img/fast-graphics/06-d.avif" alt="Photo of a spreading tree" width="434" height="351" loading="lazy"></figure><figure><img src="/teaching/laar61400/assets/img/fast-graphics/06-e.avif" alt="Sketch of trees with angular outlines and a dark accent" width="688" height="564" loading="lazy"></figure><figure><img src="/teaching/laar61400/assets/img/fast-graphics/06-f.avif" alt="Photo of a multi-stem tree" width="746" height="824" loading="lazy"></figure><figure><img src="/teaching/laar61400/assets/img/fast-graphics/06-g.avif" alt="Outline trees in a perspective sketch" width="349" height="524" loading="lazy"></figure></div>
+            </div>
+
+            <div class="slide auto" data-cap="Crown shape: arched top, flat bottom" data-notes="Most students draw a crown as a lollipop circle or a Christmas-tree triangle. A real deciduous crown is arched on top and flatter underneath, like a mushroom cap. Once you see it, you can draw any tree fast: one arc over the top, a flatter line underneath, a short trunk.">
+              <figure data-mark="✗"><img src="/teaching/laar61400/assets/img/fast-graphics/07-circle.avif" alt="Tree drawn as a circle on a stick" width="349" height="350" loading="lazy"></figure><figure data-mark="✗"><img src="/teaching/laar61400/assets/img/fast-graphics/07-triangle.avif" alt="Tree drawn as a triangle" width="384" height="341" loading="lazy"></figure><figure data-mark="✓"><img src="/teaching/laar61400/assets/img/fast-graphics/07-arc.avif" alt="Tree with an arched top and flat bottom" width="380" height="340" loading="lazy"></figure><figure><img src="/teaching/laar61400/assets/img/fast-graphics/07-outline.avif" alt="Tree outline with an arched top and flat base" width="131" height="169" loading="lazy"></figure>
+            </div>
+
+            <div class="slide auto" data-cap="Branches: a few, uneven, open at the top" data-notes="Branches follow the same logic. A fishbone, with paired branches up a straight trunk, and a fan, with every branch radiating from one point, both look mechanical. Draw a few branches of unequal length that split off at different heights and stay open at the top. Inside an outline crown, three or four are enough.">
+              <figure data-mark="✗"><img src="/teaching/laar61400/assets/img/fast-graphics/08-a.avif" alt="Fishbone branching" width="179" height="266" loading="lazy"></figure><figure data-mark="✗"><img src="/teaching/laar61400/assets/img/fast-graphics/08-b.avif" alt="Fan branching from one point" width="235" height="272" loading="lazy"></figure><figure data-mark="✓"><img src="/teaching/laar61400/assets/img/fast-graphics/08-c.avif" alt="Uneven branches splitting at different heights" width="229" height="299" loading="lazy"></figure>
+            </div>
+
+            <div class="slide auto-rows" data-cap="Shrubs and conifers: minimal and symbolic" data-notes="Shrubs and conifers follow the same rule. The shrub photo is full of detail; the rock-garden sketch tries to draw all of it. The good examples are minimal and symbolic: a low rounded line for a shrub mass, a narrow spike for a conifer, a few veins for a broadleaf. In a section, a row of these symbols along the ground line says planting at a glance.">
+              <div class="row"><figure><img src="/teaching/laar61400/assets/img/fast-graphics/09-photo.avif" alt="Photo of a flowering shrub" width="1000" height="801" loading="lazy"></figure><figure data-mark="✗"><img src="/teaching/laar61400/assets/img/fast-graphics/09-detail.avif" alt="Rock garden drawn in heavy detail" width="1179" height="714" loading="lazy"></figure><figure data-mark="✓"><img src="/teaching/laar61400/assets/img/fast-graphics/09-a.avif" alt="Planting bed in section with simple shrub and conifer symbols" width="369" height="176" loading="lazy"></figure></div><div class="row"><figure data-mark="✓"><img src="/teaching/laar61400/assets/img/fast-graphics/09-b.avif" alt="Long section strip with symbolic shrubs and conifers" width="966" height="182" loading="lazy"></figure><figure data-mark="✓"><img src="/teaching/laar61400/assets/img/fast-graphics/09-c.avif" alt="Broadleaf trees drawn with a few lines" width="774" height="285" loading="lazy"></figure></div>
+            </div>
+
+            <div class="slide auto" data-cap="Try it: three trees in three minutes" data-notes="Exercise. On trace, draw three trees in three minutes: one in elevation, one in a section with a ground line, one in a quick perspective. Outline only, arched top and flat bottom, a few uneven branches. Then swap with a neighbor and check each other against the last four slides.">
+              <figure><img src="/teaching/laar61400/assets/img/fast-graphics/10-a.avif" alt="Outline trees with a conifer over a ground line" width="347" height="289" loading="lazy"></figure><figure><img src="/teaching/laar61400/assets/img/fast-graphics/06-e.avif" alt="Sketch of trees in section" width="688" height="564" loading="lazy"></figure><figure><img src="/teaching/laar61400/assets/img/fast-graphics/06-g.avif" alt="Outline trees in perspective" width="349" height="524" loading="lazy"></figure>
+            </div>
+
+            <div class="slide" data-cap="Figures" data-notes="Part III. Figures give every drawing its scale. Each one should take seconds.">
+              <div class="embed"><div class="toc"><div class="toc-row"><span class="toc-n">Part I</span><h2 class="toc-h">Lines</h2></div><div class="toc-row"><span class="toc-n">Part II</span><h2 class="toc-h">Plants</h2></div><div class="toc-row active"><span class="toc-n">Part III</span><h2 class="toc-h">Figures</h2></div><div class="toc-row"><span class="toc-n">Part IV</span><h2 class="toc-h">Sections</h2></div><div class="toc-row"><span class="toc-n">Part V</span><h2 class="toc-h">Perspective</h2></div></div></div>
+            </div>
+
+            <div class="slide auto-rows" data-cap="Figures: exaggerate proportions, simplify details" data-notes="Two rules for people. Exaggerate the proportions: long bodies, small heads, so a figure reads as a person at any size. Simplify the details: no faces, no fingers, a few strokes for clothes, solid fill for a coat. Each of these figures says a lot about posture and activity with almost no detail: carrying a bag, pointing, walking in a group.">
+              <div class="row"><figure><img src="/teaching/laar61400/assets/img/fast-graphics/12-a.avif" alt="Two conifers with small figures pointing" width="920" height="743" loading="lazy"></figure><figure><img src="/teaching/laar61400/assets/img/fast-graphics/12-c.avif" alt="Two tall standing figures with patterned coats" width="286" height="345" loading="lazy"></figure><figure><img src="/teaching/laar61400/assets/img/fast-graphics/12-d.avif" alt="Two figures with outstretched arms" width="482" height="375" loading="lazy"></figure></div><div class="row"><figure><img src="/teaching/laar61400/assets/img/fast-graphics/12-e.avif" alt="Figures carrying bags and reading maps" width="1920" height="698" loading="lazy"></figure><figure><img src="/teaching/laar61400/assets/img/fast-graphics/12-f.avif" alt="Two figures in solid coats" width="99" height="90" loading="lazy"></figure><figure><img src="/teaching/laar61400/assets/img/fast-graphics/12-g.avif" alt="Groups of simplified standing figures" width="363" height="105" loading="lazy"></figure></div>
+            </div>
+
+            <div class="slide auto-rows" data-cap="Build a figure from a few shapes" data-notes="The top row is what happens when we draw people the way we draw portraits: faces, hair, cartoon eyes. It is slow and it pulls the eye away from the space. The bottom row builds figures from one or two shapes, a diamond or a long wedge, then adds a head and legs. Practice these until you can put six people in a section in under a minute.">
+              <div class="row"><figure data-mark="✗"><img src="/teaching/laar61400/assets/img/fast-graphics/13-a.avif" alt="Cartoon figures with detailed faces" width="671" height="543" loading="lazy"></figure><figure data-mark="✗"><img src="/teaching/laar61400/assets/img/fast-graphics/13-b.avif" alt="Detailed sketch of two people from behind" width="960" height="1280" loading="lazy"></figure><figure data-mark="✗"><img src="/teaching/laar61400/assets/img/fast-graphics/13-c.avif" alt="Detailed sketch of people walking" width="960" height="1017" loading="lazy"></figure><figure data-mark="✗"><img src="/teaching/laar61400/assets/img/fast-graphics/13-d.avif" alt="Detailed sketch of figures at a wall" width="738" height="960" loading="lazy"></figure></div><div class="row"><figure data-mark="✓"><img src="/teaching/laar61400/assets/img/fast-graphics/13-e.avif" alt="Figures built step by step from a diamond shape" width="220" height="293" loading="lazy"></figure><figure data-mark="✓"><img src="/teaching/laar61400/assets/img/fast-graphics/13-f.avif" alt="Row of figures built from wedge shapes" width="241" height="95" loading="lazy"></figure></div>
+            </div>
+
+            <div class="slide single" data-cap="Figures set the scale" data-notes="Figures in context. In this elevation the people tell you the height of the canopy and the building at a glance. Your WF06 sections need at least six, each doing something different: sitting, leaning, walking, waiting for a bus.">
+              <img src="/teaching/laar61400/assets/img/fast-graphics/14-a.avif" alt="Elevation of a building and palms with simplified figures at different sizes" width="1326" height="560" loading="lazy">
+            </div>
+
+            <div class="slide" data-cap="Sections" data-notes="Part IV. Sections. A section is the fastest way to show how the ground, the planting, and the body meet.">
+              <div class="embed"><div class="toc"><div class="toc-row"><span class="toc-n">Part I</span><h2 class="toc-h">Lines</h2></div><div class="toc-row"><span class="toc-n">Part II</span><h2 class="toc-h">Plants</h2></div><div class="toc-row"><span class="toc-n">Part III</span><h2 class="toc-h">Figures</h2></div><div class="toc-row active"><span class="toc-n">Part IV</span><h2 class="toc-h">Sections</h2></div><div class="toc-row"><span class="toc-n">Part V</span><h2 class="toc-h">Perspective</h2></div></div></div>
+            </div>
+
+            <div class="slide" data-cap="Five steps to a section" data-notes="The order matters. Cut the plan first, so you know exactly where the section runs. Draw the terrain next: the ground line is the heaviest line in the drawing. Then the main elements, plants and hardscape. Then secondary elements: people, furniture, lighter planting. Annotations last: levels, labels, scale. Work in that order and the drawing reads at every stage, which matters when time runs out.">
+              <div class="embed"><div class="txt-card"><h3>Five steps</h3><ul><li><b>Cut</b> — mark the section line on the plan</li><li><b>Terrain</b> — project the ground line, the heaviest line</li><li><b>Main elements</b> — trees, walls, steps, water</li><li><b>Secondary elements</b> — people, seats, low planting</li><li><b>Annotations</b> — levels, labels, scale</li></ul></div></div>
+            </div>
+
+            <div class="slide single" data-cap="Steps 1–2: cut the plan, project the terrain" data-notes="Steps one and two. On the left, the cut line runs across the contour plan. On the right, each contour crossing is projected onto a grid of elevation lines, and the ground line connects the points. Below it, the same terrain with trees and a building sitting on it.">
+              <img src="/teaching/laar61400/assets/img/fast-graphics/17-a.avif" alt="Contour plan with a section cut beside the terrain profile projected from it" width="1920" height="643" loading="lazy">
+            </div>
+
+            <div class="slide single" data-cap="Steps 3–5: main elements, secondary elements, annotations" data-notes="A finished section through a waterfront: the heavy ground line, trees and walls as main elements, lighter planting behind, and a strip of labels and levels underneath. The labels here are in Chinese; yours name the spaces, a lawn, a plaza, a path.">
+              <img src="/teaching/laar61400/assets/img/fast-graphics/18-a.avif" alt="Hand section through terraces and water with labels and levels" width="1030" height="289" loading="lazy">
+            </div>
+
+            <div class="slide auto-rows" data-cap="Secondary elements and annotations" data-notes="Secondary elements and annotations up close. On top, people under a canopy and inside a sunken space, with level marks such as ±0.00 and −3.90 giving the change in height. Below, a section where a light blue wash and an arrow show water and view. Color is optional; a level mark is required.">
+              <div class="row"><figure><img src="/teaching/laar61400/assets/img/fast-graphics/19-a.avif" alt="Section with a sunken space, figures, and level marks" width="1037" height="454" loading="lazy"></figure></div><div class="row"><figure><img src="/teaching/laar61400/assets/img/fast-graphics/19-b.avif" alt="Section through a pond with a blue wash, trees, and dimensions" width="1035" height="353" loading="lazy"></figure></div>
+            </div>
+
+            <div class="slide auto-rows" data-cap="Sectional perspective" data-notes="A sectional perspective cuts the ground like a section and then lets the space recede behind the cut, one-point style. It is slower than a plain section, so save it for the one place in your design that needs it most.">
+              <div class="row"><figure><img src="/teaching/laar61400/assets/img/fast-graphics/20-a.avif" alt="Sectional perspective into a sunken court with dimensions" width="1063" height="342" loading="lazy"></figure><figure><img src="/teaching/laar61400/assets/img/fast-graphics/20-b.avif" alt="Sectional perspective of a building set into a planted slope" width="1035" height="431" loading="lazy"></figure></div><div class="row"><figure><img src="/teaching/laar61400/assets/img/fast-graphics/20-c.avif" alt="Sectional perspective of a channel with stepped banks and a tree line" width="1071" height="322" loading="lazy"></figure></div>
+            </div>
+
+            <div class="slide" data-cap="Perspective" data-notes="Part V. Perspective. The eye-level perspective is the drawing a client understands first.">
+              <div class="embed"><div class="toc"><div class="toc-row"><span class="toc-n">Part I</span><h2 class="toc-h">Lines</h2></div><div class="toc-row"><span class="toc-n">Part II</span><h2 class="toc-h">Plants</h2></div><div class="toc-row"><span class="toc-n">Part III</span><h2 class="toc-h">Figures</h2></div><div class="toc-row"><span class="toc-n">Part IV</span><h2 class="toc-h">Sections</h2></div><div class="toc-row active"><span class="toc-n">Part V</span><h2 class="toc-h">Perspective</h2></div></div></div>
+            </div>
+
+            <div class="slide auto" data-cap="One-point perspective at eye level" data-notes="Three terms. The eye-level line, or horizon, sits at the height of your eyes, about five feet above the ground for a standing person. The viewpoint is where you stand. Vanishing lines run from every edge parallel to your line of sight to one point on the horizon. The head of every standing figure sits on the horizon. The drawing on the right is built on exactly this frame.">
+              <figure><img src="/teaching/laar61400/assets/img/fast-graphics/22-diagram.avif" alt="One-point perspective diagram labeling the viewpoint, eye-level line, and vanishing lines" width="986" height="764" loading="lazy"></figure><figure><img src="/teaching/laar61400/assets/img/fast-graphics/22-drawing.avif" alt="One-point perspective of a pavilion and trees in high black-and-white contrast" width="867" height="590" loading="lazy"></figure>
+            </div>
+
+            <div class="slide auto" data-cap="Two-point perspective" data-notes="Two-point perspective, when you stand at a corner. The horizon stays at eye level, but the edges now run to two vanishing points, one on each side, often off the page. It suits a building or a pavilion seen from the corner. For a plaza, one-point is usually faster and enough.">
+              <figure><img src="/teaching/laar61400/assets/img/fast-graphics/23-diagram.avif" alt="Two-point perspective diagram with two vanishing points on the eye-level line" width="1028" height="529" loading="lazy"></figure><figure><img src="/teaching/laar61400/assets/img/fast-graphics/23-drawing.avif" alt="Two-point perspective sketches of a modern building among trees" width="807" height="631" loading="lazy"></figure>
+            </div>
+
+            <div class="slide auto" data-cap="Choose the view: eye level or bird&#x27;s-eye" data-credit="The High Line, New York. Left: eye level. Right: bird&#x27;s-eye." data-notes="The same place from two heights. On the left, eye level: you stand on the walkway and see what a visitor sees. On the right, bird&#x27;s-eye: the horizon lifts, and you see more of the layout and less of the experience. Both are one-point perspectives. WF06 asks for eye level.">
+              <figure><img src="/teaching/laar61400/assets/img/fast-graphics/24-eye.avif" alt="The High Line at eye level, a crowded walkway between buildings" width="611" height="447" loading="lazy"></figure><figure><img src="/teaching/laar61400/assets/img/fast-graphics/24-bird.avif" alt="The High Line from above, walkway and benches receding to the river" width="658" height="439" loading="lazy"></figure>
+            </div>
+
+            <div class="slide auto-rows" data-cap="Constructing a perspective, and the bird&#x27;s-eye view" data-credit="Labels: 视平线 eye-level line · 灭点 vanishing point." data-notes="Construction diagrams for one- and two-point perspective, with the eye-level line (视平线) and the vanishing point (灭点) labeled, and two bird&#x27;s-eye drawings below. In a bird&#x27;s-eye view the horizon sits high or off the page, so the roofs and paths read like a plan in depth.">
+              <div class="row"><figure><img src="/teaching/laar61400/assets/img/fast-graphics/25-a.avif" alt="One-point perspective construction diagrams" width="368" height="585" loading="lazy"></figure><figure><img src="/teaching/laar61400/assets/img/fast-graphics/25-b.avif" alt="Two-point perspective construction diagrams" width="467" height="563" loading="lazy"></figure></div><div class="row"><figure><img src="/teaching/laar61400/assets/img/fast-graphics/25-c.avif" alt="Bird&#x27;s-eye drawing of low buildings and courtyards" width="841" height="417" loading="lazy"></figure><figure><img src="/teaching/laar61400/assets/img/fast-graphics/25-d.avif" alt="Bird&#x27;s-eye drawing of a dense city block" width="812" height="604" loading="lazy"></figure></div>
+            </div>
+
+            <div class="slide auto" data-cap="Contrast: plants white, hardscape dense" data-credit="The High Line, New York." data-notes="The most useful move in a fast perspective. Trace every line in the photo and you get the middle drawing: all one grey, nothing reads. The right drawing makes a choice. Plants are outlined and left white. Hardscape, the buildings, the decking, the railings, is drawn densely and dark. The contrast does the work that color would do.">
+              <figure><img src="/teaching/laar61400/assets/img/fast-graphics/26-photo.avif" alt="Photo of the High Line walkway with planting and buildings" width="612" height="358" loading="lazy"></figure><figure data-mark="✗"><img src="/teaching/laar61400/assets/img/fast-graphics/26-flat.avif" alt="Even-weight line tracing of the photo, flat and grey" width="1170" height="714" loading="lazy"></figure><figure data-mark="✓"><img src="/teaching/laar61400/assets/img/fast-graphics/26-contrast.avif" alt="Sketch with white plants and dense dark hardscape" width="1170" height="714" loading="lazy"></figure>
+            </div>
+
+            <div class="slide auto" data-cap="Outline the plants, pack the hardscape" data-credit="The High Line, New York." data-notes="The same move on a busier scene. The flat tracing turns to grey noise again. The contrast version keeps the tree crowns light and pushes the deck boards, benches, and windows dark, so the planting comes forward. Say it back: outline the plants and leave them white; draw the hardscape densely, the decking, buildings, benches, pools, bridges, and sculpture.">
+              <figure><img src="/teaching/laar61400/assets/img/fast-graphics/27-photo.avif" alt="Photo of people on a High Line deck with trees and benches" width="1600" height="1021" loading="lazy"></figure><figure data-mark="✗"><img src="/teaching/laar61400/assets/img/fast-graphics/27-flat.avif" alt="Even-weight line tracing of the scene" width="1161" height="741" loading="lazy"></figure><figure data-mark="✓"><img src="/teaching/laar61400/assets/img/fast-graphics/27-contrast.avif" alt="Sketch with light tree crowns and dark deck and buildings" width="1161" height="741" loading="lazy"></figure>
+            </div>
+
+
+            <div class="slide single" data-cap="Practice: a black-and-white sketch in five minutes" data-credit="The High Line, New York." data-notes="Five minutes, on trace, from this photo. Find the horizon first; it is at the walkers&#x27; eyes. Then outline the planting and pack the bench and the deck. Stop at five minutes, finished or not.">
+              <img src="/teaching/laar61400/assets/img/fast-graphics/29-photo.avif" alt="Photo of two people walking past long timber benches under trees" width="1601" height="973" loading="lazy">
+            </div>
+
+            <div class="slide auto" data-cap="Practice: compare" data-notes="Two results from the same photo. The left one draws everything at one weight. The right one commits: dark bench and deck, white planting, a few heavy strokes in the background. Which side is yours closer to?">
+              <figure data-mark="✗"><img src="/teaching/laar61400/assets/img/fast-graphics/30-flat.avif" alt="Even-weight sketch of the bench scene" width="1129" height="695" loading="lazy"></figure><figure data-mark="✓"><img src="/teaching/laar61400/assets/img/fast-graphics/30-contrast.avif" alt="High-contrast sketch of the bench scene" width="1144" height="711" loading="lazy"></figure>
+            </div>
+
+            <div class="slide auto" data-cap="Three passes: frame, masses, contrast" data-notes="How the right-hand drawing was built, in three passes. First the frame: the horizon, the vanishing lines, and where you stand. Second the masses: plants and hardscape blocked in loosely. Third detail and contrast: darken the hardscape, keep the plants open. Each pass leaves a drawing you could stop at.">
+              <figure><img src="/teaching/laar61400/assets/img/fast-graphics/31-a.avif" alt="Pass one: horizon and vanishing lines over a faint trace" width="1144" height="711" loading="lazy"></figure><figure><img src="/teaching/laar61400/assets/img/fast-graphics/31-b.avif" alt="Pass two: loose masses of planting and benches" width="1170" height="727" loading="lazy"></figure><figure><img src="/teaching/laar61400/assets/img/fast-graphics/31-c.avif" alt="Pass three: dark hardscape and open planting" width="1144" height="711" loading="lazy"></figure>
+            </div>
+
+            <div class="slide auto" data-cap="Reference: streets and campus" data-notes="A few drawings to study. Look at the trees: outlines and open branching, never leaf by leaf. The buildings are drawn with steady lines and solid dark windows.">
+              <figure><img src="/teaching/laar61400/assets/img/fast-graphics/32-a.avif" alt="Pen perspective of a street with trees and apartment blocks" width="1416" height="1035" loading="lazy"></figure><figure><img src="/teaching/laar61400/assets/img/fast-graphics/32-b.avif" alt="Pen perspective of a campus with bare trees and a bridge" width="1438" height="1083" loading="lazy"></figure>
+            </div>
+
+            <div class="slide auto" data-cap="Reference: decks and water" data-notes="Two pencil perspectives of timber decks over water. The deck boards carry the perspective; everything else stays light.">
+              <figure><img src="/teaching/laar61400/assets/img/fast-graphics/33-a.avif" alt="Pencil perspective of a boardwalk winding to a pavilion" width="1498" height="953" loading="lazy"></figure><figure><img src="/teaching/laar61400/assets/img/fast-graphics/33-b.avif" alt="Pencil perspective of a stone wall and a deck over water" width="530" height="366" loading="lazy"></figure>
+            </div>
+
+            <div class="slide auto-rows" data-cap="Reference: tone and texture" data-notes="Three drawings in pure black-and-white tone: water as horizontal strokes, conifers as vertical hatching, a building left white against a dark tree line. Pick one and copy a small part of it on trace this week to feel how the tone is built. To close: in WF06 you draw a plan, two sections, and an eye-level perspective in one session. Outline the soft, pack the hard, and put a person in every drawing. Bring trace and two pens.">
+              <div class="row"><figure><img src="/teaching/laar61400/assets/img/fast-graphics/34-a.avif" alt="Pen landscape of a pond, rocks, and a pavilion" width="878" height="532" loading="lazy"></figure><figure><img src="/teaching/laar61400/assets/img/fast-graphics/34-b.avif" alt="Pen drawing of low timber houses under a large tree" width="812" height="562" loading="lazy"></figure></div><div class="row"><figure><img src="/teaching/laar61400/assets/img/fast-graphics/34-c.avif" alt="Pen drawing of a white pavilion against dark conifers over water" width="1123" height="546" loading="lazy"></figure></div>
+            </div>
+
+
+          </div>
+          <div class="deck-bar">
+            <button class="deck-btn" id="deck-prev" aria-label="Previous slide">&lsaquo;</button>
+            <div class="deck-count"><input id="deck-jump" type="text" inputmode="numeric" aria-label="Jump to slide" value="1"><span id="deck-total"> / 34</span></div>
+            <button class="deck-btn" id="deck-next" aria-label="Next slide">&rsaquo;</button>
+            <div class="deck-meta"><span class="deck-cap" id="deck-cap"></span><span id="deck-credit"></span></div>
+            <button class="deck-btn" id="deck-notes-toggle" aria-expanded="false" aria-controls="deck-notes" aria-label="Toggle speaker notes" title="Speaker notes"><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="2" y="2" width="12" height="12" rx="1.5"/><line x1="4.5" y1="5.5" x2="11.5" y2="5.5"/><line x1="4.5" y1="8" x2="11.5" y2="8"/><line x1="4.5" y1="10.5" x2="8.5" y2="10.5"/></svg></button>
+            <button class="deck-btn" id="deck-present" aria-label="Open Presenter View" title="Presenter View (synced second window)"><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="2" width="9" height="7" rx="1.2"/><path d="M3 11h5M5.5 9v2"/><rect x="11" y="5" width="4" height="4" rx="1" stroke-dasharray="1.8 1.2"/></svg></button>
+            <button class="deck-btn deck-fs" id="deck-fs" aria-label="Present full screen" title="Present (full screen)">&#x26F6;</button>
+          </div>
+          <div class="deck-notes" id="deck-notes" hidden></div>
+        </div>
+
+      </div>
+
+    </div>
+  </main>
+
+  <script src="/teaching/laar61400/assets/js/nav.js"></script>
+
+  <!-- ── deck carousel controller (shared, page-agnostic) ── -->
+  <script src="/assets/deck/deck.js"></script>
+
+</body>
+</html>

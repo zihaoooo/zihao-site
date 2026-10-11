@@ -341,6 +341,11 @@ ${PAGE_CSS}
     if(!stage) return;
     const FILL_W = 1.00;  // full-bleed left/right → width-bound groups align with the 12-col content edge
     const FILL_H = 0.90;  // breathing margin top/bottom
+    // aspect from the loaded image, else from its width/height attributes (a lazy image on a
+    // hidden slide has not loaded yet), else square
+    const arOf = fig => { const im = fig.querySelector('img'); if(!im) return 1;
+      const w = im.naturalWidth || +im.getAttribute('width'), h = im.naturalHeight || +im.getAttribute('height');
+      return (w && h) ? w/h : 1; };
     deck.querySelectorAll('.slide.auto').forEach(s=>{
       const W = s.clientWidth, H = s.clientHeight;
       if(!W || !H) return;
@@ -348,11 +353,7 @@ ${PAGE_CSS}
       if(!figs.length) return;
       const gap = parseFloat(getComputedStyle(s).columnGap) || 0;
       let sumA = 0;
-      const ars = figs.map(fig=>{
-        const im = fig.querySelector('img');
-        const a = (im && im.naturalWidth && im.naturalHeight) ? im.naturalWidth/im.naturalHeight : 1;
-        sumA += a; return a;
-      });
+      const ars = figs.map(fig=>{ const a = arOf(fig); sumA += a; return a; });
       const n = figs.length;
       const hByW = (FILL_W*W - (n-1)*gap) / sumA;  // tallest row that fits the width budget
       const hByH = FILL_H*H;                        // tallest row that fits the height budget
@@ -360,8 +361,6 @@ ${PAGE_CSS}
       figs.forEach((fig,k)=>{ fig.style.height = h+'px'; fig.style.width = (ars[k]*h)+'px'; });
     });
     // hero + stack: hero fills the frame (cover-cropped); two whole images stacked beside it
-    const arOf = fig => { const im = fig.querySelector('img');
-      return (im && im.naturalWidth && im.naturalHeight) ? im.naturalWidth/im.naturalHeight : 1; };
     deck.querySelectorAll('.slide.hero-l, .slide.hero-r').forEach(s=>{
       const W = s.clientWidth, H = s.clientHeight;
       if(!W || !H) return;
