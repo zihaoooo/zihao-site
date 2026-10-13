@@ -257,6 +257,22 @@
       <div class="wf-week-label">Session 2 — A Catalog of How Landforms Move Water</div>
     </div>
 
+    <!-- Session 2 video walkthrough -->
+    <div class="wf-step wf-full wf-nocheck">
+      <div class="wf-step-head">
+        <span class="wf-step-num">▶</span>
+        <span class="wf-step-label">Video Walkthrough — Steps 06–12</span>
+      </div>
+      <div class="wf-step-body">
+        <div class="wf-step-desc">A narrated recording of Steps 06–12, with chapters and captions (<kbd>CC</kbd>).</div>
+        <div class="wf-video">
+          <iframe src="https://www.youtube.com/embed/4Ey7JqWP-Wo" title="Workflow 04 Rhino Landform Modeling, Part 2 — narrated walkthrough, Steps 06–12" loading="lazy"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+        <a class="wf-video-link" href="https://youtu.be/4Ey7JqWP-Wo" target="_blank" rel="noopener">Open on YouTube for 1080p ↗</a>
+      </div>
+    </div>
+
     <!-- Step 06 -->
     <div class="wf-step">
       <div class="wf-step-head">
@@ -290,7 +306,7 @@
           <li><strong>In Rhino</strong>: redo Steps 00–01 (setup, slope). <kbd>DupBorder</kbd> the slope. Draw a footprint, <kbd>Project</kbd> it onto the slope, and draw its control: a point or a section curve.</li>
           <li><strong>In Grasshopper</strong>, save as <kbd>wf04-catalog.gh</kbd>. <strong>Curve</strong> param → right-click → Set Multiple Curves → the border, the projected footprint, and any section curves, all at once.</li>
           <li><strong>Point</strong> param → right-click → Set Multiple Points → every control point. Leave it empty if this landform has none.</li>
-          <li>Curve → <strong>Patch</strong> <kbd>Curves</kbd> input. Point → <kbd>Points</kbd> input. <strong>Number Slider</strong> (integer, 5–30) → <kbd>Spans</kbd>.</li>
+          <li>Curve → <strong>Patch</strong> <kbd>Curves</kbd> input. Point → <kbd>Points</kbd> input.</li>
           <li><strong>Contour</strong> → Patch output → <kbd>Shape</kbd>; <strong>Number Slider</strong> (0.5–5) → <kbd>Distance</kbd>.</li>
         </ul>
         <div class="wf-note">This is Step 03 wired once. Every input stays a Rhino object you can edit: drag a point, reshape a section curve with <kbd>F10</kbd>, and the Patch follows. For a new footprint or an added section curve, run Set Multiple Curves again.</div>
@@ -366,7 +382,8 @@
       <div class="wf-step-body">
         <div class="wf-step-desc">A small-multiple grid: twelve equal frames, four across and three down, each with a caption underneath.</div>
         <ul class="wf-tips">
-          <li>Draw one frame with the Rectangle Frame tool <kbd>F</kbd> and its caption frame under it. Select both → Step and Repeat <kbd>Ctrl Alt U</kbd> → <strong>Create as grid</strong>, 3 rows × 4 columns.</li>
+          <li>Rectangle Frame tool <kbd>F</kbd>. Start the drag at the top-left margin corner and keep the mouse held down: <kbd>→</kbd> adds a column, <kbd>↑</kbd> adds a row (<kbd>←</kbd> <kbd>↓</kbd> take one away). Stop at 4 columns and 3 rows, then let go: one drag makes the whole grid.</li>
+          <li>Still dragging, hold <kbd>Ctrl</kbd> and press the arrows to change the gaps: <kbd>←</kbd> <kbd>→</kbd> for columns, <kbd>↑</kbd> <kbd>↓</kbd> for rows. Leave room under each row for a caption.</li>
           <li>Select the image frames → <kbd>Ctrl D</kbd> → select all twelve PNGs → click each frame in turn to place them</li>
           <li>Select the image frames → <kbd>Ctrl Alt Shift E</kbd> (Fit Content Proportionally). The captures share one size, so they land at one scale.</li>
           <li>Caption format: landform · what water does · one observation</li>
@@ -384,7 +401,8 @@
       </div>
       <div class="wf-step-body">
         <ul class="wf-tips">
-          <li><kbd>Ctrl E</kbd> → PDF (Print) with bleed and crop marks for physical output</li>
+          <li><kbd>Ctrl E</kbd> → Adobe PDF (Interactive). It is fine for screens and for everyday printing.</li>
+          <li>Use Adobe PDF (Print) when the sheet goes to a print shop or into a bound book: it adds bleed, crop marks and print color settings</li>
           <li>Package <kbd>Ctrl Alt Shift P</kbd> to collect the InDesign file and every linked image in one folder</li>
           <li>Submit the PDF to the Miro board</li>
         </ul>
