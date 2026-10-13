@@ -22,7 +22,7 @@
         <span class="panel-link-num">01</span>AutoCAD Site Drafting
       </a>
       <a class="panel-link" href="/teaching/laar61400/workflows/wf02-sketch-portfolio.html">
-        <span class="panel-link-num">02</span>Hybrid Drawing + Layout
+        <span class="panel-link-num">02</span>Hybrid Drawing
       </a>
       <a class="panel-link" href="/teaching/laar61400/workflows/wf03-urban-context.html">
         <span class="panel-link-num">03</span>Urban Context Mapping
@@ -66,7 +66,7 @@
     <div class="wf-index">WF 04</div>
     <div class="wf-header-text">
       <div class="wf-title">Rhino Landform Modeling</div>
-      <div class="wf-subtitle">Rhino + Grasshopper → Isometric Pages</div>
+      <div class="wf-subtitle">Rhino + Grasshopper → InDesign Catalog</div>
     </div>
   </div>
 
@@ -74,6 +74,7 @@
   <div class="wf-spec">
     <div class="wf-spec-item"><span class="wf-spec-label">Length</span><span class="wf-spec-value">2 sessions</span></div>
     <div class="wf-spec-item"><span class="wf-spec-label">Sheet</span><span class="wf-spec-value">11" × 17"</span></div>
+    <div class="wf-spec-item"><span class="wf-spec-label">Format</span><span class="wf-spec-value">InDesign → PDF</span></div>
     <div class="wf-spec-item wf-spec-due"><span class="wf-spec-label">Due</span><span class="wf-spec-value">Thu Oct 22</span></div>
   </div>
   <!-- Learning objectives -->
@@ -89,11 +90,17 @@
   </div>
 
   <div class="wf-outcome">
-    <strong>Assignment</strong><span>A catalog of three landform types built by hand in Rhino, then combined on the 180×300 ft site as a live Grasshopper definition: four 11×17 isometric pages, one per landform and one of the combined site.</span>
+    <strong>Assignment</strong><del style="display:block;max-width:64ch;color:var(--gray-500);">A catalog of three landform types built by hand in Rhino, then combined on the 180×300 ft site as a live Grasshopper definition: four 11×17 isometric pages, one per landform and one of the combined site.</del><span><strong>Updated:</strong> one 11×17 page: a small-multiple catalog of twelve landforms on the same slope, each moving water a different way, built from one live Grasshopper definition and laid out in InDesign as a 4×3 grid, exported as a PDF.</span>
     <div class="wf-actions">
       <a class="wf-btn" href="https://miro.com/app/board/uXjVH3zpADk=/?share_link_id=760271312933" target="_blank" rel="noopener">Submit to Miro board<span class="wf-btn-arrow" aria-hidden="true">↗</span></a>
       <span class="wf-btn-note">Password: &quot;c*****2026&quot;, shared via email</span>
     </div>
+  </div>
+
+  <div class="wf-ongoing">
+    <strong>Final Integrated Drawing Set (due Dec 21)</strong>
+    <p>The semester's final set is an InDesign document too. Keep this catalog file: the final set is built the same way, with each workflow's PDF placed behind a small chapter page.</p>
+    <p><kbd>Ctrl D</kbd> places a PDF; tick <strong>Show Import Options</strong> to choose which pages.</p>
   </div>
 
   <!-- Pipeline strip -->
@@ -102,7 +109,8 @@
     <div class="wf-pipe-step"><div class="wf-pipe-node" style="background:#e8f5e8;color:#2a6a2a;">Grasshopper</div><div class="wf-pipe-arrow">→</div></div>
     <div class="wf-pipe-step"><div class="wf-pipe-node wf-pipe-tool">Bake</div><div class="wf-pipe-arrow">→</div></div>
     <div class="wf-pipe-step"><div class="wf-pipe-node wf-pipe-tool">ViewCaptureToFile</div><div class="wf-pipe-arrow">→</div></div>
-    <div class="wf-pipe-step"><div class="wf-pipe-node wf-pipe-tool">4 Isometric Pages</div></div>
+    <div class="wf-pipe-step"><div class="wf-pipe-node wf-pipe-tool">InDesign</div><div class="wf-pipe-arrow">→</div></div>
+    <div class="wf-pipe-step"><div class="wf-pipe-node">Catalog Grid</div></div>
   </div>
 
   <!-- Steps grid -->
@@ -110,7 +118,7 @@
 
     <!-- Session 1 label -->
     <div class="wf-step wf-full" style="background:none;border:none;padding:0;margin-top:4px;">
-      <div class="wf-week-label">Session 1 — A Catalog of Landforms, by Hand</div>
+      <div class="wf-week-label">Session 1 — One Landform, Two Ways, by Hand</div>
     </div>
 
     <!-- Session 1 video walkthrough -->
@@ -240,76 +248,19 @@
           <li>Double-click → <kbd>Contour</kbd>. Wire Brep → <kbd>Shape</kbd> input</li>
           <li>Double-click → <kbd>Number Slider</kbd> (0.5–5) → <kbd>Distance</kbd> input. Drag it and watch.</li>
         </ul>
-        <div class="wf-note">Compare A and B. In A, contours bend outside the footprint. In B, they kink at the breakline and stay straight beyond it. Session 2 builds the whole site with Method A.</div>
+        <div class="wf-note">Compare A and B. In A, contours bend outside the footprint. In B, they kink at the breakline and stay straight beyond it. Session 2 turns Method A into a definition and builds a catalog with it.</div>
       </div>
+    </div>
+
+    <!-- Session 2 label -->
+    <div class="wf-step wf-full" style="background:none;border:none;padding:0;margin-top:4px;">
+      <div class="wf-week-label">Session 2 — A Catalog of How Landforms Move Water</div>
     </div>
 
     <!-- Step 06 -->
     <div class="wf-step">
       <div class="wf-step-head">
         <span class="wf-step-num">06</span>
-        <span class="wf-step-label">Build the Catalog</span>
-        <span class="wf-badge wf-badge-rh">Rhino</span>
-      </div>
-      <div class="wf-step-body">
-        <div class="wf-step-desc">Repeat Steps 02–04 for three landform types, each on its own copy of the slope, side by side. Pick Method A or B for each.</div>
-        <ul class="wf-tips">
-          <li><strong>Mound</strong> → control point above the slope. Sheds water.</li>
-          <li><strong>Basin</strong> → control point below the slope. Holds water.</li>
-          <li><strong>Swale or ridge</strong> → an open curve inside the footprint, moved below or above the slope, instead of a point. Directs water.</li>
-        </ul>
-        <div class="wf-note">Add all three to the Brep param (Set Multiple Breps) and read the contours. Where does water go on each?</div>
-      </div>
-    </div>
-
-    <!-- Step 07 -->
-    <div class="wf-step">
-      <div class="wf-step-head">
-        <span class="wf-step-num">07</span>
-        <span class="wf-step-label">Capture the Catalog Isometrics</span>
-        <span class="wf-badge wf-badge-rh">Rhino</span>
-      </div>
-      <div class="wf-step-body">
-        <div class="wf-step-desc">One 11×17 isometric page per landform, with its contours. Three pages.</div>
-        <ul class="wf-tips">
-          <li>Right-click the Contour <kbd>Contours</kbd> output → <strong>Bake</strong>, so the contours are real Rhino curves</li>
-          <li>In any viewport title, right-click → <strong>Set View</strong> → <strong>Isometric</strong> → SW, SE, NE, or NW, whichever reads best</li>
-          <li>Type <kbd>PrintDisplay</kbd> → On, to show lineweights in the viewport</li>
-          <li>Zoom so one landform fills the view (<kbd>Zoom</kbd> → Selected)</li>
-          <li>Type <kbd>ViewCaptureToFile</kbd> → size <kbd>17 × 11</kbd> in, <kbd>300</kbd> dpi → uncheck Grid and Axes → Save as PNG</li>
-          <li>Check <strong>Transparent background</strong> if the image goes onto a colored board</li>
-        </ul>
-        <div class="wf-note">ViewCaptureToFile renders the active viewport at any size, so it stays sharp in print, unlike a screenshot. These are pages 1–3. Want to change a landform now? Delete it and redo its steps by hand. Session 2 removes that loop.</div>
-      </div>
-    </div>
-
-    <!-- Session 2 label -->
-    <div class="wf-step wf-full" style="background:none;border:none;padding:0;margin-top:4px;">
-      <div class="wf-week-label">Session 2 — Combine Them in Grasshopper</div>
-    </div>
-
-    <!-- Step 08 -->
-    <div class="wf-step">
-      <div class="wf-step-head">
-        <span class="wf-step-num">08</span>
-        <span class="wf-step-label">Set Up the Site</span>
-        <span class="wf-badge wf-badge-rh">Rhino</span>
-      </div>
-      <div class="wf-step-body">
-        <div class="wf-step-desc">Start from scratch: a new Rhino file, saved as <kbd>wf04-site.3dm</kbd>. Redo Steps 00–01 (setup, slope).</div>
-        <ul class="wf-tips">
-          <li>Draw the three footprints from your catalog on the one slope. Keep them from touching.</li>
-          <li>Add each one's control: a point or a section curve</li>
-          <li><kbd>DupBorder</kbd> → the slope → its edge as a curve</li>
-        </ul>
-        <div class="wf-note">Rhino only holds these inputs. Everything after happens in Grasshopper. Save the definition as <kbd>wf04-site.gh</kbd>.</div>
-      </div>
-    </div>
-
-    <!-- Step 09 -->
-    <div class="wf-step">
-      <div class="wf-step-head">
-        <span class="wf-step-num">09</span>
         <span class="wf-step-label">Grasshopper Basics</span>
         <span class="wf-badge wf-badge-gh">Grasshopper</span>
       </div>
@@ -318,10 +269,74 @@
         <ul class="wf-tips">
           <li><strong>Add a component</strong>: double-click the empty canvas → type its name → Enter</li>
           <li><strong>Inputs</strong> on the left, <strong>outputs</strong> on the right. Drag a wire from an output to an input.</li>
-          <li><strong>Params</strong> (Surface, Curve, Point) hold Rhino geometry: right-click → <strong>Set One …</strong> → click it in Rhino</li>
+          <li><strong>Params</strong> (Surface, Curve, Point) hold Rhino geometry: right-click → <strong>Set One …</strong> or <strong>Set Multiple …</strong> → click it in Rhino</li>
           <li>Hover any input to see what it expects. Orange = warning, red = error.</li>
           <li>Grasshopper geometry is a preview only. It becomes real Rhino geometry when you <strong>Bake</strong> it.</li>
         </ul>
+      </div>
+    </div>
+
+    <!-- Step 07 -->
+    <div class="wf-step">
+      <div class="wf-step-head">
+        <span class="wf-step-num">07</span>
+        <span class="wf-step-label">Method A as a Definition</span>
+        <span class="wf-badge wf-badge-rh">Rhino</span>
+        <span class="wf-badge wf-badge-gh">Grasshopper</span>
+      </div>
+      <div class="wf-step-body">
+        <div class="wf-step-desc">Start a new Rhino file, <kbd>wf04-catalog.3dm</kbd>. Redo Steps 00–01 (setup, slope), draw one footprint and its control, and <kbd>DupBorder</kbd> the slope. Rhino now only holds the inputs. Save the definition as <kbd>wf04-catalog.gh</kbd>.</div>
+        <ul class="wf-tips">
+          <li><strong>Surface</strong> param → the slope. <strong>Curve</strong> param → the border.</li>
+          <li><strong>Curve</strong> param → the footprint → <strong>Project</strong> (footprint → <kbd>Curve</kbd> input, slope → <kbd>Brep</kbd> input, <strong>Unit Z</strong> → <kbd>Direction</kbd> input)</li>
+          <li>A <strong>Point</strong> param and a <strong>Curve</strong> param for the controls. Fill whichever this landform uses; Set Multiple takes more than one.</li>
+          <li><strong>Merge</strong> → the border, the projected footprint, the control curves → <strong>Patch</strong> <kbd>Curves</kbd> input. Control points → <kbd>Points</kbd> input.</li>
+          <li><strong>Number Slider</strong> (integer, 5–30) → <kbd>Spans</kbd>. <strong>Contour</strong> → Patch output → <kbd>Shape</kbd>; <strong>Number Slider</strong> (0.5–5) → <kbd>Distance</kbd>.</li>
+        </ul>
+        <div class="wf-note">This is Step 03 wired once. From here on, a new landform is a new input, not a new set of steps.</div>
+      </div>
+    </div>
+
+    <!-- Step 08 -->
+    <div class="wf-step">
+      <div class="wf-step-head">
+        <span class="wf-step-num">08</span>
+        <span class="wf-step-label">Build the Catalog</span>
+        <span class="wf-badge wf-badge-rh">Rhino</span>
+        <span class="wf-badge wf-badge-gh">Grasshopper</span>
+      </div>
+      <div class="wf-step-body">
+        <div class="wf-step-desc">Twelve landforms on the same slope, each doing something different with water. Edit the footprint and controls in Rhino and the definition reruns. When one reads right, right-click the Patch and Contour outputs → <strong>Bake</strong> → onto its own layer (<kbd>LF-01-MOUND</kbd>, <kbd>LF-02-BASIN</kbd> …), then hide that layer and shape the next.</div>
+        <ul class="wf-tips">
+          <li><strong>Mound</strong> → point above the slope. <strong>Sheds</strong> water outward.</li>
+          <li><strong>Basin</strong> → point below the slope. <strong>Holds</strong> water.</li>
+          <li><strong>Swale</strong> → curve below the slope, running downhill. <strong>Carries</strong> water along it.</li>
+          <li><strong>Ridge</strong> → curve above the slope, running downhill. <strong>Splits</strong> water to either side.</li>
+          <li><strong>Berm</strong> → curve above the slope, running across it. <strong>Checks</strong> water and ponds it uphill.</li>
+          <li><strong>Saddle</strong> → two points above the slope. Water <strong>funnels</strong> through the low pass between them.</li>
+          <li>Then vary and combine: a berm with a gap, a basin with a low notch that spills, a swale that bends, a mound off-center. Every frame should show water doing something the others don't.</li>
+        </ul>
+        <div class="wf-note">Change one thing at a time and read the contours after each change. Try the control higher, lower, off-center; try the footprint longer or narrower. Keep the version where the water behavior is clearest.</div>
+      </div>
+    </div>
+
+    <!-- Step 09 -->
+    <div class="wf-step">
+      <div class="wf-step-head">
+        <span class="wf-step-num">09</span>
+        <span class="wf-step-label">Capture the Catalog</span>
+        <span class="wf-badge wf-badge-rh">Rhino</span>
+      </div>
+      <div class="wf-step-body">
+        <div class="wf-step-desc">One image per landform, all framed the same way. A small multiple only works when every frame matches.</div>
+        <ul class="wf-tips">
+          <li>In any viewport title, right-click → <strong>Set View</strong> → <strong>Isometric</strong> → SW, SE, NE, or NW, whichever reads best</li>
+          <li><kbd>Zoom</kbd> → Extents on the slope, then <kbd>NamedView</kbd> → Save as <kbd>catalog</kbd>. Restore it before every capture.</li>
+          <li>Type <kbd>PrintDisplay</kbd> → On, to show lineweights in the viewport</li>
+          <li>Show one landform layer at a time</li>
+          <li><kbd>ViewCaptureToFile</kbd> → <kbd>6 × 4</kbd> in, <kbd>300</kbd> dpi → uncheck Grid and Axes → check <strong>Transparent background</strong> → Save as PNG, named <kbd>lf-01-mound.png</kbd> and so on</li>
+        </ul>
+        <div class="wf-note">ViewCaptureToFile renders the active viewport at any size, so it stays sharp in print, unlike a screenshot. Same view, same size, same settings: then the only thing that changes from frame to frame is the landform.</div>
       </div>
     </div>
 
@@ -329,17 +344,15 @@
     <div class="wf-step">
       <div class="wf-step-head">
         <span class="wf-step-num">10</span>
-        <span class="wf-step-label">Project the Footprints</span>
-        <span class="wf-badge wf-badge-gh">Grasshopper</span>
+        <span class="wf-step-label">Set Up the Sheet</span>
+        <span class="wf-badge wf-badge-id">InDesign</span>
       </div>
       <div class="wf-step-body">
-        <div class="wf-step-desc">Set each footprint on existing grade (Method A):</div>
+        <div class="wf-step-desc">New document: one page, 11"×17" landscape, 0.125" bleed, 0.5" margins. Define paragraph styles and apply them every time, so no text is formatted by hand.</div>
         <ul class="wf-tips">
-          <li><strong>Surface</strong> param → Set One Surface → the slope</li>
-          <li><strong>Curve</strong> param → Set One Curve → the border</li>
-          <li>For each landform: <strong>Curve</strong> param → its footprint → <strong>Project</strong> (footprint → <kbd>Curve</kbd> input, slope → <kbd>Brep</kbd> input, <strong>Unit Z</strong> → <kbd>Direction</kbd> input). Add a param for its control: <strong>Point</strong> or <strong>Curve</strong>. Group them and label the group.</li>
+          <li>Paragraph Styles <kbd>F11</kbd>: Title, Caption, at minimum</li>
+          <li>Title strip along the top: the catalog's name, your name, the course</li>
         </ul>
-        <div class="wf-note">The slope is only a reference here: Project needs it to find existing grade. The final terrain is one new surface.</div>
       </div>
     </div>
 
@@ -347,18 +360,18 @@
     <div class="wf-step">
       <div class="wf-step-head">
         <span class="wf-step-num">11</span>
-        <span class="wf-step-label">Patch Everything → Contour</span>
-        <span class="wf-badge wf-badge-gh">Grasshopper</span>
+        <span class="wf-step-label">Build the Grid</span>
+        <span class="wf-badge wf-badge-id">InDesign</span>
       </div>
       <div class="wf-step-body">
-        <div class="wf-step-desc">One Patch builds the whole site:</div>
+        <div class="wf-step-desc">A small-multiple grid: twelve equal frames, four across and three down, each with a caption underneath.</div>
         <ul class="wf-tips">
-          <li><strong>Merge</strong> → the border, the three projected footprints, and any section curves → <strong>Patch</strong> <kbd>Curves</kbd> input</li>
-          <li><strong>Merge</strong> → the control points → <strong>Patch</strong> <kbd>Points</kbd> input</li>
-          <li><strong>Number Slider</strong> (integer, 5–30) → <kbd>Spans</kbd> input. More spans follow the inputs more closely.</li>
-          <li><strong>Contour</strong> → Patch output → <kbd>Shape</kbd> input; <strong>Number Slider</strong> (0.5–5) → <kbd>Distance</kbd> input</li>
+          <li>Draw one frame with the Rectangle Frame tool <kbd>F</kbd> and its caption frame under it. Select both → Step and Repeat <kbd>Ctrl Alt U</kbd> → <strong>Create as grid</strong>, 3 rows × 4 columns.</li>
+          <li>Select the image frames → <kbd>Ctrl D</kbd> → select all twelve PNGs → click each frame in turn to place them</li>
+          <li>Select the image frames → <kbd>Ctrl Alt Shift E</kbd> (Fit Content Proportionally). The captures share one size, so they land at one scale.</li>
+          <li>Caption format: landform · what water does · one observation</li>
         </ul>
-        <div class="wf-note">One surface, so there is nothing to split or join. The landforms share one field: each one pulls grade around it, and two close together blend.</div>
+        <div class="wf-note">The grid does the comparing for you. Order the frames so neighbors make a point: mound next to basin, swale next to ridge, each row a family.</div>
       </div>
     </div>
 
@@ -366,36 +379,14 @@
     <div class="wf-step">
       <div class="wf-step-head">
         <span class="wf-step-num">12</span>
-        <span class="wf-step-label">Compose + Iterate</span>
-        <span class="wf-badge wf-badge-rh">Rhino</span>
-        <span class="wf-badge wf-badge-gh">Grasshopper</span>
-      </div>
-      <div class="wf-step-body">
-        <div class="wf-step-desc">Edit the inputs in Rhino and watch everything update. No redoing steps.</div>
-        <ul class="wf-tips">
-          <li>Move a footprint and its control → reposition a landform on the site</li>
-          <li>Move a control point up or down → taller mound, deeper basin</li>
-          <li>Edit a section curve (<kbd>F10</kbd> control points) → reshape its profile</li>
-          <li>Edit a footprint (<kbd>F10</kbd> control points) → change where it stops</li>
-          <li>Move two landforms closer → watch them merge into one form</li>
-          <li>Read the whole site: does water shed off the mound, run down the swale, collect in the basin?</li>
-        </ul>
-        <div class="wf-note">The three landforms are now one system. Iterate until the contours read as a deliberate site.</div>
-      </div>
-    </div>
-
-    <!-- Step 13 -->
-    <div class="wf-step">
-      <div class="wf-step-head">
-        <span class="wf-step-num">13</span>
-        <span class="wf-step-label">Bake + Capture the Site Isometric</span>
-        <span class="wf-badge wf-badge-rh">Rhino</span>
+        <span class="wf-step-label">Export + Submit</span>
+        <span class="wf-badge wf-badge-id">InDesign</span>
       </div>
       <div class="wf-step-body">
         <ul class="wf-tips">
-          <li>Right-click the Contour <kbd>Contours</kbd> output → <strong>Bake</strong> → layer <kbd>CONTOURS-DESIGN</kbd>. Bake the terrain too.</li>
-          <li>Capture an 11×17 isometric of the combined site with <kbd>ViewCaptureToFile</kbd>, same settings as Step 07. This is page 4.</li>
-          <li>Submit all four pages to the Miro board</li>
+          <li><kbd>Ctrl E</kbd> → PDF (Print) with bleed and crop marks for physical output</li>
+          <li>Package <kbd>Ctrl Alt Shift P</kbd> to collect the InDesign file and every linked image in one folder</li>
+          <li>Submit the PDF to the Miro board</li>
         </ul>
       </div>
     </div>
@@ -414,7 +405,7 @@
           <tr><td>click the slope, border, footprint, control</td><td><kbd>Surface</kbd> / <kbd>Curve</kbd> / <kbd>Point</kbd> params → Set One</td></tr>
           <tr><td><kbd>Project</kbd></td><td><kbd>Project</kbd></td></tr>
           <tr><td><kbd>Patch</kbd> (border + footprint + control)</td><td><kbd>Merge</kbd> → <kbd>Patch</kbd></td></tr>
-          <tr><td>repeat for each landform</td><td>one group per landform, all into one Patch</td></tr>
+          <tr><td>redo the steps for each landform</td><td>edit the inputs; the definition reruns</td></tr>
         </tbody>
       </table>
     </div>
@@ -446,6 +437,11 @@
       <a class="wf-download" href="/teaching/laar61400/assets/img/WF04/WF04_retaining-wall.gh" download>↓ Download example definition — WF04_retaining-wall.gh</a>
     </div>
   </details>
+
+  <div class="wf-aside">
+    <div class="wf-aside-title">InDesign and Coding Agents</div>
+    <div class="wf-step-desc">InDesign can also save as IDML (<kbd>File → Save As → InDesign Markup</kbd>). IDML is XML, a plain-text markup language, so a coding agent like Claude can read and edit it: restyle every caption, rebuild the grid, reorder the frames. Open the edited file back in InDesign.</div>
+  </div>
 
   <!-- Footer -->
   <div class="wf-footer">

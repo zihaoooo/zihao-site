@@ -20,9 +20,9 @@ highlighted `.panel-announce` block sitting directly under the brand block in ev
 
 ## Workflows (`workflows/`)
 - WF01 `wf01-autocad.html` — AutoCAD Site Drafting
-- WF02 `wf02-sketch-portfolio.html` — Hybrid Drawing + Layout (Part 1 Photoshop joiner + trace, Part 2 InDesign deck)
+- WF02 `wf02-sketch-portfolio.html` — Hybrid Drawing (Photoshop joiner + trace, one sheet)
 - WF03 `wf03-urban-context.html` — Urban Context Mapping
-- WF04 `wf04-landform-design.html` — Rhino Landform Modeling
+- WF04 `wf04-landform-design.html` — Rhino Landform Modeling (Session 2 ends with the InDesign intro: a 4×3 small-multiple landform catalog)
 - WF05 `wf05-meadow-parametric.html` — Attractor Fields (Grasshopper meadow)
 - WF06 `wf06-sketch-charrette.html` — Back to Basics, a hand charrette on a real Harlem triangle, kept nameless to students. Site identity, reveal plan and base-plan build steps: ../course-prep/laar61400/workflows/wf06-sketch-charrette/README.md (not published).
 - AI workflows are optional and ungraded; their guides live only in `/talks/agents-in-practice/` (try-rhino, try-context).
@@ -48,7 +48,7 @@ WF pages are hand-authored HTML only — the old per-workflow `.md` sources were
   say what to do; the assignment says what they make.
 - Assignment box (`.wf-outcome`): single `<strong>Assignment</strong>` label, one sentence, product-framed, format folded in. No separate Deliverable section.
 - Ongoing box (`.wf-ongoing`): optional, directly under the assignment — a semester-long deliverable
-  this workflow feeds (e.g. WF02 starts the Final Integrated Drawing Set in InDesign).
+  this workflow feeds (e.g. WF04 starts the Final Integrated Drawing Set in InDesign).
 - `.wf-outcome > strong` is `display:block` in `workflow-shared.css` — scope to `>` to avoid breaking `<strong>` inside `.wf-tips` list items
 - Copy style: match WF07 tone — short, imperative, no AI-sounding parallel structures
 - Walkthrough video (see WF04): a `.wf-step wf-full wf-nocheck` card right under its Session
