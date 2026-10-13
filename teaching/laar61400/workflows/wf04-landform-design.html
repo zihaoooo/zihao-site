@@ -285,15 +285,15 @@
         <span class="wf-badge wf-badge-gh">Grasshopper</span>
       </div>
       <div class="wf-step-body">
-        <div class="wf-step-desc">Start a new Rhino file, <kbd>wf04-catalog.3dm</kbd>. Redo Steps 00–01 (setup, slope), draw one footprint and its control, and <kbd>DupBorder</kbd> the slope. Rhino now only holds the inputs. Save the definition as <kbd>wf04-catalog.gh</kbd>.</div>
+        <div class="wf-step-desc">Start a new Rhino file, <kbd>wf04-catalog.3dm</kbd>. Set up the inputs in Rhino first, the way you did in Session 1. Grasshopper only references them.</div>
         <ul class="wf-tips">
-          <li><strong>Surface</strong> param → the slope. <strong>Curve</strong> param → the border.</li>
-          <li><strong>Curve</strong> param → the footprint → <strong>Project</strong> (footprint → <kbd>Curve</kbd> input, slope → <kbd>Brep</kbd> input, <strong>Unit Z</strong> → <kbd>Direction</kbd> input)</li>
-          <li>A <strong>Point</strong> param and a <strong>Curve</strong> param for the controls. Fill whichever this landform uses; Set Multiple takes more than one.</li>
-          <li><strong>Merge</strong> → the border, the projected footprint, the control curves → <strong>Patch</strong> <kbd>Curves</kbd> input. Control points → <kbd>Points</kbd> input.</li>
-          <li><strong>Number Slider</strong> (integer, 5–30) → <kbd>Spans</kbd>. <strong>Contour</strong> → Patch output → <kbd>Shape</kbd>; <strong>Number Slider</strong> (0.5–5) → <kbd>Distance</kbd>.</li>
+          <li><strong>In Rhino</strong>: redo Steps 00–01 (setup, slope). <kbd>DupBorder</kbd> the slope. Draw a footprint, <kbd>Project</kbd> it onto the slope, and draw its control: a point or a section curve.</li>
+          <li><strong>In Grasshopper</strong>, save as <kbd>wf04-catalog.gh</kbd>. <strong>Curve</strong> param → right-click → Set Multiple Curves → the border, the projected footprint, and any section curves, all at once.</li>
+          <li><strong>Point</strong> param → right-click → Set Multiple Points → every control point. Leave it empty if this landform has none.</li>
+          <li>Curve → <strong>Patch</strong> <kbd>Curves</kbd> input. Point → <kbd>Points</kbd> input. <strong>Number Slider</strong> (integer, 5–30) → <kbd>Spans</kbd>.</li>
+          <li><strong>Contour</strong> → Patch output → <kbd>Shape</kbd>; <strong>Number Slider</strong> (0.5–5) → <kbd>Distance</kbd>.</li>
         </ul>
-        <div class="wf-note">This is Step 03 wired once. From here on, a new landform is a new input, not a new set of steps.</div>
+        <div class="wf-note">This is Step 03 wired once. Every input stays a Rhino object you can edit: drag a point, reshape a section curve with <kbd>F10</kbd>, and the Patch follows. For a new footprint or an added section curve, run Set Multiple Curves again.</div>
       </div>
     </div>
 
@@ -332,8 +332,8 @@
         <ul class="wf-tips">
           <li>In any viewport title, right-click → <strong>Set View</strong> → <strong>Isometric</strong> → SW, SE, NE, or NW, whichever reads best</li>
           <li><kbd>Zoom</kbd> → Extents on the slope, then <kbd>NamedView</kbd> → Save as <kbd>catalog</kbd>. Restore it before every capture.</li>
-          <li>Type <kbd>PrintDisplay</kbd> → On, to show lineweights in the viewport</li>
           <li>Show one landform layer at a time</li>
+          <li>The surface and its contours share a layer, so set the viewport to <strong>Rendered</strong> (the ▾ next to the viewport title → Rendered) before you capture</li>
           <li><kbd>ViewCaptureToFile</kbd> → <kbd>6 × 4</kbd> in, <kbd>300</kbd> dpi → uncheck Grid and Axes → check <strong>Transparent background</strong> → Save as PNG, named <kbd>lf-01-mound.png</kbd> and so on</li>
         </ul>
         <div class="wf-note">ViewCaptureToFile renders the active viewport at any size, so it stays sharp in print, unlike a screenshot. Same view, same size, same settings: then the only thing that changes from frame to frame is the landform.</div>
@@ -402,9 +402,9 @@
       <table class="wf-table">
         <thead><tr><th>Session 1 (Rhino, Method A)</th><th>Session 2 (Grasshopper)</th></tr></thead>
         <tbody>
-          <tr><td>click the slope, border, footprint, control</td><td><kbd>Surface</kbd> / <kbd>Curve</kbd> / <kbd>Point</kbd> params → Set One</td></tr>
-          <tr><td><kbd>Project</kbd></td><td><kbd>Project</kbd></td></tr>
-          <tr><td><kbd>Patch</kbd> (border + footprint + control)</td><td><kbd>Merge</kbd> → <kbd>Patch</kbd></td></tr>
+          <tr><td>click the border, footprint, control</td><td><kbd>Curve</kbd> / <kbd>Point</kbd> params → Set One</td></tr>
+          <tr><td><kbd>Project</kbd></td><td>stays in Rhino; the param references the projected curve</td></tr>
+          <tr><td><kbd>Patch</kbd> (border + footprint + control)</td><td><kbd>Curve</kbd> + <kbd>Point</kbd> → <kbd>Patch</kbd></td></tr>
           <tr><td>redo the steps for each landform</td><td>edit the inputs; the definition reruns</td></tr>
         </tbody>
       </table>
