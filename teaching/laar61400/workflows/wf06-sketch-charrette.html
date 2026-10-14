@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>WF 06 Back to Basics — LAAR 61400</title>
   <link rel="stylesheet" href="/teaching/laar61400/assets/css/main.css">
-  <link rel="stylesheet" href="/teaching/laar61400/assets/css/workflow-shared.css?v=5">
+  <link rel="stylesheet" href="/teaching/laar61400/assets/css/workflow-shared.css?v=6">
 </head>
 <body>
 
@@ -214,7 +214,7 @@
         <ul class="wf-tips">
           <li><strong>Plan, 1"=20'.</strong> Trace over the base plan, the scale of your WF01 drafting. Mark the section cut lines and add a small concept diagram.</li>
           <li><strong>Two sections, 1"=10'.</strong> At least six people in each, each doing something different: sitting, leaning, walking, waiting for a bus.</li>
-          <li><strong>Eye-level perspective.</strong> Stand somewhere in your plaza and draw what you see. Add a title and your name.</li>
+          <li><strong>Eye-level perspective.</strong> Stand somewhere in your plaza and draw what you see. Draw the same view at least three times, each on fresh trace, and keep every version. Add a title and your name to the last one.</li>
         </ul>
       </div>
     </div>
@@ -241,6 +241,71 @@
       </div>
     </div>
 
+    <div class="wf-session">
+      <span class="wf-session-num">Optional</span>
+      <span class="wf-session-label">AI Workflow: Draw, Render, Judge, Redraw</span>
+      <span class="wf-session-rule"></span>
+    </div>
+
+    <div class="wf-step wf-full wf-nocheck">
+      <div class="wf-step-head">
+        <span class="wf-step-num">AI</span>
+        <span class="wf-step-label">Render Your Perspective, Then Judge It</span>
+        <span class="wf-badge wf-badge-neutral">After class · Not graded</span>
+      </div>
+      <div class="wf-step-body">
+        <div class="wf-step-desc">After Session 2, you can test your perspective with an image model such as ChatGPT. Draw the view at least three times by hand first, then render your best version. Name the place, the season, the materials, and what people are doing in the prompt.</div>
+        <div class="wf-step-desc">Judge the render for shade, safety, and scale, and ask for a revision if it needs one. Carry what you learn back into the plan, sections, and perspective, and finish the sheets by hand. The examples below are my own sketches and renders for a plaza grove.</div>
+        <div class="wf-actions">
+          <a class="wf-btn" href="/teaching/laar61400/lectures/fast-graphics.html">Lecture: Fast Graphics<span class="wf-btn-arrow" aria-hidden="true">→</span></a>
+        </div>
+      </div>
+    </div>
+
+    <details class="wf-step wf-full wf-examples">
+      <summary class="wf-step-head">
+        <span class="wf-step-num">▸</span>
+        <span class="wf-step-label">Example: One View, Drawn Three Times</span>
+        <span class="wf-badge wf-badge-neutral">Optional</span>
+      </summary>
+      <div class="wf-step-body">
+        <div class="wf-example-grid wf-example-grid-3">
+          <figure>
+            <img src="/teaching/laar61400/assets/img/fast-graphics/iter-1.avif" alt="First pen sketch: a round seat around a tree at the center of a grove, buildings behind" width="1365" height="990" loading="lazy">
+            <figcaption>1</figcaption>
+          </figure>
+          <figure>
+            <img src="/teaching/laar61400/assets/img/fast-graphics/iter-2.avif" alt="Second sketch: the round seat moved aside with people on it, a large trunk in the foreground" width="1475" height="950" loading="lazy">
+            <figcaption>2</figcaption>
+          </figure>
+          <figure>
+            <img src="/teaching/laar61400/assets/img/fast-graphics/iter-3.avif" alt="Third sketch: a light grove with a round seat, a standing figure, and ferns in front" width="1705" height="1080" loading="lazy">
+            <figcaption>3</figcaption>
+          </figure>
+        </div>
+      </div>
+    </details>
+
+    <details class="wf-step wf-full wf-examples">
+      <summary class="wf-step-head">
+        <span class="wf-step-num">▸</span>
+        <span class="wf-step-label">Example: Render, Judge, Ask Again</span>
+        <span class="wf-badge wf-badge-neutral">Optional</span>
+      </summary>
+      <div class="wf-step-body">
+        <div class="wf-example-grid">
+          <figure>
+            <img src="/teaching/laar61400/assets/img/fast-graphics/render-1.avif" alt="First render: dense grove, low canopy, waist-high ferns" width="1448" height="1086" loading="lazy">
+            <figcaption>Render 1, from sketch 3: shaded, but the ferns and low canopy block every view across the plaza.</figcaption>
+          </figure>
+          <figure>
+            <img src="/teaching/laar61400/assets/img/fast-graphics/render-2.avif" alt="Second render: higher canopy, open gravel ground, low planting, clear views across the plaza" width="1448" height="1086" loading="lazy">
+            <figcaption>Render 2, after asking for a less dense, still shaded grove: higher canopy, open ground, clear sightlines.</figcaption>
+          </figure>
+        </div>
+      </div>
+    </details>
+
   </div><!-- /steps -->
 
   <div class="wf-aside">
@@ -263,7 +328,27 @@
     </div>
   </main>
 
+  <!-- Lightbox -->
+  <div class="wf-lightbox" id="lightbox"><img alt=""></div>
+
   <script src="/teaching/laar61400/assets/js/nav.js"></script>
   <script src="/teaching/laar61400/assets/js/wf-progress.js"></script>
+  <script>
+    (function () {
+      var box = document.getElementById('lightbox');
+      var boxImg = box.querySelector('img');
+      document.querySelectorAll('.wf-example-grid img').forEach(function (img) {
+        img.addEventListener('click', function () {
+          boxImg.src = img.src;
+          boxImg.alt = img.alt;
+          box.classList.add('open');
+        });
+      });
+      box.addEventListener('click', function () { box.classList.remove('open'); });
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') box.classList.remove('open');
+      });
+    })();
+  </script>
 </body>
 </html>

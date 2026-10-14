@@ -347,6 +347,7 @@
   gap: 12px;
   margin-bottom: 12px;
 }
+.wf-example-grid-3 { grid-template-columns: 1fr 1fr 1fr; }
 .wf-example-grid figure { margin: 0; }
 .wf-example-grid img {
   width: 100%;
