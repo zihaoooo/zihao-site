@@ -9,10 +9,13 @@
   <style>
     .rp-fig { margin: 14px 0 6px; }
     .rp-fig svg { display: block; width: 100%; height: auto; background: #fff; border: 1px solid var(--gray-200); border-radius: 4px; }
+    .rp-fig img { display: block; width: 100%; height: auto; border: 1px solid var(--gray-200); border-radius: 4px; }
     .rp-fig figcaption { font-size: 11px; color: var(--gray-500); margin-top: 5px; max-width: 64ch; }
     .rp-fig text { font-family: var(--font-mono); font-size: 11px; fill: var(--gray-700); }
     .rp-fig text.s { fill: var(--gray-900); font-weight: 500; }
     .rp-fig text.a { fill: var(--accent); }
+    .rp-pair { display: grid; grid-template-columns: minmax(0, 0.996fr) minmax(0, 1.778fr); gap: 12px; align-items: start; }
+    @media (max-width: 640px) { .rp-pair { grid-template-columns: 1fr; } }
     .rp-math { font-family: var(--font-math); font-size: 18px; color: var(--gray-900); margin: 10px 0; }
     .rp-ctrl { display: flex; align-items: center; gap: 12px; margin: 10px 0 4px; font-family: var(--font-mono); font-size: 12px; color: var(--gray-700); }
     .rp-ctrl input { flex: 1; accent-color: var(--accent); }
@@ -402,8 +405,31 @@ minimum path      = 360 + 55 + 10       = 425'</div>
         <span class="wf-step-label">Check Before You Present</span>
       </div>
       <div class="wf-step-body">
+        <div class="wf-step-desc"><strong>Grade.</strong> <code>DraftAngleAnalysis</code> colors a surface by its steepness: the angle between the surface and the up direction, 90° for a flat floor, 0° for a wall. Draft angle = 90° − slope angle, so a 1:12 ramp reads 85.24°. Rhino paints everything below the lower number red and everything above the upper number blue, so set the two numbers close around the limit and the map turns into pass or fail.</div>
         <ul class="wf-tips">
-          <li><strong>Grade.</strong> <code>DraftAngleAnalysis</code> on the ramp, direction Z. A 1:12 surface reads 85.24°; anything lower is too steep.</li>
+          <li>Select the ramp, run <code>DraftAngleAnalysis</code>, keep the direction at CPlane Z.</li>
+          <li>Type <strong>85.3</strong> in the top box and <strong>85.2</strong> in the bottom box.</li>
+          <li>Blue passes, red fails, a green band sits right at 1:12. Flat landings read blue too.</li>
+          <li>For an exact number at one spot, run <code>DraftAnglePoint</code> and pick on the surface.</li>
+        </ul>
+        <div class="rp-pair">
+          <figure class="rp-fig">
+            <img src="/teaching/laar61400/assets/img/ramp-on-slope/draft-angle-panel.avif" width="467" height="469" loading="lazy" alt="Rhino's Draft angle analysis panel with 85.3 in the top box, 85.2 in the bottom box, direction CPlane Z">
+            <figcaption>The panel: 85.3 on top, 85.2 below.</figcaption>
+          </figure>
+          <figure class="rp-fig">
+            <img src="/teaching/laar61400/assets/img/ramp-on-slope/draft-angle-demo.avif" width="1200" height="675" loading="lazy" alt="A straight ramp in Rhino under draft angle analysis: the 1:13 run and the landings are blue, the 1:12 run green, the 1:10 run red">
+            <figcaption>Test ramp: three runs of 2.5' rise with 5' landings.</figcaption>
+          </figure>
+        </div>
+        <table class="wf-table">
+          <tr><th>Checking for</th><th>Limit</th><th>Bottom</th><th>Top</th></tr>
+          <tr><td>Ramp at the code limit, 1:12</td><td>85.24°</td><td>85.2</td><td>85.3</td></tr>
+          <tr><td>Ramp with tolerance, 1:13</td><td>85.60°</td><td>85.55</td><td>85.65</td></tr>
+          <tr><td>Walk, 1:20</td><td>87.14°</td><td>87.1</td><td>87.2</td></tr>
+        </table>
+        <div class="wf-step-desc">Then the rest of the list:</div>
+        <ul class="wf-tips">
           <li><strong>Plan length, not 3D length.</strong> <code>Length</code> measures in 3D, so a 30' run reads 30.10'. Check a flattened copy (<code>Project</code> to the CPlane).</li>
           <li><strong>Rise per run.</strong> 2.5' or less between landings.</li>
           <li><strong>Landings.</strong> 5' long; turn landings at least 5' × 5' and as wide as both ramps at a switchback.</li>
