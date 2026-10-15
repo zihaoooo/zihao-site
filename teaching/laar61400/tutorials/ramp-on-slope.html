@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ramp on a Slope — LAAR 61400</title>
+  <link rel="stylesheet" href="/teaching/laar61400/assets/css/main.css">
+  <link rel="stylesheet" href="/teaching/laar61400/assets/css/workflow-shared.css?v=6">
+  <style>
+    .rp-fig { margin: 14px 0 6px; }
+    .rp-fig svg { display: block; width: 100%; height: auto; background: #fff; border: 1px solid var(--gray-200); border-radius: 4px; }
+    .rp-fig figcaption { font-size: 11px; color: var(--gray-500); margin-top: 5px; max-width: 64ch; }
+    .rp-fig text { font-family: var(--font-mono); font-size: 11px; fill: var(--gray-700); }
+    .rp-fig text.s { fill: var(--gray-900); font-weight: 500; }
+    .rp-fig text.a { fill: var(--accent); }
+    .rp-math { font-family: var(--font-math); font-size: 18px; color: var(--gray-900); margin: 10px 0; }
+    .rp-ctrl { display: flex; align-items: center; gap: 12px; margin: 10px 0 4px; font-family: var(--font-mono); font-size: 12px; color: var(--gray-700); }
+    .rp-ctrl input { flex: 1; accent-color: var(--accent); }
+    .rp-out { display: flex; flex-wrap: wrap; gap: 8px 22px; font-family: var(--font-mono); font-size: 12px; color: var(--gray-700); }
+    .rp-out b { color: var(--gray-900); font-weight: 500; }
+  </style>
+</head>
+<body>
+
+  <!-- Side panel -->
+  <nav id="sidepanel">
+    <a class="panel-brand" href="/teaching/laar61400/index.html">
+      <span class="panel-brand-title">LAAR 61400</span>
+      <span class="panel-brand-sub">Representation + Computation</span>
+    </a>
+    <a class="panel-announce" href="/teaching/laar61400/announcements.html"><span class="panel-announce-tag">New</span>Announcements</a>
+    <div class="panel-section">
+      <span class="panel-section-label">Workflows</span>
+      <a class="panel-link" href="/teaching/laar61400/workflows/wf01-autocad.html"><span class="panel-link-num">01</span>AutoCAD Site Drafting</a>
+      <a class="panel-link" href="/teaching/laar61400/workflows/wf02-sketch-portfolio.html"><span class="panel-link-num">02</span>Hybrid Drawing</a>
+      <a class="panel-link" href="/teaching/laar61400/workflows/wf03-urban-context.html"><span class="panel-link-num">03</span>Urban Context Mapping</a>
+      <a class="panel-link" href="/teaching/laar61400/workflows/wf04-landform-design.html"><span class="panel-link-num">04</span>Rhino Landform Modeling</a>
+      <a class="panel-link" href="/teaching/laar61400/workflows/wf05-meadow-parametric.html"><span class="panel-link-num">05</span>Attractor Fields</a>
+      <a class="panel-link" href="/teaching/laar61400/workflows/wf06-sketch-charrette.html"><span class="panel-link-num">06</span>Back to Basics</a>
+    </div>
+    <div class="panel-section">
+      <span class="panel-section-label">Lectures</span>
+      <a class="panel-link" href="/teaching/laar61400/lectures/drawing-as-thinking.html">Drawing as Thinking Tool</a>
+      <a class="panel-link" href="/teaching/laar61400/lectures/computational-thinking.html">Computational Thinking</a>
+      <a class="panel-link" href="/teaching/laar61400/lectures/graphic-design-101.html">Graphic Design 101</a>
+      <a class="panel-link" href="/teaching/laar61400/lectures/gis-spatial-data.html">Intro to GIS / Spatial Data</a>
+      <a class="panel-link" href="/teaching/laar61400/lectures/modeling-as-thinking.html">Modeling as Thinking</a>
+      <a class="panel-link" href="/teaching/laar61400/lectures/cybernetics-and-design.html">Cybernetics and Design</a>
+      <a class="panel-link" href="/teaching/laar61400/lectures/fast-graphics.html">Fast Graphics</a>
+      <a class="panel-link" href="/teaching/laar61400/lectures/web-coding-literacy.html">Web Coding Literacy (optional)</a>
+    </div>
+    <div class="panel-section">
+      <span class="panel-section-label">Shortcuts &amp; Reference</span>
+      <a class="panel-link" href="/teaching/laar61400/shortcuts/file-types.html">File Types Reference</a>
+      <a class="panel-link" href="/teaching/laar61400/shortcuts/adobe.html">Adobe Ps / Ai / Id</a>
+      <a class="panel-link" href="/teaching/laar61400/shortcuts/autocad.html">AutoCAD</a>
+      <a class="panel-link" href="/teaching/laar61400/shortcuts/rhino-pipeline.html">Rhino — Pipeline</a>
+      <a class="panel-link" href="/teaching/laar61400/shortcuts/rhino-ui.html">Rhino — Navigation &amp; UI</a>
+      <a class="panel-link" href="/teaching/laar61400/shortcuts/png-to-cad-block.html">PNG → CAD Block</a>
+    </div>
+    <div class="panel-section">
+      <span class="panel-section-label">Add-on Tutorials</span>
+      <a class="panel-link" href="/teaching/laar61400/tutorials/ramp-on-slope.html">Ramp on a Slope</a>
+    </div>
+  </nav>
+
+  <!-- Main content -->
+  <main id="main-content">
+    <div class="page-inner">
+<div class="wf-wrap wf-doc">
+
+  <!-- Header -->
+  <div class="wf-header">
+    <div class="wf-index">ADD-ON</div>
+    <div class="wf-header-text">
+      <div class="wf-title">Ramp on a Slope</div>
+      <div class="wf-subtitle">An accessible route up a hillside · Section first, plan second · Rhino 8</div>
+    </div>
+  </div>
+
+  <!-- Spec strip -->
+  <div class="wf-spec">
+    <div class="wf-spec-item"><span class="wf-spec-label">Length</span><span class="wf-spec-value">Self-paced</span></div>
+    <div class="wf-spec-item"><span class="wf-spec-label">Site</span><span class="wf-spec-value">100'×100', rises 30'</span></div>
+    <div class="wf-spec-item"><span class="wf-spec-label">Code</span><span class="wf-spec-value">2010 ADA Standards §405</span></div>
+    <div class="wf-spec-item"><span class="wf-spec-label">Tool</span><span class="wf-spec-value">Rhino 8</span></div>
+  </div>
+
+  <!-- Learning objectives -->
+  <div class="wf-objectives">
+    <strong>Learning Objectives</strong>
+    <ul>
+      <li>Reading a code as geometry: slope, rise and length</li>
+      <li>Designing in section and plan at once</li>
+    </ul>
+  </div>
+
+  <div class="wf-outcome">
+    <strong>Practice</strong><span>Design an accessible route up a 100'×100' slope that rises 30': a stretch-out profile, a plan, and a Rhino model that passes the checks in Step 08.</span>
+  </div>
+
+  <!-- Pipeline strip -->
+  <div class="wf-pipeline">
+    <div class="wf-pipe-step"><div class="wf-pipe-node">Rise</div><div class="wf-pipe-arrow">→</div></div>
+    <div class="wf-pipe-step"><div class="wf-pipe-node">Length</div><div class="wf-pipe-arrow">→</div></div>
+    <div class="wf-pipe-step"><div class="wf-pipe-node">Plan angle</div><div class="wf-pipe-arrow">→</div></div>
+    <div class="wf-pipe-step"><div class="wf-pipe-node">Switchbacks</div><div class="wf-pipe-arrow">→</div></div>
+    <div class="wf-pipe-step"><div class="wf-pipe-node wf-pipe-tool">Rhino</div><div class="wf-pipe-arrow">→</div></div>
+    <div class="wf-pipe-step"><div class="wf-pipe-node">Check</div></div>
+  </div>
+
+  <!-- Intro -->
+  <div style="background:var(--gray-100); border-radius:4px; padding:16px 18px; margin-bottom:28px;">
+    <div class="wf-step-desc">A ramp is a long, thin strip of constant grade folded onto a site. You design it twice at the same time: in <strong>section</strong>, where the code is checked, and in <strong>plan</strong>, where it has to fit. Work out the section first, because it tells you how much ramp you need. The plan then tells you whether it fits.</div>
+    <div class="wf-step-desc">The numbers below follow the 2010 ADA Standards. Your local code may differ; check it on a real project.</div>
+  </div>
+
+  <!-- Steps -->
+  <div class="wf-steps">
+
+    <div class="wf-step wf-full">
+      <div class="wf-step-head">
+        <span class="wf-step-num">01</span>
+        <span class="wf-step-label">Read the Slope</span>
+      </div>
+      <div class="wf-step-body">
+        <div class="wf-step-desc">Measure two numbers: the <strong>rise</strong> (how much higher the top is) and the <strong>run</strong> (the horizontal distance). Slope is rise ÷ run. This site rises 30' over 100', a 30% slope, more than three times steeper than a ramp may be.</div>
+        <figure class="rp-fig">
+          <svg viewBox="0 0 680 255" role="img" aria-labelledby="rp-d1">
+            <title id="rp-d1">Section through the site: a 30 percent slope against the 1:12 and 1:20 lines</title>
+            <polygon points="40,210 490,75 490,210" style="fill:var(--gray-100)"/>
+            <line x1="40" y1="210" x2="490" y2="210" style="stroke:var(--gray-400);stroke-width:0.75"/>
+            <line x1="40" y1="210" x2="490" y2="75" style="stroke:var(--gray-900);stroke-width:2"/>
+            <line x1="40" y1="210" x2="490" y2="172.5" style="stroke:var(--accent);stroke-width:2"/>
+            <line x1="40" y1="210" x2="490" y2="187.5" style="stroke:var(--gray-500);stroke-width:1.5;stroke-dasharray:5 4"/>
+            <text class="s" x="500" y="79">Ground 30%</text>
+            <text class="a" x="500" y="172">Ramp max 1:12 = 8.33%</text>
+            <text x="500" y="196">Walk 1:20 = 5%</text>
+            <text x="482" y="145" text-anchor="end">30' rise</text>
+            <line x1="40" y1="228" x2="490" y2="228" style="stroke:var(--gray-500);stroke-width:0.75"/>
+            <line x1="40" y1="223" x2="40" y2="233" style="stroke:var(--gray-500);stroke-width:0.75"/>
+            <line x1="490" y1="223" x2="490" y2="233" style="stroke:var(--gray-500);stroke-width:0.75"/>
+            <text x="265" y="246" text-anchor="middle">100' run</text>
+          </svg>
+          <figcaption>Section at true scale. Straight up the hill, a 1:12 ramp would end almost 22' below the top. The ramp has to travel farther than the hill does.</figcaption>
+        </figure>
+      </div>
+    </div>
+
+    <div class="wf-step wf-full">
+      <div class="wf-step-head">
+        <span class="wf-step-num">02</span>
+        <span class="wf-step-label">Learn the Ramp Rules</span>
+      </div>
+      <div class="wf-step-body">
+        <div class="wf-step-desc">1:12 means 1' of rise for every 12' of horizontal run. A ramp may be 1:12 or <strong>flatter</strong> (1:14, 1:16), never steeper (1:10). Every number in the table below shapes the drawing.</div>
+        <figure class="rp-fig">
+          <svg viewBox="0 0 680 400" role="img" aria-labelledby="rp-d2">
+            <title id="rp-d2">Anatomy of a ramp: long section of a run and landing, and a cross section through the ramp on the hillside</title>
+            <text class="s" x="30" y="28">Long section</text>
+            <polygon points="30,150 66,150 426,120 486,120 546,115 546,160 30,160" style="fill:var(--gray-150)"/>
+            <polyline points="30,150 66,150" style="fill:none;stroke:var(--gray-900);stroke-width:3"/>
+            <polyline points="426,120 486,120" style="fill:none;stroke:var(--gray-900);stroke-width:3"/>
+            <line x1="66" y1="150" x2="426" y2="120" style="stroke:var(--accent);stroke-width:3"/>
+            <line x1="486" y1="120" x2="546" y2="115" style="stroke:var(--accent);stroke-width:3"/>
+            <polyline points="54,114 66,114 426,84 486,84 546,79" style="fill:none;stroke:var(--gray-700);stroke-width:2"/>
+            <text x="30" y="102">12″ ext.</text>
+            <text x="200" y="64">Handrail 34–38″ high, both sides</text>
+            <line x1="230" y1="70" x2="230" y2="97" style="stroke:var(--gray-500);stroke-width:0.75;stroke-dasharray:2 2"/>
+            <line x1="66" y1="176" x2="426" y2="176" style="stroke:var(--gray-500);stroke-width:0.75"/>
+            <line x1="66" y1="171" x2="66" y2="181" style="stroke:var(--gray-500);stroke-width:0.75"/>
+            <line x1="426" y1="171" x2="426" y2="181" style="stroke:var(--gray-500);stroke-width:0.75"/>
+            <line x1="486" y1="171" x2="486" y2="181" style="stroke:var(--gray-500);stroke-width:0.75"/>
+            <text class="a" x="246" y="194" text-anchor="middle">Run: ≤ 30″ of rise, ≤ 1:12</text>
+            <text x="456" y="194" text-anchor="middle">Landing ≥ 5'</text>
+
+            <text class="s" x="30" y="232">Cross section</text>
+            <polygon points="265,340 340,340 265,362.5" style="fill:#c9d6de"/>
+            <polygon points="340,340 415,340 415,317.5" style="fill:#e3cdb8"/>
+            <line x1="200" y1="382" x2="460" y2="304" style="stroke:var(--gray-500);stroke-width:1.5;stroke-dasharray:5 4"/>
+            <rect x="265" y="340" width="150" height="8" style="fill:var(--gray-250)"/>
+            <rect x="259" y="332" width="6" height="16" style="fill:var(--gray-700)"/>
+            <rect x="415" y="314" width="6" height="38" style="fill:var(--gray-700)"/>
+            <line x1="280" y1="340" x2="280" y2="250" style="stroke:var(--gray-700);stroke-width:1.5"/>
+            <line x1="400" y1="340" x2="400" y2="250" style="stroke:var(--gray-700);stroke-width:1.5"/>
+            <circle cx="280" cy="250" r="3.5" style="fill:#fff;stroke:var(--gray-700);stroke-width:1.5"/>
+            <circle cx="400" cy="250" r="3.5" style="fill:#fff;stroke:var(--gray-700);stroke-width:1.5"/>
+            <line x1="280" y1="238" x2="400" y2="238" style="stroke:var(--gray-500);stroke-width:0.75"/>
+            <text x="340" y="230" text-anchor="middle">≥ 36″ clear</text>
+            <text x="253" y="336" text-anchor="end">Curb ≥ 4″</text>
+            <text x="253" y="358" text-anchor="end">Fill</text>
+            <text x="196" y="390" text-anchor="end">Existing grade 30%</text>
+            <text class="a" x="340" y="382" text-anchor="middle">Cross slope ≤ 2%</text>
+            <line x1="340" y1="371" x2="340" y2="350" style="stroke:var(--gray-500);stroke-width:0.75;stroke-dasharray:2 2"/>
+            <text x="470" y="254">Handrail 34–38″</text>
+            <line x1="464" y1="250" x2="406" y2="250" style="stroke:var(--gray-500);stroke-width:0.75;stroke-dasharray:2 2"/>
+            <text x="470" y="300">Cut: a wall holds the hill</text>
+            <line x1="464" y1="296" x2="423" y2="318" style="stroke:var(--gray-500);stroke-width:0.75;stroke-dasharray:2 2"/>
+          </svg>
+          <figcaption>Long section at true scale: 1:12 looks almost flat. The cross section is level from edge to edge, so on a hillside one edge cuts into the ground and the other sits on fill.</figcaption>
+        </figure>
+        <table class="wf-table">
+          <tr><th>Rule</th><th>Value</th><th>§</th></tr>
+          <tr><td>Running slope</td><td>1:12 (8.33%) or flatter; use the least slope you can</td><td>405.2</td></tr>
+          <tr><td>Cross slope</td><td>1:48 (2%) or flatter</td><td>405.3</td></tr>
+          <tr><td>Clear width</td><td>36″ minimum between handrails; 5' lets two people pass</td><td>405.5</td></tr>
+          <tr><td>Rise per run</td><td>30″ (2.5') maximum, then a landing</td><td>405.6</td></tr>
+          <tr><td>Landing</td><td>60″ long, as wide as the ramp, level</td><td>405.7</td></tr>
+          <tr><td>Turning landing</td><td>60″ × 60″ minimum where the ramp changes direction</td><td>405.7.4</td></tr>
+          <tr><td>Handrails</td><td>Both sides once rise passes 6″; 34–38″ high, continuous on the inside of a switchback, extend 12″ past the top and bottom</td><td>405.8, 505</td></tr>
+          <tr><td>Edge protection</td><td>A curb or barrier so a wheel cannot roll off</td><td>405.9</td></tr>
+          <tr><td>Walk, not a ramp</td><td>A surface at 1:20 (5%) or flatter is a walk: no landings or handrails required</td><td>402, 403.3</td></tr>
+        </table>
+        <div class="wf-actions">
+          <a class="wf-btn" href="https://www.access-board.gov/ada/#ada-405" target="_blank" rel="noopener">2010 ADA Standards §405 Ramps<span class="wf-btn-arrow" aria-hidden="true">↗</span></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="wf-step wf-full">
+      <div class="wf-step-head">
+        <span class="wf-step-num">03</span>
+        <span class="wf-step-label">Calculate the Minimum Length</span>
+      </div>
+      <div class="wf-step-body">
+        <div class="wf-step-desc">Before drawing anything, find out how long the ramp has to be. Pull the whole route out straight and draw it from the side: this <strong>stretch-out profile</strong> is where the rules are checked.</div>
+        <div class="wf-code">rise H            = 30'
+sloped run        = H × 12              = 360'    (ramp at 1:12)
+runs needed  n    = ceil(H ÷ 2.5)       = 12      (each 30' long)
+landings          = (n − 1) × 5'        = 55'
+top + bottom      = 2 × 5'              = 10'
+minimum path      = 360 + 55 + 10       = 425'</div>
+        <figure class="rp-fig">
+          <svg viewBox="0 0 680 285" role="img" aria-labelledby="rp-d3">
+            <title id="rp-d3">Stretch-out profile: twelve 30-foot runs and eleven 5-foot landings rising 30 feet over 425 feet</title>
+            <line x1="45" y1="230" x2="640" y2="230" style="stroke:var(--gray-200);stroke-width:0.75"/>
+            <path d="M52.0,230.0 L94.0,217.5 M101.0,217.5 L143.0,205.0 M150.0,205.0 L192.0,192.5 M199.0,192.5 L241.0,180.0 M248.0,180.0 L290.0,167.5 M297.0,167.5 L339.0,155.0 M346.0,155.0 L388.0,142.5 M395.0,142.5 L437.0,130.0 M444.0,130.0 L486.0,117.5 M493.0,117.5 L535.0,105.0 M542.0,105.0 L584.0,92.5 M591.0,92.5 L633.0,80.0" style="fill:none;stroke:var(--accent);stroke-width:2.5"/>
+            <path d="M45.0,230.0 L52.0,230.0 M94.0,217.5 L101.0,217.5 M143.0,205.0 L150.0,205.0 M192.0,192.5 L199.0,192.5 M241.0,180.0 L248.0,180.0 M290.0,167.5 L297.0,167.5 M339.0,155.0 L346.0,155.0 M388.0,142.5 L395.0,142.5 M437.0,130.0 L444.0,130.0 M486.0,117.5 L493.0,117.5 M535.0,105.0 L542.0,105.0 M584.0,92.5 L591.0,92.5 M633.0,80.0 L640.0,80.0" style="fill:none;stroke:var(--gray-900);stroke-width:2.5"/>
+            <text class="a" x="58" y="212">run</text>
+            <text x="90" y="246">landing</text>
+            <text class="s" x="50" y="40">Minimum path, 30' rise at 1:12</text>
+            <text x="50" y="62">12 runs × 30'</text><text x="300" y="62" text-anchor="end">360'</text>
+            <text x="50" y="80">11 landings × 5'</text><text x="300" y="80" text-anchor="end">55'</text>
+            <text x="50" y="98">top + bottom</text><text x="300" y="98" text-anchor="end">10'</text>
+            <line x1="50" y1="106" x2="300" y2="106" style="stroke:var(--gray-400);stroke-width:0.75"/>
+            <text class="s" x="50" y="122">total</text><text class="s" x="300" y="122" text-anchor="end">425'</text>
+            <line x1="650" y1="80" x2="650" y2="230" style="stroke:var(--gray-500);stroke-width:0.75"/>
+            <line x1="645" y1="80" x2="655" y2="80" style="stroke:var(--gray-500);stroke-width:0.75"/>
+            <line x1="645" y1="230" x2="655" y2="230" style="stroke:var(--gray-500);stroke-width:0.75"/>
+            <text x="656" y="160">30'</text>
+            <line x1="45" y1="252" x2="640" y2="252" style="stroke:var(--gray-500);stroke-width:0.75"/>
+            <line x1="45" y1="247" x2="45" y2="257" style="stroke:var(--gray-500);stroke-width:0.75"/>
+            <line x1="640" y1="247" x2="640" y2="257" style="stroke:var(--gray-500);stroke-width:0.75"/>
+            <text x="342" y="272" text-anchor="middle">425' of path, measured in plan</text>
+          </svg>
+          <figcaption>Stretch-out profile, vertical exaggerated about 3.6×. Each run is capped by its 30″ rise, not by a length: a flatter ramp gets longer runs, but still 12 of them.</figcaption>
+        </figure>
+        <div class="wf-step-desc">425' is the floor. Real designs run longer:</div>
+        <table class="wf-table">
+          <tr><th>Factor</th><th>Adjustment</th><th>This site</th></tr>
+          <tr><td>Design at 1:13</td><td>Room for construction tolerance; the code allows none</td><td>+30'</td></tr>
+          <tr><td>Switchback turns</td><td>A 180° turn landing is about 11' of centerline, not 5'</td><td>+6' per turn</td></tr>
+          <tr><td>Curved runs</td><td>The inside edge is steeper; see Step 07</td><td>×1.1 on curves</td></tr>
+          <tr><td>A walk at 1:20</td><td>No landings or handrails</td><td>600'</td></tr>
+        </table>
+        <div class="wf-note">For any site: <strong>minimum path ≈ H × 12 + 5 × (ceil(H ÷ 2.5) − 1) + 10</strong>, in feet, plus 6' for each 180° turn.</div>
+      </div>
+    </div>
+
+    <div class="wf-step wf-full">
+      <div class="wf-step-head">
+        <span class="wf-step-num">04</span>
+        <span class="wf-step-label">Find the Plan Angle</span>
+      </div>
+      <div class="wf-step-body">
+        <div class="wf-step-desc">The ramp climbs gently by crossing the hill at an angle. Walking along a contour, you stay level. Walking straight up, you climb the full slope <em>s</em>. Turn the path an angle α off the contour and only the uphill part of each step climbs, the sin α share:</div>
+        <div class="rp-math">g = s · sin α &nbsp;&nbsp;→&nbsp;&nbsp; α = asin(g ÷ s) = asin(0.0833 ÷ 0.30) ≈ 16°</div>
+        <div class="wf-step-desc">Drag the slider. The path turns green at 1:12 or flatter.</div>
+        <figure class="rp-fig">
+          <svg viewBox="0 0 680 300" role="img" aria-labelledby="rp-d4">
+            <title id="rp-d4">Plan of a path crossing the contours at angle alpha, and its unfolded profile against the 1:12 limit</title>
+            <defs><marker id="rp-arr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M2 1L8 5L2 9" style="fill:none;stroke:var(--gray-500);stroke-width:1.5"/></marker></defs>
+            <text class="s" x="40" y="14">Plan</text>
+            <rect x="40" y="20" width="260" height="260" style="fill:none;stroke:var(--gray-400);stroke-width:0.75"/>
+            <g id="rp-contours"></g>
+            <line x1="314" y1="270" x2="314" y2="40" style="stroke:var(--gray-500);stroke-width:1" marker-end="url(#rp-arr)"/>
+            <text x="320" y="150">uphill</text>
+            <line id="rp-legx" style="stroke:var(--gray-400);stroke-width:1;stroke-dasharray:4 3"/>
+            <line id="rp-legy" style="stroke:var(--gray-700);stroke-width:1.5;stroke-dasharray:4 3"/>
+            <path id="rp-arc" style="fill:none;stroke:var(--gray-700);stroke-width:1"/>
+            <text id="rp-alab">α</text>
+            <line id="rp-path" style="stroke-width:3;stroke-linecap:round"/>
+            <text class="s" x="390" y="14">Profile, path unfolded</text>
+            <line x1="390" y1="250" x2="660" y2="250" style="stroke:var(--gray-400);stroke-width:0.75"/>
+            <line id="rp-lim" style="stroke:var(--gray-500);stroke-width:1;stroke-dasharray:5 4"/>
+            <text id="rp-limlab">1:12</text>
+            <line id="rp-prof" style="stroke-width:3;stroke-linecap:round"/>
+            <line id="rp-rise" style="stroke:var(--gray-700);stroke-width:1.5;stroke-dasharray:4 3"/>
+            <text x="390" y="272">60' of run in plan</text>
+            <text x="390" y="290">vertical ×2</text>
+          </svg>
+        </figure>
+        <div class="rp-ctrl"><label for="rp-a">α</label><input type="range" id="rp-a" min="0" max="90" step="0.5" value="16"><span id="rp-aout">16°</span></div>
+        <div class="rp-out"><span>sin α <b id="rp-m1"></b></span><span>rise over 60' <b id="rp-m2"></b></span><span>grade 0.30 · sin α <b id="rp-m3"></b></span></div>
+        <div class="wf-note">The formula needs one constant slope. On real terrain, step it out contour by contour instead: a circle of radius Δh ÷ g, centered where the run starts, marks where it reaches the next contour.</div>
+      </div>
+    </div>
+
+    <div class="wf-step wf-full">
+      <div class="wf-step-head">
+        <span class="wf-step-num">05</span>
+        <span class="wf-step-label">Fold It into Switchbacks</span>
+      </div>
+      <div class="wf-step-body">
+        <div class="wf-step-desc">A 425' ramp does not fit across a 100' site, so it turns back on itself. Split the profile into legs of run, landing, run (65', rising 5'). Six legs climb 30'.</div>
+        <div class="wf-step-desc">Turn landings move the path uphill without climbing, so the legs cross the hill at a flatter angle than 16°. Solve for it with a <strong>Y budget</strong>: the legs and turns together have to cover the 100' of uphill distance.</div>
+        <figure class="rp-fig">
+          <svg viewBox="0 0 680 480" role="img" aria-labelledby="rp-d5">
+            <title id="rp-d5">Plan of six switchback legs climbing the 100 by 100 foot site, with the Y budget that sets their angle</title>
+            <rect x="40" y="50" width="400" height="400" style="fill:none;stroke:var(--gray-400);stroke-width:0.75"/>
+            <g style="stroke:var(--gray-200);stroke-width:0.75">
+              <line x1="40" y1="410" x2="440" y2="410"/><line x1="40" y1="370" x2="440" y2="370"/><line x1="40" y1="330" x2="440" y2="330"/>
+              <line x1="40" y1="290" x2="440" y2="290"/><line x1="40" y1="250" x2="440" y2="250"/><line x1="40" y1="210" x2="440" y2="210"/>
+              <line x1="40" y1="170" x2="440" y2="170"/><line x1="40" y1="130" x2="440" y2="130"/><line x1="40" y1="90" x2="440" y2="90"/>
+            </g>
+            <text x="446" y="414">3'</text><text x="446" y="374">6'</text><text x="446" y="334">9'</text>
+            <text x="446" y="294">12'</text><text x="446" y="254">15'</text><text x="446" y="214">18'</text>
+            <text x="446" y="174">21'</text><text x="446" y="134">24'</text><text x="446" y="94">27'</text>
+            <polyline points="96,450 214.1,428.5 233.7,424.9 351.8,403.3 361.8,403.3 361.8,379.3 351.8,379.3 233.7,357.8 214.1,354.2 96,332.7 86,332.7 86,308.7 96,308.7 214.1,287.1 233.7,283.5 351.8,262 361.8,262 361.8,238 351.8,238 233.7,216.5 214.1,212.9 96,191.3 86,191.3 86,167.3 96,167.3 214.1,145.8 233.7,142.2 351.8,120.7 361.8,120.7 361.8,96.7 351.8,96.7 233.7,75.1 214.1,71.5 96,50" style="fill:none;stroke:var(--gray-150);stroke-width:20;stroke-linejoin:round"/>
+            <path d="M96,450L214.1,428.5 M233.7,424.9L351.8,403.3 M351.8,379.3L233.7,357.8 M214.1,354.2L96,332.7 M96,308.7L214.1,287.1 M233.7,283.5L351.8,262 M351.8,238L233.7,216.5 M214.1,212.9L96,191.3 M96,167.3L214.1,145.8 M233.7,142.2L351.8,120.7 M351.8,96.7L233.7,75.1 M214.1,71.5L96,50" style="fill:none;stroke:var(--accent);stroke-width:3"/>
+            <path d="M214.1,428.5L233.7,424.9 M233.7,357.8L214.1,354.2 M214.1,287.1L233.7,283.5 M233.7,216.5L214.1,212.9 M214.1,145.8L233.7,142.2 M233.7,75.1L214.1,71.5 M351.8,403.3L361.8,403.3L361.8,379.3L351.8,379.3 M96,332.7L86,332.7L86,308.7L96,308.7 M351.8,262L361.8,262L361.8,238L351.8,238 M96,191.3L86,191.3L86,167.3L96,167.3 M351.8,120.7L361.8,120.7L361.8,96.7L351.8,96.7" style="fill:none;stroke:var(--gray-900);stroke-width:3"/>
+            <text x="96" y="468" text-anchor="middle">start, 0'</text>
+            <text x="96" y="42" text-anchor="middle">top, 30'</text>
+            <line x1="476" y1="66" x2="500" y2="66" style="stroke:var(--accent);stroke-width:3"/><text x="508" y="70">run, 30' at 1:12</text>
+            <line x1="476" y1="88" x2="500" y2="88" style="stroke:var(--gray-900);stroke-width:3"/><text x="508" y="92">landing</text>
+            <line x1="476" y1="110" x2="500" y2="110" style="stroke:var(--gray-150);stroke-width:12"/><text x="508" y="114">5' ramp width</text>
+            <line x1="476" y1="132" x2="500" y2="132" style="stroke:var(--gray-200);stroke-width:0.75"/><text x="508" y="136">contour, every 3'</text>
+            <text class="s" x="476" y="186">Y budget</text>
+            <text x="476" y="208">6 legs × 65' × sin α</text>
+            <text x="476" y="226">+ 5 turns × 6'</text>
+            <text x="476" y="244">= 100' uphill</text>
+            <text x="476" y="270">sin α = 70 ÷ 390</text>
+            <text class="a" x="476" y="288">α ≈ 10.3°</text>
+            <text class="s" x="476" y="330">Path length</text>
+            <text x="476" y="352">6 × 65' + 5 × 11'</text>
+            <text class="a" x="476" y="370">= 445'</text>
+          </svg>
+          <figcaption>Plan to scale. Legs sit about 1.5' above the ground at their ends; each turn drops them back to grade. Cut and fill roughly balance.</figcaption>
+        </figure>
+        <div class="wf-step-desc">Draw the plan from the same pieces as the profile, at exact lengths, and the two drawings match by construction. Rhino's cylindrical input <code>@length&lt;angle,rise</code> draws plan and profile in one line. The angle is measured counterclockwise from +X: legs heading right use α, legs heading back use 180° − α.</div>
+        <div class="wf-code">Polyline
+14,0,0             start, bottom of the site
+@30&lt;10.3,2.5       run
+@5&lt;10.3,0          landing
+@30&lt;10.3,2.5       run
+@2.5&lt;0,0           into the turn
+@6&lt;90,0            across: 5' ramp + 1' gap
+@2.5&lt;180,0         out of the turn
+@30&lt;169.7,2.5      next leg, heading back
+…                  repeat; the last point lands at 14,100,30</div>
+      </div>
+    </div>
+
+    <div class="wf-step wf-full">
+      <div class="wf-step-head">
+        <span class="wf-step-num">06</span>
+        <span class="wf-step-label">Build It in Rhino</span>
+        <span class="wf-badge wf-badge-rh">Rhino</span>
+      </div>
+      <div class="wf-step-body">
+        <ul class="wf-tips">
+          <li><strong>Site.</strong> Set units to feet. <code>SrfPt</code> 0,0,0 → 100,0,0 → 100,100,30 → 0,100,30 makes the slope.</li>
+          <li><strong>Contours.</strong> <code>Contour</code> on the site, direction Z, interval 2.5. Each line is one run's worth of rise.</li>
+          <li><strong>Centerline.</strong> Type the polyline from Step 05 on its own layer.</li>
+          <li><strong>Ramp surface.</strong> Draw a 5' horizontal line square to the path at its start. <code>Sweep1</code> with the centerline as rail and the line as section, Style <strong>Roadlike Top</strong>, so the surface stays level edge to edge.</li>
+          <li><strong>Cut and fill.</strong> <code>Intersect</code> the ramp with the site. Where the line runs, ramp and ground meet; uphill of it you cut, downhill you fill. Plan a retaining wall where the cut passes about 1'.</li>
+          <li><strong>Handrails.</strong> <code>DupEdge</code> the two long edges, <code>Move</code> them up 3', <code>Extend</code> 1' at each end, then <code>Pipe</code> at radius 0.0625' (a 1½″ rail).</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="wf-step wf-full">
+      <div class="wf-step-head">
+        <span class="wf-step-num">07</span>
+        <span class="wf-step-label">Going Curved</span>
+      </div>
+      <div class="wf-step-body">
+        <div class="wf-step-desc">A curved ramp is allowed, with two catches. On a curve the inside edge is shorter than the outside edge but rises the same height, so it is steeper. And on a slope, a curve cannot follow the ground at one grade.</div>
+        <div class="rp-math">g<sub>inner</sub> = g<sub>center</sub> × R<sub>center</sub> ÷ R<sub>inner</sub></div>
+        <figure class="rp-fig">
+          <svg viewBox="0 0 680 330" role="img" aria-labelledby="rp-d6">
+            <title id="rp-d6">A curved run with steeper inner edge, and a hairpin turn on the slope where the path faces straight uphill</title>
+            <defs><marker id="rp-arr2" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M2 1L8 5L2 9" style="fill:none;stroke:var(--gray-900);stroke-width:1.5"/></marker></defs>
+            <text class="s" x="20" y="24">Curved run, centerline at 1:12</text>
+            <path d="M255,270 A195,195 0 0 0 60,75 L60,105 A165,165 0 0 1 225,270 Z" style="fill:var(--gray-100)"/>
+            <path d="M225,270 A165,165 0 0 0 60,105" style="fill:none;stroke:var(--accent);stroke-width:2.5"/>
+            <path d="M240,270 A180,180 0 0 0 60,90" style="fill:none;stroke:var(--gray-700);stroke-width:1;stroke-dasharray:5 4"/>
+            <path d="M255,270 A195,195 0 0 0 60,75" style="fill:none;stroke:var(--gray-500);stroke-width:1.5"/>
+            <circle cx="60" cy="270" r="2.5" style="fill:var(--gray-900)"/>
+            <text class="a" x="70" y="200">inner 27.5' → 9.1%</text>
+            <text x="70" y="220">center 30' → 8.33%</text>
+            <text x="70" y="240">outer 32.5' → 7.7%</text>
+
+            <text class="s" x="360" y="24">Hairpin on the slope</text>
+            <g style="stroke:var(--gray-200);stroke-width:0.75">
+              <line x1="360" y1="60" x2="660" y2="60"/><line x1="360" y1="90" x2="660" y2="90"/><line x1="360" y1="120" x2="660" y2="120"/>
+              <line x1="360" y1="150" x2="660" y2="150"/><line x1="360" y1="180" x2="660" y2="180"/><line x1="360" y1="210" x2="660" y2="210"/>
+              <line x1="360" y1="240" x2="660" y2="240"/><line x1="360" y1="270" x2="660" y2="270"/>
+            </g>
+            <path d="M380,250 L560,232 A30,30 0 0 0 560,172 L380,154" style="fill:none;stroke:var(--gray-150);stroke-width:12"/>
+            <path d="M380,250 L560,232 A30,30 0 0 0 560,172 L380,154" style="fill:none;stroke:var(--accent);stroke-width:2.5"/>
+            <line x1="602" y1="218" x2="602" y2="182" style="stroke:var(--gray-900);stroke-width:1.5" marker-end="url(#rp-arr2)"/>
+            <text class="s" x="610" y="206">30%</text>
+            <text x="360" y="296">At the far end the path faces straight uphill.</text>
+            <text x="360" y="314">Turns sink into the hill: cut and walls.</text>
+          </svg>
+          <figcaption>Left: a 5' ramp on a 30' centerline radius. Codes are vague about where a curved ramp is measured; keep the inside edge at 1:12 or flatter, which puts the centerline near 1:13. Right: contours run horizontally, uphill is up. Any 180° turn has to face uphill at some point, where the ground climbs 30% and the ramp only 8%.</figcaption>
+        </figure>
+        <div class="wf-step-desc">On a curve, draw the plan first, then fit the profile to it: the reverse of Step 05.</div>
+        <ul class="wf-tips">
+          <li><strong>Plan curve.</strong> Draw it flat at Z=0 with <code>Arc</code>, <code>Line</code> and <code>BlendCrv</code>. Large radii keep the two edges close in grade.</li>
+          <li><strong>Inside edge.</strong> <code>Offset</code> the curve 2.5' inward. <code>Divide</code> it by length to mark where runs and landings fall.</li>
+          <li><strong>Profile.</strong> Draw the stretch-out profile at the centerline's exact <code>Length</code>. Leftover length goes into a flatter run or a longer landing.</li>
+          <li><strong>Lift it.</strong> <code>Flow</code> the profile onto the plan curve (Rigid No, Stretch No). For a pure circle, <code>Helix</code> works too: pitch = g × 2πR.</li>
+          <li><strong>Surface.</strong> <code>Sweep1</code>, Roadlike Top, as in Step 06.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="wf-step wf-full">
+      <div class="wf-step-head">
+        <span class="wf-step-num">08</span>
+        <span class="wf-step-label">Check Before You Present</span>
+      </div>
+      <div class="wf-step-body">
+        <ul class="wf-tips">
+          <li><strong>Grade.</strong> <code>DraftAngleAnalysis</code> on the ramp, direction Z. A 1:12 surface reads 85.24°; anything lower is too steep.</li>
+          <li><strong>Plan length, not 3D length.</strong> <code>Length</code> measures in 3D, so a 30' run reads 30.10'. Check a flattened copy (<code>Project</code> to the CPlane).</li>
+          <li><strong>Rise per run.</strong> 2.5' or less between landings, on the inside edge of any curve.</li>
+          <li><strong>Landings.</strong> 5' long; turn landings at least 5' × 5' and as wide as both ramps at a switchback.</li>
+          <li><strong>The top.</strong> The path ends at elevation 30' on the top edge of the site.</li>
+          <li><strong>Walls.</strong> Every cut over about 1' has a wall drawn in plan and section.</li>
+        </ul>
+      </div>
+    </div>
+
+  </div><!-- /wf-steps -->
+
+</div><!-- /wf-wrap -->
+    </div>
+  </main>
+
+  <script src="/teaching/laar61400/assets/js/nav.js"></script>
+  <script src="/teaching/laar61400/assets/js/wf-progress.js"></script>
+  <script>
+    (function () {
+      var S = 0.30, L = 60, k = 2.6, ox = 40, oy = 280, sx = 10, sy = 10;
+      var OK = '#2f7a55', BAD = 'var(--alert)';
+      function P(x, y) { return [ox + x * k, oy - y * k]; }
+      function $(id) { return document.getElementById(id); }
+      function set(el, o) { for (var a in o) el.setAttribute(a, o[a]); }
+      var ns = 'http://www.w3.org/2000/svg', g = $('rp-contours');
+      for (var y = 10; y < 100; y += 10) {
+        var p = P(0, y), q = P(100, y);
+        var ln = document.createElementNS(ns, 'line');
+        set(ln, { x1: p[0], y1: p[1], x2: q[0], y2: p[1] });
+        ln.setAttribute('style', 'stroke:var(--gray-200);stroke-width:0.75');
+        g.appendChild(ln);
+        var tx = document.createElementNS(ns, 'text');
+        set(tx, { x: p[0] + 4, y: p[1] - 3 });
+        tx.textContent = Math.round(y * S) + "'";
+        g.appendChild(tx);
+      }
+      function draw(d) {
+        var r = d * Math.PI / 180, s = Math.sin(r), c = Math.cos(r);
+        var a = P(sx, sy), b = P(sx + L * c, sy + L * s), cx = P(sx + L * c, sy)[0];
+        var grade = S * s, ok = grade <= 1 / 12 + 1e-9, col = ok ? OK : BAD;
+        set($('rp-path'), { x1: a[0], y1: a[1], x2: b[0], y2: b[1] });
+        $('rp-path').style.stroke = col;
+        set($('rp-legx'), { x1: a[0], y1: a[1], x2: cx, y2: a[1] });
+        set($('rp-legy'), { x1: cx, y1: a[1], x2: b[0], y2: b[1] });
+        var R = 26;
+        $('rp-arc').setAttribute('d', 'M' + (a[0] + R) + ' ' + a[1] + ' A' + R + ' ' + R + ' 0 0 0 ' + (a[0] + R * c) + ' ' + (a[1] - R * s));
+        set($('rp-alab'), { x: a[0] + R + 6, y: a[1] - 6 });
+        var bx = 390, by = 250, w = 270, ex = w / L * 2, rise = S * L * s, lim = L / 12;
+        set($('rp-prof'), { x1: bx, y1: by, x2: bx + w, y2: by - rise * ex });
+        $('rp-prof').style.stroke = col;
+        set($('rp-rise'), { x1: bx + w, y1: by, x2: bx + w, y2: by - rise * ex });
+        set($('rp-lim'), { x1: bx, y1: by, x2: bx + w, y2: by - lim * ex });
+        set($('rp-limlab'), { x: bx + w - 34, y: by - lim * ex - 8 });
+        $('rp-aout').textContent = d + '°';
+        $('rp-m1').textContent = s.toFixed(3);
+        $('rp-m2').textContent = rise.toFixed(1) + "'";
+        $('rp-m3').textContent = (grade * 100).toFixed(1) + '%';
+        $('rp-m3').style.color = col;
+      }
+      $('rp-a').addEventListener('input', function (e) { draw(+e.target.value); });
+      draw(16);
+    })();
+  </script>
+</body>
+</html>
