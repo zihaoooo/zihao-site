@@ -26,7 +26,7 @@
   bar.innerHTML = '<span class="wf-progress-count"></span>' +
     '<button type="button" class="wf-progress-btn" data-act="open">Expand all</button>' +
     '<button type="button" class="wf-progress-btn" data-act="reset">Clear checks</button>';
-  var list = doc.querySelector('.wf-steps');
+  var list = steps[0].closest('.wf-steps');
   list.parentNode.insertBefore(bar, list);
   var count = bar.querySelector('.wf-progress-count');
 

@@ -29,7 +29,7 @@ highlighted `.panel-announce` block sitting directly under the brand block in ev
 
 ## Add-on tutorials (`tutorials/`)
 Optional self-paced tutorials, hand-authored on the site in the `.wf-doc` layout; listed last in the nav under "Add-on Tutorials".
-- `ramp-on-slope.html` — Ramp on a Slope (ADA ramp: minimum length, plan angle, switchbacks, curves). Diagrams are inline SVG in the page.
+- `ramp-on-slope.html` — Ramp on a Slope (ADA ramp: minimum length, plan angle, switchbacks, curves). Diagrams are inline SVG in the page. A walkthrough video (Sweep1 and Flow) sits above the spec strip; its sources and YouTube text live in `course-prep/laar61400/tutorials/ramp-on-slope/`.
 
 WF pages are hand-authored HTML only — the old per-workflow `.md` sources were deleted
 (2026-06). Edit the `.html` directly; don't recreate or look for markdown sources.
