@@ -9,12 +9,12 @@
   <style>
     .rp-fig { margin: 14px 0 6px; }
     .rp-fig svg { display: block; width: 100%; height: auto; background: #fff; border: 1px solid var(--gray-200); border-radius: 4px; }
-    .rp-fig img { display: block; width: 100%; height: auto; border: 1px solid var(--gray-200); border-radius: 4px; }
+    .rp-fig img { display: block; width: 100%; height: auto; border: 1px solid var(--gray-200); border-radius: 4px; cursor: zoom-in; }
     .rp-fig figcaption { font-size: 11px; color: var(--gray-500); margin-top: 5px; max-width: 64ch; }
     .rp-fig text { font-family: var(--font-mono); font-size: 11px; fill: var(--gray-700); }
     .rp-fig text.s { fill: var(--gray-900); font-weight: 500; }
     .rp-fig text.a { fill: var(--accent); }
-    .rp-pair { display: grid; grid-template-columns: minmax(0, 0.996fr) minmax(0, 1.778fr); gap: 12px; align-items: start; }
+    .rp-pair { display: grid; grid-template-columns: minmax(0, 0.991fr) minmax(0, 1.778fr); gap: 12px; align-items: start; }
     @media (max-width: 640px) { .rp-pair { grid-template-columns: 1fr; } }
     .rp-math { font-family: var(--font-math); font-size: 18px; color: var(--gray-900); margin: 10px 0; }
     .rp-ctrl { display: flex; align-items: center; gap: 12px; margin: 10px 0 4px; font-family: var(--font-mono); font-size: 12px; color: var(--gray-700); }
@@ -414,7 +414,7 @@ minimum path      = 360 + 55 + 10       = 425'</div>
         </ul>
         <div class="rp-pair">
           <figure class="rp-fig">
-            <img src="/teaching/laar61400/assets/img/ramp-on-slope/draft-angle-panel.avif" width="467" height="469" loading="lazy" alt="Rhino's Draft angle analysis panel with 85.3 in the top box, 85.2 in the bottom box, direction CPlane Z">
+            <img src="/teaching/laar61400/assets/img/ramp-on-slope/draft-angle-panel.avif" width="465" height="469" loading="lazy" alt="Rhino's Draft angle analysis panel with 85.3 in the top box, 85.2 in the bottom box, direction CPlane Z">
             <figcaption>The panel: 85.3 on top, 85.2 below.</figcaption>
           </figure>
           <figure class="rp-fig">
@@ -445,7 +445,27 @@ minimum path      = 360 + 55 + 10       = 425'</div>
     </div>
   </main>
 
+  <!-- Lightbox -->
+  <div class="wf-lightbox" id="lightbox"><img alt=""></div>
+
   <script src="/teaching/laar61400/assets/js/nav.js"></script>
+  <script>
+    (function () {
+      var box = document.getElementById('lightbox');
+      var boxImg = box.querySelector('img');
+      document.querySelectorAll('.rp-fig img').forEach(function (img) {
+        img.addEventListener('click', function () {
+          boxImg.src = img.src;
+          boxImg.alt = img.alt;
+          box.classList.add('open');
+        });
+      });
+      box.addEventListener('click', function () { box.classList.remove('open'); });
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') box.classList.remove('open');
+      });
+    })();
+  </script>
   <script src="/teaching/laar61400/assets/js/wf-progress.js?v=2"></script>
   <script>
     (function () {
