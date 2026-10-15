@@ -114,7 +114,7 @@
   </div>
 
   <div class="wf-outcome">
-    <strong>Practice</strong><span>Design an accessible route up a 100'×100' slope that rises 30': a stretch-out profile, a plan, and a Rhino model that passes the checks in Step 08.</span>
+    <strong>Practice</strong><span>Design an accessible route up a 100'×100' slope that rises 30': a stretch-out profile, a plan, and a Rhino model that passes the checks in Step 07.</span>
   </div>
 
   <!-- Pipeline strip -->
@@ -278,7 +278,6 @@ minimum path      = 360 + 55 + 10       = 425'</div>
           <tr><th>Factor</th><th>Adjustment</th><th>This site</th></tr>
           <tr><td>Design at 1:13</td><td>Room for construction tolerance; the code allows none</td><td>+30'</td></tr>
           <tr><td>Switchback turns</td><td>A 180° turn landing is about 11' of centerline, not 5'</td><td>+6' per turn</td></tr>
-          <tr><td>Curved runs</td><td>The inside edge is steeper; see Step 07</td><td>×1.1 on curves</td></tr>
           <tr><td>A walk at 1:20</td><td>No landings or handrails</td><td>600'</td></tr>
         </table>
         <div class="wf-note">For any site: <strong>minimum path ≈ H × 12 + 5 × (ceil(H ÷ 2.5) − 1) + 10</strong>, in feet, plus 6' for each 180° turn.</div>
@@ -400,61 +399,13 @@ minimum path      = 360 + 55 + 10       = 425'</div>
     <div class="wf-step wf-full">
       <div class="wf-step-head">
         <span class="wf-step-num">07</span>
-        <span class="wf-step-label">Going Curved</span>
-      </div>
-      <div class="wf-step-body">
-        <div class="wf-step-desc">A curved ramp is allowed, with two catches. On a curve the inside edge is shorter than the outside edge but rises the same height, so it is steeper. And on a slope, a curve cannot follow the ground at one grade.</div>
-        <div class="rp-math">g<sub>inner</sub> = g<sub>center</sub> × R<sub>center</sub> ÷ R<sub>inner</sub></div>
-        <figure class="rp-fig">
-          <svg viewBox="0 0 680 330" role="img" aria-labelledby="rp-d6">
-            <title id="rp-d6">A curved run with steeper inner edge, and a hairpin turn on the slope where the path faces straight uphill</title>
-            <defs><marker id="rp-arr2" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M2 1L8 5L2 9" style="fill:none;stroke:var(--gray-900);stroke-width:1.5"/></marker></defs>
-            <text class="s" x="20" y="24">Curved run, centerline at 1:12</text>
-            <path d="M255,270 A195,195 0 0 0 60,75 L60,105 A165,165 0 0 1 225,270 Z" style="fill:var(--gray-100)"/>
-            <path d="M225,270 A165,165 0 0 0 60,105" style="fill:none;stroke:var(--accent);stroke-width:2.5"/>
-            <path d="M240,270 A180,180 0 0 0 60,90" style="fill:none;stroke:var(--gray-700);stroke-width:1;stroke-dasharray:5 4"/>
-            <path d="M255,270 A195,195 0 0 0 60,75" style="fill:none;stroke:var(--gray-500);stroke-width:1.5"/>
-            <circle cx="60" cy="270" r="2.5" style="fill:var(--gray-900)"/>
-            <text class="a" x="70" y="200">inner 27.5' → 9.1%</text>
-            <text x="70" y="220">center 30' → 8.33%</text>
-            <text x="70" y="240">outer 32.5' → 7.7%</text>
-
-            <text class="s" x="360" y="24">Hairpin on the slope</text>
-            <g style="stroke:var(--gray-200);stroke-width:0.75">
-              <line x1="360" y1="60" x2="660" y2="60"/><line x1="360" y1="90" x2="660" y2="90"/><line x1="360" y1="120" x2="660" y2="120"/>
-              <line x1="360" y1="150" x2="660" y2="150"/><line x1="360" y1="180" x2="660" y2="180"/><line x1="360" y1="210" x2="660" y2="210"/>
-              <line x1="360" y1="240" x2="660" y2="240"/><line x1="360" y1="270" x2="660" y2="270"/>
-            </g>
-            <path d="M380,250 L560,232 A30,30 0 0 0 560,172 L380,154" style="fill:none;stroke:var(--gray-150);stroke-width:12"/>
-            <path d="M380,250 L560,232 A30,30 0 0 0 560,172 L380,154" style="fill:none;stroke:var(--accent);stroke-width:2.5"/>
-            <line x1="602" y1="218" x2="602" y2="182" style="stroke:var(--gray-900);stroke-width:1.5" marker-end="url(#rp-arr2)"/>
-            <text class="s" x="610" y="206">30%</text>
-            <text x="360" y="296">At the far end the path faces straight uphill.</text>
-            <text x="360" y="314">Turns sink into the hill: cut and walls.</text>
-          </svg>
-          <figcaption>Left: a 5' ramp on a 30' centerline radius. Codes are vague about where a curved ramp is measured; keep the inside edge at 1:12 or flatter, which puts the centerline near 1:13. Right: contours run horizontally, uphill is up. Any 180° turn has to face uphill at some point, where the ground climbs 30% and the ramp only 8%.</figcaption>
-        </figure>
-        <div class="wf-step-desc">On a curve, draw the plan first, then fit the profile to it: the reverse of Step 05.</div>
-        <ul class="wf-tips">
-          <li><strong>Plan curve.</strong> Draw it flat at Z=0 with <code>Arc</code>, <code>Line</code> and <code>BlendCrv</code>. Large radii keep the two edges close in grade.</li>
-          <li><strong>Inside edge.</strong> <code>Offset</code> the curve 2.5' inward. <code>Divide</code> it by length to mark where runs and landings fall.</li>
-          <li><strong>Profile.</strong> Draw the stretch-out profile at the centerline's exact <code>Length</code>. Leftover length goes into a flatter run or a longer landing.</li>
-          <li><strong>Lift it.</strong> <code>Flow</code> the profile onto the plan curve (Rigid No, Stretch No). For a pure circle, <code>Helix</code> works too: pitch = g × 2πR.</li>
-          <li><strong>Surface.</strong> <code>Sweep1</code>, Roadlike Top, as in Step 06.</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="wf-step wf-full">
-      <div class="wf-step-head">
-        <span class="wf-step-num">08</span>
         <span class="wf-step-label">Check Before You Present</span>
       </div>
       <div class="wf-step-body">
         <ul class="wf-tips">
           <li><strong>Grade.</strong> <code>DraftAngleAnalysis</code> on the ramp, direction Z. A 1:12 surface reads 85.24°; anything lower is too steep.</li>
           <li><strong>Plan length, not 3D length.</strong> <code>Length</code> measures in 3D, so a 30' run reads 30.10'. Check a flattened copy (<code>Project</code> to the CPlane).</li>
-          <li><strong>Rise per run.</strong> 2.5' or less between landings, on the inside edge of any curve.</li>
+          <li><strong>Rise per run.</strong> 2.5' or less between landings.</li>
           <li><strong>Landings.</strong> 5' long; turn landings at least 5' × 5' and as wide as both ramps at a switchback.</li>
           <li><strong>The top.</strong> The path ends at elevation 30' on the top edge of the site.</li>
           <li><strong>Walls.</strong> Every cut over about 1' has a wall drawn in plan and section.</li>
