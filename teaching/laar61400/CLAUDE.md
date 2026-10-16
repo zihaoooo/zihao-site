@@ -27,8 +27,8 @@ highlighted `.panel-announce` block sitting directly under the brand block in ev
 - WF06 `wf06-sketch-charrette.html` — Back to Basics, a hand charrette on a real Harlem triangle, kept nameless to students. Site identity, reveal plan and base-plan build steps: ../course-prep/laar61400/workflows/wf06-sketch-charrette/README.md (not published).
 - AI workflows are optional and ungraded; their guides live only in `/talks/agents-in-practice/` (try-rhino, try-context).
 
-## Add-on tutorials (`tutorials/`)
-Optional self-paced tutorials, hand-authored on the site in the `.wf-doc` layout; listed last in the nav under "Add-on Tutorials".
+## Extra tutorials (`tutorials/`)
+Optional self-paced tutorials, hand-authored on the site in the `.wf-doc` layout; header chip `EXTRA`. Optional items sit at the end of their nav section (tutorials under Workflows, after WF06) with a `<span class="panel-tag">Extra</span>` inside the link; optional lectures get no slot in the Weekly Schedule.
 - `ramp-on-slope.html` — Ramp on a Slope (ADA ramp: minimum length, plan angle, switchbacks). Diagrams are inline SVG in the page. A walkthrough video (Sweep1 and Flow) sits above the spec strip; its sources and YouTube text live in `course-prep/laar61400/tutorials/ramp-on-slope/`.
 
 WF pages are hand-authored HTML only — the old per-workflow `.md` sources were deleted
