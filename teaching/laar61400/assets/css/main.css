@@ -1,4 +1,5 @@
 @import url('/assets/css/tokens.css');   /* fonts + color tokens */
+@import url('/assets/css/footer.css');   /* copyright footer */
 
 /* Reset */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
