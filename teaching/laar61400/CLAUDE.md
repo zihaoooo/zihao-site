@@ -28,7 +28,7 @@ highlighted `.panel-announce` block sitting directly under the brand block in ev
 - AI workflows are optional and ungraded; their guides live only in `/talks/agents-in-practice/` (try-rhino, try-context).
 
 ## Extra tutorials (`tutorials/`)
-Optional self-paced tutorials, hand-authored on the site in the `.wf-doc` layout; header chip `EXTRA`. Optional items sit at the end of their nav section (tutorials under Workflows, after WF06) with a `<span class="panel-tag">Extra</span>` inside the link; optional lectures get no slot in the Weekly Schedule.
+Optional self-paced tutorials, hand-authored on the site in the `.wf-doc` layout; header chip `EXTRA`. Optional items sit at the end of their nav section (tutorials under Workflows, after WF06) with a `<span class="panel-tag">Extra</span>` inside the link (Workflows also lists AI Workflows → `/talks/agents-in-practice/`); optional lectures get no slot in the Weekly Schedule.
 - `ramp-on-slope.html` — Ramp on a Slope (ADA ramp: minimum length, plan angle, switchbacks). Diagrams are inline SVG in the page. A walkthrough video (Sweep1 and Flow) sits above the spec strip; its sources and YouTube text live in `course-prep/laar61400/tutorials/ramp-on-slope/`.
 
 WF pages are hand-authored HTML only — the old per-workflow `.md` sources were deleted
