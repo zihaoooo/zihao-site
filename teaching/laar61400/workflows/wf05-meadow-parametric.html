@@ -94,7 +94,7 @@
   </div>
 
   <div class="wf-outcome">
-    <strong>Assignment</strong><span>One Grasshopper definition that encodes two landscape rules on the same meadow — a mown path (Dispatch) and wet areas (Remap) — submitted as Session 1 and Session 2 viewport screenshots plus one slider study showing how a parameter changes the spatial outcome.</span>
+    <strong>Assignment</strong><span>A meadow garden shaped by an ecological process — your own story and planting logic on the Session 2 definition, mown path kept for access — submitted as one 11 × 17 sheet: a small hand-drawn diagram of the rules on the left, three isometric views of garden variations on the right.</span>
     <div class="wf-actions">
       <a class="wf-btn" href="https://miro.com/app/board/uXjVH3zpADk=/?share_link_id=760271312933" target="_blank" rel="noopener">Submit to Miro board<span class="wf-btn-arrow" aria-hidden="true">↗</span></a>
       <span class="wf-btn-note">Password: &quot;c*****2026&quot;, shared via email</span>
@@ -111,7 +111,7 @@
 
   <!-- Intro -->
   <div style="background:var(--gray-100); border-radius:4px; padding:16px 18px; margin-bottom:28px;">
-    <div class="wf-step-desc">A flat meadow. Two parametric rules encode two landscape conditions — a mown path, and wet areas. The same field, two rules, two spatial readings.</div>
+    <div class="wf-step-desc">A flat meadow. Two given rules encode two landscape conditions — a mown path, and wet areas. Then you design a meadow garden shaped by an ecological process of your choosing.</div>
     <div class="wf-step-desc">This workflow introduces the core logic of parametric design: <strong>write the rule first, then build it in nodes.</strong></div>
   </div>
 
@@ -152,7 +152,7 @@
         <ul class="wf-tips">
           <li><strong>Rectangle</strong> → set X and Y domains to <kbd>0 to 50</kbd> (use a <strong>Construct Domain</strong> or a <strong>Panel</strong>)</li>
           <li><strong>Populate 2D</strong> → the Rectangle as region</li>
-          <li><strong>Count</strong> slider → start at 200</li>
+          <li><strong>Count</strong> slider → start at 1000</li>
           <li><strong>Seed</strong> slider → controls the random distribution</li>
         </ul>
       </div>
@@ -168,7 +168,7 @@
       <div class="wf-step-body">
         <div class="wf-step-desc">Give every plant a random unmowed height:</div>
         <ul class="wf-tips">
-          <li><strong>Random</strong> → domain via a <strong>Panel</strong> typed <kbd>0.5 to 6.0</kbd> (grass height range); set Number (N) to the same Count as Populate 2D</li>
+          <li><strong>Random</strong> → domain via a <strong>Panel</strong> typed <kbd>2 to 6.0</kbd> (grass height range); set Number (N) to the same Count as Populate 2D</li>
           <li><strong>Line SDL</strong> → start = Populate 2D points, direction = unit Z, length = Random</li>
         </ul>
         <div class="wf-note">You now have a meadow — a field of vertical lines of varying height.</div>
@@ -203,12 +203,12 @@
       <div class="wf-step-body">
         <div class="wf-step-desc">Split the meadow into mown and unmown by the threshold:</div>
         <ul class="wf-tips">
-          <li><strong>Larger Than</strong> → A = distance to path, B = mowing width slider (start at 8.0)</li>
-          <li><strong>Dispatch</strong> (heights) → data = random heights, pattern = Larger Than → List A = unmowed, List B = mowed</li>
-          <li><strong>Dispatch</strong> (points) → data = Populate 2D points, same pattern → List A = unmowed points, List B = mowed points</li>
-          <li>List B heights → replace with a short fixed height slider (0.5); rebuild a <strong>Line SDL</strong> for the mowed branch</li>
+          <li><strong>Larger Than</strong> → A = distance to path, B = mowing width slider (start at 2)</li>
+          <li><strong>Dispatch</strong> → data = Populate 2D points, pattern = Larger Than → List A = unmowed points, List B = mowed points</li>
+          <li>Unmowed: rewire the Step 02 <strong>Line SDL</strong> → start = List A. Feed <strong>List Length</strong> of List A into Random's N, so each unmowed plant gets exactly one height</li>
+          <li>Mowed: a second <strong>Line SDL</strong> → start = List B, direction = unit Z, length = a short Length slider (0.5)</li>
         </ul>
-        <div class="wf-note">Both height and point lists are dispatched with the same pattern — the two lists stay in sync. List A points carry forward into Session 2. <strong>End of Session 1.</strong></div>
+        <div class="wf-note">Only the points are dispatched. Random's N has to match the List A count — if it stays at Count, the extra heights stack up as hidden lines on the last unmowed plant. List A points carry forward into Session 2. <strong>End of Session 1.</strong></div>
       </div>
     </div>
 
@@ -265,7 +265,7 @@
         <div class="wf-step-desc">In Rhino, place 2–4 point objects on the site — these are the wet area locations. Reference them into GH with a <strong>Point</strong> parameter. Then find the nearest wet area for each unmowed plant:</div>
         <ul class="wf-tips">
           <li><strong>Pull Point</strong> → input points = List A points (unmowed, from Step 04 Dispatch), geometry = wet area attractors</li>
-          <li><strong>Distance</strong> → each unmowed plant to its pulled (nearest) wet area point</li>
+          <li>Use the <strong>Distance</strong> output directly, same as Step 03 — distance from each unmowed plant to its nearest wet area</li>
         </ul>
       </div>
     </div>
@@ -280,8 +280,8 @@
       <div class="wf-step-body">
         <div class="wf-step-desc">Turn distance into a height gradient, capped at a maximum influence radius:</div>
         <ul class="wf-tips">
-          <li>Three sliders: <strong>Max Radius</strong> (default 15 ft), <strong>Height Near</strong> (default 1.0), <strong>Height Far</strong> (default 0.2)</li>
-          <li><strong>Minimum</strong> → A = distances (from Distance), B = Max Radius slider → output = capped distances (GH broadcasts the single slider value across the whole list)</li>
+          <li>Three sliders: <strong>Max Radius</strong> (default 15 ft), <strong>Height Near</strong> (default 9), <strong>Height Far</strong> (default 1)</li>
+          <li><strong>Minimum</strong> → A = distances (Pull Point D), B = Max Radius slider → output = capped distances (GH broadcasts the single slider value across the whole list)</li>
           <li><strong>Construct Domain</strong> (source) → A = 0, B = Max Radius → fixed source domain</li>
           <li><strong>Construct Domain</strong> (target) → A = Height Near, B = Height Far → target domain</li>
           <li><strong>Remap Numbers</strong> → values = output from Minimum, source = source domain, target = target domain</li>
@@ -298,9 +298,11 @@
         <span class="wf-badge wf-badge-gh">GH</span>
       </div>
       <div class="wf-step-body">
-        <div class="wf-step-desc">Same as Session 1 — draw each plant as a vertical line, length = remapped height:</div>
+        <div class="wf-step-desc">Same as Session 1 — draw each unmowed plant as a vertical line, length = remapped height:</div>
         <ul class="wf-tips">
-          <li><strong>Line SDL</strong> → start = Populate 2D points, direction = unit Z, length = remapped height</li>
+          <li><strong>Line SDL</strong> → start = List A points (unmowed), direction = unit Z, length = remapped height</li>
+          <li>The remapped height replaces Random</li>
+          <li>The mowed branch (List B, 0.5) stays as it is</li>
         </ul>
         <div class="wf-note">Tall lines near wet areas, short lines further away. The gradient reads immediately in the viewport.</div>
       </div>
@@ -344,6 +346,42 @@
       </div>
     </details>
 
+    <!-- Own rule label -->
+    <div class="wf-step wf-full" style="background:none;border:none;padding:0;margin-top:4px;">
+      <div class="wf-week-label">On Your Own — Meadow Garden</div>
+    </div>
+
+    <!-- Step 09 -->
+    <div class="wf-step">
+      <div class="wf-step-head">
+        <span class="wf-step-num">09</span>
+        <span class="wf-step-label">Design a Meadow Garden</span>
+        <span class="wf-badge wf-badge-neutral">Paper</span>
+        <span class="wf-badge wf-badge-gh" style="margin-left:4px;">GH</span>
+      </div>
+      <div class="wf-step-body">
+        <div class="wf-step-desc">Design a meadow garden shaped by an ecological process. Start from your Session 2 definition and give it your own story: what process shapes this meadow, where it acts, and how the plants respond. Keep the mown path for access.</div>
+        <div class="wf-step-desc" style="margin-top:10px;">For reference, look at the work of Teresa Galí-Izard's practice, <a href="https://arquitecturaagronomia.net" target="_blank" rel="noopener">Arquitectura Agronomía</a>, where the form of a garden comes from the rules of the living processes that shape it.</div>
+        <div class="wf-step-desc" style="margin-top:10px;">On paper first, draw a diagram that explains the logic: the process, where it acts, how plants respond, and the pseudocode beside it. Then build it with the components you already have — Pull Point, Dispatch, Remap. Change the logic, not the toolset:</div>
+        <ul class="wf-tips">
+          <li>Swap the attractor — points, a curve, or the site boundary</li>
+          <li>Flip the direction — short near the attractor instead of tall</li>
+          <li>Switch threshold for gradient — Dispatch where you used Remap, or the reverse</li>
+          <li>Remove instead of shorten — Dispatch, then draw only one list</li>
+        </ul>
+        <div class="wf-step-desc" style="margin-top:10px;">Some starting points:</div>
+        <ul class="wf-tips">
+          <li><strong>Tree shade</strong> — a few trunk points. Grass stays short in the shade near each trunk and grows tall in the open. Session 2 Remap, direction flipped.</li>
+          <li><strong>Stream corridor</strong> — a curve for the stream. Plants are tallest along the banks and fade toward the dry upland. Session 2 Remap, with a curve as the attractor.</li>
+          <li><strong>Deer browsing</strong> — points for bedding areas. Inside a radius, everything is grazed short. Session 1 Dispatch, with points as the attractor.</li>
+          <li><strong>Rock outcrops</strong> — points for exposed bedrock. Inside a radius nothing grows. Dispatch, and draw only the plants outside.</li>
+          <li><strong>Woodland edge</strong> — the site boundary as the attractor. Shrubby and tall along the edge, open meadow in the middle. Pull Point to the Rectangle + Remap.</li>
+        </ul>
+        <div class="wf-step-desc" style="margin-top:10px;">Explore the form in GH. Move, add and reshape the attractors, and switch between points and curves. Set Max Radius, Height Near and Height Far to match your story. Make three variations of the garden and capture each from the same isometric view (Rhino: Set View → SE Isometric).</div>
+        <div class="wf-note">The process has to read in the viewport. If you can't see it in the isometric view, make the contrast stronger.</div>
+      </div>
+    </div>
+
   </div><!-- /steps -->
 
   <!-- Key concepts block -->
@@ -375,7 +413,8 @@
           <tr><td>for each plant in meadow</td><td><kbd>Populate 2D</kbd></td></tr>
           <tr><td>distance to path</td><td><kbd>Pull Point</kbd></td></tr>
           <tr><td>if / else</td><td><kbd>Larger Than</kbd> + <kbd>Dispatch</kbd></td></tr>
-          <tr><td>distance to nearest wet area</td><td><kbd>Pull Point</kbd> + <kbd>Distance</kbd></td></tr>
+          <tr><td>one height per unmowed plant</td><td><kbd>List Length</kbd> → Random N</td></tr>
+          <tr><td>distance to nearest wet area</td><td><kbd>Pull Point</kbd></td></tr>
           <tr><td>remap to height</td><td><kbd>Remap Numbers</kbd></td></tr>
           <tr><td>draw plant</td><td><kbd>Line SDL</kbd></td></tr>
         </tbody>
@@ -390,7 +429,6 @@
       <li>Write the rule on paper before touching a node. The pseudocode is the design.</li>
       <li>Dispatch is the readable edge; Remap is the gradient. Know which one the condition wants.</li>
       <li>Set hints and watch the preview live — drag a slider and read the change before moving on.</li>
-      <li>Label your slider values in the screenshots. The deliverable is the relationship, not the picture.</li>
     </ul>
   </div>
 
