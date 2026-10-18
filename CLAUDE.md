@@ -6,7 +6,7 @@ Repo layout:
   course main.css. Pages write var(--…), never a font name or UI hex (deck-spec.md § Fonts and colors).
 - assets/icons/ + root favicon.ico — 朱砂 seal images, built by `_local/tools/build_favicon.py`
   from the wallpaper-maker seal glyphs: tab icon = 篆书 子 on a plain block; seal.png = the
-  張子豪 seal shown under 张子豪 in the nav (site.css). Every page's head links both icons.
+  張子豪 seal closing the nav, after the links (site.css). Every page's head links both icons.
 - assets/css/site.css — shared styles. assets/js/site.js — nav active-state by URL.
 - assets/deck/ — deck.{css,js} = slide-deck layout system + carousel controller; deck-spec.md = the
   spec for both (source of truth, edit it here). Shared by

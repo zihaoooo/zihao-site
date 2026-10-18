@@ -84,15 +84,14 @@ body {
   text-align: right;
 }
 
-/* 張子豪 seal under the Chinese name, as a 落款 under a signature; built by _local/tools/build_favicon.py */
-.site-nav-zh::after {
-  content: "";
+/* 張子豪 seal closing the nav, as a 落款 at the end of a scroll; links home.
+   Image built by _local/tools/build_favicon.py */
+.site-nav-seal {
   display: block;
-  width: 34px;
-  height: 34px;
-  margin: 12px 0 0 auto;
-  background: url(/assets/icons/seal.png) center / contain no-repeat;
+  margin-top: 36px;
+  line-height: 0;
 }
+.site-nav-seal img { width: 38px; }
 
 .site-nav-meta {
   font-size: 12px;
@@ -351,7 +350,6 @@ body {
   }
 
   .site-nav-name { margin-bottom: 20px; }
-  .site-nav-zh::after { margin-left: 0; }
   .site-nav-meta { margin-bottom: 20px; }
 
   .site-nav-links {
