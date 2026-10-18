@@ -5,15 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Ramp on a Slope — LAAR 61400</title>
   <link rel="stylesheet" href="/teaching/laar61400/assets/css/main.css">
-  <link rel="stylesheet" href="/teaching/laar61400/assets/css/workflow-shared.css?v=6">
+  <link rel="stylesheet" href="/teaching/laar61400/assets/css/workflow-shared.css?v=7">
   <style>
-    .rp-fig { margin: 14px 0 6px; }
-    .rp-fig svg { display: block; width: 100%; height: auto; background: #fff; border: 1px solid var(--gray-200); border-radius: 4px; }
-    .rp-fig img { display: block; width: 100%; height: auto; border: 1px solid var(--gray-200); border-radius: 4px; cursor: zoom-in; }
-    .rp-fig figcaption { font-size: 11px; color: var(--gray-500); margin-top: 5px; max-width: 64ch; }
-    .rp-fig text { font-family: var(--font-mono); font-size: 11px; fill: var(--gray-700); }
-    .rp-fig text.s { fill: var(--gray-900); font-weight: 500; }
-    .rp-fig text.a { fill: var(--accent); }
     .rp-pair { display: grid; grid-template-columns: minmax(0, 0.991fr) minmax(0, 1.778fr); gap: 12px; align-items: start; }
     @media (max-width: 640px) { .rp-pair { grid-template-columns: 1fr; } }
     .rp-math { font-family: var(--font-math); font-size: 18px; color: var(--gray-900); margin: 10px 0; }
@@ -145,7 +138,7 @@
       </div>
       <div class="wf-step-body">
         <div class="wf-step-desc">Measure two numbers: the <strong>rise</strong> (how much higher the top is) and the <strong>run</strong> (the horizontal distance). Slope is rise ÷ run. This site rises 30' over 100', a 30% slope, more than three times steeper than a ramp may be.</div>
-        <figure class="rp-fig">
+        <figure class="wf-fig">
           <svg viewBox="0 0 680 255" role="img" aria-labelledby="rp-d1">
             <title id="rp-d1">Section through the site: a 30 percent slope against the 1:12 and 1:20 lines</title>
             <polygon points="40,210 490,75 490,210" style="fill:var(--gray-100)"/>
@@ -174,7 +167,7 @@
       </div>
       <div class="wf-step-body">
         <div class="wf-step-desc">1:12 means 1' of rise for every 12' of horizontal run. A ramp may be 1:12 or <strong>flatter</strong> (1:14, 1:16), never steeper (1:10). Every number in the table below shapes the drawing.</div>
-        <figure class="rp-fig">
+        <figure class="wf-fig">
           <svg viewBox="0 0 680 400" role="img" aria-labelledby="rp-d2">
             <title id="rp-d2">Anatomy of a ramp: long section of a run and landing, and a cross section through the ramp on the hillside</title>
             <text class="s" x="30" y="28">Long section</text>
@@ -250,7 +243,7 @@ runs needed  n    = ceil(H ÷ 2.5)       = 12      (each 30' long)
 landings          = (n − 1) × 5'        = 55'
 top + bottom      = 2 × 5'              = 10'
 minimum path      = 360 + 55 + 10       = 425'</div>
-        <figure class="rp-fig">
+        <figure class="wf-fig">
           <svg viewBox="0 0 680 285" role="img" aria-labelledby="rp-d3">
             <title id="rp-d3">Stretch-out profile: twelve 30-foot runs and eleven 5-foot landings rising 30 feet over 425 feet</title>
             <line x1="45" y1="230" x2="640" y2="230" style="stroke:var(--gray-200);stroke-width:0.75"/>
@@ -295,7 +288,7 @@ minimum path      = 360 + 55 + 10       = 425'</div>
         <div class="wf-step-desc">The ramp climbs gently by crossing the hill at an angle. Walking along a contour, you stay level. Walking straight up, you climb the full slope <em>s</em>. Turn the path an angle α off the contour and only the uphill part of each step climbs, the sin α share:</div>
         <div class="rp-math">g = s · sin α &nbsp;&nbsp;→&nbsp;&nbsp; α = asin(g ÷ s) = asin(0.0833 ÷ 0.30) ≈ 16°</div>
         <div class="wf-step-desc">Drag the slider. The path turns green at 1:12 or flatter.</div>
-        <figure class="rp-fig">
+        <figure class="wf-fig">
           <svg viewBox="0 0 680 300" role="img" aria-labelledby="rp-d4">
             <title id="rp-d4">Plan of a path crossing the contours at angle alpha, and its unfolded profile against the 1:12 limit</title>
             <defs><marker id="rp-arr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M2 1L8 5L2 9" style="fill:none;stroke:var(--gray-500);stroke-width:1.5"/></marker></defs>
@@ -333,7 +326,7 @@ minimum path      = 360 + 55 + 10       = 425'</div>
       <div class="wf-step-body">
         <div class="wf-step-desc">A 425' ramp does not fit across a 100' site, so it turns back on itself. Split the profile into legs of run, landing, run (65', rising 5'). Six legs climb 30'.</div>
         <div class="wf-step-desc">Turn landings move the path uphill without climbing, so the legs cross the hill at a flatter angle than 16°. Solve for it with a <strong>Y budget</strong>: the legs and turns together have to cover the 100' of uphill distance.</div>
-        <figure class="rp-fig">
+        <figure class="wf-fig">
           <svg viewBox="0 0 680 480" role="img" aria-labelledby="rp-d5">
             <title id="rp-d5">Plan of six switchback legs climbing the 100 by 100 foot site, with the Y budget that sets their angle</title>
             <rect x="40" y="50" width="400" height="400" style="fill:none;stroke:var(--gray-400);stroke-width:0.75"/>
@@ -412,11 +405,11 @@ minimum path      = 360 + 55 + 10       = 425'</div>
           <li>For an exact number at one spot, run <code>DraftAnglePoint</code> and pick on the surface.</li>
         </ul>
         <div class="rp-pair">
-          <figure class="rp-fig">
+          <figure class="wf-fig">
             <img src="/teaching/laar61400/assets/img/ramp-on-slope/draft-angle-panel.avif" width="465" height="469" loading="lazy" alt="Rhino's Draft angle analysis panel with 85.3 in the top box, 85.2 in the bottom box, direction CPlane Z">
             <figcaption>The panel: 85.3 on top, 85.2 below.</figcaption>
           </figure>
-          <figure class="rp-fig">
+          <figure class="wf-fig">
             <img src="/teaching/laar61400/assets/img/ramp-on-slope/draft-angle-demo.avif" width="1200" height="675" loading="lazy" alt="A straight ramp in Rhino under draft angle analysis: the 1:13 run and the landings are blue, the 1:12 run green, the 1:10 run red">
             <figcaption>Test ramp: three runs of 2.5' rise with 5' landings.</figcaption>
           </figure>
@@ -453,7 +446,7 @@ minimum path      = 360 + 55 + 10       = 425'</div>
     (function () {
       var box = document.getElementById('lightbox');
       var boxImg = box.querySelector('img');
-      document.querySelectorAll('.rp-fig img').forEach(function (img) {
+      document.querySelectorAll('.wf-fig img').forEach(function (img) {
         img.addEventListener('click', function () {
           boxImg.src = img.src;
           boxImg.alt = img.alt;

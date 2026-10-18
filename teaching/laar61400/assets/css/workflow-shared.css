@@ -349,6 +349,15 @@
 }
 .wf-example-grid-3 { grid-template-columns: 1fr 1fr 1fr; }
 .wf-example-grid figure { margin: 0; }
+
+/* Inline diagrams: SVG on a white card, mono labels (.s = strong, .a = accent) */
+.wf-fig { margin: 14px 0 6px; }
+.wf-fig svg { display: block; width: 100%; height: auto; background: #fff; border: 1px solid var(--gray-200); border-radius: 4px; }
+.wf-fig img { display: block; width: 100%; height: auto; border: 1px solid var(--gray-200); border-radius: 4px; cursor: zoom-in; }
+.wf-fig figcaption { font-size: 11px; color: var(--gray-500); margin-top: 5px; max-width: 64ch; }
+.wf-fig text { font-family: var(--font-mono); font-size: 11px; fill: var(--gray-700); }
+.wf-fig text.s { fill: var(--gray-900); font-weight: 500; }
+.wf-fig text.a { fill: var(--accent); }
 .wf-example-grid img {
   width: 100%;
   height: auto;
