@@ -4,8 +4,9 @@ Repo layout:
 - _local/ — committed backup, unlinked from the site but public: GitHub shows it and the live site serves it by URL. Keep it to files fine to share.
 - assets/css/tokens.css — every font and UI color as a variable; imported by site.css and the
   course main.css. Pages write var(--…), never a font name or UI hex (deck-spec.md § Fonts and colors).
-- assets/icons/ + root favicon.ico — tab icon: 張 small-seal chop in 朱砂, built by
-  `_local/tools/build_favicon.py` from the wallpaper-maker seal glyphs. Every page's head links both.
+- assets/icons/ + root favicon.ico — 朱砂 seal images, built by `_local/tools/build_favicon.py`
+  from the wallpaper-maker seal glyphs: tab icon = 篆书 子 on a plain block; seal.png = the
+  張子豪 seal shown under 张子豪 in the nav (site.css). Every page's head links both icons.
 - assets/css/site.css — shared styles. assets/js/site.js — nav active-state by URL.
 - assets/deck/ — deck.{css,js} = slide-deck layout system + carousel controller; deck-spec.md = the
   spec for both (source of truth, edit it here). Shared by
@@ -35,7 +36,7 @@ Tooling (all in `_local/` — committed and public; check here before writing a 
   edge ≤1920. `slides` mode = talks slides only (a module's `slides/` folder), AVIF q80,
   width ≤1920, and repoints each slide ref in the module's index.html. Lecture images are
   page images and use `dir` mode. `encode_one()` is importable for curated names/panoramas.
-- `tools/build_favicon.py` — rebuild favicon.ico + apple-touch-icon.png (see assets/icons above).
+- `tools/build_favicon.py` — rebuild the seal images (see assets/icons above).
 - `tools/build_thumbs.py` — rebuild the projects-gallery thumbnails into `assets/img/thumbs/`
   and repoint `projects/index.html`. Run after changing a card image. Dry-runs by default;
   `--apply` writes.

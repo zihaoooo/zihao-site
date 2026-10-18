@@ -84,6 +84,16 @@ body {
   text-align: right;
 }
 
+/* 張子豪 seal under the Chinese name, as a 落款 under a signature; built by _local/tools/build_favicon.py */
+.site-nav-zh::after {
+  content: "";
+  display: block;
+  width: 34px;
+  height: 34px;
+  margin: 12px 0 0 auto;
+  background: url(/assets/icons/seal.png) center / contain no-repeat;
+}
+
 .site-nav-meta {
   font-size: 12px;
   color: var(--gray-400);
@@ -341,6 +351,7 @@ body {
   }
 
   .site-nav-name { margin-bottom: 20px; }
+  .site-nav-zh::after { margin-left: 0; }
   .site-nav-meta { margin-bottom: 20px; }
 
   .site-nav-links {
