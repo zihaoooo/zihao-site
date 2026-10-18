@@ -123,6 +123,22 @@
       <div class="wf-week-label">Session 1 — Mowing Path</div>
     </div>
 
+    <!-- Session 1 video walkthrough -->
+    <div class="wf-step wf-full wf-nocheck">
+      <div class="wf-step-head">
+        <span class="wf-step-num">▶</span>
+        <span class="wf-step-label">Video Walkthrough — Steps 01–04</span>
+      </div>
+      <div class="wf-step-body">
+        <div class="wf-step-desc">A narrated recording of Steps 01–04 and the optional landform, with chapters and captions (<kbd>CC</kbd>). It varies from the text in places: Random's N stays at Count (an on-screen note gives the proper wiring), and the mowed lines are 0.2 ft.</div>
+        <div class="wf-video">
+          <iframe src="https://www.youtube.com/embed/f71N1I1o2os" title="Workflow 05 Attractor Fields, Part 1 — narrated walkthrough, Steps 01–04" loading="lazy"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+        <a class="wf-video-link" href="https://youtu.be/f71N1I1o2os" target="_blank" rel="noopener">Open on YouTube for 1080p ↗</a>
+      </div>
+    </div>
+
     <!-- Pseudocode 9 -->
     <div class="wf-step wf-full">
       <div class="wf-step-head">
@@ -170,9 +186,10 @@
         <div class="wf-step-desc">Grow the meadow on a landform instead of flat ground — your WF04 surface, or a new one:</div>
         <ul class="wf-tips">
           <li>Reference the landform into GH with a <strong>Brep</strong> parameter. Make it larger than the 50 × 50 rectangle so every point lands on it.</li>
-          <li><strong>Project Point</strong> → P = Populate 2D points, D = unit Z, G = landform</li>
-          <li>Use the projected points everywhere Populate 2D points go below</li>
-          <li>Project the path and the attractors too: <strong>Project</strong> (Curve › Util) for curves, <strong>Project Point</strong> for points, D = unit Z. Pull Point measures in 3D, so a flat path under raised ground reads as far away and the mown strip disappears. Projecting in GH keeps them live when you move the originals.</li>
+          <li><strong>Pull Point</strong> → points = Populate 2D points, geometry = landform. Its Closest Point output is the meadow on the ground, whether the ground sits above or below the flat points.</li>
+          <li>Use these Closest Points everywhere Populate 2D points go below</li>
+          <li>Bring the path and the attractors down too: <strong>Project</strong> (Curve › Util) for curves, B = landform; Pull Point for the attractor points. Pull Point measures in 3D, so a flat path under raised ground reads as far away and the mown strip disappears. Doing this in GH keeps them live when you move the originals.</li>
+          <li>A dashed wire means the data sits in several lists. Right-click the output and Flatten it.</li>
         </ul>
       </div>
     </div>
@@ -256,6 +273,22 @@
     <!-- Session 2 label -->
     <div class="wf-step wf-full" style="background:none;border:none;padding:0;margin-top:4px;">
       <div class="wf-week-label">Session 2 — Wet Areas</div>
+    </div>
+
+    <!-- Session 2 video walkthrough -->
+    <div class="wf-step wf-full wf-nocheck">
+      <div class="wf-step-head">
+        <span class="wf-step-num">▶</span>
+        <span class="wf-step-label">Video Walkthrough — Steps 05–08</span>
+      </div>
+      <div class="wf-step-body">
+        <div class="wf-step-desc">A narrated recording of Steps 05–06, ending on the finished heights, then a recap of both sessions, with chapters and captions (<kbd>CC</kbd>). It runs on the landform version (<kbd>WF05_mow_water_landform.gh</kbd> in the Hint below) with Max Radius 18, Height Near 5, Height Far 0.2.</div>
+        <div class="wf-video">
+          <iframe src="https://www.youtube.com/embed/NjAX-w1eOvA" title="Workflow 05 Attractor Fields, Part 2 — narrated walkthrough, Steps 05–08" loading="lazy"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+        <a class="wf-video-link" href="https://youtu.be/NjAX-w1eOvA" target="_blank" rel="noopener">Open on YouTube for 1080p ↗</a>
+      </div>
     </div>
 
     <!-- Pseudocode 10 -->
@@ -362,6 +395,7 @@
           </figure>
         </div>
         <a class="wf-download" href="/teaching/laar61400/assets/img/WF05/WF05_mow_water.gh" download>↓ Download example definition — WF05_mow_water.gh</a>
+        <a class="wf-download" href="/teaching/laar61400/assets/img/WF05/WF05_mow_water_landform.gh" download>↓ On a landform — WF05_mow_water_landform.gh</a>
       </div>
     </details>
 
