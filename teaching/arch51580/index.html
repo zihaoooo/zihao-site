@@ -125,7 +125,7 @@
       <div class="syllabus-section">
         <span class="syllabus-section-label">Course Logistics / Technology</span>
         <div class="syllabus-body">
-          <p>This course runs on a personal machine, not a lab machine &mdash; an agent needs install rights, a persistent project folder, and a signed-in account, none of which survive on a shared computer. Everything below is free except the agent subscription.</p>
+          <p>This course runs on a personal machine, not a lab machine &mdash; an agent needs install rights, a persistent project folder, and a signed-in account, none of which survive on a shared computer. Everything below is free except the agent subscription. Rhino 8 is needed from Week 2 on; its Grasshopper Python component is where this course first reads code.</p>
         </div>
         <div class="software-grid" style="margin-top: 16px;">
           <div class="software-item">
@@ -142,7 +142,15 @@
           </div>
           <div class="software-item">
             <div class="software-name" style="color: #2a6a2a;">Python 3</div>
-            <div class="software-desc">The language this course reads scripts in, and what Part II's plugin track runs on. Free. Installed in Week 1, with Pillow (12 or later) for the image work in Week 2.</div>
+            <div class="software-desc">The language this course reads scripts in, inside Grasshopper and on its own, and what Part II's plugin track runs on. Free, and already inside Rhino 8.</div>
+          <div class="software-item">
+            <div class="software-name" style="color: var(--accent);">Rhino 3D</div>
+            <div class="software-desc">McNeel Rhino 3D (current version). Student license at rhino3d.com/educational.</div>
+          </div>
+          <div class="software-item">
+            <div class="software-name" style="color: #2a6a2a;">Grasshopper 3D</div>
+            <div class="software-desc">Included with Rhino 3D. No additional license required.</div>
+          </div>
           </div>
         </div>
         <div class="syllabus-body" style="margin-top: 20px;">
@@ -255,13 +263,13 @@
             <tr>
               <td class="week-num">01</td>
               <td><span class="week-topic">From Tool Users to Tool Makers</span><br>Course introduction; chat versus agent; a tour of agent-built precedents; machine setup; precedent presentation sign-up<br><a class="lecture-link" href="/teaching/arch51580/lectures/computational-thinking.html">&#9656; Lecture: A History of Computational Thinking</a></td>
-              <td><span class="tool-badge">Claude Code</span><span class="tool-badge">Git</span><span class="tool-badge">GitHub</span><span class="tool-badge">Python</span></td>
-              <td>Install and verify all four, plus Pillow 12 for Python. Pick your precedent slot.</td>
+              <td><span class="tool-badge">Claude Code</span><span class="tool-badge">Git</span><span class="tool-badge">GitHub</span><span class="tool-badge rh">Rhino</span></td>
+              <td>Install and verify all of them. Pick your precedent slot.</td>
             </tr>
             <tr>
               <td class="week-num">02</td>
-              <td><span class="week-topic">Coding 101 &mdash; How a Machine Reads Instructions</span><br>What a computer actually does; what a script is; the five moves &mdash; name, repeat, choose, bundle, read and write; tracing a loop by hand; reading an error<br><a class="lecture-link" href="/teaching/arch51580/lectures/coding-101.html">&#9656; Lecture: Coding 101</a><br><a class="wf-link" href="/teaching/arch51580/workshops/coding-101.html">&#9656; Workshop 01: Reading a Script</a></td>
-              <td><span class="tool-badge">Python</span><span class="tool-badge">Claude Code</span></td>
+              <td><span class="week-topic">Coding 101 &mdash; How a Machine Reads Instructions</span><br>What a computer actually does; what a script is; the five moves &mdash; name, repeat, choose, bundle, read and write &mdash; built up inside a Grasshopper Python component, where the inputs you wire are the variables the code uses; tracing a loop by hand; reading an error<br><a class="lecture-link" href="/teaching/arch51580/lectures/coding-101.html">&#9656; Lecture: Coding 101</a><br><a class="wf-link" href="/teaching/arch51580/workshops/coding-101.html">&#9656; Workshop 01: Reading a Script</a></td>
+              <td><span class="tool-badge rh">Rhino</span><span class="tool-badge gh">Grasshopper</span><span class="tool-badge">Python</span><span class="tool-badge">Claude Code</span></td>
               <td><strong>D1 due</strong> &mdash; workflow audit: one recent project drawn as a sequence of steps, with the friction marked<br><em>AI Fluency:</em> introduction; why AI fluency; the 4D framework</td>
             </tr>
             <tr>

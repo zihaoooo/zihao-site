@@ -7,18 +7,40 @@
   <link rel="stylesheet" href="/teaching/laar61400/assets/css/main.css">
   <link rel="stylesheet" href="/teaching/laar61400/assets/css/workflow-shared.css">
   <style>
-    /* code blocks inside the steps */
-    .ws-code{border:1px solid var(--line);border-radius:6px;background:var(--gray-100);
+    /* copy-paste code block. No line numbers and no decoration inside <pre>:
+       whatever is in there is exactly what lands on the student's clipboard. */
+    .ws-code{position:relative;border:1px solid var(--line);border-radius:6px;background:var(--gray-100);
       padding:14px 16px;margin:12px 0 4px;overflow-x:auto;}
     .ws-code pre{margin:0;font:400 13.5px/1.75 var(--font-mono);color:var(--gray-900);white-space:pre;}
-    .ws-code .c{color:var(--gray-500);font-style:italic;}
     .ws-code__label{display:block;font:700 10px/1 var(--font-mono);letter-spacing:.12em;
-      text-transform:uppercase;color:var(--gray-500);margin-bottom:9px;}
+      text-transform:uppercase;color:var(--gray-500);margin-bottom:9px;padding-right:70px;}
+    .ws-copy{position:absolute;top:9px;right:9px;appearance:none;cursor:pointer;
+      border:1px solid var(--line);background:#fff;color:var(--gray-700);border-radius:999px;
+      font:600 10.5px/1 var(--font-mono);letter-spacing:.1em;text-transform:uppercase;
+      padding:7px 11px;transition:.15s;}
+    .ws-copy:hover{border-color:var(--accent);color:var(--accent);}
+    .ws-copy.is-done{background:var(--accent);border-color:var(--accent);color:#fff;}
     /* the predict-first box */
     .ws-predict{border:1px solid var(--accent);border-left-width:4px;border-radius:6px;
       background:color-mix(in srgb, var(--accent) 5%, transparent);padding:15px 18px;margin:14px 0;}
     .ws-predict strong{display:block;font-size:14px;color:var(--ink);margin-bottom:5px;}
     .ws-predict span{font-size:14px;line-height:1.65;color:var(--gray-750,#374151);}
+    /* the component diagram: inputs on the left, outputs on the right */
+    .ws-comp{display:flex;align-items:stretch;justify-content:center;gap:0;margin:16px 0 6px;
+      font-family:var(--font-mono);}
+    .ws-comp__side{display:flex;flex-direction:column;justify-content:center;gap:9px;padding:0 2px;}
+    .ws-comp__p{font-size:12.5px;color:var(--accent);background:#fff;border:1px solid var(--line);
+      border-radius:4px;padding:6px 11px;white-space:nowrap;}
+    .ws-comp__body{min-width:190px;border:1.5px solid var(--gray-900);border-radius:5px;
+      background:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;
+      gap:4px;padding:18px 22px;}
+    .ws-comp__name{font-size:13px;font-weight:700;color:var(--gray-900);}
+    .ws-comp__sub{font-size:11px;color:var(--gray-500);}
+    .ws-comp__wire{align-self:center;width:22px;border-top:1.5px solid var(--gray-400,#9ca3af);}
+    .ws-comp__cap{text-align:center;font-family:var(--font-sans);font-size:13px;color:var(--mute);
+      margin:4px 0 0;}
+    @media(max-width:560px){.ws-comp{flex-direction:column;align-items:center;}
+      .ws-comp__wire{width:0;height:16px;border-top:none;border-left:1.5px solid var(--gray-400,#9ca3af);}}
   </style>
 </head>
 <body>
@@ -58,16 +80,16 @@
     <div class="wf-index">WS01</div>
     <div class="wf-header-text">
       <div class="wf-title">Reading a Script</div>
-      <div class="wf-subtitle">Predict, run, break, then read what the agent wrote &middot; Python 3 &middot; In class, after Coding 101</div>
+      <div class="wf-subtitle">Inputs are variables &middot; a loop over a list &middot; then read what the agent wrote &middot; Grasshopper, Rhino 8</div>
     </div>
   </div>
 
   <!-- Spec strip -->
   <div class="wf-spec">
     <div class="wf-spec-item"><span class="wf-spec-label">Length</span><span class="wf-spec-value">One session, in class</span></div>
-    <div class="wf-spec-item"><span class="wf-spec-label">Tools</span><span class="wf-spec-value">Python 3 &middot; a coding agent</span></div>
-    <div class="wf-spec-item"><span class="wf-spec-label">Bring</span><span class="wf-spec-value">A folder of your own images</span></div>
-    <div class="wf-spec-item"><span class="wf-spec-label">Paper</span><span class="wf-spec-value">Yes &mdash; steps 02 and 04</span></div>
+    <div class="wf-spec-item"><span class="wf-spec-label">Tool</span><span class="wf-spec-value">Rhino 8 &middot; Grasshopper</span></div>
+    <div class="wf-spec-item"><span class="wf-spec-label">Bring</span><span class="wf-spec-value">A terrain surface or mesh</span></div>
+    <div class="wf-spec-item"><span class="wf-spec-label">Paper</span><span class="wf-spec-value">Yes &mdash; steps 01 and 06</span></div>
   </div>
 
   <!-- Learning objectives -->
@@ -75,21 +97,21 @@
     <strong>Learning Objectives</strong>
     <ul>
       <li>Predicting what a process will do before setting it running</li>
-      <li>Reading an error as a location, not a verdict</li>
+      <li>Seeing that a component's inputs are a function's parameters</li>
       <li>Checking an instrument before it touches your own work</li>
     </ul>
   </div>
 
   <!-- Assignment -->
   <div class="wf-outcome">
-    <strong>Assignment</strong><span>A working script that renames and re-encodes a folder of your own images, written by the agent from your one-paragraph spec &mdash; with your four-question check and the one thing you had to correct noted underneath it, in the repository you set up today.</span>
+    <strong>Assignment</strong><span>A slope-band analysis of your own terrain, produced by a Grasshopper Python component the agent wrote from your spec, with the thresholds on sliders &mdash; and three spots you measured by hand to check it.</span>
   </div>
 
   <!-- Pipeline strip -->
   <div class="wf-pipeline">
     <div class="wf-pipe-step"><div class="wf-pipe-node">Predict</div><div class="wf-pipe-arrow">&rarr;</div></div>
-    <div class="wf-pipe-step"><div class="wf-pipe-node">Run</div><div class="wf-pipe-arrow">&rarr;</div></div>
-    <div class="wf-pipe-step"><div class="wf-pipe-node">Break</div><div class="wf-pipe-arrow">&rarr;</div></div>
+    <div class="wf-pipe-step"><div class="wf-pipe-node">Loop</div><div class="wf-pipe-arrow">&rarr;</div></div>
+    <div class="wf-pipe-step"><div class="wf-pipe-node">Choose</div><div class="wf-pipe-arrow">&rarr;</div></div>
     <div class="wf-pipe-step"><div class="wf-pipe-node">Spec</div><div class="wf-pipe-arrow">&rarr;</div></div>
     <div class="wf-pipe-step"><div class="wf-pipe-node wf-pipe-tool">Agent</div><div class="wf-pipe-arrow">&rarr;</div></div>
     <div class="wf-pipe-step"><div class="wf-pipe-node">Check</div></div>
@@ -97,8 +119,8 @@
 
   <!-- Intro -->
   <div style="background:var(--gray-100); border-radius:4px; padding:16px 18px; margin-bottom:28px;">
-    <div class="wf-step-desc">Nobody is asked to write a script from a blank file today. You will read four of them, predict what two of them do, break one on purpose, and then have the agent write the fifth from a paragraph you wrote. The order matters: <strong>predict before you run</strong>. A prediction you got wrong teaches you where your model of the machine is off, and running the thing first robs you of that.</div>
-    <div class="wf-step-desc">Work in the project folder you set up in the first session. Keep a scratch copy of five images beside it &mdash; never point a first run at originals.</div>
+    <div class="wf-step-desc">You already read Grasshopper definitions. A Python component is one more component &mdash; inputs on the left, outputs on the right &mdash; except that what happens in the middle is written down where you can read it. That turns out to be the whole lesson: <strong>the things you wire into the left side are the variables the code uses</strong>, and nothing else about a script is mysterious once that lands.</div>
+    <div class="wf-step-desc">Every code block below has a <strong>Copy</strong> button. Paste rather than retype &mdash; the point today is reading, not typing. The order matters: <strong>predict before you run</strong>. A prediction you got wrong shows you where your model of the machine is off, and running it first robs you of that.</div>
   </div>
 
   <!-- Steps -->
@@ -107,25 +129,44 @@
     <div class="wf-step wf-full">
       <div class="wf-step-head">
         <span class="wf-step-num">01</span>
-        <span class="wf-step-label">Check the Install</span>
+        <span class="wf-step-label">An Input Is a Variable</span>
       </div>
       <div class="wf-step-body">
-        <div class="wf-step-desc">Open a terminal in your project folder and confirm the three things this course runs on. Each should answer with a version number. If one does not, fix it now &mdash; the rest of the session depends on all three.</div>
-        <div class="ws-code">
-          <span class="ws-code__label">Terminal</span>
-          <pre>python --version        <span class="c"># or: py --version  (Windows)</span>
-git --version
-claude --version        <span class="c"># the agent, if you installed the CLI</span></pre>
+        <div class="wf-step-desc">In Grasshopper go to the <strong>Maths</strong> tab, <strong>Script</strong> panel, and drop a <strong>Python 3 Script</strong> component on the canvas. It arrives with inputs named <code>x</code> and <code>y</code>, and outputs named <code>out</code> and <code>a</code>.</div>
+        <div class="wf-step-desc">Zoom in until the <strong>Insert</strong> &#8853; and <strong>Remove</strong> &#8854; controls appear on either side of the component. Then right-click the <code>x</code> parameter itself to rename it <code>rise</code>, and <code>y</code> to <code>run</code>. Wire a number slider into each.</div>
+        <div class="ws-comp">
+          <div class="ws-comp__side">
+            <span class="ws-comp__p">rise</span>
+            <span class="ws-comp__p">run</span>
+          </div>
+          <span class="ws-comp__wire"></span>
+          <div class="ws-comp__body">
+            <span class="ws-comp__name">Python 3 Script</span>
+            <span class="ws-comp__sub">slope = rise / run * 100</span>
+          </div>
+          <span class="ws-comp__wire"></span>
+          <div class="ws-comp__side">
+            <span class="ws-comp__p">out</span>
+            <span class="ws-comp__p">a</span>
+          </div>
         </div>
-        <div class="wf-step-desc">Then install the one library this session needs. Pillow reads and writes images; version 12 or later is what writes <code>.avif</code>.</div>
+        <p class="ws-comp__cap">The two names on the left are the two names the code uses. That is the entire idea.</p>
+        <div class="wf-step-desc">Open the editor and replace the script with this:</div>
         <div class="ws-code">
-          <span class="ws-code__label">Terminal</span>
-          <pre>python -m pip install --upgrade pillow
-python -c "import PIL; print(PIL.__version__)"     <span class="c"># want 12.0 or higher</span></pre>
+          <span class="ws-code__label">Python 3 Script component</span>
+          <pre># Grasshopper fills rise and run before this line runs.
+# You never wrote "rise = something" — the slider did that.
+slope = rise / run * 100
+
+a = slope</pre>
         </div>
+        <div class="ws-predict">
+          <strong>Write this down before you wire a panel</strong>
+          <span>Set <code>rise</code> to 1 and <code>run</code> to 12 &mdash; a 1:12 ramp. What number comes out of <code>a</code>? Write the number you expect, then look.</span>
+        </div>
+        <div class="wf-step-desc">It reads <code>8.333333333333332</code>, not <code>8.33</code>. One twelfth has no exact decimal, and the machine shows you all of it rather than the tidy number you had in mind. Keep that in your pocket &mdash; it comes back in Step 03 and it is not a curiosity.</div>
         <ul class="wf-tips">
-          <li>Windows: <code>py</code> is the launcher that finds your Python install even when <code>python</code> does not. Use <code>py -m pip install …</code> there.</li>
-          <li>Make a scratch folder now: copy five of your images into <code>scratch/</code>. Everything today runs there first.</li>
+          <li><code>dir</code>, <code>filter</code> and <code>str</code> are reserved; the component warns you if you name a parameter one of them.</li>
         </ul>
       </div>
     </div>
@@ -133,45 +174,65 @@ python -c "import PIL; print(PIL.__version__)"     <span class="c"># want 12.0 o
     <div class="wf-step wf-full">
       <div class="wf-step-head">
         <span class="wf-step-num">02</span>
-        <span class="wf-step-label">Predict, Then Run</span>
+        <span class="wf-step-label">A Loop &mdash; One Component, Many Values</span>
       </div>
       <div class="wf-step-body">
-        <div class="wf-step-desc">Here is the loop from the lecture, with one line added. Read it, then write your prediction <strong>on paper</strong> before typing anything.</div>
+        <div class="wf-step-desc">So far the component handles one pair of numbers. Now give it many. Right-click the <code>rise</code> input, find <strong>Parameter Access</strong>, and set it to <strong>List</strong> &mdash; which tells the component to hand your script the whole branch at once instead of one item at a time. Wire a panel of three numbers into it.</div>
         <div class="ws-code">
-          <span class="ws-code__label">predict.py</span>
-          <pre>sheets = ["plan", "section", "axon", "detail"]
-count = 0
+          <span class="ws-code__label">rise set to List access, run left as Item</span>
+          <pre># rise now arrives as a list of numbers, not one number.
+# The loop does the same arithmetic to every one of them.
 
-for s in sheets:
-    count = count + 1
-    if count % 2 == 0:
-        print(count, s, "(even)")
-    else:
-        print(count, s)
+slopes = []
 
-print("total:", count)</pre>
+for r in rise:
+    slopes.append(r / run * 100)
+
+a = slopes</pre>
         </div>
         <div class="ws-predict">
-          <strong>Write this down before you run it</strong>
-          <span>How many lines does it print? Which of them carry the word <code>even</code>? What is the last line? &mdash; <code>%</code> is the remainder after division, so <code>count % 2 == 0</code> is true when count is even.</span>
+          <strong>Predict again</strong>
+          <span>With <code>rise</code> = 1.0, 2.5, 0.4 and <code>run</code> = 12, how many items come out of <code>a</code>, and what is the second one?</span>
         </div>
-        <div class="wf-step-desc">Now save it and run it. Compare, line by line, with what you wrote. If they differ, find the line where your reading and the machine's parted company &mdash; that single line is the most useful thing you will learn today.</div>
-        <div class="ws-code">
-          <span class="ws-code__label">Terminal</span>
-          <pre>python predict.py</pre>
-        </div>
+        <div class="wf-step-desc">Three items: <code>8.333333333333332</code>, <code>20.833333333333336</code>, <code>3.3333333333333335</code>. Add a number to the panel and the output grows by one, with no edit to the code. That is what a loop buys you &mdash; the script stops caring how many there are.</div>
+        <ul class="wf-tips">
+          <li><code>slopes = []</code> makes an empty list; <code>.append()</code> puts one value on the end of it. The loop runs once per item in <code>rise</code>, and <code>r</code> is whichever item it is holding at that moment.</li>
+          <li>Set the access back to <strong>Item</strong> and the script breaks &mdash; you cannot loop over a single number. Try it, read the error, set it back.</li>
+        </ul>
       </div>
     </div>
 
     <div class="wf-step wf-full">
       <div class="wf-step-head">
         <span class="wf-step-num">03</span>
-        <span class="wf-step-label">Change One Number</span>
+        <span class="wf-step-label">Choose &mdash; and Who Chose the Number</span>
       </div>
       <div class="wf-step-body">
-        <div class="wf-step-desc">Change <code>% 2</code> to <code>% 3</code>, predict again, run again. Then add a fifth sheet to the list and predict the last line before running. You are building the habit the whole course rests on: a small change, a prediction, a check.</div>
+        <div class="wf-step-desc">Add a third input, <code>limit</code>, with a slider on it. Now the component sorts rather than just calculates.</div>
+        <div class="ws-code">
+          <span class="ws-code__label">three inputs: rise (List), run (Item), limit (Item)</span>
+          <pre>slopes = []
+steep = 0
+
+for r in rise:
+    slope = r / run * 100
+    slopes.append(slope)
+    if slope &gt; limit:
+        steep = steep + 1
+
+print("steep:", steep, "of", len(rise))
+
+a = slopes</pre>
+        </div>
+        <div class="wf-step-desc">Drag the <code>limit</code> slider and watch the count change. <strong>The code never changed.</strong> Everything that moved was on the left side of the component.</div>
+        <div class="ws-predict">
+          <strong>Now the part that matters</strong>
+          <span>Set <code>limit</code> to 8.33 &mdash; the ADA ramp limit, 1:12, the same number from the <a href="/teaching/laar61400/tutorials/ramp-on-slope.html">Ramp on a Slope</a> tutorial. Feed it a rise of 1 against a run of 12: a ramp built exactly to code. The component calls it <strong>too steep</strong>. Why?</span>
+        </div>
+        <div class="wf-step-desc">Because 1 &divide; 12 &times; 100 is <code>8.333333333333332</code>, and that is larger than <code>8.33</code>. The threshold you typed is not the threshold the code applies. A legal ramp fails your test. The judgment in this script was never in the <code>if</code> &mdash; it was in a number a person rounded, and the rounding changed the answer.</div>
         <ul class="wf-tips">
-          <li>Keep each run's output. Three runs beside each other show the rule more clearly than any explanation of it.</li>
+          <li>Fix it by comparing ratios rather than rounded percentages: <code>if r / run &gt; 1 / 12:</code> &mdash; now a 1:12 ramp passes.</li>
+          <li>This is the shape of most wrong answers you will get from an agent. Not a crash. A number that is slightly not the one you meant.</li>
         </ul>
       </div>
     </div>
@@ -179,112 +240,62 @@ print("total:", count)</pre>
     <div class="wf-step wf-full">
       <div class="wf-step-head">
         <span class="wf-step-num">04</span>
-        <span class="wf-step-label">Break It on Purpose</span>
+        <span class="wf-step-label">Write the Spec</span>
       </div>
       <div class="wf-step-body">
-        <div class="wf-step-desc">Make these three mistakes one at a time, run after each, and write down <strong>what the traceback told you</strong> &mdash; which file, which line, what it expected. Read from the bottom up. Put each line back before making the next mistake.</div>
-        <ul class="wf-tips">
-          <li><strong>Delete the colon</strong> at the end of the <code>for</code> line. The machine stops before running anything at all.</li>
-          <li><strong>Misspell <code>count</code></strong> on one line only. Notice that it runs until it reaches that line, then stops.</li>
-          <li><strong>Move <code>count = 0</code> inside the loop</strong>, as its first indented line. The script runs to the end, reports no error, and is wrong. This is the dangerous kind.</li>
-        </ul>
-        <div class="ws-predict">
-          <strong>The point of the third one</strong>
-          <span>The first two stop the script and tell you where. The third finishes, prints four tidy lines and a total of 1, and says nothing is wrong. That difference is why reading the output matters more than reading the errors.</span>
+        <div class="wf-step-desc">You have now read every kind of line a script contains. Time to ask for one you did not write. Open a copy of a project with a terrain surface or mesh, and write the spec first &mdash; in English, before you open the agent.</div>
+        <div class="ws-code">
+          <span class="ws-code__label">the spec — adapt the thresholds and layer names to your project</span>
+          <pre>Read the surface on my Existing Grade layer. Color it by slope in
+four bands: under 2%, 2-5%, 5-8.33%, over 8.33%. Bake the result as
+a mesh on a new layer called Slope Analysis, add a legend, then
+capture the top viewport and check that the steep zones read
+correctly.
+
+Build it as a Grasshopper definition with sliders for the
+thresholds, and keep the code in a Python component I can read.</pre>
         </div>
+        <ul class="wf-tips">
+          <li>The bands above are one common set: minimum for drainage, the accessible-route limit, the ramp limit. Use the ones your project needs and be ready to say why.</li>
+          <li><strong>Name layers exactly.</strong> &ldquo;The surface on my Existing Grade layer&rdquo; beats &ldquo;my terrain.&rdquo; Precise names are most of the specification.</li>
+          <li><strong>Thresholds on sliders, not buried in the code.</strong> You just spent three steps learning why that matters: the number is the design decision, so it belongs where you can reach it.</li>
+        </ul>
       </div>
     </div>
 
     <div class="wf-step wf-full">
       <div class="wf-step-head">
         <span class="wf-step-num">05</span>
-        <span class="wf-step-label">Write the Spec in English</span>
+        <span class="wf-step-label">Read What Came Back</span>
       </div>
       <div class="wf-step-body">
-        <div class="wf-step-desc">Now your own job. In one paragraph, describe what should happen to your folder of images. Be as exact as a drawing note: name the input folder, the output folder, the filename pattern, the size limit, the format. Vagueness here is what produces a wrong script later.</div>
-        <div class="ws-code">
-          <span class="ws-code__label">Shape of a usable spec</span>
-          <pre>Read every .jpg and .png in scratch/, longest edge over 1920px.
-Shrink those to 1920px on the longest edge, keep the proportions.
-Write them as .avif at quality 65 into scratch/web/, which the
-script should create if it is missing. Name each output after the
-input file, lowercase, spaces turned into hyphens. Leave the
-originals untouched. Print one line per file saying what it wrote.</pre>
-        </div>
+        <div class="wf-step-desc">Paste the agent's script into a Python component. It will be longer than anything above and will use parts of Rhino you have not met. Read it anyway, hunting for four specific things rather than trying to follow every line.</div>
         <ul class="wf-tips">
-          <li>Six sentences is plenty. Each one removes a decision the agent would otherwise make for you.</li>
-          <li>&ldquo;Leave the originals untouched&rdquo; and &ldquo;print one line per file&rdquo; are the two sentences that make the result checkable. Always include their equivalents.</li>
+          <li><strong>Where do the thresholds live?</strong> They should be inputs with sliders. If they are typed into the middle of the code, say so and ask again.</li>
+          <li><strong>Where is the loop?</strong> Find the line that walks the faces of the mesh. It is the same <code>for</code> you wrote in Step 02, over a longer list.</li>
+          <li><strong>Where is the <code>if</code>?</strong> That is the banding. Check the comparison operators at the band edges &mdash; <code>&gt;</code> against <code>&gt;=</code> is the Step 03 problem all over again.</li>
+          <li><strong>Are slope and limit in the same units?</strong> If the script computes a ratio (<code>0.0833</code>) and compares it to a percentage (<code>8.33</code>), <em>every</em> face reads as flat &mdash; a 30% slope included &mdash; and nothing errors. This is the single most likely wrong answer you will get here.</li>
         </ul>
+        <div class="wf-step-desc">Note what you had to correct, and whether it was wrong because your spec was vague or because the agent guessed. That distinction is the one worth keeping: the first kind teaches you to write, the second teaches you where to look.</div>
       </div>
     </div>
 
     <div class="wf-step wf-full">
       <div class="wf-step-head">
         <span class="wf-step-num">06</span>
-        <span class="wf-step-label">Hand It to the Agent</span>
+        <span class="wf-step-label">Check Before You Bake</span>
       </div>
       <div class="wf-step-body">
-        <div class="wf-step-desc">Give the agent your paragraph and ask for a single Python file. Add one instruction to the end: ask it to print what it <em>would</em> do and change nothing, so you get a dry run first.</div>
-        <div class="ws-code">
-          <span class="ws-code__label">What you type to the agent</span>
-          <pre>Write one Python file, encode.py, that does this:
-
-[your paragraph from step 05]
-
-Add a --dry-run flag that prints every file it would write
-without writing anything. Use Pillow. No other dependencies.</pre>
-        </div>
-        <ul class="wf-tips">
-          <li>Resist reading the explanation it writes around the code. Read <em>the code</em>. That is the deliverable; the prose is packaging.</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="wf-step wf-full">
-      <div class="wf-step-head">
-        <span class="wf-step-num">07</span>
-        <span class="wf-step-label">The Four Questions</span>
-      </div>
-      <div class="wf-step-body">
-        <div class="wf-step-desc">Before running it, answer all four in writing. Point at the line number that answers each. If you cannot find the line, you have not read the script yet.</div>
-        <ul class="wf-tips">
-          <li><strong>Which files does it touch?</strong> Find every line that opens, saves, moves or deletes. Usually two or three.</li>
-          <li><strong>Does it write beside, or over?</strong> Compare the output path to the input path. If they can ever be the same string, stop and fix it.</li>
-          <li><strong>Is it looping over the right set?</strong> Check the pattern. <code>*.jpg</code> misses <code>.JPG</code> on some systems; <code>*</code> catches your PDFs.</li>
-          <li><strong>Can it tell me first?</strong> Confirm the dry-run path really writes nothing &mdash; read it, do not take the flag's name on trust.</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="wf-step wf-full">
-      <div class="wf-step-head">
-        <span class="wf-step-num">08</span>
-        <span class="wf-step-label">Dry Run, Then Five Files</span>
-      </div>
-      <div class="wf-step-body">
-        <div class="wf-step-desc">Run the dry version and read the list. Does it name the files you expected, and only those? Then run it for real on <code>scratch/</code> &mdash; five files, not five hundred. Open two of the outputs and look at them. A script that reports success and produces grey rectangles has reported success.</div>
-        <div class="ws-code">
-          <span class="ws-code__label">Terminal</span>
-          <pre>python encode.py --dry-run     <span class="c"># read this list before going further</span>
-python encode.py               <span class="c"># now, on the five scratch files</span></pre>
-        </div>
-        <ul class="wf-tips">
-          <li>Check a file size as well as the picture. An .avif that is larger than its .jpg means a setting is wrong.</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="wf-step wf-full">
-      <div class="wf-step-head">
-        <span class="wf-step-num">09</span>
-        <span class="wf-step-label">Note What You Had to Correct</span>
-      </div>
-      <div class="wf-step-body">
-        <div class="wf-step-desc">Write two or three lines under the script: what the agent got wrong, and whether it was wrong because your spec was vague or because it guessed. That distinction is the thing to keep. Across a semester, the first kind teaches you to write; the second teaches you where to look.</div>
+        <div class="wf-step-desc">Until now the definition has changed nothing. Baking is the step that writes into your document, and it is the one that cannot be undone by deleting a component. So check first, on paper.</div>
         <div class="ws-predict">
-          <strong>Carry this forward</strong>
-          <span>Commit the script, the spec paragraph and the note together. By the midterm, this folder of notes is the most accurate description you own of how you actually work with an agent &mdash; and it is where your Part II project will come from.</span>
+          <strong>Check</strong>
+          <span>Pick three spots, measure the slope yourself between two contour points, and compare with the color the agent gave them.</span>
         </div>
+        <div class="wf-step-desc">If all three agree, bake it onto the <strong>Slope Analysis</strong> layer and keep going. If one disagrees, you have found something &mdash; work out which of the four questions in Step 05 it belongs to before you change anything.</div>
+        <ul class="wf-tips">
+          <li>Three hand measurements take four minutes and are the only part of this session that proves anything.</li>
+          <li>A result that looks plausible across the whole site and is wrong at one corner is the normal failure. Plausibility is not a check.</li>
+        </ul>
       </div>
     </div>
 
@@ -292,7 +303,7 @@ python encode.py               <span class="c"># now, on the five scratch files<
 
   <!-- Ongoing -->
   <div class="wf-ongoing">
-    <strong>Feeds forward</strong><span>The spec paragraph from Step 05 is the first draft of the writing you will do all semester &mdash; the site BUILDSPEC is the same move at the scale of a whole website. The four questions in Step 07 return in every desk crit.</span>
+    <strong>Feeds forward</strong><span>The spec you wrote in Step 04 is the first draft of the writing you will do all semester &mdash; the site BUILDSPEC is the same move at the scale of a whole website. The four questions in Step 05 come back in every desk crit, and a slope tool with its thresholds on sliders is a plausible Part II project in Track C.</span>
   </div>
 
 </div>
@@ -301,5 +312,40 @@ python encode.py               <span class="c"># now, on the five scratch files<
 
   <script src="/teaching/laar61400/assets/js/nav.js"></script>
   <script src="/teaching/laar61400/assets/js/wf-progress.js"></script>
+  <script>
+  /* Copy buttons on every code block. The <pre> holds exactly what students
+     should get — no line numbers, no decoration — so copy its text verbatim. */
+  (function () {
+    document.querySelectorAll('.ws-code').forEach(function (box) {
+      var pre = box.querySelector('pre');
+      if (!pre) return;
+      var btn = document.createElement('button');
+      btn.className = 'ws-copy';
+      btn.type = 'button';
+      btn.textContent = 'Copy';
+      btn.addEventListener('click', function () {
+        var text = pre.innerText;
+        var done = function () {
+          btn.textContent = 'Copied';
+          btn.classList.add('is-done');
+          setTimeout(function () { btn.textContent = 'Copy'; btn.classList.remove('is-done'); }, 1600);
+        };
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(text).then(done, fallback);
+        } else { fallback(); }
+        function fallback() {
+          var ta = document.createElement('textarea');
+          ta.value = text;
+          ta.style.cssText = 'position:fixed;top:-9999px';
+          document.body.appendChild(ta);
+          ta.select();
+          try { document.execCommand('copy'); done(); } catch (e) { btn.textContent = 'Select it'; }
+          document.body.removeChild(ta);
+        }
+      });
+      box.appendChild(btn);
+    });
+  })();
+  </script>
 </body>
 </html>

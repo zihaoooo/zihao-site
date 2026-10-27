@@ -21,15 +21,30 @@ Topic-named, no week prefixes, same as laar61400 and laar64150.
 
 - `coding-101.html` (21 slides, deck `a51-02`) — **this course's own lecture**, authored here.
   How a machine reads instructions · what a script is · the five moves (name · repeat · choose ·
-  bundle · read and write) · reading a traceback · reading what the agent wrote. Python examples,
-  designer-shaped (the running example is this site's own image-encode pipeline).
+  bundle · read and write) · reading an error · reading what the agent wrote.
+  - **Every example is a Grasshopper Python component computing slope**, because students arrive
+    knowing Grasshopper and because a GH component makes the idea literal: the inputs you wire are
+    the variables the code uses, and clicking *Convert To GH_ScriptInstance* turns them into
+    `def RunScript(self, rise, run, limit)`. That is slide 12, the slide the lecture exists for.
+    (Rewritten from an earlier Pillow/image-pipeline version, which asked too much of the room.)
+  - The worked example is **T1 "Slope Bands on Your Own Terrain"** from
+    `/talks/agents-in-practice/try-rhino/` — its four bands (2% drainage, 5%, 8.33% ramp limit),
+    its spec prompt and its hand-measure check are reused verbatim in the workshop.
+  - **The 8.33 trap is the deck's best moment** and is load-bearing: `1/12*100` is
+    `8.333333333333332`, which is greater than `8.33`, so a ramp built exactly to the ADA limit
+    fails a `> 8.33` test. It appears in the tracer (slide 10), in Move 3 (slide 11), and in the
+    workshop's Step 03. Verify any edit to those numbers by running them.
   - The five moves are the deck's spine and recur in the workshop and in `index.html`'s Week 2 row —
     change the set in one place and all three need updating.
   - Slide 10 is a **hand-written loop tracer** (`.c1-trace`, inline script at the end of the page):
     a `STEPS` array of `{line, set, print, say}` deltas, not an interpreter. Editing the traced code
-    means editing both the `<span class="c1-trace__line" data-line="N">` markup and `STEPS`.
+    means editing the `<span class="c1-trace__line" data-line="N">` markup, `STEPS`, the `boxes`
+    defaults and the row-order array — four places. Every value in `STEPS` is real Python output.
   - Page-local classes are `c1-` prefixed: `.c1-code` (line-numbered code block), `.c1-moves`,
     `.c1-flow`, `.c1-trace`, `.c1-next`. Promote to `/assets/deck/deck.css` if a second deck needs them.
+  - **Card widths are fixed px, never `cqw`.** `fitEmbeds` scales a card down by transform after
+    measuring its natural width; tying the width to `cqw` clamps it to the stage and clips
+    `white-space:pre` code. For the same reason these cards carry no phone-stacking media query.
   - Brief by design — ~90 words a slide; elaboration lives in `data-notes`.
 
 - Four decks are **copies of laar61400's**, written by
@@ -53,11 +68,24 @@ Topic-named, no week prefixes, same as laar61400 and laar64150.
 ## Workshops (`workshops/`)
 `.wf-doc` layout + `wf-progress.js`, same conventions as laar61400's `workflows/` (see its CLAUDE.md,
 "WF page conventions"). Named `workshops/` here because that is what the syllabus calls them.
+Rhino 8 and Grasshopper are course requirements from Week 2; the software cards for them in
+`index.html` are copied verbatim from laar61400's logistics grid.
 
-- `coding-101.html` (WS01, "Reading a Script") — the lab half of the Coding 101 session. Predict →
-  run → break on purpose → write a spec → hand it to the agent → the four questions → dry run.
-  Header chip is `WS01`. Carries no dates; the one deliverable is named in the `.wf-outcome` box.
-  - The **four questions** in Step 07 are the same four as slide 18 of the lecture. One set, two places.
+- `coding-101.html` (WS01, "Reading a Script") — the lab half of the Coding 101 session, **six steps
+  in Grasshopper**: an input is a variable → a loop over a List-access input → choose, and the 8.33
+  trap → write the spec → read what came back → check before you bake. Header chip is `WS01`.
+  Carries no dates; the one deliverable is named in the `.wf-outcome` box.
+  - The **four questions** in Step 05 are the same four as slide 18 of the lecture. One set, two
+    places — both are now GH-shaped (thresholds on sliders, units, comparison at the edge, bake).
+  - **Every code block is copy-paste ready**, because students copy from the page rather than
+    retype. The `<pre>` holds exactly what lands on the clipboard: no line numbers, no decoration.
+    `.ws-copy` buttons are added by an inline script at the end of the page (Clipboard API with an
+    `execCommand` fallback). This is the site's first copy-button; promote it to
+    `workflow-shared.css` if a second page needs one.
+  - All Python shown has been run; the numbers quoted on the page (`8.333333333333332`,
+    `20.833333333333336`, `steep: 2 of 3`) are its real output. Re-run before changing any of them.
+  - The RhinoCommon slope script on lecture slide 15 is **framed as agent output to be read**, not
+    as a reference solution, and has not been run inside Rhino.
 
 ## Nav
 Four sections — Lectures, Workshops, Reference — identical in all six pages and inline in each, as

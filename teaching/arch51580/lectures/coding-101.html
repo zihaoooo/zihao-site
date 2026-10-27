@@ -266,41 +266,42 @@
               </div>
             </div>
 
-            <!-- 8 · move 1 — names -->
-            <div class="slide" data-cap="Move 1 — a name is a box" data-notes="Three points. One: the equals sign is not a claim of equality, it is an instruction — put the right side in the box named on the left. Two: the machine does not care what the box is called; the name is entirely for the humans reading it, which is why a well-named script is readable and a badly-named one is not. Three: a box can be overwritten, and the old value is simply gone — this is the root of a whole family of bugs.">
+            <!-- 8 · move 1 — a name is a box, and Grasshopper fills it -->
+            <div class="slide" data-cap="Move 1 — the slider fills the box" data-notes="Start where they already live. On a Grasshopper Python component the inputs sit on the left, and whatever you rename them to is the name the code uses. Three points. One: the equals sign is an instruction, not a claim — put the right side in the box named on the left. Two: you never wrote the first three lines; the sliders did, before your script started. Three: a box can be refilled and the old value is simply gone.">
               <div class="embed">
                 <div class="c1-code">
-                  <div class="c1-code__bar"><span class="c1-code__chip">Python</span><span class="c1-code__file">names.py</span></div>
-                  <pre><code><span class="ln"><span class="c"># a name on the left, a value on the right</span></span><span class="ln">scale = <span class="n">20</span>              <span class="c"># a number</span></span><span class="ln">sheet = <span class="s">"A1-plan.pdf"</span>   <span class="c"># a piece of text</span></span><span class="ln">layers = [<span class="s">"site"</span>, <span class="s">"water"</span>, <span class="s">"paths"</span>]   <span class="c"># a list of them</span></span><span class="ln blank"> </span><span class="ln"><span class="c"># the box can be refilled — the old value is gone</span></span><span class="ln">scale = <span class="n">40</span></span></code></pre>
+                  <div class="c1-code__bar"><span class="c1-code__chip">GH Python</span><span class="c1-code__file">Python 3 Script component · Maths &#8250; Script</span></div>
+                  <pre><code><span class="ln"><span class="c"># Grasshopper fills these three before line 1 runs.</span></span><span class="ln"><span class="c"># You renamed the inputs; the sliders supplied the values.</span></span><span class="ln blank"> </span><span class="ln">rise  = <span class="n">1.0</span>        <span class="c"># from a slider</span></span><span class="ln">run   = <span class="n">12.0</span>       <span class="c"># from a slider</span></span><span class="ln">limit = <span class="n">8.33</span>       <span class="c"># from a slider — the ramp limit</span></span><span class="ln blank"> </span><span class="ln">slope = rise / run * <span class="n">100</span>     <span class="c"># 8.333333333333332</span></span></code></pre>
                 </div>
               </div>
             </div>
 
-            <!-- 9 · move 2 — the loop, real -->
-            <div class="slide" data-cap="Move 2 — do it to all sixty" data-notes="This is the script that matters to them. Sixty site photographs, each needing a resize and a format change for the web: an afternoon in Photoshop, or six lines. Point at the loop line and say what it means in English: take the files one at a time, call the current one f, and run the indented block on it. The indentation is not decoration — it is how Python marks what belongs inside the loop. This is also, verbatim, the standard this course publishes images to.">
+            <!-- 9 · move 2 — the loop, over a list input -->
+            <div class="slide" data-cap="Move 2 — set the input to List, and it handles any number of them" data-notes="The move that makes scripting worth the trouble. Right-click an input, Parameter Access, List — and the value arrives as a whole branch instead of one item. Point at the for line and say it in English: take them one at a time, call the current one r, run the indented block. The indentation is not decoration; it is how Python marks what belongs inside the loop. Then the payoff: add a fourth number to the panel and the output grows by one, with no edit to the code. The script stops caring how many there are.">
               <div class="embed">
                 <div class="c1-code">
-                  <div class="c1-code__bar"><span class="c1-code__chip">Python</span><span class="c1-code__file">encode_images.py</span></div>
-                  <pre><code><span class="ln"><span class="k">from</span> pathlib <span class="k">import</span> Path</span><span class="ln"><span class="k">from</span> PIL <span class="k">import</span> Image</span><span class="ln blank"> </span><span class="ln">folder = Path(<span class="s">"site-photos"</span>)</span><span class="ln blank"> </span><span class="ln"><span class="k">for</span> f <span class="k">in</span> folder.glob(<span class="s">"*.jpg"</span>):      <span class="c"># take them one at a time</span></span><span class="ln">    img = Image.open(f)</span><span class="ln">    img.thumbnail((<span class="n">1920</span>, <span class="n">1920</span>))     <span class="c"># longest edge 1920px</span></span><span class="ln">    img.save(f.with_suffix(<span class="s">".avif"</span>), quality=<span class="n">65</span>)</span><span class="ln blank"> </span><span class="ln"><span class="c"># sixty photographs, six lines, one keystroke</span></span></code></pre>
+                  <div class="c1-code__bar"><span class="c1-code__chip">GH Python</span><span class="c1-code__file">rise set to List access</span></div>
+                  <pre><code><span class="ln">slopes = []<span class="c">                  # an empty list to fill</span></span><span class="ln blank"> </span><span class="ln"><span class="k">for</span> r <span class="k">in</span> rise:<span class="c">                 # one value at a time</span></span><span class="ln">    slopes.append(r / run * <span class="n">100</span>)</span><span class="ln blank"> </span><span class="ln">a = slopes<span class="c">                   # three in, three out</span></span><span class="ln blank"> </span><span class="ln"><span class="c"># add a fourth number to the panel and this still works.</span></span><span class="ln"><span class="c"># the loop is what stops the script caring how many.</span></span></code></pre>
                 </div>
               </div>
             </div>
 
             <!-- 10 · the tracer -->
-            <div class="slide" data-cap="Step through it — be the machine for a minute" data-notes="Do not narrate this slide. Run it. Click Step and let the room read each line out loud before you click again. The thing to notice is that the finger goes DOWN, DOWN, then JUMPS BACK UP — the loop is not a special kind of thinking, it is a jump. Ask for a prediction before the last iteration: what will count be at the end? Students who can answer that have the whole concept.">
+            <div class="slide" data-cap="Step through it — be the machine for a minute" data-notes="Do not narrate this slide. Run it. Click Step and let the room read each line aloud before you click again. Two things to catch. First, the finger goes DOWN, DOWN, then JUMPS BACK UP — a loop is not a special kind of thinking, it is a jump. Second, stop hard on the middle pair: rise 1 over run 12 is a ramp built exactly to the ADA limit, and the test calls it too steep. Ask why before you reveal it. That one moment is worth more than the rest of the deck.">
               <div class="embed">
                 <div class="c1-trace" id="tracer">
                   <div class="c1-trace__code">
-                    <pre><code><span class="c1-trace__line" data-n="1" data-line="0">sheets = [<span class="s">"plan"</span>, <span class="s">"section"</span>, <span class="s">"axon"</span>]</span><span class="c1-trace__line" data-n="2" data-line="1">count = <span class="n">0</span></span><span class="c1-trace__line" data-n="3" data-line="2"><span class="k">for</span> s <span class="k">in</span> sheets:</span><span class="c1-trace__line" data-n="4" data-line="3">    count = count + <span class="n">1</span></span><span class="c1-trace__line" data-n="5" data-line="4">    print(count, s)</span><span class="c1-trace__line" data-n="6" data-line="5">print(<span class="s">"done —"</span>, count, <span class="s">"sheets"</span>)</span></code></pre>
+                    <pre><code><span class="c1-trace__line" data-n="1" data-line="0">faces = [(<span class="n">1</span>, <span class="n">20</span>), (<span class="n">1</span>, <span class="n">12</span>), (<span class="n">3</span>, <span class="n">10</span>)]</span><span class="c1-trace__line" data-n="2" data-line="1">steep = <span class="n">0</span></span><span class="c1-trace__line" data-n="3" data-line="2"><span class="k">for</span> rise, run <span class="k">in</span> faces:</span><span class="c1-trace__line" data-n="4" data-line="3">    slope = rise / run * <span class="n">100</span></span><span class="c1-trace__line" data-n="5" data-line="4">    <span class="k">if</span> slope &gt; <span class="n">8.33</span>:</span><span class="c1-trace__line" data-n="6" data-line="5">        steep = steep + <span class="n">1</span></span><span class="c1-trace__line" data-n="7" data-line="6">print(<span class="s">"steep:"</span>, steep)</span></code></pre>
                   </div>
                   <div class="c1-trace__side">
                     <div class="c1-trace__panel">
                       <div class="c1-trace__ptitle">What the boxes hold</div>
                       <table class="c1-trace__state">
                         <tbody id="tr-state">
-                          <tr><th>sheets</th><td>&mdash;</td></tr>
-                          <tr><th>count</th><td>&mdash;</td></tr>
-                          <tr><th>s</th><td>&mdash;</td></tr>
+                          <tr><th>faces</th><td>&mdash;</td></tr>
+                          <tr><th>rise, run</th><td>&mdash;</td></tr>
+                          <tr><th>slope</th><td>&mdash;</td></tr>
+                          <tr><th>steep</th><td>&mdash;</td></tr>
                         </tbody>
                       </table>
                     </div>
@@ -320,63 +321,68 @@
             </div>
 
             <!-- 11 · move 3 — choose -->
-            <div class="slide" data-cap="Move 3 — a test, not a judgment" data-notes="The if statement looks like decision-making and is not. It is a measurement against a threshold you chose in advance. All the judgment sits in the number you typed — 1920 here. That displacement is worth dwelling on: when a script makes a 'decision', someone earlier made it and wrote it down. Ask who chose 1920 and why. The answer is the site's image standard, chosen by a person.">
+            <div class="slide" data-cap="Move 3 — a test, not a judgment" data-notes="The if looks like decision-making and is not. It is a measurement against a threshold somebody chose in advance. Ask the room who chose 2, 5 and 8.33 and why: drainage minimum, accessible route, ramp limit — three professional standards, written into four lines of code. Then push on 8.33 itself. It is a rounding of 1:12, and the rounding is not neutral: on the previous slide it rejected a compliant ramp. All of the design judgment in a script lives in numbers like these, and most of them are typed once and never examined again.">
               <div class="embed">
                 <div class="c1-code">
-                  <div class="c1-code__bar"><span class="c1-code__chip">Python</span><span class="c1-code__file">choose.py</span></div>
-                  <pre><code><span class="ln">w, h = img.size</span><span class="ln blank"> </span><span class="ln"><span class="k">if</span> w &gt; <span class="n">1920</span> <span class="k">or</span> h &gt; <span class="n">1920</span>:</span><span class="ln">    img.thumbnail((<span class="n">1920</span>, <span class="n">1920</span>))    <span class="c"># too big — shrink it</span></span><span class="ln"><span class="k">else</span>:</span><span class="ln">    <span class="k">pass</span>                            <span class="c"># already small enough — leave it</span></span><span class="ln blank"> </span><span class="ln"><span class="c"># the judgment is not in the "if" — it is in the 1920,</span></span><span class="ln"><span class="c"># which a person chose and wrote down.</span></span></code></pre>
+                  <div class="c1-code__bar"><span class="c1-code__chip">GH Python</span><span class="c1-code__file">the four bands</span></div>
+                  <pre><code><span class="ln"><span class="k">if</span> slope &lt; <span class="n">2</span>:<span class="c">              # under 2% — will not drain</span></span><span class="ln">    band = <span class="s">"ponds"</span></span><span class="ln"><span class="k">elif</span> slope &lt; <span class="n">5</span>:<span class="c">            # 2–5% — comfortable</span></span><span class="ln">    band = <span class="s">"good"</span></span><span class="ln"><span class="k">elif</span> slope &lt;= limit:<span class="c">        # up to 8.33% — accessible route</span></span><span class="ln">    band = <span class="s">"accessible"</span></span><span class="ln"><span class="k">else</span>:</span><span class="ln">    band = <span class="s">"too steep"</span></span><span class="ln blank"> </span><span class="ln"><span class="c"># the judgment is not in the "if". it is in 2, 5 and 8.33,</span></span><span class="ln"><span class="c"># which a person chose, rounded, and typed once.</span></span></code></pre>
                 </div>
               </div>
             </div>
 
-            <!-- 12 · move 4 — bundle -->
-            <div class="slide" data-cap="Move 4 — the moment a step becomes a tool" data-notes="This is the most important move for this seminar, because it is where Part II lives. Wrapping steps in a name and calling it twice is the difference between doing a task and owning an instrument. Everything in the three Part II tracks — a skill, a script, a plugin — is this move at a larger scale: a named bundle you can hand to yourself next semester, or to someone else.">
+            <!-- 12 · move 4 — the inputs were the parameters all along -->
+            <div class="slide" data-cap="Move 4 — your inputs were a function signature all along" data-notes="The slide this lecture exists for. Everything so far has been written in Script-Mode, where Grasshopper quietly defines rise, run and limit before your first line. Click Convert To GH_ScriptInstance in the editor and the component rewrites itself: the same code, now inside def RunScript(self, rise, run, limit). The three names you typed on the left of the component ARE the three parameters. Grasshopper has been drawing a function signature this whole time and calling it a component. Say it plainly: a function is a bundle of steps with named slots for what varies, and you already know how to wire one up.">
               <div class="embed">
                 <div class="c1-code">
-                  <div class="c1-code__bar"><span class="c1-code__chip">Python</span><span class="c1-code__file">bundle.py</span></div>
-                  <pre><code><span class="ln"><span class="k">def</span> encode(path, limit=<span class="n">1920</span>, quality=<span class="n">65</span>):</span><span class="ln">    img = Image.open(path)</span><span class="ln">    img.thumbnail((limit, limit))</span><span class="ln">    img.save(path.with_suffix(<span class="s">".avif"</span>), quality=quality)</span><span class="ln blank"> </span><span class="ln"><span class="c"># now it has a name, so it can be used anywhere</span></span><span class="ln">encode(Path(<span class="s">"plan.jpg"</span>))</span><span class="ln">encode(Path(<span class="s">"banner.jpg"</span>), limit=<span class="n">2560</span>)   <span class="c"># same tool, different setting</span></span></code></pre>
+                  <div class="c1-code__bar"><span class="c1-code__chip">GH Python</span><span class="c1-code__file">the same component, before and after</span></div>
+                  <pre><code><span class="ln"><span class="c"># Script-Mode — what you have been writing all along.</span></span><span class="ln">slopes = []</span><span class="ln"><span class="k">for</span> r <span class="k">in</span> rise:</span><span class="ln">    slopes.append(r / run * <span class="n">100</span>)</span><span class="ln blank"> </span><span class="ln"><span class="c">#  ─── click &ldquo;Convert To GH_ScriptInstance&rdquo; ───</span></span><span class="ln blank"> </span><span class="ln"><span class="k">class</span> MyComponent(Grasshopper.Kernel.GH_ScriptInstance):</span><span class="ln blank"> </span><span class="ln">    <span class="k">def</span> RunScript(self, rise, run, limit):</span><span class="ln">        slopes = []</span><span class="ln">        <span class="k">for</span> r <span class="k">in</span> rise:</span><span class="ln">            slopes.append(r / run * <span class="n">100</span>)</span><span class="ln">        <span class="k">return</span> slopes</span><span class="ln blank"> </span><span class="ln"><span class="c"># the three names you typed on the component are the three</span></span><span class="ln"><span class="c"># parameters of a function. they always were.</span></span></code></pre>
                 </div>
               </div>
             </div>
 
-            <!-- 13 · move 5 — the boundary -->
-            <div class="slide" data-cap="Move 5 — where a script touches your work" data-notes="This is the slide to be slightly frightening on. Moves 1 to 4 are harmless: they shuffle values in memory and vanish. Move 5 is the only one that changes anything on disk — and so it is the only one that can destroy a week of work. When you read a script the agent wrote, find the Move 5 lines first. They are usually few, and they are the whole risk.">
+            <!-- 13 · move 5 — the boundary, and bake -->
+            <div class="slide" data-cap="Move 5 — nothing you have done yet has changed anything" data-notes="The slide to be slightly careful on. Everything up to here lives in the definition: delete the component and it is as if nothing happened. Bake is different — it writes geometry into the Rhino document, onto a layer, and no amount of deleting components takes it back. So when you read a script the agent wrote, find the lines that cross that line. In Grasshopper there are few of them and they are easy to spot. In Part II, when you write tools that rename and move files, the same question gets sharper teeth and there is no undo at all.">
               <div class="embed">
                 <div class="c1-flow">
                   <div class="c1-flow__node">
-                    <b>Files in</b>
-                    <span>What already exists<br><code>site-photos/*.jpg</code></span>
-                  </div>
-                  <div class="c1-flow__arrow">&rarr;</div>
-                  <div class="c1-flow__node is-script">
-                    <b>The script</b>
-                    <span>Moves 1&ndash;4, all of it in memory, all of it reversible</span>
+                    <b>Inputs</b>
+                    <span>Sliders, geometry, panels<br><code>rise &middot; run &middot; limit</code></span>
                   </div>
                   <div class="c1-flow__arrow">&rarr;</div>
                   <div class="c1-flow__node">
-                    <b>Files out</b>
-                    <span>What is now different<br><code>site-photos/*.avif</code></span>
+                    <b>The script</b>
+                    <span>Moves 1&ndash;4. All of it in memory, all of it reversible</span>
+                  </div>
+                  <div class="c1-flow__arrow">&rarr;</div>
+                  <div class="c1-flow__node">
+                    <b>Outputs</b>
+                    <span>Values flowing downstream. Still nothing saved</span>
+                  </div>
+                  <div class="c1-flow__arrow">&rarr;</div>
+                  <div class="c1-flow__node is-script">
+                    <b>Bake</b>
+                    <span>The one step that writes into your document</span>
                   </div>
                 </div>
               </div>
             </div>
 
             <!-- 14 · errors -->
-            <div class="slide" data-cap="An error is the machine telling you exactly where it stopped" data-notes="Students read a traceback as failure and a telling-off. Reframe it: it is the most cooperative thing the machine does all day. Read it bottom-up — the last line is what went wrong, the line above is where. Here: it wanted a number and got text, on line 7. That is a complete bug report, delivered free. Say plainly that you and the agent will both read many of these, and that an error is cheap while a wrong result that runs silently is expensive.">
+            <div class="slide" data-cap="An error is the machine telling you exactly where it stopped" data-notes="Students read an error as failure and as a telling-off. Reframe it: it is the most cooperative thing the machine does all day. The component flags it on the canvas; open the editor to read the message. Read the first line for WHAT and the quoted line for WHERE. Here it tried to divide text by a number, because a panel fed the characters 1.0 into an input with no type hint set, and a panel hands you letters unless you say otherwise. Then the real lesson: an error is cheap, because it stops. The expensive failure is the one that runs all the way through and hands you a wrong drawing.">
               <div class="embed">
                 <div class="c1-code">
-                  <div class="c1-code__bar"><span class="c1-code__chip">Traceback</span><span class="c1-code__file">read it from the bottom up</span></div>
-                  <pre><code><span class="ln">Traceback (most recent call last):</span><span class="ln">  File <span class="s">"C:\…\site\publish_images.py"</span>, line <span class="n">16</span>, <span class="k">in</span> &lt;module&gt;</span><span class="ln">    publish(Path(<span class="s">"src"</span>), Path(<span class="s">"src/web"</span>))</span><span class="ln">  File <span class="s">"C:\…\site\publish_images.py"</span>, line <span class="n">11</span>, <span class="k">in</span> publish</span><span class="ln">    <span class="k">if</span> max(img.size) &gt; LIMIT:</span><span class="ln">       ^^^^^^^^^^^^^^^^^^^^^</span><span class="ln">TypeError: <span class="s">'&gt;' not supported between instances of 'int' and 'str'</span></span><span class="ln blank"> </span><span class="ln"><span class="c"># last line   — what: it compared a number to a piece of text</span></span><span class="ln"><span class="c"># the carets  — where exactly: max(img.size) &gt; LIMIT, line 11</span></span><span class="ln"><span class="c"># the frames  — how it got there: line 16 called publish()</span></span><span class="ln"><span class="c"># so: LIMIT was set to "1920" (text) instead of 1920 (a number)</span></span></code></pre>
+                  <div class="c1-code__bar"><span class="c1-code__chip">Error</span><span class="c1-code__file">the component flags it · read it in the editor</span></div>
+                  <pre><code><span class="ln">TypeError: <span class="s">unsupported operand type(s) for /: 'str' and 'float'</span></span><span class="ln blank"> </span><span class="ln">    slope = rise / run * <span class="n">100</span></span><span class="ln blank"> </span><span class="ln"><span class="c"># what   — it tried to divide text by a number</span></span><span class="ln"><span class="c"># where  — the line it quotes back to you</span></span><span class="ln"><span class="c"># why    — a panel fed "1.0" into rise as characters, and no</span></span><span class="ln"><span class="c">#          Type Hint was set, so it never became a number</span></span><span class="ln"><span class="c"># fix    — right-click the input and give it a float Type Hint</span></span></code></pre>
                 </div>
               </div>
             </div>
 
             <!-- 15 · all five, read it -->
-            <div class="slide" data-cap="All five moves, one script — and you can now read every line" data-notes="Read it together, line by line, naming the move each line is. This is the payoff slide: twenty minutes ago this was noise. Ask them to find the Move 5 line (line 13, the save) and the threshold someone chose (LIMIT = 1920, line 4). This is also the script the traceback on the previous slide came from — line 11 is the comparison that broke. Then ask the question that opens the next slide: who wrote this?">
+            <div class="slide" data-cap="All five moves, one component — and you can now read every line" data-notes="Read it together, naming the move each line is. Twenty minutes ago this was noise. Ask them to find three things: the thresholds a person chose (LOW and MID, and limit arriving from a slider), the loop over the faces, and the line that hands the result downstream. Nobody needs to know what FaceNormals is — that is the point. You can read the SHAPE of a script written against an API you have never seen, which is exactly the position you are in every time the agent hands you something. Then ask: who wrote this?">
               <div class="embed">
                 <div class="c1-code">
-                  <div class="c1-code__bar"><span class="c1-code__chip">Python</span><span class="c1-code__file">publish_images.py</span></div>
-                  <pre><code><span class="ln"><span class="k">from</span> pathlib <span class="k">import</span> Path                       <span class="c"># 5 · reach outside</span></span><span class="ln"><span class="k">from</span> PIL <span class="k">import</span> Image</span><span class="ln blank"> </span><span class="ln">LIMIT = <span class="n">1920</span>                                  <span class="c"># 1 · name</span></span><span class="ln">QUALITY = <span class="n">65</span></span><span class="ln blank"> </span><span class="ln"><span class="k">def</span> publish(src, out_dir):                     <span class="c"># 4 · bundle</span></span><span class="ln">    out_dir.mkdir(parents=<span class="k">True</span>, exist_ok=<span class="k">True</span>)</span><span class="ln">    <span class="k">for</span> f <span class="k">in</span> sorted(src.glob(<span class="s">"*.jpg"</span>)):        <span class="c"># 2 · repeat</span></span><span class="ln">        img = Image.open(f)</span><span class="ln">        <span class="k">if</span> max(img.size) &gt; LIMIT:               <span class="c"># 3 · choose</span></span><span class="ln">            img.thumbnail((LIMIT, LIMIT))</span><span class="ln">        img.save(out_dir / (f.stem + <span class="s">".avif"</span>), quality=QUALITY)   <span class="c"># 5 · write</span></span><span class="ln">        print(<span class="s">"wrote"</span>, f.stem + <span class="s">".avif"</span>)</span></code></pre>
+                  <div class="c1-code__bar"><span class="c1-code__chip">GH Python</span><span class="c1-code__file">slope bands on Existing Grade</span></div>
+                  <pre><code><span class="ln"><span class="k">import</span> Rhino.Geometry <span class="k">as</span> rg<span class="c">              # 5 · reach outside</span></span><span class="ln blank"> </span><span class="ln">LOW, MID = <span class="n">2.0</span>, <span class="n">5.0</span><span class="c">                   # 1 · name</span></span><span class="ln blank"> </span><span class="ln"><span class="k">def</span> band(slope):<span class="c">                      # 4 · bundle</span></span><span class="ln">    <span class="k">if</span> slope &lt; LOW:      <span class="k">return</span> <span class="n">0</span><span class="c">        # 3 · choose</span></span><span class="ln">    <span class="k">elif</span> slope &lt; MID:    <span class="k">return</span> <span class="n">1</span></span><span class="ln">    <span class="k">elif</span> slope &lt;= limit: <span class="k">return</span> <span class="n">2</span></span><span class="ln">    <span class="k">else</span>:                <span class="k">return</span> <span class="n">3</span></span><span class="ln blank"> </span><span class="ln">bands = []</span><span class="ln">mesh.FaceNormals.ComputeFaceNormals()</span><span class="ln blank"> </span><span class="ln"><span class="k">for</span> n <span class="k">in</span> mesh.FaceNormals:<span class="c">              # 2 · repeat</span></span><span class="ln">    slope = (<span class="n">1</span> - n.Z * n.Z) ** <span class="n">0.5</span> / n.Z * <span class="n">100</span></span><span class="ln">    bands.append(band(slope))</span><span class="ln blank"> </span><span class="ln">a = bands<span class="c">                             # 5 · hand it downstream</span></span></code></pre>
                 </div>
               </div>
             </div>
@@ -411,18 +417,18 @@
             </div>
 
             <!-- 18 · the checklist -->
-            <div class="slide" data-cap="Four questions for any script the agent hands you" data-notes="Give them this as a habit, not a theory. These four questions take about ninety seconds and catch nearly everything that matters. The dry-run habit is the single most valuable one: make it print what it would do before it does anything, and read that list. We use these four again in the workshop, and in every desk crit this semester.">
+            <div class="slide" data-cap="Four questions for any script the agent hands you" data-notes="Give them this as a habit, not a theory. The four take about ninety seconds and catch nearly everything that matters. Question two is the one that saves them: a script that computes a ratio and compares it to a percentage runs perfectly and reports that a thirty-percent slope is flat. No error, no warning, a plausible-looking drawing, and it is wrong everywhere. We use these same four in the workshop and in every desk crit this semester.">
               <div class="embed">
                 <div class="txt-card">
-                  <h3>Before you run it</h3>
+                  <h3>Before you trust it</h3>
                   <ul>
-                    <li><b>Which files does it touch?</b> Find the Move 5 lines. There are usually two or three, and they are the whole risk.</li>
-                    <li><b>Does it write beside, or over?</b> A new filename is safe. The same filename replaces your original, and there is no undo.</li>
-                    <li><b>Is it looping over the right set?</b> <code>*.jpg</code> and <code>*</code> are a very different afternoon.</li>
-                    <li><b>Can it tell me first?</b> Ask for the printed version &mdash; <code>print</code> what it <i>would</i> do, change nothing &mdash; and read that list before letting it act.</li>
+                    <li><b>Where do the thresholds live?</b> On sliders you can reach, not typed into the middle of the code. The numbers are the design decision.</li>
+                    <li><b>Are both sides in the same units?</b> A ratio (<code>0.0833</code>) compared against a percentage (<code>8.33</code>) reports every face as flat and never errors.</li>
+                    <li><b>Which way does the comparison run at the edge?</b> <code>&gt;</code> against <code>&gt;=</code> is the difference between a compliant ramp passing and failing.</li>
+                    <li><b>What does it change?</b> In Grasshopper, nothing until you bake. Find the step that writes before you take it.</li>
                   </ul>
                   <ul>
-                    <li><b>Then: run it on five files, not five hundred.</b></li>
+                    <li><b>Then: measure three spots by hand.</b> Four minutes, and it is the only part that proves anything.</li>
                   </ul>
                 </div>
               </div>
@@ -453,15 +459,15 @@
             </div>
 
             <!-- 21 · before next week -->
-            <div class="slide" data-cap="Before next week" data-notes="Housekeeping. The workshop is done in class today, right after this. D1 is the workflow audit — one recent project, drawn as a sequence of steps, with the friction marked; it is the raw material for the Part II project, so it is worth doing properly rather than quickly. AI Fluency lessons for next week are the generative-AI fundamentals pair.">
+            <div class="slide" data-cap="Before next week" data-notes="Housekeeping. The workshop is done in class today, right after this, on their own laptops in Grasshopper. D1 is the workflow audit — one recent project, drawn as a sequence of steps, with the friction marked; it is the raw material for the Part II project, so it is worth doing properly rather than quickly. AI Fluency lessons for next week are the generative-AI fundamentals pair.">
               <div class="embed">
                 <div class="txt-card">
                   <h3>Before next week</h3>
                   <ul>
-                    <li><b>Workshop &mdash; Reading a Script</b> &mdash; in class, now. Predict, then run.</li>
+                    <li><b>Workshop &mdash; Reading a Script</b> &mdash; in class, now, in Grasshopper. Predict, then run.</li>
                     <li><b>D1 &mdash; workflow audit</b> &mdash; one recent project drawn as a sequence of steps, with the friction marked. This is the raw material for your Part II project.</li>
                     <li><b>AI Fluency</b> &mdash; generative AI fundamentals; capabilities and limitations. Watch before next session.</li>
-                    <li><b>Check your install</b> &mdash; Python runs, the agent runs, Git knows your name.</li>
+                    <li><b>Check your install</b> &mdash; Rhino 8 opens Grasshopper, the agent runs, Git knows your name.</li>
                   </ul>
                 </div>
               </div>
@@ -485,7 +491,7 @@
         <div class="c1-next">
           <div class="c1-next__text">
             <b>Workshop 01 &mdash; Reading a Script</b>
-            <span>Predict what a script prints, run it, break it on purpose, then have the agent write the same thing and read what it gives you back.</span>
+            <span>Build the slope component one move at a time, predicting each result before you look — then write the spec for a real slope-band analysis, hand it to the agent, and check what comes back against three measurements of your own.</span>
           </div>
           <a class="c1-next__go" href="/teaching/arch51580/workshops/coding-101.html">Open the workshop &rarr;</a>
         </div>
@@ -504,22 +510,25 @@
     var root = document.getElementById('tracer');
     if (!root) return;
 
-    var SHEETS = '["plan", "section", "axon"]';
-    // line = 0-based source line; set = boxes changed; print = a line of output
+    var FACES = '[(1, 20), (1, 12), (3, 10)]';
+    // line = 0-based source line; set = boxes changed; print = a line of output.
+    // Every value below is what Python 3 actually produces for this script.
     var STEPS = [
-      { line: 0, set: { sheets: SHEETS }, say: 'Line 1 — three names go into the box called <b>sheets</b>.' },
-      { line: 1, set: { count: '0' }, say: 'Line 2 — <b>count</b> starts at nothing yet counted.' },
-      { line: 2, set: { s: '"plan"' }, say: 'Line 3 — the loop takes the <b>first</b> item and calls it <b>s</b>.' },
-      { line: 3, set: { count: '1' }, say: 'Line 4 — read count, add one, put it back. 0 becomes 1.' },
-      { line: 4, print: '1 plan', say: 'Line 5 — print what the two boxes hold right now.' },
-      { line: 2, set: { s: '"section"' }, say: 'Back up to line 3 — <b>the finger jumped</b>. s is now the second item.' },
-      { line: 3, set: { count: '2' }, say: 'Line 4 again — the same instruction, a different value in the box.' },
-      { line: 4, print: '2 section', say: 'Line 5 again. Nothing about the code changed; only the boxes did.' },
-      { line: 2, set: { s: '"axon"' }, say: 'Up to line 3 once more — the last item.' },
-      { line: 3, set: { count: '3' }, say: 'Line 4 — count becomes 3.' },
-      { line: 4, print: '3 axon', say: 'Line 5 — the third and last line of output.' },
-      { line: 2, say: 'Line 3 — nothing left to take, so the loop <b>falls through</b> instead of jumping.' },
-      { line: 5, print: 'done — 3 sheets', say: 'Line 6 — the finger reaches the end. <b>count</b> kept its value all along.' }
+      { line: 0, set: { faces: FACES }, say: 'Line 1 \u2014 three pairs of <b>rise</b> and <b>run</b> go into one box.' },
+      { line: 1, set: { steep: '0' }, say: 'Line 2 \u2014 <b>steep</b> starts at nothing counted yet.' },
+      { line: 2, set: { 'rise, run': '1, 20' }, say: 'Line 3 \u2014 the loop takes the <b>first</b> pair and unpacks it into two names.' },
+      { line: 3, set: { slope: '5.0' }, say: 'Line 4 \u2014 1 \u00f7 20 \u00d7 100. A 5% slope.' },
+      { line: 4, say: 'Line 5 \u2014 is 5.0 greater than 8.33? <b>No</b>, so line 6 is skipped entirely.' },
+      { line: 2, set: { 'rise, run': '1, 12' }, say: 'Back up to line 3 \u2014 <b>the finger jumped</b>. The second pair: a 1:12 ramp.' },
+      { line: 3, set: { slope: '8.333333333333332' }, say: 'Line 4 \u2014 one twelfth has no exact decimal. <b>This is the real number.</b>' },
+      { line: 4, say: 'Line 5 \u2014 is 8.333333333333332 greater than 8.33? <b>Yes.</b> Hold that thought.' },
+      { line: 5, set: { steep: '1' }, say: 'Line 6 \u2014 a ramp built <b>exactly to the ADA limit</b>, counted as too steep.' },
+      { line: 2, set: { 'rise, run': '3, 10' }, say: 'Up to line 3 once more \u2014 the last pair.' },
+      { line: 3, set: { slope: '30.0' }, say: 'Line 4 \u2014 a 30% slope. No argument about this one.' },
+      { line: 4, say: 'Line 5 \u2014 comfortably over the limit.' },
+      { line: 5, set: { steep: '2' }, say: 'Line 6 \u2014 steep becomes 2.' },
+      { line: 2, say: 'Line 3 \u2014 nothing left to take, so the loop <b>falls through</b> instead of jumping.' },
+      { line: 6, print: 'steep: 2', say: 'Line 7 \u2014 the end. One of those two was a compliant ramp.' }
     ];
 
     var lines = root.querySelectorAll('.c1-trace__line');
@@ -533,7 +542,7 @@
     var at = -1; // index of the last applied step
 
     function render() {
-      var boxes = { sheets: '—', count: '—', s: '—' };
+      var boxes = { faces: '—', 'rise, run': '—', slope: '—', steep: '—' };
       var printed = [];
       var changed = {};
       for (var i = 0; i <= at; i++) {
@@ -543,7 +552,7 @@
       }
       if (at >= 0 && STEPS[at].set) changed = STEPS[at].set;
 
-      stateBody.innerHTML = ['sheets', 'count', 's'].map(function (k) {
+      stateBody.innerHTML = ['faces', 'rise, run', 'slope', 'steep'].map(function (k) {
         var hot = Object.prototype.hasOwnProperty.call(changed, k);
         return '<tr' + (hot ? ' class="is-just-set"' : '') + '><th>' + k + '</th><td>' + boxes[k] + '</td></tr>';
       }).join('');
