@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reading a Script — Arch 51580</title>
+  <link rel="stylesheet" href="/teaching/laar61400/assets/css/main.css">
+  <link rel="stylesheet" href="/teaching/laar61400/assets/css/workflow-shared.css">
+  <style>
+    /* code blocks inside the steps */
+    .ws-code{border:1px solid var(--line);border-radius:6px;background:var(--gray-100);
+      padding:14px 16px;margin:12px 0 4px;overflow-x:auto;}
+    .ws-code pre{margin:0;font:400 13.5px/1.75 var(--font-mono);color:var(--gray-900);white-space:pre;}
+    .ws-code .c{color:var(--gray-500);font-style:italic;}
+    .ws-code__label{display:block;font:700 10px/1 var(--font-mono);letter-spacing:.12em;
+      text-transform:uppercase;color:var(--gray-500);margin-bottom:9px;}
+    /* the predict-first box */
+    .ws-predict{border:1px solid var(--accent);border-left-width:4px;border-radius:6px;
+      background:color-mix(in srgb, var(--accent) 5%, transparent);padding:15px 18px;margin:14px 0;}
+    .ws-predict strong{display:block;font-size:14px;color:var(--ink);margin-bottom:5px;}
+    .ws-predict span{font-size:14px;line-height:1.65;color:var(--gray-750,#374151);}
+  </style>
+</head>
+<body>
+
+  <!-- Side panel -->
+  <nav id="sidepanel">
+    <a class="panel-brand" href="/teaching/arch51580/index.html">
+      <span class="panel-brand-title">Arch 51580</span>
+      <span class="panel-brand-sub">Agentic Design Workflows</span>
+    </a>
+    <div class="panel-section">
+      <span class="panel-section-label">Lectures</span>
+      <a class="panel-link" href="/teaching/arch51580/lectures/computational-thinking.html">A History of Computational Thinking</a>
+      <a class="panel-link" href="/teaching/arch51580/lectures/coding-101.html">Coding 101</a>
+      <a class="panel-link" href="/teaching/arch51580/lectures/web-coding-literacy.html">Web Coding Literacy</a>
+      <a class="panel-link" href="/teaching/arch51580/lectures/cybernetics-and-design.html">Cybernetics and Design</a>
+      <a class="panel-link" href="/teaching/arch51580/lectures/graphic-design-101.html">Graphic Design 101</a>
+    </div>
+    <div class="panel-section">
+      <span class="panel-section-label">Workshops</span>
+      <a class="panel-link active" href="/teaching/arch51580/workshops/coding-101.html"><span class="panel-link-num">01</span>Reading a Script</a>
+    </div>
+    <div class="panel-section">
+      <span class="panel-section-label">Reference</span>
+      <a class="panel-link" href="/talks/agents-in-practice/" target="_blank" rel="noopener">Agents in Practice &#8599;</a>
+      <a class="panel-link" href="https://www.anthropic.com/learn" target="_blank" rel="noopener">Anthropic Academy &#8599;</a>
+    </div>
+  </nav>
+
+  <!-- Main content -->
+  <main id="main-content">
+    <div class="page-inner">
+<div class="wf-wrap wf-doc">
+
+  <!-- Header -->
+  <div class="wf-header">
+    <div class="wf-index">WS01</div>
+    <div class="wf-header-text">
+      <div class="wf-title">Reading a Script</div>
+      <div class="wf-subtitle">Predict, run, break, then read what the agent wrote &middot; Python 3 &middot; In class, after Coding 101</div>
+    </div>
+  </div>
+
+  <!-- Spec strip -->
+  <div class="wf-spec">
+    <div class="wf-spec-item"><span class="wf-spec-label">Length</span><span class="wf-spec-value">One session, in class</span></div>
+    <div class="wf-spec-item"><span class="wf-spec-label">Tools</span><span class="wf-spec-value">Python 3 &middot; a coding agent</span></div>
+    <div class="wf-spec-item"><span class="wf-spec-label">Bring</span><span class="wf-spec-value">A folder of your own images</span></div>
+    <div class="wf-spec-item"><span class="wf-spec-label">Paper</span><span class="wf-spec-value">Yes &mdash; steps 02 and 04</span></div>
+  </div>
+
+  <!-- Learning objectives -->
+  <div class="wf-objectives">
+    <strong>Learning Objectives</strong>
+    <ul>
+      <li>Predicting what a process will do before setting it running</li>
+      <li>Reading an error as a location, not a verdict</li>
+      <li>Checking an instrument before it touches your own work</li>
+    </ul>
+  </div>
+
+  <!-- Assignment -->
+  <div class="wf-outcome">
+    <strong>Assignment</strong><span>A working script that renames and re-encodes a folder of your own images, written by the agent from your one-paragraph spec &mdash; with your four-question check and the one thing you had to correct noted underneath it, in the repository you set up today.</span>
+  </div>
+
+  <!-- Pipeline strip -->
+  <div class="wf-pipeline">
+    <div class="wf-pipe-step"><div class="wf-pipe-node">Predict</div><div class="wf-pipe-arrow">&rarr;</div></div>
+    <div class="wf-pipe-step"><div class="wf-pipe-node">Run</div><div class="wf-pipe-arrow">&rarr;</div></div>
+    <div class="wf-pipe-step"><div class="wf-pipe-node">Break</div><div class="wf-pipe-arrow">&rarr;</div></div>
+    <div class="wf-pipe-step"><div class="wf-pipe-node">Spec</div><div class="wf-pipe-arrow">&rarr;</div></div>
+    <div class="wf-pipe-step"><div class="wf-pipe-node wf-pipe-tool">Agent</div><div class="wf-pipe-arrow">&rarr;</div></div>
+    <div class="wf-pipe-step"><div class="wf-pipe-node">Check</div></div>
+  </div>
+
+  <!-- Intro -->
+  <div style="background:var(--gray-100); border-radius:4px; padding:16px 18px; margin-bottom:28px;">
+    <div class="wf-step-desc">Nobody is asked to write a script from a blank file today. You will read four of them, predict what two of them do, break one on purpose, and then have the agent write the fifth from a paragraph you wrote. The order matters: <strong>predict before you run</strong>. A prediction you got wrong teaches you where your model of the machine is off, and running the thing first robs you of that.</div>
+    <div class="wf-step-desc">Work in the project folder you set up in the first session. Keep a scratch copy of five images beside it &mdash; never point a first run at originals.</div>
+  </div>
+
+  <!-- Steps -->
+  <div class="wf-steps">
+
+    <div class="wf-step wf-full">
+      <div class="wf-step-head">
+        <span class="wf-step-num">01</span>
+        <span class="wf-step-label">Check the Install</span>
+      </div>
+      <div class="wf-step-body">
+        <div class="wf-step-desc">Open a terminal in your project folder and confirm the three things this course runs on. Each should answer with a version number. If one does not, fix it now &mdash; the rest of the session depends on all three.</div>
+        <div class="ws-code">
+          <span class="ws-code__label">Terminal</span>
+          <pre>python --version        <span class="c"># or: py --version  (Windows)</span>
+git --version
+claude --version        <span class="c"># the agent, if you installed the CLI</span></pre>
+        </div>
+        <div class="wf-step-desc">Then install the one library this session needs. Pillow reads and writes images; version 12 or later is what writes <code>.avif</code>.</div>
+        <div class="ws-code">
+          <span class="ws-code__label">Terminal</span>
+          <pre>python -m pip install --upgrade pillow
+python -c "import PIL; print(PIL.__version__)"     <span class="c"># want 12.0 or higher</span></pre>
+        </div>
+        <ul class="wf-tips">
+          <li>Windows: <code>py</code> is the launcher that finds your Python install even when <code>python</code> does not. Use <code>py -m pip install …</code> there.</li>
+          <li>Make a scratch folder now: copy five of your images into <code>scratch/</code>. Everything today runs there first.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="wf-step wf-full">
+      <div class="wf-step-head">
+        <span class="wf-step-num">02</span>
+        <span class="wf-step-label">Predict, Then Run</span>
+      </div>
+      <div class="wf-step-body">
+        <div class="wf-step-desc">Here is the loop from the lecture, with one line added. Read it, then write your prediction <strong>on paper</strong> before typing anything.</div>
+        <div class="ws-code">
+          <span class="ws-code__label">predict.py</span>
+          <pre>sheets = ["plan", "section", "axon", "detail"]
+count = 0
+
+for s in sheets:
+    count = count + 1
+    if count % 2 == 0:
+        print(count, s, "(even)")
+    else:
+        print(count, s)
+
+print("total:", count)</pre>
+        </div>
+        <div class="ws-predict">
+          <strong>Write this down before you run it</strong>
+          <span>How many lines does it print? Which of them carry the word <code>even</code>? What is the last line? &mdash; <code>%</code> is the remainder after division, so <code>count % 2 == 0</code> is true when count is even.</span>
+        </div>
+        <div class="wf-step-desc">Now save it and run it. Compare, line by line, with what you wrote. If they differ, find the line where your reading and the machine's parted company &mdash; that single line is the most useful thing you will learn today.</div>
+        <div class="ws-code">
+          <span class="ws-code__label">Terminal</span>
+          <pre>python predict.py</pre>
+        </div>
+      </div>
+    </div>
+
+    <div class="wf-step wf-full">
+      <div class="wf-step-head">
+        <span class="wf-step-num">03</span>
+        <span class="wf-step-label">Change One Number</span>
+      </div>
+      <div class="wf-step-body">
+        <div class="wf-step-desc">Change <code>% 2</code> to <code>% 3</code>, predict again, run again. Then add a fifth sheet to the list and predict the last line before running. You are building the habit the whole course rests on: a small change, a prediction, a check.</div>
+        <ul class="wf-tips">
+          <li>Keep each run's output. Three runs beside each other show the rule more clearly than any explanation of it.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="wf-step wf-full">
+      <div class="wf-step-head">
+        <span class="wf-step-num">04</span>
+        <span class="wf-step-label">Break It on Purpose</span>
+      </div>
+      <div class="wf-step-body">
+        <div class="wf-step-desc">Make these three mistakes one at a time, run after each, and write down <strong>what the traceback told you</strong> &mdash; which file, which line, what it expected. Read from the bottom up. Put each line back before making the next mistake.</div>
+        <ul class="wf-tips">
+          <li><strong>Delete the colon</strong> at the end of the <code>for</code> line. The machine stops before running anything at all.</li>
+          <li><strong>Misspell <code>count</code></strong> on one line only. Notice that it runs until it reaches that line, then stops.</li>
+          <li><strong>Move <code>count = 0</code> inside the loop</strong>, as its first indented line. The script runs to the end, reports no error, and is wrong. This is the dangerous kind.</li>
+        </ul>
+        <div class="ws-predict">
+          <strong>The point of the third one</strong>
+          <span>The first two stop the script and tell you where. The third finishes, prints four tidy lines and a total of 1, and says nothing is wrong. That difference is why reading the output matters more than reading the errors.</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="wf-step wf-full">
+      <div class="wf-step-head">
+        <span class="wf-step-num">05</span>
+        <span class="wf-step-label">Write the Spec in English</span>
+      </div>
+      <div class="wf-step-body">
+        <div class="wf-step-desc">Now your own job. In one paragraph, describe what should happen to your folder of images. Be as exact as a drawing note: name the input folder, the output folder, the filename pattern, the size limit, the format. Vagueness here is what produces a wrong script later.</div>
+        <div class="ws-code">
+          <span class="ws-code__label">Shape of a usable spec</span>
+          <pre>Read every .jpg and .png in scratch/, longest edge over 1920px.
+Shrink those to 1920px on the longest edge, keep the proportions.
+Write them as .avif at quality 65 into scratch/web/, which the
+script should create if it is missing. Name each output after the
+input file, lowercase, spaces turned into hyphens. Leave the
+originals untouched. Print one line per file saying what it wrote.</pre>
+        </div>
+        <ul class="wf-tips">
+          <li>Six sentences is plenty. Each one removes a decision the agent would otherwise make for you.</li>
+          <li>&ldquo;Leave the originals untouched&rdquo; and &ldquo;print one line per file&rdquo; are the two sentences that make the result checkable. Always include their equivalents.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="wf-step wf-full">
+      <div class="wf-step-head">
+        <span class="wf-step-num">06</span>
+        <span class="wf-step-label">Hand It to the Agent</span>
+      </div>
+      <div class="wf-step-body">
+        <div class="wf-step-desc">Give the agent your paragraph and ask for a single Python file. Add one instruction to the end: ask it to print what it <em>would</em> do and change nothing, so you get a dry run first.</div>
+        <div class="ws-code">
+          <span class="ws-code__label">What you type to the agent</span>
+          <pre>Write one Python file, encode.py, that does this:
+
+[your paragraph from step 05]
+
+Add a --dry-run flag that prints every file it would write
+without writing anything. Use Pillow. No other dependencies.</pre>
+        </div>
+        <ul class="wf-tips">
+          <li>Resist reading the explanation it writes around the code. Read <em>the code</em>. That is the deliverable; the prose is packaging.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="wf-step wf-full">
+      <div class="wf-step-head">
+        <span class="wf-step-num">07</span>
+        <span class="wf-step-label">The Four Questions</span>
+      </div>
+      <div class="wf-step-body">
+        <div class="wf-step-desc">Before running it, answer all four in writing. Point at the line number that answers each. If you cannot find the line, you have not read the script yet.</div>
+        <ul class="wf-tips">
+          <li><strong>Which files does it touch?</strong> Find every line that opens, saves, moves or deletes. Usually two or three.</li>
+          <li><strong>Does it write beside, or over?</strong> Compare the output path to the input path. If they can ever be the same string, stop and fix it.</li>
+          <li><strong>Is it looping over the right set?</strong> Check the pattern. <code>*.jpg</code> misses <code>.JPG</code> on some systems; <code>*</code> catches your PDFs.</li>
+          <li><strong>Can it tell me first?</strong> Confirm the dry-run path really writes nothing &mdash; read it, do not take the flag's name on trust.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="wf-step wf-full">
+      <div class="wf-step-head">
+        <span class="wf-step-num">08</span>
+        <span class="wf-step-label">Dry Run, Then Five Files</span>
+      </div>
+      <div class="wf-step-body">
+        <div class="wf-step-desc">Run the dry version and read the list. Does it name the files you expected, and only those? Then run it for real on <code>scratch/</code> &mdash; five files, not five hundred. Open two of the outputs and look at them. A script that reports success and produces grey rectangles has reported success.</div>
+        <div class="ws-code">
+          <span class="ws-code__label">Terminal</span>
+          <pre>python encode.py --dry-run     <span class="c"># read this list before going further</span>
+python encode.py               <span class="c"># now, on the five scratch files</span></pre>
+        </div>
+        <ul class="wf-tips">
+          <li>Check a file size as well as the picture. An .avif that is larger than its .jpg means a setting is wrong.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="wf-step wf-full">
+      <div class="wf-step-head">
+        <span class="wf-step-num">09</span>
+        <span class="wf-step-label">Note What You Had to Correct</span>
+      </div>
+      <div class="wf-step-body">
+        <div class="wf-step-desc">Write two or three lines under the script: what the agent got wrong, and whether it was wrong because your spec was vague or because it guessed. That distinction is the thing to keep. Across a semester, the first kind teaches you to write; the second teaches you where to look.</div>
+        <div class="ws-predict">
+          <strong>Carry this forward</strong>
+          <span>Commit the script, the spec paragraph and the note together. By the midterm, this folder of notes is the most accurate description you own of how you actually work with an agent &mdash; and it is where your Part II project will come from.</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Ongoing -->
+  <div class="wf-ongoing">
+    <strong>Feeds forward</strong><span>The spec paragraph from Step 05 is the first draft of the writing you will do all semester &mdash; the site BUILDSPEC is the same move at the scale of a whole website. The four questions in Step 07 return in every desk crit.</span>
+  </div>
+
+</div>
+    </div>
+  </main>
+
+  <script src="/teaching/laar61400/assets/js/nav.js"></script>
+  <script src="/teaching/laar61400/assets/js/wf-progress.js"></script>
+</body>
+</html>

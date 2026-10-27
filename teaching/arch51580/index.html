@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Syllabus — Arch 51580</title>
+  <link rel="stylesheet" href="/teaching/laar61400/assets/css/main.css">
+  <link rel="stylesheet" href="/teaching/laar61400/assets/css/workflow-shared.css">
+  <link rel="icon" href="/favicon.ico" sizes="16x16 32x32 48x48">
+  <link rel="apple-touch-icon" href="/assets/icons/apple-touch-icon.png">
+</head>
+<body>
+
+  <!-- Side panel -->
+  <nav id="sidepanel">
+    <a class="panel-brand" href="/teaching/arch51580/index.html">
+      <span class="panel-brand-title">Arch 51580</span>
+      <span class="panel-brand-sub">Agentic Design Workflows</span>
+    </a>
+    <div class="panel-section">
+      <span class="panel-section-label">Lectures</span>
+      <a class="panel-link" href="/teaching/arch51580/lectures/computational-thinking.html">A History of Computational Thinking</a>
+      <a class="panel-link" href="/teaching/arch51580/lectures/coding-101.html">Coding 101</a>
+      <a class="panel-link" href="/teaching/arch51580/lectures/web-coding-literacy.html">Web Coding Literacy</a>
+      <a class="panel-link" href="/teaching/arch51580/lectures/cybernetics-and-design.html">Cybernetics and Design</a>
+      <a class="panel-link" href="/teaching/arch51580/lectures/graphic-design-101.html">Graphic Design 101</a>
+    </div>
+    <div class="panel-section">
+      <span class="panel-section-label">Workshops</span>
+      <a class="panel-link" href="/teaching/arch51580/workshops/coding-101.html"><span class="panel-link-num">01</span>Reading a Script</a>
+    </div>
+    <div class="panel-section">
+      <span class="panel-section-label">Reference</span>
+      <a class="panel-link" href="/talks/agents-in-practice/" target="_blank" rel="noopener">Agents in Practice &#8599;</a>
+      <a class="panel-link" href="https://www.anthropic.com/learn" target="_blank" rel="noopener">Anthropic Academy &#8599;</a>
+    </div>
+  </nav>
+
+  <!-- Main content -->
+  <main id="main-content">
+    <div class="page-inner narrow">
+
+      <!-- 1. Course header -->
+      <div class="syllabus-header">
+        <div class="syllabus-course-num">Arch 51580 / 61580 &mdash; Topics in Computational Studies &mdash; Elective &mdash; Spring 2027</div>
+        <h1 class="syllabus-title">Agentic Design Workflows</h1>
+        <div class="syllabus-meta-grid">
+          <span class="syllabus-meta-label">Instructor</span>
+          <span class="syllabus-meta-value"><a href="/" target="_blank" rel="noopener">Zihao Zhang</a>, Ph.D., Associate Professor</span>
+          <span class="syllabus-meta-label">Email</span>
+          <span class="syllabus-meta-value"><a href="mailto:zzhang@ccny.cuny.edu">zzhang@ccny.cuny.edu</a></span>
+          <span class="syllabus-meta-label">Credits</span>
+          <span class="syllabus-meta-value">3 &mdash; seminar with lab component, one weekly session</span>
+          <span class="syllabus-meta-label">Meetings</span>
+          <span class="syllabus-meta-value">To be set against the Spring 2027 calendar</span>
+          <span class="syllabus-meta-label">Location</span>
+          <span class="syllabus-meta-value">To be assigned</span>
+          <span class="syllabus-meta-label">Open to</span>
+          <span class="syllabus-meta-value">4th/5th-year BArch and all SSA graduate students (MArch, MLA, MUD, MS Sustainability)</span>
+          <span class="syllabus-meta-label">Prerequisites</span>
+          <span class="syllabus-meta-value">None. No coding experience needed.</span>
+          <span class="syllabus-meta-label">Semester</span>
+          <span class="syllabus-meta-value">Spring 2027 &mdash; City College of New York, Spitzer School of Architecture</span>
+        </div>
+        <a class="schedule-jump" href="#weekly-schedule">Jump to Weekly Schedule &#9662;</a>
+      </div>
+
+      <!-- 2. Overview -->
+      <div class="syllabus-section">
+        <span class="syllabus-section-label">Overview</span>
+        <div class="syllabus-body">
+          <p>Designers work inside chains of software. This seminar teaches students to direct a coding agent &mdash; the course uses Claude Code as its example &mdash; to reshape those chains around their own practice. In the first half, each student builds, publishes, and maintains a personal website entirely through the agent, learning how to specify intent, give the agent lasting context, and check its work. In the second half, each student chooses their own project: a workflow, tool, or plugin that removes real friction from their design process. Lectures, guest lectures, and student precedent presentations frame AI as a design partner and as a subject of critique.</p>
+          <p>Coding agents shift the question from <em>can I program this?</em> to <em>can I say precisely what I want?</em> &mdash; a question designers are trained to answer. Specifying, iterating, reviewing, and critiquing are studio skills; the agent turns them into working software. This course treats that shift as both an opportunity and a subject of critical inquiry.</p>
+          <p>The course is built around the student's existing workflow rather than a new one. Each student starts from what they already use &mdash; Rhino, Grasshopper, Adobe, GIS, a sketchbook &mdash; and ends with an AI-assisted workflow they actually use, documented on a website they maintain themselves. The personal site is the first project because it is the most transferable: every designer needs a public portfolio, and running one through an agent teaches the full cycle &mdash; spec, build, version, publish, maintain &mdash; on material students care about.</p>
+        </div>
+      </div>
+
+      <!-- 3. Methodology -->
+      <div class="syllabus-section">
+        <span class="syllabus-section-label">Methodology</span>
+        <div class="syllabus-body">
+          <p>One weekly session, run as a seminar with a lab component. From Week 2, each session opens with a <strong>student precedent presentation</strong> &mdash; an agent-built tool, workflow, plugin, or designer website, presented as a case study. A short <strong>lecture or demo</strong> follows, then <strong>desk crits</strong>, where students work with the instructor available for individual guidance.</p>
+          <p>Work is assessed on the quality of direction as much as the quality of output: clarity of specifications, rigor of verification, evidence of real use on studio work, and depth of reflection. A student who writes a precise spec, reads what came back, catches what is wrong with it, and says so, has done the work of this course.</p>
+          <p id="ai-fluency"><strong>AI Fluency.</strong> In Weeks 2&ndash;7, students work through Anthropic's free online course <em>AI Fluency: Framework &amp; Foundations</em> (14 lessons, about four hours) as homework &mdash; roughly 40 minutes a week &mdash; and discuss each week's lessons in class. Its 4D framework &mdash; Delegation, Description, Discernment, Diligence &mdash; gives the seminar a shared vocabulary for working with agents. The completion certificate is due at the midterm. Enroll free through <a href="https://www.anthropic.com/learn" target="_blank" rel="noopener">Anthropic Academy</a>.</p>
+          <p id="reused-lectures"><strong>Lectures shared with LAAR 61400.</strong> Four of this course's lectures are also taught in Representation and Computation I, where they are compressed. Here they are taken slower and pushed further: <em>Cybernetics and Design</em> in particular is the theoretical and technical spine of Part I rather than a single week's overview. Students who have taken LAAR 61400 will recognize the decks and should expect the discussion to go past them.</p>
+        </div>
+      </div>
+
+      <!-- 4. The Two Parts -->
+      <div class="syllabus-section">
+        <span class="syllabus-section-label">The Two Parts</span>
+        <div class="syllabus-body">
+          <p><strong>Part I &mdash; The Managed Site (Weeks 1&ndash;7).</strong> Everyone builds the same kind of thing: a personal website, built and then run entirely through a coding agent. Students who already have a site extend it into an agent-managed one. Part I is where the shared vocabulary is built &mdash; what a script is, what a website is made of, what an agent reads before it acts, and how a design system is written down so an agent can follow it.</p>
+          <p><strong>Part II &mdash; Choose Your Adventure (Weeks 8&ndash;13).</strong> Each student develops something useful to their own practice, in one of three tracks.</p>
+        </div>
+        <table class="schedule-table" style="margin-top: 16px;">
+          <thead>
+            <tr>
+              <th style="width: 62px;">Track</th>
+              <th>What it is</th>
+              <th>Examples</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="week-num">A</td>
+              <td><span class="week-topic">Workflow</span><br>A repeatable routine the agent runs for you</td>
+              <td>A Claude Code skill that turns a Rhino export into a presentation board; a batch pipeline that renames, encodes, and files project images</td>
+            </tr>
+            <tr>
+              <td class="week-num">B</td>
+              <td><span class="week-topic">Tool / App</span><br>A standalone script or small web app</td>
+              <td>PNG silhouette &rarr; scaled CAD block; OpenStreetMap &rarr; layered figure-ground SVG; a precedent-library browser</td>
+            </tr>
+            <tr>
+              <td class="week-num">C</td>
+              <td><span class="week-topic">Plugin</span><br>An extension inside design software</td>
+              <td>A Grasshopper Python component; a Blender add-on; an Illustrator or Photoshop script; a Figma plugin; an MCP connector between a design tool and Claude</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- 5. Course Logistics / Technology -->
+      <div class="syllabus-section">
+        <span class="syllabus-section-label">Course Logistics / Technology</span>
+        <div class="syllabus-body">
+          <p>This course runs on a personal machine, not a lab machine &mdash; an agent needs install rights, a persistent project folder, and a signed-in account, none of which survive on a shared computer. Everything below is free except the agent subscription.</p>
+        </div>
+        <div class="software-grid" style="margin-top: 16px;">
+          <div class="software-item">
+            <div class="software-name" style="color: var(--accent);">Claude Code</div>
+            <div class="software-desc">The coding agent this course uses as its example. Needs a paid plan &mdash; Claude Pro, currently $20/month, about $80&ndash;100 for the semester.</div>
+          </div>
+          <div class="software-item">
+            <div class="software-name" style="color: var(--tool-cad);">Git</div>
+            <div class="software-desc">Version history for your site and your project. Free. Installed in Week 1.</div>
+          </div>
+          <div class="software-item">
+            <div class="software-name" style="color: #1a56cc;">GitHub</div>
+            <div class="software-desc">Where the repository lives and where the site is published, through GitHub Pages. Free account.</div>
+          </div>
+          <div class="software-item">
+            <div class="software-name" style="color: #2a6a2a;">Python 3</div>
+            <div class="software-desc">The language this course reads scripts in, and what Part II's plugin track runs on. Free. Installed in Week 1, with Pillow (12 or later) for the image work in Week 2.</div>
+          </div>
+        </div>
+        <div class="syllabus-body" style="margin-top: 20px;">
+          <p><strong>Personal Laptop &mdash; required.</strong> Windows or macOS, with rights to install a coding agent and Git. Bring it to every session; the lab component assumes it. For hardware recommendations, refer to the SSA IT Student Handbook. Technical support: CCNY IT Service Desk &mdash; servicedesk@ccny.cuny.edu &middot; 212 650 7878 &middot; Mon&ndash;Fri 8:00 AM &ndash; 6:00 PM.</p>
+          <p><strong>Accounts to create.</strong> GitHub (free) and Anthropic Academy (free, for the AI Fluency course). A personal domain is optional and costs roughly $10&ndash;15 a year; GitHub Pages gives you a public URL without one.</p>
+          <p><strong>Coding-agent subscription &mdash; required.</strong> An active paid plan for the semester is a requirement of the course; students without one cannot complete the assignments. Budget roughly $80&ndash;100 in total.</p>
+          <p id="ai-stance"><strong>Agentic AI — Course Stance.</strong> This course separates three kinds of knowledge:</p>
+          <ul class="goals-list" style="margin: 0 0 12px;">
+            <li><strong>Button knowledge</strong> — which command does what, like Offset in AutoCAD. Easy to look up.</li>
+            <li><strong>Behavior</strong> — how a drawing or the ground responds to a move, like tighter contours shedding water faster. Learned by making.</li>
+            <li><strong>Judgment</strong> — whether the result is right for the site and the people who use it. Built through critique.</li>
+          </ul>
+          <p>An AI agent is good at button knowledge, including its own: Claude can walk you through setting up an agentic workflow, such as connecting it to Rhino through MCP or starting a project in Claude Code. Class time therefore goes to behavior and judgment, which you need to direct an agent and check what it gives back.</p>
+          <p><strong>CCNY Email.</strong> Communication happens via CCNY email. Students need to check and be responsive to their CCNY email.</p>
+        </div>
+      </div>
+
+      <!-- 6. Support of Program Mission -->
+      <div class="syllabus-section">
+        <span class="syllabus-section-label">Support of Program Mission</span>
+        <div class="syllabus-body">
+          <p>This course is an elective in Topics in Computational Studies, open to students across the school's programs, and introduces the computational skills and thinking processes necessary for a student preparing for a career in the design professions. The course supports the mission of the Graduate Program in Landscape Architecture at the Bernard and Anne Spitzer School of Architecture of the City College of New York, which asserts that landscape architecture plays an essential role in connecting social justice to environmental design and the planning of landscape systems in the urban realm. The Graduate Program prepares students to be leaders in the field through innovative research and practice in urban ecological design, planning, and policymaking. This course teaches students responsive technologies and strategies to address issues of globalization, expanding urbanization, social and environmental justice, the transformation of land management practices in response to diminishing natural resources, and resilient adaptation to climate change.</p>
+        </div>
+      </div>
+
+      <!-- 7. Educational Goals -->
+      <div class="syllabus-section">
+        <span class="syllabus-section-label">Educational Goals</span>
+        <ul class="goals-list">
+          <li><strong>Agent literacy</strong> &mdash; Understand how coding agents work: what they read, what they act on, where they fail.</li>
+          <li><strong>Designers as tool-makers</strong> &mdash; Treat software as a design material; shape your own instruments instead of adapting practice to default tools.</li>
+          <li><strong>Workflow as a design object</strong> &mdash; See design practice as a sequence of steps that can be examined, measured, and redesigned.</li>
+          <li><strong>Critical AI practice</strong> &mdash; Situate AI-assisted design in questions of authorship, labor, dependence, and environmental and financial cost.</li>
+          <li><strong>Self-maintained professional presence</strong> &mdash; Own and sustain a public body of work on the web.</li>
+        </ul>
+      </div>
+
+      <!-- 8. Learning Objectives -->
+      <div class="syllabus-section">
+        <span class="syllabus-section-label">Learning Objectives</span>
+        <div class="syllabus-body">
+          <p>By the end of the course, students will be able to:</p>
+        </div>
+        <ul class="goals-list" style="margin-top: 12px;">
+          <li><strong>Specify</strong> &mdash; Translate design intent into a written build specification an agent can execute.</li>
+          <li><strong>Build and publish</strong> &mdash; Build a personal website, keep its history with Git, and publish it to the web.</li>
+          <li><strong>Manage through context</strong> &mdash; Maintain that site through the agent using a project context file (CLAUDE.md), a documented design system, and reusable skills.</li>
+          <li><strong>Verify</strong> &mdash; Read what the agent wrote, check it by previewing, comparing versions, and testing on real inputs, and decide whether to accept, revise, or discard it.</li>
+          <li><strong>Audit and scope</strong> &mdash; Map your own design workflow, locate repetitive friction, and scope a useful intervention.</li>
+          <li><strong>Develop</strong> &mdash; Build and document a working workflow, tool, or plugin that connects to the software you already use.</li>
+          <li><strong>Articulate</strong> &mdash; Present and critically reflect on the role of AI in your practice.</li>
+        </ul>
+      </div>
+
+      <!-- 9. Assignments -->
+      <div class="syllabus-section">
+        <span class="syllabus-section-label">Assignments</span>
+        <div class="syllabus-body">
+          <p>Three things are made in this course, and ten milestones pace them.</p>
+        </div>
+        <ul class="goals-list" style="margin-top: 12px;">
+          <li><strong>Agent-managed personal website</strong> &mdash; Live at a public URL, with a CLAUDE.md, a documented design system, at least one reusable skill or pipeline, full Git history, and a case-study page for the Part II project.</li>
+          <li><strong>AI workflow presentation</strong> &mdash; Ten minutes: the workflow before, the intervention, a live demonstration, evidence of use on real work, and a critical reflection on what was gained, lost, and handed over.</li>
+          <li><strong>Precedent presentation</strong> &mdash; One per student, at the start of a session in Weeks 2&ndash;13: an agent-built tool, workflow, plugin, or designer website, presented as a case study &mdash; what it does, how it was made, and what it suggests for design practice.</li>
+        </ul>
+        <table class="schedule-table" style="margin-top: 20px;">
+          <thead>
+            <tr><th style="width: 48px;">ID</th><th>Milestone</th><th style="width: 56px;">Week</th></tr>
+          </thead>
+          <tbody>
+            <tr><td class="week-num">D1</td><td>Workflow audit &mdash; a diagram of a recent project's workflow with friction points marked</td><td class="week-num">02</td></tr>
+            <tr><td class="week-num">D2</td><td>BUILDSPEC.md for the personal site</td><td class="week-num">03</td></tr>
+            <tr><td class="week-num">D3</td><td>CLAUDE.md + site design system</td><td class="week-num">04</td></tr>
+            <tr><td class="week-num">D4</td><td>Site live at a public URL</td><td class="week-num">05</td></tr>
+            <tr><td class="week-num">D5</td><td>One skill or pipeline + two projects published through it</td><td class="week-num">06</td></tr>
+            <tr><td class="week-num">D6</td><td>Managed site v1 + Part II proposal (problem, current workflow, track, success criteria) + AI Fluency certificate</td><td class="week-num">07</td></tr>
+            <tr><td class="week-num">D7</td><td>Project BUILDSPEC + repository</td><td class="week-num">08</td></tr>
+            <tr><td class="week-num">D8</td><td>Prototype working on one real input</td><td class="week-num">09</td></tr>
+            <tr><td class="week-num">D9</td><td>Tested on current studio work + peer feedback</td><td class="week-num">11</td></tr>
+            <tr><td class="week-num">D10</td><td>Project case-study page live + presentation draft</td><td class="week-num">13</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- 10. Guest Lectures -->
+      <div class="syllabus-section">
+        <span class="syllabus-section-label">Guest Lectures</span>
+        <div class="syllabus-body">
+          <p>Four guest lectures over Zoom bring designers and researchers working at the intersection of design and computation into the seminar, in Weeks 5, 6, 10, and 12: <strong>Bradley Cantrell</strong>, <strong>Xun Liu</strong>, <strong>Afshin Ashari</strong>, and <strong>Phillip Fernberg</strong>.</p>
+        </div>
+      </div>
+
+      <!-- 11. Weekly Schedule -->
+      <div class="syllabus-section" id="weekly-schedule">
+        <span class="syllabus-section-label">Weekly Schedule</span>
+        <div class="syllabus-body">
+          <p>Dates are set against the Spring 2027 academic calendar once it is published. Weeks 2&ndash;13 open with a student precedent presentation. AI Fluency lessons are watched before class in Weeks 2&ndash;7 (see <a href="#ai-fluency">AI Fluency</a>).</p>
+          <p><strong>Part I &mdash; The Managed Site</strong></p>
+        </div>
+        <table class="schedule-table">
+          <thead>
+            <tr>
+              <th style="width: 58px;">Week</th>
+              <th>Topic</th>
+              <th style="width: 150px;">Tools</th>
+              <th>Work</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="week-num">01</td>
+              <td><span class="week-topic">From Tool Users to Tool Makers</span><br>Course introduction; chat versus agent; a tour of agent-built precedents; machine setup; precedent presentation sign-up<br><a class="lecture-link" href="/teaching/arch51580/lectures/computational-thinking.html">&#9656; Lecture: A History of Computational Thinking</a></td>
+              <td><span class="tool-badge">Claude Code</span><span class="tool-badge">Git</span><span class="tool-badge">GitHub</span><span class="tool-badge">Python</span></td>
+              <td>Install and verify all four, plus Pillow 12 for Python. Pick your precedent slot.</td>
+            </tr>
+            <tr>
+              <td class="week-num">02</td>
+              <td><span class="week-topic">Coding 101 &mdash; How a Machine Reads Instructions</span><br>What a computer actually does; what a script is; the five moves &mdash; name, repeat, choose, bundle, read and write; tracing a loop by hand; reading an error<br><a class="lecture-link" href="/teaching/arch51580/lectures/coding-101.html">&#9656; Lecture: Coding 101</a><br><a class="wf-link" href="/teaching/arch51580/workshops/coding-101.html">&#9656; Workshop 01: Reading a Script</a></td>
+              <td><span class="tool-badge">Python</span><span class="tool-badge">Claude Code</span></td>
+              <td><strong>D1 due</strong> &mdash; workflow audit: one recent project drawn as a sequence of steps, with the friction marked<br><em>AI Fluency:</em> introduction; why AI fluency; the 4D framework</td>
+            </tr>
+            <tr>
+              <td class="week-num">03</td>
+              <td><span class="week-topic">What a Website Is Made Of</span><br>HTML, CSS, and JavaScript &mdash; what each does and how they make up a page; type, grid, and color as the design decisions an agent needs written down; planning a site in chat; writing BUILDSPEC.md<br><a class="lecture-link" href="/teaching/arch51580/lectures/web-coding-literacy.html">&#9656; Lecture: Web Coding Literacy</a><br><a class="lecture-link" href="/teaching/arch51580/lectures/graphic-design-101.html">&#9656; Lecture: Graphic Design 101 (type, grid, color)</a></td>
+              <td><span class="tool-badge">HTML</span><span class="tool-badge">CSS</span><span class="tool-badge">JavaScript</span></td>
+              <td><strong>D2 due</strong> &mdash; BUILDSPEC.md for your site<br><em>AI Fluency:</em> generative AI fundamentals; capabilities and limitations</td>
+            </tr>
+            <tr>
+              <td class="week-num">04</td>
+              <td><span class="week-topic">Agentic AI &mdash; Context Is Design</span><br>The agent loop and what an agent can touch; every session starts blank; CLAUDE.md as the project's standards manual; the folder as structure; names are context; single source of truth; writing a design system the agent follows<br><a class="lecture-link" href="/teaching/arch51580/lectures/cybernetics-and-design.html">&#9656; Lecture: Cybernetics and Design</a></td>
+              <td><span class="tool-badge">Claude Code</span><span class="tool-badge">Markdown</span></td>
+              <td><strong>D3 due</strong> &mdash; CLAUDE.md + site design system<br><em>AI Fluency:</em> delegation; project planning and delegation</td>
+            </tr>
+            <tr>
+              <td class="week-num">05</td>
+              <td><span class="week-topic">Design and Build</span><br>Guest lecture (Zoom); first build in Claude Code; local preview; Git and GitHub Pages; domains and DNS; desk crits</td>
+              <td><span class="tool-badge">Claude Code</span><span class="tool-badge">Git</span><span class="tool-badge">GitHub</span></td>
+              <td><strong>D4 due</strong> &mdash; site live at a public URL<br><em>AI Fluency:</em> description; effective prompting techniques</td>
+            </tr>
+            <tr>
+              <td class="week-num">06</td>
+              <td><span class="week-topic">Skills &mdash; Turning Instructions into Instruments</span><br>Guest lecture (Zoom); turning repeated instructions into a reusable skill or pipeline; the image standard as a worked example; desk crits</td>
+              <td><span class="tool-badge">Claude Code</span><span class="tool-badge">Python</span></td>
+              <td><strong>D5 due</strong> &mdash; one skill or pipeline, plus two projects published through it<br><em>AI Fluency:</em> discernment; the Description&ndash;Discernment loop</td>
+            </tr>
+            <tr>
+              <td class="week-num">07</td>
+              <td><span class="week-topic">Midterm Review</span><br>Site pin-up; Part II pitches to the room</td>
+              <td></td>
+              <td><strong>D6 due</strong> &mdash; managed site v1 + Part II proposal + AI Fluency certificate<br><em>AI Fluency:</em> diligence; conclusion; course quiz</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="syllabus-body" style="margin-top: 24px;">
+          <p><strong>Part II &mdash; Choose Your Adventure</strong></p>
+        </div>
+        <table class="schedule-table">
+          <thead>
+            <tr>
+              <th style="width: 58px;">Week</th>
+              <th>Topic</th>
+              <th style="width: 150px;">Tools</th>
+              <th>Work</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="week-num">08</td>
+              <td><span class="week-topic">Scoping the Useful</span><br>Case studies across the three tracks; finding the smallest useful version; setting up project repositories</td>
+              <td><span class="tool-badge">Git</span><span class="tool-badge">GitHub</span></td>
+              <td><strong>D7 due</strong> &mdash; project BUILDSPEC + repository</td>
+            </tr>
+            <tr>
+              <td class="week-num">09</td>
+              <td><span class="week-topic">Connecting Agents to Design Software</span><br>File formats as interfaces; the scripting environments inside Rhino, Grasshopper, Blender and Adobe; APIs; MCP connectors in practice</td>
+              <td><span class="tool-badge rh">Rhino</span><span class="tool-badge gh">Grasshopper</span><span class="tool-badge">MCP</span><span class="tool-badge">Python</span></td>
+              <td><strong>D8 due</strong> &mdash; prototype working on one real input</td>
+            </tr>
+            <tr>
+              <td class="week-num">10</td>
+              <td><span class="week-topic">Desk Crits</span><br>Guest lecture (Zoom); testing your tool against current studio work</td>
+              <td></td>
+              <td>Bring live studio files to test on</td>
+            </tr>
+            <tr>
+              <td class="week-num">11</td>
+              <td><span class="week-topic">Desk Crits &mdash; Peer Tool Swap</span><br>Each student runs someone else's tool on their own work and reports back</td>
+              <td></td>
+              <td><strong>D9 due</strong> &mdash; tested on studio work + peer feedback</td>
+            </tr>
+            <tr>
+              <td class="week-num">12</td>
+              <td><span class="week-topic">Desk Crits &mdash; Refinement</span><br>Guest lecture (Zoom); hardening the tool against real inputs; documentation</td>
+              <td></td>
+              <td>Refinement against peer feedback</td>
+            </tr>
+            <tr>
+              <td class="week-num">13</td>
+              <td><span class="week-topic">Publishing the Work</span><br>A project case-study page on your managed site; publishing the repository; presentation rehearsal</td>
+              <td><span class="tool-badge">GitHub</span><span class="tool-badge">Claude Code</span></td>
+              <td><strong>D10 due</strong> &mdash; project page live + presentation draft</td>
+            </tr>
+            <tr>
+              <td class="week-num">14</td>
+              <td><span class="week-topic">Final Review</span><br>Presentations of AI workflows to invited critics</td>
+              <td></td>
+              <td><strong>Final due</strong> &mdash; agent-managed site + ten-minute workflow presentation</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- 12. Grading Criteria -->
+      <div class="syllabus-section">
+        <span class="syllabus-section-label">Grading Criteria</span>
+        <div class="syllabus-body">
+          <p>All students are held to high and consistent standards. Work is considered on its own merits and in relationship to the work of others, to make clear distinctions across the range of work. The full range of the grading scale may be used. Grades are not negotiable. Work in this course is graded on the following criteria:</p>
+        </div>
+        <ul class="goals-list" style="margin-top: 12px; margin-bottom: 20px;">
+          <li><strong>Completeness</strong> — Assignments are complete and graphically legible.</li>
+          <li><strong>Technical Skills</strong> — Executed with appropriate method and proficiency across media.</li>
+          <li><strong>Accuracy and Presentation</strong> — Completed with precision and presented professionally.</li>
+          <li><strong>Effort and Concept</strong> — Iterates through multiple drafts; shows experimentation and improvement; concepts are articulated and well-developed.</li>
+          <li><strong>Participation</strong> — Engages in discussions and group work.</li>
+          <li><strong>Attendance</strong> — Consistent preparation and on-time presence.</li>
+        </ul>
+
+        <div class="grade-breakdown">
+          <div class="grade-row">
+            <span class="grade-row-label">Part I milestones (D1&ndash;D5)</span>
+            <div class="grade-bar"><div class="grade-bar-fill" style="width: 20%;"></div></div>
+            <span class="grade-row-pct">20%</span>
+          </div>
+          <div class="grade-row">
+            <span class="grade-row-label">Midterm review &mdash; site v1 + Part II proposal (D6)</span>
+            <div class="grade-bar"><div class="grade-bar-fill" style="width: 15%;"></div></div>
+            <span class="grade-row-pct">15%</span>
+          </div>
+          <div class="grade-row">
+            <span class="grade-row-label">Part II milestones (D7&ndash;D10)</span>
+            <div class="grade-bar"><div class="grade-bar-fill" style="width: 15%;"></div></div>
+            <span class="grade-row-pct">15%</span>
+          </div>
+          <div class="grade-row">
+            <span class="grade-row-label">Final &mdash; agent-managed personal website</span>
+            <div class="grade-bar"><div class="grade-bar-fill" style="width: 20%;"></div></div>
+            <span class="grade-row-pct">20%</span>
+          </div>
+          <div class="grade-row">
+            <span class="grade-row-label">Final &mdash; AI workflow presentation</span>
+            <div class="grade-bar"><div class="grade-bar-fill" style="width: 15%;"></div></div>
+            <span class="grade-row-pct">15%</span>
+          </div>
+          <div class="grade-row">
+            <span class="grade-row-label">Precedent presentation</span>
+            <div class="grade-bar"><div class="grade-bar-fill" style="width: 10%;"></div></div>
+            <span class="grade-row-pct">10%</span>
+          </div>
+          <div class="grade-row">
+            <span class="grade-row-label">Participation &mdash; desk crits and discussion</span>
+            <div class="grade-bar"><div class="grade-bar-fill" style="width: 5%;"></div></div>
+            <span class="grade-row-pct">5%</span>
+          </div>
+        </div>
+
+        <table class="grade-scale" style="margin-top: 20px;">
+          <thead>
+            <tr><th>Grade</th><th>Explanation</th><th>Quality Points</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>A+</td><td>Exceptional</td><td>4.00</td></tr>
+            <tr><td>A</td><td>Excellent</td><td>4.00</td></tr>
+            <tr><td>A&minus;</td><td></td><td>3.70</td></tr>
+            <tr><td>B+</td><td></td><td>3.30</td></tr>
+            <tr><td>B</td><td>Good</td><td>3.00</td></tr>
+            <tr><td>B&minus;</td><td></td><td>2.70</td></tr>
+            <tr><td>C+</td><td></td><td>2.30</td></tr>
+            <tr><td>C</td><td>Satisfactory</td><td>2.00</td></tr>
+            <tr><td>F</td><td>Failure / Unsuccessful Completion</td><td>0.00</td></tr>
+          </tbody>
+        </table>
+        <div class="syllabus-body" style="margin-top: 10px;">
+          <p style="font-size: 12px; color: #666;">A grade of C is the lowest passing letter grade for graduate students. Students will not receive credit for this course if their final grade is below C (2.0). Per the Graduate Bulletin, a graduate student with a GPA below 3.0 cannot receive a Master's Degree. For program-specific information on grades, academic standing, probation, and dismissal, meet with the graduate student advisor.</p>
+        </div>
+      </div>
+
+      <!-- 13. Classroom Expectations -->
+      <div class="syllabus-section">
+        <span class="syllabus-section-label">Classroom Expectations</span>
+
+        <details class="policy-details">
+          <summary>Attendance</summary>
+          <div class="policy-body">
+            <p>This course meets once a week; the day, time, and room are set against the Spring 2027 calendar. Attendance is required and is taken at all scheduled sessions.</p>
+            <p>Per CCNY policy on lateness and absence, no distinction is made between excused and unexcused absences, and an instructor may treat lateness as equivalent to absence. For non-clinical courses, the number of hours absent may not exceed twice the number of contact hours the course meets per week. An instructor has the right to drop a student for excessive absence, entering a grade of WU. A student may appeal to the Committee on Course and Standing.</p>
+            <p>Absence for religious observance or jury duty is an exception. Notify the instructor prior to an absence whenever possible, and append a doctor's note or other written proof where relevant.</p>
+            <p><a href="https://ccny.smartcatalogiq.com/en/2022-2023/graduate-bulletin/academic-requirements-and-regulations-for-graduate-students/policy-on-lateness-and-absence/">Graduate Bulletin — Policy on Lateness and Absence</a></p>
+          </div>
+        </details>
+
+        <details class="policy-details">
+          <summary>Academic Integrity</summary>
+          <div class="policy-body">
+            <p>Academic dishonesty is prohibited at CUNY and is punishable by penalties including failing grades, suspension, and expulsion. Plagiarism — presenting the words, drawings, ideas, or opinions of someone else as one's own — is a serious instance of academic dishonesty. All assignments must be the student's original work, produced for this class and no other. Any copying, even short excerpts, from another book, article, or Internet source, published or unpublished, without proper attribution or citation, will result in automatic failure of the course.</p>
+            <p>You will fail this course if you: (1) submit work used for another course; (2) copy material and submit it as your own without quotation and citation, or otherwise represent another's work as your own; (3) submit the same work as another student. Plagiarized work will be reported to the CCNY Academic Integrity Committee per the CUNY Policy on Academic Integrity.</p>
+            <p><a href="https://www.ccny.cuny.edu/about/integrity">CCNY Academic Integrity Policy</a></p>
+          </div>
+        </details>
+
+        <details class="policy-details">
+          <summary>Incompletes</summary>
+          <div class="policy-body">
+            <p>Grades of &ldquo;incomplete&rdquo; (INC) are not given unless there is evidence of a medical or personal emergency. In such cases, instructor and student develop a contract to complete work by a specified date, per CCNY policy. This contract must be processed by the academic advisor and approved by the Program Director and the Chair's Office. Missed work due to illness must be explained with a physician's note.</p>
+          </div>
+        </details>
+
+        <details class="policy-details">
+          <summary>Classroom Civility</summary>
+          <div class="policy-body">
+            <p>All students are expected to participate in class discussions. Meaningful and constructive dialogue is encouraged; discussion should be civil, respectful, and relevant to the topic. This requires a willingness to listen, tolerance for different points of view, and mutual respect from all participants. Guest critics will be informed of this expectation for civility.</p>
+          </div>
+        </details>
+
+        <details class="policy-details">
+          <summary>Use of Electronic Devices</summary>
+          <div class="policy-body">
+            <p>Students are expected to engage in active learning during class time. Mobile phones, texting, and social media are distracting; please put handheld devices away and out of view during class. The appropriate use of laptops will be discussed. The instructor provides periodic breaks; personal devices may be used during these.</p>
+          </div>
+        </details>
+      </div>
+
+      <!-- 14. Course Bibliography -->
+      <div class="syllabus-section">
+        <span class="syllabus-section-label">Course Bibliography</span>
+        <div class="bib-list">
+          <div class="bib-item">Ashari, Afshin, and Ramtin Shafaghati. &ldquo;Customizable AI Tools for Landscape Architecture: Tailored Processes Compared with Traditional Rendering.&rdquo; <em>Journal of Digital Landscape Architecture</em> 10 (2025): 653&ndash;64.</div>
+          <div class="bib-item">Cantrell, Bradley, and Justine Holzman. <em>Responsive Landscapes: Strategies for Responsive Technologies in Landscape Architecture.</em> Routledge, 2016.</div>
+          <div class="bib-item">Cantrell, Bradley, and Adam Mekies, eds. <em>Codify: Parametric and Computational Design in Landscape Architecture.</em> Routledge, 2018.</div>
+          <div class="bib-item">Cantrell, Bradley, Zihao Zhang, and Xun Liu. &ldquo;Artificial Intelligence and Machine Learning in Landscape Architecture.&rdquo; In <em>The Routledge Companion to Artificial Intelligence in Architecture,</em> edited by Imdat As and Prithwish Basu, 232&ndash;47. Routledge, 2021.</div>
+          <div class="bib-item">Cantrell, Bradley, and Zihao Zhang. &ldquo;A Third Intelligence.&rdquo; <em>Landscape Architecture Frontiers</em> 6, no. 2 (2018): 42&ndash;51.</div>
+          <div class="bib-item">Clark, Andy, and David Chalmers. &ldquo;The Extended Mind.&rdquo; <em>Analysis</em> 58, no. 1 (1998): 7&ndash;19.</div>
+          <div class="bib-item">Cross, Nigel. &ldquo;Designerly Ways of Knowing: Design Discipline Versus Design Science.&rdquo; <em>Design Issues</em> 17, no. 3 (2001): 49&ndash;55.</div>
+          <div class="bib-item">Fernberg, Phillip, and Zihao Zhang. &ldquo;Problematizing AI Omnipresence in Landscape Architecture.&rdquo; <em>Journal of Digital Landscape Architecture</em> 9 (2024): 746&ndash;55.</div>
+          <div class="bib-item">Haraway, Donna. &ldquo;A Cyborg Manifesto: Science, Technology, and Socialist-Feminism in the Late Twentieth Century.&rdquo; In <em>Simians, Cyborgs, and Women: The Reinvention of Nature,</em> 149&ndash;81. Routledge, 1991.</div>
+          <div class="bib-item">Heidegger, Martin. &ldquo;The Question Concerning Technology.&rdquo; Translated by William Lovitt. In <em>Basic Writings,</em> rev. ed., edited by David Farrell Krell, 307&ndash;41. HarperCollins, 1993.</div>
+          <div class="bib-item">Hui, Yuk. &ldquo;Machine and Ecology.&rdquo; <em>Angelaki</em> 25, no. 4 (2020): 54&ndash;66.</div>
+          <div class="bib-item">Turing, A. M. &ldquo;Computing Machinery and Intelligence.&rdquo; <em>Mind</em> 59, no. 236 (1950): 433&ndash;60.</div>
+          <div class="bib-item">Zhang, Zihao. <em>Cybernetics and the Constructed Environment: Design Between Nature and Technology.</em> Routledge, 2025.</div>
+          <div class="bib-item">Zhang, Zihao. &ldquo;Do Machines Care? Posthuman Labor in the Design Professions.&rdquo; In <em>The Routledge Companion to Artificial Intelligence in Architecture,</em> 2nd ed., edited by Imdat As. Routledge, forthcoming 2027.</div>
+        </div>
+      </div>
+
+      <!-- 15. Support Resources -->
+      <div class="syllabus-section">
+        <span class="syllabus-section-label">Support Resources</span>
+
+        <details class="policy-details">
+          <summary>City College Library Research Support</summary>
+          <div class="policy-body">
+            <p>The Spitzer School of Architecture's library is a shared resource and a necessary supplement to all research and design work. Direct questions to library staff or the Architecture Librarian.</p>
+            <div class="support-contact">
+              Nilda Sanchez-Rodriguez, Architecture Librarian
+              <br><a href="mailto:nsanchez@ccny.cuny.edu">nsanchez@ccny.cuny.edu</a>
+              <br><a href="https://library.ccny.cuny.edu/architecture">library.ccny.cuny.edu/architecture</a>
+            </div>
+          </div>
+        </details>
+
+        <details class="policy-details">
+          <summary>AccessAbility Center (AAC)</summary>
+          <div class="policy-body">
+            <p>The AAC facilitates equal access and coordinates reasonable accommodations and support services for students with disabilities while preserving academic standards. Students registered with the AAC should inform the instructor at the beginning of the semester. Faculty must receive an official accommodation memo before implementing accommodations.</p>
+            <div class="support-contact">
+              North Academic Center, Room 1/218
+              <br>212 650 5913 (TTY/TTD 212 650 8441)
+              <br><a href="mailto:disabilityservices@ccny.cuny.edu">disabilityservices@ccny.cuny.edu</a>
+              <br><a href="http://www.ccny.cuny.edu/accessability/">ccny.cuny.edu/accessability</a>
+            </div>
+          </div>
+        </details>
+
+        <details class="policy-details">
+          <summary>Health and Wellness Services</summary>
+          <div class="policy-body">
+            <p>City College's Office of Health and Wellness Services offers free and confidential counseling.</p>
+            <div class="support-contact">
+              Marshak Science Building, Room J-15
+              <br>212 650 8222 &mdash; <a href="mailto:counseling@ccny.cuny.edu">counseling@ccny.cuny.edu</a>
+            </div>
+          </div>
+        </details>
+
+        <details class="policy-details">
+          <summary>Office of Diversity and Compliance</summary>
+          <div class="policy-body">
+            <p>City College complies with CUNY policies regarding discrimination. The College has resources to support students who have experienced sexual violence, intimate partner/domestic violence, gender- or race-based discrimination, harassment, or stalking. For confidential support, contact the Student Psychological Counselor / Confidential Advocate at 212 650 8905 or the Gender Resources Program at 212 650 8222. The Title IX Coordinator is Diana Cuozzo.</p>
+            <div class="support-contact">
+              Diana Cuozzo, Chief Diversity Officer and Title IX Coordinator
+              <br>212 650 7330 &mdash; <a href="mailto:dcuozzo@ccny.cuny.edu">dcuozzo@ccny.cuny.edu</a>
+              <br><a href="https://www.ccny.cuny.edu/affirmativeaction">ccny.cuny.edu/affirmativeaction</a>
+            </div>
+          </div>
+        </details>
+      </div>
+
+    </div>
+  </main>
+
+  <script src="/teaching/laar61400/assets/js/nav.js"></script>
+</body>
+</html>

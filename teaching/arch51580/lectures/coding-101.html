@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Coding 101 — Arch 51580</title>
+  <link rel="stylesheet" href="/teaching/laar61400/assets/css/main.css">
+  <link rel="stylesheet" href="/teaching/laar61400/assets/css/workflow-shared.css">
+  <link rel="stylesheet" href="/assets/deck/deck.css">
+  <style>
+    /* page-specific; shared palette lives in deck.css :root / tokens.css */
+    :root{ --kw:#9a3b6a; --str:#1f6f8b; --cmt:#6b7280; --num:#8a5a00; }
+
+    .slide .embed figure{display:block;margin:0;overflow:visible;background:none;}
+    .slide .embed figure img{width:auto;height:auto;max-width:100%;object-fit:initial;}
+    .slide .embed figcaption{position:static;left:auto;bottom:auto;background:none;padding:0;}
+
+    /* ── code block with a line-number gutter ── */
+    .c1-code{width:max-content;min-width:760px;max-width:1180px;border:1px solid var(--line);border-radius:12px;background:#fff;
+      box-shadow:0 4px 18px rgba(0,0,0,.06);overflow:hidden;text-align:left;}
+    .c1-code__bar{display:flex;align-items:center;gap:10px;padding:10px 16px;border-bottom:1px solid var(--line);
+      background:var(--gray-50,#fafafa);}
+    .c1-code__chip{font:700 10.5px/1 var(--font-mono);letter-spacing:.12em;text-transform:uppercase;
+      color:var(--accent);border:1px solid var(--accent);border-radius:999px;padding:5px 9px;}
+    .c1-code__file{font:500 12.5px/1 var(--font-mono);color:var(--mute);}
+    .c1-code pre{margin:0;padding:18px 18px 20px;overflow:visible;}
+    .c1-code code{display:block;font:400 clamp(14px,1.5cqw,19px)/1.75 var(--font-mono);color:var(--ink);
+      white-space:pre;counter-reset:ln;}
+    .c1-code .ln{display:block;counter-increment:ln;padding-left:3.2em;position:relative;}
+    .c1-code .ln::before{content:counter(ln);position:absolute;left:0;width:2.2em;text-align:right;
+      color:var(--gray-400,#9ca3af);font-size:.82em;}
+    .c1-code .ln.blank::before{content:"";}
+    .c1-code .k{color:var(--kw);font-weight:600;}
+    .c1-code .s{color:var(--str);}
+    .c1-code .c{color:var(--cmt);font-style:italic;}
+    .c1-code .n{color:var(--num);}
+    /* a margin note tied to a line */
+    .c1-code .note{color:var(--mute);font-style:italic;}
+
+    /* ── annotated five-moves strip ── */
+    .c1-moves{width:1280px;display:grid;grid-template-columns:repeat(5,1fr);
+      gap:clamp(10px,1.6cqw,20px);}
+    .c1-moves__col{border:1px solid var(--line);border-radius:12px;background:#fff;padding:18px 16px 20px;
+      box-shadow:0 4px 16px rgba(0,0,0,.05);border-top:4px solid var(--accent);text-align:left;}
+    .c1-moves__num{font:700 11px/1 var(--font-mono);letter-spacing:.12em;color:var(--accent);}
+    .c1-moves__name{font:800 clamp(17px,1.7cqw,23px)/1.1 var(--font-sans);color:var(--ink);margin:8px 0 8px;}
+    .c1-moves__code{font:500 12.5px/1.5 var(--font-mono);color:var(--kw);display:block;margin-bottom:8px;}
+    .c1-moves__def{font-size:13.5px;line-height:1.55;color:var(--gray-750,#374151);margin:0;}
+
+    /* ── in / out boundary diagram ── */
+    .c1-flow{width:1100px;display:flex;align-items:center;justify-content:center;
+      gap:clamp(8px,1.4cqw,20px);flex-wrap:wrap;}
+    .c1-flow__node{flex:0 1 240px;border:1px solid var(--line);border-radius:12px;background:#fff;
+      padding:18px 16px;text-align:center;box-shadow:0 4px 16px rgba(0,0,0,.05);}
+    .c1-flow__node.is-script{border-color:var(--accent);border-width:2px;}
+    .c1-flow__node b{display:block;font:800 19px/1.15 var(--font-sans);color:var(--ink);margin-bottom:6px;}
+    .c1-flow__node span{display:block;font-size:13px;line-height:1.5;color:var(--mute);}
+    .c1-flow__node code{font-family:var(--font-mono);font-size:12px;color:var(--accent);}
+    .c1-flow__arrow{font-size:26px;color:var(--gray-400,#9ca3af);}
+
+    /* ── the tracer: code + state table + output ── */
+    .c1-trace{width:1260px;display:grid;grid-template-columns:1.45fr 1fr;
+      gap:clamp(12px,1.8cqw,22px);align-items:start;text-align:left;}
+    .c1-trace__code{border:1px solid var(--line);border-radius:12px;background:#fff;overflow:hidden;
+      box-shadow:0 4px 18px rgba(0,0,0,.06);}
+    .c1-trace__code pre{margin:0;padding:16px 16px 18px;}
+    .c1-trace__code code{display:block;font:400 clamp(13px,1.35cqw,17px)/1.85 var(--font-mono);color:var(--ink);white-space:pre;}
+    .c1-trace__line{display:block;padding:0 8px 0 3.2em;position:relative;border-radius:5px;transition:background .12s;}
+    .c1-trace__line::before{content:attr(data-n);position:absolute;left:0;width:2.2em;text-align:right;
+      color:var(--gray-400,#9ca3af);font-size:.82em;}
+    .c1-trace__line.is-now{background:color-mix(in srgb, var(--accent) 15%, transparent);
+      box-shadow:inset 3px 0 0 var(--accent);}
+    .c1-trace__side{display:flex;flex-direction:column;gap:14px;}
+    .c1-trace__panel{border:1px solid var(--line);border-radius:12px;background:#fff;overflow:hidden;
+      box-shadow:0 4px 16px rgba(0,0,0,.05);}
+    .c1-trace__ptitle{font:700 10.5px/1 var(--font-mono);letter-spacing:.12em;text-transform:uppercase;
+      color:var(--mute);padding:11px 14px;border-bottom:1px solid var(--line);background:var(--gray-50,#fafafa);}
+    .c1-trace__state{width:100%;border-collapse:collapse;font-family:var(--font-mono);font-size:13.5px;}
+    .c1-trace__state th,.c1-trace__state td{padding:8px 14px;text-align:left;border-bottom:1px solid var(--line);}
+    .c1-trace__state th{color:var(--kw);font-weight:600;width:33%;}
+    .c1-trace__state td{color:var(--ink);}
+    .c1-trace__state tr:last-child th,.c1-trace__state tr:last-child td{border-bottom:none;}
+    .c1-trace__state .is-just-set td{background:color-mix(in srgb, var(--accent) 13%, transparent);}
+    .c1-trace__out{margin:0;padding:12px 14px;min-height:5.4em;font:400 13.5px/1.8 var(--font-mono);
+      color:var(--ink);white-space:pre-wrap;}
+    .c1-trace__out:empty::after{content:"(nothing yet)";color:var(--gray-400,#9ca3af);font-style:italic;}
+    .c1-trace__bar{display:flex;gap:9px;align-items:center;flex-wrap:wrap;}
+    .c1-trace__btn{appearance:none;border:1.5px solid var(--line);background:#fff;color:var(--ink);
+      font:600 13px/1 inherit;padding:11px 18px;border-radius:999px;cursor:pointer;transition:.15s;}
+    .c1-trace__btn:hover{border-color:var(--accent);color:var(--accent);}
+    .c1-trace__btn.is-primary{background:var(--ink);color:var(--paper);border-color:var(--ink);}
+    .c1-trace__btn:disabled{opacity:.4;cursor:default;}
+    .c1-trace__say{font-size:13px;line-height:1.5;color:var(--mute);margin:0;min-height:2.8em;}
+    .c1-trace__say b{color:var(--accent);}
+
+    /* ── workshop hand-off card (after the deck) ── */
+    .c1-next{display:flex;gap:18px;align-items:center;flex-wrap:wrap;border:1px solid var(--line);
+      border-left:4px solid var(--accent);border-radius:10px;background:#fff;padding:20px 22px;margin-top:14px;}
+    .c1-next__text{flex:1 1 320px;}
+    .c1-next__text b{display:block;font:800 19px/1.2 var(--font-sans);color:var(--ink);margin-bottom:5px;}
+    .c1-next__text span{font-size:14px;line-height:1.6;color:var(--mute);}
+    .c1-next__go{font:600 14px/1 var(--font-sans);color:var(--paper);background:var(--ink);
+      text-decoration:none;padding:13px 20px;border-radius:999px;white-space:nowrap;}
+    .c1-next__go:hover{background:var(--accent);}
+  </style>
+</head>
+<body>
+
+  <!-- Side panel -->
+  <nav id="sidepanel">
+    <a class="panel-brand" href="/teaching/arch51580/index.html">
+      <span class="panel-brand-title">Arch 51580</span>
+      <span class="panel-brand-sub">Agentic Design Workflows</span>
+    </a>
+    <div class="panel-section">
+      <span class="panel-section-label">Lectures</span>
+      <a class="panel-link" href="/teaching/arch51580/lectures/computational-thinking.html">A History of Computational Thinking</a>
+      <a class="panel-link active" href="/teaching/arch51580/lectures/coding-101.html">Coding 101</a>
+      <a class="panel-link" href="/teaching/arch51580/lectures/web-coding-literacy.html">Web Coding Literacy</a>
+      <a class="panel-link" href="/teaching/arch51580/lectures/cybernetics-and-design.html">Cybernetics and Design</a>
+      <a class="panel-link" href="/teaching/arch51580/lectures/graphic-design-101.html">Graphic Design 101</a>
+    </div>
+    <div class="panel-section">
+      <span class="panel-section-label">Workshops</span>
+      <a class="panel-link" href="/teaching/arch51580/workshops/coding-101.html"><span class="panel-link-num">01</span>Reading a Script</a>
+    </div>
+    <div class="panel-section">
+      <span class="panel-section-label">Reference</span>
+      <a class="panel-link" href="/talks/agents-in-practice/" target="_blank" rel="noopener">Agents in Practice &#8599;</a>
+      <a class="panel-link" href="https://www.anthropic.com/learn" target="_blank" rel="noopener">Anthropic Academy &#8599;</a>
+    </div>
+  </nav>
+
+  <!-- Main content -->
+  <main id="main-content">
+    <div class="page-inner">
+
+      <div class="wf-wrap">
+        <div class="wf-header">
+          <div class="wf-index">LECTURE</div>
+          <div class="wf-header-text">
+            <div class="wf-title">Coding 101</div>
+            <div class="wf-subtitle">How a machine reads instructions &middot; what a script is &middot; the five moves &middot; reading what the agent wrote</div>
+          </div>
+        </div>
+
+        <!-- ── Slides ── -->
+        <span class="section-label">Lecture Slides</span>
+        <div class="deck" id="deck" data-deck-id="a51-02" data-deck-title="Coding 101">
+          <div class="deck-stage" id="deck-stage">
+
+            <!-- 1 · Title -->
+            <div class="slide slide--title" data-cap="" data-notes="This is the one session about code itself. The aim is not to make you programmers — it is so that when the agent hands back forty lines, you can read them and say whether they do what you asked. By the end you will know the whole vocabulary: five moves, and everything else is a combination of them.">
+              <div class="tt">Coding 101</div>
+              <div class="ts">Arch 51580</div>
+            </div>
+
+            <!-- 2 · Objectives -->
+            <div class="slide" data-cap="Learning objectives" data-notes="Say out loud what this session is not: it is not a Python course, and nobody is graded on writing code. It is a reading course. The verification objective is the one that carries the most weight in this seminar — every later week depends on it.">
+              <div class="embed">
+                <div class="txt-card">
+                  <h3>By the end of today</h3>
+                  <ul>
+                    <li><b>Describe what a computer does</b> — three operations, repeated, with nothing added.</li>
+                    <li><b>Say what a script is</b> — and why a designer already knows the form.</li>
+                    <li><b>Name the five moves</b> that make up every script you will meet this semester.</li>
+                    <li><b>Trace a loop by hand</b> and predict what it prints before running it.</li>
+                    <li><b>Read a script the agent wrote</b> and decide whether to run it.</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <!-- 3 · the machine has no idea -->
+            <div class="slide" data-cap="" data-notes="Land this hard. Students arrive expecting the computer to be clever — chat interfaces have taught them that. Underneath, nothing is clever. The machine has no model of your project, your deadline or your intent. It has a list and a position in the list. Everything that feels like intelligence is built on top of this by piling the steps very high, very fast.">
+              <div class="embed">
+                <div class="stmt">
+                  <p>A computer does not understand your project. It holds a list of steps and a finger on its place in the list.</p>
+                  <p class="sub">Everything that looks like judgment is built on top of that, by doing it a few billion times a second.</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- 4 · three operations -->
+            <div class="slide" data-cap="Three operations, forever" data-notes="Walk the three. Fetch: go to a labeled box and read what is in it. Do: one arithmetic or comparison. Store and advance: put the answer in a box, move the finger down. That is the machine. The consequence matters more than the mechanism: because it never guesses, an ambiguous instruction does not become a question — it becomes a different, confident, wrong result. This is the opposite of a studio critic.">
+              <div class="embed">
+                <div class="txt-card">
+                  <h3>Three operations, forever</h3>
+                  <ul>
+                    <li><b>Fetch</b> — read what is in a labeled box.</li>
+                    <li><b>Do</b> — one operation: add, compare, join.</li>
+                    <li><b>Store and step</b> — put the answer somewhere, move down one line.</li>
+                  </ul>
+                  <ul>
+                    <li><b>So: it never guesses.</b> An ambiguous instruction does not come back as a question. It comes back as a confident wrong answer.</li>
+                    <li><b>And: it never tires.</b> The thousandth repetition is as exact as the first.</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <!-- 5 · recipe / score / script -->
+            <div class="slide" data-cap="You already write instructions for others to run" data-notes="This is the bridge from the studio. A recipe, a Halprin score, a planting schedule, a construction detail — all are instructions written for someone else to execute. Designers are fluent in this form. The score comparison comes back in Cybernetics and Design: Halprin wrote scores precisely because he wanted the performance to vary. A script is the same form with the ambiguity removed, which is a loss as well as a gain.">
+              <div class="embed">
+                <div class="cmp">
+                  <h3>Three kinds of instruction</h3>
+                  <table>
+                    <thead><tr><th></th><th>A recipe</th><th>A Halprin score</th><th>A script</th></tr></thead>
+                    <tbody>
+                      <tr><th scope="row">Who runs it</th><td>A cook</td><td>A group of people</td><td>A machine</td></tr>
+                      <tr><th scope="row">Ambiguity is</th><td>Tolerated — &ldquo;season to taste&rdquo;</td><td>The point — the score invites variation</td><td>Fatal — it stops, or does the wrong thing exactly</td></tr>
+                      <tr><th scope="row">Runs again</th><td>Roughly the same</td><td>Deliberately different</td><td>Identically, every time</td></tr>
+                      <tr><th scope="row">Leaves behind</th><td>A meal</td><td>An event, and a record of it</td><td>Files, and a readable trace of how they were made</td></tr>
+                    </tbody>
+                  </table>
+                  <span class="note">The score and the script sit at opposite ends of one tradition &mdash; we come back to this in Cybernetics and Design.</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- 6 · a script is a process, drawn -->
+            <div class="slide" data-cap="" data-notes="A plan drawing is not the site; it is a selective abstraction of it that someone else can build from. A script is the same move applied to a process instead of a space. That is why this is a design skill and not a technical one: choosing what to include and what to leave out of a described process is exactly the judgment you already train.">
+              <div class="embed">
+                <div class="stmt">
+                  <p>A script is a process, drawn.</p>
+                  <p class="sub">A plan abstracts a place so someone else can build it. A script abstracts a procedure so a machine can run it. Same move, different subject.</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- 7 · the five moves -->
+            <div class="slide" data-cap="The whole language is five moves" data-notes="Make the promise explicit and keep it: everything they will read this semester — in Python, in Grasshopper Python, in a Blender add-on, in JavaScript on their own site — is a combination of these five. Languages differ in spelling, not in moves. Students relax visibly when the territory turns out to be finite.">
+              <div class="embed">
+                <div class="c1-moves">
+                  <div class="c1-moves__col">
+                    <div class="c1-moves__num">MOVE 1</div>
+                    <div class="c1-moves__name">Name</div>
+                    <code class="c1-moves__code">scale = 20</code>
+                    <p class="c1-moves__def">Put a value in a labeled box so later lines can use it.</p>
+                  </div>
+                  <div class="c1-moves__col">
+                    <div class="c1-moves__num">MOVE 2</div>
+                    <div class="c1-moves__name">Repeat</div>
+                    <code class="c1-moves__code">for f in files:</code>
+                    <p class="c1-moves__def">Do the same thing to every item in a set, one at a time.</p>
+                  </div>
+                  <div class="c1-moves__col">
+                    <div class="c1-moves__num">MOVE 3</div>
+                    <div class="c1-moves__name">Choose</div>
+                    <code class="c1-moves__code">if w &gt; 1920:</code>
+                    <p class="c1-moves__def">Take one branch or the other, by a test you wrote.</p>
+                  </div>
+                  <div class="c1-moves__col">
+                    <div class="c1-moves__num">MOVE 4</div>
+                    <div class="c1-moves__name">Bundle</div>
+                    <code class="c1-moves__code">def encode(p):</code>
+                    <p class="c1-moves__def">Name a group of steps so you can run it again elsewhere.</p>
+                  </div>
+                  <div class="c1-moves__col">
+                    <div class="c1-moves__num">MOVE 5</div>
+                    <div class="c1-moves__name">Read &amp; write</div>
+                    <code class="c1-moves__code">img.save(out)</code>
+                    <p class="c1-moves__def">Touch the world outside the script: files, folders, the network.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 8 · move 1 — names -->
+            <div class="slide" data-cap="Move 1 — a name is a box" data-notes="Three points. One: the equals sign is not a claim of equality, it is an instruction — put the right side in the box named on the left. Two: the machine does not care what the box is called; the name is entirely for the humans reading it, which is why a well-named script is readable and a badly-named one is not. Three: a box can be overwritten, and the old value is simply gone — this is the root of a whole family of bugs.">
+              <div class="embed">
+                <div class="c1-code">
+                  <div class="c1-code__bar"><span class="c1-code__chip">Python</span><span class="c1-code__file">names.py</span></div>
+                  <pre><code><span class="ln"><span class="c"># a name on the left, a value on the right</span></span><span class="ln">scale = <span class="n">20</span>              <span class="c"># a number</span></span><span class="ln">sheet = <span class="s">"A1-plan.pdf"</span>   <span class="c"># a piece of text</span></span><span class="ln">layers = [<span class="s">"site"</span>, <span class="s">"water"</span>, <span class="s">"paths"</span>]   <span class="c"># a list of them</span></span><span class="ln blank"> </span><span class="ln"><span class="c"># the box can be refilled — the old value is gone</span></span><span class="ln">scale = <span class="n">40</span></span></code></pre>
+                </div>
+              </div>
+            </div>
+
+            <!-- 9 · move 2 — the loop, real -->
+            <div class="slide" data-cap="Move 2 — do it to all sixty" data-notes="This is the script that matters to them. Sixty site photographs, each needing a resize and a format change for the web: an afternoon in Photoshop, or six lines. Point at the loop line and say what it means in English: take the files one at a time, call the current one f, and run the indented block on it. The indentation is not decoration — it is how Python marks what belongs inside the loop. This is also, verbatim, the standard this course publishes images to.">
+              <div class="embed">
+                <div class="c1-code">
+                  <div class="c1-code__bar"><span class="c1-code__chip">Python</span><span class="c1-code__file">encode_images.py</span></div>
+                  <pre><code><span class="ln"><span class="k">from</span> pathlib <span class="k">import</span> Path</span><span class="ln"><span class="k">from</span> PIL <span class="k">import</span> Image</span><span class="ln blank"> </span><span class="ln">folder = Path(<span class="s">"site-photos"</span>)</span><span class="ln blank"> </span><span class="ln"><span class="k">for</span> f <span class="k">in</span> folder.glob(<span class="s">"*.jpg"</span>):      <span class="c"># take them one at a time</span></span><span class="ln">    img = Image.open(f)</span><span class="ln">    img.thumbnail((<span class="n">1920</span>, <span class="n">1920</span>))     <span class="c"># longest edge 1920px</span></span><span class="ln">    img.save(f.with_suffix(<span class="s">".avif"</span>), quality=<span class="n">65</span>)</span><span class="ln blank"> </span><span class="ln"><span class="c"># sixty photographs, six lines, one keystroke</span></span></code></pre>
+                </div>
+              </div>
+            </div>
+
+            <!-- 10 · the tracer -->
+            <div class="slide" data-cap="Step through it — be the machine for a minute" data-notes="Do not narrate this slide. Run it. Click Step and let the room read each line out loud before you click again. The thing to notice is that the finger goes DOWN, DOWN, then JUMPS BACK UP — the loop is not a special kind of thinking, it is a jump. Ask for a prediction before the last iteration: what will count be at the end? Students who can answer that have the whole concept.">
+              <div class="embed">
+                <div class="c1-trace" id="tracer">
+                  <div class="c1-trace__code">
+                    <pre><code><span class="c1-trace__line" data-n="1" data-line="0">sheets = [<span class="s">"plan"</span>, <span class="s">"section"</span>, <span class="s">"axon"</span>]</span><span class="c1-trace__line" data-n="2" data-line="1">count = <span class="n">0</span></span><span class="c1-trace__line" data-n="3" data-line="2"><span class="k">for</span> s <span class="k">in</span> sheets:</span><span class="c1-trace__line" data-n="4" data-line="3">    count = count + <span class="n">1</span></span><span class="c1-trace__line" data-n="5" data-line="4">    print(count, s)</span><span class="c1-trace__line" data-n="6" data-line="5">print(<span class="s">"done —"</span>, count, <span class="s">"sheets"</span>)</span></code></pre>
+                  </div>
+                  <div class="c1-trace__side">
+                    <div class="c1-trace__panel">
+                      <div class="c1-trace__ptitle">What the boxes hold</div>
+                      <table class="c1-trace__state">
+                        <tbody id="tr-state">
+                          <tr><th>sheets</th><td>&mdash;</td></tr>
+                          <tr><th>count</th><td>&mdash;</td></tr>
+                          <tr><th>s</th><td>&mdash;</td></tr>
+                        </tbody>
+                      </table>
+                    </div>
+                    <div class="c1-trace__panel">
+                      <div class="c1-trace__ptitle">What it printed</div>
+                      <pre class="c1-trace__out" id="tr-out"></pre>
+                    </div>
+                    <p class="c1-trace__say" id="tr-say">Press <b>Step</b> to move the finger down one line.</p>
+                    <div class="c1-trace__bar">
+                      <button class="c1-trace__btn is-primary" id="tr-step">Step</button>
+                      <button class="c1-trace__btn" id="tr-run">Run to end</button>
+                      <button class="c1-trace__btn" id="tr-reset">Reset</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 11 · move 3 — choose -->
+            <div class="slide" data-cap="Move 3 — a test, not a judgment" data-notes="The if statement looks like decision-making and is not. It is a measurement against a threshold you chose in advance. All the judgment sits in the number you typed — 1920 here. That displacement is worth dwelling on: when a script makes a 'decision', someone earlier made it and wrote it down. Ask who chose 1920 and why. The answer is the site's image standard, chosen by a person.">
+              <div class="embed">
+                <div class="c1-code">
+                  <div class="c1-code__bar"><span class="c1-code__chip">Python</span><span class="c1-code__file">choose.py</span></div>
+                  <pre><code><span class="ln">w, h = img.size</span><span class="ln blank"> </span><span class="ln"><span class="k">if</span> w &gt; <span class="n">1920</span> <span class="k">or</span> h &gt; <span class="n">1920</span>:</span><span class="ln">    img.thumbnail((<span class="n">1920</span>, <span class="n">1920</span>))    <span class="c"># too big — shrink it</span></span><span class="ln"><span class="k">else</span>:</span><span class="ln">    <span class="k">pass</span>                            <span class="c"># already small enough — leave it</span></span><span class="ln blank"> </span><span class="ln"><span class="c"># the judgment is not in the "if" — it is in the 1920,</span></span><span class="ln"><span class="c"># which a person chose and wrote down.</span></span></code></pre>
+                </div>
+              </div>
+            </div>
+
+            <!-- 12 · move 4 — bundle -->
+            <div class="slide" data-cap="Move 4 — the moment a step becomes a tool" data-notes="This is the most important move for this seminar, because it is where Part II lives. Wrapping steps in a name and calling it twice is the difference between doing a task and owning an instrument. Everything in the three Part II tracks — a skill, a script, a plugin — is this move at a larger scale: a named bundle you can hand to yourself next semester, or to someone else.">
+              <div class="embed">
+                <div class="c1-code">
+                  <div class="c1-code__bar"><span class="c1-code__chip">Python</span><span class="c1-code__file">bundle.py</span></div>
+                  <pre><code><span class="ln"><span class="k">def</span> encode(path, limit=<span class="n">1920</span>, quality=<span class="n">65</span>):</span><span class="ln">    img = Image.open(path)</span><span class="ln">    img.thumbnail((limit, limit))</span><span class="ln">    img.save(path.with_suffix(<span class="s">".avif"</span>), quality=quality)</span><span class="ln blank"> </span><span class="ln"><span class="c"># now it has a name, so it can be used anywhere</span></span><span class="ln">encode(Path(<span class="s">"plan.jpg"</span>))</span><span class="ln">encode(Path(<span class="s">"banner.jpg"</span>), limit=<span class="n">2560</span>)   <span class="c"># same tool, different setting</span></span></code></pre>
+                </div>
+              </div>
+            </div>
+
+            <!-- 13 · move 5 — the boundary -->
+            <div class="slide" data-cap="Move 5 — where a script touches your work" data-notes="This is the slide to be slightly frightening on. Moves 1 to 4 are harmless: they shuffle values in memory and vanish. Move 5 is the only one that changes anything on disk — and so it is the only one that can destroy a week of work. When you read a script the agent wrote, find the Move 5 lines first. They are usually few, and they are the whole risk.">
+              <div class="embed">
+                <div class="c1-flow">
+                  <div class="c1-flow__node">
+                    <b>Files in</b>
+                    <span>What already exists<br><code>site-photos/*.jpg</code></span>
+                  </div>
+                  <div class="c1-flow__arrow">&rarr;</div>
+                  <div class="c1-flow__node is-script">
+                    <b>The script</b>
+                    <span>Moves 1&ndash;4, all of it in memory, all of it reversible</span>
+                  </div>
+                  <div class="c1-flow__arrow">&rarr;</div>
+                  <div class="c1-flow__node">
+                    <b>Files out</b>
+                    <span>What is now different<br><code>site-photos/*.avif</code></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 14 · errors -->
+            <div class="slide" data-cap="An error is the machine telling you exactly where it stopped" data-notes="Students read a traceback as failure and a telling-off. Reframe it: it is the most cooperative thing the machine does all day. Read it bottom-up — the last line is what went wrong, the line above is where. Here: it wanted a number and got text, on line 7. That is a complete bug report, delivered free. Say plainly that you and the agent will both read many of these, and that an error is cheap while a wrong result that runs silently is expensive.">
+              <div class="embed">
+                <div class="c1-code">
+                  <div class="c1-code__bar"><span class="c1-code__chip">Traceback</span><span class="c1-code__file">read it from the bottom up</span></div>
+                  <pre><code><span class="ln">Traceback (most recent call last):</span><span class="ln">  File <span class="s">"C:\…\site\publish_images.py"</span>, line <span class="n">16</span>, <span class="k">in</span> &lt;module&gt;</span><span class="ln">    publish(Path(<span class="s">"src"</span>), Path(<span class="s">"src/web"</span>))</span><span class="ln">  File <span class="s">"C:\…\site\publish_images.py"</span>, line <span class="n">11</span>, <span class="k">in</span> publish</span><span class="ln">    <span class="k">if</span> max(img.size) &gt; LIMIT:</span><span class="ln">       ^^^^^^^^^^^^^^^^^^^^^</span><span class="ln">TypeError: <span class="s">'&gt;' not supported between instances of 'int' and 'str'</span></span><span class="ln blank"> </span><span class="ln"><span class="c"># last line   — what: it compared a number to a piece of text</span></span><span class="ln"><span class="c"># the carets  — where exactly: max(img.size) &gt; LIMIT, line 11</span></span><span class="ln"><span class="c"># the frames  — how it got there: line 16 called publish()</span></span><span class="ln"><span class="c"># so: LIMIT was set to "1920" (text) instead of 1920 (a number)</span></span></code></pre>
+                </div>
+              </div>
+            </div>
+
+            <!-- 15 · all five, read it -->
+            <div class="slide" data-cap="All five moves, one script — and you can now read every line" data-notes="Read it together, line by line, naming the move each line is. This is the payoff slide: twenty minutes ago this was noise. Ask them to find the Move 5 line (line 13, the save) and the threshold someone chose (LIMIT = 1920, line 4). This is also the script the traceback on the previous slide came from — line 11 is the comparison that broke. Then ask the question that opens the next slide: who wrote this?">
+              <div class="embed">
+                <div class="c1-code">
+                  <div class="c1-code__bar"><span class="c1-code__chip">Python</span><span class="c1-code__file">publish_images.py</span></div>
+                  <pre><code><span class="ln"><span class="k">from</span> pathlib <span class="k">import</span> Path                       <span class="c"># 5 · reach outside</span></span><span class="ln"><span class="k">from</span> PIL <span class="k">import</span> Image</span><span class="ln blank"> </span><span class="ln">LIMIT = <span class="n">1920</span>                                  <span class="c"># 1 · name</span></span><span class="ln">QUALITY = <span class="n">65</span></span><span class="ln blank"> </span><span class="ln"><span class="k">def</span> publish(src, out_dir):                     <span class="c"># 4 · bundle</span></span><span class="ln">    out_dir.mkdir(parents=<span class="k">True</span>, exist_ok=<span class="k">True</span>)</span><span class="ln">    <span class="k">for</span> f <span class="k">in</span> sorted(src.glob(<span class="s">"*.jpg"</span>)):        <span class="c"># 2 · repeat</span></span><span class="ln">        img = Image.open(f)</span><span class="ln">        <span class="k">if</span> max(img.size) &gt; LIMIT:               <span class="c"># 3 · choose</span></span><span class="ln">            img.thumbnail((LIMIT, LIMIT))</span><span class="ln">        img.save(out_dir / (f.stem + <span class="s">".avif"</span>), quality=QUALITY)   <span class="c"># 5 · write</span></span><span class="ln">        print(<span class="s">"wrote"</span>, f.stem + <span class="s">".avif"</span>)</span></code></pre>
+                </div>
+              </div>
+            </div>
+
+            <!-- 16 · this is what the agent writes -->
+            <div class="slide" data-cap="" data-notes="The reveal, though most will have guessed. That script is the kind of thing the agent produces in about twenty seconds from one sentence of description. Which means the scarce skill is no longer typing it — it is reading it. That is the whole argument of this course, arriving through code instead of through theory.">
+              <div class="embed">
+                <div class="stmt">
+                  <p>That is what the agent hands you.</p>
+                  <p class="sub">Not pseudocode, not a sketch &mdash; a file like that one, in about twenty seconds, from one sentence you wrote. Reading it is the skill that is left.</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- 17 · you vs agent -->
+            <div class="slide" data-cap="What changed, and what did not" data-notes="Be honest in both columns. What the agent removes is real: syntax, API lookup, the hours of fighting a library. What it does not remove is also real, and it is the part this course grades: deciding what should happen, knowing whether it did, and owning the consequences on your own files. Note the last row — the agent has no stake in your work. You do.">
+              <div class="embed">
+                <div class="cmp">
+                  <h3>Writing it yourself vs. directing an agent</h3>
+                  <table>
+                    <thead><tr><th></th><th>You write it</th><th>The agent writes it</th></tr></thead>
+                    <tbody>
+                      <tr><th scope="row">Time to first version</th><td>Hours to days</td><td>Seconds</td></tr>
+                      <tr><th scope="row">What you must know</th><td>Syntax, the library, the error messages</td><td>What should happen, and how to recognise it</td></tr>
+                      <tr><th scope="row">Still your job</th><td>All of it</td><td>Specify &middot; read &middot; test on real files &middot; decide to keep it</td></tr>
+                      <tr><th scope="row">Risk</th><td>It does not run</td><td>It runs confidently on the wrong files</td></tr>
+                      <tr><th scope="row">Who carries it</th><td>You</td><td>Still you &mdash; it has no stake in your work</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+
+            <!-- 18 · the checklist -->
+            <div class="slide" data-cap="Four questions for any script the agent hands you" data-notes="Give them this as a habit, not a theory. These four questions take about ninety seconds and catch nearly everything that matters. The dry-run habit is the single most valuable one: make it print what it would do before it does anything, and read that list. We use these four again in the workshop, and in every desk crit this semester.">
+              <div class="embed">
+                <div class="txt-card">
+                  <h3>Before you run it</h3>
+                  <ul>
+                    <li><b>Which files does it touch?</b> Find the Move 5 lines. There are usually two or three, and they are the whole risk.</li>
+                    <li><b>Does it write beside, or over?</b> A new filename is safe. The same filename replaces your original, and there is no undo.</li>
+                    <li><b>Is it looping over the right set?</b> <code>*.jpg</code> and <code>*</code> are a very different afternoon.</li>
+                    <li><b>Can it tell me first?</b> Ask for the printed version &mdash; <code>print</code> what it <i>would</i> do, change nothing &mdash; and read that list before letting it act.</li>
+                  </ul>
+                  <ul>
+                    <li><b>Then: run it on five files, not five hundred.</b></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <!-- 19 · the agent's loop is the same shape -->
+            <div class="slide" data-cap="The agent is itself a loop" data-notes="Close the circle to Cybernetics and Design, which they will have read by now or will read shortly. The agent's loop — read context, plan, write a file, run it, read the error, revise — is Move 2 with a much larger body, and it is the cybernetic loop y = f(y) with a language model in the box. The same diagram describes Wiener's moth, a thermostat, reinforcement learning, and the thing writing your website. That is the claim the seminar tests all semester.">
+              <div class="embed">
+                <div class="txt-card">
+                  <h3>Where this goes next</h3>
+                  <ul>
+                    <li><b>The agent runs a loop</b> &mdash; read the context, plan, write a file, run it, read what came back, revise. Move 2 with a very large body.</li>
+                    <li><b>Which is an old diagram</b> &mdash; <code>y = f(y)</code>, the cybernetic loop, with a language model in the box. <span class="src">Cybernetics and Design</span></li>
+                    <li><b>So your leverage is the context</b> &mdash; what it reads before it writes. That is the Context Is Design session, and most of this course.</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <!-- 20 · closing claim -->
+            <div class="slide" data-cap="" data-notes="The line to end on. Say it, pause, and go to the workshop. Nobody in this room is being asked to become a programmer. Everybody in this room is being asked to become a reader — which, for a profession that already reads drawings, specifications and contracts for a living, is a smaller ask than it sounds.">
+              <div class="embed">
+                <div class="stmt">
+                  <p>You are not learning to write scripts. You are learning to read them.</p>
+                  <p class="sub">A profession that already reads drawings, details and specifications for a living is better prepared for this than it thinks.</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- 21 · before next week -->
+            <div class="slide" data-cap="Before next week" data-notes="Housekeeping. The workshop is done in class today, right after this. D1 is the workflow audit — one recent project, drawn as a sequence of steps, with the friction marked; it is the raw material for the Part II project, so it is worth doing properly rather than quickly. AI Fluency lessons for next week are the generative-AI fundamentals pair.">
+              <div class="embed">
+                <div class="txt-card">
+                  <h3>Before next week</h3>
+                  <ul>
+                    <li><b>Workshop &mdash; Reading a Script</b> &mdash; in class, now. Predict, then run.</li>
+                    <li><b>D1 &mdash; workflow audit</b> &mdash; one recent project drawn as a sequence of steps, with the friction marked. This is the raw material for your Part II project.</li>
+                    <li><b>AI Fluency</b> &mdash; generative AI fundamentals; capabilities and limitations. Watch before next session.</li>
+                    <li><b>Check your install</b> &mdash; Python runs, the agent runs, Git knows your name.</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+          </div>
+          <div class="deck-bar">
+            <button class="deck-btn" id="deck-prev" aria-label="Previous slide">&lsaquo;</button>
+            <div class="deck-count"><input id="deck-jump" type="text" inputmode="numeric" aria-label="Jump to slide" value="1"><span id="deck-total"> / 21</span></div>
+            <button class="deck-btn" id="deck-next" aria-label="Next slide">&rsaquo;</button>
+            <div class="deck-meta"><span class="deck-cap" id="deck-cap"></span><span id="deck-credit"></span></div>
+            <button class="deck-btn" id="deck-notes-toggle" aria-expanded="false" aria-controls="deck-notes" aria-label="Toggle speaker notes" title="Speaker notes"><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="2" y="2" width="12" height="12" rx="1.5"/><line x1="4.5" y1="5.5" x2="11.5" y2="5.5"/><line x1="4.5" y1="8" x2="11.5" y2="8"/><line x1="4.5" y1="10.5" x2="8.5" y2="10.5"/></svg></button>
+            <button class="deck-btn" id="deck-present" aria-label="Open Presenter View" title="Presenter View (synced second window)"><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="2" width="9" height="7" rx="1.2"/><path d="M3 11h5M5.5 9v2"/><rect x="11" y="5" width="4" height="4" rx="1" stroke-dasharray="1.8 1.2"/></svg></button>
+            <button class="deck-btn deck-fs" id="deck-fs" aria-label="Present full screen" title="Present (full screen)">&#x26F6;</button>
+          </div>
+          <div class="deck-notes" id="deck-notes" hidden></div>
+        </div>
+
+        <!-- Workshop hand-off -->
+        <span class="section-label">Next</span>
+        <div class="c1-next">
+          <div class="c1-next__text">
+            <b>Workshop 01 &mdash; Reading a Script</b>
+            <span>Predict what a script prints, run it, break it on purpose, then have the agent write the same thing and read what it gives you back.</span>
+          </div>
+          <a class="c1-next__go" href="/teaching/arch51580/workshops/coding-101.html">Open the workshop &rarr;</a>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <script src="/teaching/laar61400/assets/js/nav.js"></script>
+
+  <script>
+  /* ── loop tracer (slide 10) ─────────────────────────────────────────────
+     A hand-written trace, not an interpreter: each step says which source
+     line is current, which boxes change, and what gets printed. */
+  (function () {
+    var root = document.getElementById('tracer');
+    if (!root) return;
+
+    var SHEETS = '["plan", "section", "axon"]';
+    // line = 0-based source line; set = boxes changed; print = a line of output
+    var STEPS = [
+      { line: 0, set: { sheets: SHEETS }, say: 'Line 1 — three names go into the box called <b>sheets</b>.' },
+      { line: 1, set: { count: '0' }, say: 'Line 2 — <b>count</b> starts at nothing yet counted.' },
+      { line: 2, set: { s: '"plan"' }, say: 'Line 3 — the loop takes the <b>first</b> item and calls it <b>s</b>.' },
+      { line: 3, set: { count: '1' }, say: 'Line 4 — read count, add one, put it back. 0 becomes 1.' },
+      { line: 4, print: '1 plan', say: 'Line 5 — print what the two boxes hold right now.' },
+      { line: 2, set: { s: '"section"' }, say: 'Back up to line 3 — <b>the finger jumped</b>. s is now the second item.' },
+      { line: 3, set: { count: '2' }, say: 'Line 4 again — the same instruction, a different value in the box.' },
+      { line: 4, print: '2 section', say: 'Line 5 again. Nothing about the code changed; only the boxes did.' },
+      { line: 2, set: { s: '"axon"' }, say: 'Up to line 3 once more — the last item.' },
+      { line: 3, set: { count: '3' }, say: 'Line 4 — count becomes 3.' },
+      { line: 4, print: '3 axon', say: 'Line 5 — the third and last line of output.' },
+      { line: 2, say: 'Line 3 — nothing left to take, so the loop <b>falls through</b> instead of jumping.' },
+      { line: 5, print: 'done — 3 sheets', say: 'Line 6 — the finger reaches the end. <b>count</b> kept its value all along.' }
+    ];
+
+    var lines = root.querySelectorAll('.c1-trace__line');
+    var stateBody = document.getElementById('tr-state');
+    var out = document.getElementById('tr-out');
+    var say = document.getElementById('tr-say');
+    var bStep = document.getElementById('tr-step');
+    var bRun = document.getElementById('tr-run');
+    var bReset = document.getElementById('tr-reset');
+
+    var at = -1; // index of the last applied step
+
+    function render() {
+      var boxes = { sheets: '—', count: '—', s: '—' };
+      var printed = [];
+      var changed = {};
+      for (var i = 0; i <= at; i++) {
+        var s = STEPS[i];
+        if (s.set) for (var k in s.set) boxes[k] = s.set[k];
+        if (s.print) printed.push(s.print);
+      }
+      if (at >= 0 && STEPS[at].set) changed = STEPS[at].set;
+
+      stateBody.innerHTML = ['sheets', 'count', 's'].map(function (k) {
+        var hot = Object.prototype.hasOwnProperty.call(changed, k);
+        return '<tr' + (hot ? ' class="is-just-set"' : '') + '><th>' + k + '</th><td>' + boxes[k] + '</td></tr>';
+      }).join('');
+
+      out.textContent = printed.join('\n');
+
+      lines.forEach(function (el) { el.classList.remove('is-now'); });
+      if (at >= 0) {
+        var cur = root.querySelector('[data-line="' + STEPS[at].line + '"]');
+        if (cur) cur.classList.add('is-now');
+        say.innerHTML = STEPS[at].say;
+      } else {
+        say.innerHTML = 'Press <b>Step</b> to move the finger down one line.';
+      }
+
+      var done = at >= STEPS.length - 1;
+      bStep.disabled = done;
+      bRun.disabled = done;
+      bStep.textContent = done ? 'End of script' : 'Step';
+    }
+
+    bStep.addEventListener('click', function () { if (at < STEPS.length - 1) { at++; render(); } });
+    bRun.addEventListener('click', function () { at = STEPS.length - 1; render(); });
+    bReset.addEventListener('click', function () { at = -1; render(); });
+    render();
+  })();
+  </script>
+
+  <!-- ── deck carousel controller (shared, page-agnostic) ── -->
+  <script src="/assets/deck/deck.js"></script>
+
+</body>
+</html>
