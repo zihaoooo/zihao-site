@@ -20,7 +20,7 @@ highlighted `.panel-announce` block sitting directly under the brand block in ev
 
 ## Workflows (`workflows/`)
 - WF01 `wf01-autocad.html` — AutoCAD Site Drafting
-- WF02 `wf02-sketch-portfolio.html` — Hybrid Drawing + presentation deck: WF06 hand drawings scanned and hybridized in Photoshop, the plan (the one fixed 11×17 sheet) over a B/W satellite base, diagrams in Illustrator on the linked PSD, deck laid out in InDesign from links; absorbs WF03's satellite, north arrow and scale bar; joiner optional
+- WF02 `wf02-sketch-portfolio.html` — Hybrid Drawing + Deck: WF06 hand drawings scanned and hybridized in Photoshop, the plan (the one fixed 11×17 sheet) over a B/W satellite base, diagrams in Illustrator on the linked PSD, deck laid out in InDesign from links; absorbs WF03's satellite, north arrow and scale bar; joiner optional
 - WF03 `wf03-urban-context.html` — Urban Context Mapping, optional and ungraded since Fall 2026 week 9: keeps its WF03 name and nav slot with an Extra tag, so students can still find it. The syllabus says "several workflows", never a count.
 - WF04 `wf04-landform-design.html` — Rhino Landform Modeling (Session 2 ends with the InDesign intro: a 4×3 small-multiple landform catalog)
 - WF05 `wf05-meadow-parametric.html` — Attractor Fields (Grasshopper meadow)
