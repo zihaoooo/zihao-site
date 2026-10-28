@@ -21,7 +21,7 @@ highlighted `.panel-announce` block sitting directly under the brand block in ev
 ## Workflows (`workflows/`)
 - WF01 `wf01-autocad.html` — AutoCAD Site Drafting
 - WF02 `wf02-sketch-portfolio.html` — Hybrid Drawing (a scanned WF06 hand sketch, white-balanced and collaged in Photoshop; joiner optional; one sheet)
-- WF03 `wf03-urban-context.html` — Urban Context Mapping, optional and ungraded since Fall 2026 week 9: listed in the nav as Extra after WF06, header chip `EXTRA`. Its number and URL stay so the other WF numbers hold.
+- WF03 `wf03-urban-context.html` — Urban Context Mapping, optional and ungraded since Fall 2026 week 9: keeps its WF03 name and nav slot with an Extra tag, so students can still find it. The syllabus says "several workflows", never a count.
 - WF04 `wf04-landform-design.html` — Rhino Landform Modeling (Session 2 ends with the InDesign intro: a 4×3 small-multiple landform catalog)
 - WF05 `wf05-meadow-parametric.html` — Attractor Fields (Grasshopper meadow)
 - WF06 `wf06-sketch-charrette.html` — Back to Basics, a hand charrette on a real Harlem triangle, kept nameless to students. Site identity, reveal plan and base-plan build steps: ../course-prep/laar61400/workflows/wf06-sketch-charrette/README.md (not published).
