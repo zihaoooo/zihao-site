@@ -231,7 +231,7 @@ Zhang, Shurui, and **Zihao Zhang**. "Resilient Schist: Crafting Harlem's Corrido
 
 ### Peer Review
 
-Manuscript and abstract reviewer, 2018–present: *Landscape Architecture Frontiers* (2023–2026); *Journal of Digital Landscape Architecture* (2023–2025); *The Plan Journal* (2023, 2025); *PLOS ONE* (2023); *Technology|Architecture+Design* (2018, 2021); *Buildings*, *Applied Sciences*, *Processes* (2023); *Sustainability* (2022, 2023); *Mathematics* (2021); *Landscape Research Record* (2020); CELA Annual Conference (2023).
+Manuscript, abstract, and book proposal reviewer, 2018–present: *Landscape Architecture Frontiers* (2023–2026); *Journal of Digital Landscape Architecture* (2023–2025); *The Plan Journal* (2023, 2025); *PLOS ONE* (2023); *Technology|Architecture+Design* (2018, 2021); *Buildings*, *Applied Sciences*, *Processes* (2023); *Sustainability* (2022, 2023); *Mathematics* (2021); *Landscape Research Record* (2020); CELA Annual Conference (2023); Routledge, book proposal (2026).
 
 ### Funding Proposal Reviewer
 

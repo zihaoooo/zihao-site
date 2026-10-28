@@ -521,6 +521,7 @@ Amount: $4,000
 - *Applied Sciences* (2023)
 - *Processes* (2023)
 - CELA Annual Conference (2023)
+- Routledge, book proposal (2026)
 
 ## Consulting
 

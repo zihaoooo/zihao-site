@@ -303,6 +303,7 @@ Regular manuscript and abstract reviewer (2018–present):
 - *Applied Sciences* (2023)
 - *Processes* (2023)
 - CELA Annual Conference (2023)
+- Routledge, book proposal (2026)
 
 ### Funding Proposal Reviewer
 
