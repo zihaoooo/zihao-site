@@ -16,6 +16,9 @@ Repo layout:
 - assets/cv/Zihao_Zhang_CV.pdf — public CV download, built from _local/cv/external_cv.md
   by _local/cv/build_external_pdf.py. Linked from index.html.
 - teaching/laar61400/ — factory output of ../course-prep.
+- New courses do not live here: each is its own repo in the `landscape-courses` GitHub org
+  (Pages at landscape-courses.github.io/<course>/), shared per repo with co-instructors.
+  teaching/index.html only links to them. First one: agentic-design-workflows (was teaching/arch51580/).
 - talks/ — factory output of ../lecture-factory; deck modules + gallery.
 - CNAME.
 - .claude/skills/ — workspace shortcuts: `/cv`, `/teach`, `/projects`. Each points to its folder's docs.
