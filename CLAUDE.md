@@ -18,7 +18,8 @@ Repo layout:
 - teaching/laar61400/ — factory output of ../course-prep.
 - New courses do not live here: each is its own repo in the `landscape-courses` GitHub org
   (Pages at landscape-courses.github.io/<course>/), shared per repo with co-instructors.
-  teaching/index.html only links to them. First one: agentic-design-workflows (was teaching/arch51580/).
+  teaching/index.html only links to them. Moved so far: agentic-design-workflows (was teaching/arch51580/), design-research (was
+  teaching/laar64150/). laar61400 moves after Fall 2026 ends.
 - talks/ — factory output of ../lecture-factory; deck modules + gallery.
 - CNAME.
 - .claude/skills/ — workspace shortcuts: `/cv`, `/teach`, `/projects`. Each points to its folder's docs.
