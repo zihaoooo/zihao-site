@@ -1,6 +1,6 @@
 # LAAR 61400 — teaching context
 
-## Factory output — don't author here
+## Factory output — author in the factory
 This whole folder is **output of the `../../../course-prep` factory** (lectures, slides, and
 their `assets/img/`), but **the live site is the source of truth** — the factory writes HTML +
 images one-way into here and keeps no copy. **Default: author new course content in the
@@ -54,12 +54,11 @@ WF pages are hand-authored HTML only — the old per-workflow `.md` sources were
 - Ongoing box (`.wf-ongoing`): optional, directly under the assignment — a semester-long deliverable
   this workflow feeds (e.g. WF04 starts the Final Integrated Drawing Set in InDesign).
 - `.wf-outcome > strong` is `display:block` in `workflow-shared.css` — scope to `>` to avoid breaking `<strong>` inside `.wf-tips` list items
-- Copy style: match WF07 tone — short, imperative, no AI-sounding parallel structures
+- Copy: short, imperative, plain full sentences.
 - Walkthrough video (see WF04): a `.wf-step wf-full wf-nocheck` card right under its Session
   label, `▶` as the step number, YouTube iframe in `.wf-video` (16:9 by default; set
   `aspect-ratio` inline when the recording isn't, e.g. WF04's 1920/1020). `wf-nocheck` keeps it out of the done checks, so saved checks keep their
   positions. Video sources and YouTube text live in `course-prep/laar61400/workflows/<slug>/`.
 - Example images (see WF05): collapsible `<details class="wf-examples">` "Hint" card + a
   click-to-enlarge lightbox (markup + inline script at end of page; styles in `workflow-shared.css`).
-  Images live in `assets/img/WF05/`. Use PNG for flat UI/viewport screenshots (compresses smaller
-  than JPG); only convert to JPG when it actually wins (e.g. the wide GH-canvas shot). ffmpeg only.
+  Images live in `assets/img/WF05/` and follow the image standard in the root `CLAUDE.md`.
