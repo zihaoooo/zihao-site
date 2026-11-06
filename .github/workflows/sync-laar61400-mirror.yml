@@ -1,0 +1,26 @@
+# Mirror LAAR 61400 to landscape-courses.github.io/laar61400/ for students whose network
+# blocks zihaozhang.cc. Remove when the course moves to landscape-courses (tasks/04).
+name: Sync LAAR 61400 mirror
+on:
+  push:
+    branches: [main]
+    paths: ["teaching/laar61400/**", "assets/**", "_local/tools/sync_mirror.py"]
+  workflow_dispatch:
+concurrency: laar61400-mirror
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: webfactory/ssh-agent@v0.9.0
+        with:
+          ssh-private-key: ${{ secrets.MIRROR_DEPLOY_KEY }}
+      - name: Build and push mirror
+        run: |
+          git clone --depth 1 git@github.com:landscape-courses/laar61400.git mirror
+          python3 _local/tools/sync_mirror.py mirror
+          cd mirror
+          git config user.name "zihao-site sync"
+          git config user.email "actions@github.com"
+          git add -A
+          git diff --cached --quiet || { git commit -m "Sync from zihao-site ${GITHUB_SHA::7}"; git push; }
