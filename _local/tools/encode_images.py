@@ -1,10 +1,8 @@
 #!/usr/bin/env python
 """Encode source images as web-optimized AVIF for the live site.
 
-One encoder for the whole site. Both factories call it rather than keeping
-their own -- course-prep encoded lecture images to AVIF q65 while
-lecture-factory encoded talk slides to WebP q90, so the site served two
-formats at two settings depending on which factory built the page.
+One encoder for the whole site: every lecture and talk image goes through it,
+so the site serves one format at one setting.
 
 AVIF is the site standard. Two presets, because the two jobs differ:
 
