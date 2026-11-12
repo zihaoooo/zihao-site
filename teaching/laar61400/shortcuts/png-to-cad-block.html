@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PNG → CAD Block — LAAR 61400</title>
+  <link rel="stylesheet" href="/teaching/laar61400/assets/css/main.css">
+  <link rel="stylesheet" href="/teaching/laar61400/assets/css/workflow-shared.css">
+  <link rel="stylesheet" href="/teaching/laar61400/assets/css/shortcuts-shared.css">
+  <link rel="icon" href="/favicon.ico" sizes="16x16 32x32 48x48">
+  <link rel="apple-touch-icon" href="/assets/icons/apple-touch-icon.png">
+</head>
+<body>
+
+  <!-- Side panel -->
+  <nav id="sidepanel">
+    <a class="panel-brand" href="/teaching/laar61400/index.html">
+      <span class="panel-brand-title">LAAR 61400</span>
+      <span class="panel-brand-sub">Representation + Computation</span>
+    </a>
+    <a class="panel-announce" href="/teaching/laar61400/announcements.html"><span class="panel-announce-tag">New</span>Announcements</a>
+    <div class="panel-section">
+      <span class="panel-section-label">Workflows</span>
+      <a class="panel-link" href="/teaching/laar61400/workflows/wf01-autocad.html"><span class="panel-link-num">01</span>AutoCAD Site Drafting</a>
+      <a class="panel-link" href="/teaching/laar61400/workflows/wf02-sketch-portfolio.html"><span class="panel-link-num">02</span>Hybrid Drawing + Deck</a>
+      <a class="panel-link" href="/teaching/laar61400/workflows/wf03-urban-context.html"><span class="panel-link-num">03</span>Urban Context Mapping<span class="panel-tag">Extra</span></a>
+      <a class="panel-link" href="/teaching/laar61400/workflows/wf04-landform-design.html"><span class="panel-link-num">04</span>Rhino Landform Modeling</a>
+      <a class="panel-link" href="/teaching/laar61400/workflows/wf05-meadow-parametric.html"><span class="panel-link-num">05</span>Attractor Fields</a>
+      <a class="panel-link" href="/teaching/laar61400/workflows/wf06-sketch-charrette.html"><span class="panel-link-num">06</span>Back to Basics</a>
+      <a class="panel-link" href="/teaching/laar61400/tutorials/ramp-on-slope.html">Ramp on a Slope<span class="panel-tag">Extra</span></a>
+      <a class="panel-link" href="/talks/agents-in-practice/" target="_blank" rel="noopener">AI Workflows ↗<span class="panel-tag">Extra</span></a>
+    </div>
+    <div class="panel-section">
+      <span class="panel-section-label">Lectures</span>
+      <a class="panel-link" href="/teaching/laar61400/lectures/drawing-as-thinking.html">Drawing as Thinking Tool</a>
+      <a class="panel-link" href="/teaching/laar61400/lectures/computational-thinking.html">Computational Thinking</a>
+      <a class="panel-link" href="/teaching/laar61400/lectures/graphic-design-101.html">Graphic Design 101</a>
+      <a class="panel-link" href="/teaching/laar61400/lectures/modeling-as-thinking.html">Modeling as Thinking</a>
+      <a class="panel-link" href="/teaching/laar61400/lectures/fast-graphics.html">Fast Graphics</a>
+      <a class="panel-link" href="/teaching/laar61400/lectures/gis-spatial-data.html">Intro to GIS / Spatial Data<span class="panel-tag">Extra</span></a>
+      <a class="panel-link" href="/teaching/laar61400/lectures/cybernetics-and-design.html">Cybernetics and Design<span class="panel-tag">Extra</span></a>
+      <a class="panel-link" href="/teaching/laar61400/lectures/web-coding-literacy.html">Web Coding Literacy<span class="panel-tag">Extra</span></a>
+    </div>
+    <div class="panel-section">
+      <span class="panel-section-label">Shortcuts &amp; Reference</span>
+      <a class="panel-link" href="/teaching/laar61400/shortcuts/file-types.html">File Types Reference</a>
+      <a class="panel-link" href="/teaching/laar61400/shortcuts/adobe.html">Adobe Ps / Ai / Id</a>
+      <a class="panel-link" href="/teaching/laar61400/shortcuts/autocad.html">AutoCAD</a>
+      <a class="panel-link" href="/teaching/laar61400/shortcuts/rhino-ui.html">Rhino — Navigation &amp; UI</a>
+      <a class="panel-link active" href="/teaching/laar61400/shortcuts/png-to-cad-block.html">PNG → CAD Block</a>
+    </div>
+  </nav>
+
+  <main id="main-content">
+    <div class="page-inner">
+
+
+      <div class="sc-wrap">
+
+        <div class="sc-header">
+          <div class="sc-header-left">
+            <span class="sc-icon" style="background:#2a2a2a;color:#fff;font-size:9px;letter-spacing:0.04em;">PNG</span>
+            <div class="sc-header-text">
+              <div class="sc-title">PNG → CAD Block</div>
+              <div class="sc-subtitle">Turning a raster tree into a scaled, reusable AutoCAD block</div>
+            </div>
+          </div>
+          <span class="sc-course-tag">LAAR 61400</span>
+        </div>
+
+<style>
+  .pb-wrap { font-size: 13px; color: var(--gray-900); line-height: 1.65; }
+  .pb-lead { font-size: 13px; color: #444; border-left: 3px solid var(--gray-900); padding-left: 12px; margin: 0 0 22px; }
+  .pb-lead strong { color: var(--gray-900); }
+
+  .pb-route { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 26px; }
+  .pb-files { display: flex; flex-direction: column; align-items: flex-start; gap: 6px; margin: 12px 0 18px; }
+  .pb-route-card { background: var(--gray-100); border-radius: 4px; padding: 12px 14px; border-top: 3px solid var(--gray-900); }
+  .pb-route-card h3 { font-size: 12px; font-weight: 700; margin: 0 0 4px; letter-spacing: 0.04em; }
+  .pb-route-card p { font-size: 12px; color: var(--gray-700); margin: 0; }
+
+  .pb-divider { border: none; border-top: 2px solid var(--gray-900); margin: 26px 0 16px; }
+  .pb-label { font-family: var(--font-mono); font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: var(--gray-400); margin-bottom: 14px; display: block; }
+
+  .pb-step { display: grid; grid-template-columns: 26px 1fr; gap: 12px; margin-bottom: 16px; }
+  .pb-num { font-family: var(--font-mono); font-size: 11px; font-weight: 700; color: #fff; background: var(--gray-900); width: 22px; height: 22px; border-radius: 3px; display: flex; align-items: center; justify-content: center; }
+  .pb-step h4 { font-size: 12.5px; font-weight: 700; margin: 2px 0 4px; }
+  .pb-step p { margin: 0 0 6px; color: #444; font-size: 12.5px; }
+  .pb-step ul { margin: 4px 0 0; padding-left: 16px; color: #444; font-size: 12.5px; }
+  .pb-step li { margin-bottom: 3px; }
+
+  .pb-wrap kbd { display: inline-block; background: #f3f3f3; border: 1px solid #ddd; border-radius: 3px; padding: 1px 5px; font-family: var(--font-mono); font-size: 11px; white-space: nowrap; }
+  .pb-cmd { font-family: var(--font-mono); font-size: 11.5px; background: var(--gray-100); border-radius: 3px; padding: 1px 5px; font-weight: 600; }
+
+  .pb-code { background: #1e1e1e; color: #e8e8e8; border-radius: 4px; padding: 14px 16px; font-family: var(--font-mono); font-size: 11.5px; line-height: 1.65; overflow-x: auto; margin: 10px 0 14px; white-space: pre; }
+  .pb-code .c { color: #8fa87c; }
+
+  .pb-note { background: #f0f4f0; border: 1px solid #c8dac8; border-radius: 4px; padding: 10px 14px; font-size: 12px; color: #3a5a3a; margin: 10px 0 14px; line-height: 1.6; }
+  .pb-warn { background: #fbf3e8; border: 1px solid #e6d2b0; border-radius: 4px; padding: 10px 14px; font-size: 12px; color: #6a4a1a; margin: 10px 0 14px; line-height: 1.6; }
+  .pb-note strong, .pb-warn strong { font-weight: 700; }
+
+  /* columns proportional to each image's aspect, so the pair renders the same height */
+  .pb-eg-pair { grid-template-columns: 0.64fr 1.5fr; align-items: start; }
+  @media (max-width: 640px) { .pb-eg-pair { grid-template-columns: 1fr; } }
+
+  .pb-eg-stack { grid-template-columns: 1fr; }
+
+  .pb-eg-title { font-size: 12.5px; font-weight: 700; margin: 18px 0 8px; }
+
+  .pb-table { width: 100%; border-collapse: collapse; margin-bottom: 10px; }
+  .pb-table th { font-family: var(--font-mono); font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: #999; padding: 6px 10px 5px; border-bottom: 1px solid #e8e8e8; text-align: left; background: var(--gray-50); }
+  .pb-table td { padding: 7px 10px; vertical-align: top; font-size: 12.5px; border-bottom: 1px solid var(--gray-100); color: #444; }
+  .pb-table td:first-child { font-weight: 600; color: var(--gray-900); width: 34%; }
+
+  @media (max-width: 640px) {
+    .pb-route { grid-template-columns: 1fr; }
+    .pb-table td:first-child { width: 40%; }
+    .pb-code { font-size: 10.5px; }
+  }
+</style>
+
+<div class="pb-wrap">
+
+<p class="pb-lead">A PNG tree is pixels. A CAD block is geometry with a name, a base point and a real size, inserted once and repeated at 1:1 across the drawing. <strong>Tracing is only the conversion — scaling and blocking are what make it usable.</strong> Three routes below end in the same place: a <span class="pb-cmd">.dwg</span> in your block library. Start with the first one, because the cheapest block is the one you do not draw.</p>
+
+<div class="pb-route">
+  <div class="pb-route-card">
+    <h3>Route A — Download and reuse</h3>
+    <p>Somebody already drew it. Two libraries to download sit below. Fastest by far, until the one you need is missing.</p>
+  </div>
+  <div class="pb-route-card">
+    <h3>Route B — Illustrator Image Trace</h3>
+    <p>Visual, one tree at a time, full control over how much detail survives. Use it for a symbol you will look at closely.</p>
+  </div>
+  <div class="pb-route-card">
+    <h3>Route C — Claude Code</h3>
+    <p>Yes, this works in code, and you never touch a terminal. Best when twenty silhouettes need identical treatment.</p>
+  </div>
+</div>
+
+<hr class="pb-divider">
+<span class="pb-label">Route A — Download and reuse</span>
+
+<p>The fastest block is the one somebody already drew. Entourage libraries circulate freely, and a competent drafter starts by looking for one rather than tracing. Two to start with, trees for AutoCAD and people and cars for Rhino:</p>
+
+<div class="pb-files">
+  <a class="wf-download" href="/teaching/laar61400/assets/downloads/blocks/tr-08.dwg" download>↓ tr-08.dwg — trees, AutoCAD 2004 format, 2.2 MB</a>
+  <a class="wf-download" href="/teaching/laar61400/assets/downloads/blocks/entourage.3dm" download>↓ entourage.3dm — people and cars, Rhino, 3.1 MB</a>
+</div>
+
+<div class="pb-note"><strong>A Rhino file is not a dead end for AutoCAD.</strong> Open the 3dm, select what you want, and <span class="pb-cmd">Export Selected</span> as <span class="pb-cmd">.dwg</span> — or <span class="pb-cmd">Save As</span> the whole file. Pick the <em>2007 Natural</em> scheme for 2D linework. It travels the other way too, which is why Rhino is the useful middleman whenever a file refuses to open where you need it.</div>
+
+<div class="pb-step">
+  <div class="pb-num">1</div>
+  <div>
+    <h4>Open the donor file first</h4>
+    <p>Open it on its own and look before you borrow. Run <span class="pb-cmd">DIST</span> across something you can size by eye — a person is about 1.75&nbsp;m, a car about 4.5&nbsp;m long. That one measurement tells you the file's units, which is the thing that goes wrong most often.</p>
+  </div>
+</div>
+
+<div class="pb-step">
+  <div class="pb-num">2</div>
+  <div>
+    <h4>Bring the block across</h4>
+    <ul>
+      <li><strong>AutoCAD.</strong> Copy the block you want, then <span class="pb-cmd">PASTEBLOCK</span> into your drawing. Or use <span class="pb-cmd">DESIGNCENTER</span> to pull single blocks out of the donor file without opening it.</li>
+      <li><strong>Rhino.</strong> <span class="pb-cmd">Insert</span> for a block instance, <span class="pb-cmd">Import</span> to bring the geometry in loose.</li>
+      <li>Re-measure after it lands. If it came in at the wrong size, <span class="pb-cmd">SCALE</span> with the <em>Reference</em> option against a dimension you know.</li>
+    </ul>
+  </div>
+</div>
+
+<div class="pb-step">
+  <div class="pb-num">3</div>
+  <div>
+    <h4>Clean up what you inherited</h4>
+    <p>Borrowed files carry layers, text styles and dimension styles you never asked for. Run <span class="pb-cmd">PURGE</span> and then <span class="pb-cmd">AUDIT</span> after inserting. If the block will become part of your own library, redefine it on layer <span class="pb-cmd">0</span> with colour <span class="pb-cmd">ByBlock</span> and a base point you choose.</p>
+  </div>
+</div>
+
+<p>For anything beyond these two, three places are worth a look before the general block sites: manufacturers publish blocks for their own benches, bollards and light fittings; city open-data portals carry street trees and curb geometry; and your studio's past projects already hold blocks someone on your floor drew and can vouch for.</p>
+
+<div class="pb-warn"><strong>Know where a block came from.</strong> Plenty of what circulates online was scraped from somewhere else, and a heavy downloaded block can carry thousands of vertices into a drawing it will never leave. Check the weight, check the licence before anything goes into public work, and credit the source when a drawing leans on someone else's library.</div>
+
+<div class="pb-note"><strong>When Route A runs out:</strong> the species is wrong, the style clashes with your drawing, or the plan symbol you need does not exist in anyone's library. That is when you make your own — which is the rest of this page.</div>
+
+<hr class="pb-divider">
+<span class="pb-label">Before you trace — prepare the PNG</span>
+
+<div class="pb-step">
+  <div class="pb-num">0</div>
+  <div>
+    <h4>Get a clean silhouette</h4>
+    <p>Tracing reads contrast, so the quality of the trace is decided before Illustrator opens.</p>
+    <ul>
+      <li><strong>High contrast.</strong> A dark tree on a white or transparent background. A photograph of a tree traces into mud.</li>
+      <li><strong>Big enough.</strong> 1000&nbsp;px or more across the canopy. Tracing a 200&nbsp;px thumbnail bakes the pixel staircase into your curves.</li>
+      <li><strong>Cropped.</strong> Anything else left in frame becomes geometry.</li>
+      <li><strong>Real size known.</strong> Decide the canopy diameter now — say 6&nbsp;m for a street tree, 12&nbsp;m for a mature oak. You need that number twice below.</li>
+    </ul>
+  </div>
+</div>
+
+<hr class="pb-divider">
+<span class="pb-label">Route B — Illustrator → AutoCAD</span>
+
+<div class="pb-step">
+  <div class="pb-num">1</div>
+  <div>
+    <h4>Place the image</h4>
+    <p><strong>File → Place</strong>, with <em>Link</em> unchecked so the pixels travel inside the file.</p>
+  </div>
+</div>
+
+<div class="pb-step">
+  <div class="pb-num">2</div>
+  <div>
+    <h4>Image Trace</h4>
+    <p>Select the image, open <strong>Window → Image Trace</strong>, start from the <em>Black and White Logo</em> preset, then open <em>Advanced</em>:</p>
+    <table class="pb-table">
+      <tr><th>Setting</th><th>What it does</th></tr>
+      <tr><td>Threshold</td><td>The cutoff between black and white. Raise it to capture more canopy, lower it to drop grey noise. The single most important slider.</td></tr>
+      <tr><td>Paths</td><td>How tightly curves hug the pixels. Lower gives smoother, lighter geometry; high values produce thousands of vertices that make AutoCAD crawl.</td></tr>
+      <tr><td>Corners</td><td>How readily a curve becomes a sharp corner. Keep it low for foliage, high for hard-edged symbols.</td></tr>
+      <tr><td>Noise</td><td>Ignores blobs below this pixel count. Raise it to kill speckle.</td></tr>
+      <tr><td>Ignore White</td><td>Check it, or a white rectangle rides along behind the tree and arrives in CAD as a solid.</td></tr>
+    </table>
+    <p>Watch the path count at the bottom of the panel. A few hundred paths is healthy for a plan symbol.</p>
+  </div>
+</div>
+
+<div class="pb-step">
+  <div class="pb-num">3</div>
+  <div>
+    <h4>Expand and simplify</h4>
+    <p><strong>Object → Expand</strong> turns the live trace into real paths. Then <strong>Object → Path → Simplify</strong>, pulling the slider down until the shape is about to change — that point is your vertex budget.</p>
+    <p>Delete leftover white shapes and stray specks. Set fill to none and stroke to black so you can see the outlines you are actually exporting.</p>
+  </div>
+</div>
+
+<div class="pb-step">
+  <div class="pb-num">4</div>
+  <div>
+    <h4>Export DXF</h4>
+    <p><strong>File → Export → Export As</strong>, format <span class="pb-cmd">AutoCAD Interchange File (.dxf)</span>. In the options: version 2007 or later, 1 unit = 1&nbsp;mm, <em>Preserve appearance</em> off, <em>Outline text</em> on.</p>
+    <div class="pb-warn"><strong>If the DXF arrives broken</strong> — curves exploded into hundreds of tiny arcs, or nothing visible at all — export an <span class="pb-cmd">.eps</span> instead, open it in Rhino and <span class="pb-cmd">Export Selected</span> as DXF. Rhino's DXF writer is far more reliable than Illustrator's, and it gives you curve-degree control on the way through.</div>
+  </div>
+</div>
+
+<div class="pb-step">
+  <div class="pb-num">5</div>
+  <div>
+    <h4>Scale to real size</h4>
+    <p>Open the DXF in AutoCAD, select everything, run <span class="pb-cmd">SCALE</span> and take the <em>Reference</em> option: pick the two edges of the canopy, then type the real canopy width. The tree now measures what a tree measures. Confirm with <span class="pb-cmd">DIST</span> before going on.</p>
+  </div>
+</div>
+
+<div class="pb-step">
+  <div class="pb-num">6</div>
+  <div>
+    <h4>Make the block</h4>
+    <ul>
+      <li>Move the geometry to layer <span class="pb-cmd">0</span> and set colour, linetype and lineweight to <span class="pb-cmd">ByBlock</span>. That is what lets the block take on the look of whatever layer you insert it on.</li>
+      <li>Run <span class="pb-cmd">WBLOCK</span>, base point at the trunk centre — the point you will snap to survey coordinates.</li>
+      <li>Name it for what it is and how big it is: <span class="pb-cmd">TREE-DECID-06M.dwg</span>, saved in a blocks folder beside the project.</li>
+    </ul>
+    <div class="pb-note"><strong>WBLOCK rather than BLOCK:</strong> <span class="pb-cmd">BLOCK</span> lives inside one drawing. <span class="pb-cmd">WBLOCK</span> writes a standalone <span class="pb-cmd">.dwg</span> you can insert into any drawing, in any project, for the rest of the semester.</div>
+  </div>
+</div>
+
+<hr class="pb-divider">
+<span class="pb-label">Route C — Claude Code, no Illustrator</span>
+
+<p>Tracing is contour-finding, and contour-finding is a solved problem. You do not need Python, pip or a command prompt for this — Claude Code installs what it needs, writes the script and runs it for you. You supply the tree, the real size and the judgement. Set Claude Code up the way WF07 describes, then:</p>
+
+<div class="pb-step">
+  <div class="pb-num">1</div>
+  <div>
+    <h4>Make a folder</h4>
+    <p>Put your silhouette PNGs in it, plus the spec file below. Open Claude Code in that folder.</p>
+    <a class="wf-download" href="/teaching/laar61400/assets/downloads/png2dxf-spec.md" download>↓ Download the build spec — png2dxf-spec.md</a>
+  </div>
+</div>
+
+<div class="pb-step">
+  <div class="pb-num">2</div>
+  <div>
+    <h4>Ask in one line</h4>
+    <div class="pb-code">Read png2dxf-spec.md and turn tree.png into a CAD block 6 m wide.</div>
+    <p>The spec carries the detail — libraries, contour mode, base point at the trunk, geometry on layer 0 — so your prompt stays short. That division is the lesson: write the standing requirements down once, ask in a sentence.</p>
+  </div>
+</div>
+
+<div class="pb-step">
+  <div class="pb-num">3</div>
+  <div>
+    <h4>Keep talking</h4>
+    <p>The first result is a draft. Say what is wrong in plain language:</p>
+    <div class="pb-code">The outline is too jagged — simplify it more.
+The canopy holes came in filled.
+Do every PNG in this folder, all 12 m wide.</div>
+  </div>
+</div>
+
+<p>Open the DXF in AutoCAD and the block is already defined, already the right size, already built on layer 0. Run <span class="pb-cmd">WBLOCK</span> once to write it into your library.</p>
+
+<div class="pb-warn"><strong>Check the result, not the code.</strong> Measure the canopy, look for open holes, and grab the block by its base point. If any of the three is wrong, say so and ask for a fix. Accepting output you have not checked is the one habit that makes this route worse than tracing by hand.</div>
+
+<div class="pb-note"><strong>Where downloading wins:</strong> the common stuff — people, cars, a generic street tree. <strong>Where code wins:</strong> twenty silhouettes traced with identical settings and identical canopy widths, from one sentence. <strong>Where Illustrator wins:</strong> the one tree you will look at closely, where the threshold slider is a design decision. Choose by the shape of the job rather than by the tool you already know.</div>
+
+<hr class="pb-divider">
+<span class="pb-label">Things that go wrong</span>
+
+<table class="pb-table">
+  <tr><th>Symptom</th><th>Cause and fix</th></tr>
+  <tr><td>Tree arrives the size of a city block</td><td>DXF units never matched drawing units. Use <span class="pb-cmd">SCALE → Reference</span> against the known canopy width rather than guessing a factor.</td></tr>
+  <tr><td>Solid rectangle behind the tree</td><td><em>Ignore White</em> was off during the trace. Delete the shape in Illustrator and export again.</td></tr>
+  <tr><td>Drawing crawls after inserting</td><td>Too many vertices. Re-trace with lower Paths, or ask for a simpler outline. A plan tree rarely needs more than a few hundred points.</td></tr>
+  <tr><td>Block ignores its layer colour</td><td>The geometry carries an explicit colour. Redefine it with everything on layer <span class="pb-cmd">0</span> and colour <span class="pb-cmd">ByBlock</span>.</td></tr>
+  <tr><td>Trees refuse to land on the survey point</td><td>Base point sits at a canopy corner. Redefine the block with the base at the trunk centre.</td></tr>
+  <tr><td>Canopy holes come in filled</td><td>The trace kept outer contours only. In Illustrator select all paths and use <strong>Object → Compound Path → Make</strong>.</td></tr>
+</table>
+
+<hr class="pb-divider">
+<span class="pb-label">Worked examples</span>
+
+<p>Two traces, source beside result.</p>
+
+<h4 class="pb-eg-title">One photographic tree</h4>
+<div class="wf-example-grid pb-eg-pair">
+  <figure>
+    <img src="/teaching/laar61400/assets/img/PNG2CAD/01-source-tree.avif" width="500" height="781" loading="lazy" alt="Photographic elevation of a tree on a transparent background">
+    <figcaption>Source: a cut-out photograph, transparent background.</figcaption>
+  </figure>
+  <figure>
+    <img src="/teaching/laar61400/assets/img/PNG2CAD/02-trace-settings.avif" width="1170" height="780" loading="lazy" alt="The same tree traced at three settings, showing 55, 2 and 1 closed loops">
+    <figcaption>Same file, three settings. Raw: 55 loops, 1695 vertices. Close 9&nbsp;px: 2 loops, 271. Close 15&nbsp;px: one outline, 148.</figcaption>
+  </figure>
+</div>
+
+<h4 class="pb-eg-title">Four trees in one image</h4>
+<div class="wf-example-grid pb-eg-stack">
+  <figure>
+    <img src="/teaching/laar61400/assets/img/PNG2CAD/03-amelanchier-source.avif" width="1040" height="250" loading="lazy" alt="Stock illustration strip of four multi-stem amelanchier trees on white">
+    <figcaption>Source: four amelanchier on white, about 220&nbsp;px tall each.</figcaption>
+  </figure>
+  <figure>
+    <img src="/teaching/laar61400/assets/img/PNG2CAD/04-amelanchier-blocks.avif" width="1440" height="480" loading="lazy" alt="The four amelanchier traced into separate CAD blocks, five metres tall">
+    <figcaption>Four separate blocks, each 5&nbsp;m tall with its base point at the trunk, 500 to 630 vertices apiece.</figcaption>
+  </figure>
+</div>
+
+<p>One image, four blocks: split the trees apart first, and keep the close light so the multiple stems stay open.</p>
+
+<div class="pb-warn">Trace images you hold the rights to — these two are classroom examples.</div>
+
+</div><!-- /pb-wrap -->
+
+        <div class="sc-footer">
+          <span>LAAR 61400 — Representation &amp; Computation I</span>
+          <span>Shortcuts &amp; Reference</span>
+        </div>
+
+      </div><!-- /sc-wrap -->
+
+    </div>
+    <footer class="site-footer">&copy; 2026 Zihao Zhang &middot; <a rel="license" href="https://creativecommons.org/licenses/by-nc/4.0/">CC BY-NC 4.0</a>, except third-party images</footer>
+  </main>
+
+  <div class="wf-lightbox" id="lightbox"><img alt=""></div>
+
+  <script src="/teaching/laar61400/assets/js/nav.js"></script>
+  <script>
+    (function () {
+      var box = document.getElementById('lightbox');
+      var boxImg = box.querySelector('img');
+      document.querySelectorAll('.wf-example-grid img').forEach(function (img) {
+        img.addEventListener('click', function () {
+          boxImg.src = img.src;
+          boxImg.alt = img.alt;
+          box.classList.add('open');
+        });
+      });
+      box.addEventListener('click', function () { box.classList.remove('open'); });
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') box.classList.remove('open');
+      });
+    })();
+  </script>
+</body>
+</html>

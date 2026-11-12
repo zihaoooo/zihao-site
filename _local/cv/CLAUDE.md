@@ -1,0 +1,15 @@
+# CV rules (`_local/cv/`)
+
+Three files: `master.md` (source of truth), `external_cv.md`, `ccny_cv.md`. Update all three simultaneously. External PDF via `py _local/cv/build_external_pdf.py` — parses `external_cv.md`,
+writes `assets/cv/Zihao_Zhang_CV.pdf` (the public download linked from `index.html`).
+Rerun it after editing `external_cv.md`. It defines the external style (Roboto body, Roboto Condensed Bold heads, black and white); `penn-la-application/_scripts/penn_style.py` imports it, so style changes go here. CCNY PDF: adapt `build_external_pdf.py` to `ccny_cv.md` (full author lists, CCNY section order) when one is needed.
+- Director MLA: 2024–2026 (not "present"); Interim Director: 2023–2024
+- ASLA-NY Climate Action co-chair: 2023–2025
+- DOE Climate Lighthouse (~$1M, 2024–2027): Co-I (PI is James Booth)
+- PSC-CUNY grants → "Awards", not "Grants"
+- Rejected applications have a dedicated subsection
+- Search committees: identical block in all three files, in the external CV's
+  wording, role first. "Chair, search committee for Associate/Full Professor of
+  Architecture and Urban AI, Dept. of Architecture" (2026–present); "Member,
+  search committee(s) for ..." on the rest. The Assistant Professor of LA search
+  ran 2025–2026; 2024 was the Professor and Director of MLA search alone.

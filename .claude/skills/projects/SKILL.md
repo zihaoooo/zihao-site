@@ -1,0 +1,15 @@
+---
+name: projects
+description: Work on portfolio project pages — projects/<slug>/ pages, the projects gallery, and their images built from the originals on the NAS (`\\OSE\ose\ZIHAO\archive\project-originals\`). Use for /projects, or any request about a project page, gallery card, or project image.
+argument-hint: "[project slug and what to change]"
+---
+
+# /projects — portfolio workspace
+
+Work in `projects/<slug>/`, `assets/img/projects/<image folder>/`, and the NAS originals folder `\\OSE\ose\ZIHAO\archive\project-originals\<slug>\`.
+
+1. Read `projects/CLAUDE.md` for page structure, and that folder's `README.md` for the folder rules and the slug → image-folder table.
+2. Task: $ARGUMENTS — ask which project and what to change if this is empty.
+3. Encode images from the originals with the tools listed in the root `CLAUDE.md`; run `build_thumbs.py` after changing a card image.
+4. New project: the owner hands over a folder of images; encode the AVIFs, then move the originals into the NAS folder under `<slug>\` and add its row to the README table.
+5. Preview and report per the root `CLAUDE.md` § Way of working.

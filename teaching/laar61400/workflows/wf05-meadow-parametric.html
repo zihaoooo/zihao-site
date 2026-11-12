@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WF 05 Attractor Fields — LAAR 61400</title>
+  <link rel="stylesheet" href="/teaching/laar61400/assets/css/main.css">
+  <link rel="stylesheet" href="/teaching/laar61400/assets/css/workflow-shared.css?v=7">
+  <link rel="icon" href="/favicon.ico" sizes="16x16 32x32 48x48">
+  <link rel="apple-touch-icon" href="/assets/icons/apple-touch-icon.png">
+</head>
+<body>
+
+  <!-- Side panel -->
+  <nav id="sidepanel">
+    <a class="panel-brand" href="/teaching/laar61400/index.html">
+      <span class="panel-brand-title">LAAR 61400</span>
+      <span class="panel-brand-sub">Representation + Computation</span>
+    </a>
+    <a class="panel-announce" href="/teaching/laar61400/announcements.html"><span class="panel-announce-tag">New</span>Announcements</a>
+    <div class="panel-section">
+      <span class="panel-section-label">Workflows</span>
+      <a class="panel-link" href="/teaching/laar61400/workflows/wf01-autocad.html">
+        <span class="panel-link-num">01</span>AutoCAD Site Drafting
+      </a>
+      <a class="panel-link" href="/teaching/laar61400/workflows/wf02-sketch-portfolio.html">
+        <span class="panel-link-num">02</span>Hybrid Drawing + Deck
+      </a>
+      <a class="panel-link" href="/teaching/laar61400/workflows/wf03-urban-context.html"><span class="panel-link-num">03</span>Urban Context Mapping<span class="panel-tag">Extra</span></a>
+      <a class="panel-link" href="/teaching/laar61400/workflows/wf04-landform-design.html">
+        <span class="panel-link-num">04</span>Rhino Landform Modeling
+      </a>
+      <a class="panel-link active" href="/teaching/laar61400/workflows/wf05-meadow-parametric.html">
+        <span class="panel-link-num">05</span>Attractor Fields
+      </a>
+      <a class="panel-link" href="/teaching/laar61400/workflows/wf06-sketch-charrette.html"><span class="panel-link-num">06</span>Back to Basics</a>
+      <a class="panel-link" href="/teaching/laar61400/tutorials/ramp-on-slope.html">Ramp on a Slope<span class="panel-tag">Extra</span></a>
+      <a class="panel-link" href="/talks/agents-in-practice/" target="_blank" rel="noopener">AI Workflows ↗<span class="panel-tag">Extra</span></a>
+    </div>
+<div class="panel-section">
+      <span class="panel-section-label">Lectures</span>
+      <a class="panel-link" href="/teaching/laar61400/lectures/drawing-as-thinking.html">Drawing as Thinking Tool</a>
+      <a class="panel-link" href="/teaching/laar61400/lectures/computational-thinking.html">Computational Thinking</a>
+      <a class="panel-link" href="/teaching/laar61400/lectures/graphic-design-101.html">Graphic Design 101</a>
+      <a class="panel-link" href="/teaching/laar61400/lectures/modeling-as-thinking.html">Modeling as Thinking</a>
+      <a class="panel-link" href="/teaching/laar61400/lectures/fast-graphics.html">Fast Graphics</a>
+      <a class="panel-link" href="/teaching/laar61400/lectures/gis-spatial-data.html">Intro to GIS / Spatial Data<span class="panel-tag">Extra</span></a>
+      <a class="panel-link" href="/teaching/laar61400/lectures/cybernetics-and-design.html">Cybernetics and Design<span class="panel-tag">Extra</span></a>
+      <a class="panel-link" href="/teaching/laar61400/lectures/web-coding-literacy.html">Web Coding Literacy<span class="panel-tag">Extra</span></a>
+    </div>
+    <div class="panel-section">
+      <span class="panel-section-label">Shortcuts &amp; Reference</span>
+      <a class="panel-link" href="/teaching/laar61400/shortcuts/file-types.html">File Types Reference</a>
+      <a class="panel-link" href="/teaching/laar61400/shortcuts/adobe.html">Adobe Ps / Ai / Id</a>
+      <a class="panel-link" href="/teaching/laar61400/shortcuts/autocad.html">AutoCAD</a>
+      <a class="panel-link" href="/teaching/laar61400/shortcuts/rhino-ui.html">Rhino — Navigation &amp; UI</a>
+      <a class="panel-link" href="/teaching/laar61400/shortcuts/png-to-cad-block.html">PNG → CAD Block</a>
+    </div>
+  </nav>
+
+  <!-- Main content -->
+  <main id="main-content">
+    <div class="page-inner">
+
+<div class="wf-wrap wf-doc">
+
+  <!-- Header -->
+  <div class="wf-header">
+    <div class="wf-index">WF 05</div>
+    <div class="wf-header-text">
+      <div class="wf-title">Attractor Fields</div>
+      <div class="wf-subtitle">Grasshopper · Dispatch &amp; Remap → Line Field</div>
+    </div>
+  </div>
+
+  <!-- Spec strip -->
+  <div class="wf-spec">
+    <div class="wf-spec-item"><span class="wf-spec-label">Length</span><span class="wf-spec-value">2 sessions</span></div>
+    <div class="wf-spec-item"><span class="wf-spec-label">Site</span><span class="wf-spec-value">50 × 50 ft</span></div>
+    <div class="wf-spec-item"><span class="wf-spec-label">Logic</span><span class="wf-spec-value">Dispatch · Remap</span></div>
+    <div class="wf-spec-item wf-spec-due"><span class="wf-spec-label">Due</span><span class="wf-spec-value"><s>Thu Nov 5</s> Thu Nov 12</span></div>
+  </div>
+
+  <!-- Outcome -->
+  <!-- Learning objectives -->
+  <div class="wf-objectives">
+    <strong>Learning Objectives</strong>
+    <ul>
+      <li>Design as a rule</li>
+      <li>Thresholds and gradients as spatial rules</li>
+    </ul>
+  </div>
+
+  <div class="wf-outcome">
+    <strong>Assignment</strong><span>Three meadow garden options — driven by ecology, experience, or both — built on the Session 2 definition plus any Rhino objects they need (a wall, a landform), submitted as one 11 × 17 sheet of three isometric views, each with a name and a short caption explaining its concept.</span>
+    <div class="wf-actions">
+      <a class="wf-btn" href="https://miro.com/app/board/uXjVH3zpADk=/?share_link_id=760271312933" target="_blank" rel="noopener">Submit to Miro board<span class="wf-btn-arrow" aria-hidden="true">↗</span></a>
+      <span class="wf-btn-note">Password: &quot;c*****2026&quot;, shared via email</span>
+    </div>
+  </div>
+
+  <!-- Pipeline strip -->
+  <div class="wf-pipeline">
+    <div class="wf-pipe-step"><div class="wf-pipe-node" style="background:var(--accent-tint);color:var(--accent);">Rhino</div><div class="wf-pipe-arrow">→</div></div>
+    <div class="wf-pipe-step"><div class="wf-pipe-node" style="background:#e8f5e8;color:#2a6a2a;">Populate 2D</div><div class="wf-pipe-arrow">→</div></div>
+    <div class="wf-pipe-step"><div class="wf-pipe-node wf-pipe-tool">Rule</div><div class="wf-pipe-arrow">→</div></div>
+    <div class="wf-pipe-step"><div class="wf-pipe-node">Line Field</div></div>
+  </div>
+
+  <!-- Intro -->
+  <div style="background:var(--gray-100); border-radius:4px; padding:16px 18px; margin-bottom:28px;">
+    <div class="wf-step-desc">A flat meadow. Two given rules encode two landscape conditions — a mown path, and wet areas. Then you design a meadow garden of your own, from ecology, experience, or both.</div>
+    <div class="wf-step-desc">This workflow introduces the core logic of parametric design: <strong>write the rule first, then build it in nodes.</strong></div>
+  </div>
+
+  <!-- Steps grid -->
+  <div class="wf-steps">
+
+    <!-- Session 1 label -->
+    <div class="wf-step wf-full" style="background:none;border:none;padding:0;margin-top:4px;">
+      <div class="wf-week-label">Session 1 — Mowing Path</div>
+    </div>
+
+    <!-- Session 1 video walkthrough -->
+    <div class="wf-step wf-full wf-nocheck">
+      <div class="wf-step-head">
+        <span class="wf-step-num">▶</span>
+        <span class="wf-step-label">Video Walkthrough — Steps 01–04</span>
+      </div>
+      <div class="wf-step-body">
+        <div class="wf-step-desc">A narrated recording of Steps 01–04 and the optional landform, with chapters and captions (<kbd>CC</kbd>). It varies from the text in places: Random's N stays at Count (an on-screen note gives the proper wiring), and the mowed lines are 0.2 ft.</div>
+        <div class="wf-video">
+          <iframe src="https://www.youtube.com/embed/f71N1I1o2os" title="Workflow 05 Attractor Fields, Part 1 — narrated walkthrough, Steps 01–04" loading="lazy"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+        <a class="wf-video-link" href="https://youtu.be/f71N1I1o2os" target="_blank" rel="noopener">Open on YouTube for 1080p ↗</a>
+      </div>
+    </div>
+
+    <!-- Pseudocode 9 -->
+    <div class="wf-step wf-full">
+      <div class="wf-step-head">
+        <span class="wf-step-num">A</span>
+        <span class="wf-step-label">Pseudocode First</span>
+        <span class="wf-badge wf-badge-neutral">On paper — no computers</span>
+      </div>
+      <div class="wf-step-body">
+        <div class="wf-step-desc">Before opening Grasshopper, write this rule on paper:</div>
+        <pre class="wf-code">FOR EACH plant in meadow:
+  IF distance to path &lt; mowing width
+    THEN height = mowed (short)
+  ELSE height = unmowed (tall, random)</pre>
+        <div class="wf-step-desc">Identify: what is the input, what is the condition, what are the two outputs.</div>
+      </div>
+    </div>
+
+    <!-- Step 01 -->
+    <div class="wf-step">
+      <div class="wf-step-head">
+        <span class="wf-step-num">01</span>
+        <span class="wf-step-label">Set Up the Meadow</span>
+        <span class="wf-badge wf-badge-gh">GH</span>
+      </div>
+      <div class="wf-step-body">
+        <div class="wf-step-desc">Construct the site boundary in Grasshopper — 50 × 50 ft. No need to draw in Rhino:</div>
+        <ul class="wf-tips">
+          <li><strong>Rectangle</strong> → set X and Y domains to <kbd>0 to 50</kbd> (use a <strong>Construct Domain</strong> or a <strong>Panel</strong>)</li>
+          <li><strong>Populate 2D</strong> → the Rectangle as region</li>
+          <li><strong>Count</strong> slider → start at 1000</li>
+          <li><strong>Seed</strong> slider → controls the random distribution</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Optional: landform -->
+    <div class="wf-step wf-nocheck">
+      <div class="wf-step-head">
+        <span class="wf-step-num">+</span>
+        <span class="wf-step-label">Optional — Meadow on a Landform</span>
+        <span class="wf-badge wf-badge-rh">Rhino</span>
+        <span class="wf-badge wf-badge-gh" style="margin-left:4px;">GH</span>
+      </div>
+      <div class="wf-step-body">
+        <div class="wf-step-desc">Grow the meadow on a landform instead of flat ground — your WF04 surface, or a new one:</div>
+        <ul class="wf-tips">
+          <li>Reference the landform into GH with a <strong>Brep</strong> parameter. Make it larger than the 50 × 50 rectangle so every point lands on it.</li>
+          <li><strong>Pull Point</strong> → points = Populate 2D points, geometry = landform. Its Closest Point output is the meadow on the ground, whether the ground sits above or below the flat points.</li>
+          <li>Use these Closest Points everywhere Populate 2D points go below</li>
+          <li>Bring the path and the attractors down too: <strong>Project</strong> (Curve › Util) for curves, B = landform; Pull Point for the attractor points. Pull Point measures in 3D, so a flat path under raised ground reads as far away and the mown strip disappears. Doing this in GH keeps them live when you move the originals.</li>
+          <li>A dashed wire means the data sits in several lists. Right-click the output and Flatten it.</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Step 02 -->
+    <div class="wf-step">
+      <div class="wf-step-head">
+        <span class="wf-step-num">02</span>
+        <span class="wf-step-label">Random Heights (Unmowed)</span>
+        <span class="wf-badge wf-badge-gh">GH</span>
+      </div>
+      <div class="wf-step-body">
+        <div class="wf-step-desc">Give every plant a random unmowed height:</div>
+        <ul class="wf-tips">
+          <li><strong>Random</strong> → domain via a <strong>Panel</strong> typed <kbd>2 to 6.0</kbd> (grass height range); set Number (N) to the same Count as Populate 2D</li>
+          <li><strong>Line SDL</strong> → start = Populate 2D points, direction = unit Z, length = Random</li>
+        </ul>
+        <div class="wf-note">You now have a meadow — a field of vertical lines of varying height.</div>
+      </div>
+    </div>
+
+    <!-- Step 03 -->
+    <div class="wf-step">
+      <div class="wf-step-head">
+        <span class="wf-step-num">03</span>
+        <span class="wf-step-label">Draw + Measure the Path</span>
+        <span class="wf-badge wf-badge-rh">Rhino</span>
+        <span class="wf-badge wf-badge-gh" style="margin-left:4px;">GH</span>
+      </div>
+      <div class="wf-step-body">
+        <div class="wf-step-desc">In Rhino, draw a curve across the site — polyline or arc. Reference it into GH with a <strong>Curve</strong> parameter, then measure how far each plant sits from it:</div>
+        <ul class="wf-tips">
+          <li><strong>Pull Point</strong> → input points = Populate 2D points, geometry = path curve</li>
+          <li>Use the <strong>Distance</strong> output directly — one component does both</li>
+        </ul>
+        <div class="wf-note">Same component as the Session 2 wet areas — Pull Point pulls to any geometry (curve here, points there) and returns the distance.</div>
+      </div>
+    </div>
+
+    <!-- Step 04 -->
+    <div class="wf-step">
+      <div class="wf-step-head">
+        <span class="wf-step-num">04</span>
+        <span class="wf-step-label">Apply the Rule — Dispatch</span>
+        <span class="wf-badge wf-badge-gh">GH</span>
+      </div>
+      <div class="wf-step-body">
+        <div class="wf-step-desc">Split the meadow into mown and unmown by the threshold:</div>
+        <ul class="wf-tips">
+          <li><strong>Larger Than</strong> → A = distance to path, B = mowing width slider (start at 2)</li>
+          <li><strong>Dispatch</strong> → data = Populate 2D points, pattern = Larger Than → List A = unmowed points, List B = mowed points</li>
+          <li>Unmowed: rewire the Step 02 <strong>Line SDL</strong> → start = List A. Feed <strong>List Length</strong> of List A into Random's N, so each unmowed plant gets exactly one height</li>
+          <li>Mowed: a second <strong>Line SDL</strong> → start = List B, direction = unit Z, length = a short Length slider (0.5)</li>
+        </ul>
+        <div class="wf-note">Only the points are dispatched. Random's N has to match the List A count — if it stays at Count, the extra heights stack up as hidden lines on the last unmowed plant. List A points carry forward into Session 2. <strong>End of Session 1.</strong></div>
+      </div>
+    </div>
+
+    <!-- Examples (expandable) -->
+    <details class="wf-step wf-full wf-examples">
+      <summary class="wf-step-head">
+        <span class="wf-step-num">▸</span>
+        <span class="wf-step-label">Hint</span>
+        <span class="wf-badge wf-badge-gh">Session 1</span>
+      </summary>
+      <div class="wf-step-body">
+        <div class="wf-alert wf-alert-lg" style="margin-bottom:14px;">
+          <span class="wf-alert-icon">⚠</span>
+          <div class="wf-alert-body"><strong>Reference the curves and the boundary from Rhino.</strong> The .gh files carry the components only. After opening one, right-click each Curve parameter → Set one Curve, and pick your own geometry in Rhino.</div>
+        </div>
+        <div class="wf-example-grid">
+          <figure>
+            <img src="/teaching/laar61400/assets/img/WF05/example-mow.png" alt="Rhino viewport showing the mown path through the meadow">
+            <figcaption>Viewport — mown path through the meadow</figcaption>
+          </figure>
+          <figure>
+            <img src="/teaching/laar61400/assets/img/WF05/example-mow-gh.png" alt="Grasshopper definition for the mowing path rule">
+            <figcaption>Grasshopper definition — the full mowing-path rule</figcaption>
+          </figure>
+        </div>
+        <a class="wf-download" href="/teaching/laar61400/assets/img/WF05/WF05_mow.gh" download>↓ Download example definition — WF05_mow.gh</a>
+        <a class="wf-download" href="/teaching/laar61400/assets/img/WF05/WF05_demo_session1.gh" download>↓ In-class demo — WF05_demo_session1.gh</a>
+      </div>
+    </details>
+
+    <!-- Session 2 label -->
+    <div class="wf-step wf-full" style="background:none;border:none;padding:0;margin-top:4px;">
+      <div class="wf-week-label">Session 2 — Wet Areas</div>
+    </div>
+
+    <!-- Session 2 video walkthrough -->
+    <div class="wf-step wf-full wf-nocheck">
+      <div class="wf-step-head">
+        <span class="wf-step-num">▶</span>
+        <span class="wf-step-label">Video Walkthrough — Steps 05–08</span>
+      </div>
+      <div class="wf-step-body">
+        <div class="wf-step-desc">A narrated recording of Steps 05–06, ending on the finished heights, then a recap of both sessions, with chapters and captions (<kbd>CC</kbd>). It runs on the landform version (<kbd>WF05_mow_water_landform.gh</kbd> in the Hint below) with Max Radius 18, Height Near 5, Height Far 0.2.</div>
+        <div class="wf-video">
+          <iframe src="https://www.youtube.com/embed/NjAX-w1eOvA" title="Workflow 05 Attractor Fields, Part 2 — narrated walkthrough, Steps 05–08" loading="lazy"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+        <a class="wf-video-link" href="https://youtu.be/NjAX-w1eOvA" target="_blank" rel="noopener">Open on YouTube for 1080p ↗</a>
+      </div>
+    </div>
+
+    <!-- Pseudocode 10 -->
+    <div class="wf-step wf-full">
+      <div class="wf-step-head">
+        <span class="wf-step-num">B</span>
+        <span class="wf-step-label">Pseudocode First</span>
+        <span class="wf-badge wf-badge-neutral">On paper — no computers</span>
+      </div>
+      <div class="wf-step-body">
+        <pre class="wf-code">FOR EACH plant in meadow:
+  height = remap(distance to nearest wet area, 0 → max, tall → short)</pre>
+        <div class="wf-step-desc">Close to a wet area = tall (wet, lush). Far from a wet area = short (dry).</div>
+      </div>
+    </div>
+
+    <!-- Step 05 -->
+    <div class="wf-step">
+      <div class="wf-step-head">
+        <span class="wf-step-num">05</span>
+        <span class="wf-step-label">Place Wet-Area Attractors</span>
+        <span class="wf-badge wf-badge-rh">Rhino</span>
+        <span class="wf-badge wf-badge-gh" style="margin-left:4px;">GH</span>
+      </div>
+      <div class="wf-step-body">
+        <div class="wf-step-desc">In Rhino, place 2–4 point objects on the site — these are the wet area locations. Reference them into GH with a <strong>Point</strong> parameter. Then find the nearest wet area for each unmowed plant:</div>
+        <ul class="wf-tips">
+          <li><strong>Pull Point</strong> → input points = List A points (unmowed, from Step 04 Dispatch), geometry = wet area attractors</li>
+          <li>Use the <strong>Distance</strong> output directly, same as Step 03 — distance from each unmowed plant to its nearest wet area</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Step 06 -->
+    <div class="wf-step">
+      <div class="wf-step-head">
+        <span class="wf-step-num">06</span>
+        <span class="wf-step-label">Remap to Height</span>
+        <span class="wf-badge wf-badge-gh">GH</span>
+      </div>
+      <div class="wf-step-body">
+        <div class="wf-step-desc">Turn distance into a height gradient, capped at a maximum influence radius:</div>
+        <ul class="wf-tips">
+          <li>Three sliders: <strong>Max Radius</strong> (default 15 ft), <strong>Height Near</strong> (default 9), <strong>Height Far</strong> (default 1)</li>
+          <li><strong>Minimum</strong> → A = distances (Pull Point D), B = Max Radius slider → output = capped distances (GH broadcasts the single slider value across the whole list)</li>
+          <li><strong>Construct Domain</strong> (source) → A = 0, B = Max Radius → fixed source domain</li>
+          <li><strong>Construct Domain</strong> (target) → A = Height Near, B = Height Far → target domain</li>
+          <li><strong>Remap Numbers</strong> → values = output from Minimum, source = source domain, target = target domain</li>
+        </ul>
+        <div class="wf-note">Plants inside the radius get a gradient; plants outside all map to exactly Height Far. Moving a wet-area point creates a visible zone with a clear edge between lush and dry.</div>
+        <figure class="wf-fig">
+          <svg viewBox="0 0 680 476" role="img" aria-labelledby="wf5-remap">
+            <title id="wf5-remap">Remap in four rows: distances to the nearest wet area, capped at 15 by Minimum, remapped from 0 to 15 onto heights 9 to 1, drawn as grass lines</title>
+            <text class="s" x="30" y="24">1 · Distance to the nearest wet area (Pull Point D)</text>
+            <line x1="60" y1="62" x2="620" y2="62" style="stroke:var(--gray-400);stroke-width:0.75"/>
+            <circle cx="60" cy="62" r="4" style="fill:var(--gray-900)"/><text x="60" y="50" text-anchor="middle">0</text>
+            <circle cx="116" cy="62" r="4" style="fill:var(--gray-900)"/><text x="116" y="50" text-anchor="middle">4</text>
+            <circle cx="186" cy="62" r="4" style="fill:var(--gray-900)"/><text x="186" y="50" text-anchor="middle">9</text>
+            <circle cx="242" cy="62" r="4" style="fill:var(--gray-900)"/><text x="242" y="50" text-anchor="middle">13</text>
+            <circle cx="396" cy="62" r="4" style="fill:var(--gray-900)"/><text x="396" y="50" text-anchor="middle">24</text>
+            <circle cx="592" cy="62" r="4" style="fill:var(--gray-900)"/><text x="592" y="50" text-anchor="middle">38</text>
+            <text x="620" y="80" text-anchor="end">ft</text>
+            <text class="s" x="30" y="112">2 · Minimum, B = Max Radius 15: farther than 15 counts as 15</text>
+            <line x1="60" y1="146" x2="270" y2="146" style="stroke:var(--gray-900);stroke-width:1.5"/>
+            <line x1="270" y1="146" x2="620" y2="146" style="stroke:var(--gray-300);stroke-width:0.75;stroke-dasharray:3 3"/>
+            <line x1="270" y1="128" x2="270" y2="160" style="stroke:var(--accent);stroke-width:1.5"/>
+            <text class="a" x="270" y="174" text-anchor="middle">15</text><text x="60" y="174" text-anchor="middle">0</text>
+            <circle cx="396" cy="146" r="3.5" style="fill:#fff;stroke:var(--gray-500);stroke-width:1"/>
+            <path d="M390,140 Q333.0,130 277,141" style="fill:none;stroke:var(--accent);stroke-width:1;stroke-dasharray:3 2"/>
+            <circle cx="592" cy="146" r="3.5" style="fill:#fff;stroke:var(--gray-500);stroke-width:1"/>
+            <path d="M586,140 Q431.0,122 277,141" style="fill:none;stroke:var(--accent);stroke-width:1;stroke-dasharray:3 2"/>
+            <circle cx="60" cy="146" r="4" style="fill:var(--gray-900)"/>
+            <circle cx="116" cy="146" r="4" style="fill:var(--gray-900)"/>
+            <circle cx="186" cy="146" r="4" style="fill:var(--gray-900)"/>
+            <circle cx="242" cy="146" r="4" style="fill:var(--gray-900)"/>
+            <circle cx="270" cy="146" r="4" style="fill:var(--gray-900)"/>
+            <circle cx="270" cy="146" r="4" style="fill:var(--gray-900)"/>
+            <text x="494" y="174" text-anchor="middle">24 and 38 both become 15</text>
+            <text class="s" x="30" y="206">3 · Remap Numbers: each value keeps its place, source 0 → 15 onto target 9 → 1</text>
+            <line x1="60" y1="242" x2="270" y2="242" style="stroke:var(--gray-900);stroke-width:1.5"/>
+            <text x="290" y="246">source = Construct Domain(0, Max Radius)</text>
+            <line x1="60" y1="318" x2="270" y2="318" style="stroke:var(--accent);stroke-width:2.5"/>
+            <text x="290" y="322">target = Construct Domain(Height Near, Height Far)</text>
+            <line x1="60" y1="246" x2="60" y2="313" style="stroke:var(--gray-400);stroke-width:0.75;stroke-dasharray:3 2"/>
+            <circle cx="60" cy="242" r="4" style="fill:var(--gray-900)"/><text x="60" y="232" text-anchor="middle">0</text>
+            <circle cx="60" cy="318" r="3.5" style="fill:var(--accent)"/><text class="a" x="60" y="336" text-anchor="middle">9</text>
+            <line x1="116" y1="246" x2="116" y2="313" style="stroke:var(--gray-400);stroke-width:0.75;stroke-dasharray:3 2"/>
+            <circle cx="116" cy="242" r="4" style="fill:var(--gray-900)"/><text x="116" y="232" text-anchor="middle">4</text>
+            <circle cx="116" cy="318" r="3.5" style="fill:var(--accent)"/><text class="a" x="116" y="336" text-anchor="middle">6.9</text>
+            <line x1="186" y1="246" x2="186" y2="313" style="stroke:var(--gray-400);stroke-width:0.75;stroke-dasharray:3 2"/>
+            <circle cx="186" cy="242" r="4" style="fill:var(--gray-900)"/><text x="186" y="232" text-anchor="middle">9</text>
+            <circle cx="186" cy="318" r="3.5" style="fill:var(--accent)"/><text class="a" x="186" y="336" text-anchor="middle">4.2</text>
+            <line x1="242" y1="246" x2="242" y2="313" style="stroke:var(--gray-400);stroke-width:0.75;stroke-dasharray:3 2"/>
+            <circle cx="242" cy="242" r="4" style="fill:var(--gray-900)"/><text x="242" y="232" text-anchor="middle">13</text>
+            <circle cx="242" cy="318" r="3.5" style="fill:var(--accent)"/><text class="a" x="242" y="336" text-anchor="middle">2.1</text>
+            <line x1="270" y1="246" x2="270" y2="313" style="stroke:var(--gray-400);stroke-width:0.75;stroke-dasharray:3 2"/>
+            <circle cx="270" cy="242" r="4" style="fill:var(--gray-900)"/><text x="270" y="232" text-anchor="middle">15</text>
+            <circle cx="270" cy="318" r="3.5" style="fill:var(--accent)"/><text class="a" x="270" y="336" text-anchor="middle">1</text>
+            <text x="56" y="352">Near</text>
+            <text x="274" y="352" text-anchor="end">Far</text>
+            <text class="s" x="30" y="384">4 · Line SDL: length = remapped height</text>
+            <line x1="40" y1="450" x2="630" y2="450" style="stroke:var(--gray-400);stroke-width:0.75"/>
+            <ellipse cx="60" cy="450" rx="16" ry="3.5" style="fill:#c9d6de"/>
+            <line x1="60" y1="450" x2="60" y2="391.5" style="stroke:var(--accent);stroke-width:2.5"/>
+            <line x1="116" y1="450" x2="116" y2="405.4" style="stroke:var(--accent);stroke-width:2.5"/>
+            <line x1="186" y1="450" x2="186" y2="422.7" style="stroke:var(--accent);stroke-width:2.5"/>
+            <line x1="242" y1="450" x2="242" y2="436.6" style="stroke:var(--accent);stroke-width:2.5"/>
+            <line x1="396" y1="450" x2="396" y2="443.5" style="stroke:var(--accent);stroke-width:2.5"/>
+            <line x1="592" y1="450" x2="592" y2="443.5" style="stroke:var(--accent);stroke-width:2.5"/>
+            <text x="60" y="468" text-anchor="middle">wet area</text>
+          </svg>
+          <figcaption>Six plants, with the page defaults (Max Radius 15, Height Near 9, Height Far 1). Every plant past 15 ft lands on Height Far. Remap keeps each value’s place along its domain; the target runs 9 down to 1, so the near end gets the tallest height. Type Height Near smaller than Height Far to flip it. The video uses 18, 5 and 0.2.</figcaption>
+        </figure>
+      </div>
+    </div>
+
+    <!-- Step 07 -->
+    <div class="wf-step">
+      <div class="wf-step-head">
+        <span class="wf-step-num">07</span>
+        <span class="wf-step-label">Draw Plant Heights</span>
+        <span class="wf-badge wf-badge-gh">GH</span>
+      </div>
+      <div class="wf-step-body">
+        <div class="wf-step-desc">Same as Session 1 — draw each unmowed plant as a vertical line, length = remapped height:</div>
+        <ul class="wf-tips">
+          <li><strong>Line SDL</strong> → start = List A points (unmowed), direction = unit Z, length = remapped height</li>
+          <li>The remapped height replaces Random</li>
+          <li>The mowed branch (List B, 0.5) stays as it is</li>
+        </ul>
+        <div class="wf-note">Tall lines near wet areas, short lines further away. The gradient reads immediately in the viewport.</div>
+      </div>
+    </div>
+
+    <!-- Step 08 -->
+    <div class="wf-step">
+      <div class="wf-step-head">
+        <span class="wf-step-num">08</span>
+        <span class="wf-step-label">Preview + Adjust</span>
+        <span class="wf-badge wf-badge-rh">Rhino</span>
+      </div>
+      <div class="wf-step-body">
+        <ul class="wf-tips">
+          <li>Move a wet area point in Rhino — the tall cluster shifts live</li>
+          <li>Add or remove wet area points — each makes a new zone of lush growth</li>
+          <li>Slide <strong>Height Near</strong> or <strong>Height Far</strong> to change the height contrast live</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Examples (expandable) — Session 2 -->
+    <details class="wf-step wf-full wf-examples">
+      <summary class="wf-step-head">
+        <span class="wf-step-num">▸</span>
+        <span class="wf-step-label">Hint</span>
+        <span class="wf-badge wf-badge-gh">Session 2</span>
+      </summary>
+      <div class="wf-step-body">
+        <div class="wf-example-grid">
+          <figure>
+            <img src="/teaching/laar61400/assets/img/WF05/example-mow-water.png" alt="Rhino viewport showing the meadow with mown path and wet-area attractor points — taller plants near the wet areas">
+            <figcaption>Viewport — mown path plus wet-area gradient; plants taller near the attractor points</figcaption>
+          </figure>
+          <figure>
+            <img src="/teaching/laar61400/assets/img/WF05/example-mow-water-gh.png" alt="Grasshopper definition for the combined mowing-path and wet-area rules">
+            <figcaption>Grasshopper definition — the full mow + wet-area rule</figcaption>
+          </figure>
+        </div>
+        <a class="wf-download" href="/teaching/laar61400/assets/img/WF05/WF05_mow_water.gh" download>↓ Download example definition — WF05_mow_water.gh</a>
+        <a class="wf-download" href="/teaching/laar61400/assets/img/WF05/WF05_mow_water_landform.gh" download>↓ On a landform — WF05_mow_water_landform.gh</a>
+        <a class="wf-download" href="/teaching/laar61400/assets/img/WF05/WF05_demo_session2.gh" download>↓ In-class demo — WF05_demo_session2.gh</a>
+      </div>
+    </details>
+
+    <!-- Own rule label -->
+    <div class="wf-step wf-full" style="background:none;border:none;padding:0;margin-top:4px;">
+      <div class="wf-week-label">On Your Own — Meadow Garden</div>
+    </div>
+
+    <!-- Step 09 -->
+    <div class="wf-step">
+      <div class="wf-step-head">
+        <span class="wf-step-num">09</span>
+        <span class="wf-step-label">Design a Meadow Garden</span>
+        <span class="wf-badge wf-badge-gh">GH</span>
+      </div>
+      <div class="wf-step-body">
+        <div class="wf-step-desc">Design three garden options on your Session 2 definition, from ecology, experience, or both. Use the same components with new logic:</div>
+        <ul class="wf-tips">
+          <li>Swap the attractor: points, a curve, or the site boundary</li>
+          <li>Flip the direction: short near the attractor</li>
+          <li>Use Dispatch where you used Remap, or the reverse</li>
+          <li>Remove plants: Dispatch, then draw one list only</li>
+        </ul>
+        <div class="wf-step-desc" style="margin-top:10px;"><strong>Ecology</strong>. Reference: Teresa Galí-Izard, <a href="https://arquitecturaagronomia.net" target="_blank" rel="noopener">Arquitectura Agronomía</a>.</div>
+        <ul class="wf-tips">
+          <li><strong>Tree shade</strong> — trunk points; short in the shade, tall in the open. Remap, flipped.</li>
+          <li><strong>Stream corridor</strong> — a stream curve; tall on the banks, short upland. Remap.</li>
+          <li><strong>Deer browsing</strong> — bedding points; grazed short inside a radius. Dispatch.</li>
+          <li><strong>Rock outcrops</strong> — bedrock points; nothing grows inside a radius. Dispatch, draw the outside only.</li>
+          <li><strong>Woodland edge</strong> — tall along the site boundary, open in the middle. Pull Point to the Rectangle + Remap.</li>
+        </ul>
+        <div class="wf-step-desc" style="margin-top:10px;"><strong>Experience</strong>. Reference: Catherine Dee, <em>Form and Fabric in Landscape Architecture</em> (2001).</div>
+        <ul class="wf-tips">
+          <li><strong>Enclosure</strong> — tall grass as walls, short grass as floor</li>
+          <li><strong>Garden rooms</strong> — mown patches of different sizes, joined by the path</li>
+          <li><strong>Circulation</strong> — a wide main path and narrow side paths, each with its own mowing width</li>
+          <li><strong>Sequence and rhythm</strong> — open and enclosed in turn along the path; Divide Curve for attractor points</li>
+          <li><strong>Threshold</strong> — a narrow gap in tall grass before a room</li>
+        </ul>
+        <div class="wf-step-desc" style="margin-top:10px;"><strong>Both</strong> — e.g. a mown room at the wet area, walled by tall sedge.</div>
+        <div class="wf-step-desc" style="margin-top:10px;">Model Rhino objects as needed — a wall, a landform. Capture all three from the same view (Set View → SE Isometric), each with a name and a short caption.</div>
+      </div>
+    </div>
+
+  </div><!-- /steps -->
+
+  <!-- Key concepts block -->
+  <div class="wf-step wf-full" style="margin-top:24px;">
+    <div class="wf-step-head">
+      <span class="wf-step-label" style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;">Key Concepts</span>
+    </div>
+    <div class="wf-steps-row">
+      <div class="wf-step-body">
+        <div class="wf-step-desc"><strong>Populate 2D vs. grid</strong> — Populate 2D distributes points organically within a boundary. The Seed slider changes the distribution without changing the count. It reads as a natural meadow, not a tile pattern.</div>
+        <div class="wf-step-desc" style="margin-top:10px;"><strong>Dispatch vs. Remap</strong> — Dispatch encodes a binary rule (mow / no mow). Remap encodes a continuous gradient (tall near water, short away). Most landscape conditions are gradients; the binary is the readable edge.</div>
+      </div>
+      <div class="wf-step-body">
+        <div class="wf-step-desc"><strong>Pull Point</strong> — works like Closest Point: for each input point, finds the nearest geometry in a set and returns its location. Used here to measure proximity to the nearest wet area across multiple attractors.</div>
+        <div class="wf-step-desc" style="margin-top:10px;"><strong>Line SDL</strong> — the same component used in Session 1. Start point, direction, length. Swapping the length input from Random to a Remap value is the only change — the drawing logic stays identical.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Pseudocode → Node reference -->
+  <div class="wf-step wf-full" style="margin-top:16px;">
+    <div class="wf-step-head">
+      <span class="wf-step-label" style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;">Pseudocode → Node Reference</span>
+    </div>
+    <div class="wf-step-body">
+      <table class="wf-table">
+        <thead><tr><th>Pseudocode</th><th>GH component</th></tr></thead>
+        <tbody>
+          <tr><td>for each plant in meadow</td><td><kbd>Populate 2D</kbd></td></tr>
+          <tr><td>distance to path</td><td><kbd>Pull Point</kbd></td></tr>
+          <tr><td>if / else</td><td><kbd>Larger Than</kbd> + <kbd>Dispatch</kbd></td></tr>
+          <tr><td>one height per unmowed plant</td><td><kbd>List Length</kbd> → Random N</td></tr>
+          <tr><td>distance to nearest wet area</td><td><kbd>Pull Point</kbd></td></tr>
+          <tr><td>remap to height</td><td><kbd>Remap Numbers</kbd></td></tr>
+          <tr><td>draw plant</td><td><kbd>Line SDL</kbd></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Tips -->
+  <div class="wf-aside">
+    <div style="font-weight:700; text-transform:uppercase; letter-spacing:0.05em; font-size:10px; color:var(--gray-900); margin-bottom:8px;">Tips</div>
+    <ul class="wf-tips">
+      <li>Write the rule on paper before touching a node. The pseudocode is the design.</li>
+      <li>Dispatch is the readable edge; Remap is the gradient. Know which one the condition wants.</li>
+      <li>Set hints and watch the preview live — drag a slider and read the change before moving on.</li>
+    </ul>
+  </div>
+
+  <!-- Footer -->
+  <div class="wf-footer">
+    <span>LAAR 61400 — Representation &amp; Computation I</span><span>Workflow 05 of 06</span>
+  </div>
+
+</div>
+
+    </div>
+    <footer class="site-footer">&copy; 2026 Zihao Zhang &middot; <a rel="license" href="https://creativecommons.org/licenses/by-nc/4.0/">CC BY-NC 4.0</a>, except third-party images</footer>
+  </main>
+
+  <!-- Lightbox -->
+  <div class="wf-lightbox" id="lightbox"><img alt=""></div>
+
+  <script src="/teaching/laar61400/assets/js/nav.js"></script>
+  <script src="/teaching/laar61400/assets/js/wf-progress.js"></script>
+  <script>
+    (function () {
+      var box = document.getElementById('lightbox');
+      var boxImg = box.querySelector('img');
+      document.querySelectorAll('.wf-example-grid img').forEach(function (img) {
+        img.addEventListener('click', function () {
+          boxImg.src = img.src;
+          boxImg.alt = img.alt;
+          box.classList.add('open');
+        });
+      });
+      box.addEventListener('click', function () { box.classList.remove('open'); });
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') box.classList.remove('open');
+      });
+    })();
+  </script>
+</body>
+</html>

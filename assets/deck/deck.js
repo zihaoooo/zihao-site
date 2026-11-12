@@ -1,0 +1,807 @@
+/* ============================================================
+   Slide deck — shared carousel controller (factory standard)
+   Used by teaching/<course>/lectures/ AND talks/<topic>/ — site-wide, not
+   teaching-only, which is why it lives under /assets/.
+   Page-agnostic: reads #deck data attributes.
+     <div class="deck" id="deck" data-deck-id="w04" data-deck-title="Graphic Design 101">
+   Include AFTER nav.js:  <script src="/assets/deck/deck.js"></script>
+   Does NOT include buildChart (timeline) — that stays inline per page.
+   ============================================================ */
+// ── slide deck (carousel) ──────────────────────────────────────────────────
+(function(){
+  const deck = document.getElementById('deck');
+  if(!deck) return;
+  const DECK_ID = deck.dataset.deckId || 'deck';
+  const DECK_TITLE = deck.dataset.deckTitle || '';
+  const slides = [...deck.querySelectorAll('.slide')];
+  const prev  = document.getElementById('deck-prev');
+  const next  = document.getElementById('deck-next');
+  const jump  = document.getElementById('deck-jump');
+  const total = document.getElementById('deck-total');
+  const capEl    = document.getElementById('deck-cap');
+  const creditEl = document.getElementById('deck-credit');
+  const notesEl = document.getElementById('deck-notes');
+  const notesToggle = document.getElementById('deck-notes-toggle');
+  const presentBtn = document.getElementById('deck-present');
+  let i = 0, hot = false, bc = null, lbOpen = false;
+  let scrollView = false;                       // phone scroll view (below); set by setView()
+  let syncThumbs = null, toggleThumbs = null;   // wired up by the thumbnail navigator, below
+  // decrypted verbatim notes, per slide (null until unlocked); Presenter View reads this
+  const fullNotes = window.__deckNotesFull = new Array(slides.length).fill(null);
+  try { bc = new BroadcastChannel('laar61400-' + DECK_ID + '-deck'); } catch(e){}
+  // credit line; data-credit-href turns it into a link (e.g. the source video)
+  function setCredit(el, s){
+    const credit = s.getAttribute('data-credit') || '', href = s.getAttribute('data-credit-href');
+    el.textContent = '';
+    if(!href){ el.textContent = credit; return; }
+    const a = document.createElement('a');
+    a.href = href; a.target = '_blank'; a.rel = 'noopener';
+    a.textContent = credit || href;
+    el.appendChild(a);
+  }
+  function render(){
+    slides.forEach((s,n)=>s.classList.toggle('on', n===i));
+    if(jump !== document.activeElement) jump.value = (i+1);
+    total.textContent = ' / ' + slides.length;
+    const s = slides[i];
+    capEl.innerHTML    = s.getAttribute('data-cap') || '';
+    setCredit(creditEl, s);
+    const note = (s.getAttribute('data-notes') || '').trim();
+    notesEl.innerHTML = note ? note : '<span class="nn-empty">No notes for this slide yet.</span>';
+    prev.disabled = (i === 0);
+    next.disabled = (i === slides.length - 1);
+    deck.style.setProperty('--deck-p', slides.length > 1 ? i/(slides.length-1) : 1);  // scroll-view dock
+    if(bc) bc.postMessage({ type:'idx', i:i });
+    if(syncThumbs) syncThumbs();
+  }
+  function goTo(n){
+    i = Math.min(slides.length-1, Math.max(0, n)); render();
+    // scroll view: every slide is on the page, so moving means scrolling to it. Centre it
+    // (the current slide is the one on the middle line); a slide taller than most of the
+    // screen goes to the top instead so its start is not cut off.
+    if(scrollView) showSlide(i, true);
+  }
+  function showSlide(n, smooth){
+    const s = slides[n];
+    s.scrollIntoView({behavior: smooth ? 'smooth' : 'auto',
+      block: s.offsetHeight < innerHeight*0.8 ? 'center' : 'start'});
+  }
+  function go(d){ goTo(i+d); }
+  prev.addEventListener('click', ()=>go(-1));
+  next.addEventListener('click', ()=>go(1));
+  function commitJump(){
+    const n = parseInt(jump.value, 10);
+    if(!isNaN(n)) goTo(n-1);
+    jump.value = (i+1); // echo back the clamped/valid slide number
+  }
+  jump.addEventListener('keydown', e=>{
+    if(e.key === 'Enter'){ commitJump(); jump.blur(); }
+    e.stopPropagation(); // don't let ←/→ in the field drive the deck
+  });
+  jump.addEventListener('change', commitJump);
+  jump.addEventListener('focus', ()=>jump.select());
+  deck.addEventListener('mouseenter', ()=>hot=true);
+  deck.addEventListener('mouseleave', ()=>hot=false);
+
+  // ── fullscreen present mode ──
+  const fsBtn = document.getElementById('deck-fs');
+  deck.tabIndex = -1;
+  function inFS(){ return (document.fullscreenElement || document.webkitFullscreenElement) === deck; }
+  function toggleFS(){
+    if(inFS()){ (document.exitFullscreen || document.webkitExitFullscreen).call(document); }
+    else {
+      const r = (deck.requestFullscreen || deck.webkitRequestFullscreen).call(deck);
+      if(r && r.catch) r.catch(()=>{}); // browser may refuse without a user gesture
+    }
+  }
+  function onFS(){
+    const f = inFS();
+    fsBtn.innerHTML = f ? '&#x2715;' : '&#x26F6;';
+    fsBtn.setAttribute('aria-label', f ? 'Exit full screen' : 'Present full screen');
+    if(f && deck.focus) deck.focus();
+  }
+  fsBtn.addEventListener('click', toggleFS);
+  document.addEventListener('fullscreenchange', onFS);
+  document.addEventListener('webkitfullscreenchange', onFS);
+
+  document.addEventListener('keydown', e=>{
+    // typing in a field (e.g. a live-code editor on a slide) — let keys through, no deck shortcuts
+    const t = e.target;
+    if(t && (t.isContentEditable || /^(INPUT|TEXTAREA|SELECT)$/.test(t.tagName))) return;
+    if(lbOpen){
+      if(e.key === 'Escape'){ e.preventDefault(); closeLightbox(); return; }
+      // arrows/space still drive the deck — close the zoom and fall through
+      if(['ArrowLeft','ArrowRight','PageUp','PageDown',' '].includes(e.key)) closeLightbox();
+      else return;
+    }
+    if(!(hot || inFS())) return;
+    if(e.key === 'ArrowLeft' || e.key === 'PageUp'){ e.preventDefault(); go(-1); }
+    else if(e.key === 'ArrowRight' || e.key === 'PageDown' || e.key === ' '){ e.preventDefault(); go(1); }
+    else if(e.key === 'f' || e.key === 'F'){ e.preventDefault(); toggleFS(); }
+    else if((e.key === 't' || e.key === 'T') && toggleThumbs && !inFS()){ e.preventDefault(); toggleThumbs(); }
+  });
+
+  // ── notes disclosure (collapsed by default) ──
+  notesToggle.addEventListener('click', ()=>{
+    const opening = notesEl.hasAttribute('hidden');
+    if(opening) notesEl.removeAttribute('hidden'); else notesEl.setAttribute('hidden','');
+    notesToggle.setAttribute('aria-expanded', String(opening));
+  });
+
+  // ── verbatim notes, encrypted at rest ──────────────────────────────────
+  // Slides carry two versions: data-notes (public, synthesized, shown in the
+  // page's notes panel) and data-notes-full (verbatim, AES-GCM ciphertext).
+  // Presenter View is the gate: opening it asks for the passphrase, and the
+  // verbatim text lives only in that window. The passphrase never leaves the
+  // browser; see _local/tools/notes-crypto.py to lock/unlock the source file.
+  const ENC = 'enc:v1:';
+  const PASS_KEY = 'deck-notes-pass-' + DECK_ID;
+  const saltB64 = deck.dataset.notesSalt || '';
+  const sealed = slides.map(s => {
+    const v = s.getAttribute('data-notes-full') || '';
+    return v.startsWith(ENC) ? v.slice(ENC.length) : '';
+  });
+  const notesLocked = !!saltB64 && sealed.some(Boolean) && !!(window.crypto && crypto.subtle);
+  if(notesLocked){
+    presentBtn.title = 'Presenter View (passphrase required)';
+  }
+  async function decryptNotes(pass){
+    const bytes = s => Uint8Array.from(atob(s), c => c.charCodeAt(0));
+    try {
+      const base = await crypto.subtle.importKey('raw', new TextEncoder().encode(pass), 'PBKDF2', false, ['deriveKey']);
+      const key = await crypto.subtle.deriveKey(
+        { name:'PBKDF2', salt:bytes(saltB64), hash:'SHA-256',
+          iterations: parseInt(deck.dataset.notesIter, 10) || 210000 },
+        base, { name:'AES-GCM', length:256 }, false, ['decrypt']);
+      const dec = new TextDecoder();
+      for(let n = 0; n < sealed.length; n++){
+        if(!sealed[n]) continue;
+        const raw = bytes(sealed[n]);
+        fullNotes[n] = dec.decode(await crypto.subtle.decrypt(
+          { name:'AES-GCM', iv: raw.slice(0,12) }, key, raw.slice(12)));
+      }
+      return true;
+    } catch(e){
+      fullNotes.fill(null);
+      localStorage.removeItem(PASS_KEY);
+      return false;
+    }
+  }
+
+  // ── presenter view (synced second window) ──
+  if(bc){
+    bc.onmessage = (ev)=>{
+      const m = ev.data || {};
+      if(m.type === 'go'){ go(m.d); }
+      else if(m.type === 'goto'){ goTo(m.i); }
+      else if(m.type === 'req'){ bc.postMessage({ type:'idx', i:i }); }
+    };
+  }
+  // the page's own stylesheets come first, so slide clones render exactly as on the page;
+  // the presenter chrome below overrides them for the window itself
+  const PAGE_CSS = [...document.querySelectorAll('link[rel="stylesheet"], style')]
+    .map(el => el.tagName === 'LINK' ? '<link rel="stylesheet" href="' + el.href + '">' : el.outerHTML).join('');
+  const PRESENTER_DOC = `<!DOCTYPE html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Presenter — ${DECK_TITLE}</title>
+${PAGE_CSS}
+<style>
+  @import url('${location.origin}/assets/css/tokens.css');
+  :root{color-scheme:dark;} *{box-sizing:border-box;}
+  body{margin:0;padding:0;height:100vh;display:flex;flex-direction:column;background:#0e0e0e;color:var(--gray-150);
+    font-family:var(--font-sans);line-height:1.4;}
+  /* Now is the big frame; Next is smaller and dimmed, so the two never read as a pair */
+  .pv-top{display:grid;grid-template-columns:minmax(0,1.9fr) minmax(0,1fr);gap:16px;align-items:start;
+    padding:12px 14px 4px;}
+  .pv-col{min-width:0;}
+  .pv-tag{font-family:var(--font-mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--gray-500);margin:0 0 5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+  .pv-now .pv-tag{color:var(--accent-on-dark);}
+  .pv-stage{position:relative;aspect-ratio:16/9;width:100%;background:var(--paper);border-radius:4px;
+    overflow:hidden;display:flex;align-items:center;justify-content:center;}
+  .pv-now .pv-stage{max-width:calc(56vh * 16 / 9);box-shadow:0 0 0 2px var(--accent-on-dark);}
+  .pv-next .pv-stage{opacity:.7;}
+  .pv-next .pv-stage.end{background:#1a1a1a;}
+  /* the real slide, cloned at the page's stage size and scaled into the frame (as the
+     thumbnail strip does), so it looks exactly as the room sees it */
+  .pv-scale{position:absolute;top:0;left:0;transform-origin:0 0;container-type:inline-size;pointer-events:none;}
+  .pv-scale .slide{position:absolute;inset:0;opacity:1;visibility:visible;transition:none;}
+  .pv-vid{font-family:var(--font-mono);font-size:12px;color:var(--accent-on-dark);letter-spacing:.06em;}
+  .pv-noteswrap{flex:1;min-height:0;padding:6px 16px 10px;display:flex;flex-direction:column;}
+  .pv-cap{font-size:15px;font-style:italic;color:var(--gray-250);margin:4px 0 8px;}
+  .pv-notes{flex:1;overflow:auto;font-size:19px;line-height:1.6;color:var(--gray-150);
+    border-top:1px solid #2a2a2a;padding-top:10px;}
+  .pv-notes .empty{color:#777;font-style:italic;font-size:15px;}
+  .pv-notes ul{margin:0;padding-left:1.1em;list-style:disc;}
+  .pv-notes ul ul{margin:3px 0;list-style:circle;}
+  .pv-notes li{margin:0 0 7px;}
+  .pv-notes b{color:#fff;font-weight:600;}
+  .pv-bar{display:flex;align-items:center;gap:12px;padding:10px 16px;border-top:1px solid #222;background:#141414;}
+  .pv-btn{appearance:none;background:#1f1f1f;border:1px solid #3a3a3a;color:var(--gray-150);border-radius:7px;
+    padding:7px 13px;font-size:13px;cursor:pointer;white-space:nowrap;}
+  .pv-btn:hover{background:#292929;}
+  .pv-count{font-family:var(--font-mono);font-size:13px;color:var(--gray-400);}
+  .pv-mini{font-family:var(--font-mono);font-size:10px;color:var(--gray-600);}
+  .pv-timer{font-family:var(--font-mono);font-size:16px;color:var(--gray-150);margin-left:auto;}
+  /* ── phone: this window IS the speaker-note view, held at arm's length ──
+     Drop the Next preview (no room for two 16:9 frames), give the notes the
+     screen, and pin the controls in thumb reach. dvh so the bar clears the
+     browser's own chrome instead of hiding beneath it. */
+  @media (max-width:600px){
+    body{height:100dvh;}
+    .pv-top{padding:8px 10px 2px;}
+    .pv-col + .pv-col{display:none;}
+    .pv-tag{font-size:8px;margin-bottom:3px;}
+    .pv-stage{max-height:26dvh;}
+    .pv-noteswrap{padding:8px 14px 4px;}
+    .pv-cap{font-size:14px;margin:2px 0 6px;}
+    .pv-notes{font-size:22px;line-height:1.5;padding-top:8px;}
+    .pv-notes li{margin:0 0 13px;}
+    .pv-bar{gap:7px;padding:8px 10px calc(8px + env(safe-area-inset-bottom));}
+    .pv-btn{padding:15px 12px;font-size:16px;}
+    .pv-count{margin-left:auto;}
+    .pv-mini{display:none;}
+    .pv-count{font-size:15px;}
+    .pv-timer{font-size:17px;}
+  }
+</style></head><body>
+  <div class="pv-top">
+    <div class="pv-col pv-now"><p class="pv-tag" id="pvCurTag">Now</p><div class="pv-stage" id="pvCur"></div></div>
+    <div class="pv-col pv-next"><p class="pv-tag">Next &rarr;</p><div class="pv-stage" id="pvNext"></div></div>
+  </div>
+  <div class="pv-noteswrap">
+    <div class="pv-cap" id="pvCap"></div>
+    <div class="pv-notes" id="pvNotes"></div>
+  </div>
+  <div class="pv-bar">
+    <button class="pv-btn" id="pvPrev">&lsaquo; Prev</button>
+    <button class="pv-btn" id="pvNext2">Next &rsaquo;</button>
+    <span class="pv-count" id="pvCount">&ndash; / &ndash;</span>
+    <span class="pv-mini">&larr;&rarr; navigate &middot; synced with the page</span>
+    <span class="pv-timer" id="pvTimer">00:00</span>
+    <button class="pv-btn" id="pvReset">Reset timer</button>
+  </div>
+<script>
+(function(){
+  var op = window.opener;
+  if(!op){ document.getElementById('pvNotes').textContent = 'Opener window lost — close this and reopen Presenter from the page.'; return; }
+  var vb = op.__deckNotesFull || [];   // verbatim notes, if the page has been unlocked
+  var stageEl = op.document.getElementById('deck-stage');
+  var slides = [].slice.call(op.document.querySelectorAll('#deck-stage .slide')).map(function(s,ix){
+    return { el:s, era:s.getAttribute('data-era')||'', cap:s.getAttribute('data-cap')||'',
+      notes:(vb[ix] || s.getAttribute('data-notes')||'').trim() };
+  });
+  // clone the live slide at paint time (so the layout the page computed for its stage
+  // comes along) at that stage size, then scale the clone into the frame
+  function show(frame, s){
+    frame.innerHTML = ''; frame.classList.toggle('end', !s);
+    if(!s){ frame.innerHTML = '<div class="pv-vid" style="color:var(--gray-700)">&mdash; end &mdash;</div>'; return; }
+    if(s.el.querySelector('iframe')){ frame.innerHTML = '<div class="pv-vid">&#9654; video slide</div>'; return; }
+    var SW = (stageEl && stageEl.clientWidth) || 1280, SH = (stageEl && stageEl.clientHeight) || 720;
+    var sc = document.createElement('div');
+    sc.className = 'pv-scale'; sc.style.width = SW+'px'; sc.style.height = SH+'px'; sc.dataset.w = SW;
+    var c = s.el.cloneNode(true); c.removeAttribute('id');
+    sc.appendChild(c); frame.appendChild(sc); fit(frame);
+  }
+  function fit(frame){
+    var sc = frame.querySelector('.pv-scale');
+    if(sc) sc.style.transform = 'scale(' + (frame.clientWidth / sc.dataset.w) + ')';
+  }
+  var total = slides.length, cur = 0;
+  var bc = null; try{ bc = new BroadcastChannel('laar61400-${DECK_ID}-deck'); }catch(e){}
+  var elCur=document.getElementById('pvCur'), elNext=document.getElementById('pvNext'),
+      elCap=document.getElementById('pvCap'), elNotes=document.getElementById('pvNotes'),
+      elCount=document.getElementById('pvCount'), elCurTag=document.getElementById('pvCurTag');
+  function paint(){
+    var s = slides[cur]||{}, n = slides[cur+1];
+    show(elCur, slides[cur]); show(elNext, n);
+    elCap.textContent = s.cap||'';
+    elCurTag.textContent = 'Now' + (s.era ? ' · ' + s.era : '');
+    elNotes.innerHTML = s.notes ? s.notes : '<span class="empty">No notes for this slide yet.</span>';
+    elCount.textContent = (cur+1)+' / '+total;
+  }
+  window.addEventListener('resize', function(){ fit(elCur); fit(elNext); });
+  function send(d){ if(bc) bc.postMessage({ type:'go', d:d }); }
+  document.getElementById('pvPrev').onclick = function(){ send(-1); };
+  document.getElementById('pvNext2').onclick = function(){ send(1); };
+  document.addEventListener('keydown', function(e){
+    if(e.key==='ArrowRight'||e.key==='ArrowDown'||e.key==='PageDown'||e.key===' '){ e.preventDefault(); send(1); }
+    else if(e.key==='ArrowLeft'||e.key==='ArrowUp'||e.key==='PageUp'){ e.preventDefault(); send(-1); }
+  });
+  if(bc){ bc.onmessage = function(ev){ var m = ev.data||{}; if(m.type==='idx'){ cur = m.i; paint(); } }; bc.postMessage({ type:'req' }); }
+  var t0 = Date.now(), tEl = document.getElementById('pvTimer');
+  function tick(){ var s=Math.floor((Date.now()-t0)/1000); tEl.textContent = String(Math.floor(s/60)).padStart(2,'0')+':'+String(s%60).padStart(2,'0'); }
+  setInterval(tick,1000); tick();
+  document.getElementById('pvReset').onclick = function(){ t0 = Date.now(); tick(); };
+  paint();
+})();
+<\/script></body></html>`;
+  presentBtn.addEventListener('click', async ()=>{
+    // prompt() is synchronous, so the click gesture survives it and the popup opens;
+    // decryption is awaited only after the window exists.
+    const needs = notesLocked && !fullNotes.some(Boolean);
+    const pass = needs ? (localStorage.getItem(PASS_KEY) || prompt('Passphrase for speaker notes:')) : null;
+    if(needs && !pass) return;
+    const w = window.open('', 'laar61400-' + DECK_ID + '-presenter', 'width=940,height=720');
+    if(!w){ alert('Popup blocked — allow popups for this site to open Presenter view.'); return; }
+    if(needs && !await decryptNotes(pass)){
+      w.close();
+      alert('Wrong passphrase.');
+      return;
+    }
+    if(needs) localStorage.setItem(PASS_KEY, pass);
+    w.document.open(); w.document.write(PRESENTER_DOC); w.document.close();
+  });
+
+  // ── justified "fit-to-box" layout for .auto slides (equal height, no crop, PPT-style) ──
+  const stage = document.getElementById('deck-stage');
+  // Each slide is measured on its own: in the carousel it fills the stage (same numbers),
+  // in the phone scroll view each slide is its own box.
+  function layoutAuto(){
+    if(!stage) return;
+    const FILL_W = 1.00;  // full-bleed left/right → width-bound groups align with the 12-col content edge
+    const FILL_H = 0.90;  // breathing margin top/bottom
+    // aspect from the loaded image, else from its width/height attributes (a lazy image on a
+    // hidden slide has not loaded yet), else square
+    const arOf = fig => { const im = fig.querySelector('img'); if(!im) return 1;
+      const w = im.naturalWidth || +im.getAttribute('width'), h = im.naturalHeight || +im.getAttribute('height');
+      return (w && h) ? w/h : 1; };
+    deck.querySelectorAll('.slide.auto').forEach(s=>{
+      const W = s.clientWidth, H = s.clientHeight;
+      if(!W || !H) return;
+      const figs = [...s.querySelectorAll(':scope > figure')];
+      if(!figs.length) return;
+      const gap = parseFloat(getComputedStyle(s).columnGap) || 0;
+      let sumA = 0;
+      const ars = figs.map(fig=>{ const a = arOf(fig); sumA += a; return a; });
+      const n = figs.length;
+      const hByW = (FILL_W*W - (n-1)*gap) / sumA;  // tallest row that fits the width budget
+      const hByH = FILL_H*H;                        // tallest row that fits the height budget
+      const h = Math.max(0, Math.min(hByW, hByH));
+      figs.forEach((fig,k)=>{ fig.style.height = h+'px'; fig.style.width = (ars[k]*h)+'px'; });
+    });
+    // hero + stack: hero fills the frame (cover-cropped); two whole images stacked beside it
+    deck.querySelectorAll('.slide.hero-l, .slide.hero-r').forEach(s=>{
+      const W = s.clientWidth, H = s.clientHeight;
+      if(!W || !H) return;
+      const heroLeft = s.classList.contains('hero-l');
+      const fit = s.classList.contains('fit');   // hero reads whole (contained) vs. cover-cropped
+      // hero + ROWS variant: the non-hero side is a multi-row gallery (each row wrapped in <div class="row">,
+      // like auto-rows). Hero is the first <figure>; rows fill the other column, auto-rows-justified, the
+      // block's total height matched to the hero height. Detected by the presence of .row children.
+      const heroRows = [...s.querySelectorAll(':scope > .row')];
+      if(heroRows.length){
+        const hero = s.querySelector(':scope > figure');
+        if(!hero) return;
+        const colGapS = parseFloat(getComputedStyle(s).columnGap) || 0;
+        const rowGapS = parseFloat(getComputedStyle(s).rowGap) || 0;
+        const Ht0 = FILL_H*H;
+        const rd = heroRows.map(r=>{
+          const rfigs = [...r.querySelectorAll(':scope > figure')];
+          const cg = parseFloat(getComputedStyle(r).columnGap) || 0;
+          let sumA = 0; const ars = rfigs.map(f=>{ const a = arOf(f); sumA += a; return a; });
+          return { figs:rfigs, ars, sumA, cg, n:rfigs.length };
+        });
+        // solve for the right-column width Wcol that makes the rows' stacked height == hero height Ht0
+        const invSum = rd.reduce((t,d)=>t + 1/d.sumA, 0);
+        const gapCorr = rd.reduce((t,d)=>t + (d.n-1)*d.cg/d.sumA, 0);
+        const Wcol = (Ht0 - (heroRows.length-1)*rowGapS + gapCorr) / invSum;
+        const heroW0 = fit ? arOf(hero)*Ht0 : Math.max(0, FILL_W*W - colGapS - Wcol);
+        // scale down if the composite is wider than the width budget (keeps every aspect ratio)
+        const composite = heroW0 + colGapS + Wcol;
+        const sc = composite > FILL_W*W ? (FILL_W*W)/composite : 1;
+        const Ht = Ht0*sc;
+        hero.style.gridColumn = heroLeft ? '1' : '2';
+        hero.style.gridRow = '1 / '+(heroRows.length+1);
+        hero.style.width = (heroW0*sc)+'px'; hero.style.height = Ht+'px';
+        rd.forEach((d,i)=>{
+          const hr = ((Wcol*sc) - (d.n-1)*d.cg)/d.sumA;
+          heroRows[i].style.gridColumn = heroLeft ? '2' : '1';
+          heroRows[i].style.gridRow = (i+1)+'';
+          d.figs.forEach((f,k)=>{ f.style.height = hr+'px'; f.style.width = (d.ars[k]*hr)+'px'; });
+        });
+        return;
+      }
+      const figs = [...s.querySelectorAll(':scope > figure')];
+      if(figs.length < 3) return;
+      const stack = figs.slice(1), n = stack.length;
+      const gap = parseFloat(getComputedStyle(s).rowGap) || 0;
+      const maxArS = Math.max(...stack.map(arOf));
+      // hero fills the frame (cover-cropped); N stack cells keep their aspect (whole), equal height.
+      // composite is the full width budget and the height budget; hero takes the leftover width.
+      const Ht = FILL_H*H;                            // composite height (full height budget)
+      const sH = (Ht-(n-1)*gap)/n, stackW = maxArS*sH;       // each stack cell: whole, aspect-sized
+      // fit: hero sized to its own aspect (whole, contained); else fills leftover width (cover-cropped)
+      const heroW = fit ? arOf(figs[0])*Ht : Math.max(0, FILL_W*W - gap - stackW);
+      // placement: hero spans all rows of its column; stack fills the other column top→bottom
+      figs[0].style.gridColumn = heroLeft ? '1' : '2';
+      figs[0].style.gridRow = '1 / '+(n+1);
+      figs[0].style.width = heroW+'px'; figs[0].style.height = Ht+'px';
+      stack.forEach((f,i)=>{ f.style.gridColumn = heroLeft ? '2' : '1';
+        f.style.gridRow = (i+1)+''; f.style.width = stackW+'px'; f.style.height = sH+'px'; });
+    });
+    // auto-rows: each .row justified to box width; rows stacked, whole block scaled to 90% height
+    deck.querySelectorAll('.slide.auto-rows').forEach(s=>{
+      const W = s.clientWidth, H = s.clientHeight;
+      if(!W || !H) return;
+      const rows = [...s.querySelectorAll(':scope > .row')];
+      if(!rows.length) return;
+      const rowGap = parseFloat(getComputedStyle(s).rowGap) || 0;
+      const data = rows.map(r=>{
+        const figs = [...r.querySelectorAll(':scope > figure')];
+        const colGap = parseFloat(getComputedStyle(r).columnGap) || 0;
+        let sumA = 0; const ars = figs.map(f=>{ const a = arOf(f); sumA += a; return a; });
+        const hFill = (FILL_W*W - (figs.length-1)*colGap) / sumA;  // row height to fill the width
+        return { figs, ars, hFill };
+      });
+      const totalH = data.reduce((t,d)=>t+d.hFill, 0) + (rows.length-1)*rowGap;
+      const scale = totalH > FILL_H*H ? (FILL_H*H)/totalH : 1;     // shrink if too tall
+      data.forEach(d=>{ const h = d.hFill*scale;
+        d.figs.forEach((f,k)=>{ f.style.height = h+'px'; f.style.width = (d.ars[k]*h)+'px'; }); });
+    });
+  }
+  deck.querySelectorAll('.slide.auto img, .slide.hero-l img, .slide.hero-r img, .slide.auto-rows img').forEach(im=>{
+    if(!im.complete) im.addEventListener('load', layoutAuto, {once:true});
+  });
+  let _lt; window.addEventListener('resize', ()=>{ clearTimeout(_lt); _lt=setTimeout(layoutAuto, 80); });
+  document.addEventListener('fullscreenchange', ()=>setTimeout(layoutAuto, 60));
+  document.addEventListener('webkitfullscreenchange', ()=>setTimeout(layoutAuto, 60));
+
+  // ── click-to-zoom lightbox: click an image to fit-to-screen, scroll to zoom further, drag to pan ──
+  let lbEl = null, lbImg = null;
+  let lbScale = 1, lbTx = 0, lbTy = 0, lbDragging = false, lbMoved = false, lbLastX = 0, lbLastY = 0;
+  const LB_MAX = 6;
+  function lbApply(){
+    lbImg.style.transform = 'translate(' + lbTx + 'px,' + lbTy + 'px) scale(' + lbScale + ')';
+    lbImg.style.cursor = lbScale > 1 ? (lbDragging ? 'grabbing' : 'grab') : 'zoom-out';
+  }
+  function lbReset(){ lbScale = 1; lbTx = 0; lbTy = 0; }
+  function buildLightbox(){
+    const st = document.createElement('style');
+    st.textContent =
+      '.deck-lightbox{position:fixed;inset:0;z-index:9999;display:none;align-items:center;justify-content:center;'
+      + 'background:rgba(12,12,12,.92);cursor:zoom-out;padding:2.5%;overflow:hidden;}'
+      + '.deck-lightbox.on{display:flex;}'
+      + '.deck-lightbox img{max-width:100%;max-height:100%;object-fit:contain;transform-origin:0 0;'
+      + 'box-shadow:0 10px 40px rgba(0,0,0,.5);border-radius:2px;}'
+      + '#deck-stage img{cursor:pointer;}';
+    deck.appendChild(st);
+    lbEl = document.createElement('div');
+    lbEl.className = 'deck-lightbox';
+    lbEl.setAttribute('role', 'dialog');
+    lbEl.setAttribute('aria-label', 'Image zoom — scroll to zoom, drag to pan, click to close');
+    lbImg = document.createElement('img');
+    lbImg.draggable = false;
+    lbEl.appendChild(lbImg);
+
+    // backdrop or unzoomed image → close; while zoomed, a click that wasn't a drag does nothing
+    lbEl.addEventListener('click', e=>{
+      if(lbMoved){ lbMoved = false; return; }
+      if(e.target === lbEl || lbScale === 1) closeLightbox();
+    });
+    // scroll to zoom toward the cursor
+    lbEl.addEventListener('wheel', e=>{
+      e.preventDefault();
+      const r = lbImg.getBoundingClientRect();
+      const dx = e.clientX - r.left, dy = e.clientY - r.top;
+      const s2 = Math.min(LB_MAX, Math.max(1, lbScale * (e.deltaY < 0 ? 1.15 : 1/1.15)));
+      lbTx += dx * (1 - s2/lbScale);
+      lbTy += dy * (1 - s2/lbScale);
+      lbScale = s2;
+      if(lbScale === 1){ lbTx = 0; lbTy = 0; }
+      lbApply();
+    }, {passive:false});
+    // drag to pan when zoomed
+    lbImg.addEventListener('mousedown', e=>{
+      if(lbScale === 1) return;
+      e.preventDefault(); lbDragging = true; lbMoved = false; lbLastX = e.clientX; lbLastY = e.clientY; lbApply();
+    });
+    window.addEventListener('mousemove', e=>{
+      if(!lbDragging) return;
+      lbTx += e.clientX - lbLastX; lbTy += e.clientY - lbLastY;
+      lbLastX = e.clientX; lbLastY = e.clientY; lbMoved = true; lbApply();
+    });
+    window.addEventListener('mouseup', ()=>{ if(lbDragging){ lbDragging = false; lbApply(); } });
+    deck.appendChild(lbEl);
+  }
+  function openLightbox(src, alt){
+    if(!lbEl) buildLightbox();
+    lbReset();
+    lbImg.src = src; lbImg.alt = alt || '';
+    lbApply();
+    lbEl.classList.add('on'); lbOpen = true;
+  }
+  function closeLightbox(){
+    if(!lbEl) return;
+    lbEl.classList.remove('on'); lbImg.src = ''; lbOpen = false; lbReset();
+  }
+  if(stage){
+    buildLightbox();
+    stage.addEventListener('click', e=>{
+      const im = e.target.closest('img');
+      if(!im || !stage.contains(im)) return;
+      openLightbox(im.currentSrc || im.src, im.alt);
+    });
+  }
+
+
+  // -- thumbnail navigator (slide sorter) --------------------------------
+  // A vertical, scrollable strip of live slide thumbnails on the right edge of
+  // the stage: click one to jump. Each thumb is a clone of the slide rendered at
+  // stage size and scaled down with a transform, so it always matches the real
+  // layout -- no exported images to keep in sync. Built on first open (cloning
+  // every slide up front is wasted work on a deck nobody navigates) and rebuilt
+  // whenever the stage changes size, since the clones inherit px-sized layout.
+  if(stage){
+    let _ft;
+    // the panel opens OUTSIDE the stage, in the margin beside it: the row is just
+    // the positioning box, so the stage keeps its own size and is never covered
+    const row = document.createElement('div');
+    row.className = 'deck-row';
+    stage.parentNode.insertBefore(row, stage);
+    row.appendChild(stage);
+    const panel = document.createElement('aside');
+    panel.className = 'deck-thumbs';
+    panel.id = 'deck-thumbs';
+    panel.setAttribute('aria-label', 'Slide thumbnails');
+    panel.innerHTML = '<div class="deck-thumbs-inner"><div class="deck-thumbs-head">'
+      + '<span class="deck-thumbs-title">Slides</span>'
+      + '<button class="deck-thumbs-close" type="button" aria-label="Close thumbnails">&#x2715;</button>'
+      + '</div><div class="deck-thumbs-list" id="deck-thumbs-list"></div></div>';
+    row.appendChild(panel);
+    const list = panel.querySelector('#deck-thumbs-list');
+    let thumbs = [], built = false, builtW = 0, _park;
+
+    // the clones are laid out at full stage size; scale each into its 16:9 frame
+    function fitThumbs(){
+      const SW = stage.clientWidth, SH = stage.clientHeight;
+      if(!SW || !SH) return;
+      list.querySelectorAll('.deck-thumb-scale').forEach(sc=>{
+        const w = sc.parentElement.clientWidth;
+        if(!w) return;
+        sc.style.width = SW + 'px'; sc.style.height = SH + 'px';
+        sc.style.transform = 'scale(' + (w / SW) + ')';
+      });
+    }
+    function build(){
+      const SW = stage.clientWidth, SH = stage.clientHeight;
+      list.innerHTML = '';
+      thumbs = [];
+      slides.forEach((s, n)=>{
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'deck-thumb';
+        btn.setAttribute('aria-label', 'Go to slide ' + (n + 1));
+        const num = document.createElement('span');
+        num.className = 'deck-thumb-n';
+        num.textContent = (n + 1);
+        const frame = document.createElement('div');
+        frame.className = 'deck-thumb-frame';
+        if(s.querySelector('iframe')){
+          // embedded video: show a marker rather than loading a second player
+          frame.innerHTML = '<span class="deck-thumb-vid">&#9654;</span>';
+        } else {
+          const sc = document.createElement('div');
+          sc.className = 'deck-thumb-scale';
+          sc.style.width = SW + 'px'; sc.style.height = SH + 'px';
+          const clone = s.cloneNode(true);
+          clone.classList.remove('on');
+          clone.removeAttribute('id');
+          sc.appendChild(clone);
+          frame.appendChild(sc);
+        }
+        btn.append(num, frame);
+        btn.addEventListener('click', ()=>goTo(n));
+        list.appendChild(btn);
+        thumbs.push(btn);
+      });
+      built = true; builtW = SW;
+      fitThumbs();
+      if(syncThumbs) syncThumbs();
+    }
+    syncThumbs = function(){
+      thumbs.forEach((t, n)=>t.classList.toggle('active', n === i));
+      const cur = thumbs[i];
+      if(cur && panel.classList.contains('on')){
+        const top = cur.offsetTop, bot = top + cur.offsetHeight;
+        if(top < list.scrollTop || bot > list.scrollTop + list.clientHeight){
+          list.scrollTop = top - (list.clientHeight - cur.offsetHeight) / 2;
+        }
+      }
+    };
+    toggleThumbs = function(force){
+      const open = (force === undefined) ? !panel.classList.contains('on') : force;
+      // closed, the strip is display:none: parked beside the stage it would still widen the page
+      clearTimeout(_park);
+      if(open){
+        panel.classList.add('open');
+        place();
+        if(!built || builtW !== stage.clientWidth) build(); else fitThumbs();
+        void panel.offsetWidth;                         // commit display before the fade-in
+      } else {
+        row.style.transform = '';
+        _park = setTimeout(()=>{ if(!panel.classList.contains('on')) panel.classList.remove('open'); }, 230);
+      }
+      panel.classList.toggle('on', open);
+      thumbBtn.setAttribute('aria-expanded', String(open));
+      if(open) syncThumbs();
+    };
+    // Size the strip to the margin that is actually free beside the stage, and shift
+    // the row left only by the shortfall — so the stage never gives up any width and
+    // the strip never runs off the viewport. Measured in JS because the space depends
+    // on the deck's position in the page, which a media query cannot see.
+    function place(){
+      const GAP = 10, MAXW = 232, MINW = 108, EDGE = 8;
+      row.style.transform = '';                       // measure the row where it really sits
+      const r = row.getBoundingClientRect();
+      const vw = document.documentElement.clientWidth;
+      const roomL = Math.max(0, r.left - EDGE), roomR = Math.max(0, vw - r.right - EDGE);
+      // take the right margin first, down to a readable minimum; borrow from the left
+      // (by sliding the row) only for whatever that minimum still lacks
+      const w = Math.round(Math.max(MINW, Math.min(MAXW, roomR - GAP)));
+      panel.style.setProperty('--thumbW', w + 'px');
+      const shift = Math.round(Math.max(0, Math.min(roomL, w + GAP - roomR)));
+      if(shift) row.style.transform = 'translateX(-' + shift + 'px)';
+    }
+    const thumbBtn = document.createElement('button');
+    thumbBtn.type = 'button';
+    thumbBtn.className = 'deck-btn';
+    thumbBtn.id = 'deck-thumbs-toggle';
+    thumbBtn.setAttribute('aria-label', 'Slide thumbnails');
+    thumbBtn.setAttribute('aria-controls', 'deck-thumbs');
+    thumbBtn.setAttribute('aria-expanded', 'false');
+    thumbBtn.title = 'Slide thumbnails (T)';
+    thumbBtn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" '
+      + 'viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5">'
+      + '<rect x="1.6" y="1.6" width="5.4" height="4.4" rx="1"/>'
+      + '<rect x="1.6" y="10" width="5.4" height="4.4" rx="1"/>'
+      + '<path d="M9.6 3.2h4.8M9.6 5.6h3.2M9.6 11.6h4.8M9.6 14h3.2" stroke-linecap="round"/></svg>';
+    thumbBtn.addEventListener('click', ()=>toggleThumbs());
+    fsBtn.parentNode.insertBefore(thumbBtn, fsBtn);
+    panel.querySelector('.deck-thumbs-close').addEventListener('click', ()=>toggleThumbs(false));
+    document.addEventListener('keydown', e=>{
+      if(e.key === 'Escape' && panel.classList.contains('on') && !lbOpen){ e.preventDefault(); toggleThumbs(false); }
+    });
+    window.addEventListener('resize', ()=>{ clearTimeout(_ft); _ft = setTimeout(()=>{
+      if(!built) return;
+      if(panel.classList.contains('on')) place();
+      if(builtW !== stage.clientWidth) build(); else fitThumbs();
+    }, 140); });
+    // entering/leaving fullscreen resizes the stage: the px-sized clones must be redrawn.
+    // present mode has no strip, so close it on the way in and let the row sit centred.
+    const reflow = ()=>setTimeout(()=>{
+      if(inFS() && panel.classList.contains('on')) toggleThumbs(false);
+      if(!built) return;
+      if(panel.classList.contains('on')) place();
+      build();
+    }, 120);
+    document.addEventListener('fullscreenchange', reflow);
+    document.addEventListener('webkitfullscreenchange', reflow);
+  }
+
+  // ── fit typeset cards (.embed) to their slide ──────────────────────────
+  // Cards are authored wide and scaled down, never up. In the carousel a card fits the
+  // slide both ways; in the scroll view it fits the width and the slide grows to the
+  // scaled card (never shorter than 16:9), so copy is never clipped or scrolled.
+  const embeds = [...deck.querySelectorAll('.slide .embed')];
+  function fitEmbeds(){
+    embeds.forEach(e=>{
+      const c = e.firstElementChild, s = e.closest('.slide');
+      if(!c || !s) return;
+      s.style.height = '';
+      c.style.transform = 'none';
+      const SW = s.clientWidth, SH = s.clientHeight, w = c.offsetWidth, h = c.offsetHeight;
+      if(!SW || !SH || !w || !h) return;
+      let k;
+      if(scrollView){
+        k = Math.min(1, (SW-28)/w);
+        s.style.height = Math.ceil(Math.max(SW*9/16, h*k + 28)) + 'px';
+      } else {
+        k = Math.min(1, (SW-28)/w, (SH-28)/h);   // minus .embed padding (14px each side)
+      }
+      c.style.transform = k < 1 ? 'scale(' + k + ')' : 'none';
+    });
+  }
+  window.addEventListener('load', ()=>setTimeout(fitEmbeds, 0));
+  let _fe; window.addEventListener('resize', ()=>{ clearTimeout(_fe); _fe = setTimeout(fitEmbeds, 120); });
+  document.addEventListener('fullscreenchange', ()=>setTimeout(fitEmbeds, 100));
+  document.addEventListener('webkitfullscreenchange', ()=>setTimeout(fitEmbeds, 100));
+
+  // ── phone scroll view ────────────────────────────────────────────────────
+  // Below 560px the carousel becomes one long column (after reveal.js's scroll view):
+  // every slide stacked at full width with its caption under it, and the control bar +
+  // notes moved into a dock pinned to the bottom of the screen while the deck is in view.
+  // The slide crossing the middle of the screen is the current one; prev/next scroll to
+  // the neighbours. Fullscreen present mode is the carousel again. CSS: .deck--scroll.
+  const bar = deck.querySelector('.deck-bar');
+  if(stage && bar){
+    const phone = window.matchMedia('(max-width:560px)');
+    // captions under each slide (hidden outside the scroll view)
+    slides.forEach(s=>{
+      const cap = s.getAttribute('data-cap') || '', credit = s.getAttribute('data-credit') || '';
+      if(!cap && !credit) return;
+      const p = document.createElement('div');
+      p.className = 'deck-scap';
+      p.innerHTML = (cap ? '<span class="deck-cap">' + cap + '</span>' : '')
+        + (credit ? '<span class="deck-credit"></span>' : '');
+      if(credit) setCredit(p.querySelector('.deck-credit'), s);
+      s.after(p);
+    });
+    // the dock; bar and notes move in and out of it, back to where they were
+    const dock = document.createElement('div');
+    dock.className = 'deck-dock';
+    deck.appendChild(dock);
+    const barHome = document.createComment('deck-bar'), notesHome = document.createComment('deck-notes');
+    bar.before(barHome);
+    notesEl.before(notesHome);
+    // the current slide is the one crossing the middle of the screen
+    const current = new IntersectionObserver(entries=>{
+      entries.forEach(en=>{
+        if(!en.isIntersecting) return;
+        const n = slides.indexOf(en.target);
+        if(n > -1 && n !== i){ i = n; render(); }
+      });
+    }, { rootMargin:'-50% 0px -50% 0px' });
+    // the page can end before the last slide reaches the middle line: at the very bottom,
+    // a last slide that is on screen is the current one
+    let _atEnd = 0;
+    window.addEventListener('scroll', ()=>{
+      if(!scrollView || _atEnd) return;
+      _atEnd = requestAnimationFrame(()=>{
+        _atEnd = 0;
+        const last = slides.length - 1;
+        if(i === last || innerHeight + scrollY < document.documentElement.scrollHeight - 2) return;
+        if(slides[last].getBoundingClientRect().top < innerHeight){ i = last; render(); }
+      });
+    }, {passive:true});
+    // the dock shows while any of the deck is on screen
+    const inView = new IntersectionObserver(entries=>{
+      entries.forEach(en=>dock.classList.toggle('show', en.isIntersecting));
+    });
+    function setView(){
+      const on = phone.matches && !inFS();
+      if(on === scrollView) return;
+      scrollView = on;
+      if(on){
+        if(toggleThumbs) toggleThumbs(false);
+        dock.append(notesEl, bar);
+        slides.forEach(s=>current.observe(s));
+        inView.observe(stage);
+      } else {
+        barHome.after(bar);
+        notesHome.after(notesEl);
+        current.disconnect();
+        inView.disconnect();
+        dock.classList.remove('show');
+      }
+      deck.classList.toggle('deck--scroll', on);
+      fitEmbeds();
+      layoutAuto();
+      render();
+      // back from fullscreen: land on the slide that was being presented
+      if(on && i > 0) showSlide(i, false);
+    }
+    (phone.addEventListener ? phone.addEventListener('change', setView) : phone.addListener(setView));
+    document.addEventListener('fullscreenchange', ()=>setTimeout(setView, 0));
+    document.addEventListener('webkitfullscreenchange', ()=>setTimeout(setView, 0));
+    setView();
+  }
+  // no fullscreen API (iPhone Safari): drop the button rather than offer a dead one
+  if(!(document.fullscreenEnabled || document.webkitFullscreenEnabled)) fsBtn.style.display = 'none';
+
+  render();
+  layoutAuto();
+  fitEmbeds();
+})();
+
+/* Local-only editor auto-loader. Inert on the live site: the hostname check fails
+   off localhost, and _local/ is gitignored so it never deploys. Open any deck page
+   with ?edit on a local dev server to load the visual edit overlay. */
+(function () {
+  var h = location.hostname;
+  if ((h === 'localhost' || h === '127.0.0.1') && /[?&]edit\b/.test(location.search)) {
+    var s = document.createElement('script');
+    s.src = '/_local/deck-editor.js?' + Date.now();
+    document.body.appendChild(s);
+  }
+})();

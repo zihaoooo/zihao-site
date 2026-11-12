@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Projects &mdash; Zihao Zhang</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" href="/assets/css/tokens.css" as="style">
+  <link rel="stylesheet" href="/assets/css/site.css">
+  <style>
+    .project-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px 24px;
+      margin-top: 28px;
+    }
+
+    .project-card {
+      display: block;
+      text-decoration: none;
+    }
+
+    a.project-card:hover .project-thumb {
+      opacity: 0.85;
+      transition: opacity 0.15s;
+    }
+
+    /* Cards that wrap image in a div instead of using .project-thumb directly */
+    a.project-card:hover > div:first-child {
+      opacity: 0.85;
+      transition: opacity 0.15s;
+    }
+
+    a.project-card:hover .project-title {
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    .project-thumb {
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      object-fit: cover;
+      border: 1px solid var(--gray-200);
+      border-radius: 3px;
+      background: var(--gray-100);
+      display: block;
+    }
+
+    .project-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--gray-900);
+      margin-top: 12px;
+      line-height: 1.3;
+    }
+
+    .project-meta {
+      font-size: 11px;
+      color: var(--gray-500);
+      margin-top: 2px;
+    }
+
+
+    @media (max-width: 700px) {
+      .project-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+  <link rel="icon" href="/favicon.ico" sizes="16x16 32x32 48x48">
+  <link rel="apple-touch-icon" href="/assets/icons/apple-touch-icon.png">
+</head>
+<body>
+
+  <div id="site-wrap">
+
+    <nav id="site-nav">
+      <a class="site-nav-name" href="/">Zihao Zhang</a>
+      <span class="site-nav-zh">张子豪</span>
+      <p class="site-nav-meta">Associate Professor<br>Landscape Architecture<br>City College of New York</p>
+      <div class="site-nav-links">
+        <details class="site-nav-projects" open>
+          <summary class="active"><a href="/projects/">Projects</a></summary>
+          <div class="site-nav-sublinks">
+            <a class="site-nav-sublink" href="/projects/hundredquarters/">Hundred Quarters</a>
+            <a class="site-nav-sublink" href="/projects/ghagent/">GH Agent</a>
+            <a class="site-nav-sublink" href="/projects/hole/">A Hole in the Park</a>
+            <a class="site-nav-sublink" href="/projects/hydroponics/">Hydroponic</a>
+            <a class="site-nav-sublink" href="/projects/thresholds/">Thresholds of Winter</a>
+            <a class="site-nav-sublink" href="/projects/flushing/">Flushing</a>
+            <a class="site-nav-sublink" href="/projects/seedbomb/">Seed Bomb</a>
+            <a class="site-nav-sublink" href="/projects/harlemlane/">Harlem Lane</a>
+            <a class="site-nav-sublink" href="/projects/eastharlem/">East Harlem Polder</a>
+            <a class="site-nav-sublink" href="/projects/elua/">ELUA</a>
+            <a class="site-nav-sublink" href="/projects/shroomdrone/">Shroom Drone</a>
+            <a class="site-nav-sublink" href="/projects/othernatures/">Other Natures</a>
+            <a class="site-nav-sublink" href="/projects/cyborgbloom/">Cyborg Bloom</a>
+            <a class="site-nav-sublink" href="/projects/sensing/">Urban Sensing</a>
+          </div>
+        </details>
+        <a class="site-nav-link" href="/publications/">Publications</a>
+        <a class="site-nav-link" href="/teaching/">Teaching</a>
+        <a class="site-nav-link" href="/talks/">Talks</a>
+      </div>
+      <a class="site-nav-seal" href="/" title="Home"><img src="/assets/icons/seal.png" alt="張子豪 seal — home" width="38" height="38"></a>
+    </nav>
+
+    <main id="site-main">
+      <h1 class="site-title">Projects</h1>
+
+      <div class="project-grid">
+        <a class="project-card" href="/projects/hundredquarters/">
+          <div style="overflow:hidden;aspect-ratio:4/3;border-radius:3px;">
+            <img src="/assets/img/thumbs/hundredquarters.avif" alt="Hundred Quarters" style="width:100%;height:100%;object-fit:cover;display:block;object-position:62% 50%;" width="550" height="309">
+          </div>
+          <div class="project-title">Hundred Quarters</div>
+          <div class="project-meta">2026 &middot; Digital Art &middot; Simulation</div>
+        </a>
+        <a class="project-card" href="/projects/ghagent/">
+          <div style="overflow:hidden;aspect-ratio:4/3;border-radius:3px;border:1px solid var(--gray-200);background:#F8F3EB;">
+            <img src="/assets/img/projects/GHAgent/gh-agent-hero.svg" alt="GH Agent" style="width:100%;height:100%;object-fit:cover;display:block;object-position:75% 50%;" width="1294" height="722">
+          </div>
+          <div class="project-title">GH Agent</div>
+          <div class="project-meta">2026 &middot; Developer Tool</div>
+        </a>
+        <a class="project-card" href="/projects/hole/">
+          <img class="project-thumb" src="/assets/img/thumbs/hole.avif" alt="A Hole in the Park" width="550" height="309">
+          <div class="project-title">A Hole in the Park</div>
+          <div class="project-meta">2026 &middot; Land Art<span class="ose-tag">OSE</span></div>
+        </a>
+        <a class="project-card" href="/projects/hydroponics/">
+          <img class="project-thumb" src="/assets/img/thumbs/hydroponics.avif" alt="Hydroponic" width="450" height="450">
+          <div class="project-title">Hydroponic</div>
+          <div class="project-meta">2025 &middot; Side Project</div>
+        </a>
+        <a class="project-card" href="/projects/thresholds/">
+          <img class="project-thumb" src="/assets/img/thumbs/thresholds.avif" alt="Thresholds of Winter" loading="lazy" width="550" height="412">
+          <div class="project-title">Thresholds of Winter</div>
+          <div class="project-meta">2025 &middot; Data Visualization</div>
+        </a>
+        <a class="project-card" href="/projects/flushing/">
+          <img class="project-thumb" src="/assets/img/thumbs/flushing.avif" alt="Chinatown is Chinatown; Flushing is China" width="550" height="425">
+          <div class="project-title">&ldquo;Chinatown is Chinatown; Flushing is China&rdquo;</div>
+          <div class="project-meta">2024&ndash;2025 &middot; Urban Research<span class="ose-tag">OSE</span></div>
+        </a>
+        <a class="project-card" href="/projects/seedbomb/">
+          <img class="project-thumb" src="/assets/img/thumbs/seedbomb.avif" alt="Seed Bomb" width="550" height="412">
+          <div class="project-title">Seed Bomb</div>
+          <div class="project-meta">2024&ndash;Ongoing &middot; Land-Based Practice<span class="ose-tag">OSE</span></div>
+        </a>
+        <a class="project-card" href="/projects/harlemlane/">
+          <img class="project-thumb" src="/assets/img/thumbs/harlemlane.avif" alt="Harlem Lane Activation" style="object-fit:contain;background:#fff;" width="550" height="309">
+          <div class="project-title">Harlem Lane Activation</div>
+          <div class="project-meta">2023&ndash;Ongoing &middot; Urban Research<span class="ose-tag">OSE</span></div>
+        </a>
+        <a class="project-card" href="/projects/eastharlem/">
+          <img class="project-thumb" src="/assets/img/thumbs/eastharlem.avif" alt="East Harlem Polder" loading="lazy" width="550" height="356">
+          <div class="project-title">East Harlem Polder</div>
+          <div class="project-meta">2023&ndash;2024 &middot; Urban Research<span class="ose-tag">OSE</span></div>
+        </a>
+        <a class="project-card" href="/projects/elua/">
+          <img class="project-thumb" src="/assets/img/thumbs/elua.avif" loading="lazy" alt="Ecological Laboratory for Urban Agriculture" width="550" height="414">
+          <div class="project-title">Ecological Laboratory for Urban Agriculture</div>
+          <div class="project-meta">2022&ndash;present &middot; Research</div>
+        </a>
+        <a class="project-card" href="/projects/shroomdrone/">
+          <div style="overflow:hidden;aspect-ratio:4/3;border:1px solid var(--gray-200);border-radius:3px;background:var(--gray-100);">
+            <img src="/assets/img/thumbs/shroomdrone.avif" alt="Shroom Drone" style="width:100%;height:100%;object-fit:cover;display:block;object-position:50% 15%;transform:scale(1.3);transform-origin:50% 0%;" loading="lazy" width="715" height="858">
+          </div>
+          <div class="project-title">Shroom Drone</div>
+          <div class="project-meta">2020 &middot; Competition Entry<span class="ose-tag">OSE</span></div>
+        </a>
+        <a class="project-card" href="/projects/othernatures/">
+          <div style="overflow:hidden;aspect-ratio:4/3;border:1px solid var(--gray-200);border-radius:3px;background:var(--gray-100);">
+            <img src="/assets/img/thumbs/othernatures.avif" alt="Other Natures" style="width:100%;height:100%;object-fit:cover;display:block;transform:scale(2);transform-origin:50% 50%;" loading="lazy" width="839" height="1086">
+          </div>
+          <div class="project-title">Other Natures</div>
+          <div class="project-meta">2018 &middot; Competition Entry<span class="ose-tag">OSE</span></div>
+        </a>
+        <a class="project-card" href="/projects/cyborgbloom/">
+          <img class="project-thumb" src="/assets/img/thumbs/cyborgbloom.avif" loading="lazy" alt="Cyborg Bloom" width="550" height="333">
+          <div class="project-title">Cyborg Bloom</div>
+          <div class="project-meta">2017 &middot; Digital Art Installation</div>
+        </a>
+        <a class="project-card" href="/projects/sensing/">
+          <img class="project-thumb" src="/assets/img/thumbs/sensing.avif" alt="Urban Sensing" loading="lazy" width="550" height="425">
+          <div class="project-title">Urban Sensing</div>
+          <div class="project-meta">2016&ndash;2020 &middot; Physical Computing</div>
+        </a>
+      </div>
+      <footer class="site-footer">&copy; 2026 Zihao Zhang. All rights reserved.</footer>
+    </main>
+
+  </div>
+
+  <script src="/assets/js/site.js"></script>
+</body>
+</html>

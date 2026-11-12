@@ -1,0 +1,589 @@
+/* ============================================
+   zihao-site -- Personal Site Stylesheet
+   Namespace: site-
+   ============================================ */
+
+@import url('/assets/css/tokens.css');   /* fonts + color tokens */
+@import url('/assets/css/footer.css');   /* copyright footer */
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+/* ── Global link style ── */
+a { color: var(--accent); text-decoration: none; }
+a:hover { color: var(--accent-dark); }
+.wf-wrap a { color: inherit; }
+.project-meta-list a { color: inherit; }
+.project-meta-list a:hover { color: var(--accent); }
+
+.ose-tag {
+  display: inline-block;
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gray-500);
+  border: 1px solid #ccc;
+  padding: 1px 6px;
+  border-radius: 2px;
+  margin-left: 8px;
+  vertical-align: middle;
+  position: relative;
+  top: -1px;
+}
+
+body {
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 1.7;
+  color: var(--gray-900);
+  background: var(--page-ground);
+  background-attachment: fixed;
+}
+
+/* ── Outer centering shell ── */
+#site-wrap {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-top: 120px;
+  min-height: 100vh;
+}
+
+/* ── Left sidebar ── */
+#site-nav {
+  position: fixed;
+  /* Aligns the sidebar to where it sits inside the centered 960px wrap */
+  left: max(0px, calc(50vw - 600px));
+  top: 120px;
+  width: 200px;
+  padding: 0 32px 40px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  text-align: right;
+}
+
+.site-nav-name {
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 400;
+  text-decoration: none;
+  color: var(--gray-900);
+  line-height: 1.3;
+  margin-bottom: 4px;
+}
+
+.site-nav-zh {
+  font-family: var(--font-zh);
+  font-size: 15px;
+  font-weight: 300;
+  color: var(--gray-500);
+  display: block;
+  margin-bottom: 28px;
+  text-align: right;
+}
+
+/* 張子豪 seal closing the nav, as a 落款 at the end of a scroll; links home.
+   Image built by _local/tools/build_favicon.py */
+.site-nav-seal {
+  display: block;
+  margin-top: 36px;
+  line-height: 0;
+}
+.site-nav-seal img { width: 38px; }
+
+.site-nav-meta {
+  font-size: 12px;
+  color: var(--gray-500);
+  line-height: 1.5;
+  margin-bottom: 40px;
+}
+
+.site-nav-links {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.site-nav-link {
+  font-size: 14px;
+  text-decoration: none;
+  color: var(--gray-700);
+  transition: color 0.15s;
+}
+.site-nav-projects[open] + .site-nav-link {
+  margin-top: 14px;
+}
+.site-nav-link:hover {
+  color: var(--gray-900);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.site-nav-link.active {
+  color: var(--gray-900);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* ── Projects sub-list ── */
+.site-nav-projects {
+  border: none;
+  padding: 0;
+  margin: 0;
+}
+.site-nav-projects summary {
+  list-style: none;
+  cursor: pointer;
+  font-size: 14px;
+  color: var(--gray-700);
+  transition: color 0.15s;
+}
+.site-nav-projects summary::-webkit-details-marker { display: none; }
+.site-nav-projects summary:hover { color: var(--gray-900); }
+.site-nav-projects summary a {
+  color: inherit;
+  text-decoration: none;
+}
+.site-nav-projects summary.active {
+  color: var(--gray-900);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.site-nav-sublinks {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-top: 6px;
+}
+.site-nav-sublink {
+  font-size: 12px;
+  text-decoration: none;
+  color: var(--gray-500);
+  transition: color 0.15s;
+}
+.site-nav-sublink:hover { color: var(--gray-900); }
+.site-nav-sublink.active {
+  color: var(--gray-900);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* ── Main content ── */
+#site-main {
+  grid-column: 2;
+  padding: 0 60px 80px 60px;
+  min-width: 0;
+}
+/* text pages (About, Publications, Teaching) keep a reading width */
+#site-main.site-main--narrow { max-width: 720px; }
+
+/* ── Section label ── */
+.site-label {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--gray-500);
+  margin-bottom: 20px;
+  display: block;
+}
+
+/* ── Page title ── */
+.site-title {
+  font-family: var(--font-display);
+  font-size: 32px;
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  margin-bottom: 8px;
+  line-height: 1.15;
+}
+
+.site-subtitle {
+  font-size: 14px;
+  color: var(--gray-500);
+  margin-bottom: 40px;
+}
+
+/* ── Rule ── */
+.site-rule {
+  border: none;
+  border-top: 1px solid var(--gray-200);
+  margin: 32px 0;
+}
+
+/* ── Body text ── */
+.site-body {
+  max-width: 580px;
+}
+.site-body p {
+  font-size: 16px;
+  line-height: 1.8;
+  color: var(--gray-800);
+  margin-bottom: 20px;
+  text-wrap: pretty;
+}
+.site-body p:last-child { margin-bottom: 0; }
+
+/* CV download link (index.html) */
+.site-body p.site-body-cv {
+  margin-top: 28px;
+  margin-bottom: 0;
+  font-size: 14px;
+  color: var(--gray-500);
+}
+.site-body p.site-body-cv a {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  text-decoration-thickness: 1px;
+  text-decoration-color: var(--accent-soft);
+  transition: text-decoration-color 0.15s;
+}
+.site-body p.site-body-cv a:hover { text-decoration-color: var(--accent-dark); }
+
+.site-body-zh {
+  margin-top: 40px;
+  padding-top: 32px;
+  border-top: 1px solid var(--gray-200);
+  max-width: 580px;
+}
+.site-body-zh p {
+  font-family: var(--font-zh);
+  font-size: 15px;
+  font-weight: 300;
+  line-height: 2;
+  color: var(--gray-800);
+  margin-bottom: 20px;
+  text-wrap: pretty;
+}
+.site-body-zh p:last-child { margin-bottom: 0; }
+.site-body em { font-style: italic; }
+
+/* ── Course card grid (teaching/index.html) ── */
+.course-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 16px;
+  margin-top: 24px;
+}
+
+.course-card {
+  display: block;
+  position: relative;
+  border: 1px solid var(--gray-200);
+  border-radius: 6px;
+  padding: 20px;
+  text-decoration: none;
+  color: var(--gray-900);
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+.course-card:hover {
+  border-color: var(--gray-900);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+}
+
+.course-card-code {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  background: var(--gray-900);
+  color: #fff;
+  padding: 2px 7px;
+  border-radius: 3px;
+  display: inline-block;
+  margin-bottom: 10px;
+}
+
+.course-card-title {
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 4px;
+  line-height: 1.3;
+}
+
+.course-card-meta {
+  font-size: 12px;
+  color: var(--gray-500);
+}
+
+.course-card-ext {
+  position: absolute;
+  top: 12px;
+  right: 14px;
+  font-size: 20px;
+  color: var(--gray-500);
+  font-weight: 700;
+  line-height: 1;
+}
+
+.course-card.placeholder {
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+/* ── Placeholder page content ── */
+.site-placeholder {
+  padding: 80px 0;
+  color: var(--gray-300);
+}
+.site-placeholder .site-title { color: var(--gray-300); }
+
+/* ── Mobile ── */
+@media (max-width: 700px) {
+  #site-wrap {
+    grid-template-columns: 1fr;
+    padding-top: 0;
+  }
+
+  #site-nav {
+    position: static;
+    left: auto;
+    top: auto;
+    width: 100%;
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+    padding: 32px 24px 24px;
+    border-bottom: 1px solid var(--gray-200);
+  }
+
+  .site-nav-name { margin-bottom: 20px; }
+  .site-nav-meta { margin-bottom: 20px; }
+
+  .site-nav-zh { margin-bottom: 16px; }
+
+  /* one row of top links; the project list lives on /projects/, so the sub-list
+     stays out of the phone nav and content starts on the first screen */
+  .site-nav-links {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 0 20px;
+    width: 100%;
+  }
+  .site-nav-sublinks,
+  .site-nav-seal { display: none; }
+  .site-nav-projects[open] + .site-nav-link { margin-top: 0; }
+  .site-nav-link,
+  .site-nav-projects summary { display: block; padding: 6px 0; }
+
+  #site-main {
+    grid-column: 1;
+    padding: 32px 24px 60px;
+    max-width: 100%;
+  }
+
+  .course-grid { grid-template-columns: 1fr; }
+}
+
+/* ============================================
+   Lightbox
+   ============================================ */
+#lb {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.93);
+  z-index: 9000;
+  display: none;
+  align-items: center;
+  justify-content: center;
+}
+
+#lb.lb-visible { display: flex; }
+
+.lb-img {
+  max-width: 90vw;
+  max-height: 88vh;
+  object-fit: contain;
+  display: block;
+  user-select: none;
+}
+
+.lb-close {
+  position: fixed;
+  top: 20px;
+  right: 28px;
+  font-size: 36px;
+  line-height: 1;
+  color: #fff;
+  background: none;
+  border: none;
+  cursor: pointer;
+  opacity: 0.6;
+  transition: opacity 0.15s;
+  padding: 4px 8px;
+}
+
+.lb-prev,
+.lb-next {
+  position: fixed;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 56px;
+  line-height: 1;
+  color: #fff;
+  background: none;
+  border: none;
+  cursor: pointer;
+  opacity: 0.4;
+  transition: opacity 0.15s;
+  padding: 0 20px;
+  user-select: none;
+}
+
+.lb-prev { left: 0; }
+.lb-next { right: 0; }
+
+.lb-close:hover,
+.lb-prev:hover,
+.lb-next:hover { opacity: 1; }
+
+.lb-counter {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #fff;
+  opacity: 0.45;
+  font-size: 12px;
+  font-family: var(--font-mono);
+  letter-spacing: 0.08em;
+  pointer-events: none;
+}
+
+/* Cursor hint on clickable images */
+.lb-trigger { cursor: pointer; }
+
+/* ============================================
+   Project pages (shared across all project pages)
+   ============================================ */
+
+.project-hero {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  display: block;
+  margin-bottom: 40px;
+}
+
+.project-title {
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 6px;
+}
+
+.project-year {
+  font-size: 11px;
+  color: var(--gray-500);
+  letter-spacing: 0.08em;
+  margin-bottom: 32px;
+}
+
+.project-meta-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0 32px;
+  margin-bottom: 36px;
+  padding-bottom: 32px;
+  border-bottom: 1px solid var(--gray-200);
+}
+
+.project-meta-label {
+  font-size: 9px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--gray-500);
+  margin-bottom: 8px;
+  display: block;
+}
+
+.project-meta-list {
+  list-style: none;
+  font-size: 12px;
+  line-height: 1.9;
+  color: var(--gray-800);
+}
+
+.project-meta-list .role {
+  font-size: 10px;
+  color: var(--gray-500);
+}
+
+.project-description {
+  font-size: 14px;
+  line-height: 1.85;
+  color: var(--gray-800);
+  max-width: 580px;
+  margin-bottom: 40px;
+}
+
+.project-description p { margin-bottom: 20px; }
+.project-description p:last-child { margin-bottom: 0; }
+
+.project-section-label {
+  font-size: 9px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--gray-500);
+  margin: 48px 0 16px;
+  display: block;
+}
+
+.project-back {
+  display: inline-block;
+  font-size: 12px;
+  color: var(--gray-500);
+  text-decoration: none;
+  margin-bottom: 32px;
+  letter-spacing: 0.03em;
+}
+.project-back:hover { color: var(--gray-900); }
+.project-presentation { font-size: 12px; color: var(--gray-500); margin-top: 32px; }
+
+/* ── Media grids ── */
+.media-full { width: 100%; display: block; margin: 24px 0; }
+.media-full img,
+.media-full video { width: 100%; display: block; }
+
+.media-2up { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin: 24px 0; }
+.media-2up img,
+.media-2up video { width: 100%; display: block; }
+
+.media-3up { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; margin: 24px 0; }
+.media-3up img,
+.media-3up video { width: 100%; display: block; }
+
+.media-4up { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 8px; margin: 24px 0; }
+.media-4up img,
+.media-4up video { width: 100%; display: block; }
+
+.gallery-row { display: flex; gap: 6px; margin-bottom: 6px; width: 100%; overflow: hidden; }
+.gallery-row img { width: 0; min-width: 0; height: auto; display: block; }
+
+/* Aspect guard: lets <img width/height> attributes reserve correct space (no layout
+   shift, and lazy-loading can judge what is really below the fold) without the
+   declared pixel height fighting a CSS width. Lowest specificity on purpose --
+   deck.css and any inline style still win. */
+img { height: auto; }
+
+@media (max-width: 700px) {
+  .project-meta-grid { grid-template-columns: 1fr; gap: 24px 0; }
+  .media-2up,
+  .media-3up { grid-template-columns: 1fr; }
+  /* .media-4up intentionally not collapsed — stays as a row */
+  .project-back { padding: 8px 0; margin-bottom: 24px; }
+}
+
+/* Heading for screen readers only, on pages whose title lives in the nav (About) */
+.site-sr-only {
+  position: absolute;
+  width: 1px; height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+}

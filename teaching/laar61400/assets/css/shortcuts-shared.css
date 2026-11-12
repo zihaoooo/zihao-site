@@ -1,0 +1,142 @@
+/* ============================================
+   LAAR 61400 — Shortcuts Shared Stylesheet
+   Namespace: sc-
+   Pairs with: workflow-shared.css
+   Same design system, distinct register —
+   reference material, not workflow guide.
+   ============================================ */
+
+
+/* ── Page wrapper ── */
+.sc-wrap {
+  font-family: var(--font-sans);
+  font-size: 13px;
+  color: var(--gray-900);
+  padding: 28px;
+  box-sizing: border-box;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+/* ── Page header ── */
+.sc-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 24px;
+  padding-bottom: 18px;
+  border-bottom: 2px solid var(--gray-900);
+}
+
+.sc-header-left {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+/* Tool icon badges — reuse from snippet internal CSS where possible,
+   but these are available for page-level use */
+.sc-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 5px;
+  font-size: 11px;
+  font-weight: 700;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+.sc-icon-ps  { background: #001E36; color: #31A8FF; }
+.sc-icon-ai  { background: #FF9A00; color: var(--gray-900); }
+.sc-icon-id  { background: #49021F; color: #FF3366; }
+.sc-icon-cad { background: #E51937; color: #fff; font-size: 9px; }
+.sc-icon-rh  { background: var(--accent); color: #fff; font-size: 10px; }
+
+.sc-header-text {}
+
+.sc-title {
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  margin: 0 0 3px;
+  line-height: 1.1;
+}
+
+.sc-subtitle {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--gray-500);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+/* Course tag — top right */
+.sc-course-tag {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  font-weight: 500;
+  color: #fff;
+  background: var(--gray-900);
+  padding: 3px 8px;
+  border-radius: 3px;
+  letter-spacing: 0.08em;
+  white-space: nowrap;
+  flex-shrink: 0;
+  align-self: flex-start;
+  margin-top: 4px;
+}
+
+/* ── Platform note ── */
+/* Supplements the snippet's own note when wrapping in the site shell */
+.sc-platform-note {
+  font-size: 10px;
+  color: #666;
+  border-left: 2px solid var(--gray-200);
+  padding: 6px 10px;
+  line-height: 1.6;
+  margin-bottom: 20px;
+  font-family: var(--font-mono);
+}
+
+/* ── Divider between stacked snippets (e.g. Rhino pipeline + UI) ── */
+.sc-divider {
+  border: none;
+  border-top: 1px solid var(--gray-200);
+  margin: 32px 0;
+}
+
+/* ── Section label — matches wf- register ── */
+.sc-section-label {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--gray-400);
+  margin-bottom: 12px;
+  display: block;
+}
+
+/* ── Footer ── */
+.sc-footer {
+  margin-top: 24px;
+  border-top: 1px solid var(--gray-200);
+  padding-top: 10px;
+  font-size: 10px;
+  color: var(--gray-400);
+  font-family: var(--font-mono);
+  display: flex;
+  justify-content: space-between;
+}
+
+/* ── Responsive ── */
+@media (max-width: 480px) {
+  .sc-wrap { padding: 16px; }
+  .sc-title { font-size: 15px; }
+  .sc-header { flex-direction: column; gap: 10px; }
+  .sc-course-tag { align-self: flex-start; }
+}

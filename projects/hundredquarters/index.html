@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hundred Quarters &mdash; Zihao Zhang</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" href="/assets/css/tokens.css" as="style">
+  <link rel="stylesheet" href="/assets/css/site.css">
+  <link rel="icon" href="/favicon.ico" sizes="16x16 32x32 48x48">
+  <link rel="apple-touch-icon" href="/assets/icons/apple-touch-icon.png">
+  <style>
+    #site-main { max-width: 100%; }
+
+    .hq-h2 { font-family: var(--font-display); font-size: 22px; font-weight: 400; color: var(--gray-900); margin: 48px 0 8px; }
+    .hq-note { font-size: 13px; line-height: 1.8; color: var(--gray-700); max-width: 580px; margin: 0 0 16px; }
+    .hq-cap { font-size: 12px; line-height: 1.7; color: var(--gray-500); margin: 8px 0 0; max-width: 720px; }
+
+    /* the frame built far to near */
+    .hq-stack { position: relative; aspect-ratio: 16 / 9; background: var(--gray-100); }
+    .hq-stack img { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0; transition: opacity .35s; }
+    .hq-stack img.on { opacity: 1; }
+    .hq-steps { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
+    .hq-steps button {
+      font-family: var(--font-mono); font-size: 11px; color: var(--gray-700);
+      background: none; border: 1px solid var(--gray-200); border-radius: 3px; padding: 4px 10px; cursor: pointer;
+    }
+    .hq-steps button.on { border-color: var(--accent); color: var(--accent); }
+    .hq-step-text { font-size: 13px; line-height: 1.8; color: var(--gray-700); margin: 10px 0 0; min-height: 3.6em; max-width: 720px; }
+    .hq-step-text b { font-family: var(--font-mono); font-weight: 400; color: var(--gray-900); }
+
+    .hq-diagram { width: 100%; max-width: 960px; display: block; }
+    .hq-diagram text { font-family: var(--font-mono); font-size: 11px; fill: var(--gray-700); }
+    .hq-diagram .lbl { fill: var(--gray-900); }
+    .hq-diagram .frame { fill: var(--gray-50); stroke: var(--gray-200); }
+    .hq-diagram .trk { stroke: var(--gray-150); stroke-width: 1; }
+    .hq-diagram .mv { stroke: var(--gray-700); stroke-width: 2; }
+    .hq-diagram .cat { stroke: var(--accent); stroke-width: 2; }
+
+    .hq-video { position: relative; aspect-ratio: 16 / 9; margin-top: 28px; }
+    .hq-video iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+    .hq-fig { width: 100%; display: block; margin-top: 12px; }
+  </style>
+</head>
+<body>
+
+  <div id="site-wrap">
+
+    <nav id="site-nav">
+      <a class="site-nav-name" href="/">Zihao Zhang</a>
+      <span class="site-nav-zh">张子豪</span>
+      <p class="site-nav-meta">Associate Professor<br>Landscape Architecture<br>City College of New York</p>
+      <div class="site-nav-links">
+        <details class="site-nav-projects" open>
+          <summary class="active"><a href="/projects/">Projects</a></summary>
+          <div class="site-nav-sublinks">
+            <a class="site-nav-sublink" href="/projects/hundredquarters/">Hundred Quarters</a>
+            <a class="site-nav-sublink" href="/projects/ghagent/">GH Agent</a>
+            <a class="site-nav-sublink" href="/projects/hole/">A Hole in the Park</a>
+            <a class="site-nav-sublink" href="/projects/hydroponics/">Hydroponic</a>
+            <a class="site-nav-sublink" href="/projects/thresholds/">Thresholds of Winter</a>
+            <a class="site-nav-sublink" href="/projects/flushing/">Flushing</a>
+            <a class="site-nav-sublink" href="/projects/seedbomb/">Seed Bomb</a>
+            <a class="site-nav-sublink" href="/projects/harlemlane/">Harlem Lane</a>
+            <a class="site-nav-sublink" href="/projects/eastharlem/">East Harlem Polder</a>
+            <a class="site-nav-sublink" href="/projects/elua/">ELUA</a>
+            <a class="site-nav-sublink" href="/projects/shroomdrone/">Shroom Drone</a>
+            <a class="site-nav-sublink" href="/projects/othernatures/">Other Natures</a>
+            <a class="site-nav-sublink" href="/projects/cyborgbloom/">Cyborg Bloom</a>
+            <a class="site-nav-sublink" href="/projects/sensing/">Urban Sensing</a>
+          </div>
+        </details>
+        <a class="site-nav-link" href="/publications/">Publications</a>
+        <a class="site-nav-link" href="/teaching/">Teaching</a>
+        <a class="site-nav-link" href="/talks/">Talks</a>
+      </div>
+      <a class="site-nav-seal" href="/" title="Home"><img src="/assets/icons/seal.png" alt="張子豪 seal — home" width="38" height="38"></a>
+    </nav>
+
+    <main id="site-main">
+
+      <a class="project-back" href="/projects/">&larr; Projects</a>
+
+      <img class="project-hero" src="/assets/img/projects/HundredQuarters/hero.avif" alt="A procedural ink-wash scroll at midday: karst peaks, misted bamboo, a small black cat walking the shore, silver grass in front" width="1920" height="1080">
+
+      <h1 class="project-title">Hundred Quarters <span style="font-family:var(--font-zh);">(百刻)</span></h1>
+      <p class="project-year">2026 &middot; Digital Art &middot; Landscape Simulation &middot; Computer Vision</p>
+
+      <div class="project-meta-grid" style="grid-template-columns: 1fr;">
+        <div>
+          <span class="project-meta-label">Output</span>
+          <ul class="project-meta-list">
+            <li><a href="https://www.youtube.com/@hundredquarters">Hundred Quarters (百刻)</a> <span class="role">— YouTube channel</span></li>
+          </ul>
+        </div>
+        <div style="margin-top: 20px;">
+          <span class="project-meta-label">Tools</span>
+          <ul class="project-meta-list">
+            <li>Claude Code <span class="role">— engine and analysis, written in conversation</span></li>
+            <li>Python, NumPy / CuPy <span class="role">— renderer, on the GPU</span></li>
+            <li>NVIDIA Warp <span class="role">— wind and plant motion</span></li>
+            <li>Faust / DawDreamer <span class="role">— audio synthesis</span></li>
+            <li>Depth Anything V2 <span class="role">— depth estimation</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="project-description">
+        <p>Hundred Quarters is a procedural system that generates landscape scrolls and their music. Each video is one continuous handscroll rendered from a score: a planner places land, water, hills, plants and animals; the renderer draws them as flat cut paper and moves them past a camera through one day&rsquo;s light; the same score drives generative music.</p>
+        <p>The project responds to embodied time and attunement in landscape. Modern Western practice treats time as abstract, equal divisions, measured by the clock as if no one were observing: an ideal close to what Lorraine Daston and Peter Galison call mechanical objectivity. Embodied time is kept by a noticing body in a place. The twenty-four solar terms (二十四节气), an agricultural calendar, work this way: each term names something to notice, such as first frost or geese arriving, and the calendar is kept by observation and practice. Anna Tsing calls this kind of attention the arts of noticing; Annemarie Mol, in <i>Eating in Theory</i>, builds theory from bodily practice. The project takes this attunement as its design medium.</p>
+        <p>Time is measured in the body and the season. Each piece belongs to a solar term or one of the seventy-two five-day seasons (候) and takes its musical mode from the <i>Monthly Ordinances</i> (《月令》). Durations use the units of the <i>Mahāsāṅghika Vinaya</i> (《摩诃僧祇律》): a breath (息) of 7.2 seconds, a quarter (刻) of 14:24, a double hour (时辰) of 2:00:00. Each video is released at the moment its season begins, and viewers keep time with it by breathing, studying or sleeping.</p>
+        <p>The project suggests that a landscape can be designed as a timeline as well as a plan, with a score, as in Lawrence Halprin&rsquo;s RSVP Cycles (resources, score, valuaction, performance), with classical calendars and their observations as design rules. It is a partial experiment: the landscapes are drawn, not built, and the attunement happens on a screen. The open question is how built places could keep these rhythms.</p>
+        <p>The system was written with Claude Code, in conversation, using open-source tools built for programmers: depth models, GPU physics, audio DSP and scientific Python. The designer described the intent, judged the stills, clips and sound, and made the design decisions.</p>
+      </div>
+
+      <div class="hq-video">
+        <iframe src="https://www.youtube-nocookie.com/embed/videoseries?list=PLdsm23TBTD-w" title="Hundred Quarters, 千息 playlist" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+      </div>
+      <p class="hq-cap">The latest video. New videos are released on the <a href="https://www.youtube.com/@hundredquarters">channel</a> at the start of each season.</p>
+
+      <h2 class="hq-h2">The frame, far to near</h2>
+      <p class="hq-note">One frame from the two-hour piece, built up layer by layer from back to front. Each layer is flat; its distance sets its size and speed.</p>
+      <div class="hq-stack" id="hq-stack">
+        <img class="on" src="/assets/img/projects/HundredQuarters/layer-0.avif" alt="Sky, sun and karst hills" width="1920" height="1080">
+        <img src="/assets/img/projects/HundredQuarters/layer-1.avif" alt="Still water with the hills' reflection" width="1920" height="1080" loading="lazy">
+        <img src="/assets/img/projects/HundredQuarters/layer-3.avif" alt="Misted bamboo and trees in the middle distance" width="1920" height="1080" loading="lazy">
+        <img src="/assets/img/projects/HundredQuarters/layer-4.avif" alt="The near ground with shrubs" width="1920" height="1080" loading="lazy">
+        <img src="/assets/img/projects/HundredQuarters/layer-5.avif" alt="The cat walking the near shore" width="1920" height="1080" loading="lazy">
+        <img src="/assets/img/projects/HundredQuarters/layer-6.avif" alt="Silver grass in front of everything" width="1920" height="1080" loading="lazy">
+      </div>
+      <div class="hq-steps" id="hq-steps"></div>
+      <p class="hq-step-text" id="hq-step-text"></p>
+      <img class="hq-fig" style="margin-top:24px;" src="/assets/img/projects/HundredQuarters/layers-exploded.avif" alt="The six planes of the frame side by side, far to near, each labelled with its distance and pace" width="2604" height="548" loading="lazy">
+      <p class="hq-cap">Each layer of the same frame shown separately, back to front, with its distance from the camera and its speed.</p>
+
+      <h2 class="hq-h2">One camera</h2>
+      <p class="hq-note">A handscroll builds space from reserved blank (留白) and mist between flat planes, without linear perspective. A scrolling video needs a distance for every plane, because distance sets its speed. The renderer therefore places every plane in front of one camera, measured against a monocular depth model below.</p>
+      <p class="hq-note">The renderer uses one pinhole camera: 0.58 m above the ground, horizon at 0.795 of the frame height, 12&deg; vertical field of view (roughly a 114 mm lens). A point on the ground at frame height <i>y</i> lies at distance <i>Z</i> = <i>h f</i> / (<i>y</i> &minus; <i>y</i><sub>horizon</sub>) and moves across the screen at a speed proportional to 1 / <i>Z</i>. The chart shows how far each layer moves during one breath.</p>
+      <svg class="hq-diagram" viewBox="0 0 880 364" role="img" aria-label="How far each layer slides across the frame in one breath of 7.2 seconds">
+        <defs>
+          <marker id="hq-arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10z" fill="var(--gray-700)"/></marker>
+          <marker id="hq-arrc" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10z" fill="var(--accent)"/></marker>
+        </defs>
+        <rect class="frame" x="230" y="38" width="600" height="292"/>
+        <text x="230" y="28">0</text><text x="830" y="28" text-anchor="end">one frame width (1920 px)</text>
+        <text class="lbl" x="0" y="64">sun</text><text x="200" y="64" text-anchor="end">∞</text>
+        <line class="trk" x1="230" y1="60" x2="830" y2="60"/>
+        <circle cx="230" cy="60" r="3" fill="var(--gray-700)"/>
+        <text x="244.0" y="64">still</text>
+        <text class="lbl" x="0" y="96">far hills</text><text x="200" y="96" text-anchor="end">3 km</text>
+        <line class="trk" x1="230" y1="92" x2="830" y2="92"/>
+        <line class="mv" x1="230" y1="92" x2="232.0" y2="92" marker-end="url(#hq-arr)"/>
+        <text x="245.0" y="96">3.3 px</text>
+        <text class="lbl" x="0" y="128">mid hills</text><text x="200" y="128" text-anchor="end">1 km</text>
+        <line class="trk" x1="230" y1="124" x2="830" y2="124"/>
+        <line class="mv" x1="230" y1="124" x2="233.1" y2="124" marker-end="url(#hq-arr)"/>
+        <text x="247.1" y="128">9.9 px</text>
+        <text class="lbl" x="0" y="160">far bank</text><text x="200" y="160" text-anchor="end">500 m</text>
+        <line class="trk" x1="230" y1="156" x2="830" y2="156"/>
+        <line class="mv" x1="230" y1="156" x2="236.2" y2="156" marker-end="url(#hq-arr)"/>
+        <text x="250.2" y="160">20 px</text>
+        <text class="lbl" x="0" y="192">bamboo</text><text x="200" y="192" text-anchor="end">212 m</text>
+        <line class="trk" x1="230" y1="188" x2="830" y2="188"/>
+        <line class="mv" x1="230" y1="188" x2="244.6" y2="188" marker-end="url(#hq-arr)"/>
+        <text x="258.6" y="192">47 px</text>
+        <text class="lbl" x="0" y="224">near ground</text><text x="200" y="224" text-anchor="end">48 m</text>
+        <line class="trk" x1="230" y1="220" x2="830" y2="220"/>
+        <line class="mv" x1="230" y1="220" x2="294.6" y2="220" marker-end="url(#hq-arr)"/>
+        <text x="308.6" y="224">207 px</text>
+        <text class="lbl" x="0" y="256">cat</text><text x="200" y="256" text-anchor="end">34.5 m</text>
+        <line class="trk" x1="230" y1="252" x2="830" y2="252"/>
+        <line class="cat" x1="230" y1="252" x2="320.0" y2="252" marker-end="url(#hq-arrc)"/>
+        <text x="334.0" y="256">288 px</text>
+        <text class="lbl" x="0" y="288">frame foot</text><text x="200" y="288" text-anchor="end">13.5 m</text>
+        <line class="trk" x1="230" y1="284" x2="830" y2="284"/>
+        <line class="mv" x1="230" y1="284" x2="459.5" y2="284" marker-end="url(#hq-arr)"/>
+        <text x="473.5" y="288">734 px</text>
+        <text class="lbl" x="0" y="320">silver grass</text><text x="200" y="320" text-anchor="end">9 m</text>
+        <line class="trk" x1="230" y1="316" x2="830" y2="316"/>
+        <line class="mv" x1="230" y1="316" x2="574.2" y2="316" marker-end="url(#hq-arr)"/>
+        <text x="588.2" y="320">1102 px</text>
+        <text x="0" y="356">layer &middot; distance from the camera &middot; arrow: its slide across the frame in one breath (7.2 s), to scale</text>
+      </svg>
+
+      <h2 class="hq-h2">Composition: the score</h2>
+      <p class="hq-note">Each piece starts as a score (<code>score.json</code>): a timeline of sections, chords, rhythmic patterns, bells and scenes. The audio and video renderers both read it, so a bell and the arrival at a shore happen together. The landscape architect Lawrence Halprin borrowed the score from music and dance to design movement through landscape (the RSVP Cycles, his Motation notation). This project reinterprets his score: one score is both a landscape and its music.</p>
+      <p class="hq-note">The music is generative process music modelled on Steve Reich&rsquo;s <i>Music for 18 Musicians</i>: a cycle of chords, each expanded into a section, with notes added and removed gradually. The pulse is 0.72 s (about 83 BPM), ten pulses to a breath. Mode and home pitch come from the <i>Monthly Ordinances</i> (《月令》): shang (商) on B&flat; in late autumn, yu (羽) on B in early winter. The voices are filtered noise, and a bell marks each change between work and rest.</p>
+
+      <h2 class="hq-h2">Reading depth with a model</h2>
+      <p class="hq-note">Left to right: the frame, the depth known to the renderer, and Depth Anything V2&rsquo;s estimate. The model picks out the grass, the cat and the ground, but reads the hills as flat shapes just in front of the sky.</p>
+      <img class="hq-fig" src="/assets/img/projects/HundredQuarters/depth-new-frame.avif" alt="The frame, the engine's depth map, and Depth Anything's depth map" width="1920" height="360" loading="lazy">
+      <p class="hq-cap">Frame &middot; renderer depth &middot; Depth Anything V2 (relative).</p>
+
+      <p class="hq-note" style="margin-top:32px;">Depth Anything and optical flow on an earlier frame showed layers moving at speeds no single camera could produce, and plants drawn at one-twelfth the cat&rsquo;s scale. This led to the single camera model.</p>
+      <img class="hq-fig" src="/assets/img/projects/HundredQuarters/depth-old-frame.avif" alt="An earlier frame with relative and metric depth maps" width="1920" height="360" loading="lazy">
+      <p class="hq-cap">Earlier frame &middot; relative depth &middot; metric depth.</p>
+
+      <p class="hq-note" style="margin-top:32px;">The same model on photographs of karst landscapes, for comparison.</p>
+      <img class="hq-fig" src="/assets/img/projects/HundredQuarters/depth-photo-1.avif" alt="A karst landscape photograph with its depth maps" width="1800" height="400" loading="lazy">
+      <img class="hq-fig" src="/assets/img/projects/HundredQuarters/depth-photo-2.avif" alt="A karst landscape photograph with its depth maps" width="1800" height="902" loading="lazy">
+      <img class="hq-fig" src="/assets/img/projects/HundredQuarters/depth-photo-3.avif" alt="A karst landscape photograph with its depth maps" width="1800" height="400" loading="lazy">
+      <p class="hq-cap">Photograph &middot; relative depth &middot; metric depth.</p>
+
+      <h2 class="hq-h2">One day on one scroll</h2>
+      <p class="hq-note">The two-hour piece moves from dawn to night in one continuous shot.</p>
+      <div class="gallery-row">
+        <img src="/assets/img/projects/HundredQuarters/still-dawn.avif" alt="Dawn: a bamboo grove in mist" style="flex:1.778" width="1920" height="1080" loading="lazy">
+        <img src="/assets/img/projects/HundredQuarters/still-noon.avif" alt="Noon: karst peaks and the cat on the shore" style="flex:1.778" width="1920" height="1080" loading="lazy">
+      </div>
+      <div class="gallery-row">
+        <img src="/assets/img/projects/HundredQuarters/still-dusk.avif" alt="Dusk: a pink sky over shrubs and peaks" style="flex:1.778" width="1920" height="1080" loading="lazy">
+        <img src="/assets/img/projects/HundredQuarters/still-night.avif" alt="Night: a redstart asleep on a parasol-tree bough under the moon" style="flex:1.778" width="1920" height="1080" loading="lazy">
+      </div>
+
+      <h2 class="hq-h2">References</h2>
+      <div class="project-meta-grid" style="grid-template-columns: 1fr;">
+        <div>
+          <span class="project-meta-label">Open-source inspiration</span>
+          <ul class="project-meta-list">
+            <li><a href="https://lingdong.works">Lingdong Huang</a>, <a href="https://github.com/LingDong-/shan-shui-inf"><i>shan-shui-inf</i></a> (2018, MIT) <span class="role">— procedural ink-wash scroll; the basis of the landscape planner</span></li>
+            <li>Alex Bainter, <a href="https://generative.fm">Generative.fm</a> (<a href="https://github.com/generative-music">source</a>, MIT) <span class="role">— generative ambient music</span></li>
+            <li><a href="https://faust.grame.fr">Faust</a> (GRAME) and David Braun, <a href="https://github.com/DBraun/DawDreamer">DawDreamer</a> <span class="role">— audio DSP</span></li>
+            <li><a href="https://github.com/NVIDIA/warp">NVIDIA Warp</a> <span class="role">— GPU simulation</span></li>
+            <li><a href="https://github.com/DepthAnything/Depth-Anything-V2">Depth Anything V2</a> <span class="role">— depth estimation</span></li>
+            <li><a href="https://github.com/sgossner/VSCO-2-CE">VSCO 2 Community Edition</a> and <a href="https://github.com/sgossner/VCSL">VCSL</a> (CC0) <span class="role">— instrument samples</span></li>
+            <li>Andy Farnell, <i>Designing Sound</i> (MIT Press, 2010) <span class="role">— procedural sound</span></li>
+          </ul>
+        </div>
+        <div style="margin-top: 20px;">
+          <span class="project-meta-label">Music</span>
+          <ul class="project-meta-list">
+            <li>Steve Reich, <i>Music for 18 Musicians</i> (1976; ECM, 1978) <span class="role">— chord cycle and pulse</span></li>
+            <li>Steve Reich, &ldquo;Music as a Gradual Process&rdquo; (1968) <span class="role">— process music</span></li>
+            <li>Brian Eno, <i>Discreet Music</i> (1975) and <i>Ambient 1: Music for Airports</i> (1978) <span class="role">— loops of different lengths</span></li>
+            <li><i>Monthly Ordinances</i> (《礼记&middot;月令》) <span class="role">— mode and pitch by month</span></li>
+          </ul>
+        </div>
+        <div style="margin-top: 20px;">
+          <span class="project-meta-label">Landscape, scores and painting</span>
+          <ul class="project-meta-list">
+            <li>Lawrence Halprin, <i>The RSVP Cycles: Creative Processes in the Human Environment</i> (George Braziller, 1969) <span class="role">— scores for environmental design</span></li>
+            <li>Lawrence Halprin, Motation <span class="role">— movement notation</span></li>
+            <li>Huang Gongwang (黄公望), <i>Dwelling in the Fuchun Mountains</i> (《富春山居图》, 1350) <span class="role">— shoreline drawing</span></li>
+            <li>Fan Kuan (范宽), <i>Travelers among Mountains and Streams</i> (《溪山行旅图》, c. 1000) <span class="role">— mist between depths</span></li>
+            <li><i>Mahāsāṅghika Vinaya</i> (《摩诃僧祇律》) <span class="role">— time units</span></li>
+          </ul>
+        </div>
+        <div style="margin-top: 20px;">
+          <span class="project-meta-label">Theory</span>
+          <ul class="project-meta-list">
+            <li>Lorraine Daston and Peter Galison, <i>Objectivity</i> (Zone Books, 2007) <span class="role">— mechanical objectivity</span></li>
+            <li>Anna Lowenhaupt Tsing, <i>The Mushroom at the End of the World: On the Possibility of Life in Capitalist Ruins</i> (Princeton University Press, 2015) <span class="role">— arts of noticing</span></li>
+            <li>Annemarie Mol, <i>Eating in Theory</i> (Duke University Press, 2021) <span class="role">— theory from bodily practice</span></li>
+            <li>UNESCO, &ldquo;The Twenty-Four Solar Terms, Knowledge in China of Time and Practices Developed through Observation of the Sun&rsquo;s Annual Motion&rdquo; (Intangible Cultural Heritage, 2016) <span class="role">— solar terms in agriculture</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <footer class="site-footer">&copy; 2026 Zihao Zhang. All rights reserved.</footer>
+    </main>
+  </div>
+
+  <script>
+    (function () {
+      var steps = [
+        ["sky & hills", "<b>&infin; / 3 km / 1 km</b> Sky, sun and two ranges of karst peaks."],
+        ["water", "<b>to 500 m</b> Water, reflections and the far shoals (沙渚)."],
+        ["middle", "<b>~212 m</b> Bamboo and bare trees, paled by distance (远淡)."],
+        ["near ground", "<b>~48 m</b> Near ground and shrubs."],
+        ["cat & near shore", "<b>34.5 m</b> The cat, 0.30 m tall, and the near shore."],
+        ["nearest", "<b>9 m</b> Silver grass, moved by the wind."]
+      ];
+      var imgs = document.querySelectorAll("#hq-stack img"), bar = document.getElementById("hq-steps"),
+          txt = document.getElementById("hq-step-text"), btns = [], cur = 0, timer;
+      function show(k) {
+        cur = k;
+        imgs.forEach(function (im, i) { im.classList.toggle("on", i <= k); });
+        btns.forEach(function (b, i) { b.classList.toggle("on", i === k); });
+        txt.innerHTML = steps[k][1];
+      }
+      steps.forEach(function (s, i) {
+        var b = document.createElement("button");
+        b.textContent = (i + 1) + " " + s[0];
+        b.onclick = function () { clearInterval(timer); show(i); };
+        bar.appendChild(b); btns.push(b);
+      });
+      show(0);
+      var seen = false;
+      new IntersectionObserver(function (es) {
+        if (es[0].isIntersecting && !seen) {
+          seen = true;
+          timer = setInterval(function () { if (cur < steps.length - 1) show(cur + 1); else clearInterval(timer); }, 1600);
+        }
+      }, { threshold: 0.6 }).observe(document.getElementById("hq-stack"));
+    })();
+  </script>
+  <script src="/assets/js/lightbox.js"></script>
+</body>
+</html>

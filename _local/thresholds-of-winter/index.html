@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Central Park Tmin/Tmax Heatmaps + Threshold Filter</title>
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+  <style>
+    html, body { margin: 0; padding: 0; }
+    body { font-family: system-ui, sans-serif; }
+
+    #controls{
+      display:flex; gap:16px; align-items:center;
+      padding:10px 12px; flex-wrap:wrap;
+      border-bottom: 1px solid rgba(0,0,0,0.08);
+    }
+    #controls label { font-size: 13px; }
+    #controls select { font-size: 13px; }
+    #thresholdValue {
+      font-variant-numeric: tabular-nums;
+      min-width: 100px;
+      display:inline-block;
+    }
+
+    .row {
+      display:flex;
+      gap:18px;
+      padding:12px;
+      box-sizing:border-box;
+      width:100vw;
+    }
+
+    .panel { flex:1; min-width:0; }
+    .title { font-size:14px; margin: 0 0 6px 64px; }
+
+    .axis text { font-size: 11px; }
+    .axis path, .axis line { opacity: 0.3; }
+
+    .season-line {
+      pointer-events: none;
+      shape-rendering: crispEdges;
+    }
+    .season-line.equinox {
+      stroke: rgba(0,0,0,0.75);
+      stroke-width: 1.5;
+      stroke-dasharray: 4 3;
+    }
+    .season-line.solstice {
+      stroke: rgba(0,0,0,0.95);
+      stroke-width: 2;
+    }
+    .season-label {
+      font-size: 10px;
+      fill: rgba(0,0,0,0.9);
+      text-anchor: middle;
+      pointer-events: none;
+    }
+
+    .spring-line {
+      fill: none;
+      stroke: #111;
+      stroke-width: 2;
+      stroke-linejoin: round;
+      stroke-linecap: round;
+      pointer-events: none;
+    }
+    .spring-dot {
+      fill: #111;
+      pointer-events: none;
+    }
+    .spring-label {
+      font-size: 11px;
+      fill: #111;
+      pointer-events: none;
+    }
+
+    .tooltip{
+      position:absolute;
+      pointer-events:none;
+      background: rgba(0,0,0,0.85);
+      color:white;
+      padding:8px 10px;
+      border-radius:8px;
+      font-size:12px;
+      line-height:1.3;
+      transform: translate(10px,10px);
+      opacity:0;
+      white-space:nowrap;
+    }
+    
+    @media (max-width: 640px) {
+  .row {
+    flex-direction: column;
+  }
+}
+  </style>
+</head>
+<body>
+
+  <div id="controls">
+    <div id="unit-toggle">
+      <label><input type="radio" name="unit" value="F" checked> °F</label>
+      <label style="margin-left:12px;"><input type="radio" name="unit" value="C"> °C</label>
+    </div>
+
+    <div>
+      <label for="metricSelect">Filter by:</label>
+      <select id="metricSelect">
+        <option value="tmax" selected>Max (tmax)</option>
+        <option value="tmin">Min (tmin)</option>
+      </select>
+    </div>
+
+    <div>
+      <label for="opSelect">Condition:</label>
+      <select id="opSelect">
+        <option value="gte" selected>≥ threshold</option>
+        <option value="lte">≤ threshold</option>
+      </select>
+    </div>
+
+    <div style="display:flex; gap:10px; align-items:center; min-width: 360px;">
+      <label for="thresholdSlider">Threshold:</label>
+      <input id="thresholdSlider" type="range" step="0.5" style="flex:1;" />
+      <span id="thresholdValue"></span>
+    </div>
+
+    <button id="resetBtn" style="padding:6px 10px;">Reset</button>
+    <button id="toggleSpringLineBtn" style="padding:6px 10px;">Show Spring Arrival (≥60°F)</button>
+  </div>
+
+  <div class="row">
+    <div class="panel" id="panel-min">
+      <div class="title">Min Temperature (tmin)</div>
+      <svg id="chart-min"></svg>
+    </div>
+
+    <div class="panel" id="panel-max">
+      <div class="title">Max Temperature (tmax)</div>
+      <svg id="chart-max"></svg>
+    </div>
+  </div>
+
+  <script>
+    // =========================
+    // Data URL (Fahrenheit)
+    // =========================
+    const DATA_URL =
+      "https://freight.cargo.site/m/F2757041495302830958956758905739/centralpark_daily_tmin_tmax_heatwave.json";
+
+    const parseDate = d3.timeParse("%Y-%m-%d");
+    const fmtDate = d3.timeFormat("%Y-%m-%d");
+
+    // =========================
+    // Layout
+    // =========================
+
+    const days = 365;
+    const margin = { top: 24, right: 10, bottom: 30, left: 64 };
+    const GRAY = "#d9d9d9";
+
+    // Seasonal markers
+    const seasonalMarkers = [
+      { day: 79,  label: "Spring Equinox", type: "equinox" },
+      { day: 172, label: "Summer Solstice", type: "solstice" },
+      { day: 265, label: "Autumn Equinox", type: "equinox" },
+      { day: 355, label: "Winter Solstice", type: "solstice" }
+    ];
+
+    // =========================
+    // Units (data remains in Fahrenheit)
+    // =========================
+    let currentUnit = "F";
+
+    function FtoC(f) { return (f - 32) * 5 / 9; }
+    function CtoF(c) { return c * 9 / 5 + 32; }
+
+    function formatTemp(valueF) {
+      return currentUnit === "F"
+        ? `${valueF.toFixed(1)} °F`
+        : `${FtoC(valueF).toFixed(1)} °C`;
+    }
+
+    function sliderValueToF(vDisplay) {
+      return currentUnit === "F" ? vDisplay : CtoF(vDisplay);
+    }
+
+    function FtoSliderValue(f) {
+      return currentUnit === "F" ? f : FtoC(f);
+    }
+
+    // =========================
+    // State
+    // =========================
+    let data = [];
+    let years = [];
+    let rows = 0;
+    let gridW = 0;
+    let gridH = 0;
+    let xBand, yBand;
+    let colorMin, colorMax;
+
+    // Filter state
+    let filterKey = "tmax";
+    let op = "gte";
+    let thresholdF = 95;
+
+    // Spring arrival overlay
+    let showSpringLine = false;
+    let springArrival = [];
+    const SPRING_THRESHOLD_F = 60;
+
+    // Keep selections / refs
+    const heatmaps = {};
+
+    // Tooltip
+    const tooltip = d3.select("body")
+      .append("div")
+      .attr("class", "tooltip");
+
+    // =========================
+    // Load data
+    // =========================
+    d3.json(DATA_URL, { mode: "cors" }).then(raw => {
+      data = raw.map(d => ({
+        date: parseDate(d.date),
+        year: +d.year,
+        dayOfYear: +d.dayOfYear,
+        tmin: +d.tmin,
+        tmax: +d.tmax
+      }));
+
+      years = Array.from(new Set(data.map(d => d.year))).sort(d3.ascending);
+      rows = years.length;
+      const cellSize = window.innerWidth <= 480
+  ? Math.max(2, Math.floor((window.innerHeight - 60) / (rows * 2)))
+  : Math.max(2, Math.floor((window.innerHeight - 60) / rows));
+      gridW = days * cellSize;
+      gridH = rows * cellSize;
+
+      xBand = d3.scaleBand()
+        .domain(d3.range(1, days + 1))
+        .range([0, gridW])
+        .paddingInner(0);
+
+      yBand = d3.scaleBand()
+        .domain(years)
+        .range([0, gridH])
+        .paddingInner(0);
+
+      // Shared color domain across both panels
+      const minExtent = d3.extent(data, d => d.tmin);
+      const maxExtent = d3.extent(data, d => d.tmax);
+      const globalMin = Math.min(minExtent[0], maxExtent[0]);
+      const globalMax = Math.max(minExtent[1], maxExtent[1]);
+
+      function makeColor() {
+        return d3.scaleSequential()
+          .domain([globalMax, globalMin])
+          .interpolator(d3.interpolateRdBu);
+      }
+
+      colorMin = makeColor();
+      colorMax = makeColor();
+
+      // First day each year when tmax >= spring threshold
+      springArrival = years.map(year => {
+        const first = data
+          .filter(d => d.year === year && d.tmax >= SPRING_THRESHOLD_F)
+          .sort((a, b) => a.dayOfYear - b.dayOfYear)[0];
+
+        return first ? { year, dayOfYear: first.dayOfYear } : null;
+      }).filter(Boolean);
+
+      renderHeatmap({ panelId: "panel-min", svgId: "chart-min", valueKey: "tmin", color: colorMin });
+      renderHeatmap({ panelId: "panel-max", svgId: "chart-max", valueKey: "tmax", color: colorMax });
+
+      setupControls();
+      setSliderRangeFromData();
+      setDefaultThreshold();
+      syncSliderLabel();
+      applyThresholdFilter();
+    }).catch(err => {
+      console.error("Failed to load JSON:", err);
+    });
+
+    // =========================
+    // Render one panel
+    // =========================
+    function renderHeatmap({ panelId, svgId, valueKey, color }) {
+      const panel = document.getElementById(panelId);
+
+      const svg = d3.select("#" + svgId)
+        .attr("height", margin.top + gridH + margin.bottom);
+
+      svg.selectAll("*").remove();
+
+      const gRoot = svg.append("g")
+        .attr("transform", `translate(${margin.left},${margin.top})`);
+
+      // Scaled layer: cells, marker lines, x axis
+      const gScaled = gRoot.append("g");
+      const gCells = gScaled.append("g");
+      const gMarkers = gScaled.append("g");
+
+      // Unscaled layer: y axis, labels, spring overlay
+      const gUI = gRoot.append("g");
+
+      // Cells
+      const cells = gCells.selectAll("rect")
+        .data(data)
+        .join("rect")
+          .attr("x", d => xBand(d.dayOfYear))
+          .attr("y", d => yBand(d.year))
+          .attr("width", xBand.bandwidth())
+          .attr("height", yBand.bandwidth())
+          .attr("fill", d => color(d[valueKey]))
+          .attr("stroke", "none");
+
+      // Seasonal vertical lines
+      gMarkers.selectAll("line")
+        .data(seasonalMarkers)
+        .join("line")
+          .attr("class", d => `season-line ${d.type}`)
+          .attr("x1", d => xBand(d.day) + xBand.bandwidth() / 2)
+          .attr("x2", d => xBand(d.day) + xBand.bandwidth() / 2)
+          .attr("y1", 0)
+          .attr("y2", gridH);
+
+      // Seasonal labels in unscaled layer
+      const markerLabels = gUI.selectAll(".season-label")
+        .data(seasonalMarkers)
+        .join("text")
+          .attr("class", "season-label")
+          .attr("y", -6)
+          .text(d => d.label);
+
+      // Tooltip interaction
+      cells
+        .on("mousemove", (event, d) => {
+          d3.select(event.currentTarget)
+            .attr("stroke", "black")
+            .attr("stroke-width", 1);
+
+          const opSymbol = op === "gte" ? "≥" : "≤";
+
+          tooltip
+            .style("opacity", 1)
+            .html(
+              `<strong>${fmtDate(d.date)}</strong><br/>
+               Year: ${d.year}<br/>
+               Day: ${d.dayOfYear}<br/>
+               Min: ${formatTemp(d.tmin)}<br/>
+               Max: ${formatTemp(d.tmax)}<br/>
+               <span style="opacity:.85">Filter: ${filterKey} ${opSymbol} ${formatTemp(thresholdF)}</span>`
+            )
+            .style("left", (event.pageX + 10) + "px")
+            .style("top", (event.pageY + 10) + "px");
+        })
+        .on("mouseleave", (event) => {
+          d3.select(event.currentTarget).attr("stroke", "none");
+          tooltip.style("opacity", 0);
+        });
+
+      // Y axis
+      gUI.append("g")
+        .attr("class", "axis")
+        .call(
+          d3.axisLeft(yBand)
+            .tickValues(years.filter((_, i) => i % 10 === 0))
+        );
+
+      // X axis in scaled layer
+      const gXAxis = gScaled.append("g")
+        .attr("class", "axis")
+        .attr("transform", `translate(0, ${gridH})`)
+        .call(
+          d3.axisBottom(xBand)
+            .tickValues([1, 32, 60, 91, 121, 152, 182, 213, 244, 274, 305, 335, 365])
+            .tickFormat(d => d)
+        );
+
+      // Spring overlay group
+      const gSpring = gUI.append("g")
+        .style("display", showSpringLine ? null : "none");
+
+      const springPath = gSpring.append("path")
+        .attr("class", "spring-line");
+
+      const springDots = gSpring.selectAll(".spring-dot")
+        .data(springArrival)
+        .join("circle")
+          .attr("class", "spring-dot")
+          .attr("r", 2.5);
+
+      const springLabel = gSpring.append("text")
+        .attr("class", "spring-label")
+        .attr("x", 8)
+        .attr("y", gridH - 8)
+        .text(`Spring arrival line: first day tmax ≥ ${SPRING_THRESHOLD_F}°F`);
+
+      function updateSpringOverlay(scaleX) {
+        const lineGen = d3.line()
+          .x(d => (xBand(d.dayOfYear) + xBand.bandwidth() / 2) * scaleX)
+          .y(d => yBand(d.year) + yBand.bandwidth() / 2);
+
+        springPath.attr("d", lineGen(springArrival));
+
+        springDots
+          .attr("cx", d => (xBand(d.dayOfYear) + xBand.bandwidth() / 2) * scaleX)
+          .attr("cy", d => yBand(d.year) + yBand.bandwidth() / 2);
+
+        springLabel.attr("x", 8);
+      }
+
+      function updateScaleX() {
+        const availableW = panel.clientWidth;
+        const innerW = Math.max(200, availableW - margin.left - margin.right);
+        const scaleX = innerW / gridW;
+
+        svg.attr("width", availableW);
+        gScaled.attr("transform", `scale(${scaleX},1)`);
+
+        // Counter-scale x-axis labels
+        gXAxis.selectAll("text").attr("transform", `scale(${1 / scaleX},1)`);
+
+        // Position seasonal labels in the unscaled layer
+        markerLabels
+          .attr("x", d => (xBand(d.day) + xBand.bandwidth() / 2) * scaleX);
+
+        updateSpringOverlay(scaleX);
+      }
+
+      updateScaleX();
+      new ResizeObserver(updateScaleX).observe(panel);
+
+      heatmaps[svgId] = {
+        cells,
+        valueKey,
+        color,
+        springGroup: gSpring
+      };
+    }
+
+    // =========================
+    // Controls
+    // =========================
+    function setupControls() {
+      // Unit toggle
+      document.querySelectorAll('#unit-toggle input[name="unit"]').forEach(input => {
+        input.addEventListener("change", (e) => {
+          currentUnit = e.target.value;
+          setSliderRangeFromData();
+          document.getElementById("thresholdSlider").value = FtoSliderValue(thresholdF);
+          syncSliderLabel();
+          applyThresholdFilter();
+        });
+      });
+
+      // Metric dropdown
+      document.getElementById("metricSelect").addEventListener("change", (e) => {
+        filterKey = e.target.value;
+        setSliderRangeFromData();
+        setDefaultThreshold();
+        syncSliderLabel();
+        applyThresholdFilter();
+      });
+
+      // Operator dropdown
+      document.getElementById("opSelect").addEventListener("change", (e) => {
+        op = e.target.value;
+        applyThresholdFilter();
+      });
+
+      // Threshold slider
+      document.getElementById("thresholdSlider").addEventListener("input", (e) => {
+        thresholdF = sliderValueToF(parseFloat(e.target.value));
+        syncSliderLabel();
+        applyThresholdFilter();
+      });
+
+      // Reset
+      document.getElementById("resetBtn").addEventListener("click", () => {
+        filterKey = "tmax";
+        op = "gte";
+        document.getElementById("metricSelect").value = "tmax";
+        document.getElementById("opSelect").value = "gte";
+
+        setSliderRangeFromData();
+        setDefaultThreshold();
+        document.getElementById("thresholdSlider").value = FtoSliderValue(thresholdF);
+        syncSliderLabel();
+        applyThresholdFilter();
+      });
+
+      // Spring line toggle
+      document.getElementById("toggleSpringLineBtn").addEventListener("click", () => {
+        showSpringLine = !showSpringLine;
+
+        Object.values(heatmaps).forEach(h => {
+          if (h.springGroup) {
+            h.springGroup.style("display", showSpringLine ? null : "none");
+          }
+        });
+
+        document.getElementById("toggleSpringLineBtn").textContent =
+          showSpringLine ? "Hide spring line" : "Show spring line";
+      });
+    }
+
+    function setSliderRangeFromData() {
+      const slider = document.getElementById("thresholdSlider");
+      const extentF = d3.extent(data, d => d[filterKey]);
+
+      slider.min = FtoSliderValue(extentF[0]);
+      slider.max = FtoSliderValue(extentF[1]);
+    }
+
+    function setDefaultThreshold() {
+      const values = data.map(d => d[filterKey]).sort(d3.ascending);
+
+      thresholdF = (op === "lte")
+        ? d3.quantileSorted(values, 0.10)
+        : d3.quantileSorted(values, 0.90);
+
+      const [minF, maxF] = d3.extent(values);
+      thresholdF = Math.max(minF, Math.min(thresholdF, maxF));
+
+      document.getElementById("thresholdSlider").value = FtoSliderValue(thresholdF);
+    }
+
+    function syncSliderLabel() {
+      document.getElementById("thresholdValue").textContent = formatTemp(thresholdF);
+    }
+
+    // =========================
+    // Apply filter
+    // =========================
+    function applyThresholdFilter() {
+      const passes = (d) => {
+        const v = d[filterKey];
+        return op === "gte" ? v >= thresholdF : v <= thresholdF;
+      };
+
+      Object.values(heatmaps).forEach(({ cells, valueKey, color }) => {
+        cells.attr("fill", d => {
+          if (!passes(d)) return GRAY;
+          return color(d[valueKey]);
+        });
+      });
+    }
+  </script>
+</body>
+</html>

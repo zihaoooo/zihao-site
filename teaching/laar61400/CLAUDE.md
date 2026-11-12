@@ -1,0 +1,62 @@
+# LAAR 61400 — teaching context
+
+## Where things live
+This folder is the source of truth for the course pages: author and fix them here. Sources stay
+outside the repo in `../../../landscape-courses/laar61400/` (video sources and YouTube text in `workflows/<slug>/` and
+`tutorials/<slug>/`, syllabus scratch in `_course/`). Tools: `../../../landscape-courses/_tools/`.
+Lecture image originals are on the NAS at
+`\\OSE\ose\ZIHAO\archive\landscape-courses\laar61400\lectures\<slug>\`.
+The notes below are the page conventions.
+
+
+## Announcements (`announcements.html`)
+Hand-authored, not factory output. Weekly housekeeping — newest week first, `.ann-week current`
+at top; demote past weeks to a collapsed `<details class="ann-week past">` with a
+`<summary class="ann-week-head">`, stacked below newest first. Linked from a
+highlighted `.panel-announce` block sitting directly under the brand block in every page's nav
+(propagate nav edits with sed, as elsewhere). Styles live at the end of `assets/css/main.css`.
+
+## Workflows (`workflows/`)
+- WF01 `wf01-autocad.html` — AutoCAD Site Drafting
+- WF02 `wf02-sketch-portfolio.html` — Hybrid Drawing + Deck: WF06 hand drawings scanned and hybridized in Photoshop, the plan (the one fixed 11×17 sheet) over a B/W satellite base, diagrams in Illustrator on the linked PSD, deck laid out in InDesign from links; absorbs WF03's satellite, north arrow and scale bar; joiner optional
+- WF03 `wf03-urban-context.html` — Urban Context Mapping, optional and ungraded since Fall 2026 week 9: keeps its WF03 name and nav slot with an Extra tag, so students can still find it. The syllabus says "several workflows", never a count.
+- WF04 `wf04-landform-design.html` — Rhino Landform Modeling (Session 2 ends with the InDesign intro: a 4×3 small-multiple landform catalog)
+- WF05 `wf05-meadow-parametric.html` — Attractor Fields (Grasshopper meadow)
+- WF06 `wf06-sketch-charrette.html` — Back to Basics, a hand charrette on a real Harlem triangle, kept nameless to students. Site identity, reveal plan and base-plan build steps: ../../../landscape-courses/laar61400/workflows/wf06-sketch-charrette/README.md (not published).
+- AI workflows are optional and ungraded; their guides live only in `/talks/agents-in-practice/` (try-rhino, try-context).
+
+## Extra tutorials (`tutorials/`)
+Optional self-paced tutorials, hand-authored on the site in the `.wf-doc` layout; header chip `EXTRA`. Optional items sit at the end of their nav section (tutorials under Workflows, after WF06) with a `<span class="panel-tag">Extra</span>` inside the link (Workflows also lists AI Workflows → `/talks/agents-in-practice/`); optional lectures get no slot in the Weekly Schedule.
+- `ramp-on-slope.html` — Ramp on a Slope (ADA ramp: minimum length, plan angle, switchbacks). Diagrams are inline SVG in the page. A walkthrough video (Sweep1 and Flow) sits above the spec strip; its sources and YouTube text live in `landscape-courses/laar61400/tutorials/ramp-on-slope/`.
+
+WF pages are hand-authored HTML only — the old per-workflow `.md` sources were deleted
+(2026-06). Edit the `.html` directly; don't recreate or look for markdown sources.
+
+## WF page conventions
+- Layout: `<div class="wf-wrap wf-doc">` (single-column steps, number in the margin, ~64ch text;
+  styles at the end of `workflow-shared.css`) and `<script src="…/assets/js/wf-progress.js">` after
+  nav.js (done checks that fold a step; state in the student's localStorage). Every step needs a
+  `.wf-step-head` to get a check; a `.wf-step` without one is treated as a session divider.
+- Weeks and dates live only in the syllabus Weekly Schedule (`index.html`). WF pages carry no week
+  numbers: the first spec chip is Length ("2 sessions"), parts are labeled Session 1, Session 2,
+  and the Due chip is the one date a WF page repeats. Lectures are standalone: no week labels
+  in the nav, page title, header chip (`LECTURE`), deck title, title-slide stamp, or slide text and
+  notes (refer to another lecture by its title). URLs too: `lectures/<slug>.html` with images in
+  `assets/img/<slug>/`. The old `lectures/weekNN-*.html` files are redirect stubs for outside links;
+  leave them.
+- Learning objectives box (`.wf-objectives`): between the spec strip and the assignment; one to three
+  short `<li>` phrases, only as many as the workflow really teaches. Each names the idea that transfers
+  beyond the software ("How drafting standards encode meaning", "Design as a rule"). The steps
+  say what to do; the assignment says what they make.
+- Assignment box (`.wf-outcome`): single `<strong>Assignment</strong>` label, one sentence, product-framed, format folded in. No separate Deliverable section.
+- Ongoing box (`.wf-ongoing`): optional, directly under the assignment — a semester-long deliverable
+  this workflow feeds (e.g. WF04 starts the Final Integrated Drawing Set in InDesign).
+- `.wf-outcome > strong` is `display:block` in `workflow-shared.css` — scope to `>` to avoid breaking `<strong>` inside `.wf-tips` list items
+- Copy: short, imperative, plain full sentences.
+- Walkthrough video (see WF04): a `.wf-step wf-full wf-nocheck` card right under its Session
+  label, `▶` as the step number, YouTube iframe in `.wf-video` (16:9 by default; set
+  `aspect-ratio` inline when the recording isn't, e.g. WF04's 1920/1020). `wf-nocheck` keeps it out of the done checks, so saved checks keep their
+  positions. Video sources and YouTube text live in `landscape-courses/laar61400/workflows/<slug>/`.
+- Example images (see WF05): collapsible `<details class="wf-examples">` "Hint" card + a
+  click-to-enlarge lightbox (markup + inline script at end of page; styles in `workflow-shared.css`).
+  Images live in `assets/img/WF05/` and follow the image standard in the root `CLAUDE.md`.

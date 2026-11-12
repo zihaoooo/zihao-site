@@ -1,0 +1,26 @@
+Shroom Drone
+
+Collaborator: 
+Yangqianqian Hu
+shurui zhang
+
+Year: 2020 
+
+
+
+
+Designing habitat for one animal creature -- prioritizing one form of life over the others based on some human standards -- does not fundamentally transcend the hierarchical framework and human exceptionalism in understanding the environment. To think we understand a creature and can design for that creature is ironically another level of human hubris.
+We propose an autonomous mycelium inoculation system based on drone swarms and generic machine learning algorithms to hopefully create a new type of urban condition in which mycelium and mushroom growth becomes a new normal. 
+
+
+
+
+
+
+
+
+
+Detector drones collect environmental data and discern hospitable sites within a city. Sprayer drones then spray spore mixture, recycled composts, and water in these locations. The detector drones then monitor the growth of mushrooms on these sites. Genetic algorithms allow the AI system in drones to mutate from one generation to the next and adjust their monitoring and inoculation strategies based on the past performance. In the end, the whole system would adapt and gradually attune to a new urban condition where mycelium and mushroom growth will become a new constant.
+
+ In this new condition, mycelium networks will gradually establish in the urban environment and form mycorrhizal networks with plant roots. Underground root channels are constructed to enhance the connection of mycorrhizal networks. Plants use mycorrhizal networks to communicate and share energy and information with each other. The plants in the city will be “online”. Mushrooms as edible parts of fungi provide food for humans and other animals. 
+In the end, this project proposes a kind of new urban environmental condition that is supported by mycelium networks. Humans, as a tiny fraction of the shared environment, would have to learn to attune to this new norm and appreciate the “surplus” in the wild and uncontrollable mycelium networks.

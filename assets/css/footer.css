@@ -1,0 +1,25 @@
+/* Site-wide copyright footer: last child of <main> on every page.
+   Imported by site.css and the course main.css. */
+
+.site-footer {
+  margin-top: 64px;
+  padding-top: 16px;
+  border-top: 1px solid var(--gray-200);
+  font-family: var(--font-sans);
+  font-size: 12px;
+  line-height: 1.6;
+  color: var(--gray-500);
+}
+.site-footer a { color: inherit; text-decoration: underline; text-underline-offset: 2px; }
+.site-footer a:hover { color: var(--gray-900); }
+
+/* Course pages: #main-content has no padding of its own, so align the
+   footer with the .page-inner column that precedes it. */
+#main-content > .site-footer {
+  width: calc(100% - 64px);   /* .page-inner's 32px side padding */
+  max-width: 836px;           /* .page-inner 900px minus that padding */
+  margin: 0 auto 40px;
+}
+#main-content > .page-inner.narrow + .site-footer { max-width: 656px; }
+
+@media print { .site-footer { display: none; } }

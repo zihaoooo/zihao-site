@@ -1,0 +1,199 @@
+# Deck spec — shared slide-deck layout system
+
+Source of truth for the deck system implemented in `deck.css` + `deck.js` (this folder).
+Used by BOTH sections of the site, which differ only in the chrome above the deck:
+
+| Section | Pages | Chrome stylesheet | Built by |
+|---|---|---|---|
+| Course lectures | `teaching/<course>/lectures/` | `teaching/<course>/assets/css/main.css` (+ `workflow-shared.css`) | this repo (sources: `../landscape-courses/<course>/`) |
+| Research talks | `talks/<topic>/` | `assets/css/site.css` | this repo (sources: Dropbox `/03_Lectures`) |
+
+Both `<link>` `deck.css` and `<script>` `deck.js` from `/assets/deck/`. Never copy either into a
+factory or a page — extend here, and the whole site follows.
+
+## Fonts and colors
+Every font and UI color is a variable in `/assets/css/tokens.css` (the chrome stylesheet
+imports it). Page `<style>` blocks, `style=""` attributes and SVG diagrams write
+`var(--font-sans)`, `var(--font-mono)`, `var(--font-math)` (equations), `var(--ink)`, `var(--mute)`, `var(--line)`,
+`var(--accent)`, `var(--paper)` and the gray scales — in SVG put them in `style=""`, since
+presentation attributes like `fill=` only take var() in some browsers. Write a literal hex
+only for a content color: data series, brand logos, type or color specimens.
+The `.slide .embed` wrapper for typeset cards is in deck.css, and deck.js scales each card to its
+slide (`fitEmbeds`). Pages carry no fit script of their own.
+
+## Deck layout system
+CSS lives in shared `/assets/deck/deck.css` (one file, all decks) — `<link>` it,
+never copy. Markup is uniform: `.slide` + a system class + plain `<figure><img></figure>` cells
+(no wrapper divs, no inline styles). Stage is a 16:9 box; captions/credit in data-cap/data-credit;
+add `data-credit-href="…"` to make the credit a link (e.g. a source video shown as stills).
+On phones (≤560px, outside fullscreen) the deck switches to the **scroll view** — see below.
+Choosing: one image → `single`. Multiple → `auto` family when boxes should follow the images (whole,
+uncropped); `frame` family (`sq`/bleed grids) to impose a uniform frame and crop into it. Default
+`auto` unless images are uniform and a clean crop is wanted. (Spacing, borders, background, gutter
+are all in `deck.css`.)
+
+### Phone scroll view — `.deck--scroll`
+After reveal.js's scroll view. deck.js adds `.deck--scroll` below 560px (not in fullscreen, which is
+the carousel again). Every slide is stacked in order at full width, its caption and credit under it
+(`.deck-scap`, built from data-cap/data-credit). No buttons on the slides themselves.
+- **Heights.** Picture, video and canvas slides keep a fixed 16:9 box (`points-l/-r`: 3:4). `.embed`
+  slides are scaled to the width and the slide grows to the scaled card, never below 16:9. Typeset
+  slides with neither grow to fit their copy. Nothing scrolls inside a slide.
+- **Dock.** The control bar and the notes panel move into `.deck-dock`, pinned to the bottom of the
+  screen while any of the deck is on screen, with a progress hairline on its top edge. Thumbnails,
+  Presenter View and the caption line are hidden there; fullscreen is hidden where the browser has no
+  fullscreen API (iPhone).
+- **Current slide** = the one crossing the middle of the screen (IntersectionObserver). Prev/next and
+  a jump scroll to that slide (centred; a slide taller than 80% of the screen goes to the top).
+- **Page-local layouts** that need a phone shape add it under `@media (max-width:560px)`
+  (column layouts stack — see `m7-cols`) or key a ratio off `.deck--scroll .slide:has(.block)`
+  (see cybernetics-and-design `.cyb-life`).
+
+### Single — `single`
+One `<img>` directly in the slide, shown whole and centered (contained to stage). Use for any solo
+image; always tag `single` (supplies the grid track — a bare `.slide > img` clips a tall image).
+Video / drawn SVG go bare in `.slide` (no class): `<iframe>`/`<svg>`, centered & contained.
+```html
+<div class="slide single" data-cap="…" data-credit="…"><img src="…" alt="…"></div>
+```
+
+### Auto — `auto` · `hero-l`/`hero-r` · `auto-rows`
+JS (`layoutAuto()` in deck.js) sizes each `<figure>` to its image's aspect and fits the group to the
+stage — every box matches its image, so images read whole. The aspect comes from the loaded image,
+else from the `<img>` `width`/`height` attributes, so declared sizes let `loading="lazy"` images on
+hidden slides lay out before they load. Use for landscapes, maps, drawings, collages, mixed sizes.
+
+| Say | Class | Shape |
+|---|---|---|
+| images in a row | `auto` | one justified row: shared height, widths by aspect |
+| hero + a stack | `hero-l`/`hero-r` | hero (first `<figure>`, left/right) **fills its frame** (cover, cropped) + N (≥2) equal-height cover-cells stacked beside it, composite full-width (a narrower stack image trims slightly) |
+| …hero read whole | add `fit` | `hero-l fit`/`hero-r fit` — hero sized to its own aspect (contained, **uncropped**), full height, stack beside it. Use for portrait/vertical heroes where cover would chop top/bottom. Stack cells unchanged. |
+| rows of images | `auto-rows` | N justified rows; wrap each row's figures in `<div class="row">` |
+
+```html
+<div class="slide auto" data-cap="…" data-credit="…">
+  <figure><img …></figure> <figure><img …></figure>
+</div>
+<div class="slide hero-l" data-cap="…">
+  <figure><img …></figure> <figure><img …></figure> <figure><img …></figure>  <!-- hero first -->
+</div>
+<div class="slide auto-rows" data-cap="…">
+  <div class="row"><figure><img …></figure><figure><img …></figure></div>
+  <div class="row"><figure><img …></figure><figure><img …></figure></div>
+</div>
+```
+
+### Frame — `sq` (+12-col spans) · `two-3-3`/`grid-4`
+CSS imposes a fixed frame; image fills it (`cover`), cropping to fit — boxes lead, images follow.
+- `sq` + 12-col placement — square frames. Page spine is a 12-col grid; place each figure with a
+  `c{start}-{end}` span (1-indexed inclusive), e.g. `c2-5`/`c8-11`. For portraits, headshots, logos.
+  Add new `c-` classes in deck.css as needed.
+- Bleed grids `two-3-3` (two equal) / `grid-4` (2×2) — cells fill the stage edge-to-edge. Use ONLY
+  when images are uniform (≈16:9 sets) so the crop reads clean. SVG/drawn slides also use `two-3-3`
+  (the JS sizes only `<img>` content).
+```html
+<div class="slide sq" data-cap="…">
+  <figure class="c2-5"><img …></figure> <figure class="c8-11"><img …></figure>
+</div>
+```
+
+### Points + one image — `points-l`/`points-r`
+Split slide: a short key-points panel (heading + ≤4 bullets) beside one image. Use when a single
+image underexplains and a few parallel/procedural points crystallize the argument (not for
+title/takeaway cards or evocative full-bleed — those stay `single`). `points-l` = text left/image
+right; `points-r` = reverse. Image is contained (whole, never cropped) so diagrams survive. Put
+`.pts` first in the DOM; image side follows from the class.
+```html
+<div class="slide points-l" data-cap="…">
+  <div class="pts"><h3>optional heading</h3><ul><li>…</li><li>…</li></ul></div>
+  <figure><img …></figure>
+</div>
+```
+
+### Part TOC / agenda divider — `toc`
+Recurring section divider that lists the lecture's parts and highlights the one being entered. Drop one
+instance at each part transition; give the row for the part being entered `.active` (full opacity +
+accent), the rest dim. Each row is a mono `.toc-n` "Part N" label + a `.toc-h` heading. Scales to any
+part count. Sits inside the page's typeset `.embed` wrapper (the fit script scales it to the stage); the
+`.toc` styles live in shared deck.css — never re-declare per page. It carries a little vertical
+padding so a long agenda (nine rows in laar64150's `what-is-research`) is pushed past the fit
+script's ceiling and scales down instead of sitting flush against the stage edges; a short one is
+centred with room to spare, so the padding is invisible there.
+```html
+<div class="slide" data-cap="…"><div class="embed"><div class="toc">
+  <div class="toc-row active"><span class="toc-n">Part I</span><h2 class="toc-h">…</h2></div>
+  <div class="toc-row"><span class="toc-n">Part II</span><h2 class="toc-h">…</h2></div>
+</div></div></div>
+```
+
+### Typeset text cards — `txt-card` · `stmt` · `cmp` (shared)
+Three typeset cards in deck.css, promoted out of laar64150's lectures (2026-09) once a third deck
+needed them. All sit inside the page's `.embed` wrapper, which deck.js scales down to
+the stage. **Author them wide** — the fit script never upscales, so a card authored narrow leaves
+wide margins on a fullscreen stage.
+
+| Card | Shape | Use for |
+|---|---|---|
+| `txt-card` | `<h3>` + mono `+` bullets, one level of `–` sub-bullets, optional `.lead` accent line | the workhorse: a heading and its points |
+| `stmt` | one sentence carried large and centered, optional `.sub` under it | a claim to land on, a section hinge, a closing line |
+| `cmp` | `<h3>` + `<table>`; first cell of each row is its `<th scope="row">` label | comparing 2–3 cases across the same rows |
+
+Inside a `txt-card` bullet: `<b>` for the ink-weight lead-in, `<span class="src">` for a mono
+attribution. `cmp` takes a trailing `<span class="note">` for a caveat under the table — and keep it
+to ~4 columns and ~6 rows, past which the fit script shrinks it below reading size.
+```html
+<div class="slide" data-cap="…"><div class="embed">
+  <div class="txt-card"><h3>…</h3><ul><li><b>Lead-in</b> — body. <span class="src">Source</span>
+    <ul><li>sub-point</li></ul></li></ul></div>
+</div></div>
+
+<div class="slide" data-cap="…"><div class="embed">
+  <div class="stmt"><p>One sentence.</p><p class="sub">The qualifier under it.</p></div>
+</div></div>
+
+<div class="slide" data-cap="…"><div class="embed">
+  <div class="cmp"><h3>…</h3><table>
+    <thead><tr><th></th><th>Case A</th><th>Case B</th></tr></thead>
+    <tbody><tr><th scope="row">Row label</th><td>…</td><td>…</td></tr></tbody>
+  </table><span class="note">optional caveat</span></div>
+</div></div>
+```
+
+### Multi-column text card — `m7-cols` (page-local, modeling-as-thinking)
+A typeset card of 2–3 parallel text columns (no images) — e.g. "three types of models",
+"plan+section can't / operations are logics". Lives inside the page's `.embed` wrapper (deck.js scales it). Each `.col` = `<h3>` + optional `.lead` (accent sub-line) + `<ul>` of `<li>`
+(mono `+` bullet). Add `m7-cols--split` to center each column's block within its own half/third
+while keeping the text left-justified (use for the 2-col "own half" look).
+```html
+<div class="slide" data-cap="…"><div class="embed">
+  <div class="m7-cols m7-cols--split">           <!-- omit --split for snug-centered columns -->
+    <div class="col"><h3>…</h3><span class="lead">…</span><ul><li>…</li></ul></div>
+    <div class="col">…</div>
+  </div>
+</div></div>
+```
+On phones the columns stack into one (page-local `@media (max-width:560px)` rule).
+Gotcha — **the fit never upscales** (`k = Math.min(1, …)`): a card authored at e.g. 980px
+stays 980px on a large/fullscreen stage, leaving wide side margins and forcing wraps. Author the
+card's natural width wide (`width:min(1280px,96%)`) so it fills big screens; the fit only ever
+scales *down* on small ones.
+
+### Points + two stacked images, equal width — `points-l` + `.pts-imgs` (page-local, modeling-as-thinking)
+`points-l` normally takes one `<figure>`; two bare figures land in the same grid column and stack at
+*unequal* widths. Wrap them in `.pts-imgs` and put the width on the **wrapper** (not each figure) so
+both share it. Stage is `container-type:inline-size`, so size with `cqw` (no `cqh`); pick a width
+whose stacked heights still fit the panel — for ~1.1 + ~1.8 aspect images, `38cqw` fits.
+```html
+<div class="slide points-l" data-cap="…">
+  <div class="pts">…</div>
+  <div class="pts-imgs">                          <!-- column flex; width:min(100%,38cqw); margin:0 auto -->
+    <figure><img …></figure>                     <!-- figure width:100% → both equal -->
+    <figure><img …></figure>
+  </div>
+</div>
+```
+(All three `m7-*` recipes are page-local inline `<style>` in modeling-as-thinking, not yet in shared deck.css —
+copy the snippet, or promote to deck.css when a second lecture reuses them.)
+
+Presenter View renders the real slides: it loads the page's own stylesheets and scales a clone of
+each slide (the thumbnail strip's method), so any class in deck.css or page `<style>` shows there as-is.

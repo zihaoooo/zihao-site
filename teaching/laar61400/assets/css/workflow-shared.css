@@ -1,0 +1,862 @@
+/* ============================================
+   LAAR 61400 — Workflow Shared Stylesheet
+   Namespace: wf-
+   Cargo-compatible: scoped classes, no globals
+   ============================================ */
+
+@import url('/assets/css/tokens.css');   /* fonts + color tokens */
+
+/* ── Wrapper ── */
+.wf-wrap {
+  font-family: var(--font-sans);
+  font-size: 13px;
+  color: var(--gray-900);
+  padding: 28px;
+  box-sizing: border-box;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+/* ── Header ── */
+.wf-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  margin-bottom: 28px;
+  padding-bottom: 20px;
+  border-bottom: 2px solid var(--gray-900);
+}
+.wf-index {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 500;
+  color: #fff;
+  background: var(--gray-900);
+  padding: 3px 8px;
+  border-radius: 3px;
+  letter-spacing: 0.08em;
+  white-space: nowrap;
+  margin-top: 3px;
+  flex-shrink: 0;
+}
+.wf-title {
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  margin: 0 0 4px;
+  line-height: 1.1;
+}
+.wf-subtitle {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--gray-500);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+/* ── Outcome bar ── */
+.wf-outcome {
+  background: var(--gray-100);
+  border-left: 3px solid var(--gray-900);
+  padding: 11px 14px;
+  font-size: 12px;
+  line-height: 1.6;
+  color: var(--gray-800);
+  margin-bottom: 28px;
+  border-radius: 0 4px 4px 0;
+}
+.wf-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 14px;
+}
+.wf-actions .wf-btn { margin-top: 0; }
+.wf-btn {
+  display: flex;
+  width: fit-content;
+  align-items: center;
+  gap: 8px;
+  margin-top: 14px;
+  padding: 8px 16px;
+  background: var(--gray-900);
+  color: #fff;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border-radius: 4px;
+  transition: background 0.15s ease;
+}
+.wf-btn:hover { background: #404040; }
+.wf-btn-arrow {
+  font-size: 13px;
+  line-height: 1;
+  transition: transform 0.15s ease;
+}
+.wf-btn:hover .wf-btn-arrow { transform: translateY(2px); }
+.wf-btn-note {
+  align-self: center;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--gray-500);
+}
+.wf-outcome > strong {
+  font-weight: 700;
+  color: var(--gray-900);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-size: 10px;
+  display: block;
+  margin-bottom: 3px;
+}
+.wf-outcome > strong + * {
+  margin-bottom: 8px;
+}
+/* ── Learning objectives: what the workflow teaches, above the assignment (what it produces) ── */
+.wf-objectives,
+.wf-ongoing {
+  border: 1px solid var(--gray-200);
+  border-radius: 4px;
+  padding: 11px 14px;
+  margin-bottom: 12px;
+  font-size: 12px;
+  line-height: 1.6;
+  color: var(--gray-800);
+}
+.wf-objectives > strong,
+.wf-ongoing > strong {
+  display: block;
+  margin-bottom: 3px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--gray-900);
+}
+.wf-objectives ul { margin: 0; padding-left: 18px; }
+.wf-objectives li + li { margin-top: 2px; }
+.wf-doc .wf-objectives ul { max-width: 64ch; }
+/* optional framing paragraph above the list */
+.wf-objectives p { margin: 0 0 8px; max-width: 64ch; }
+/* ── Ongoing work: a semester-long deliverable this workflow feeds, directly under the assignment ── */
+.wf-ongoing { margin: -16px 0 28px; }
+.wf-ongoing > strong { color: var(--accent); }
+.wf-ongoing p { margin: 0; }
+.wf-ongoing p + p { margin-top: 4px; }
+.wf-doc .wf-ongoing p { max-width: 64ch; }
+/* ── Pipeline strip ── */
+.wf-pipeline {
+  display: flex;
+  align-items: center;
+  margin-bottom: 32px;
+  flex-wrap: wrap;        /* a long sequence folds onto a second line instead of scrolling */
+  row-gap: 8px;
+}
+.wf-pipe-step {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+.wf-pipe-node {
+  background: var(--gray-900);
+  color: #fff;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  padding: 6px 12px;
+  border-radius: 3px;
+  white-space: nowrap;
+}
+.wf-pipe-node.wf-pipe-tool {
+  background: #fff;
+  color: var(--gray-900);
+  border: 1px solid #ddd;
+}
+.wf-pipe-arrow {
+  font-size: 14px;
+  color: var(--gray-300);
+  padding: 0 6px;
+  font-family: var(--font-mono);
+}
+
+/* ── Steps grid ── */
+.wf-steps {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+/* ── Session divider ── */
+.wf-session {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  margin: 4px 0 -6px;
+}
+.wf-session-num {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 500;
+  color: var(--gray-400);
+  flex-shrink: 0;
+}
+.wf-session-label {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: var(--gray-900);
+}
+.wf-session-rule {
+  flex: 1;
+  height: 1px;
+  background: #e8e8e8;
+}
+
+/* ── Step card ── */
+.wf-step {
+  border: 1px solid #e8e8e8;
+  border-radius: 6px;
+  overflow: hidden;
+}
+.wf-step-head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  background: var(--gray-50);
+  border-bottom: 1px solid #e8e8e8;
+}
+.wf-step-num {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 500;
+  color: var(--gray-400);
+  flex-shrink: 0;
+}
+.wf-step-label {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: var(--gray-900);
+  line-height: 1.3;
+}
+.wf-step-body {
+  padding: 12px 14px;
+}
+
+/* ── Full-width step ── */
+.wf-step.wf-full {
+  grid-column: 1 / -1;
+}
+.wf-step.wf-full .wf-steps-row {
+  display: grid;
+  /* minmax(0,...) lets each column shrink below its table's natural width;
+     with plain 1fr the CTB tables overflow the card and get clipped */
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+}
+.wf-step.wf-full .wf-step-body {
+  border-right: 1px solid #e8e8e8;
+}
+.wf-step.wf-full .wf-step-body:last-child {
+  border-right: none;
+}
+
+/* ── Text styles ── */
+.wf-step-desc {
+  font-size: 12px;
+  line-height: 1.6;
+  color: #444;
+  margin-bottom: 10px;
+}
+.wf-step-desc:last-child { margin-bottom: 0; }
+.wf-step-desc strong, .wf-tips strong,
+.wf-step-desc b, .wf-tips b {
+  font-weight: 600;
+  font-size: inherit;
+  color: var(--gray-900);
+}
+.wf-step-desc em, .wf-tips em {
+  font-style: italic;
+  font-size: inherit;
+}
+.wf-note {
+  font-size: 11px;
+  line-height: 1.6;
+  color: var(--gray-500);
+  font-style: italic;
+  margin-top: 6px;
+}
+
+/* ── Tips list ── */
+.wf-tips {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.wf-tips li {
+  font-size: 11.5px;
+  line-height: 1.5;
+  color: var(--gray-700);
+  padding-left: 14px;
+  position: relative;
+}
+.wf-tips li::before {
+  content: '›';
+  position: absolute;
+  left: 0;
+  color: var(--gray-300);
+  font-size: 13px;
+  line-height: 1.4;
+}
+.wf-tips kbd {
+  display: inline-block;
+  background: #f3f3f3;
+  border: 1px solid #ddd;
+  border-radius: 3px;
+  padding: 0 5px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  white-space: nowrap;
+  color: var(--gray-900);
+}
+
+/* ── Expandable examples card ── */
+.wf-examples { padding: 0; }
+.wf-examples > summary {
+  cursor: pointer;
+  list-style: none;
+  user-select: none;
+}
+.wf-examples > summary::-webkit-details-marker { display: none; }
+.wf-examples > summary .wf-step-num { transition: transform 0.15s ease; }
+.wf-examples[open] > summary .wf-step-num { transform: rotate(90deg); }
+.wf-example-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+.wf-example-grid-3 { grid-template-columns: 1fr 1fr 1fr; }
+.wf-example-grid figure { margin: 0; }
+
+/* Inline diagrams: SVG on a white card, mono labels (.s = strong, .a = accent) */
+.wf-fig { margin: 14px 0 6px; }
+.wf-fig svg { display: block; width: 100%; height: auto; background: #fff; border: 1px solid var(--gray-200); border-radius: 4px; }
+.wf-fig img { display: block; width: 100%; height: auto; border: 1px solid var(--gray-200); border-radius: 4px; cursor: zoom-in; }
+.wf-fig figcaption { font-size: 11px; color: var(--gray-500); margin-top: 5px; max-width: 64ch; }
+.wf-fig text { font-family: var(--font-mono); font-size: 11px; fill: var(--gray-700); }
+.wf-fig text.s { fill: var(--gray-900); font-weight: 500; }
+.wf-fig text.a { fill: var(--accent); }
+.wf-example-grid img {
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--gray-200);
+  border-radius: 4px;
+  display: block;
+  cursor: zoom-in;
+}
+.wf-lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  background: rgba(20, 20, 20, 0.88);
+  cursor: zoom-out;
+  padding: 24px;
+}
+.wf-lightbox.open { display: flex; }
+.wf-lightbox img {
+  max-width: 96vw;
+  max-height: 92vh;
+  border-radius: 4px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+}
+/* embedded walkthrough video; set aspect-ratio inline to the recording's own size */
+.wf-video {
+  aspect-ratio: 16 / 9;
+  margin-top: 12px;
+  border: 1px solid var(--gray-200);
+  border-radius: 4px;
+  overflow: hidden;
+  background: var(--gray-900);
+}
+.wf-video iframe { width: 100%; height: 100%; border: 0; display: block; }
+/* the embed plays small (YouTube picks quality from player size); this opens it full size */
+.wf-video-link {
+  display: inline-block;
+  margin-top: 8px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.03em;
+  color: var(--accent);
+}
+.wf-example-grid figcaption {
+  font-size: 11px;
+  color: var(--gray-500);
+  margin-top: 5px;
+}
+.wf-download {
+  display: inline-block;
+  background: var(--gray-900);
+  color: #fff;
+  text-decoration: none;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.03em;
+  padding: 7px 13px;
+  border-radius: 4px;
+}
+.wf-download:hover { background: var(--gray-800); }
+@media (max-width: 640px) {
+  .wf-example-grid { grid-template-columns: 1fr; }
+}
+
+/* ── Pseudocode block ── */
+.wf-code {
+  background: var(--gray-900);
+  color: #e8e8e8;
+  border-radius: 4px;
+  padding: 12px 14px;
+  margin: 8px 0;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  line-height: 1.6;
+  white-space: pre;
+  overflow-x: auto;
+}
+
+/* ── Reference table ── */
+.wf-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+.wf-table th {
+  text-align: left;
+  font-family: var(--font-mono);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #999;
+  padding: 6px 10px;
+  border-bottom: 1px solid var(--gray-200);
+}
+.wf-table td {
+  padding: 7px 10px;
+  border-bottom: 1px solid #f0f0f0;
+  vertical-align: top;
+  color: var(--gray-800);
+}
+.wf-table tr:last-child td { border-bottom: none; }
+.wf-table kbd {
+  display: inline-block;
+  background: #f3f3f3;
+  border: 1px solid #ddd;
+  border-radius: 3px;
+  padding: 0 5px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  white-space: nowrap;
+  color: var(--gray-900);
+}
+
+/* ── Tool badges ── */
+.wf-badge {
+  margin-left: auto;
+  font-family: var(--font-mono);
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  padding: 2px 7px;
+  border-radius: 20px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.wf-badge-cad     { background: color-mix(in srgb, var(--tool-cad) 11%, #fff); color: var(--tool-cad); }
+.wf-badge-ai      { background: color-mix(in srgb, var(--tool-ai) 11%, #fff); color: var(--tool-ai); }
+.wf-badge-ps      { background: color-mix(in srgb, var(--tool-ps) 11%, #fff); color: var(--tool-ps); }
+.wf-badge-id      { background: color-mix(in srgb, var(--tool-id) 11%, #fff); color: var(--tool-id); }
+.wf-badge-rh      { background: color-mix(in srgb, var(--tool-rh) 11%, #fff); color: var(--tool-rh); }
+.wf-badge-gh      { background: color-mix(in srgb, var(--tool-gh) 11%, #fff); color: var(--tool-gh); }
+.wf-badge-osm     { background: color-mix(in srgb, var(--tool-osm) 11%, #fff); color: var(--tool-osm); }
+.wf-badge-ge      { background: color-mix(in srgb, var(--tool-ge) 11%, #fff); color: var(--tool-ge); }
+.wf-badge-neutral { background: #f0f0f0; color: var(--gray-700); }
+.wf-badge-chat    { background: var(--accent-tint); color: var(--accent); }
+.wf-badge-code    { background: var(--gray-150); color: var(--gray-800); }
+
+/* ── Alert / critical notice ── */
+.wf-alert {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  background: var(--alert-bg);
+  border: 1px solid var(--alert-line);
+  border-left: 3px solid var(--alert);
+  border-radius: 0 4px 4px 0;
+  padding: 10px 14px;
+  margin: 10px 0;
+}
+.wf-alert-icon {
+  font-size: 15px;
+  line-height: 1.4;
+  flex-shrink: 0;
+}
+.wf-alert-body {
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--gray-900);
+}
+.wf-alert-body strong {
+  color: var(--alert);
+}
+.wf-alert-lg { padding: 12px 16px; margin: 4px 0 0; }
+.wf-alert-lg .wf-alert-icon { font-size: 18px; }
+.wf-alert-lg { flex-wrap: wrap; }
+.wf-alert-lg .wf-alert-body { font-size: 14px; flex: 1 1 300px; }
+.wf-alert-steps {
+  margin: 6px 0 0;
+  padding-left: 20px;
+  font-size: 13px;
+}
+.wf-alert-steps li { margin: 2px 0; }
+.wf-alert-example {
+  flex-shrink: 0;
+  max-width: 100%;
+  height: auto;
+  background: #fff;
+  border: 1px solid var(--alert-line);
+  border-radius: 3px;
+  padding: 4px 6px;
+}
+
+/* ── CTB color chart ── */
+.wf-ctb {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+  font-size: 11.5px;
+}
+.wf-ctb th {
+  font-size: 9px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--gray-500);
+  padding: 4px 8px;
+  border-bottom: 2px solid var(--gray-900);
+  text-align: left;
+}
+.wf-ctb td {
+  padding: 5px 8px;
+  border-bottom: 1px solid #f0f0f0;
+  vertical-align: middle;
+  color: #444;
+  white-space: nowrap;
+}
+.wf-ctb tr:last-child td { border-bottom: none; }
+.wf-ctb .wf-swatch {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  border-radius: 2px;
+  vertical-align: middle;
+  margin-right: 6px;
+  border: 1px solid rgba(0,0,0,0.1);
+}
+.wf-ctb .wf-use { font-size: 11px; color: var(--gray-500); }
+/* the Typical Use column wraps at every width so the table fits its column */
+.wf-ctb th:last-child,
+.wf-ctb td:last-child { white-space: normal; }
+
+/* ── Footer ── */
+.wf-footer {
+  margin-top: 24px;
+  border-top: 1px solid var(--gray-200);
+  padding-top: 10px;
+  font-size: 10px;
+  color: var(--gray-400);
+  font-family: var(--font-mono);
+  display: flex;
+  justify-content: space-between;
+}
+
+/* ── Tablet ── */
+@media (max-width: 680px) {
+  .wf-steps { grid-template-columns: 1fr; }
+  .wf-step.wf-full .wf-steps-row { grid-template-columns: 1fr; }
+  .wf-step.wf-full .wf-step-body { border-right: none; border-bottom: 1px solid #e8e8e8; }
+  .wf-step.wf-full .wf-step-body:last-child { border-bottom: none; }
+  /* CTB tables: tighten and let the Typical Use column wrap so the table
+     stays inside the card, which is overflow:hidden and would clip it */
+  .wf-ctb { font-size: 11px; }
+  .wf-ctb th { padding: 4px 6px; }
+  .wf-ctb td { padding: 5px 6px; }
+  .wf-ctb th:last-child,
+  .wf-ctb td:last-child { white-space: normal; }
+  .wf-ctb .wf-use { font-size: 10.5px; line-height: 1.35; }
+  /* last resort — scroll the table rather than cut it off */
+  .wf-step-body:has(> .wf-ctb) { overflow-x: auto; }
+}
+
+/* ── Phone ── */
+@media (max-width: 420px) {
+  .wf-wrap { padding: 16px; }
+  .wf-title { font-size: 15px; }
+  .wf-pipeline { column-gap: 0; }
+  .wf-ctb { font-size: 10.5px; }
+  .wf-ctb th { padding: 4px 5px; }
+  .wf-ctb td { padding: 5px 5px; }
+  .wf-ctb .wf-swatch { width: 10px; height: 10px; margin-right: 4px; }
+  .wf-ctb .wf-use { font-size: 10px; }
+}
+
+/* ============================================
+   Reference list (wf-ref-)
+   Header reuses .wf-header / .wf-outcome above.
+   ============================================ */
+#precedents {
+  margin-top: 44px;
+  padding-top: 32px;
+  border-top: 2px solid var(--gray-900);
+  scroll-margin-top: 16px;
+}
+
+/* Spec strip */
+.wf-spec {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 24px;
+}
+.wf-spec-item {
+  background: var(--gray-100);
+  border-radius: 4px;
+  padding: 8px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.wf-spec-label {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  color: var(--gray-500);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.wf-spec-value { font-size: 12px; font-weight: 500; }
+.wf-spec-due {
+  background: var(--alert-bg);
+  box-shadow: inset 0 0 0 1px var(--alert-line);
+}
+.wf-spec-due .wf-spec-label { color: var(--alert); }
+.wf-spec-due .wf-spec-value { color: var(--alert); font-weight: 700; }
+
+/* List */
+.wf-ref-list { display: flex; flex-direction: column; }
+.wf-ref-item {
+  display: flex;
+  gap: 14px;
+  padding: 16px 0;
+  border-top: 1px solid var(--gray-150);
+}
+.wf-ref-item:first-child { border-top: none; padding-top: 0; }
+.wf-ref-num {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--gray-300);
+  flex-shrink: 0;
+  width: 24px;
+}
+.wf-ref-body { flex: 1; min-width: 0; }
+.wf-ref-head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 4px;
+}
+.wf-ref-title { font-size: 14px; font-weight: 700; }
+.wf-ref-tag {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  background: #f0f0f0;
+  color: var(--gray-700);
+  padding: 2px 7px;
+  border-radius: 3px;
+}
+.wf-ref-meta {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--gray-500);
+  margin-bottom: 6px;
+}
+.wf-ref-notes {
+  font-size: 12px;
+  line-height: 1.55;
+  color: #444;
+  margin-bottom: 6px;
+}
+.wf-ref-focus {
+  font-size: 11px;
+  line-height: 1.5;
+  color: var(--alert);
+  margin-bottom: 6px;
+}
+.wf-ref-link {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--gray-900);
+  text-decoration: none;
+  border-bottom: 1px solid var(--gray-900);
+}
+.wf-ref-link:hover { color: var(--gray-500); border-color: var(--gray-500); }
+
+/* ── Prompt callout: a prompt the student types to Claude, quoted in italics ── */
+.wf-prompt {
+  background: var(--gray-100);
+  border-left: 3px solid var(--accent);
+  border-radius: 0 4px 4px 0;
+  padding: 10px 14px;
+  margin: 8px 0;
+  font-size: 13px;
+  font-style: italic;
+  color: var(--gray-800);
+}
+
+/* ── Aside box: a short explainer set off from the steps ── */
+.wf-aside {
+  background: var(--gray-100);
+  border-left: 3px solid var(--gray-900);
+  border-radius: 0 4px 4px 0;
+  padding: 14px;
+  margin-top: 16px;
+}
+.wf-aside-title {
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-size: 10px;
+  color: var(--gray-900);
+  margin-bottom: 6px;
+}
+
+/* ── Week label above a group of steps ── */
+.wf-week-label {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--gray-400);
+  padding: 0 0 2px 0;
+}
+
+/* ============================================================
+   .wf-doc — document layout for a workflow page (trial on wf07).
+   Reads as a procedure sheet rather than a dashboard: one column,
+   steps divided by hairlines, step number in the left margin,
+   sentence-weight titles, tools named as text. Boxes stay only
+   where they do a job (the assignment, code to copy).
+   ============================================================ */
+.wf-doc .wf-index { background: none; color: var(--gray-500); padding: 0; font-size: 12px; margin-top: 6px; }
+.wf-doc .wf-title { font-size: 26px; font-weight: 700; letter-spacing: -0.01em; text-transform: none; line-height: 1.15; }
+.wf-doc .wf-subtitle { font-family: var(--font-sans); font-size: 13px; letter-spacing: 0; text-transform: none; color: var(--gray-500); margin-top: 4px; }
+.wf-doc .wf-header { border-bottom: 1px solid var(--gray-900); }
+
+
+/* steps: one column so the order reads top to bottom; hairline between steps,
+   number in the left margin. Running text keeps a ~68-character measure so the eye
+   finds the next line while following along; code, tables and figures run full width. */
+.wf-doc .wf-steps { display: block; border-top: 1px solid var(--gray-900); }
+.wf-doc .wf-step { position: relative; border: 0; border-radius: 0; border-bottom: 1px solid var(--gray-200);
+  padding: 22px 0 22px 64px; overflow: visible; }
+.wf-doc .wf-step-head { display: flex; align-items: center; gap: 10px; background: none; border: 0; padding: 0; }
+/* the page's own step number (00, 01–02, A, ▸ …) as a small black tile, the same
+   mark the shortcut guides use (see shortcuts/png-to-cad-block.html .pb-num) */
+.wf-doc .wf-step-head > .wf-step-num { position: absolute; left: 0; top: 23px; min-width: 22px; height: 22px; padding: 0 5px;
+  display: flex; align-items: center; justify-content: center; box-sizing: border-box;
+  font-family: var(--font-mono); font-size: 11px; font-weight: 700; line-height: 1;
+  color: #fff; background: var(--gray-900); border-radius: 3px; }
+.wf-doc .wf-step-label { font-size: 17px; font-weight: 700; letter-spacing: 0; text-transform: none; line-height: 1.3; }
+.wf-doc .wf-step-head .wf-badge { margin-left: 0; }   /* pill sits right after the title */
+.wf-doc .wf-step-body { padding: 10px 0 0; }
+.wf-doc .wf-step-desc,
+.wf-doc .wf-tips,
+.wf-doc .wf-note,
+.wf-doc .wf-prompt,
+.wf-doc .wf-aside,
+.wf-doc .wf-outcome > span { max-width: 64ch; }
+/* the page itself narrows to the reading column, so the rules and the assignment
+   frame end where the text ends */
+.wf-doc { max-width: 780px; margin-left: 0; }
+.wf-doc .wf-step-desc { font-size: 14px; line-height: 1.65; color: var(--gray-800); }
+.wf-doc .wf-tips li { font-size: 14px; line-height: 1.6; }
+.wf-doc .wf-step.wf-full .wf-step-body { border-right: 0; }
+
+/* asides (background explainers after the steps): keep the framed box so they read as
+   notes, aligned to the step text column */
+.wf-doc .wf-aside { margin: 20px 0 0 64px; max-width: none; }
+.wf-doc .wf-aside .wf-step-desc,
+.wf-doc .wf-aside .wf-tips { max-width: 64ch; }
+
+/* full-width steps with two body columns stack in the document layout,
+   so every step reads the same way, top to bottom */
+.wf-doc .wf-step.wf-full .wf-steps-row { grid-template-columns: minmax(0, 1fr); }
+.wf-doc .wf-step.wf-full .wf-steps-row > .wf-step-body + .wf-step-body { padding-top: 14px; }
+
+/* text links inside a workflow read in the site accent, not browser blue */
+/* only plain links: classed links (.wf-btn, .wf-download, .wf-ref-link) keep their own styles */
+.wf-doc .wf-step-body a:not([class]),
+.wf-doc .wf-aside a:not([class]) { color: var(--accent); text-decoration: underline;
+  text-decoration-color: var(--accent-soft); text-underline-offset: 3px; }
+.wf-doc .wf-step-body a:not([class]):hover,
+.wf-doc .wf-aside a:not([class]):hover { color: var(--accent-dark); text-decoration-color: var(--accent-dark); }
+
+/* ── progress checks (assets/js/wf-progress.js): a done step folds to its title ── */
+.wf-progress { display: flex; align-items: center; gap: 14px; margin: 0 0 10px;
+  font-family: var(--font-mono); font-size: 11px; color: var(--gray-500); }
+.wf-progress-count { margin-right: auto; }
+.wf-progress-btn { appearance: none; border: 0; background: none; padding: 0; cursor: pointer;
+  font: inherit; color: var(--gray-500); text-decoration: underline; text-underline-offset: 3px; }
+.wf-progress-btn:hover { color: var(--gray-900); }
+.wf-check { appearance: none; margin-left: auto; flex-shrink: 0; width: 20px; height: 20px; cursor: pointer;
+  border: 1.5px solid var(--gray-300); border-radius: 4px; background: #fff; position: relative; }
+.wf-check:hover { border-color: var(--gray-700); }
+.wf-check[aria-pressed="true"] { background: var(--gray-900); border-color: var(--gray-900); }
+.wf-check[aria-pressed="true"]::after { content: ""; position: absolute; left: 6px; top: 2px; width: 5px; height: 10px;
+  border: solid #fff; border-width: 0 2px 2px 0; transform: rotate(45deg); }
+.wf-doc .wf-step.wf-done .wf-step-head { cursor: pointer; }
+.wf-doc .wf-step.wf-done .wf-step-label { color: var(--gray-500); }
+.wf-doc .wf-step.wf-done:not(.wf-open) > :not(.wf-step-head):not(.wf-step-num) { display: none; }
+.wf-doc .wf-step.wf-done:not(.wf-open) { padding-bottom: 16px; padding-top: 16px; }
+.wf-doc .wf-step.wf-done:not(.wf-open) .wf-step-head > .wf-step-num { top: 17px; background: var(--gray-400); }
+@media print {
+  .wf-progress, .wf-check { display: none; }
+  .wf-doc .wf-step.wf-done > * { display: revert !important; }
+}
+
+/* phone: the number tile moves into the title line and the text takes the full width */
+@media (max-width: 600px) {
+  .wf-doc .wf-step { padding-left: 0; }
+  .wf-doc .wf-step-head { flex-wrap: wrap; row-gap: 6px; }
+  .wf-doc .wf-step-head > .wf-step-num,
+  .wf-doc .wf-step.wf-done:not(.wf-open) .wf-step-head > .wf-step-num { position: static; }
+  .wf-doc .wf-aside { margin-left: 0; }
+}

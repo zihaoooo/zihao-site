@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ELUA &mdash; Zihao Zhang</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" href="/assets/css/tokens.css" as="style">
+  <link rel="stylesheet" href="/assets/css/site.css">
+  <style>
+    .media-video { margin: 24px 0; }
+    .media-video iframe { width: 100%; aspect-ratio: 16 / 9; display: block; border: none; }
+
+    .media-2up-video { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin: 24px 0; }
+    .media-2up-video iframe { width: 100%; aspect-ratio: 16 / 9; display: block; border: none; }
+
+    .ack-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0 32px; margin-bottom: 40px; }
+    .ack-group-label { font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.14em; color: var(--gray-500); margin-bottom: 10px; display: block; }
+    .ack-list { list-style: none; font-size: 12px; line-height: 1.9; color: var(--gray-700); }
+    .ack-list .role { font-size: 10px; color: var(--gray-500); }
+
+    @media (max-width: 700px) {
+      .ack-grid { grid-template-columns: 1fr; gap: 24px 0; }
+      .media-2up-video { grid-template-columns: 1fr; }
+    }
+  </style>
+  <link rel="icon" href="/favicon.ico" sizes="16x16 32x32 48x48">
+  <link rel="apple-touch-icon" href="/assets/icons/apple-touch-icon.png">
+</head>
+<body>
+
+  <div id="site-wrap">
+
+    <nav id="site-nav">
+      <a class="site-nav-name" href="/">Zihao Zhang</a>
+      <span class="site-nav-zh">张子豪</span>
+      <p class="site-nav-meta">Associate Professor<br>Landscape Architecture<br>City College of New York</p>
+      <div class="site-nav-links">
+        <details class="site-nav-projects" open>
+          <summary class="active"><a href="/projects/">Projects</a></summary>
+          <div class="site-nav-sublinks">
+            <a class="site-nav-sublink" href="/projects/hundredquarters/">Hundred Quarters</a>
+            <a class="site-nav-sublink" href="/projects/ghagent/">GH Agent</a>
+            <a class="site-nav-sublink" href="/projects/hole/">A Hole in the Park</a>
+            <a class="site-nav-sublink" href="/projects/hydroponics/">Hydroponic</a>
+            <a class="site-nav-sublink" href="/projects/thresholds/">Thresholds of Winter</a>
+            <a class="site-nav-sublink" href="/projects/flushing/">Flushing</a>
+            <a class="site-nav-sublink" href="/projects/seedbomb/">Seed Bomb</a>
+            <a class="site-nav-sublink" href="/projects/harlemlane/">Harlem Lane</a>
+            <a class="site-nav-sublink" href="/projects/eastharlem/">East Harlem Polder</a>
+            <a class="site-nav-sublink" href="/projects/elua/">ELUA</a>
+            <a class="site-nav-sublink" href="/projects/shroomdrone/">Shroom Drone</a>
+            <a class="site-nav-sublink" href="/projects/othernatures/">Other Natures</a>
+            <a class="site-nav-sublink" href="/projects/cyborgbloom/">Cyborg Bloom</a>
+            <a class="site-nav-sublink" href="/projects/sensing/">Urban Sensing</a>
+          </div>
+        </details>
+        <a class="site-nav-link" href="/publications/">Publications</a>
+        <a class="site-nav-link" href="/teaching/">Teaching</a>
+        <a class="site-nav-link" href="/talks/">Talks</a>
+      </div>
+      <a class="site-nav-seal" href="/" title="Home"><img src="/assets/icons/seal.png" alt="張子豪 seal — home" width="38" height="38"></a>
+    </nav>
+
+    <main id="site-main">
+
+      <a class="project-back" href="/projects/">&larr; Projects</a>
+
+      <!-- Hero -->
+      <img class="project-hero" src="/assets/img/projects/elua/Hero.avif" alt="Ecological Laboratory for Urban Agriculture" width="1920" height="1446">
+
+      <!-- Title -->
+      <h1 class="project-title">Ecological Laboratory for Urban Agriculture</h1>
+      <p class="project-year">2022&ndash;2025 &middot; Research</p>
+
+      <!-- Meta -->
+      <div class="project-meta-grid" style="grid-template-columns: 1fr;">
+        <div>
+          <span class="project-meta-label">Collaborators</span>
+          <ul class="project-meta-list">
+            <li>Susan L. Epstein <span class="role">— Robotics, Hunter College</span></li>
+            <li>Christian Volkmann <span class="role">— Architecture, CCNY</span></li>
+            <li>Zhigang Zhu <span class="role">— Computer Vision, CCNY</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Description -->
+      <div class="project-description">
+        <p>Landscape architecture inherited an assumption that the environment is a closed system: measurable, predictable, and ultimately controllable. ELUA builds machines that adapt instead. Two gantry robots &mdash; one indoors, one on a sixth-floor rooftop &mdash; seed, water, weed, and prune two polyculture gardens as imperfect agents in a system that keeps changing. The outcome is a robotic ecology: an urban agricultural system supported, mediated, and co-evolved by machines and people, where design is a long-term engagement rather than a finished construction.</p>
+        <p>The gardens sit on the City College campus, at the Solar RoofPod and the Harlem Garden for Urban Food, supported by sensor arrays, an AI-powered camera, and the network infrastructure that makes responsive landscape research possible. Rather than maximizing yield, the work asks whether machine-assisted cultivation can hold in a polyculture that changes season to season &mdash; a question about urban food security, biodiversity, and climate adaptation that a controlled system cannot answer.</p>
+        <p>The project also built collaborations with community partners and local high schools, developing STEM curriculum and outreach with the next generation of scientists and urban farmers.</p>
+        <p>This project was partly funded by a 2022 CUNY Interdisciplinary Research Grant, a CCNY College-wide Research Vision Award, and a 2023 PSC-CUNY Award.</p>
+      </div>
+
+      <!-- Featured overview video -->
+      <div class="media-video">
+        <iframe src="https://www.youtube.com/embed/1Kz1bkFubsc" title="ELUA — Project Overview" allowfullscreen loading="lazy"></iframe>
+      </div>
+
+      <hr class="site-rule">
+
+      <!-- Concept & framework diagrams -->
+      <span class="project-section-label">Concept &amp; Framework</span>
+
+      <div class="media-full">
+        <img src="/assets/img/projects/elua/diagram_01.avif" alt="Technical framework" loading="lazy" width="1920" height="1091">
+      </div>
+
+      <div class="media-full">
+        <img src="/assets/img/projects/elua/diagram_02.avif" alt="Concept diagram: from a dysfunctional urban food system to a new urban agriculture practice" loading="lazy" width="1920" height="847">
+      </div>
+
+      <div class="media-full">
+        <img src="/assets/img/projects/elua/diagram_03.avif" alt="Rooftop garden isometric, with the gantry components called out" loading="lazy" width="1920" height="1242">
+      </div>
+
+      <div class="media-2up">
+        <img src="/assets/img/projects/elua/sketch_01.avif" alt="Early sketch: dual-track option with provided tracks and a customized frame" loading="lazy" width="1920" height="1482">
+        <img src="/assets/img/projects/elua/sketch_02.avif" alt="Early sketch: the frame and its planter units" loading="lazy" width="1920" height="1482">
+      </div>
+
+      <hr class="site-rule">
+
+      <!-- Construction -->
+      <span class="project-section-label">Construction</span>
+
+      <div class="media-video">
+        <iframe src="https://www.youtube.com/embed/EH2hRRIARS4" title="ELUA — Construction" allowfullscreen loading="lazy"></iframe>
+      </div>
+
+      <div class="media-2up">
+        <img src="/assets/img/projects/elua/before.avif" alt="The rooftop beds in May, newly seeded" loading="lazy" width="1920" height="1446">
+        <img src="/assets/img/projects/elua/after.avif" alt="The same beds in August, fully grown" loading="lazy" width="1920" height="1446">
+      </div>
+
+      <div class="media-2up">
+        <img src="/assets/img/projects/elua/construction_01.avif" alt="Building the track frame on the roof" loading="lazy" width="1920" height="1920">
+        <img src="/assets/img/projects/elua/construction_02.avif" alt="The crew laying out the planting beds" loading="lazy" width="1920" height="1920">
+      </div>
+
+      <div class="gallery-row">
+        <img src="/assets/img/projects/elua/construction_plans.avif" alt="Construction plans and section" style="flex: 0.6667" loading="lazy" width="1280" height="1920">
+        <img src="/assets/img/projects/elua/construction_detail.avif" alt="Track and planter construction detail" style="flex: 1" loading="lazy" width="1920" height="1920">
+      </div>
+
+      <hr class="site-rule">
+
+      <!-- Robot in action -->
+      <span class="project-section-label">Robot in Action</span>
+
+      <div class="media-video">
+        <iframe src="https://www.youtube.com/embed/VTec_SXO5Lk" title="ELUA — Robot in Action" allowfullscreen loading="lazy"></iframe>
+      </div>
+
+      <div class="media-4up">
+        <video src="/assets/img/projects/elua/robot_01.mp4" autoplay loop muted playsinline aria-label="Robot picking up seeds"></video>
+        <video src="/assets/img/projects/elua/robot_02.mp4" autoplay loop muted playsinline aria-label="Robot planting seeds"></video>
+        <video src="/assets/img/projects/elua/robot_03.mp4" autoplay loop muted playsinline aria-label="Robot in operation"></video>
+        <img src="/assets/img/projects/elua/robot_04.avif" alt="Seeds sown into the bed under grow lights" loading="lazy" width="1080" height="1920">
+      </div>
+
+      <hr class="site-rule">
+
+      <!-- Experiments -->
+      <span class="project-section-label">Experiments</span>
+
+      <div class="media-2up">
+        <img src="/assets/img/projects/elua/experiment_04.avif" alt="Plant detection run over two beds" loading="lazy" width="1600" height="900">
+        <img src="/assets/img/projects/elua/experiment_05.avif" alt="Planting bed lifted into place by crane" loading="lazy" width="1600" height="900">
+      </div>
+
+      <!-- Nozzle: screen, prototypes, and the spray clip at one row height -->
+      <div class="gallery-row">
+        <img src="/assets/img/projects/elua/experiment_01.avif" alt="Screen capture of the plant-tracking interface" style="flex: 1.7778" loading="lazy" width="1600" height="900">
+        <img src="/assets/img/projects/elua/experiment_02.avif" alt="Watering nozzle: CAD model and printed prototypes" style="flex: 1.1615" loading="lazy" width="1920" height="1653">
+        <video src="/assets/img/projects/elua/spray.mp4" autoplay loop muted playsinline style="flex: 0.5625; width: 0; min-width: 0; height: auto; display: block;" aria-label="The nozzle spraying water over a planting bed"></video>
+      </div>
+
+      <div class="media-full">
+        <img src="/assets/img/projects/elua/experiment_03.avif" alt="Five frames of the rotary tool working a bed" loading="lazy" width="1920" height="640">
+      </div>
+
+      <hr class="site-rule">
+
+      <!-- Field documentation -->
+      <span class="project-section-label">Field Documentation</span>
+
+      <!-- Field rows: flex is the aspect ratio, so each row shares a height -->
+      <div class="gallery-row">
+        <img src="/assets/img/projects/elua/field_08.avif" alt="Close planting between the rails" style="flex: 0.5625" loading="lazy" width="1080" height="1920">
+        <img src="/assets/img/projects/elua/field_01.avif" alt="A bed of mixed greens along the track" style="flex: 1.3263" loading="lazy" width="1920" height="1446">
+        <img src="/assets/img/projects/elua/field_04.avif" alt="Seedlings coming up in the raised bed" style="flex: 0.7529" loading="lazy" width="1446" height="1920">
+      </div>
+      <div class="gallery-row">
+        <img src="/assets/img/projects/elua/field_07.avif" alt="Mature planting along the gantry" style="flex: 0.7529" loading="lazy" width="1446" height="1920">
+        <img src="/assets/img/projects/elua/field_12.avif" alt="Tending the beds under the canopy" style="flex: 0.5625" loading="lazy" width="1080" height="1920">
+        <img src="/assets/img/projects/elua/field_15.avif" alt="Two of the team walking the roof" style="flex: 1.3281" loading="lazy" width="1920" height="1446">
+      </div>
+      <div class="gallery-row">
+        <img src="/assets/img/projects/elua/field_16.avif" alt="The team with a harvest of carrots" style="flex: 1.3312" loading="lazy" width="1920" height="1442">
+        <img src="/assets/img/projects/elua/field_09.avif" alt="Growth filling the planting grid" style="flex: 0.5625" loading="lazy" width="1080" height="1920">
+        <img src="/assets/img/projects/elua/field_10.avif" alt="A bed in late season" style="flex: 0.7529" loading="lazy" width="1446" height="1920">
+        <img src="/assets/img/projects/elua/field_11.avif" alt="The indoor lab bed under grow lights" style="flex: 1.0" loading="lazy" width="1920" height="1920">
+      </div>
+      <div class="gallery-row">
+        <img src="/assets/img/projects/elua/field_13.avif" alt="Harvested greens hung to dry" style="flex: 0.7534" loading="lazy" width="724" height="961">
+        <img src="/assets/img/projects/elua/field_17.avif" alt="A bunch of carrots pulled from the bed" style="flex: 0.7529" loading="lazy" width="1446" height="1920">
+        <img src="/assets/img/projects/elua/field_14.avif" alt="Cutting lettuce by hand" style="flex: 0.7534" loading="lazy" width="724" height="961">
+      </div>
+
+      <hr class="site-rule">
+
+      <!-- Acknowledgements -->
+      <span class="project-section-label">Acknowledgements</span>
+
+      <div class="ack-grid">
+        <div>
+          <span class="ack-group-label">Lab Assistants &amp; Alums</span>
+          <ul class="ack-list">
+            <li>George McCracken <span class="role">— Landscape Architecture, CCNY</span></li>
+            <li>Casey Breen <span class="role">— Landscape Architecture, CCNY</span></li>
+            <li>Gael Oriol <span class="role">— Landscape Architecture, CCNY</span></li>
+            <li>Sophia Xia <span class="role">— Computer Science, Hunter College</span></li>
+            <li>Albi Arapi <span class="role">— Computer Science, CCNY</span></li>
+            <li>Donald Lushi <span class="role">— Computer Science, CCNY</span></li>
+            <li>Kevin Lin <span class="role">— Computer Science, Hunter College</span></li>
+            <li>Rachel Ng <span class="role">— Computer Science, Hunter College</span></li>
+            <li>Ghazanfar Shahbaz <span class="role">— Computer Science, Hunter College</span></li>
+            <li>Katlin Labatt-Simon <span class="role">— Architecture, CCNY</span></li>
+            <li>Nicole Girdo <span class="role">— Architecture, CCNY</span></li>
+            <li>Aparna Ramanathan Ramesh <span class="role">— Architecture, CCNY</span></li>
+            <li>Griffin Pollak <span class="role">— Landscape Architecture, CCNY</span></li>
+            <li>Gongqi Chen <span class="role">— PhD Student in Data Science</span></li>
+          </ul>
+        </div>
+        <div>
+          <span class="ack-group-label">Partners &amp; Friends</span>
+          <ul class="ack-list">
+            <li>Ian Marvy</li>
+            <li>Margrethe Horlyck-Romanovsky</li>
+            <li>GrowNYC</li>
+            <li>Big Reuse</li>
+            <li>NYC Clean Soil Bank</li>
+          </ul>
+        </div>
+      </div>
+
+      <footer class="site-footer">&copy; 2026 Zihao Zhang. All rights reserved.</footer>
+    </main>
+  </div>
+
+  <script src="/assets/js/lightbox.js"></script>
+</body>
+</html>

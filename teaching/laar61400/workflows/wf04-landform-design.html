@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WF 04 Rhino Landform Modeling — LAAR 61400</title>
+  <link rel="stylesheet" href="/teaching/laar61400/assets/css/main.css">
+  <link rel="stylesheet" href="/teaching/laar61400/assets/css/workflow-shared.css?v=7">
+  <link rel="icon" href="/favicon.ico" sizes="16x16 32x32 48x48">
+  <link rel="apple-touch-icon" href="/assets/icons/apple-touch-icon.png">
+</head>
+<body>
+
+  <!-- Side panel -->
+  <nav id="sidepanel">
+    <a class="panel-brand" href="/teaching/laar61400/index.html">
+      <span class="panel-brand-title">LAAR 61400</span>
+      <span class="panel-brand-sub">Representation + Computation</span>
+    </a>
+    <a class="panel-announce" href="/teaching/laar61400/announcements.html"><span class="panel-announce-tag">New</span>Announcements</a>
+    <div class="panel-section">
+      <span class="panel-section-label">Workflows</span>
+      <a class="panel-link" href="/teaching/laar61400/workflows/wf01-autocad.html">
+        <span class="panel-link-num">01</span>AutoCAD Site Drafting
+      </a>
+      <a class="panel-link" href="/teaching/laar61400/workflows/wf02-sketch-portfolio.html">
+        <span class="panel-link-num">02</span>Hybrid Drawing + Deck
+      </a>
+      <a class="panel-link" href="/teaching/laar61400/workflows/wf03-urban-context.html"><span class="panel-link-num">03</span>Urban Context Mapping<span class="panel-tag">Extra</span></a>
+      <a class="panel-link active" href="/teaching/laar61400/workflows/wf04-landform-design.html">
+        <span class="panel-link-num">04</span>Rhino Landform Modeling
+      </a>
+      <a class="panel-link" href="/teaching/laar61400/workflows/wf05-meadow-parametric.html"><span class="panel-link-num">05</span>Attractor Fields</a>
+      <a class="panel-link" href="/teaching/laar61400/workflows/wf06-sketch-charrette.html"><span class="panel-link-num">06</span>Back to Basics</a>
+      <a class="panel-link" href="/teaching/laar61400/tutorials/ramp-on-slope.html">Ramp on a Slope<span class="panel-tag">Extra</span></a>
+      <a class="panel-link" href="/talks/agents-in-practice/" target="_blank" rel="noopener">AI Workflows ↗<span class="panel-tag">Extra</span></a>
+    </div>
+<div class="panel-section">
+      <span class="panel-section-label">Lectures</span>
+      <a class="panel-link" href="/teaching/laar61400/lectures/drawing-as-thinking.html">Drawing as Thinking Tool</a>
+      <a class="panel-link" href="/teaching/laar61400/lectures/computational-thinking.html">Computational Thinking</a>
+      <a class="panel-link" href="/teaching/laar61400/lectures/graphic-design-101.html">Graphic Design 101</a>
+      <a class="panel-link" href="/teaching/laar61400/lectures/modeling-as-thinking.html">Modeling as Thinking</a>
+      <a class="panel-link" href="/teaching/laar61400/lectures/fast-graphics.html">Fast Graphics</a>
+      <a class="panel-link" href="/teaching/laar61400/lectures/gis-spatial-data.html">Intro to GIS / Spatial Data<span class="panel-tag">Extra</span></a>
+      <a class="panel-link" href="/teaching/laar61400/lectures/cybernetics-and-design.html">Cybernetics and Design<span class="panel-tag">Extra</span></a>
+      <a class="panel-link" href="/teaching/laar61400/lectures/web-coding-literacy.html">Web Coding Literacy<span class="panel-tag">Extra</span></a>
+    </div>
+    <div class="panel-section">
+      <span class="panel-section-label">Shortcuts &amp; Reference</span>
+      <a class="panel-link" href="/teaching/laar61400/shortcuts/file-types.html">File Types Reference</a>
+      <a class="panel-link" href="/teaching/laar61400/shortcuts/adobe.html">Adobe Ps / Ai / Id</a>
+      <a class="panel-link" href="/teaching/laar61400/shortcuts/autocad.html">AutoCAD</a>
+      <a class="panel-link" href="/teaching/laar61400/shortcuts/rhino-ui.html">Rhino — Navigation &amp; UI</a>
+      <a class="panel-link" href="/teaching/laar61400/shortcuts/png-to-cad-block.html">PNG → CAD Block</a>
+    </div>
+  </nav>
+
+  <!-- Main content -->
+  <main id="main-content">
+    <div class="page-inner">
+
+<div class="wf-wrap wf-doc">
+
+  <!-- Header -->
+  <div class="wf-header">
+    <div class="wf-index">WF 04</div>
+    <div class="wf-header-text">
+      <div class="wf-title">Rhino Landform Modeling</div>
+      <div class="wf-subtitle">Rhino + Grasshopper → InDesign Catalog</div>
+    </div>
+  </div>
+
+  <!-- Spec + outcome -->
+  <div class="wf-spec">
+    <div class="wf-spec-item"><span class="wf-spec-label">Length</span><span class="wf-spec-value">2 sessions</span></div>
+    <div class="wf-spec-item"><span class="wf-spec-label">Sheet</span><span class="wf-spec-value">11" × 17"</span></div>
+    <div class="wf-spec-item"><span class="wf-spec-label">Format</span><span class="wf-spec-value">InDesign → PDF</span></div>
+    <div class="wf-spec-item wf-spec-due"><span class="wf-spec-label">Due</span><span class="wf-spec-value">Thu Oct 22</span></div>
+  </div>
+  <!-- Learning objectives -->
+  <div class="wf-objectives">
+    <strong>Learning Objectives</strong>
+    <p>With an agent connected through MCP (see <a href="/talks/agents-in-practice/try-rhino/">the Rhino guide</a>), Claude can build Rhino geometry for you: it picks the command, wires the inputs, fixes the join. That is <strong>button knowledge</strong>, and it is Claude's job now. Your job is the two kinds of knowledge after it. <strong>Behavior</strong> is knowing how surfaces behave: where water goes, how a slope reads. <strong>Judgment</strong> is deciding whether a form is right for the site and the people who use it. You learn behavior by building by hand, once. It is what lets you work with Claude:</p>
+    <ul>
+      <li><strong>Specify</strong> — say what you want in design terms: breakline, section, peak, grade</li>
+      <li><strong>Evaluate</strong> — read the contours and see what is wrong: where water goes, where the form misses the intent</li>
+      <li><strong>Direct</strong> — know which input to change next, and what it will do to the form</li>
+    </ul>
+    <p>All three use behavior. Judgment comes after them: deciding whether the form you directed is the right one for this site. That decision stays with you.</p>
+  </div>
+
+  <div class="wf-outcome">
+    <strong>Assignment</strong><del style="display:block;max-width:64ch;color:var(--gray-500);">A catalog of three landform types built by hand in Rhino, then combined on the 180×300 ft site as a live Grasshopper definition: four 11×17 isometric pages, one per landform and one of the combined site.</del><span><strong>Updated:</strong> one 11×17 page: a small-multiple catalog of twelve landforms on the same slope, each moving water a different way, built from one live Grasshopper definition and laid out in InDesign as a 4×3 grid, exported as a PDF.</span>
+    <div class="wf-actions">
+      <a class="wf-btn" href="https://miro.com/app/board/uXjVH3zpADk=/?share_link_id=760271312933" target="_blank" rel="noopener">Submit to Miro board<span class="wf-btn-arrow" aria-hidden="true">↗</span></a>
+      <span class="wf-btn-note">Password: &quot;c*****2026&quot;, shared via email</span>
+    </div>
+  </div>
+
+  <div class="wf-ongoing">
+    <strong>Final Integrated Drawing Set (due Dec 21)</strong>
+    <p>The semester's final set is an InDesign document too. Keep this catalog file: the final set is built the same way, with each workflow's PDF placed behind a small chapter page.</p>
+    <p><kbd>Ctrl D</kbd> places a PDF; tick <strong>Show Import Options</strong> to choose which pages.</p>
+  </div>
+
+  <!-- Pipeline strip -->
+  <div class="wf-pipeline">
+    <div class="wf-pipe-step"><div class="wf-pipe-node" style="background:var(--accent-tint);color:var(--accent);">Rhino</div><div class="wf-pipe-arrow">→</div></div>
+    <div class="wf-pipe-step"><div class="wf-pipe-node" style="background:#e8f5e8;color:#2a6a2a;">Grasshopper</div><div class="wf-pipe-arrow">→</div></div>
+    <div class="wf-pipe-step"><div class="wf-pipe-node wf-pipe-tool">Bake</div><div class="wf-pipe-arrow">→</div></div>
+    <div class="wf-pipe-step"><div class="wf-pipe-node wf-pipe-tool">ViewCaptureToFile</div><div class="wf-pipe-arrow">→</div></div>
+    <div class="wf-pipe-step"><div class="wf-pipe-node wf-pipe-tool">InDesign</div><div class="wf-pipe-arrow">→</div></div>
+    <div class="wf-pipe-step"><div class="wf-pipe-node">Catalog Grid</div></div>
+  </div>
+
+  <!-- Steps grid -->
+  <div class="wf-steps">
+
+    <!-- Session 1 label -->
+    <div class="wf-step wf-full" style="background:none;border:none;padding:0;margin-top:4px;">
+      <div class="wf-week-label">Session 1 — One Landform, Two Ways, by Hand</div>
+    </div>
+
+    <!-- Session 1 video walkthrough -->
+    <div class="wf-step wf-full wf-nocheck">
+      <div class="wf-step-head">
+        <span class="wf-step-num">▶</span>
+        <span class="wf-step-label">Video Walkthrough — Steps 00–05</span>
+      </div>
+      <div class="wf-step-body">
+        <div class="wf-step-desc">A narrated recording of Steps 00–05, with chapters and captions (<kbd>CC</kbd>). It varies from the text in places: the section curve is rebuilt and shaped in Front, and the contours are drawn first with Rhino's <kbd>Contour</kbd> command.</div>
+        <div class="wf-video" style="aspect-ratio:1920/1020">
+          <iframe src="https://www.youtube.com/embed/gjSCIO0NthY" title="Workflow 04 Rhino Landform Modeling — narrated walkthrough, Steps 00–05" loading="lazy"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+        <a class="wf-video-link" href="https://youtu.be/gjSCIO0NthY" target="_blank" rel="noopener">Open on YouTube for 1080p ↗</a>
+      </div>
+    </div>
+
+    <!-- Steps 00 & 01 -->
+    <div class="wf-step wf-full">
+      <div class="wf-step-head">
+        <span class="wf-step-num">00–01</span>
+        <span class="wf-step-label">File Setup + Base Slope</span>
+        <span class="wf-badge wf-badge-rh">Rhino</span>
+      </div>
+      <div class="wf-steps-row">
+        <div class="wf-step-body">
+          <div class="wf-step-desc"><strong>File setup</strong> — <kbd>DocumentProperties</kbd> → Units → <strong>Feet</strong>, Absolute tolerance → <kbd>0.1</kbd>. Save as <kbd>wf04-landform.3dm</kbd>.</div>
+          <div class="wf-note"><strong>Tolerance</strong> = how far apart two edges can be and still join. Patch only approximates its edge, so 0.01 ft is too tight; 0.1 ft (about 1") joins and is invisible at site scale.</div>
+        </div>
+        <div class="wf-step-body">
+          <div class="wf-step-desc"><strong>Build the base slope</strong> — <kbd>Rectangle</kbd> → <kbd>0,0</kbd> to <kbd>300,180</kbd>. <kbd>PlanarSrf</kbd> from the rectangle. Press <kbd>F10</kbd> to show control points. <kbd>Ctrl+Shift+click</kbd> the short edge at x = 300 to sub-object select it. Single-click the Gumball's blue <strong>Z arrow</strong> to open its number box, type <kbd>10</kbd>, Enter: that edge rises <strong>10 ft</strong>, so the site slopes 10 ft over its 300 ft length, about 3%. <kbd>F11</kbd> to hide points.</div>
+          <div class="wf-note">Sub-object selection (Ctrl+Shift+click) selects faces, edges, or vertices without exploding the object. Use it whenever you need to move part of a surface.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Ways to build a surface -->
+    <div class="wf-step wf-full">
+      <div class="wf-step-head">
+        <span class="wf-step-label">Ways to Build a Surface</span>
+        <span class="wf-badge wf-badge-rh">Rhino</span>
+      </div>
+      <div class="wf-step-body">
+        <div class="wf-step-desc">Every surface is built from curves. The curves you have decide the command.</div>
+        <table class="wf-table">
+          <thead><tr><th>Command</th><th>Give it</th><th>Landform use</th></tr></thead>
+          <tbody>
+            <tr><td><kbd>Loft</kbd></td><td>two or more section curves</td><td>ramp, terrace edge, wall face</td></tr>
+            <tr><td><kbd>Sweep1</kbd> / <kbd>Sweep2</kbd></td><td>a profile + one or two rails (paths)</td><td>berm or swale along a path, channel</td></tr>
+            <tr><td><kbd>Patch</kbd></td><td>a boundary curve + points or section curves inside it</td><td>mound or bowl inside a footprint</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="wf-note" style="padding:0 14px 14px;">This exercise uses <strong>Patch</strong>: a landform is defined by its edge plus a peak point or a section curve across it.</div>
+    </div>
+
+    <!-- Step 02 -->
+    <div class="wf-step">
+      <div class="wf-step-head">
+        <span class="wf-step-num">02</span>
+        <span class="wf-step-label">Draw a Footprint + Control</span>
+        <span class="wf-badge wf-badge-rh">Rhino</span>
+      </div>
+      <div class="wf-step-body">
+        <div class="wf-step-desc">In the Top viewport, draw a closed curve, flat: <kbd>InterpCrv</kbd>, <kbd>Ellipse</kbd>, or freehand. Then add a control inside it: a point or a section curve.</div>
+        <ul class="wf-tips">
+          <li><strong>Point</strong> → place it inside the footprint → <strong>Gumball Z</strong> → drag above the slope for a mound</li>
+          <li><strong>Section curve</strong> → in the Front or Right viewport, draw an <kbd>InterpCrv</kbd> across the footprint, edge to edge, tracing the profile you want. Patch passes through it, so it shapes the whole cut, not just the peak.</li>
+          <li>Check heights in the Front or Right viewport</li>
+          <li>Copy the slope, footprint, and control 400 ft to the right (<kbd>Copy</kbd>, Ortho on). You will build the same landform two ways, side by side.</li>
+        </ul>
+        <div class="wf-note">The footprint is the <strong>breakline</strong>: where the landform stops and existing grade continues. The control sets its height: a point fixes the peak, a section curve fixes a whole profile.</div>
+      </div>
+    </div>
+
+    <!-- Step 03 -->
+    <div class="wf-step">
+      <div class="wf-step-head">
+        <span class="wf-step-num">03</span>
+        <span class="wf-step-label">Method A: Patch Everything</span>
+        <span class="wf-badge wf-badge-rh">Rhino</span>
+      </div>
+      <div class="wf-step-body">
+        <div class="wf-step-desc">On the left copy, rebuild the whole slope as one Patch:</div>
+        <ul class="wf-tips">
+          <li><kbd>DupBorder</kbd> → select the slope → its edge as a curve</li>
+          <li>In the Top viewport: <kbd>Project</kbd> → the footprint → onto the slope. The curve now sits on existing grade.</li>
+          <li><kbd>Patch</kbd> → the border, the projected curve, and the control → Enter → Surface U/V spans <kbd>10</kbd> → OK</li>
+          <li>Hide the original slope</li>
+        </ul>
+        <div class="wf-note">One surface, nothing to join. But the mound is part of the whole field, so it can shift grade outside its footprint.</div>
+      </div>
+    </div>
+
+    <!-- Step 04 -->
+    <div class="wf-step">
+      <div class="wf-step-head">
+        <span class="wf-step-num">04</span>
+        <span class="wf-step-label">Method B: Split → Patch → Join</span>
+        <span class="wf-badge wf-badge-rh">Rhino</span>
+      </div>
+      <div class="wf-step-body">
+        <div class="wf-step-desc">On the right copy, change the ground only inside the footprint:</div>
+        <ul class="wf-tips">
+          <li><kbd>Project</kbd> → the footprint → onto the slope</li>
+          <li><kbd>Split</kbd> → the slope → with the projected curve. Delete the cut-out piece.</li>
+          <li><kbd>Patch</kbd> → the projected curve and the control → Enter → spans <kbd>10</kbd> → OK</li>
+          <li><kbd>Join</kbd> → the slope with the hole + the Patch → "joined into one polysurface"</li>
+          <li>Check: <kbd>ShowEdges</kbd> → Naked edges. Only the site boundary should highlight.</li>
+        </ul>
+        <div class="wf-note">More steps, but existing grade stays untouched outside the curve, the way a real landform stops at a curb. If Join fails, check the 0.1 ft tolerance from Step 00.</div>
+      </div>
+    </div>
+
+    <!-- Step 05 -->
+    <div class="wf-step">
+      <div class="wf-step-head">
+        <span class="wf-step-num">05</span>
+        <span class="wf-step-label">Contour Both: A First Look at Grasshopper</span>
+        <span class="wf-badge wf-badge-gh">Grasshopper</span>
+      </div>
+      <div class="wf-step-body">
+        <div class="wf-step-desc">Rhino's <kbd>Contour</kbd> command draws contours once. In Grasshopper they stay live. Type <kbd>Grasshopper</kbd>:</div>
+        <ul class="wf-tips">
+          <li>Double-click the canvas → type <kbd>Brep</kbd> → Enter. Right-click it → <strong>Set Multiple Breps</strong> → select both results</li>
+          <li>Double-click → <kbd>Contour</kbd>. Wire Brep → <kbd>Shape</kbd> input</li>
+          <li>Double-click → <kbd>Number Slider</kbd> (0.5–5) → <kbd>Distance</kbd> input. Drag it and watch.</li>
+        </ul>
+        <div class="wf-note">Compare A and B. In A, contours bend outside the footprint. In B, they kink at the breakline and stay straight beyond it. Session 2 turns Method A into a definition and builds a catalog with it.</div>
+      </div>
+    </div>
+
+    <!-- Session 2 label -->
+    <div class="wf-step wf-full" style="background:none;border:none;padding:0;margin-top:4px;">
+      <div class="wf-week-label">Session 2 — A Catalog of How Landforms Move Water</div>
+    </div>
+
+    <!-- Session 2 video walkthrough -->
+    <div class="wf-step wf-full wf-nocheck">
+      <div class="wf-step-head">
+        <span class="wf-step-num">▶</span>
+        <span class="wf-step-label">Video Walkthrough — Steps 06–12</span>
+      </div>
+      <div class="wf-step-body">
+        <div class="wf-step-desc">A narrated recording of Steps 06–12, with chapters and captions (<kbd>CC</kbd>).</div>
+        <div class="wf-video">
+          <iframe src="https://www.youtube.com/embed/4Ey7JqWP-Wo" title="Workflow 04 Rhino Landform Modeling, Part 2 — narrated walkthrough, Steps 06–12" loading="lazy"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+        <a class="wf-video-link" href="https://youtu.be/4Ey7JqWP-Wo" target="_blank" rel="noopener">Open on YouTube for 1080p ↗</a>
+      </div>
+    </div>
+
+    <!-- Step 06 -->
+    <div class="wf-step">
+      <div class="wf-step-head">
+        <span class="wf-step-num">06</span>
+        <span class="wf-step-label">Grasshopper Basics</span>
+        <span class="wf-badge wf-badge-gh">Grasshopper</span>
+      </div>
+      <div class="wf-step-body">
+        <div class="wf-step-desc">Every Rhino command from Session 1 becomes a component (see the reference table below).</div>
+        <ul class="wf-tips">
+          <li><strong>Add a component</strong>: double-click the empty canvas → type its name → Enter</li>
+          <li><strong>Inputs</strong> on the left, <strong>outputs</strong> on the right. Drag a wire from an output to an input.</li>
+          <li><strong>Params</strong> (Surface, Curve, Point) hold Rhino geometry: right-click → <strong>Set One …</strong> or <strong>Set Multiple …</strong> → click it in Rhino</li>
+          <li>Hover any input to see what it expects. Orange = warning, red = error.</li>
+          <li>Grasshopper geometry is a preview only. It becomes real Rhino geometry when you <strong>Bake</strong> it.</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Step 07 -->
+    <div class="wf-step">
+      <div class="wf-step-head">
+        <span class="wf-step-num">07</span>
+        <span class="wf-step-label">Method A as a Definition</span>
+        <span class="wf-badge wf-badge-rh">Rhino</span>
+        <span class="wf-badge wf-badge-gh">Grasshopper</span>
+      </div>
+      <div class="wf-step-body">
+        <div class="wf-step-desc">Start a new Rhino file, <kbd>wf04-catalog.3dm</kbd>. Set up the inputs in Rhino first, the way you did in Session 1. Grasshopper only references them.</div>
+        <ul class="wf-tips">
+          <li><strong>In Rhino</strong>: redo Steps 00–01 (setup, slope). <kbd>DupBorder</kbd> the slope. Draw a footprint, <kbd>Project</kbd> it onto the slope, and draw its control: a point or a section curve.</li>
+          <li><strong>In Grasshopper</strong>, save as <kbd>wf04-catalog.gh</kbd>. <strong>Curve</strong> param → right-click → Set Multiple Curves → the border, the projected footprint, and any section curves, all at once.</li>
+          <li><strong>Point</strong> param → right-click → Set Multiple Points → every control point. Leave it empty if this landform has none.</li>
+          <li>Curve → <strong>Patch</strong> <kbd>Curves</kbd> input. Point → <kbd>Points</kbd> input.</li>
+          <li><strong>Contour</strong> → Patch output → <kbd>Shape</kbd>; <strong>Number Slider</strong> (0.5–5) → <kbd>Distance</kbd>.</li>
+        </ul>
+        <div class="wf-note">This is Step 03 wired once. Every input stays a Rhino object you can edit: drag a point, reshape a section curve with <kbd>F10</kbd>, and the Patch follows. For a new footprint or an added section curve, run Set Multiple Curves again.</div>
+      </div>
+    </div>
+
+    <!-- Step 08 -->
+    <div class="wf-step">
+      <div class="wf-step-head">
+        <span class="wf-step-num">08</span>
+        <span class="wf-step-label">Build the Catalog</span>
+        <span class="wf-badge wf-badge-rh">Rhino</span>
+        <span class="wf-badge wf-badge-gh">Grasshopper</span>
+      </div>
+      <div class="wf-step-body">
+        <div class="wf-step-desc">Twelve landforms on the same slope, each doing something different with water. Edit the footprint and controls in Rhino and the definition reruns. When one reads right, right-click the Patch and Contour outputs → <strong>Bake</strong> → onto its own layer (<kbd>LF-01-MOUND</kbd>, <kbd>LF-02-BASIN</kbd> …), then hide that layer and shape the next.</div>
+        <ul class="wf-tips">
+          <li><strong>Mound</strong> → point above the slope. <strong>Sheds</strong> water outward.</li>
+          <li><strong>Basin</strong> → point below the slope. <strong>Holds</strong> water.</li>
+          <li><strong>Swale</strong> → curve below the slope, running downhill. <strong>Carries</strong> water along it.</li>
+          <li><strong>Ridge</strong> → curve above the slope, running downhill. <strong>Splits</strong> water to either side.</li>
+          <li><strong>Berm</strong> → curve above the slope, running across it. <strong>Checks</strong> water and ponds it uphill.</li>
+          <li><strong>Saddle</strong> → two points above the slope. Water <strong>funnels</strong> through the low pass between them.</li>
+          <li>Then vary and combine: a berm with a gap, a basin with a low notch that spills, a swale that bends, a mound off-center. Every frame should show water doing something the others don't.</li>
+        </ul>
+        <div class="wf-note">Change one thing at a time and read the contours after each change. Try the control higher, lower, off-center; try the footprint longer or narrower. Keep the version where the water behavior is clearest.</div>
+      </div>
+    </div>
+
+    <!-- Step 09 -->
+    <div class="wf-step">
+      <div class="wf-step-head">
+        <span class="wf-step-num">09</span>
+        <span class="wf-step-label">Capture the Catalog</span>
+        <span class="wf-badge wf-badge-rh">Rhino</span>
+      </div>
+      <div class="wf-step-body">
+        <div class="wf-step-desc">One image per landform, all framed the same way. A small multiple only works when every frame matches.</div>
+        <ul class="wf-tips">
+          <li>In any viewport title, right-click → <strong>Set View</strong> → <strong>Isometric</strong> → SW, SE, NE, or NW, whichever reads best</li>
+          <li><kbd>Zoom</kbd> → Extents on the slope, then <kbd>NamedView</kbd> → Save as <kbd>catalog</kbd>. Restore it before every capture.</li>
+          <li>Show one landform layer at a time</li>
+          <li>The surface and its contours share a layer, so set the viewport to <strong>Rendered</strong> (the ▾ next to the viewport title → Rendered) before you capture</li>
+          <li><kbd>ViewCaptureToFile</kbd> → <kbd>6 × 4</kbd> in, <kbd>300</kbd> dpi → uncheck Grid and Axes → check <strong>Transparent background</strong> → Save as PNG, named <kbd>lf-01-mound.png</kbd> and so on</li>
+        </ul>
+        <div class="wf-note">ViewCaptureToFile renders the active viewport at any size, so it stays sharp in print, unlike a screenshot. Same view, same size, same settings: then the only thing that changes from frame to frame is the landform.</div>
+      </div>
+    </div>
+
+    <!-- Step 10 -->
+    <div class="wf-step">
+      <div class="wf-step-head">
+        <span class="wf-step-num">10</span>
+        <span class="wf-step-label">Set Up the Sheet</span>
+        <span class="wf-badge wf-badge-id">InDesign</span>
+      </div>
+      <div class="wf-step-body">
+        <div class="wf-step-desc">New document: one page, 11"×17" landscape, 0.125" bleed, 0.5" margins. Define paragraph styles and apply them every time, so no text is formatted by hand.</div>
+        <ul class="wf-tips">
+          <li>Paragraph Styles <kbd>F11</kbd>: Title, Caption, at minimum</li>
+          <li>Title strip along the top: the catalog's name, your name, the course</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Step 11 -->
+    <div class="wf-step">
+      <div class="wf-step-head">
+        <span class="wf-step-num">11</span>
+        <span class="wf-step-label">Build the Grid</span>
+        <span class="wf-badge wf-badge-id">InDesign</span>
+      </div>
+      <div class="wf-step-body">
+        <div class="wf-step-desc">A small-multiple grid: twelve equal frames, four across and three down, each with a caption underneath.</div>
+        <ul class="wf-tips">
+          <li>Rectangle Frame tool <kbd>F</kbd>. Start the drag at the top-left margin corner and keep the mouse held down: <kbd>→</kbd> adds a column, <kbd>↑</kbd> adds a row (<kbd>←</kbd> <kbd>↓</kbd> take one away). Stop at 4 columns and 3 rows, then let go: one drag makes the whole grid.</li>
+          <li>Still dragging, hold <kbd>Ctrl</kbd> and press the arrows to change the gaps: <kbd>←</kbd> <kbd>→</kbd> for columns, <kbd>↑</kbd> <kbd>↓</kbd> for rows. Leave room under each row for a caption.</li>
+          <li>Select the image frames → <kbd>Ctrl D</kbd> → select all twelve PNGs → click each frame in turn to place them</li>
+          <li>Select the image frames → <kbd>Ctrl Alt Shift E</kbd> (Fit Content Proportionally). The captures share one size, so they land at one scale.</li>
+          <li>Caption format: landform · what water does · one observation</li>
+        </ul>
+        <div class="wf-note">The grid does the comparing for you. Order the frames so neighbors make a point: mound next to basin, swale next to ridge, each row a family.</div>
+      </div>
+    </div>
+
+    <!-- Step 12 -->
+    <div class="wf-step">
+      <div class="wf-step-head">
+        <span class="wf-step-num">12</span>
+        <span class="wf-step-label">Export + Submit</span>
+        <span class="wf-badge wf-badge-id">InDesign</span>
+      </div>
+      <div class="wf-step-body">
+        <ul class="wf-tips">
+          <li><kbd>Ctrl E</kbd> → Adobe PDF (Interactive). It is fine for screens and for everyday printing.</li>
+          <li>Use Adobe PDF (Print) when the sheet goes to a print shop or into a bound book: it adds bleed, crop marks and print color settings</li>
+          <li>Package <kbd>Ctrl Alt Shift P</kbd> to collect the InDesign file and every linked image in one folder</li>
+          <li>Submit the PDF to the Miro board</li>
+        </ul>
+      </div>
+    </div>
+
+  </div><!-- /steps -->
+
+  <!-- Rhino → GH reference -->
+  <div class="wf-step wf-full" style="margin-top:24px;">
+    <div class="wf-step-head">
+      <span class="wf-step-label" style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;">Rhino Command → GH Component</span>
+    </div>
+    <div class="wf-step-body">
+      <table class="wf-table">
+        <thead><tr><th>Session 1 (Rhino, Method A)</th><th>Session 2 (Grasshopper)</th></tr></thead>
+        <tbody>
+          <tr><td>click the border, footprint, control</td><td><kbd>Curve</kbd> / <kbd>Point</kbd> params → Set One</td></tr>
+          <tr><td><kbd>Project</kbd></td><td>stays in Rhino; the param references the projected curve</td></tr>
+          <tr><td><kbd>Patch</kbd> (border + footprint + control)</td><td><kbd>Curve</kbd> + <kbd>Point</kbd> → <kbd>Patch</kbd></td></tr>
+          <tr><td>redo the steps for each landform</td><td>edit the inputs; the definition reruns</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="wf-note" style="padding:0 14px 14px;"><strong>Same steps, different medium.</strong> In Rhino each command runs once. In Grasshopper the steps stay connected, so changing an input reruns them all.</div>
+  </div>
+
+  <!-- Optional: retaining wall -->
+  <details class="wf-step wf-full wf-examples" style="margin-top:24px;">
+    <summary class="wf-step-head">
+      <span class="wf-step-num">▸</span>
+      <span class="wf-step-label">Optional — Add a Retaining Wall</span>
+      <span class="wf-badge wf-badge-gh">Grasshopper</span>
+    </summary>
+    <div class="wf-step-body">
+      <div class="wf-step-desc">A smooth landform blends into grade. A retaining wall stops it with a hard edge. This example combines Method B with a wall:</div>
+      <ul class="wf-tips">
+        <li><strong>In Rhino</strong>: <kbd>Split</kbd> the slope with the projected footprint and delete the cut-out. The <strong>Surface</strong> param holds the slope with its hole.</li>
+        <li><strong>Wall face</strong>: <strong>Loft</strong> → two curves, the wall's foot on existing grade and its top edge raised to the wall height</li>
+        <li><strong>Landform</strong>: <strong>Patch</strong> → the wall's top edge + the rest of the footprint + a section curve across it</li>
+        <li><strong>Join Breps</strong> → slope + wall + Patch → <strong>Contour</strong></li>
+      </ul>
+      <div class="wf-note">At the wall face, contours crowd into a tight band; on a vertical wall they stack exactly. That band is how a wall reads in a contour drawing. Patch only approximates its edges, so it joins at the 0.1 ft tolerance from Step 00. If its edges stay naked, raise the Patch spans. The geometry is stored inside the definition, so it opens without a Rhino file.</div>
+      <div class="wf-example-grid">
+        <figure>
+          <img src="/teaching/laar61400/assets/img/WF04/example-retaining-wall.png" alt="SE isometric of the slope with a landform whose east edge is a retaining wall; contours crowd into a band at the wall">
+          <figcaption>SE isometric: contours crowd at the wall on the east edge</figcaption>
+        </figure>
+      </div>
+      <a class="wf-download" href="/teaching/laar61400/assets/img/WF04/WF04_retaining-wall.gh" download>↓ Download example definition — WF04_retaining-wall.gh</a>
+    </div>
+  </details>
+
+  <div class="wf-aside">
+    <div class="wf-aside-title">InDesign and Coding Agents</div>
+    <div class="wf-step-desc">InDesign can also save as IDML (<kbd>File → Save As → InDesign Markup</kbd>). IDML is XML, a plain-text markup language, so a coding agent like Claude can read and edit it: restyle every caption, rebuild the grid, reorder the frames. Open the edited file back in InDesign.</div>
+  </div>
+
+  <!-- Footer -->
+  <div class="wf-footer">
+    <span>LAAR 61400 — Representation &amp; Computation I</span><span>Workflow 04 of 06</span>
+  </div>
+
+</div>
+
+    </div>
+    <footer class="site-footer">&copy; 2026 Zihao Zhang &middot; <a rel="license" href="https://creativecommons.org/licenses/by-nc/4.0/">CC BY-NC 4.0</a>, except third-party images</footer>
+  </main>
+
+  <script src="/teaching/laar61400/assets/js/nav.js"></script>
+  <script src="/teaching/laar61400/assets/js/wf-progress.js"></script>
+</body>
+</html>
