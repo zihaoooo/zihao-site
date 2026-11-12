@@ -13,6 +13,9 @@ General rules are in `~/.claude/CLAUDE.md`. Here:
 - Ask through multiple-choice options when a choice is mine.
 - Preview with `py _local/dev-server.py` and show a screenshot before reporting done.
 - Commit each finished change and push it — pushing deploys to the live site.
+- Git history starts at the 2026-11-11 stable baseline; earlier history is in
+  `\\OSE\ose\ZIHAO\archive\zihao-site\git-history-2026-11-11.bundle`. Commit only published
+  files, in their final format (AVIF): originals, drafts and trial encodes stay out of the repo.
 
 ## Repo layout
 - _local/ — committed backup, unlinked from the site but public: GitHub shows it and the live site serves it by URL. Keep it to files fine to share.
