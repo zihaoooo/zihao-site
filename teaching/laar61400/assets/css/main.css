@@ -405,6 +405,14 @@ body { font-family: var(--font-sans); background: #fff; color: var(--gray-900); 
   padding: 6px 12px; background: #fff;
 }
 .schedule-jump:hover { background: var(--accent); color: #fff; border-color: var(--accent); }
+.final-notice-btn {
+  display: block; width: fit-content; margin-top: 12px;
+  font-family: var(--font-mono); font-size: 13px; font-weight: 600;
+  letter-spacing: 0.06em; text-transform: uppercase;
+  color: #fff; background: var(--accent); text-decoration: none;
+  border-radius: 4px; padding: 14px 22px;
+}
+.final-notice-btn:hover { filter: brightness(0.9); }
 
 /* Workflow topic links in the weekly schedule */
 .schedule-table .wf-link {
