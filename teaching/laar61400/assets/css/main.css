@@ -490,6 +490,8 @@ summary.ann-week-head:hover .ann-week-num { color: var(--accent); }
 .ann-agenda .ann-break { color: var(--gray-400); font-style: italic; }
 
 /* ── Final Deck page ── */
+.fd-title { display: flex; flex-wrap: wrap; align-items: center; gap: 14px; }
+.fd-title .fd-due { margin: 0; }
 .fd-due {
   display: inline-flex; align-items: baseline; gap: 10px; margin: 6px 0 14px;
   padding: 6px 12px; border-radius: 4px; background: var(--accent); color: #fff;
